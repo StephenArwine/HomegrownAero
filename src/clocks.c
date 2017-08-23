@@ -50,8 +50,6 @@
      // Disable ONDEMAND mode while writing configurations (errata 9905) 
      SYSCTRL->DFLLCTRL.reg = dfll_ctrl_usb & ~SYSCTRL_DFLLCTRL_ONDEMAND; 
      while((SYSCTRL->PCLKSR.reg & (SYSCTRL_PCLKSR_DFLLRDY)) == 0); 
-     //     SYSCTRL->DFLLMUL.reg = (SYSCTRL_DFLLMUL_CSTEP(1) | SYSCTRL_DFLLMUL_FSTEP(1)); 
-     //     SYSCTRL->DFLLMUL.reg |= SYSCTRL_DFLLMUL_MUL(1465); // round(48000000 / 32768) 
      SYSCTRL->DFLLVAL.reg = SYSCTRL_DFLLVAL_COARSE(coarse) | SYSCTRL_DFLLVAL_FINE(fine); 
  
  
