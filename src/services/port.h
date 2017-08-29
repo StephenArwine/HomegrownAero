@@ -1,7 +1,7 @@
 #ifndef PORT_H_
 #define PORT_H_
 
-#include "src/util.h"
+#include <util.h>
 
 
 #define INPUT 0
@@ -10,8 +10,8 @@
 
 static inline PortGroup* getPort(
        const u8_t gpioPin) {
-u8_t port_index = (gpio_pin / 128);
-ut_t group_index = (gpio_pin / 32);
+u8_t port_index = (gpioPin / 128);
+u8_t group_index = (gpioPin / 32);
 /* Array of available ports */ 
     Port *const ports[PORT_INST_NUM] = PORT_INSTS; 
  

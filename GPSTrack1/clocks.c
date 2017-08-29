@@ -1,17 +1,7 @@
 
-
- #include <util.h>
  
  
- // Configure DFLL in USB recovery mode
- const uint32_t dfll_ctrl_usb
- = SYSCTRL_DFLLCTRL_ENABLE
- | SYSCTRL_DFLLCTRL_CCDIS
- | SYSCTRL_DFLLCTRL_BPLCKC
- | SYSCTRL_DFLLCTRL_USBCRM
- | SYSCTRL_DFLLCTRL_ONDEMAND;
- 
- void GclkInit() { 
+ void SalGclkInit() { 
 
  
      SYSCTRL->INTFLAG.reg = SYSCTRL_INTFLAG_BOD33RDY | SYSCTRL_INTFLAG_BOD33DET | 
@@ -43,20 +33,20 @@
  #define NVM_DFLL_COARSE_SIZE   6 
  #define NVM_DFLL_FINE_POS      64 
  #define NVM_DFLL_FINE_SIZE     10 
-     uint32_t coarse =( *((uint32_t *)(NVMCTRL_OTP4) 
+    uint32_t coarse =( *((uint32_t *)(NVMCTRL_OTP4) 
                           + (NVM_DFLL_COARSE_POS / 32)) 
                         >> (NVM_DFLL_COARSE_POS % 32)) 
                       & ((1 << NVM_DFLL_COARSE_SIZE) - 1); 
      if (coarse == 0x3f) { 
          coarse = 0x1f; 
-     } 
+     }; 
      uint32_t fine =( *((uint32_t *)(NVMCTRL_OTP4) 
                         + (NVM_DFLL_FINE_POS / 32)) 
                       >> (NVM_DFLL_FINE_POS % 32)) 
                     & ((1 << NVM_DFLL_FINE_SIZE) - 1); 
      if (fine == 0x3ff) { 
          fine = 0x1ff; 
-     } 
+     }; 
 
 
      // Disable ONDEMAND mode while writing configurations (errata 9905) 
