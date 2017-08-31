@@ -27,16 +27,6 @@ void GclkInit();
 	 __asm volatile ("cpsid i");
 #define ATOMIC_SECTION_LEAVE   __asm volatile ("msr primask, %0" : : "r" (__atomic) ); }
 
-
-typedef struct Pin {
-    uint8_t  mux;
-    uint8_t  cfg;
-    uint8_t  group;
-    uint8_t  pin;
-    uint8_t  chan;
-} Pin;
-
-
 void delayInit(void);
 
 static inline void delay_cycles(
