@@ -8,6 +8,30 @@
 #define OUTPUT 1
 #define OUTSTRONG 3
 
+//sercom port define
+
+#define UART_RX_SIZE 32
+
+typedef struct _uartBuf {
+u8 head;
+u8 tail;
+u8 bufLen;
+u8 rx[UART_RX_SIZE];
+} uartBuf;
+
+
+typedef struct sercomPort{
+
+// USART buffer
+_uartBuf uartBuf;
+
+
+} sercomPort;
+
+
+
+
+// general IO port stuff
 static inline PortGroup* getPort(
        const u8_t gpioPin) {
 u8_t port_index = (gpioPin / 128);
@@ -21,7 +45,6 @@ u8_t group_index = (gpioPin / 32);
          return NULL; 
      } 
  }; 
-
 
 inline static void pinAnalog(Pin p) { 
      if (p.pin & 1) { 
