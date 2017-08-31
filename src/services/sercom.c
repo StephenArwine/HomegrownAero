@@ -1,6 +1,6 @@
 #include <services.h>
 
-void sercomUSARTInit(u32_t buad){
+void sercomUSARTInit(sercomPort descr){
 
 uint32_t USART_CLKGEN_F = 8000000UL; 
 uint64_t br = (uint64_t)65536 * (USART_CLKGEN_F - 16 * baud) / USART_CLKGEN_F; 
@@ -46,7 +46,7 @@ uint64_t br = (uint64_t)65536 * (USART_CLKGEN_F - 16 * baud) / USART_CLKGEN_F;
                                 SERCOM_USART_CTRLB_CHSIZE(0/*8 bits*/); 
      // SERCOM_USART_CTRLB_SFDE; 
     USART_sync(SERCOM5); 
-     SERCOM5->USART.BAUD.reg = (uint16_t)br; 
+     SERCOM5->USART.BAUD.reg = (uint16_t)descr.buad; 
      USART_sync(SERCOM5); 
      SERCOM5->USART.CTRLA.reg |= SERCOM_USART_CTRLA_ENABLE; 
      USART_sync(SERCOM5); 
