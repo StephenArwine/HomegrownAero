@@ -27,6 +27,6 @@ static inline void _USARTSetDataReg(const void *const hw, uint8_t data ) {
     ATOMIC_SECTION_LEAVE
 }
 
-void sercomUSARTInit(uint32_t baud);
+void sercomUSARTInit(sercomPort descr);
 
 #endif
