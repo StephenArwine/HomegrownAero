@@ -48,7 +48,7 @@ uint64_t br = (uint64_t)65536 * (USART_CLKGEN_F - 16 * baud) / USART_CLKGEN_F;
 }
 
 
- inline void sercom_reset(SercomId id) { 
+ inline void sercom_reset(sercomId id) { 
      sercom(id)->SPI.CTRLA.reg = SERCOM_SPI_CTRLA_SWRST; 
      while(sercom(id)->SPI.CTRLA.reg & SERCOM_SPI_CTRLA_SWRST); 
 } 
