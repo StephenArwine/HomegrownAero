@@ -4,7 +4,11 @@
 
 ..\..\src\clocks.c
 
+..\..\src\drivers\MTK3329.c
+
 ..\..\src\services\Delay.c
+
+..\..\src\services\USART.c
 
 Device_Startup\startup_samd21.c
 

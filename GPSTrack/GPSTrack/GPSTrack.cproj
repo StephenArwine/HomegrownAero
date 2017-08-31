@@ -125,6 +125,7 @@
       <Value>C:\Users\ancar\Documents\Git\HomegrownAero\src</Value>
       <Value>C:\Users\ancar\Documents\Git\HomegrownAero\src\services</Value>
       <Value>../../../src</Value>
+      <Value>../../../src/drivers</Value>
     </ListValues>
   </armgcc.compiler.directories.IncludePaths>
   <armgcc.compiler.optimization.level>Optimize (-O1)</armgcc.compiler.optimization.level>
@@ -167,6 +168,14 @@
       <SubType>compile</SubType>
       <Link>clocks.c</Link>
     </Compile>
+    <Compile Include="..\..\src\drivers\drivers.h">
+      <SubType>compile</SubType>
+      <Link>drivers.h</Link>
+    </Compile>
+    <Compile Include="..\..\src\drivers\MTK3329.c">
+      <SubType>compile</SubType>
+      <Link>MTK3329.c</Link>
+    </Compile>
     <Compile Include="..\..\src\services\Delay.c">
       <SubType>compile</SubType>
       <Link>Delay.c</Link>
@@ -174,6 +183,14 @@
     <Compile Include="..\..\src\services\port.h">
       <SubType>compile</SubType>
       <Link>port.h</Link>
+    </Compile>
+    <Compile Include="..\..\src\services\services.h">
+      <SubType>compile</SubType>
+      <Link>services.h</Link>
+    </Compile>
+    <Compile Include="..\..\src\services\USART.c">
+      <SubType>compile</SubType>
+      <Link>USART.c</Link>
     </Compile>
     <Compile Include="..\..\src\util.h">
       <SubType>compile</SubType>

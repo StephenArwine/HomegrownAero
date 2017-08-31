@@ -1,8 +1,8 @@
 #include <util.h>
 
 
+
 // GPS stuff for MTK3329 Module
-#ifdef HAS_MTK3329
  struct MTK3329Module {
     float timef;
     uint8_t hour;
@@ -22,7 +22,6 @@
 void MTK3329ParseGPRMC(struct MTK3329Module *const myMTK3329,uint8_t *const RMCMessage);
 void MTK3329ParseMessage(struct MTK3329Module *const myMTK3329,uint8_t *const messageToParse);
 
-#endif
 
 // Flash mem stuff for MS5607
 #ifdef HAS_AT25SF
