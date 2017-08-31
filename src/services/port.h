@@ -8,7 +8,6 @@
 #define OUTPUT 1
 #define OUTSTRONG 3
 
-
 typedef struct Pin {
     u8_t  mux;
     u8_t  cfg;
@@ -30,13 +29,12 @@ u8 rx[UART_RX_SIZE];
 
 
 typedef struct sercomPort{
-
 // USART buffer
 _uartBuf uartBuf;
 
 //port info
-u32 txpo;
-u32 rxpo;
+Pin txpo;
+Pin rxpo;
 u32 buad;
 
 
