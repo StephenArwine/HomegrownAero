@@ -52,3 +52,19 @@ uint64_t br = (uint64_t)65536 * (USART_CLKGEN_F - 16 * baud) / USART_CLKGEN_F;
      sercom(id)->SPI.CTRLA.reg = SERCOM_SPI_CTRLA_SWRST; 
      while(sercom(id)->SPI.CTRLA.reg & SERCOM_SPI_CTRLA_SWRST); 
 } 
+
+
+static int32_t USARTDataRead(sercomId id,
+                             uint8_t *const buf,
+                             const uint16_t len){
+
+int32_t offset = 0;
+
+do{
+while (!_usartByteRecieved(id));
+       buf[offset] = _usartGetData(id);
+
+} while (++offset < len);
+
+return (int32_t)offset;
+}
