@@ -28,6 +28,7 @@ _uartBuf uartBuf;
 //port info
 u32 txpo;
 u32 rxpo;
+u32 buad;
 
 
 } sercomPort;
