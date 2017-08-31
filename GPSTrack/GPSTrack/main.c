@@ -8,7 +8,6 @@
 
 #include "sam.h"
 #include <util.h>
-#include <port.h>
 #include <services.h>
 
 const static Pin LedPin = {.group = 0, .pin = 27 };
