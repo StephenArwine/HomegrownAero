@@ -10,11 +10,11 @@
 
 
 typedef struct Pin {
-    uint8_t  mux;
-    uint8_t  cfg;
-    uint8_t  group;
-    uint8_t  pin;
-    uint8_t  chan;
+    u8_t  mux;
+    u8_t  cfg;
+    u8_t  group;
+    u8_t  pin;
+    u8_t  chan;
 } Pin;
 
 //sercom port define
