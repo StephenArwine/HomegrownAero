@@ -1,6 +1,6 @@
 #include <services.h>
 
-void sercomUSARTInit(sercomPort descr){
+void sercomUSARTInit(SercomId id){
 
 uint32_t USART_CLKGEN_F = 8000000UL; 
 uint64_t br = (uint64_t)65536 * (USART_CLKGEN_F - 16 * baud) / USART_CLKGEN_F; 
@@ -15,8 +15,8 @@ uint64_t br = (uint64_t)65536 * (USART_CLKGEN_F - 16 * baud) / USART_CLKGEN_F;
     ((Port *)PORT)->Group[1].PMUX[11].reg = 0x32; 
 
 
-     //enable power to sercom 5 module 
-     PM->APBCMASK.reg |= PM_APBCMASK_SERCOM5; 
+     //enable power to sercom module 
+     PM->APBCMASK.reg |= (PM_APBCMASK_SERCOM0_Pos + id); 
      //enable and configure the sercom clock 
      GCLK->GENDIV.reg =  GCLK_GENDIV_ID(3) | 
                          GCLK_GENDIV_DIV(1); 
@@ -25,29 +25,24 @@ uint64_t br = (uint64_t)65536 * (USART_CLKGEN_F - 16 * baud) / USART_CLKGEN_F;
                          GCLK_GENCTRL_IDC | 
                          GCLK_GENCTRL_RUNSTDBY | 
                          GCLK_GENCTRL_GENEN; 
-     GCLK->CLKCTRL.reg = GCLK_CLKCTRL_ID_SERCOM5_CORE | 
+     GCLK->CLKCTRL.reg = (GCLK_CLKCTRL_ID_SERCOM0_CORE_Pos + id) | 
                          GCLK_CLKCTRL_GEN_GCLK3 | 
                          GCLK_CLKCTRL_CLKEN; 
-     //     GCLK->CLKCTRL.reg = GCLK_CLKCTRL_ID_SERCOMX_SLOW | 
-     //                         GCLK_CLKCTRL_GEN_GCLK3 | 
-     //                         GCLK_CLKCTRL_CLKEN; 
-     GCLK->CLKCTRL.reg = GCLK_CLKCTRL_ID_SERCOM3_CORE | 
-                         GCLK_CLKCTRL_GEN_GCLK3 | 
-                         GCLK_CLKCTRL_CLKEN; 
+
  
  
      //configure the sercom module for the gps (sercom 5) 
-     SERCOM5->USART.CTRLA.reg = SERCOM_USART_CTRLA_DORD | 
+     sercom(id)->USART.CTRLA.reg = SERCOM_USART_CTRLA_DORD | 
                                 SERCOM_USART_CTRLA_MODE_USART_INT_CLK | 
                                 SERCOM_USART_CTRLA_RXPO(3) | 
                                 SERCOM_USART_CTRLA_TXPO(1); 
-     USART_sync(SERCOM5); 
-     SERCOM5->USART.CTRLB.reg = SERCOM_USART_CTRLB_RXEN | SERCOM_USART_CTRLB_TXEN | 
+     USART_sync(sercom(id)); 
+     sercom(id)->USART.CTRLB.reg = SERCOM_USART_CTRLB_RXEN | SERCOM_USART_CTRLB_TXEN | 
                                 SERCOM_USART_CTRLB_CHSIZE(0/*8 bits*/); 
      // SERCOM_USART_CTRLB_SFDE; 
-    USART_sync(SERCOM5); 
-     SERCOM5->USART.BAUD.reg = (uint16_t)descr.buad; 
-     USART_sync(SERCOM5); 
-     SERCOM5->USART.CTRLA.reg |= SERCOM_USART_CTRLA_ENABLE; 
-     USART_sync(SERCOM5); 
+    USART_sync(sercom(id));  
+     sercom(id)->USART.BAUD.reg = (uint16_t)descr.buad; 
+     USART_sync(sercom(id));  
+     sercom(id)->USART.CTRLA.reg |= SERCOM_USART_CTRLA_ENABLE; 
+     USART_sync(sercom(id));  
 }
