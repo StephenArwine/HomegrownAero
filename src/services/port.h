@@ -25,6 +25,10 @@ typedef struct sercomPort{
 // USART buffer
 _uartBuf uartBuf;
 
+//port info
+u32 txpo;
+u32 rxpo;
+
 
 } sercomPort;
 
