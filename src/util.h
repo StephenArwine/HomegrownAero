@@ -14,6 +14,9 @@ typedef uint16_t u16_t;
 typedef uint32_t u32_t;
 
 
+typedef u8 SercomId;
+
+
 // my includes
 #include <port.h>
 
