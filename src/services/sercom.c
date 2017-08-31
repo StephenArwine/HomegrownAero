@@ -36,15 +36,15 @@ uint64_t br = (uint64_t)65536 * (USART_CLKGEN_F - 16 * baud) / USART_CLKGEN_F;
                                 SERCOM_USART_CTRLA_MODE_USART_INT_CLK | 
                                 SERCOM_USART_CTRLA_RXPO(3) | 
                                 SERCOM_USART_CTRLA_TXPO(1); 
-     USART_sync(sercom(id)); 
+     USART_sync(id); 
      sercom(id)->USART.CTRLB.reg = SERCOM_USART_CTRLB_RXEN 
                                    | SERCOM_USART_CTRLB_TXEN 
                                    | SERCOM_USART_CTRLB_CHSIZE(0/*8 bits*/); 
-    USART_sync(sercom(id));  
+    USART_sync(id);  
      sercom(id)->USART.BAUD.reg = baud; 
-     USART_sync(sercom(id));  
+     USART_sync(id);  
      sercom(id)->USART.CTRLA.reg |= SERCOM_USART_CTRLA_ENABLE; 
-     USART_sync(sercom(id));  
+     USART_sync(id);  
 }
 
 
