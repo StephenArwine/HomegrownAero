@@ -1,6 +1,6 @@
 #include <services.h>
 
-void sercomUSARTInit(SercomId id){
+void sercomUSARTInit(SercomId id, u32 buad){
 
 uint32_t USART_CLKGEN_F = 8000000UL; 
 uint64_t br = (uint64_t)65536 * (USART_CLKGEN_F - 16 * baud) / USART_CLKGEN_F; 
@@ -37,12 +37,18 @@ uint64_t br = (uint64_t)65536 * (USART_CLKGEN_F - 16 * baud) / USART_CLKGEN_F;
                                 SERCOM_USART_CTRLA_RXPO(3) | 
                                 SERCOM_USART_CTRLA_TXPO(1); 
      USART_sync(sercom(id)); 
-     sercom(id)->USART.CTRLB.reg = SERCOM_USART_CTRLB_RXEN | SERCOM_USART_CTRLB_TXEN | 
-                                SERCOM_USART_CTRLB_CHSIZE(0/*8 bits*/); 
-     // SERCOM_USART_CTRLB_SFDE; 
+     sercom(id)->USART.CTRLB.reg = SERCOM_USART_CTRLB_RXEN 
+                                   | SERCOM_USART_CTRLB_TXEN 
+                                   | SERCOM_USART_CTRLB_CHSIZE(0/*8 bits*/); 
     USART_sync(sercom(id));  
-     sercom(id)->USART.BAUD.reg = (uint16_t)descr.buad; 
+     sercom(id)->USART.BAUD.reg = baud; 
      USART_sync(sercom(id));  
      sercom(id)->USART.CTRLA.reg |= SERCOM_USART_CTRLA_ENABLE; 
      USART_sync(sercom(id));  
 }
+
+
+ inline void sercom_reset(SercomId id) { 
+     sercom(id)->SPI.CTRLA.reg = SERCOM_SPI_CTRLA_SWRST; 
+     while(sercom(id)->SPI.CTRLA.reg & SERCOM_SPI_CTRLA_SWRST); 
+} 
