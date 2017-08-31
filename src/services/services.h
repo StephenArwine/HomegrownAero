@@ -4,8 +4,8 @@
 #ifndef _SALUSART_H_
 #define _SALUSART_H_
 
-static inline void USART_sync(const void *const hw) {
-    while (((Sercom *)hw)->USART.SYNCBUSY.bit.CTRLB);
+static inline void USART_sync(sercomId id) {
+    while (sercom(id)->USART.SYNCBUSY.bit.CTRLB);
 };
 
 static inline bool _USARTGetInteruptRCX(const void *const hw) {
