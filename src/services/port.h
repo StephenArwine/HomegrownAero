@@ -25,10 +25,10 @@ u8 head;
 u8 tail;
 u8 bufLen;
 u8 rx[UART_RX_SIZE];
-} uartBuf;
+} _uartBuf;
 
 
-typedef struct sercomPort{
+typedef struct _sercomPort{
 // USART buffer
 _uartBuf uartBuf;
 
@@ -38,7 +38,7 @@ Pin rxpo;
 u16 buad;
 
 
-} sercomPort;
+} _sercomPort;
 
 
 
