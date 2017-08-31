@@ -8,6 +8,15 @@
 #define OUTPUT 1
 #define OUTSTRONG 3
 
+
+typedef struct Pin {
+    uint8_t  mux;
+    uint8_t  cfg;
+    uint8_t  group;
+    uint8_t  pin;
+    uint8_t  chan;
+} Pin;
+
 //sercom port define
 
 #define UART_RX_SIZE 32
