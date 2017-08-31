@@ -4,11 +4,16 @@
 #ifndef _SALUSART_H_
 #define _SALUSART_H_
 
+
+//usart.c
+
 static inline void USART_sync(sercomId id) {
     while (sercom(id)->USART.SYNCBUSY.bit.CTRLB);
 };
 
-
+ bool _usartByteRecieved(sercomId id);
+uint8_t _usartGetData(sercomId id);
+static int32_t usartDataRead(sercomId id, uint8_t *const buf, const uint16_t len); 
 
 
 static inline void _USARTSetDataReg(const void *const hw, uint8_t data ) {
@@ -18,5 +23,6 @@ static inline void _USARTSetDataReg(const void *const hw, uint8_t data ) {
 }
 
 void sercomUSARTInit(sercomId id, u32 buad);
+
 
 #endif
