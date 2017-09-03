@@ -14,7 +14,7 @@ typedef uint16_t u16_t;
 typedef uint32_t u32_t;
 
 
-typedef u8 SercomId;
+#define SERCOM_HANDLER_(ID) SERCOM ## ID ## _Handler();
 
 
 // my includes

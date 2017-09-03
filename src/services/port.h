@@ -21,21 +21,21 @@ typedef struct Pin {
 #define UART_RX_SIZE 32
 
 typedef struct _uartBuf {
-u8 head;
-u8 tail;
-u8 bufLen;
-u8 rx[UART_RX_SIZE];
+    u8_t head;
+    u8_t tail;
+    u8_t bufLen;
+    u8_t rx[UART_RX_SIZE];
 } _uartBuf;
 
 
-typedef struct _sercomPort{
+typedef struct _sercomPort {
 // USART buffer
-_uartBuf uartBuf;
+    _uartBuf uartBuf;
 
 //port info
-Pin txpo;
-Pin rxpo;
-u16 buad;
+    Pin txpo;
+    Pin rxpo;
+    u16_t buad;
 
 
 } _sercomPort;
@@ -45,81 +45,81 @@ u16 buad;
 
 // general IO port stuff
 static inline PortGroup* getPort(
-       const u8_t gpioPin) {
-u8_t port_index = (gpioPin / 128);
-u8_t group_index = (gpioPin / 32);
-/* Array of available ports */ 
-    Port *const ports[PORT_INST_NUM] = PORT_INSTS; 
- 
-     if (port_index < PORT_INST_NUM) { 
-       return &(ports[port_index]->Group[group_index]); 
-     } else { 
-         return NULL; 
-     } 
- }; 
+    const u8_t gpioPin) {
+    u8_t port_index = (gpioPin / 128);
+    u8_t group_index = (gpioPin / 32);
+    /* Array of available ports */
+    Port *const ports[PORT_INST_NUM] = PORT_INSTS;
 
-inline static void pinAnalog(Pin p) { 
-     if (p.pin & 1) { 
-         PORT->Group[p.group].PMUX[p.pin/2].bit.PMUXO = 0x1; 
-     } else { 
-         PORT->Group[p.group].PMUX[p.pin/2].bit.PMUXE = 0x1; 
-     } 
- 
-     PORT->Group[p.group].PINCFG[p.pin].bit.PMUXEN = 1; 
- } 
- 
+    if (port_index < PORT_INST_NUM) {
+        return &(ports[port_index]->Group[group_index]);
+    } else {
+        return NULL;
+    }
+};
 
-inline static bool pinRead(Pin p) { 
-     return (PORT->Group[p.group].IN.reg & (1<<p.pin)) != 0; 
- } 
+inline static void pinAnalog(Pin p) {
+    if (p.pin & 1) {
+        PORT->Group[p.group].PMUX[p.pin/2].bit.PMUXO = 0x1;
+    } else {
+        PORT->Group[p.group].PMUX[p.pin/2].bit.PMUXE = 0x1;
+    }
 
-inline static void pinMux(Pin p) { 
-if (p.pin & 1) { 
-PORT->Group[p.group].PMUX[p.pin/2].bit.PMUXO = p.mux; 
-} else { 
-PORT->Group[p.group].PMUX[p.pin/2].bit.PMUXE = p.mux; 
-} 
-PORT->Group[p.group].PINCFG[p.pin].bit.PMUXEN = 1; 
-} 
+    PORT->Group[p.group].PINCFG[p.pin].bit.PMUXEN = 1;
+}
 
- 
-inline static void pinGpio(Pin p) { 
-PORT->Group[p.group].PINCFG[p.pin].bit.PMUXEN = 0; 
-} 
 
- 
-inline static void pinCfg(Pin p) { 
-PORT->Group[p.group].PINCFG[p.pin].reg |= p.cfg; 
-} 
+inline static bool pinRead(Pin p) {
+    return (PORT->Group[p.group].IN.reg & (1<<p.pin)) != 0;
+}
 
- 
-inline static void pinIn(Pin p) { 
-pinGpio(p); 
-    PORT->Group[p.group].PINCFG[p.pin].bit.INEN = 1; 
-     PORT->Group[p.group].DIRCLR.reg = (1<<p.pin); 
- } 
- 
- 
- inline static void pinOut(Pin p) { 
-     pinGpio(p);   
-   PORT->Group[p.group].DIRSET.reg = (1<<p.pin);  
-} 
- 
- 
- 
- 
- inline static void pinHigh(Pin p) { 
-     PORT->Group[p.group].OUTSET.reg = (1<<p.pin); 
- } 
- 
- 
- inline static void pinLow(Pin p) { 
-     PORT->Group[p.group].OUTCLR.reg = (1<<p.pin); 
- } 
- 
- 
- inline static void pinToggle(Pin p) { 
-     PORT->Group[p.group].OUTTGL.reg = (1<<p.pin); 
- } 
+inline static void pinMux(Pin p) {
+    if (p.pin & 1) {
+        PORT->Group[p.group].PMUX[p.pin/2].bit.PMUXO = p.mux;
+    } else {
+        PORT->Group[p.group].PMUX[p.pin/2].bit.PMUXE = p.mux;
+    }
+    PORT->Group[p.group].PINCFG[p.pin].bit.PMUXEN = 1;
+}
+
+
+inline static void pinGpio(Pin p) {
+    PORT->Group[p.group].PINCFG[p.pin].bit.PMUXEN = 0;
+}
+
+
+inline static void pinCfg(Pin p) {
+    PORT->Group[p.group].PINCFG[p.pin].reg |= p.cfg;
+}
+
+
+inline static void pinIn(Pin p) {
+    pinGpio(p);
+    PORT->Group[p.group].PINCFG[p.pin].bit.INEN = 1;
+    PORT->Group[p.group].DIRCLR.reg = (1<<p.pin);
+}
+
+
+inline static void pinOut(Pin p) {
+    pinGpio(p);
+    PORT->Group[p.group].DIRSET.reg = (1<<p.pin);
+}
+
+
+
+
+inline static void pinHigh(Pin p) {
+    PORT->Group[p.group].OUTSET.reg = (1<<p.pin);
+}
+
+
+inline static void pinLow(Pin p) {
+    PORT->Group[p.group].OUTCLR.reg = (1<<p.pin);
+}
+
+
+inline static void pinToggle(Pin p) {
+    PORT->Group[p.group].OUTTGL.reg = (1<<p.pin);
+}
 
 #endif

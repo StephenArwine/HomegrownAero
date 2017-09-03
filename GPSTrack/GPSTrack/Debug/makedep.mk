@@ -8,7 +8,7 @@
 
 ..\..\src\services\Delay.c
 
-..\..\src\services\USART.c
+..\..\src\services\sercom.c
 
 Device_Startup\startup_samd21.c
 

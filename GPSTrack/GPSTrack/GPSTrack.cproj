@@ -132,6 +132,7 @@
   <armgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>True</armgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>
   <armgcc.compiler.optimization.DebugLevel>Maximum (-g3)</armgcc.compiler.optimization.DebugLevel>
   <armgcc.compiler.warnings.AllWarnings>True</armgcc.compiler.warnings.AllWarnings>
+  <armgcc.linker.general.UseNewlibNano>True</armgcc.linker.general.UseNewlibNano>
   <armgcc.linker.libraries.Libraries>
     <ListValues>
       <Value>libm</Value>
@@ -140,7 +141,6 @@
   <armgcc.linker.libraries.LibrarySearchPaths>
     <ListValues>
       <Value>%24(ProjectDir)\Device_Startup</Value>
-      <Value>C:\Users\ancar\Documents\Git\HomegrownAero\src</Value>
     </ListValues>
   </armgcc.linker.libraries.LibrarySearchPaths>
   <armgcc.linker.optimization.GarbageCollectUnusedSections>True</armgcc.linker.optimization.GarbageCollectUnusedSections>
@@ -184,17 +184,21 @@
       <SubType>compile</SubType>
       <Link>port.h</Link>
     </Compile>
+    <Compile Include="..\..\src\services\sercom.c">
+      <SubType>compile</SubType>
+      <Link>sercom.c</Link>
+    </Compile>
     <Compile Include="..\..\src\services\services.h">
       <SubType>compile</SubType>
       <Link>services.h</Link>
     </Compile>
-    <Compile Include="..\..\src\services\USART.c">
-      <SubType>compile</SubType>
-      <Link>USART.c</Link>
-    </Compile>
     <Compile Include="..\..\src\util.h">
       <SubType>compile</SubType>
       <Link>util.h</Link>
+    </Compile>
+    <Compile Include="boardDefines.h">
+      <SubType>compile</SubType>
+      <Link>boardDefines.h</Link>
     </Compile>
     <Compile Include="Device_Startup\startup_samd21.c">
       <SubType>compile</SubType>

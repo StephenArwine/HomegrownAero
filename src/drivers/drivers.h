@@ -3,7 +3,7 @@
 
 
 // GPS stuff for MTK3329 Module
- struct MTK3329Module {
+ typedef struct MTK3329Module {
     float timef;
     uint8_t hour;
     uint8_t minute;
@@ -11,7 +11,7 @@
     float longitude;
     float latitude;
 	bool validSalad;
-};
+} GPS;
 
 #define PMTK_SET_NMEA_OUTPUT_RMCONLY "$PMTK314,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0*29"
 #define PMTK_SET_BAUD_57600 "$PMTK251,57600*2C"
@@ -19,8 +19,8 @@
 #define PMTK_LOCUS_STARTLOG  "$PMTK185,0*22"
 #define PMTK_LOCUS_STOPLOG "$PMTK185,1*23"
 
-void MTK3329ParseGPRMC(struct MTK3329Module *const myMTK3329,uint8_t *const RMCMessage);
-void MTK3329ParseMessage(struct MTK3329Module *const myMTK3329,uint8_t *const messageToParse);
+void MTK3329ParseGPRMC( GPS *const myMTK3329,uint8_t *const RMCMessage);
+void MTK3329ParseMessage( GPS *const myMTK3329,uint8_t *const messageToParse);
 
 
 // Flash mem stuff for MS5607

@@ -9,6 +9,9 @@
 #include "sam.h"
 #include <util.h>
 #include <services.h>
+#include <drivers.h>
+
+
 
 const static Pin LedPin = {.group = 0, .pin = 27 };
 
@@ -19,10 +22,10 @@ int main(void)
 	SystemInit();
 	GclkInit();
 	delayInit();
-	USART_init(9600);
+	sercomUSARTInit(SERCOM5,9600);
 	
-	
-	
+	GPS myMTK3329;
+
 	
 	pinOut(LedPin);
 	pinHigh(LedPin);
@@ -33,7 +36,10 @@ int main(void)
 	while (1)
 	{
 		pinToggle(LedPin);
-		delay_ms(1000);
-		USARTDataRead(USART_0,message,255);
+		
+	//	delay_ms(1000);
+		uint8_t bytesRead = usartDataRead(SERCOM5,message,255);
+		
+		//MTK3329ParseMessage(&myMTK3329,&message[0]);
 	}
 }

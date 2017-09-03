@@ -1,10 +1,10 @@
 #include <drivers.h>
 
 
-void MTK3329ParseGPRMC(struct MTK3329Module *const myMTK3329, uint8_t *const message) {
+void MTK3329ParseGPRMC(GPS *const myMTK3329, uint8_t *const message) {
     float latitude;
     float longitude;
-    char *RMCMessage = message;
+    char *RMCMessage = message[0];
     char degreebuff[10];
 
     // parse time
@@ -76,7 +76,7 @@ void MTK3329ParseGPRMC(struct MTK3329Module *const myMTK3329, uint8_t *const mes
 
 
 
-void MTK3329ParseMessage(struct MTK3329Module *const myMTK3329,uint8_t *const messageToParse) {
+void MTK3329ParseMessage(GPS *const myMTK3329,uint8_t *const messageToParse) {
     int32_t i = 0;
     do {
         if (messageToParse[i] == 0x24) {
