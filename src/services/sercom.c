@@ -46,6 +46,10 @@ void sercomUSARTInit(const void *const hw, u32_t buad) {
     USART_sync(hw);
     ((Sercom *)hw)->USART.BAUD.reg = (uint16_t)br;
     USART_sync(hw);
+    // system_interrupt_enable(SERCOM5_IRQn);
+    NVIC->ISER[0] = (uint32_t)(1 << ((uint32_t)SERCOM5_IRQn & 0x0000001f));
+	((Sercom *)hw)->USART.INTENSET.reg = SERCOM_USART_INTENSET_RXC; 
+    USART_sync(hw);
     ((Sercom *)hw)->USART.CTRLA.reg |= SERCOM_USART_CTRLA_ENABLE;
     USART_sync(hw);
 
@@ -71,14 +75,14 @@ int32_t usartDataRead(const void *const hw, uint8_t *const buf, const uint16_t l
 
     int32_t offset = 0;
 
+    do {
+        while (!_usartByteRecieved(hw));
+        buf[offset] = _usartGetData(hw);
+    } while (++offset < len);
 
-
-        do {
-            while (!_usartByteRecieved(hw));
-            buf[offset] = _usartGetData(hw);
-
-        } while (++offset < len);
-    
     return (int32_t)offset;
 
 }
+
+
+

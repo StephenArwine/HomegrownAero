@@ -19,8 +19,8 @@
 #define PMTK_LOCUS_STARTLOG  "$PMTK185,0*22"
 #define PMTK_LOCUS_STOPLOG "$PMTK185,1*23"
 
-void MTK3329ParseGPRMC( GPS *const myMTK3329,uint8_t *const RMCMessage);
-void MTK3329ParseMessage( GPS *const myMTK3329,uint8_t *const messageToParse);
+void MTK3329ParseGPRMC( GPS *myMTK3329,uint8_t *const RMCMessage);
+void MTK3329ParseMessage( GPS *myMTK3329,uint8_t *const messageToParse);
 
 
 // Flash mem stuff for MS5607
