@@ -6928,6 +6928,11 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <pinref part="R20" gate="G$1" pin="1"/>
 <junction x="180.34" y="25.4"/>
 </segment>
+<segment>
+<pinref part="U1" gate="G$1" pin="PA25(SER3:3+)"/>
+<wire x1="241.3" y1="132.08" x2="243.84" y2="132.08" width="0.1524" layer="91"/>
+<label x="243.84" y="132.08" size="1.778" layer="95"/>
+</segment>
 </net>
 <net name="FIRE_A" class="0">
 <segment>
@@ -6936,6 +6941,11 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <pinref part="R14" gate="G$1" pin="1"/>
 <junction x="180.34" y="48.26"/>
 <wire x1="180.34" y1="48.26" x2="172.72" y2="48.26" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U1" gate="G$1" pin="PA24(SER3:2+)"/>
+<wire x1="241.3" y1="134.62" x2="243.84" y2="134.62" width="0.1524" layer="91"/>
+<label x="243.84" y="134.62" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="FET_A" class="0">
@@ -6968,9 +6978,9 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <pinref part="R22" gate="G$1" pin="1"/>
 </segment>
 <segment>
-<pinref part="U1" gate="G$1" pin="PB03(AIN11/SER5:1)"/>
-<wire x1="172.72" y1="129.54" x2="170.18" y2="129.54" width="0.1524" layer="91"/>
-<label x="170.18" y="129.54" size="1.778" layer="95" rot="R180"/>
+<pinref part="U1" gate="G$1" pin="PB02(AIN10/SER5:0)"/>
+<wire x1="172.72" y1="132.08" x2="170.18" y2="132.08" width="0.1524" layer="91"/>
+<label x="170.18" y="132.08" size="1.778" layer="95" rot="R180"/>
 </segment>
 </net>
 <net name="SENSE_A" class="0">
@@ -6983,9 +6993,9 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <pinref part="R16" gate="G$1" pin="2"/>
 </segment>
 <segment>
-<pinref part="U1" gate="G$1" pin="PB02(AIN10/SER5:0)"/>
-<wire x1="172.72" y1="132.08" x2="170.18" y2="132.08" width="0.1524" layer="91"/>
-<label x="170.18" y="132.08" size="1.778" layer="95" rot="R180"/>
+<pinref part="U1" gate="G$1" pin="PB03(AIN11/SER5:1)"/>
+<wire x1="172.72" y1="129.54" x2="170.18" y2="129.54" width="0.1524" layer="91"/>
+<label x="170.18" y="129.54" size="1.778" layer="95" rot="R180"/>
 </segment>
 </net>
 <net name="FET_B" class="0">
@@ -7175,6 +7185,11 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <wire x1="276.86" y1="57.15" x2="276.86" y2="48.26" width="0.1524" layer="91"/>
 <junction x="276.86" y="48.26"/>
 </segment>
+<segment>
+<pinref part="U1" gate="G$1" pin="PA02(AIN0/DAC)"/>
+<wire x1="172.72" y1="147.32" x2="170.18" y2="147.32" width="0.1524" layer="91"/>
+<label x="170.18" y="147.32" size="1.778" layer="95" rot="R180"/>
+</segment>
 </net>
 <net name="FIRE_D" class="0">
 <segment>
@@ -7187,6 +7202,11 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <wire x1="266.7" y1="34.29" x2="274.32" y2="34.29" width="0.1524" layer="91"/>
 <wire x1="274.32" y1="34.29" x2="274.32" y2="25.4" width="0.1524" layer="91"/>
 <junction x="274.32" y="25.4"/>
+</segment>
+<segment>
+<pinref part="U1" gate="G$1" pin="PA03(AIN1/REFA)"/>
+<wire x1="172.72" y1="144.78" x2="170.18" y2="144.78" width="0.1524" layer="91"/>
+<label x="170.18" y="144.78" size="1.778" layer="95" rot="R180"/>
 </segment>
 </net>
 <net name="FET_C" class="0">
@@ -7261,12 +7281,22 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <pinref part="JP2" gate="G$1" pin="RXI"/>
 <label x="27.94" y="116.84" size="1.27" layer="95" xref="yes"/>
 </segment>
+<segment>
+<pinref part="U1" gate="G$1" pin="PA09(I2C/AIN17/SER0:1+)"/>
+<wire x1="241.3" y1="172.72" x2="243.84" y2="172.72" width="0.1524" layer="91"/>
+<label x="243.84" y="172.72" size="1.778" layer="95"/>
+</segment>
 </net>
 <net name="RXI" class="0">
 <segment>
 <wire x1="25.4" y1="119.38" x2="27.94" y2="119.38" width="0.1524" layer="91"/>
 <pinref part="JP2" gate="G$1" pin="TXO"/>
 <label x="27.94" y="119.38" size="1.27" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="U1" gate="G$1" pin="PA08(I2C/AIN16/SER0:0+)"/>
+<wire x1="241.3" y1="175.26" x2="243.84" y2="175.26" width="0.1524" layer="91"/>
+<label x="243.84" y="175.26" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="SENSE_C" class="0">
