@@ -43,7 +43,8 @@ C_SRCS +=  \
 ../main.c \
 ../src/analog.c \
 ../src/clocks.c \
-../src/dma.c
+../src/dma.c \
+../src/sercom.c
 
 
 PREPROCESSING_SRCS += 
@@ -58,7 +59,8 @@ Device_Startup/system_samd21.o \
 main.o \
 analog.o \
 clocks.o \
-dma.o
+dma.o \
+sercom.o
 
 OBJS_AS_ARGS +=  \
 Device_Startup/startup_samd21.o \
@@ -66,7 +68,8 @@ Device_Startup/system_samd21.o \
 main.o \
 analog.o \
 clocks.o \
-dma.o
+dma.o \
+sercom.o
 
 C_DEPS +=  \
 Device_Startup/startup_samd21.d \
@@ -74,7 +77,8 @@ Device_Startup/system_samd21.d \
 main.d \
 analog.d \
 clocks.d \
-dma.d
+dma.d \
+sercom.d
 
 C_DEPS_AS_ARGS +=  \
 Device_Startup/startup_samd21.d \
@@ -82,7 +86,8 @@ Device_Startup/system_samd21.d \
 main.d \
 analog.d \
 clocks.d \
-dma.d
+dma.d \
+sercom.d
 
 OUTPUT_FILE_PATH +=DasAltimeter.elf
 
@@ -100,6 +105,8 @@ LINKER_SCRIPT_DEP+=  \
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 

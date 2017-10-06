@@ -49,9 +49,18 @@ u32_t dmaRemaining(DmaChan chan);
 
 //clocks.c
 void GclkInit();
+void gclkEnable(u32_t id, u32_t src, u32_t div);
 void delayInit(void);
 void delay_ms(uint32_t delay);
 void delay_us(uint32_t delay);
+
+//sercom.c
+void sercomClockEnable(SercomId id, uint32_t clock_channel, u8_t divider);
+void sercomReset(SercomId id);
+void sercomSpiSlaveInit(SercomId id, u32_t dipo, u32_t dopo, bool cpol, bool cpha);
+void sercomSpiMasterInit(SercomId id, u32_t dipo, u32_t dopo, bool cpol, bool cpha, u8_t baud);
+void sercomI2cMasterInit(SercomId id, u8_t baud);
+void sercomUartInit(SercomId id, u32_t rxpo, u32_t txpo, u32_t baud);
 
 
 //analog.c
@@ -80,3 +89,7 @@ const uint32_t n) {
 		};
 	}
 }
+
+static inline void SPI_sync(SercomId id) {
+	while  (sercom(id)->SPI.SYNCBUSY.bit.CTRLB);
+};

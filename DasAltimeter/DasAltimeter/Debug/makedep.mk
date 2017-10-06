@@ -14,3 +14,5 @@ src\clocks.c
 
 src\dma.c
 
+src\sercom.c
+
