@@ -32,15 +32,19 @@ int main(void) {
     //pinHigh(LedPin);
 
     const static Pin cs_mem = {.group = 0, .pin = 20 };
-    const static Pin spi1MISO = {.group = 0, .pin = 16 };
-    const static Pin spi1SCK = {.group = 0, .pin = 17 };
-    const static Pin spi1MOSI = {.group = 0, .pin = 19 };
+    const static Pin spi1MISO = {.group = 0, .pin = 16, .mux = MUX_PA16C_SERCOM1_PAD0 };
+    const static Pin spi1SCK = {.group = 0, .pin = 17, .mux = MUX_PA17C_SERCOM1_PAD1 };
+    const static Pin spi1MOSI = {.group = 0, .pin = 19, .mux = MUX_PA19C_SERCOM1_PAD3 };
     pinOut(spi1MOSI);
     pinOut(spi1SCK);
     pinIn(spi1MISO);
     pinOut(cs_mem);
+	
+	pinMux(spi1MISO);
+	pinMux(spi1SCK);
+	pinMux(spi1MOSI);
 
-    sercomClockEnable(1, 4, 16);
+    sercomClockEnable(1, 3, 12);
     sercomSpiMasterInit(1, 0, 2, 0, 0, 9800);
 
 
