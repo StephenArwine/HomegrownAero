@@ -69,6 +69,12 @@ u16_t adcSample();
 u16_t adc_read(Pin p);
 
 
+
+//bigBang.c
+void byteOut(Pin SCK_PIN, Pin MOSI_PIN, uint8_t byte);
+uint8_t byteIn(Pin SCK_PIN, Pin MISO_PIN);
+
+
 #define CONTAINER_OF(ptr, type, field_name) \
 ((type *) (((uint8_t *)ptr) - offsetof(type, field_name)))
 
