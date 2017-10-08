@@ -34,7 +34,7 @@
         <documentation help="" />
         <offline-documentation help="" />
         <dependencies>
-          <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.20.1" />
+          <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.28.1" />
         </dependencies>
       </framework-data>
     </AsfFrameworkConfig>
@@ -116,6 +116,7 @@
       <Value>%24(PackRepoDir)\atmel\SAMD21_DFP\1.1.271\samd21a\include</Value>
       <Value>%24(PackRepoDir)\arm\cmsis\4.2.0\CMSIS\Include\</Value>
       <Value>../src</Value>
+      <Value>..</Value>
     </ListValues>
   </armgcc.compiler.directories.IncludePaths>
   <armgcc.compiler.optimization.level>Optimize (-O1)</armgcc.compiler.optimization.level>
@@ -149,6 +150,9 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="boardDefines.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Device_Startup\startup_samd21.c">
       <SubType>compile</SubType>
     </Compile>
@@ -162,6 +166,10 @@
       <SubType>compile</SubType>
       <Link>analog.c</Link>
     </Compile>
+    <Compile Include="src\bitBang.c">
+      <SubType>compile</SubType>
+      <Link>bitBang.c</Link>
+    </Compile>
     <Compile Include="src\clocks.c">
       <SubType>compile</SubType>
       <Link>clocks.c</Link>
@@ -169,6 +177,14 @@
     <Compile Include="src\dma.c">
       <SubType>compile</SubType>
       <Link>dma.c</Link>
+    </Compile>
+    <Compile Include="src\flight.c">
+      <SubType>compile</SubType>
+      <Link>flight.c</Link>
+    </Compile>
+    <Compile Include="src\flight.h">
+      <SubType>compile</SubType>
+      <Link>flight.h</Link>
     </Compile>
     <Compile Include="src\sercom.c">
       <SubType>compile</SubType>

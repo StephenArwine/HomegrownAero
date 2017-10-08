@@ -34,7 +34,7 @@ inline static Sercom* sercom(SercomId id) {
 
 #define DMA_DESC_ALIGN __attribute__((aligned(16)))
 
-void dma_init();
+void dmaInit();
 void dmaSercomStartTx(DmaChan chan, SercomId id, u8_t* src, unsigned size);
 void dmaSercomStartRx(DmaChan chan, SercomId id, u8_t* dst, unsigned size);
 void dmaAbort(DmaChan chan);

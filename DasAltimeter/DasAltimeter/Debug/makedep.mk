@@ -10,6 +10,8 @@ main.c
 
 src\analog.c
 
+src\bitBang.c
+
 src\clocks.c
 
 src\dma.c
