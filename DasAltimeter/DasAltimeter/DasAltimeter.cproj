@@ -117,6 +117,7 @@
       <Value>%24(PackRepoDir)\arm\cmsis\4.2.0\CMSIS\Include\</Value>
       <Value>../src</Value>
       <Value>..</Value>
+      <Value>../drivers</Value>
     </ListValues>
   </armgcc.compiler.directories.IncludePaths>
   <armgcc.compiler.optimization.level>Optimize (-O1)</armgcc.compiler.optimization.level>
@@ -159,8 +160,20 @@
     <Compile Include="Device_Startup\system_samd21.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="drivers\MS5803.h">
+      <SubType>compile</SubType>
+      <Link>MS5803.h</Link>
+    </Compile>
     <Compile Include="main.c">
       <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\altimeter.c">
+      <SubType>compile</SubType>
+      <Link>altimeter.c</Link>
+    </Compile>
+    <Compile Include="src\altimeter.h">
+      <SubType>compile</SubType>
+      <Link>altimeter.h</Link>
     </Compile>
     <Compile Include="src\analog.c">
       <SubType>compile</SubType>

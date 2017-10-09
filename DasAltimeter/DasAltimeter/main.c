@@ -20,20 +20,11 @@ void init() {
     adcInit();
     dmaInit();
 
-}
-
-
-int main(void) {
-    /* Initialize the SAM system */
-    init();
-
     NVIC_EnableIRQ(DMAC_IRQn);
     NVIC_SetPriority(DMAC_IRQn, 0xff);
 
-
     pinOut(LedPin);
     pinAnalog(senseBat);
-    //pinHigh(LedPin);
 
     pinOut(spi1MOSI);
     pinOut(spi1SCK);
@@ -43,6 +34,13 @@ int main(void) {
     pinHigh(cs_mem);
 
 
+
+}
+
+
+int main(void) {
+    /* Initialize the SAM system */
+    init();
 
 
 
@@ -71,9 +69,6 @@ int main(void) {
 
 
     volatile long counter = 0;
-
-
-
 
     pinLow(cs_mem);
 

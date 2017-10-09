@@ -33,7 +33,7 @@ void flight() {
     case flightBoost:
         /*
         *	boost to fast
-		*		while
+        *		while
         *	Accel > 1/4G
         */
 
@@ -47,11 +47,11 @@ void flight() {
 
         break;
     case flightCoast:
-        
-		/* Coast to drogue
+
+        /* Coast to drogue
         *		while
         *	   speed > 0
-		*	   	 &
+        *	   	 &
         *	altitude > baro_max_alt
         */
 
@@ -77,7 +77,7 @@ void flight() {
 
 
 
-
+        break;
     }
 
 
