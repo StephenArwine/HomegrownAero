@@ -8,5 +8,17 @@ Device_Startup\system_samd21.c
 
 main.c
 
+src\altimeter.c
+
+src\analog.c
+
+src\bitBang.c
+
 src\clocks.c
+
+src\dma.c
+
+src\flight.c
+
+src\sercom.c
 

@@ -54,8 +54,7 @@ void sercomSpiMasterInit(SercomId id, u32_t dipo, u32_t dopo, bool cpol, bool cp
 
 
     sercom(id)->SPI.CTRLB.reg
-        = SERCOM_SPI_CTRLB_RXEN
-          | SERCOM_SPI_CTRLB_SSDE;
+        = SERCOM_SPI_CTRLB_RXEN;
 
     SPI_sync(id);
 

@@ -124,6 +124,18 @@ inline static void pinToggle(Pin p) {
     PORT->Group[p.group].OUTTGL.reg = (1<<p.pin);
 }
 
+inline static void pullPinDown(Pin p){
+	pinIn(p);
+	PORT->Group[p.group].PINCFG[p.pin].bit.PULLEN = 1;
+	pinLow(p);
+}
+
+inline static void pullPinUp(Pin p){
+	pinIn(p);
+	PORT->Group[p.group].PINCFG[p.pin].bit.PULLEN = 1;
+	pinHigh(p);
+}
+
 #endif
 
 

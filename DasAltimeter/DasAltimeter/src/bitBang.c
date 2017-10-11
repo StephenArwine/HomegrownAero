@@ -16,7 +16,6 @@ void byteOut(Pin SCK_PIN, Pin MOSI_PIN, uint8_t byte) {
 		pinHigh(SCK_PIN);
 		byte <<= 1;
 	}
-
 }
 
 uint8_t byteIn(Pin SCK_PIN, Pin MISO_PIN) {

@@ -6,6 +6,8 @@ enum flight_state my_flight_state; // current flight state.
 
 void flight() {
 
+    delay_ms(1);
+
     my_flight_state = flightStatrup;
 
     switch(my_flight_state) {
