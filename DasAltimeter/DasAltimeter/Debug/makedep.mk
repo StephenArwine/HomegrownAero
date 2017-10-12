@@ -20,5 +20,7 @@ src\dma.c
 
 src\flight.c
 
+src\MS5803.c
+
 src\sercom.c
 

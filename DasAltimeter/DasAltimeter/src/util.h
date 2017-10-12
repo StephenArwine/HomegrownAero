@@ -10,6 +10,7 @@
 #include <string.h>
 
 
+
 typedef uint8_t u8_t;
 typedef uint16_t u16_t;
 typedef uint32_t u32_t;
@@ -26,6 +27,7 @@ typedef uint8_t SercomId;
 
 // my includes
 #include <port.h>
+#include <altimeter.h>
 
 //dma.c
 inline static Sercom* sercom(SercomId id) {

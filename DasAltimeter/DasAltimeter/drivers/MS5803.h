@@ -1,7 +1,6 @@
 
 
-#ifndef MS5803_H_
-#define MS5803_H_
+
 
 #include <util.h>
 
@@ -14,11 +13,5 @@
 #define MS5803_CMD_PROM_READ  0xA0
 
 
+void readMS5803Coefficients(Barometer myBarometer);
 
-
-
-
-
-
-
-#endif

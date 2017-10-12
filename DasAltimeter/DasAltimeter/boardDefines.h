@@ -2,9 +2,15 @@
 
 //frostburn
 const static Pin cs_mem = {.group = 0, .pin = 20 };
+const static Pin cs_baro = {.group = 0, .pin = 12 };
+
 const static Pin spi1MISO = {.group = 0, .pin = 16, .mux = MUX_PA16C_SERCOM1_PAD0 };
 const static Pin spi1SCK = {.group = 0, .pin = 17, .mux = MUX_PA17C_SERCOM1_PAD1};
 const static Pin spi1MOSI = {.group = 0, .pin = 19, .mux = MUX_PA19C_SERCOM1_PAD3 };
+
+const static Pin spi2MISO = {.group = 0, .pin = 13};
+const static Pin spi2SCK = {.group = 0, .pin = 15};
+const static Pin spi2MOSI = {.group = 0, .pin = 14};
 
 // "salaltimeter
 //    const static Pin cs_mem = {.group = 0, .pin = 8 };

@@ -203,6 +203,10 @@
       <SubType>compile</SubType>
       <Link>flight.h</Link>
     </Compile>
+    <Compile Include="src\MS5803.c">
+      <SubType>compile</SubType>
+      <Link>MS5803.c</Link>
+    </Compile>
     <Compile Include="src\sercom.c">
       <SubType>compile</SubType>
       <Link>sercom.c</Link>
