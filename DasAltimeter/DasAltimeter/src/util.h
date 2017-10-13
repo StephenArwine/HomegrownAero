@@ -63,6 +63,7 @@ void sercomSpiSlaveInit(SercomId id, u32_t dipo, u32_t dopo, bool cpol, bool cph
 void sercomSpiMasterInit(SercomId id, u32_t dipo, u32_t dopo, bool cpol, bool cpha, u8_t baud);
 void sercomI2cMasterInit(SercomId id, u8_t baud);
 void sercomUartInit(SercomId id, u32_t rxpo, u32_t txpo, u32_t baud);
+u8_t spiDataTransfer(SercomId id, u8_t data);
 
 
 //analog.c
