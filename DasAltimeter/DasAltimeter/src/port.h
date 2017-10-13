@@ -39,26 +39,7 @@ typedef struct _sercomPort {
     Pin rxpo;
     u16_t buad;
 
-
 } _sercomPort;
-
-
-
-
-// general IO port stuff
-static inline PortGroup* getPort(
-    const u8_t gpioPin) {
-    u8_t port_index = (gpioPin / 128);
-    u8_t group_index = (gpioPin / 32);
-    /* Array of available ports */
-    Port *const ports[PORT_INST_NUM] = PORT_INSTS;
-
-    if (port_index < PORT_INST_NUM) {
-        return &(ports[port_index]->Group[group_index]);
-    } else {
-        return NULL;
-    }
-};
 
 inline static void pinAnalog(Pin p) {
     if (p.pin & 1) {
