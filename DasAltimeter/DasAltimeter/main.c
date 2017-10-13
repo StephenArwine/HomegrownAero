@@ -30,17 +30,21 @@ void init() {
     pinOut(spi1MOSI);
     pinOut(spi1SCK);
     pinIn(spi1MISO);
+   pinMux(spi1MISO);
+   pinMux(spi1SCK);
+   pinMux(spi1MOSI);
 
     pinOut(spi2MOSI);
     pinOut(spi2SCK);
     pinIn(spi2MISO);
-   pinMux(spi1MISO);
-   pinMux(spi1SCK);
-   pinMux(spi1MOSI);
-    pinGpio(cs_mem);
+   pinMux(spi2MISO);
+   pinMux(spi2SCK);
+   pinMux(spi2MOSI);
+ 
 
     pinOut(cs_mem);
     pinHigh(cs_mem);
+pinGpio(cs_mem);
 
     pinOut(cs_baro);
     pinHigh(cs_baro);
