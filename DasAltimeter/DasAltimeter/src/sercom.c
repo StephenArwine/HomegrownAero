@@ -103,3 +103,9 @@ void sercomUartInit(SercomId id, u32_t rxpo, u32_t txpo, u32_t baud) {
           | SERCOM_USART_CTRLA_TXPO(txpo)
           | SERCOM_USART_CTRLA_RXPO(rxpo);
 }
+
+u8_t spiDataTransfer(SercomId id, u8_t data) {
+    sercom(id)->SPI.DATA.reg = data;
+    while(sercom(id)->SPI.INTFLAG.bit.RXC == 0);
+    return sercom(id)->SPI.DATA.reg;
+}
