@@ -47,32 +47,12 @@ void init() {
 }
 
 
-void spiSend(uint8_t sdata) {
 
-    while(SERCOM1->SPI.INTFLAG.bit.DRE == 0);
-    SERCOM1->SPI.DATA.reg = sdata;
-    while(SERCOM1->SPI.INTFLAG.bit.TXC == 0);
-
-}
-
-
-u8_t spiReceiveWait() {
-    u8_t dummy_tx = 0xFF;
-    while(SERCOM1->SPI.INTFLAG.bit.DRE == 0);
-    SERCOM1->SPI.DATA.reg = dummy_tx;
+u8_t spiDataTransfer(u8_t data) {
+//   while(SERCOM1->SPI.INTFLAG.bit.DRE == 0);
+    SERCOM1->SPI.DATA.reg = data;
     while(SERCOM1->SPI.INTFLAG.bit.RXC == 0);
-    u8_t RX = SERCOM1->SPI.DATA.reg;
-
-    return RX;
-}
-
-u8_t spiReceive() {
-    u8_t dummy_tx = 0xFF;
-    while(SERCOM1->SPI.INTFLAG.bit.DRE == 0);
-    SERCOM1->SPI.DATA.reg = dummy_tx;
-    u8_t RX = SERCOM1->SPI.DATA.reg;
-
-    return RX;
+    return SERCOM1->SPI.DATA.reg;
 }
 
 int main(void) {
@@ -81,13 +61,13 @@ int main(void) {
 
 
 
-    sercomClockEnable(1, 3, 6);
-    sercomSpiMasterInit(1, 0, 2, 0, 0, 0x01);
+    sercomClockEnable(1, 3, 4);
+    sercomSpiMasterInit(1, 0, 2, 0, 0, 0x00);
 
 
-    pinMux(spi1MISO);
-    pinMux(spi1SCK);
-    pinMux(spi1MOSI);
+   pinMux(spi1MISO);
+   pinMux(spi1SCK);
+   pinMux(spi1MOSI);
     pinGpio(cs_mem);
 
 
@@ -119,6 +99,8 @@ int main(void) {
 
     readMS5803Coefficients(myBarometer);
 
+    uint8_t dummyTx = 0xFF;
+    uint8_t dummyRx;
 
     while (1) {
 
@@ -129,18 +111,21 @@ int main(void) {
         delay_ms(10);
 
 
-        /*
-                pinLow(cs_mem);
 
-                spiSend(sData);
-                rData = spiReceive();
-                rData2 = spiReceive();
-                rData3 = spiReceive();
-                rDataFake = spiReceive();
-                while(SERCOM1->SPI.INTFLAG.bit.RXC == 0);
-                while(SERCOM1->SPI.INTFLAG.bit.TXC == 0);
-                pinHigh(cs_mem);
-        */
+        pinLow(cs_mem);
+              dummyRx = spiDataTransfer(sData);
+		       rData = spiDataTransfer(dummyTx);
+              rData2 = spiDataTransfer(dummyTx);
+              rData3 = spiDataTransfer(dummyTx);
+
+  //      byteOut(spi1SCK,spi1MOSI,sData);
+  //      uint8_t rData = byteIn(spi1SCK,spi1MISO);
+  //      uint8_t rData2 = byteIn(spi1SCK,spi1MISO);
+  //      uint8_t rData3 = byteIn(spi1SCK,spi1MISO);
+
+        pinHigh(cs_mem);
+
+
 
 
         flight();
