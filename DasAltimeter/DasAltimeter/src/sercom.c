@@ -45,23 +45,13 @@ void sercomSpiSlaveInit(SercomId id, u32_t dipo, u32_t dopo, bool cpol, bool cph
 
 
 void sercomSpiMasterInit(SercomId id, u32_t dipo, u32_t dopo, bool cpol, bool cpha, u8_t baud) {
-	
-	//sercom(id)->SPI.CTRLA.reg = SERCOM_SPI_CTRLA_ENABLE
-	
+		
     sercomReset(id);
 	
-    sercom(id)->SPI.CTRLA.reg = SERCOM_SPI_CTRLA_MODE_SPI_MASTER;
-
-
     sercom(id)->SPI.CTRLB.reg
         = SERCOM_SPI_CTRLB_RXEN;
 
-    SPI_sync(id);
-
     sercom(id)->SPI.BAUD.reg = baud;
-
-    SPI_sync(id);
-
 
     sercom(id)->SPI.CTRLA.reg
         = SERCOM_SPI_CTRLA_ENABLE
@@ -72,9 +62,6 @@ void sercomSpiMasterInit(SercomId id, u32_t dipo, u32_t dopo, bool cpol, bool cp
           | (cpha ? SERCOM_SPI_CTRLA_CPHA : 0);
 
     SPI_sync(id);
-
-
-
 }
 
 
