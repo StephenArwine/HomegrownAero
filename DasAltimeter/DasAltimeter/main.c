@@ -30,46 +30,42 @@ void init() {
     pinOut(spi1MOSI);
     pinOut(spi1SCK);
     pinIn(spi1MISO);
-   pinMux(spi1MISO);
-   pinMux(spi1SCK);
-   pinMux(spi1MOSI);
+    pinMux(spi1MISO);
+    pinMux(spi1SCK);
+    pinMux(spi1MOSI);
 
     pinOut(spi2MOSI);
     pinOut(spi2SCK);
     pinIn(spi2MISO);
-   pinMux(spi2MISO);
-   pinMux(spi2SCK);
-   pinMux(spi2MOSI);
+    pinMux(spi2MISO);
+    pinMux(spi2SCK);
+    pinMux(spi2MOSI);
  
 
     pinOut(cs_mem);
     pinHigh(cs_mem);
-pinGpio(cs_mem);
+    pinGpio(cs_mem);
 
     pinOut(cs_baro);
     pinHigh(cs_baro);
 
-
-
+    sercomClockEnable(1, 3, 4);
+    sercomSpiMasterInit(1, 0, 2, 0, 0, 0x00);
 
 }
 
 
 int main(void) {
-    /* Initialize the SAM system */
+
     init();
 
-    sercomClockEnable(1, 3, 4);
-    sercomSpiMasterInit(1, 0, 2, 0, 0, 0x00);
 
     volatile float batV = 0;
-
 
     /* Replace with your application code */
     volatile uint8_t rData;
     volatile uint8_t rData2;
     volatile uint8_t rData3;
-    volatile u8_t rDataFake;
 
     uint8_t sData = 0x9f;
 
@@ -77,11 +73,6 @@ int main(void) {
     volatile long counter = 0;
 
     Barometer myBarometer;
-
-
-
-    u32_t sizeRX = 8;
-
 
     readMS5803Coefficients(myBarometer);
 
@@ -96,8 +87,6 @@ int main(void) {
 
         delay_ms(10);
 
-
-
         pinLow(cs_mem);
               dummyRx = spiDataTransfer(sData);
               rData = spiDataTransfer(dummyTx);
@@ -108,8 +97,6 @@ int main(void) {
 
 
         flight();
-
-
     }
 }
 
