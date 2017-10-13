@@ -47,19 +47,9 @@ void init() {
 }
 
 
-
-u8_t spiDataTransfer(u8_t data) {
-//   while(SERCOM1->SPI.INTFLAG.bit.DRE == 0);
-    SERCOM1->SPI.DATA.reg = data;
-    while(SERCOM1->SPI.INTFLAG.bit.RXC == 0);
-    return SERCOM1->SPI.DATA.reg;
-}
-
 int main(void) {
     /* Initialize the SAM system */
     init();
-
-
 
     sercomClockEnable(1, 3, 4);
     sercomSpiMasterInit(1, 0, 2, 0, 0, 0x00);
@@ -80,12 +70,7 @@ int main(void) {
     volatile uint8_t rData3;
     volatile u8_t rDataFake;
 
-
-
     uint8_t sData = 0x9f;
-    uint8_t sData2 = 0x0A;
-
-
 
 
     volatile long counter = 0;
@@ -114,18 +99,11 @@ int main(void) {
 
         pinLow(cs_mem);
               dummyRx = spiDataTransfer(sData);
-		       rData = spiDataTransfer(dummyTx);
+              rData = spiDataTransfer(dummyTx);
               rData2 = spiDataTransfer(dummyTx);
               rData3 = spiDataTransfer(dummyTx);
 
-  //      byteOut(spi1SCK,spi1MOSI,sData);
-  //      uint8_t rData = byteIn(spi1SCK,spi1MISO);
-  //      uint8_t rData2 = byteIn(spi1SCK,spi1MISO);
-  //      uint8_t rData3 = byteIn(spi1SCK,spi1MISO);
-
         pinHigh(cs_mem);
-
-
 
 
         flight();
