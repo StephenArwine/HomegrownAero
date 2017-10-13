@@ -34,6 +34,10 @@ void init() {
     pinOut(spi2MOSI);
     pinOut(spi2SCK);
     pinIn(spi2MISO);
+   pinMux(spi1MISO);
+   pinMux(spi1SCK);
+   pinMux(spi1MOSI);
+    pinGpio(cs_mem);
 
     pinOut(cs_mem);
     pinHigh(cs_mem);
@@ -53,13 +57,6 @@ int main(void) {
 
     sercomClockEnable(1, 3, 4);
     sercomSpiMasterInit(1, 0, 2, 0, 0, 0x00);
-
-
-   pinMux(spi1MISO);
-   pinMux(spi1SCK);
-   pinMux(spi1MOSI);
-    pinGpio(cs_mem);
-
 
     volatile float batV = 0;
 
