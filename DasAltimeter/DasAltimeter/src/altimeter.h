@@ -2,17 +2,21 @@
 
 typedef struct Barometer {
 
-    uint16_t coefficients_[6];
+    u16_t coefficients_[6];
 
     uint32_t rawPressureData;
 
-    uint32_t rawTempatureDate;
+    uint32_t rawTempatureData;
 
     uint32_t temperatureCelcus;
 
     uint32_t pressurePa;
+	
+	uint32_t pressureMbar;
 
-    uint32_t heightFeet;
+    float heightCm;
+	
+	float heightFeet;
 
 
 } Barometer;

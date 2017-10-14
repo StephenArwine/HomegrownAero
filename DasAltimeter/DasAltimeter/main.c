@@ -52,7 +52,7 @@ void init() {
 
 
     sercomClockEnable(SPI1, 3, 4);
-    sercomSpiMasterInit(SPI1, 3, 0, 0, 0, 0x06);
+    sercomSpiMasterInit(SPI1, 3, 0, 0, 0, 0x00);
 
 }
 
@@ -65,25 +65,22 @@ int main(void) {
     volatile float batV = 0;
 
     /* Replace with your application code */
+
+    uint8_t dummy_Tx = 0xFF;
+    uint8_t dummy_rx;
+
     volatile uint8_t rData;
     volatile uint8_t rData2;
     volatile uint8_t rData3;
-
-
-
-
+    volatile uint8_t rData4;
     volatile long counter = 0;
 
-    Barometer myBarometer;
+    Barometer my_barometer;
 
-    //readMS5803Coefficients(myBarometer);
+    initMS5803Barometer(&my_barometer);
 
-    uint8_t dummyTx = 0xFF;
-    uint8_t dummyRx;
-
-    pinLow(cs_baro);
-    dummyRx = spiDataTransfer(SPI1,0x1E);
-    pinHigh(cs_baro);
+    volatile int64_t sumAltitude;
+    volatile int64_t averageAlt;
 
     while (1) {
 
@@ -91,30 +88,34 @@ int main(void) {
         pinToggle(LedPin);
         batV = (0.0020676 * adc_read(senseBat));
 
-        delay_ms(5);
+        pinLow(cs_baro);
+        dummy_rx = spiDataTransfer(SPI1, 0x50);
+        pinHigh(cs_baro);
+        delay_ms(2);
+        my_barometer.rawTempatureData = readMS5803AdcResults();
 
-        uint8_t convD1 = 0x40;
-        uint8_t ADCRead = 0x00;
-
-        uint8_t sData = 0x40;
-
-        pinLow(cs_imu);
-
-        dummyRx = spiDataTransfer(SPI1,0x40 | 0x41);
-		delay_us(10);
-        rData = spiDataTransfer(SPI1,dummyTx);
-   //     rData2 = spiDataTransfer(SPI1,dummyTx);
-
-        //    byteOut(spi1SCK,spi1MOSI,sData);
-        //     rData = byteIn(spi1SCK,spi1MISO);
-        //    rData2 = byteIn(spi1SCK,spi1MISO);
-
-
-
-        pinHigh(cs_imu);
-
-
+        pinLow(cs_baro);
+        dummy_rx = spiDataTransfer(SPI1, 0x42);
+        pinHigh(cs_baro);
+        delay_ms(2);
+        my_barometer.rawPressureData = readMS5803AdcResults();
         flight();
+
+        ConvertPressureTemperature(&my_barometer);
+        pascalToCent(&my_barometer);
+        my_barometer.heightFeet = 0.03281 *my_barometer.heightCm;
+
+
+        sumAltitude = sumAltitude + my_barometer.heightFeet;
+
+        if (counter > 99) {
+            averageAlt = sumAltitude / 100;
+			sumAltitude = 0;
+            counter = 0;
+
+        }
+
+
     }
 }
 

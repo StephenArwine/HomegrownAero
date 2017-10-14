@@ -12,6 +12,13 @@
 #define cmdAdcD2_4096_    0x58
 #define MS5803_CMD_PROM_READ  0xA0
 
+u32_t readMS5803AdcResults();
 
-void readMS5803Coefficients(Barometer myBarometer);
+void ConvertPressureTemperature(Barometer *my_barometer);
+void paToFeetNOAA(Barometer *my_barometer);
+
+
+void readMS5803Coefficients(Barometer *my_barometer);
+void initMS5803Barometer(Barometer *my_barometer);
+void pascalToCent(Barometer *my_barometer);
 
