@@ -2221,6 +2221,8 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <approved hash="7,39,6a2e68166bf269ca"/>
 <approved hash="7,39,e47324b3a4b36473"/>
 <approved hash="7,39,ea2e38163bf1e9c9"/>
+<approved hash="7,39,ffa2e03f73ba2faf"/>
+<approved hash="7,39,128aa5ec3c4836ae"/>
 <approved hash="7,39,3160cff78f77f1e1"/>
 <approved hash="7,39,182e59080f484e6e"/>
 <approved hash="5,1,05f75071038fa33a"/>
@@ -2252,9 +2254,13 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <approved hash="5,1,2cc1fbac8236a7d6"/>
 <approved hash="19,1,5a53151f6a3331b6"/>
 <approved hash="5,1,0fabe0d984e4db46"/>
+<approved hash="5,1,7da8027103d563bc"/>
 <approved hash="5,1,61654b68b58b9746"/>
+<approved hash="5,1,cb7420fb8fc13cea"/>
 <approved hash="19,1,b2b9ede2b255bdb7"/>
 <approved hash="19,1,51fb6ff570f41ebf"/>
+<approved hash="19,1,b61a9d944cb0f42c"/>
+<approved hash="19,1,277b35d99ac534b7"/>
 <approved hash="5,1,603d884bf403edae"/>
 <approved hash="5,1,2e280e98d704afc8"/>
 <approved hash="19,1,8fb22eea0c7c4035"/>

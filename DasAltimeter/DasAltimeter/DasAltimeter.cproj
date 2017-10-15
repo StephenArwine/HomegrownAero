@@ -164,6 +164,14 @@
     <Compile Include="Device_Startup\system_samd21.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="drivers\MPU9250.c">
+      <SubType>compile</SubType>
+      <Link>MPU9250.c</Link>
+    </Compile>
+    <Compile Include="drivers\MPU9250.h">
+      <SubType>compile</SubType>
+      <Link>MPU9250.h</Link>
+    </Compile>
     <Compile Include="drivers\MS5803.h">
       <SubType>compile</SubType>
       <Link>MS5803.h</Link>
@@ -206,6 +214,14 @@
     <Compile Include="src\MS5803.c">
       <SubType>compile</SubType>
       <Link>MS5803.c</Link>
+    </Compile>
+    <Compile Include="src\sample.c">
+      <SubType>compile</SubType>
+      <Link>sample.c</Link>
+    </Compile>
+    <Compile Include="src\sample.h">
+      <SubType>compile</SubType>
+      <Link>sample.h</Link>
     </Compile>
     <Compile Include="src\sercom.c">
       <SubType>compile</SubType>

@@ -1572,6 +1572,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <vertex x="53.34" y="27.94"/>
 <vertex x="2.54" y="27.94"/>
 </polygon>
+<wire x1="23.114" y1="18.376" x2="26.083378125" y2="17.60461875" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$3">
 <contactref element="U1" pad="1"/>
@@ -2136,9 +2137,8 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <contactref element="U1" pad="22"/>
 <wire x1="35.940596875" y1="11.0071875" x2="35.992640625" y2="10.93223125" width="0.254" layer="1"/>
 <wire x1="43.18" y1="11.43" x2="43.0892125" y2="11.43" width="0.254" layer="1"/>
-<wire x1="36.864121875" y1="12.522665625" x2="39.6237875" y2="9.763" width="0.254" layer="1"/>
-<wire x1="39.6237875" y1="9.763" x2="43.0732125" y2="9.763" width="0.254" layer="1"/>
-<wire x1="43.0732125" y1="9.763" x2="43.0892125" y2="11.43" width="0.254" layer="1"/>
+<wire x1="36.737121875" y1="12.522665625" x2="39.23489375" y2="10.02489375" width="0.254" layer="1"/>
+<wire x1="43.07655" y1="10.412128125" x2="43.0892125" y2="11.43" width="0.254" layer="1"/>
 <wire x1="43.18" y1="11.43" x2="43.048" y2="11.562" width="0.254" layer="1"/>
 <wire x1="43.048" y1="11.562" x2="43.048" y2="12.073" width="0.254" layer="1"/>
 <wire x1="45.186" y1="8.798" x2="44.542" y2="8.798" width="0.254" layer="1"/>
@@ -2150,7 +2150,9 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="34.544" y1="12.573" x2="35.052" y2="13.081" width="0.254" layer="1"/>
 <wire x1="35.052" y1="13.081" x2="35.433" y2="13.081" width="0.254" layer="1"/>
 <wire x1="35.433" y1="13.081" x2="35.991334375" y2="12.522665625" width="0.254" layer="1"/>
-<wire x1="35.991334375" y1="12.522665625" x2="36.864121875" y2="12.522665625" width="0.254" layer="1"/>
+<wire x1="35.991334375" y1="12.522665625" x2="36.737121875" y2="12.522665625" width="0.254" layer="1"/>
+<wire x1="39.23489375" y1="10.02489375" x2="42.689315625" y2="10.02489375" width="0.254" layer="1"/>
+<wire x1="42.689315625" y1="10.02489375" x2="43.07655" y2="10.412128125" width="0.254" layer="1"/>
 </signal>
 <signal name="ACCELX">
 <contactref element="U$7" pad="P$6"/>

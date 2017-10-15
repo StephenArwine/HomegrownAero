@@ -48,6 +48,7 @@ C_SRCS +=  \
 ../src/dma.c \
 ../src/flight.c \
 ../src/MS5803.c \
+../src/sample.c \
 ../src/sercom.c
 
 
@@ -68,6 +69,7 @@ clocks.o \
 dma.o \
 flight.o \
 MS5803.o \
+sample.o \
 sercom.o
 
 OBJS_AS_ARGS +=  \
@@ -81,6 +83,7 @@ clocks.o \
 dma.o \
 flight.o \
 MS5803.o \
+sample.o \
 sercom.o
 
 C_DEPS +=  \
@@ -94,6 +97,7 @@ clocks.d \
 dma.d \
 flight.d \
 MS5803.d \
+sample.d \
 sercom.d
 
 C_DEPS_AS_ARGS +=  \
@@ -107,6 +111,7 @@ clocks.d \
 dma.d \
 flight.d \
 MS5803.d \
+sample.d \
 sercom.d
 
 OUTPUT_FILE_PATH +=DasAltimeter.elf
@@ -125,6 +130,8 @@ LINKER_SCRIPT_DEP+=  \
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 

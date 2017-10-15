@@ -29,6 +29,9 @@ typedef uint8_t SercomId;
 #include <port.h>
 #include <altimeter.h>
 
+//sample.c
+void sampleTick(Altimeter *my_altimeter);
+
 //dma.c
 inline static Sercom* sercom(SercomId id) {
 	return (Sercom*) (0x42000800U + id * 1024);

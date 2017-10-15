@@ -22,5 +22,7 @@ src\flight.c
 
 src\MS5803.c
 
+src\sample.c
+
 src\sercom.c
 
