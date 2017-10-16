@@ -86,7 +86,14 @@ int main(void) {
 
         sampleTick(&my_altimeter);
 
-       
+        uint8_t dummy_Tx = 0xFF;
+        uint8_t dummy_rx;
+
+        pinLow(cs_imu);
+		dummy_rx = spiDataTransfer(SPI1,ACCEL_CONFIG | 0x80);
+		rData = spiDataTransfer(SPI1,dummy_Tx);
+		rData2 = spiDataTransfer(SPI1,dummy_Tx);
+      pinHigh(cs_imu);
 
 
 

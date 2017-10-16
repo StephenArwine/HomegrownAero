@@ -28,6 +28,7 @@ typedef uint8_t SercomId;
 // my includes
 #include <port.h>
 #include <altimeter.h>
+#include <MPU9250.h>
 
 //sample.c
 void sampleTick(Altimeter *my_altimeter);

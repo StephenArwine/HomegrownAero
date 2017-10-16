@@ -6,6 +6,8 @@ Device_Startup\startup_samd21.c
 
 Device_Startup\system_samd21.c
 
+drivers\MPU9250.c
+
 main.c
 
 src\altimeter.c
