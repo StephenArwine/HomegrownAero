@@ -45,11 +45,14 @@ typedef struct DofIMU {
 
     float magZ;
 
-    u16_t accelXData;
+    u8_t accelXHigh;
+    u8_t accelXLow;
 
-    u16_t accelYData;
+    u8_t accelYHigh;
+    u8_t accelYLow;
 
-    u16_t accelZData;
+    u8_t accelZHigh;
+    u8_t accelZLow;
 
     u16_t gyroXData;
 
