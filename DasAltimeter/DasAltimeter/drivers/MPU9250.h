@@ -2,10 +2,10 @@
 
 
 #define PWR_MGMT_1 0x6B
-#define ACCEL_XOUT_H 0xBB
-#define ACCEL_XOUT_L 0xBC
-#define ACCEL_YOUT_H 0XBD
-#define ACCEL_YOUT_L 0XBE
+#define ACCEL_XOUT_H 0xBA
+#define ACCEL_XOUT_L 0xBB
+#define ACCEL_YOUT_H 0XBC
+#define ACCEL_YOUT_L 0XBD
 #define ACCEL_ZOUT_H 0xBE
 #define ACCEL_ZOUT_L 0xC0
 #define GYRO_XOUT_H 0xC3

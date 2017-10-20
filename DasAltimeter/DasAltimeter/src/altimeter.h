@@ -25,7 +25,7 @@ typedef struct Barometer {
 } Barometer;
 
 
-typedef struct DofIMU {
+typedef struct IMU {
 
     float accelX;
 
@@ -67,7 +67,7 @@ typedef struct DofIMU {
     u16_t magZData;
 
 
-} DofIMU;
+} IMU;
 
 
 typedef struct AnalogAccelerometer {
@@ -81,8 +81,11 @@ typedef struct Altimeter {
 
     Barometer myBarometer;
 
-    DofIMU my9DofIMU;
+    IMU myIMU;
 
     AnalogAccelerometer myAnalogAccelerometer;
+	
+	float batV;
+
 
 } Altimeter;
