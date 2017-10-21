@@ -71,6 +71,10 @@ typedef struct IMU {
 
 
 typedef struct AnalogAccelerometer {
+	
+	u16_t analogRaw;
+	
+	float analogAccel;
 
 
 

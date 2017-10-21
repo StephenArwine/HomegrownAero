@@ -74,17 +74,21 @@ int main(void) {
     volatile uint8_t rData4;
     volatile long counter = 0;
 
-    volatile int64_t sumAltitude;
-    volatile int64_t averageAlt;
+    volatile float sumAccel;
+    volatile float averageAccel;
+volatile float averageAlt;
 
+volatile u16_t analogSample;
     volatile float accelX;
+	
+	
 
     while (1) {
 		
-        delay_ms(50);
+     //   delay_ms(50);
 		
         counter++;
-        pinToggle(LedPin);
+ //       pinToggle(LedPin);
 
 
         sampleTick(&my_altimeter);
@@ -92,8 +96,22 @@ int main(void) {
         uint8_t dummy_Tx = 0xFF;
         uint8_t dummy_rx;
 
-        if (counter == 1000) {
-            counter = 0;
+analogSample = adc_read(analogAccelPin);
+accelX = (analogSample - 3920) * 0.0227;
+
+averageAccel = averageAccel + accelX;
+averageAlt = averageAlt + my_altimeter.myBarometer.heightFeet;
+
+        if (counter == 100) {
+			pinToggle(LedPin);
+			
+			averageAlt = averageAlt / 100;
+			averageAccel = averageAccel / 100;
+			
+            counter = -1;
+			
+			averageAccel = 0;
+			averageAlt = 0;
         }
 
 

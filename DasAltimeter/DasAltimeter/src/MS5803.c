@@ -71,7 +71,7 @@ void pascalToCent(Barometer *my_barometer) {
         959766, 984206
     };
 
-    my_barometer->pressurePa = my_barometer->pressureMbar *10;
+    my_barometer->pressurePa = my_barometer->pressureMbar *1;
 
     if (my_barometer->pressurePa > PA_INIT)
         my_barometer->heightCm = lookupTable[0];
