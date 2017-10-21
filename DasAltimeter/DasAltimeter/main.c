@@ -52,7 +52,7 @@ void init() {
 
 
     sercomClockEnable(SPI1, 3, 4);
-    sercomSpiMasterInit(SPI1, 3, 0, 0, 0, 0x00);
+    sercomSpiMasterInit(SPI1, 3, 0, 0, 0, 0x01);
 
 }
 
@@ -80,7 +80,9 @@ int main(void) {
     volatile float accelX;
 
     while (1) {
-
+		
+        delay_ms(50);
+		
         counter++;
         pinToggle(LedPin);
 

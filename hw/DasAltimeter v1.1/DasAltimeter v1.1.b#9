@@ -1639,10 +1639,6 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="29.337" y1="22.225" x2="29.972" y2="21.59" width="0.254" layer="1"/>
 <wire x1="29.972" y1="21.59" x2="29.972" y2="21.463" width="0.254" layer="1"/>
 </signal>
-<signal name="PROG">
-<contactref element="U1" pad="11"/>
-<wire x1="30.335784375" y1="8.103803125" x2="29.718" y2="7.48601875" width="0.254" layer="1"/>
-</signal>
 <signal name="CS_MEM">
 <contactref element="MEM" pad="!CS"/>
 <contactref element="R2" pad="1"/>

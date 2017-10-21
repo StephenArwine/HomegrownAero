@@ -1984,6 +1984,8 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="44.777" y1="9.198" x2="44.577" y2="9.398" width="0.254" layer="1"/>
 <wire x1="44.577" y1="9.398" x2="44.577" y2="12.304" width="0.254" layer="1"/>
 <wire x1="44.577" y1="12.304" x2="45.212" y2="12.685" width="0.254" layer="1"/>
+<contactref element="U1" pad="29"/>
+<wire x1="35.28553125" y1="15.174871875" x2="44.577" y2="12.304" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="CS_BARO">
 <contactref element="U3" pad="3"/>

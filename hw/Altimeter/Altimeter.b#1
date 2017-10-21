@@ -38,7 +38,7 @@
 <layer number="28" name="bValues" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="29" name="tStop" color="7" fill="3" visible="no" active="yes"/>
 <layer number="30" name="bStop" color="7" fill="6" visible="no" active="yes"/>
-<layer number="31" name="tCream" color="7" fill="4" visible="no" active="yes"/>
+<layer number="31" name="tCream" color="7" fill="4" visible="yes" active="yes"/>
 <layer number="32" name="bCream" color="7" fill="5" visible="no" active="yes"/>
 <layer number="33" name="tFinish" color="6" fill="3" visible="no" active="yes"/>
 <layer number="34" name="bFinish" color="6" fill="6" visible="no" active="yes"/>
@@ -157,9 +157,9 @@
 <board>
 <plain>
 <wire x1="2.921" y1="2.413" x2="52.248" y2="2.413" width="0" layer="20"/>
-<wire x1="52.248" y1="2.413" x2="52.121" y2="22.977" width="0" layer="20"/>
-<wire x1="52.121" y1="22.977" x2="2.794" y2="22.977" width="0" layer="20"/>
-<wire x1="2.794" y1="22.977" x2="2.921" y2="2.413" width="0" layer="20"/>
+<wire x1="52.248" y1="2.413" x2="52.248" y2="22.977" width="0" layer="20"/>
+<wire x1="52.248" y1="22.977" x2="2.921" y2="22.977" width="0" layer="20"/>
+<wire x1="2.921" y1="22.977" x2="2.921" y2="2.413" width="0" layer="20"/>
 <text x="22.098" y="13.208" size="1.4224" layer="26" rot="MR0">Altimeter?</text>
 </plain>
 <libraries>

@@ -6,7 +6,7 @@
 
 void sampleTick(Altimeter *my_altimeter) {
 
-    my_altimeter->batV = (0.0020676 * adc_read(senseBat));
+    my_altimeter->batV = (0.001906 * adc_read(senseBat));
 
 
 

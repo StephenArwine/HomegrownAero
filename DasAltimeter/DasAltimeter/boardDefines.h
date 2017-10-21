@@ -23,8 +23,8 @@ const static Pin spi1MOSI = {.group = 0, .pin = 12, .mux = MUX_PA12C_SERCOM2_PAD
 //    const static Pin spi1SCK = {.group = 0, .pin = 15};
 //    const static Pin spi1MOSI = {.group = 0, .pin = 13 };
 
-const static Pin LedPin = {.group = 0, .pin = 27 };
-const static Pin senseBat = {.group = 0, .pin = 6, .chan = 6 };
+const static Pin LedPin = {.group = 0, .pin = 28 };
+const static Pin senseBat = {.group = 0, .pin = 5, .chan = 5 };
 
 #define DMA_SERCOM1_TX 1
 #define DMA_SERCOM1_RX 2

@@ -7082,13 +7082,6 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <label x="170.18" y="139.7" size="1.778" layer="95" rot="R180"/>
 </segment>
 </net>
-<net name="INT" class="0">
-<segment>
-<pinref part="U2" gate="G$1" pin="INT"/>
-<wire x1="358.14" y1="195.58" x2="355.6" y2="195.58" width="0.1524" layer="91"/>
-<label x="355.6" y="195.58" size="1.27" layer="95" rot="R180" xref="yes"/>
-</segment>
-</net>
 <net name="REGOUT" class="0">
 <segment>
 <pinref part="U2" gate="G$1" pin="REGOUT"/>
@@ -7129,13 +7122,6 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <pinref part="U1" gate="G$1" pin="PA16(I2C/SER1:0+)"/>
 <wire x1="241.3" y1="154.94" x2="243.84" y2="154.94" width="0.1524" layer="91"/>
 <label x="243.84" y="154.94" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="SPI1_CLK" class="0">
-<segment>
-<pinref part="U2" gate="G$1" pin="SCL/SCLK"/>
-<wire x1="393.7" y1="193.04" x2="396.24" y2="193.04" width="0.1524" layer="91"/>
-<label x="396.24" y="193.04" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="CS_IMU" class="0">
@@ -7276,13 +7262,6 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <label x="27.94" y="116.84" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="VCC" class="0">
-<segment>
-<wire x1="25.4" y1="121.92" x2="27.94" y2="121.92" width="0.1524" layer="91"/>
-<pinref part="JP2" gate="G$1" pin="VCC"/>
-<label x="27.94" y="121.92" size="1.27" layer="95" xref="yes"/>
-</segment>
-</net>
 <net name="RXI" class="0">
 <segment>
 <wire x1="25.4" y1="119.38" x2="27.94" y2="119.38" width="0.1524" layer="91"/>
@@ -7330,6 +7309,11 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <pinref part="U1" gate="G$1" pin="PA17(I2C/SER1:1+)"/>
 <wire x1="241.3" y1="152.4" x2="243.84" y2="152.4" width="0.1524" layer="91"/>
 <label x="243.84" y="152.4" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="U2" gate="G$1" pin="SCL/SCLK"/>
+<wire x1="393.7" y1="193.04" x2="396.24" y2="193.04" width="0.1524" layer="91"/>
+<label x="396.24" y="193.04" size="1.778" layer="95"/>
 </segment>
 </net>
 </nets>

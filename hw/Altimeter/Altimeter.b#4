@@ -1578,6 +1578,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="26.083378125" y1="17.60461875" x2="26.083378125" y2="17.955378125" width="0.254" layer="1"/>
 <wire x1="26.083378125" y1="17.955378125" x2="26.289" y2="18.161" width="0.254" layer="1"/>
 <via x="12.573" y="6.858" extent="1-16" drill="0.35"/>
+<via x="10.795" y="14.732" extent="1-16" drill="0.35"/>
 </signal>
 <signal name="N$3">
 <contactref element="U1" pad="1"/>

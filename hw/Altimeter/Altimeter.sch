@@ -7257,6 +7257,11 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="401.32" y1="195.58" x2="408.94" y2="195.58" width="0.1524" layer="91"/>
 <junction x="401.32" y="195.58"/>
 </segment>
+<segment>
+<pinref part="U1" gate="G$1" pin="PA20(SER5:2+)"/>
+<wire x1="241.3" y1="144.78" x2="243.84" y2="144.78" width="0.1524" layer="91"/>
+<label x="243.84" y="144.78" size="1.778" layer="95"/>
+</segment>
 </net>
 <net name="CS_BARO" class="0">
 <segment>

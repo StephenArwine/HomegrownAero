@@ -15,23 +15,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   5 .comment      00000059  00000000  00000000  00020460  2**0
                   CONTENTS, READONLY
-  6 .debug_info   00010e6b  00000000  00000000  000204b9  2**0
+  6 .debug_info   00010e7b  00000000  00000000  000204b9  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 000013eb  00000000  00000000  00031324  2**0
+  7 .debug_abbrev 000013eb  00000000  00000000  00031334  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_loc    0000128b  00000000  00000000  0003270f  2**0
+  8 .debug_loc    0000128b  00000000  00000000  0003271f  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_aranges 00000240  00000000  00000000  0003399a  2**0
+  9 .debug_aranges 00000240  00000000  00000000  000339aa  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_ranges 000001e8  00000000  00000000  00033bda  2**0
+ 10 .debug_ranges 000001e8  00000000  00000000  00033bea  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_macro  00013cf8  00000000  00000000  00033dc2  2**0
+ 11 .debug_macro  00013cf8  00000000  00000000  00033dd2  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_line   00005373  00000000  00000000  00047aba  2**0
+ 12 .debug_line   00005379  00000000  00000000  00047aca  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_str    000718ae  00000000  00000000  0004ce2d  2**0
+ 13 .debug_str    000718ae  00000000  00000000  0004ce43  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_frame  0000076c  00000000  00000000  000be6dc  2**2
+ 14 .debug_frame  0000076c  00000000  00000000  000be6f4  2**2
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -308,7 +308,7 @@ void Reset_Handler(void)
      200:	41004800 	.word	0x41004800
      204:	41004000 	.word	0x41004000
      208:	000014d1 	.word	0x000014d1
-     20c:	00000379 	.word	0x00000379
+     20c:	00000371 	.word	0x00000371
 
 00000210 <SystemInit>:
  *         Initialize the System and update the SystemCoreClock variable.
@@ -334,395 +334,404 @@ void SystemInit(void)
 
 void init() {
      220:	b5f0      	push	{r4, r5, r6, r7, lr}
-     222:	465f      	mov	r7, fp
-     224:	4656      	mov	r6, sl
-     226:	464d      	mov	r5, r9
-     228:	4644      	mov	r4, r8
-     22a:	b4f0      	push	{r4, r5, r6, r7}
-     22c:	b083      	sub	sp, #12
+     222:	4657      	mov	r7, sl
+     224:	464e      	mov	r6, r9
+     226:	4645      	mov	r5, r8
+     228:	b4e0      	push	{r5, r6, r7}
+     22a:	b082      	sub	sp, #8
     SystemInit();
-     22e:	4b48      	ldr	r3, [pc, #288]	; (350 <init+0x130>)
-     230:	4798      	blx	r3
+     22c:	4b46      	ldr	r3, [pc, #280]	; (348 <init+0x128>)
+     22e:	4798      	blx	r3
     GclkInit();
-     232:	4b48      	ldr	r3, [pc, #288]	; (354 <init+0x134>)
-     234:	4798      	blx	r3
+     230:	4b46      	ldr	r3, [pc, #280]	; (34c <init+0x12c>)
+     232:	4798      	blx	r3
     delayInit();
-     236:	4b48      	ldr	r3, [pc, #288]	; (358 <init+0x138>)
-     238:	4798      	blx	r3
+     234:	4b46      	ldr	r3, [pc, #280]	; (350 <init+0x130>)
+     236:	4798      	blx	r3
     adcInit();
-     23a:	4b48      	ldr	r3, [pc, #288]	; (35c <init+0x13c>)
-     23c:	4798      	blx	r3
+     238:	4b46      	ldr	r3, [pc, #280]	; (354 <init+0x134>)
+     23a:	4798      	blx	r3
     dmaInit();
-     23e:	4b48      	ldr	r3, [pc, #288]	; (360 <init+0x140>)
-     240:	4798      	blx	r3
+     23c:	4b46      	ldr	r3, [pc, #280]	; (358 <init+0x138>)
+     23e:	4798      	blx	r3
 
     \param [in]      IRQn  External interrupt number. Value cannot be negative.
  */
 __STATIC_INLINE void NVIC_EnableIRQ(IRQn_Type IRQn)
 {
   NVIC->ISER[0] = (1 << ((uint32_t)(IRQn) & 0x1F));
-     242:	4b48      	ldr	r3, [pc, #288]	; (364 <init+0x144>)
-     244:	2240      	movs	r2, #64	; 0x40
-     246:	601a      	str	r2, [r3, #0]
+     240:	4b46      	ldr	r3, [pc, #280]	; (35c <init+0x13c>)
+     242:	2240      	movs	r2, #64	; 0x40
+     244:	601a      	str	r2, [r3, #0]
 {
   if(IRQn < 0) {
     SCB->SHP[_SHP_IDX(IRQn)] = (SCB->SHP[_SHP_IDX(IRQn)] & ~(0xFF << _BIT_SHIFT(IRQn))) |
         (((priority << (8 - __NVIC_PRIO_BITS)) & 0xFF) << _BIT_SHIFT(IRQn)); }
   else {
     NVIC->IP[_IP_IDX(IRQn)] = (NVIC->IP[_IP_IDX(IRQn)] & ~(0xFF << _BIT_SHIFT(IRQn))) |
-     248:	21c1      	movs	r1, #193	; 0xc1
-     24a:	0089      	lsls	r1, r1, #2
-     24c:	5858      	ldr	r0, [r3, r1]
-     24e:	4a46      	ldr	r2, [pc, #280]	; (368 <init+0x148>)
-     250:	4002      	ands	r2, r0
-     252:	505a      	str	r2, [r3, r1]
+     246:	21c1      	movs	r1, #193	; 0xc1
+     248:	0089      	lsls	r1, r1, #2
+     24a:	5858      	ldr	r0, [r3, r1]
+     24c:	4a44      	ldr	r2, [pc, #272]	; (360 <init+0x140>)
+     24e:	4002      	ands	r2, r0
+     250:	505a      	str	r2, [r3, r1]
     PORT->Group[p.group].PINCFG[p.pin].bit.PMUXEN = 1;
 }
 
 
 inline static void pinGpio(Pin p) {
     PORT->Group[p.group].PINCFG[p.pin].bit.PMUXEN = 0;
-     254:	4b45      	ldr	r3, [pc, #276]	; (36c <init+0x14c>)
-     256:	205b      	movs	r0, #91	; 0x5b
-     258:	5c19      	ldrb	r1, [r3, r0]
-     25a:	2201      	movs	r2, #1
-     25c:	4391      	bics	r1, r2
-     25e:	5419      	strb	r1, [r3, r0]
+     252:	4b44      	ldr	r3, [pc, #272]	; (364 <init+0x144>)
+     254:	215c      	movs	r1, #92	; 0x5c
+     256:	5c5a      	ldrb	r2, [r3, r1]
+     258:	2401      	movs	r4, #1
+     25a:	43a2      	bics	r2, r4
+     25c:	545a      	strb	r2, [r3, r1]
 }
 
 
 inline static void pinOut(Pin p) {
     pinGpio(p);
     PORT->Group[p.group].DIRSET.reg = (1<<p.pin);
-     260:	2180      	movs	r1, #128	; 0x80
-     262:	0509      	lsls	r1, r1, #20
-     264:	6099      	str	r1, [r3, #8]
+     25e:	2280      	movs	r2, #128	; 0x80
+     260:	0552      	lsls	r2, r2, #21
+     262:	609a      	str	r2, [r3, #8]
+
+} _sercomPort;
 
 inline static void pinAnalog(Pin p) {
     if (p.pin & 1) {
         PORT->Group[p.group].PMUX[p.pin/2].bit.PMUXO = 0x1;
+     264:	2032      	movs	r0, #50	; 0x32
+     266:	5c1a      	ldrb	r2, [r3, r0]
+     268:	394d      	subs	r1, #77	; 0x4d
+     26a:	4688      	mov	r8, r1
+     26c:	400a      	ands	r2, r1
+     26e:	2110      	movs	r1, #16
+     270:	430a      	orrs	r2, r1
+     272:	541a      	strb	r2, [r3, r0]
     } else {
         PORT->Group[p.group].PMUX[p.pin/2].bit.PMUXE = 0x1;
-     266:	2433      	movs	r4, #51	; 0x33
-     268:	5d18      	ldrb	r0, [r3, r4]
-     26a:	270f      	movs	r7, #15
-     26c:	43b8      	bics	r0, r7
-     26e:	2101      	movs	r1, #1
-     270:	4308      	orrs	r0, r1
-     272:	5518      	strb	r0, [r3, r4]
     }
 
     PORT->Group[p.group].PINCFG[p.pin].bit.PMUXEN = 1;
-     274:	3413      	adds	r4, #19
-     276:	5d18      	ldrb	r0, [r3, r4]
-     278:	4308      	orrs	r0, r1
-     27a:	5518      	strb	r0, [r3, r4]
+     274:	3013      	adds	r0, #19
+     276:	5c19      	ldrb	r1, [r3, r0]
+     278:	2201      	movs	r2, #1
+     27a:	4311      	orrs	r1, r2
+     27c:	5419      	strb	r1, [r3, r0]
     PORT->Group[p.group].PINCFG[p.pin].bit.PMUXEN = 1;
 }
 
 
 inline static void pinGpio(Pin p) {
     PORT->Group[p.group].PINCFG[p.pin].bit.PMUXEN = 0;
-     27c:	254c      	movs	r5, #76	; 0x4c
-     27e:	5d58      	ldrb	r0, [r3, r5]
-     280:	4390      	bics	r0, r2
-     282:	5558      	strb	r0, [r3, r5]
+     27e:	254c      	movs	r5, #76	; 0x4c
+     280:	5d59      	ldrb	r1, [r3, r5]
+     282:	43a1      	bics	r1, r4
+     284:	5559      	strb	r1, [r3, r5]
 }
 
 
 inline static void pinOut(Pin p) {
     pinGpio(p);
     PORT->Group[p.group].DIRSET.reg = (1<<p.pin);
-     284:	2080      	movs	r0, #128	; 0x80
-     286:	0140      	lsls	r0, r0, #5
-     288:	6098      	str	r0, [r3, #8]
+     286:	2180      	movs	r1, #128	; 0x80
+     288:	0149      	lsls	r1, r1, #5
+     28a:	6099      	str	r1, [r3, #8]
     PORT->Group[p.group].PINCFG[p.pin].bit.PMUXEN = 1;
 }
 
 
 inline static void pinGpio(Pin p) {
     PORT->Group[p.group].PINCFG[p.pin].bit.PMUXEN = 0;
-     28a:	204d      	movs	r0, #77	; 0x4d
-     28c:	4684      	mov	ip, r0
-     28e:	5c18      	ldrb	r0, [r3, r0]
-     290:	4390      	bics	r0, r2
-     292:	4664      	mov	r4, ip
-     294:	5518      	strb	r0, [r3, r4]
+     28c:	274d      	movs	r7, #77	; 0x4d
+     28e:	5dd9      	ldrb	r1, [r3, r7]
+     290:	43a1      	bics	r1, r4
+     292:	55d9      	strb	r1, [r3, r7]
 }
 
 
 inline static void pinOut(Pin p) {
     pinGpio(p);
     PORT->Group[p.group].DIRSET.reg = (1<<p.pin);
-     296:	2080      	movs	r0, #128	; 0x80
-     298:	0180      	lsls	r0, r0, #6
-     29a:	6098      	str	r0, [r3, #8]
+     294:	2180      	movs	r1, #128	; 0x80
+     296:	0189      	lsls	r1, r1, #6
+     298:	6099      	str	r1, [r3, #8]
     PORT->Group[p.group].PINCFG[p.pin].bit.PMUXEN = 1;
 }
 
 
 inline static void pinGpio(Pin p) {
     PORT->Group[p.group].PINCFG[p.pin].bit.PMUXEN = 0;
-     29c:	204f      	movs	r0, #79	; 0x4f
-     29e:	5c1c      	ldrb	r4, [r3, r0]
-     2a0:	4394      	bics	r4, r2
-     2a2:	541c      	strb	r4, [r3, r0]
+     29a:	214f      	movs	r1, #79	; 0x4f
+     29c:	5c58      	ldrb	r0, [r3, r1]
+     29e:	43a0      	bics	r0, r4
+     2a0:	5458      	strb	r0, [r3, r1]
 }
 
 
 inline static void pinIn(Pin p) {
     pinGpio(p);
     PORT->Group[p.group].PINCFG[p.pin].bit.INEN = 1;
-     2a4:	5c1c      	ldrb	r4, [r3, r0]
-     2a6:	2602      	movs	r6, #2
-     2a8:	46b3      	mov	fp, r6
-     2aa:	465e      	mov	r6, fp
-     2ac:	4334      	orrs	r4, r6
-     2ae:	541c      	strb	r4, [r3, r0]
+     2a2:	5c58      	ldrb	r0, [r3, r1]
+     2a4:	2602      	movs	r6, #2
+     2a6:	46b2      	mov	sl, r6
+     2a8:	4656      	mov	r6, sl
+     2aa:	4330      	orrs	r0, r6
+     2ac:	5458      	strb	r0, [r3, r1]
     PORT->Group[p.group].DIRCLR.reg = (1<<p.pin);
-     2b0:	2480      	movs	r4, #128	; 0x80
-     2b2:	0224      	lsls	r4, r4, #8
-     2b4:	605c      	str	r4, [r3, #4]
+     2ae:	2080      	movs	r0, #128	; 0x80
+     2b0:	0200      	lsls	r0, r0, #8
+     2b2:	6058      	str	r0, [r3, #4]
     return (PORT->Group[p.group].IN.reg & (1<<p.pin)) != 0;
 }
 
 inline static void pinMux(Pin p) {
     if (p.pin & 1) {
         PORT->Group[p.group].PMUX[p.pin/2].bit.PMUXO = p.mux;
-     2b6:	2437      	movs	r4, #55	; 0x37
-     2b8:	46a1      	mov	r9, r4
-     2ba:	5d1c      	ldrb	r4, [r3, r4]
-     2bc:	260f      	movs	r6, #15
-     2be:	46b0      	mov	r8, r6
-     2c0:	4034      	ands	r4, r6
-     2c2:	2620      	movs	r6, #32
-     2c4:	46b2      	mov	sl, r6
-     2c6:	4656      	mov	r6, sl
-     2c8:	4334      	orrs	r4, r6
-     2ca:	464e      	mov	r6, r9
-     2cc:	559c      	strb	r4, [r3, r6]
+     2b4:	2037      	movs	r0, #55	; 0x37
+     2b6:	4681      	mov	r9, r0
+     2b8:	5c18      	ldrb	r0, [r3, r0]
+     2ba:	4646      	mov	r6, r8
+     2bc:	4030      	ands	r0, r6
+     2be:	2620      	movs	r6, #32
+     2c0:	46b4      	mov	ip, r6
+     2c2:	4666      	mov	r6, ip
+     2c4:	4330      	orrs	r0, r6
+     2c6:	464e      	mov	r6, r9
+     2c8:	5598      	strb	r0, [r3, r6]
     } else {
         PORT->Group[p.group].PMUX[p.pin/2].bit.PMUXE = p.mux;
     }
     PORT->Group[p.group].PINCFG[p.pin].bit.PMUXEN = 1;
-     2ce:	5c1c      	ldrb	r4, [r3, r0]
-     2d0:	430c      	orrs	r4, r1
-     2d2:	541c      	strb	r4, [r3, r0]
+     2ca:	5c58      	ldrb	r0, [r3, r1]
+     2cc:	4310      	orrs	r0, r2
+     2ce:	5458      	strb	r0, [r3, r1]
     return (PORT->Group[p.group].IN.reg & (1<<p.pin)) != 0;
 }
 
 inline static void pinMux(Pin p) {
     if (p.pin & 1) {
         PORT->Group[p.group].PMUX[p.pin/2].bit.PMUXO = p.mux;
-     2d4:	3819      	subs	r0, #25
-     2d6:	5c1c      	ldrb	r4, [r3, r0]
-     2d8:	4646      	mov	r6, r8
-     2da:	4034      	ands	r4, r6
-     2dc:	4656      	mov	r6, sl
-     2de:	4334      	orrs	r4, r6
-     2e0:	541c      	strb	r4, [r3, r0]
+     2d0:	3919      	subs	r1, #25
+     2d2:	5c58      	ldrb	r0, [r3, r1]
+     2d4:	4646      	mov	r6, r8
+     2d6:	4030      	ands	r0, r6
+     2d8:	4666      	mov	r6, ip
+     2da:	4330      	orrs	r0, r6
+     2dc:	5458      	strb	r0, [r3, r1]
     } else {
         PORT->Group[p.group].PMUX[p.pin/2].bit.PMUXE = p.mux;
     }
     PORT->Group[p.group].PINCFG[p.pin].bit.PMUXEN = 1;
-     2e2:	4664      	mov	r4, ip
-     2e4:	5d1c      	ldrb	r4, [r3, r4]
-     2e6:	430c      	orrs	r4, r1
-     2e8:	4666      	mov	r6, ip
-     2ea:	559c      	strb	r4, [r3, r6]
+     2de:	5dd8      	ldrb	r0, [r3, r7]
+     2e0:	4310      	orrs	r0, r2
+     2e2:	55d8      	strb	r0, [r3, r7]
 
 inline static void pinMux(Pin p) {
     if (p.pin & 1) {
         PORT->Group[p.group].PMUX[p.pin/2].bit.PMUXO = p.mux;
     } else {
         PORT->Group[p.group].PMUX[p.pin/2].bit.PMUXE = p.mux;
-     2ec:	5c1c      	ldrb	r4, [r3, r0]
-     2ee:	43bc      	bics	r4, r7
-     2f0:	465e      	mov	r6, fp
-     2f2:	4326      	orrs	r6, r4
-     2f4:	541e      	strb	r6, [r3, r0]
+     2e4:	5c58      	ldrb	r0, [r3, r1]
+     2e6:	3f3e      	subs	r7, #62	; 0x3e
+     2e8:	43b8      	bics	r0, r7
+     2ea:	4656      	mov	r6, sl
+     2ec:	4306      	orrs	r6, r0
+     2ee:	545e      	strb	r6, [r3, r1]
     }
     PORT->Group[p.group].PINCFG[p.pin].bit.PMUXEN = 1;
-     2f6:	5d58      	ldrb	r0, [r3, r5]
-     2f8:	4301      	orrs	r1, r0
-     2fa:	5559      	strb	r1, [r3, r5]
+     2f0:	5d59      	ldrb	r1, [r3, r5]
+     2f2:	430a      	orrs	r2, r1
+     2f4:	555a      	strb	r2, [r3, r5]
 }
 
 
 inline static void pinGpio(Pin p) {
     PORT->Group[p.group].PINCFG[p.pin].bit.PMUXEN = 0;
-     2fc:	2154      	movs	r1, #84	; 0x54
-     2fe:	5c58      	ldrb	r0, [r3, r1]
-     300:	4390      	bics	r0, r2
-     302:	5458      	strb	r0, [r3, r1]
+     2f6:	2254      	movs	r2, #84	; 0x54
+     2f8:	5c99      	ldrb	r1, [r3, r2]
+     2fa:	43a1      	bics	r1, r4
+     2fc:	5499      	strb	r1, [r3, r2]
 }
 
 
 inline static void pinOut(Pin p) {
     pinGpio(p);
     PORT->Group[p.group].DIRSET.reg = (1<<p.pin);
-     304:	2080      	movs	r0, #128	; 0x80
-     306:	0340      	lsls	r0, r0, #13
-     308:	6098      	str	r0, [r3, #8]
+     2fe:	2180      	movs	r1, #128	; 0x80
+     300:	0349      	lsls	r1, r1, #13
+     302:	6099      	str	r1, [r3, #8]
 
 
 
 
 inline static void pinHigh(Pin p) {
     PORT->Group[p.group].OUTSET.reg = (1<<p.pin);
-     30a:	6198      	str	r0, [r3, #24]
+     304:	6199      	str	r1, [r3, #24]
     PORT->Group[p.group].PINCFG[p.pin].bit.PMUXEN = 1;
 }
 
 
 inline static void pinGpio(Pin p) {
     PORT->Group[p.group].PINCFG[p.pin].bit.PMUXEN = 0;
-     30c:	5c58      	ldrb	r0, [r3, r1]
-     30e:	4390      	bics	r0, r2
-     310:	5458      	strb	r0, [r3, r1]
-     312:	3906      	subs	r1, #6
-     314:	5c58      	ldrb	r0, [r3, r1]
-     316:	4390      	bics	r0, r2
-     318:	5458      	strb	r0, [r3, r1]
+     306:	5c99      	ldrb	r1, [r3, r2]
+     308:	43a1      	bics	r1, r4
+     30a:	5499      	strb	r1, [r3, r2]
+     30c:	3a06      	subs	r2, #6
+     30e:	5c99      	ldrb	r1, [r3, r2]
+     310:	43a1      	bics	r1, r4
+     312:	5499      	strb	r1, [r3, r2]
 }
 
 
 inline static void pinOut(Pin p) {
     pinGpio(p);
     PORT->Group[p.group].DIRSET.reg = (1<<p.pin);
-     31a:	2080      	movs	r0, #128	; 0x80
-     31c:	01c0      	lsls	r0, r0, #7
-     31e:	6098      	str	r0, [r3, #8]
+     314:	2180      	movs	r1, #128	; 0x80
+     316:	01c9      	lsls	r1, r1, #7
+     318:	6099      	str	r1, [r3, #8]
 
 
 
 
 inline static void pinHigh(Pin p) {
     PORT->Group[p.group].OUTSET.reg = (1<<p.pin);
-     320:	6198      	str	r0, [r3, #24]
+     31a:	6199      	str	r1, [r3, #24]
     PORT->Group[p.group].PINCFG[p.pin].bit.PMUXEN = 1;
 }
 
 
 inline static void pinGpio(Pin p) {
     PORT->Group[p.group].PINCFG[p.pin].bit.PMUXEN = 0;
-     322:	5c58      	ldrb	r0, [r3, r1]
-     324:	4390      	bics	r0, r2
-     326:	5458      	strb	r0, [r3, r1]
+     31c:	5c99      	ldrb	r1, [r3, r2]
+     31e:	43a1      	bics	r1, r4
+     320:	5499      	strb	r1, [r3, r2]
     pinOut(cs_baro);
     pinHigh(cs_baro);
     pinGpio(cs_baro);
 
 
     sercomClockEnable(SPI1, 3, 4);
-     328:	2204      	movs	r2, #4
-     32a:	394b      	subs	r1, #75	; 0x4b
-     32c:	2002      	movs	r0, #2
-     32e:	4b10      	ldr	r3, [pc, #64]	; (370 <init+0x150>)
-     330:	4798      	blx	r3
-    sercomSpiMasterInit(SPI1, 3, 0, 0, 0, 0x00);
-     332:	2300      	movs	r3, #0
-     334:	9301      	str	r3, [sp, #4]
-     336:	9300      	str	r3, [sp, #0]
-     338:	2200      	movs	r2, #0
-     33a:	2103      	movs	r1, #3
-     33c:	2002      	movs	r0, #2
-     33e:	4c0d      	ldr	r4, [pc, #52]	; (374 <init+0x154>)
-     340:	47a0      	blx	r4
+     322:	3a4a      	subs	r2, #74	; 0x4a
+     324:	2103      	movs	r1, #3
+     326:	2002      	movs	r0, #2
+     328:	4b0f      	ldr	r3, [pc, #60]	; (368 <init+0x148>)
+     32a:	4798      	blx	r3
+    sercomSpiMasterInit(SPI1, 3, 0, 0, 0, 0x01);
+     32c:	9401      	str	r4, [sp, #4]
+     32e:	2300      	movs	r3, #0
+     330:	9300      	str	r3, [sp, #0]
+     332:	2200      	movs	r2, #0
+     334:	2103      	movs	r1, #3
+     336:	2002      	movs	r0, #2
+     338:	4c0c      	ldr	r4, [pc, #48]	; (36c <init+0x14c>)
+     33a:	47a0      	blx	r4
 
 }
-     342:	b003      	add	sp, #12
-     344:	bc3c      	pop	{r2, r3, r4, r5}
-     346:	4690      	mov	r8, r2
-     348:	4699      	mov	r9, r3
-     34a:	46a2      	mov	sl, r4
-     34c:	46ab      	mov	fp, r5
-     34e:	bdf0      	pop	{r4, r5, r6, r7, pc}
-     350:	00000211 	.word	0x00000211
-     354:	000004c1 	.word	0x000004c1
-     358:	00000591 	.word	0x00000591
-     35c:	000003c1 	.word	0x000003c1
-     360:	00000609 	.word	0x00000609
-     364:	e000e100 	.word	0xe000e100
-     368:	ff00ffff 	.word	0xff00ffff
-     36c:	41004400 	.word	0x41004400
-     370:	00000afd 	.word	0x00000afd
-     374:	00000b65 	.word	0x00000b65
+     33c:	b002      	add	sp, #8
+     33e:	bc1c      	pop	{r2, r3, r4}
+     340:	4690      	mov	r8, r2
+     342:	4699      	mov	r9, r3
+     344:	46a2      	mov	sl, r4
+     346:	bdf0      	pop	{r4, r5, r6, r7, pc}
+     348:	00000211 	.word	0x00000211
+     34c:	000004c1 	.word	0x000004c1
+     350:	00000591 	.word	0x00000591
+     354:	000003c1 	.word	0x000003c1
+     358:	00000609 	.word	0x00000609
+     35c:	e000e100 	.word	0xe000e100
+     360:	ff00ffff 	.word	0xff00ffff
+     364:	41004400 	.word	0x41004400
+     368:	00000afd 	.word	0x00000afd
+     36c:	00000b65 	.word	0x00000b65
 
-00000378 <main>:
+00000370 <main>:
 
 
 int main(void) {
-     378:	b570      	push	{r4, r5, r6, lr}
-     37a:	b09a      	sub	sp, #104	; 0x68
+     370:	b570      	push	{r4, r5, r6, lr}
+     372:	b09a      	sub	sp, #104	; 0x68
 
     init();
-     37c:	4b0c      	ldr	r3, [pc, #48]	; (3b0 <main+0x38>)
-     37e:	4798      	blx	r3
+     374:	4b0d      	ldr	r3, [pc, #52]	; (3ac <main+0x3c>)
+     376:	4798      	blx	r3
 
     Altimeter my_altimeter;
 
     initMS5803Barometer(&my_altimeter.myBarometer);
-     380:	a801      	add	r0, sp, #4
-     382:	4b0c      	ldr	r3, [pc, #48]	; (3b4 <main+0x3c>)
-     384:	4798      	blx	r3
+     378:	a801      	add	r0, sp, #4
+     37a:	4b0d      	ldr	r3, [pc, #52]	; (3b0 <main+0x40>)
+     37c:	4798      	blx	r3
 
     volatile uint8_t rData;
     volatile uint8_t rData2;
     volatile uint8_t rData3;
     volatile uint8_t rData4;
     volatile long counter = 0;
-     386:	2300      	movs	r3, #0
-     388:	9300      	str	r3, [sp, #0]
+     37e:	2300      	movs	r3, #0
+     380:	9300      	str	r3, [sp, #0]
+
+    volatile float accelX;
+
+    while (1) {
+		
+        delay_ms(50);
+     382:	4e0c      	ldr	r6, [pc, #48]	; (3b4 <main+0x44>)
     PORT->Group[p.group].OUTCLR.reg = (1<<p.pin);
 }
 
 
 inline static void pinToggle(Pin p) {
     PORT->Group[p.group].OUTTGL.reg = (1<<p.pin);
-     38a:	4e0b      	ldr	r6, [pc, #44]	; (3b8 <main+0x40>)
-     38c:	2580      	movs	r5, #128	; 0x80
-     38e:	052d      	lsls	r5, r5, #20
-
+     384:	4d0c      	ldr	r5, [pc, #48]	; (3b8 <main+0x48>)
+		
         counter++;
         pinToggle(LedPin);
 
 
         sampleTick(&my_altimeter);
-     390:	4c0a      	ldr	r4, [pc, #40]	; (3bc <main+0x44>)
+     386:	4c0d      	ldr	r4, [pc, #52]	; (3bc <main+0x4c>)
 
     volatile float accelX;
 
     while (1) {
-
+		
+        delay_ms(50);
+     388:	2032      	movs	r0, #50	; 0x32
+     38a:	47b0      	blx	r6
+		
         counter++;
-     392:	9b00      	ldr	r3, [sp, #0]
-     394:	3301      	adds	r3, #1
-     396:	9300      	str	r3, [sp, #0]
-     398:	61f5      	str	r5, [r6, #28]
+     38c:	9b00      	ldr	r3, [sp, #0]
+     38e:	3301      	adds	r3, #1
+     390:	9300      	str	r3, [sp, #0]
+     392:	2380      	movs	r3, #128	; 0x80
+     394:	055b      	lsls	r3, r3, #21
+     396:	61eb      	str	r3, [r5, #28]
         pinToggle(LedPin);
 
 
         sampleTick(&my_altimeter);
-     39a:	a801      	add	r0, sp, #4
-     39c:	47a0      	blx	r4
+     398:	a801      	add	r0, sp, #4
+     39a:	47a0      	blx	r4
 
         uint8_t dummy_Tx = 0xFF;
         uint8_t dummy_rx;
 
         if (counter == 1000) {
-     39e:	9a00      	ldr	r2, [sp, #0]
-     3a0:	23fa      	movs	r3, #250	; 0xfa
-     3a2:	009b      	lsls	r3, r3, #2
-     3a4:	429a      	cmp	r2, r3
-     3a6:	d1f4      	bne.n	392 <main+0x1a>
+     39c:	9a00      	ldr	r2, [sp, #0]
+     39e:	23fa      	movs	r3, #250	; 0xfa
+     3a0:	009b      	lsls	r3, r3, #2
+     3a2:	429a      	cmp	r2, r3
+     3a4:	d1f0      	bne.n	388 <main+0x18>
             counter = 0;
-     3a8:	2300      	movs	r3, #0
-     3aa:	9300      	str	r3, [sp, #0]
-     3ac:	e7f0      	b.n	390 <main+0x18>
-     3ae:	46c0      	nop			; (mov r8, r8)
-     3b0:	00000221 	.word	0x00000221
-     3b4:	00000895 	.word	0x00000895
+     3a6:	2300      	movs	r3, #0
+     3a8:	9300      	str	r3, [sp, #0]
+     3aa:	e7ed      	b.n	388 <main+0x18>
+     3ac:	00000221 	.word	0x00000221
+     3b0:	00000895 	.word	0x00000895
+     3b4:	000005dd 	.word	0x000005dd
      3b8:	41004400 	.word	0x41004400
      3bc:	000008f1 	.word	0x000008f1
 
@@ -1818,7 +1827,7 @@ void sampleTick(Altimeter *my_altimeter) {
      8fa:	b4f0      	push	{r4, r5, r6, r7}
      8fc:	0004      	movs	r4, r0
 
-    my_altimeter->batV = (0.0020676 * adc_read(senseBat));
+    my_altimeter->batV = (0.001906 * adc_read(senseBat));
      8fe:	4b6a      	ldr	r3, [pc, #424]	; (aa8 <sampleTick+0x1b8>)
      900:	6818      	ldr	r0, [r3, #0]
      902:	6859      	ldr	r1, [r3, #4]
@@ -2171,8 +2180,8 @@ inline static void pinHigh(Pin p) {
      aac:	00000441 	.word	0x00000441
      ab0:	00001251 	.word	0x00001251
      ab4:	00000d5d 	.word	0x00000d5d
-     ab8:	4c32de7a 	.word	0x4c32de7a
-     abc:	3f60f012 	.word	0x3f60f012
+     ab8:	eaa2a0a9 	.word	0xeaa2a0a9
+     abc:	3f5f3a57 	.word	0x3f5f3a57
      ac0:	0000137d 	.word	0x0000137d
      ac4:	41004400 	.word	0x41004400
      ac8:	00000bdd 	.word	0x00000bdd
@@ -3792,7 +3801,7 @@ u8_t spiDataTransfer(SercomId id, u8_t data) {
     1804:	000f048e                                ....
 
 00001808 <senseBat>:
-    1808:	06000000 00000006 00000f4c 00000e0c     ........L.......
+    1808:	05000000 00000005 00000f4c 00000e0c     ........L.......
     1818:	00000e0c 00000e0a 00000f24 00000f24     ........$...$...
     1828:	00000f16 00000e0a 00000f24 00000f16     ........$.......
     1838:	00000f24 00000e0a 00000f2c 00000f2c     $.......,...,...
