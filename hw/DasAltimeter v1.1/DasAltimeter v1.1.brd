@@ -197,7 +197,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </package>
 </packages>
 </library>
-<library name="SparkFun-Capacitors" urn="urn:adsk.eagle:library:510">
+<library name="SparkFun-Capacitors">
 <description>&lt;h3&gt;SparkFun Electronics' preferred foot prints&lt;/h3&gt;
 In this library you'll find resistors, capacitors, inductors, test points, jumper pads, etc.&lt;br&gt;&lt;br&gt;
 We've spent an enormous amount of time creating and checking these footprints and parts, but it is the end user's responsibility to ensure correctness and suitablity for a given componet or application. If you enjoy using this library, please buy one of our products at www.sparkfun.com.
@@ -299,6 +299,11 @@ We've spent an enormous amount of time creating and checking these footprints an
 You are welcome to use this library for commercial purposes. For attribution, we ask that when you begin to sell your device using our footprint, you email us with a link to the product being sold. We want bragging rights that we helped (in a very small part) to create your 8th world wonder. We would like the opportunity to feature your device on our homepage.</description>
 <packages>
 <package name="CREATIVE_COMMONS">
+<description>&lt;h3&gt;Creative Commons License Template&lt;/h3&gt;
+&lt;p&gt;CC BY-SA 4.0 License with &lt;a href="https://creativecommons.org/licenses/by-sa/4.0/"&gt;link to license&lt;/a&gt; and placeholder for designer name.&lt;/p&gt;
+&lt;p&gt;Devices using:
+&lt;ul&gt;&lt;li&gt;FRAME_LEDGER&lt;/li&gt;
+&lt;li&gt;FRAME_LETTER&lt;/li&gt;&lt;/ul&gt;&lt;/p&gt;</description>
 <text x="-20.32" y="5.08" size="1.778" layer="51" font="vector">Released under the Creative Commons Attribution Share-Alike 4.0 License</text>
 <text x="0" y="2.54" size="1.778" layer="51" font="vector"> https://creativecommons.org/licenses/by-sa/4.0/</text>
 <text x="11.43" y="0" size="1.778" layer="51" font="vector">Designed by:</text>
@@ -315,16 +320,20 @@ We've spent an enormous amount of time creating and checking these footprints an
 You are welcome to use this library for commercial purposes. For attribution, we ask that when you begin to sell your device using our footprint, you email us with a link to the product being sold. We want bragging rights that we helped (in a very small part) to create your 8th world wonder. We would like the opportunity to feature your device on our homepage.</description>
 <packages>
 <package name="2X5-PTH-1.27MM">
-<description>&lt;h3&gt;ARM Cortex Debug Connector (10-pin)&lt;/h3&gt;
-&lt;p&gt;For debuggers and/or programemrs that support the Cortex Debug Connector (10-pin) interface.&lt;/p&gt;
+<description>&lt;h3&gt;Plated Through Hole - 2x5 ARM Cortex Debug Connector (10-pin)&lt;/h3&gt;
 &lt;p&gt;tDoc (51) layer border represents maximum dimensions of plastic housing.&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://www.digikey.com/product-detail/en/20021111-00010T4LF/609-3712-ND/2209072"&gt;Example Digikey Part&lt;/a&gt;&lt;/p&gt;</description>
+&lt;p&gt;Specifications:
+&lt;ul&gt;&lt;li&gt;Pin count:10&lt;/li&gt;
+&lt;li&gt;Pin pitch:1.27mm&lt;/li&gt;
+&lt;/ul&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=”http://portal.fciconnect.com/Comergent//fci/drawing/20021111.pdf”&gt;Datasheet referenced for footprint&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Example device(s):
+&lt;ul&gt;&lt;li&gt;CONN_05x2&lt;/li&gt;
+&lt;/ul&gt;&lt;/p&gt;</description>
 <pad name="8" x="1.27" y="0.635" drill="0.508" diameter="1"/>
 <pad name="6" x="0" y="0.635" drill="0.508" diameter="1"/>
 <pad name="4" x="-1.27" y="0.635" drill="0.508" diameter="1"/>
 <pad name="2" x="-2.54" y="0.635" drill="0.508" diameter="1"/>
-<text x="-3.048" y="1.397" size="0.8128" layer="25">&gt;NAME</text>
-<text x="-2.921" y="-1.397" size="0.8128" layer="27" align="top-left">&gt;VALUE</text>
 <pad name="10" x="2.54" y="0.635" drill="0.508" diameter="1"/>
 <pad name="7" x="1.27" y="-0.635" drill="0.508" diameter="1"/>
 <pad name="5" x="0" y="-0.635" drill="0.508" diameter="1"/>
@@ -336,6 +345,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="-3.175" y1="1.715" x2="-3.175" y2="-1.715" width="0.127" layer="51"/>
 <wire x1="-3.175" y1="-1.715" x2="3.175" y2="-1.715" width="0.127" layer="51"/>
 <wire x1="3.175" y1="-1.715" x2="3.175" y2="1.715" width="0.127" layer="51"/>
+<text x="-1.5748" y="1.9304" size="0.6096" layer="25" font="vector" ratio="20">&gt;NAME</text>
+<text x="-1.8288" y="-2.4638" size="0.6096" layer="27" font="vector" ratio="20">&gt;VALUE</text>
 </package>
 <package name="JST-2-SMD-VERT">
 <wire x1="-4.1" y1="2.97" x2="4.2" y2="2.97" width="0.2032" layer="51"/>
@@ -392,7 +403,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </package>
 </packages>
 </library>
-<library name="SparkFun-Resistors" urn="urn:adsk.eagle:library:532">
+<library name="SparkFun-Resistors">
 <description>&lt;h3&gt;SparkFun Electronics' preferred foot prints&lt;/h3&gt;
 In this library you'll find resistors, capacitors, inductors, test points, jumper pads, etc.&lt;br&gt;&lt;br&gt;
 We've spent an enormous amount of time creating and checking these footprints and parts, but it is the end user's responsibility to ensure correctness and suitablity for a given componet or application. If you enjoy using this library, please buy one of our products at www.sparkfun.com.
@@ -401,7 +412,7 @@ We've spent an enormous amount of time creating and checking these footprints an
 &lt;br&gt;&lt;br&gt;
 You are welcome to use this library for commercial purposes. For attribution, we ask that when you begin to sell your device using our footprint, you email us with a link to the product being sold. We want bragging rights that we helped (in a very small part) to create your 8th world wonder. We would like the opportunity to feature your device on our homepage.</description>
 <packages>
-<package name="0402" urn="urn:adsk.eagle:footprint:39625/1" library_version="1">
+<package name="0402">
 <description>&lt;p&gt;&lt;b&gt;Generic 1005 (0402) package&lt;/b&gt;&lt;/p&gt;
 &lt;p&gt;0.2mm courtyard excess rounded to nearest 0.05mm.&lt;/p&gt;</description>
 <wire x1="-0.2704" y1="0.2286" x2="0.2704" y2="0.2286" width="0.1524" layer="51"/>
@@ -419,12 +430,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <rectangle x1="-0.1999" y1="-0.3" x2="0.1999" y2="0.3" layer="35"/>
 </package>
 </packages>
-<packages3d>
-<package3d name="0402" urn="urn:adsk.eagle:package:39657/1" type="box" library_version="1">
-<description>Generic 1005 (0402) package
-0.2mm courtyard excess rounded to nearest 0.05mm.</description>
-</package3d>
-</packages3d>
 </library>
 <library name="SparkFun-Electromechanical">
 <description>&lt;h3&gt;SparkFun Electronics' preferred foot prints&lt;/h3&gt;
@@ -435,7 +440,13 @@ We've spent an enormous amount of time creating and checking these footprints an
 &lt;br&gt;&lt;br&gt;
 You are welcome to use this library for commercial purposes. For attribution, we ask that when you begin to sell your device using our footprint, you email us with a link to the product being sold. We want bragging rights that we helped (in a very small part) to create your 8th world wonder. We would like the opportunity to feature your device on our homepage.</description>
 <packages>
-<package name="BUZZER-CCV">
+<package name="BUZZER-CCV-KIT">
+<description>&lt;h3&gt;9mm Buzzer - SMD (KIT variant)&lt;/h3&gt;
+&lt;p&gt;This is a small 9mm round speaker that operates around the audible 2kHz range. You can use these speakers to create simple music or user interfaces.&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Warning:&lt;/b&gt; This is the KIT version of this package. This package has longer pads to aid in hand soldering.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.challengeelectronics.com/downloads/sound_transducers/electromagnetic_smd/CEET105A025-16-2545-27MLR.pdf"&gt;Datasheet&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;Devices Using&lt;/h4&gt;
+&lt;ul&gt;&lt;li&gt;BUZZER&lt;/li&gt;&lt;/ul&gt;</description>
 <wire x1="2.6" y1="-6" x2="-2.6" y2="-6" width="0.127" layer="51"/>
 <wire x1="2.6" y1="-6" x2="2.6" y2="-3.7" width="0.127" layer="51"/>
 <wire x1="-2.6" y1="-6" x2="-2.6" y2="-3.7" width="0.127" layer="51"/>
@@ -447,10 +458,14 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="2.6" y1="-6" x2="2.6" y2="-3.7" width="0.2032" layer="21"/>
 <wire x1="-2.6" y1="-6" x2="-2.6" y2="-3.6" width="0.2032" layer="21"/>
 <circle x="0" y="0" radius="4.5" width="0.127" layer="51"/>
-<smd name="-" x="-4" y="0" dx="3.2" dy="2.5" layer="1"/>
-<smd name="+" x="4" y="0" dx="3.2" dy="2.5" layer="1"/>
+<smd name="-" x="-4.15" y="0" dx="3.5" dy="2" layer="1"/>
+<smd name="+" x="4.15" y="0" dx="3.5" dy="2" layer="1"/>
+<rectangle x1="-5.2" y1="-0.75" x2="-2.9" y2="0.75" layer="51"/>
+<rectangle x1="2.9" y1="-0.75" x2="5.2" y2="0.75" layer="51" rot="R180"/>
 <hole x="-3.9" y="-2.25" drill="0.8"/>
 <hole x="2.25" y="3.9" drill="0.8"/>
+<text x="0" y="-6.223" size="0.6096" layer="25" font="vector" ratio="20" rot="R180" align="bottom-center">&gt;NAME</text>
+<text x="0" y="-5.715" size="0.6096" layer="27" font="vector" ratio="20" rot="R180" align="top-center">&gt;VALUE</text>
 </package>
 <package name="STAND-OFF">
 <description>&lt;b&gt;Stand Off&lt;/b&gt;&lt;p&gt;
@@ -815,21 +830,25 @@ We've spent an enormous amount of time creating and checking these footprints an
 You are welcome to use this library for commercial purposes. For attribution, we ask that when you begin to sell your device using our footprint, you email us with a link to the product being sold. We want bragging rights that we helped (in a very small part) to create your 8th world wonder. We would like the opportunity to feature your device on our homepage.</description>
 <packages>
 <package name="LED-1206">
-<wire x1="-1" y1="1" x2="-2.4" y2="1" width="0.2032" layer="21"/>
-<wire x1="-2.4" y1="1" x2="-2.4" y2="-1" width="0.2032" layer="21"/>
-<wire x1="-2.4" y1="-1" x2="-1" y2="-1" width="0.2032" layer="21"/>
-<wire x1="1" y1="1" x2="2.4" y2="1" width="0.2032" layer="21"/>
-<wire x1="2.4" y1="1" x2="2.4" y2="-1" width="0.2032" layer="21"/>
-<wire x1="2.4" y1="-1" x2="1" y2="-1" width="0.2032" layer="21"/>
-<wire x1="0.3" y1="0.7" x2="0.3" y2="0" width="0.2032" layer="21"/>
-<wire x1="0.3" y1="0" x2="0.3" y2="-0.7" width="0.2032" layer="21"/>
-<wire x1="0.3" y1="0" x2="-0.3" y2="0.6" width="0.2032" layer="21"/>
-<wire x1="-0.3" y1="0.6" x2="-0.3" y2="-0.6" width="0.2032" layer="21"/>
-<wire x1="-0.3" y1="-0.6" x2="0.3" y2="0" width="0.2032" layer="21"/>
+<description>&lt;h3&gt;LED 1206 SMT&lt;/h3&gt;
+
+1206, surface mount. 
+
+&lt;p&gt;Specifications:
+&lt;ul&gt;&lt;li&gt;Pin count: 2&lt;/li&gt;
+&lt;li&gt;Pin pitch: &lt;/li&gt;
+&lt;li&gt;Area: 0.125" x 0.06"&lt;/li&gt;
+&lt;/ul&gt;&lt;/p&gt;
+&lt;p&gt;Example device(s):
+&lt;ul&gt;&lt;li&gt;LED&lt;/li&gt;&lt;/ul&gt;</description>
+<wire x1="2.4" y1="0.6825" x2="2.4" y2="-0.6825" width="0.2032" layer="21"/>
 <smd name="A" x="-1.5" y="0" dx="1.2" dy="1.4" layer="1"/>
 <smd name="C" x="1.5" y="0" dx="1.2" dy="1.4" layer="1"/>
-<text x="-0.889" y="1.397" size="0.4064" layer="25">&gt;NAME</text>
-<text x="-1.016" y="-1.778" size="0.4064" layer="27">&gt;VALUE</text>
+<text x="0" y="0.9525" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center">&gt;NAME</text>
+<text x="0" y="-0.9525" size="0.6096" layer="27" font="vector" ratio="20" align="top-center">&gt;VALUE</text>
+<wire x1="0.65375" y1="0.6825" x2="0.65375" y2="-0.6825" width="0.2032" layer="51"/>
+<wire x1="0.635" y1="0" x2="0.15875" y2="0.47625" width="0.2032" layer="51"/>
+<wire x1="0.635" y1="0" x2="0.15875" y2="-0.47625" width="0.2032" layer="51"/>
 </package>
 </packages>
 </library>
@@ -859,7 +878,19 @@ We've spent an enormous amount of time creating and checking these footprints an
 &lt;br&gt;&lt;br&gt;
 You are welcome to use this library for commercial purposes. For attribution, we ask that when you begin to sell your device using our footprint, you email us with a link to the product being sold. We want bragging rights that we helped (in a very small part) to create your 8th world wonder. We would like the opportunity to feature your device on our homepage.</description>
 <packages>
-<package name="ADXL193">
+<package name="LCC-8">
+<description>&lt;h3&gt;8-Pin LCC (5 x 5 x 2 mm)&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://www.sparkfun.com/datasheets/Sensors/Accelerometer/ADXL193.pdf"&gt;Datasheet&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Specifications:
+&lt;ul&gt;
+&lt;li&gt;Pin Count: 8&lt;/li&gt;
+&lt;li&gt;Area: 5.0 x 5.0 x 2.0 mm&lt;/li&gt;
+&lt;li&gt;Pitch: 1.27 mm&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Devices Using:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ADXL193&lt;/li&gt;
+&lt;/ul&gt;</description>
 <wire x1="-2.5" y1="2.5" x2="-2.5" y2="1.9" width="0.2032" layer="21"/>
 <wire x1="-2.5" y1="0.73" x2="-2.5" y2="0.53" width="0.2032" layer="21"/>
 <wire x1="-2.5" y1="-0.52" x2="-2.5" y2="-0.73" width="0.2032" layer="21"/>
@@ -872,10 +903,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="2.5" y1="1.9" x2="2.5" y2="2.5" width="0.2032" layer="21"/>
 <wire x1="2.5" y1="2.5" x2="0.7" y2="2.5" width="0.2032" layer="21"/>
 <wire x1="-0.7" y1="2.5" x2="-2.5" y2="2.5" width="0.2032" layer="21"/>
-<wire x1="5.08" y1="-2.54" x2="5.08" y2="3.81" width="0.127" layer="51"/>
-<wire x1="5.08" y1="3.81" x2="4.445" y2="3.175" width="0.127" layer="51"/>
-<wire x1="5.08" y1="3.81" x2="5.715" y2="3.175" width="0.127" layer="51"/>
-<circle x="0" y="0.762" radius="0.127" width="0.2032" layer="21"/>
+<wire x1="-0.381" y1="-0.254" x2="-0.381" y2="0.508" width="0.127" layer="51"/>
+<wire x1="-0.381" y1="0.508" x2="-0.635" y2="0.254" width="0.127" layer="51"/>
+<wire x1="-0.381" y1="0.508" x2="-0.127" y2="0.254" width="0.127" layer="51"/>
+<circle x="0" y="3.048" radius="0.254" width="0" layer="21"/>
 <smd name="P$1" x="-1.96" y="1.26" dx="0.64" dy="1.5" layer="1" rot="R90"/>
 <smd name="P$2" x="-1.96" y="0" dx="0.64" dy="1.5" layer="1" rot="R90"/>
 <smd name="P$3" x="-1.96" y="-1.26" dx="0.64" dy="1.5" layer="1" rot="R90"/>
@@ -884,9 +915,9 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <smd name="P$6" x="1.96" y="0" dx="0.64" dy="1.5" layer="1" rot="R90"/>
 <smd name="P$7" x="1.96" y="1.26" dx="0.64" dy="1.5" layer="1" rot="R90"/>
 <smd name="P$8" x="0.01" y="1.9" dx="0.64" dy="1.27" layer="1"/>
-<text x="5.715" y="1.27" size="1.27" layer="51">X</text>
-<text x="-1.397" y="0" size="0.6096" layer="25">&gt;Name</text>
-<text x="-1.397" y="-0.762" size="0.6096" layer="27">&gt;Value</text>
+<text x="0" y="-0.254" size="0.6096" layer="51" ratio="20">X</text>
+<text x="-2.921" y="0" size="0.6096" layer="25" font="vector" ratio="20" rot="R90" align="bottom-center">&gt;NAME</text>
+<text x="2.921" y="0" size="0.6096" layer="27" font="vector" ratio="20" rot="R90" align="top-center">&gt;VALUE</text>
 </package>
 </packages>
 </library>
@@ -1080,7 +1111,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <element name="1U2" library="SparkFun-PowerIC" package="SOT23-5" value="V_REG_LDOSMD" x="18.923" y="19.177" smashed="yes" rot="R180">
 <attribute name="NAME" x="19.812" y="17.018" size="0.4064" layer="25" rot="R180"/>
 </element>
-<element name="C1" library="SparkFun-Capacitors" library_urn="urn:adsk.eagle:library:510" package="0603-CAP" value="2.2uF" x="16.383" y="19.431" smashed="yes" rot="R270">
+<element name="C1" library="SparkFun-Capacitors" package="0603-CAP" value="2.2uF" x="16.383" y="19.431" smashed="yes" rot="R270">
 <attribute name="NAME" x="17.145" y="19.685" size="0.4064" layer="25" font="vector" rot="R270"/>
 </element>
 <element name="C10" library="SparkFun-Passives" package="0402-CAP" value="0.1uF" x="32.766" y="4.445" smashed="yes">
@@ -1092,7 +1123,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <element name="C13" library="SparkFun-Passives" package="0402-CAP" value="0.1uF" x="26.289" y="2.54" smashed="yes" rot="R90">
 <attribute name="NAME" x="26.6065" y="0.381" size="0.4064" layer="25" rot="R90"/>
 </element>
-<element name="C2" library="SparkFun-Capacitors" library_urn="urn:adsk.eagle:library:510" package="0603-CAP" value="2.2uF" x="21.463" y="19.558" smashed="yes" rot="R90">
+<element name="C2" library="SparkFun-Capacitors" package="0603-CAP" value="2.2uF" x="21.463" y="19.558" smashed="yes" rot="R90">
 <attribute name="NAME" x="20.574" y="19.431" size="0.4064" layer="25" font="vector" rot="R90"/>
 </element>
 <element name="C3" library="SparkFun-Passives" package="0402-CAP" value="0.1uF" x="17.272" y="4.191" smashed="yes" rot="R180">
@@ -1117,7 +1148,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <attribute name="NAME" x="34.4805" y="16.383" size="0.4064" layer="25" rot="R90"/>
 </element>
 <element name="FRAME1" library="SparkFun-Aesthetics" package="CREATIVE_COMMONS" value="FRAME-LEDGER" x="-80.01" y="22.86"/>
-<element name="JP1" library="SparkFun-Connectors" package="2X5-PTH-1.27MM" value="CORTEX_DEBUGPTH" x="26.162" y="19.685" smashed="yes" rot="MR180"/>
+<element name="JP1" library="SparkFun-Connectors" package="2X5-PTH-1.27MM" value="CORTEX_DEBUG_PTH" x="26.162" y="19.685" smashed="yes" rot="MR180"/>
 <element name="L1" library="SparkFun-Passives" package="0603" value="FB - 30Ohm" x="20.193" y="3.175" smashed="yes" rot="R90">
 <attribute name="NAME" x="20.32" y="4.826" size="0.4064" layer="25" font="vector" rot="R90"/>
 </element>
@@ -1125,37 +1156,37 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <element name="R1" library="SparkFun-Passives" package="0402-RES" value="10k" x="27.94" y="17.272" smashed="yes" rot="R180">
 <attribute name="NAME" x="26.543" y="17.4625" size="0.4064" layer="25" rot="R180"/>
 </element>
-<element name="R10" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="0402" package3d_urn="urn:adsk.eagle:package:39657/1" value=" " x="13.335" y="7.112" smashed="yes">
+<element name="R10" library="SparkFun-Resistors" package="0402" value=" " x="13.335" y="7.112" smashed="yes">
 <attribute name="NAME" x="12.065" y="7.8105" size="0.4064" layer="25"/>
 <attribute name="PROD_ID" value=" " x="13.335" y="7.112" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" value=" " x="13.335" y="7.112" size="1.778" layer="27" display="off"/>
 </element>
-<element name="R11" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="0402" package3d_urn="urn:adsk.eagle:package:39657/1" value=" " x="8.128" y="5.588" smashed="yes" rot="R180">
+<element name="R11" library="SparkFun-Resistors" package="0402" value=" " x="8.128" y="5.588" smashed="yes" rot="R180">
 <attribute name="NAME" x="9.017" y="4.8895" size="0.4064" layer="25" rot="R180"/>
 <attribute name="PROD_ID" value=" " x="8.128" y="5.588" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="VALUE" value=" " x="8.128" y="5.588" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
-<element name="R12" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="0402" package3d_urn="urn:adsk.eagle:package:39657/1" value=" " x="8.128" y="7.112" smashed="yes">
+<element name="R12" library="SparkFun-Resistors" package="0402" value=" " x="8.128" y="7.112" smashed="yes">
 <attribute name="NAME" x="7.239" y="7.8105" size="0.4064" layer="25"/>
 <attribute name="PROD_ID" value=" " x="8.128" y="7.112" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" value=" " x="8.128" y="7.112" size="1.778" layer="27" display="off"/>
 </element>
-<element name="R14" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="0402" package3d_urn="urn:adsk.eagle:package:39657/1" value=" " x="9.398" y="11.684" smashed="yes">
+<element name="R14" library="SparkFun-Resistors" package="0402" value=" " x="9.398" y="11.684" smashed="yes">
 <attribute name="NAME" x="7.239" y="11.4935" size="0.4064" layer="25"/>
 <attribute name="PROD_ID" value=" " x="9.398" y="11.684" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" value=" " x="9.398" y="11.684" size="1.778" layer="27" display="off"/>
 </element>
-<element name="R15" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="0402" package3d_urn="urn:adsk.eagle:package:39657/1" value=" " x="8.128" y="16.256" smashed="yes">
+<element name="R15" library="SparkFun-Resistors" package="0402" value=" " x="8.128" y="16.256" smashed="yes">
 <attribute name="NAME" x="7.239" y="16.9545" size="0.4064" layer="25"/>
 <attribute name="PROD_ID" value=" " x="8.128" y="16.256" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" value=" " x="8.128" y="16.256" size="1.778" layer="27" display="off"/>
 </element>
-<element name="R16" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="0402" package3d_urn="urn:adsk.eagle:package:39657/1" value=" " x="8.128" y="14.732" smashed="yes">
+<element name="R16" library="SparkFun-Resistors" package="0402" value=" " x="8.128" y="14.732" smashed="yes">
 <attribute name="NAME" x="7.239" y="15.4305" size="0.4064" layer="25"/>
 <attribute name="PROD_ID" value=" " x="8.128" y="14.732" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" value=" " x="8.128" y="14.732" size="1.778" layer="27" display="off"/>
 </element>
-<element name="R17" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="0402" package3d_urn="urn:adsk.eagle:package:39657/1" value=" " x="12.065" y="11.684" smashed="yes">
+<element name="R17" library="SparkFun-Resistors" package="0402" value=" " x="12.065" y="11.684" smashed="yes">
 <attribute name="NAME" x="13.335" y="11.8745" size="0.4064" layer="25"/>
 <attribute name="PROD_ID" value=" " x="12.065" y="11.684" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" value=" " x="12.065" y="11.684" size="1.778" layer="27" display="off"/>
@@ -1169,17 +1200,17 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <element name="R2" library="SparkFun-Passives" package="0402-RES" value="10k" x="35.052" y="19.939" smashed="yes" rot="R270">
 <attribute name="NAME" x="34.4805" y="18.542" size="0.4064" layer="25" rot="R270"/>
 </element>
-<element name="R20" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="0402" package3d_urn="urn:adsk.eagle:package:39657/1" value=" " x="13.335" y="13.208" smashed="yes" rot="R180">
+<element name="R20" library="SparkFun-Resistors" package="0402" value=" " x="13.335" y="13.208" smashed="yes" rot="R180">
 <attribute name="NAME" x="13.462" y="12.3825" size="0.4064" layer="25" rot="R180"/>
 <attribute name="PROD_ID" value=" " x="13.335" y="13.208" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="VALUE" value=" " x="13.335" y="13.208" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
-<element name="R21" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="0402" package3d_urn="urn:adsk.eagle:package:39657/1" value=" " x="13.335" y="16.256" smashed="yes">
+<element name="R21" library="SparkFun-Resistors" package="0402" value=" " x="13.335" y="16.256" smashed="yes">
 <attribute name="NAME" x="12.954" y="16.9545" size="0.4064" layer="25"/>
 <attribute name="PROD_ID" value=" " x="13.335" y="16.256" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" value=" " x="13.335" y="16.256" size="1.778" layer="27" display="off"/>
 </element>
-<element name="R22" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="0402" package3d_urn="urn:adsk.eagle:package:39657/1" value=" " x="13.335" y="14.732" smashed="yes" rot="R180">
+<element name="R22" library="SparkFun-Resistors" package="0402" value=" " x="13.335" y="14.732" smashed="yes" rot="R180">
 <attribute name="NAME" x="14.859" y="15.8115" size="0.4064" layer="25" rot="R180"/>
 <attribute name="PROD_ID" value=" " x="13.335" y="14.732" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="VALUE" value=" " x="13.335" y="14.732" size="1.778" layer="27" rot="R180" display="off"/>
@@ -1188,37 +1219,39 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <attribute name="NAME" x="37.0205" y="9.652" size="0.4064" layer="25" rot="R270"/>
 <attribute name="VALUE" x="35.179" y="9.8425" size="0.4064" layer="27" rot="R270"/>
 </element>
-<element name="R4" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="0402" package3d_urn="urn:adsk.eagle:package:39657/1" value=" " x="8.128" y="13.208" smashed="yes" rot="R180">
+<element name="R4" library="SparkFun-Resistors" package="0402" value=" " x="8.128" y="13.208" smashed="yes" rot="R180">
 <attribute name="NAME" x="8.382" y="14.2875" size="0.4064" layer="25" rot="R180"/>
 <attribute name="PROD_ID" value=" " x="8.128" y="13.208" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="VALUE" value=" " x="8.128" y="13.208" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
-<element name="R5" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="0402" package3d_urn="urn:adsk.eagle:package:39657/1" value=" " x="13.335" y="8.636" smashed="yes">
+<element name="R5" library="SparkFun-Resistors" package="0402" value=" " x="13.335" y="8.636" smashed="yes">
 <attribute name="NAME" x="12.827" y="9.3345" size="0.4064" layer="25"/>
 <attribute name="PROD_ID" value=" " x="13.335" y="8.636" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" value=" " x="13.335" y="8.636" size="1.778" layer="27" display="off"/>
 </element>
-<element name="R6" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="0402" package3d_urn="urn:adsk.eagle:package:39657/1" value=" " x="12.065" y="10.16" smashed="yes" rot="R180">
+<element name="R6" library="SparkFun-Resistors" package="0402" value=" " x="12.065" y="10.16" smashed="yes" rot="R180">
 <attribute name="NAME" x="12.319" y="11.1125" size="0.4064" layer="25" rot="R180"/>
 <attribute name="PROD_ID" value=" " x="12.065" y="10.16" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="VALUE" value=" " x="12.065" y="10.16" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
-<element name="R7" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="0402" package3d_urn="urn:adsk.eagle:package:39657/1" value=" " x="9.398" y="10.16" smashed="yes" rot="R180">
+<element name="R7" library="SparkFun-Resistors" package="0402" value=" " x="9.398" y="10.16" smashed="yes" rot="R180">
 <attribute name="NAME" x="11.176" y="10.3505" size="0.4064" layer="25" rot="R180"/>
 <attribute name="PROD_ID" value=" " x="9.398" y="10.16" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="VALUE" value=" " x="9.398" y="10.16" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
-<element name="R8" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="0402" package3d_urn="urn:adsk.eagle:package:39657/1" value=" " x="8.128" y="8.636" smashed="yes">
+<element name="R8" library="SparkFun-Resistors" package="0402" value=" " x="8.128" y="8.636" smashed="yes">
 <attribute name="NAME" x="8.89" y="9.3345" size="0.4064" layer="25"/>
 <attribute name="PROD_ID" value=" " x="8.128" y="8.636" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" value=" " x="8.128" y="8.636" size="1.778" layer="27" display="off"/>
 </element>
-<element name="R9" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="0402" package3d_urn="urn:adsk.eagle:package:39657/1" value=" " x="13.335" y="5.588" smashed="yes" rot="R180">
+<element name="R9" library="SparkFun-Resistors" package="0402" value=" " x="13.335" y="5.588" smashed="yes" rot="R180">
 <attribute name="NAME" x="15.24" y="5.2705" size="0.4064" layer="25" rot="R180"/>
 <attribute name="PROD_ID" value=" " x="13.335" y="5.588" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="VALUE" value=" " x="13.335" y="5.588" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
-<element name="SG1" library="SparkFun-Electromechanical" package="BUZZER-CCV" value="BUZZERSMD2" x="33.782" y="15.621" smashed="yes" rot="MR180"/>
+<element name="SG1" library="SparkFun-Electromechanical" package="BUZZER-CCV-KIT" value="BUZZER-SMD_KIT" x="33.782" y="15.621" smashed="yes" rot="MR180">
+<attribute name="PROD_ID" value="COMP-08568" x="33.782" y="15.621" size="1.778" layer="28" rot="MR180" display="off"/>
+</element>
 <element name="U$2" library="SaL-lib" package="SI7232DN" value="SI7232DN" x="9.779" y="13.208" smashed="yes" rot="R90"/>
 <element name="U$6" library="SaL-lib" package="SI7232DN" value="SI7232DN" x="11.684" y="8.636" smashed="yes" rot="R270"/>
 <element name="U1" library="SparkFun-DigitalIC" package="TQFP-48" value="ATSAMD21G-A" x="23.241" y="10.795" smashed="yes" rot="R45">
@@ -1250,7 +1283,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <attribute name="NAME" x="37.084" y="8.636" size="0.4064" layer="26" rot="MR270"/>
 <attribute name="PROD_ID" value="DIO-00862" x="38.354" y="8.382" size="1.778" layer="28" rot="MR270" display="off"/>
 </element>
-<element name="R23" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" package="0402" package3d_urn="urn:adsk.eagle:package:39657/1" value=" " x="38.354" y="7.747" smashed="yes" rot="R90">
+<element name="R23" library="SparkFun-Resistors" package="0402" value=" " x="38.354" y="7.747" smashed="yes" rot="R90">
 <attribute name="NAME" x="38.5445" y="8.89" size="0.4064" layer="25" rot="R90"/>
 <attribute name="PROD_ID" value=" " x="38.354" y="7.747" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" value=" " x="38.354" y="7.747" size="1.778" layer="27" rot="R90" display="off"/>
@@ -1263,7 +1296,9 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <element name="STANDOFF4" library="SparkFun-Electromechanical" package="STAND-OFF" value="STAND-OFF" x="2.794" y="2.921" smashed="yes"/>
 <element name="JP5" library="SparkFun-Connectors" package="JST-2-SMD-VERT" value="Lipo" x="3.175" y="10.922" smashed="yes" rot="MR270"/>
 <element name="U$1" library="SaL-lib1" package="PB-5R0H104-R" value="PB-5R0H104-R" x="15.113" y="14.605" smashed="yes" rot="MR180"/>
-<element name="U$7" library="SparkFun-Sensors" package="ADXL193" value="ADXL193" x="22.86" y="2.794" smashed="yes" rot="MR90"/>
+<element name="U$7" library="SparkFun-Sensors" package="LCC-8" value="ADXL193" x="22.86" y="2.794" smashed="yes" rot="MR90">
+<attribute name="PROD_ID" value="IC-09219" x="22.86" y="2.794" size="1.778" layer="28" rot="MR90" display="off"/>
+</element>
 <element name="C16" library="SparkFun-Passives" package="0402-CAP" value="0.1uF" x="26.035" y="3.683" smashed="yes" rot="MR270">
 <attribute name="NAME" x="26.2255" y="5.715" size="0.4064" layer="26" rot="MR270"/>
 </element>
@@ -1380,7 +1415,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="20.412571875" y1="13.976978125" x2="17.955378125" y2="16.08061875" width="0" layer="19" extent="1-1"/>
 <wire x1="24.6552125" y1="15.39119375" x2="20.412571875" y2="13.976978125" width="0" layer="19" extent="1-1"/>
 <wire x1="26.36761875" y1="15.796378125" x2="24.6552125" y2="15.39119375" width="0" layer="19" extent="1-1"/>
-<wire x1="29.782" y1="15.621" x2="26.36761875" y2="15.796378125" width="0" layer="19" extent="1-16"/>
+<wire x1="29.632" y1="15.621" x2="26.36761875" y2="15.796378125" width="0" layer="19" extent="1-16"/>
 <wire x1="12.755" y1="14.732" x2="17.193378125" y2="15.31861875" width="0" layer="19" extent="1-1"/>
 <wire x1="12.755" y1="13.208" x2="12.755" y2="14.732" width="0" layer="19" extent="1-1"/>
 <wire x1="11.0998" y1="13.208" x2="12.755" y2="13.208" width="0" layer="19" extent="1-1"/>
@@ -1411,8 +1446,8 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="33.416" y1="4.445" x2="31.623" y2="3.063" width="0" layer="19" extent="1-1"/>
 <wire x1="31.735" y1="6.342" x2="33.416" y2="4.445" width="0" layer="19" extent="1-1"/>
 <wire x1="26.069425" y1="7.61301875" x2="26.289" y2="3.19" width="0" layer="19" extent="1-1"/>
-<wire x1="33.035" y1="11.692" x2="29.782" y2="15.621" width="0" layer="19" extent="1-16"/>
-<wire x1="35.052" y1="17.414" x2="29.782" y2="15.621" width="0" layer="19" extent="1-16"/>
+<wire x1="33.035" y1="11.692" x2="29.632" y2="15.621" width="0" layer="19" extent="1-16"/>
+<wire x1="35.052" y1="17.414" x2="29.632" y2="15.621" width="0" layer="19" extent="1-16"/>
 <wire x1="38.354" y1="8.327" x2="33.416" y2="4.445" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$3">
@@ -1539,7 +1574,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <signal name="BUZZER">
 <contactref element="SG1" pad="+"/>
 <contactref element="U1" pad="31"/>
-<wire x1="26.069425" y1="13.976978125" x2="37.782" y2="15.621" width="0" layer="19" extent="1-16"/>
+<wire x1="26.069425" y1="13.976978125" x2="37.932" y2="15.621" width="0" layer="19" extent="1-16"/>
 </signal>
 <signal name="RAW">
 <contactref element="R18" pad="2"/>
@@ -1974,16 +2009,6 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 Since Version 8.2, EAGLE supports online libraries. The ids
 of those online libraries will not be understood (or retained)
 with this version.
-</note>
-<note version="8.3" severity="warning">
-Since Version 8.3, EAGLE supports URNs for individual library
-assets (packages, symbols, and devices). The URNs of those assets
-will not be understood (or retained) with this version.
-</note>
-<note version="8.3" severity="warning">
-Since Version 8.3, EAGLE supports the association of 3D packages
-with devices in libraries, schematics, and board files. Those 3D
-packages will not be understood (or retained) with this version.
 </note>
 </compatibility>
 </eagle>
