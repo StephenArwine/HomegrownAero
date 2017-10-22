@@ -52,7 +52,7 @@ void init() {
 
 
     sercomClockEnable(SPI1, 3, 4);
-    sercomSpiMasterInit(SPI1, 3, 0, 0, 0, 0x01);
+    sercomSpiMasterInit(SPI1, 3, 0, 0, 0, 0x00);
 
 }
 
@@ -66,52 +66,48 @@ int main(void) {
     initMS5803Barometer(&my_altimeter.myBarometer);
 
 
-    /* Replace with your application code */
-
-    volatile uint8_t rData;
-    volatile uint8_t rData2;
-    volatile uint8_t rData3;
-    volatile uint8_t rData4;
     volatile long counter = 0;
 
     volatile float sumAccel;
     volatile float averageAccel;
-volatile float averageAlt;
+    volatile float averageAlt;
 
-volatile u16_t analogSample;
+    volatile u16_t analogSample;
     volatile float accelX;
-	
+
 	
 
     while (1) {
-		
-     //   delay_ms(50);
-		
+
+        //   delay_ms(50);
+
         counter++;
- //       pinToggle(LedPin);
+//       pinToggle(LedPin);
 
 
         sampleTick(&my_altimeter);
 
+
+
         uint8_t dummy_Tx = 0xFF;
         uint8_t dummy_rx;
 
-analogSample = adc_read(analogAccelPin);
-accelX = (analogSample - 3920) * 0.0227;
+        analogSample = adc_read(analogAccelPin);
+        accelX = (analogSample - 3920) * 0.0227;
 
-averageAccel = averageAccel + accelX;
-averageAlt = averageAlt + my_altimeter.myBarometer.heightFeet;
+        averageAccel = averageAccel + accelX;
+        averageAlt = averageAlt + my_altimeter.myBarometer.heightFeet;
 
         if (counter == 100) {
-			pinToggle(LedPin);
-			
-			averageAlt = averageAlt / 100;
-			averageAccel = averageAccel / 100;
-			
+            pinToggle(LedPin);
+
+            averageAlt = averageAlt / 100;
+            averageAccel = averageAccel / 100;
+
             counter = -1;
-			
-			averageAccel = 0;
-			averageAlt = 0;
+
+            averageAccel = 0;
+            averageAlt = 0;
         }
 
 
