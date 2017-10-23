@@ -5251,12 +5251,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <label x="210.82" y="53.34" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="N$9" class="0">
-<segment>
-<pinref part="U1" gate="G$1" pin="PA28"/>
-<wire x1="231.14" y1="111.76" x2="233.68" y2="111.76" width="0.1524" layer="91"/>
-</segment>
-</net>
 <net name="!RESET" class="0">
 <segment>
 <pinref part="JP1" gate="G$1" pin="!RESET"/>
@@ -5299,6 +5293,13 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </nets>
 </sheet>
 </sheets>
+<errors>
+<approved hash="202,1,53.34,165.1,U2,BP,,,,"/>
+<approved hash="112,1,12.7,72.39,,,,,,"/>
+<approved hash="112,1,12.7,52.07,,,,,,"/>
+<approved hash="112,1,12.7,26.67,,,,,,"/>
+<approved hash="112,1,12.7,6.35,,,,,,"/>
+</errors>
 </schematic>
 </drawing>
 <compatibility>
