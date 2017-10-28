@@ -25,7 +25,12 @@ void init() {
     NVIC_SetPriority(DMAC_IRQn, 0x00);
 
     pinOut(LedPin);
-    pinAnalog(senseBat);
+    pinAnalog(senseBatPin);
+	
+    pinAnalog(senseAPin);
+    pinOut(fireAPin);
+	pinLow(fireAPin);
+
 
     pinOut(spi1MOSI);
     pinOut(spi1SCK);
@@ -50,6 +55,8 @@ void init() {
     pinHigh(cs_baro);
     pinGpio(cs_baro);
 
+    pinOut(buzzerPin);
+    pinCfg(buzzerPin);
 
     sercomClockEnable(SPI1, 3, 4);
     sercomSpiMasterInit(SPI1, 3, 0, 0, 0, 0x00);
@@ -75,19 +82,23 @@ int main(void) {
     volatile u16_t analogSample;
     volatile float accelX;
 
-	
+volatile u16_t ignighterA;
 
     while (1) {
 
-        //   delay_ms(50);
+    ignighterA = adc_read(senseAPin);
+
+
+           delay_ms(50);
 
         counter++;
 //       pinToggle(LedPin);
 
 
-        sampleTick(&my_altimeter);
+           sampleTick(&my_altimeter);
 
-
+        pinToggle(buzzerPin);
+        delay_ms(1);
 
         uint8_t dummy_Tx = 0xFF;
         uint8_t dummy_rx;
