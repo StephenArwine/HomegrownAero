@@ -162,6 +162,7 @@
 <wire x1="39.477" y1="0" x2="39.477" y2="21.768" width="0" layer="20"/>
 <wire x1="39.477" y1="21.768" x2="0" y2="21.768" width="0" layer="20"/>
 <wire x1="0" y1="21.768" x2="0" y2="0" width="0" layer="20"/>
+<text x="34.036" y="10.795" size="1.27" layer="26" rot="MR270">DasAltimeter</text>
 </plain>
 <libraries>
 <library name="SparkFun-Capacitors">
@@ -2051,9 +2052,6 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="22.987" y1="13.843" x2="22.987" y2="17.272" width="0.254" layer="16"/>
 <wire x1="22.987" y1="17.272" x2="24.13" y2="18.288" width="0.254" layer="16"/>
 <wire x1="24.13" y1="18.288" x2="24.13" y2="18.669" width="0.254" layer="16"/>
-</signal>
-<signal name="N$9">
-<contactref element="U1" pad="41"/>
 </signal>
 <signal name="!RESET">
 <contactref element="JP1" pad="10"/>

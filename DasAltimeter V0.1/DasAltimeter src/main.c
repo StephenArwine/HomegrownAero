@@ -25,14 +25,19 @@ void init() {
     NVIC_SetPriority(DMAC_IRQn, 0x00);
 
     pinOut(LedPin);
-    pinAnalog(senseBat);
+    pinAnalog(senseBatPin);
 
-    pinOut(spi1MOSI);
-    pinOut(spi1SCK);
-    pinIn(spi1MISO);
-    pinMux(spi1MISO);
-    pinMux(spi1SCK);
-    pinMux(spi1MOSI);
+    pinAnalog(senseAPin);
+    pinOut(fireAPin);
+    pinLow(fireAPin);
+
+
+    //pinOut(spi1MOSI);
+    //pinOut(spi1SCK);
+    //pinIn(spi1MISO);
+    //pinMux(spi1MISO);
+    //pinMux(spi1SCK);
+    //pinMux(spi1MOSI);
 
     //  pinOut(spi2MOSI);
 //   pinOut(spi2SCK);
@@ -42,17 +47,19 @@ void init() {
     //  pinMux(spi2MOSI);
 
 
-    pinOut(cs_imu);
-    pinHigh(cs_imu);
-    pinGpio(cs_imu);
+  //  pinOut(cs_imu);
+  //  pinHigh(cs_imu);
+  //  pinGpio(cs_imu);
 
     pinOut(cs_baro);
     pinHigh(cs_baro);
     pinGpio(cs_baro);
 
+    pinOut(buzzerPin);
+    pinCfg(buzzerPin);
 
-    sercomClockEnable(SPI1, 3, 4);
-    sercomSpiMasterInit(SPI1, 3, 0, 0, 0, 0x00);
+    sercomClockEnable(SPI2, 3, 4);
+    sercomSpiMasterInit(SPI2, 3, 0, 0, 0, 0x00);
 
 }
 
@@ -75,19 +82,23 @@ int main(void) {
     volatile u16_t analogSample;
     volatile float accelX;
 
-	
+    volatile u16_t ignighterA;
 
     while (1) {
 
-        //   delay_ms(50);
+        ignighterA = adc_read(senseAPin);
+
+
+     //   delay_ms(50);
 
         counter++;
-//       pinToggle(LedPin);
+     //   pinToggle(LedPin);
 
 
         sampleTick(&my_altimeter);
 
-
+       // pinToggle(buzzerPin);
+        delay_ms(1);
 
         uint8_t dummy_Tx = 0xFF;
         uint8_t dummy_rx;
@@ -101,7 +112,6 @@ int main(void) {
         if (counter == 100) {
             pinToggle(LedPin);
 
-            averageAlt = averageAlt / 100;
             averageAccel = averageAccel / 100;
 
             counter = -1;

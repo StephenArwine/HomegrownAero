@@ -4163,6 +4163,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <part name="H3" library="SparkFun-Hardware" deviceset="STAND-OFF" device="TIGHT"/>
 <part name="U$3" library="SaL-lib1" deviceset="SI7232DN" device=""/>
 <part name="U$4" library="SaL-lib1" deviceset="SI7232DN" device=""/>
+<part name="GND31" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -4369,6 +4370,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <instance part="H3" gate="G$1" x="236.22" y="86.36"/>
 <instance part="U$3" gate="G$1" x="22.86" y="73.66"/>
 <instance part="U$4" gate="G$1" x="22.86" y="27.94"/>
+<instance part="GND31" gate="1" x="157.48" y="88.9"/>
 </instances>
 <busses>
 </busses>
@@ -4553,6 +4555,24 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <pinref part="U2" gate="U1" pin="GND"/>
 <pinref part="GND30" gate="1" pin="GND"/>
 <wire x1="35.56" y1="165.1" x2="33.02" y2="165.1" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U1" gate="G$1" pin="GND@42"/>
+<pinref part="GND31" gate="1" pin="GND"/>
+<wire x1="162.56" y1="93.98" x2="157.48" y2="93.98" width="0.1524" layer="91"/>
+<wire x1="157.48" y1="93.98" x2="157.48" y2="91.44" width="0.1524" layer="91"/>
+<pinref part="U1" gate="G$1" pin="GND@35"/>
+<wire x1="162.56" y1="96.52" x2="157.48" y2="96.52" width="0.1524" layer="91"/>
+<wire x1="157.48" y1="96.52" x2="157.48" y2="93.98" width="0.1524" layer="91"/>
+<junction x="157.48" y="93.98"/>
+<pinref part="U1" gate="G$1" pin="GND@18"/>
+<wire x1="162.56" y1="99.06" x2="157.48" y2="99.06" width="0.1524" layer="91"/>
+<wire x1="157.48" y1="99.06" x2="157.48" y2="96.52" width="0.1524" layer="91"/>
+<junction x="157.48" y="96.52"/>
+<pinref part="U1" gate="G$1" pin="GNDANA"/>
+<wire x1="162.56" y1="104.14" x2="157.48" y2="104.14" width="0.1524" layer="91"/>
+<wire x1="157.48" y1="104.14" x2="157.48" y2="99.06" width="0.1524" layer="91"/>
+<junction x="157.48" y="99.06"/>
 </segment>
 </net>
 <net name="N$1" class="0">

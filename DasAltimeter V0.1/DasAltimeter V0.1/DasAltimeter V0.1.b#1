@@ -1902,18 +1902,16 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 </signal>
 <signal name="SPI2_SCK">
 <contactref element="U3" pad="1"/>
-<contactref element="U1" pad="23"/>
-<wire x1="27.83719375" y1="9.507784375" x2="28.454978125" y2="8.89" width="0.254" layer="1"/>
 <wire x1="33.274" y1="8.89" x2="34.544" y2="10.16" width="0.254" layer="1"/>
 <wire x1="34.544" y1="10.16" x2="34.544" y2="11.56" width="0.254" layer="1"/>
 <wire x1="34.544" y1="11.56" x2="34.539" y2="11.565" width="0.254" layer="1"/>
 <wire x1="28.454978125" y1="8.89" x2="33.274" y2="8.89" width="0.254" layer="1"/>
+<contactref element="U1" pad="24"/>
+<wire x1="28.190746875" y1="9.8613375" x2="28.454978125" y2="8.89" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="CS_BARO">
 <contactref element="U3" pad="3"/>
 <contactref element="R4" pad="1"/>
-<contactref element="U1" pad="24"/>
-<wire x1="28.190746875" y1="9.8613375" x2="30.226" y2="9.8613375" width="0.254" layer="1"/>
 <wire x1="30.226" y1="9.8613375" x2="31.7053375" y2="9.8613375" width="0.254" layer="1"/>
 <wire x1="31.7053375" y1="9.8613375" x2="31.877" y2="10.287" width="0.254" layer="1"/>
 <wire x1="31.877" y1="10.287" x2="31.877" y2="11.148" width="0.254" layer="1"/>
@@ -1924,6 +1922,8 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="34.798" y1="9.017" x2="31.0703375" y2="9.017" width="0.254" layer="16"/>
 <wire x1="31.0703375" y1="9.017" x2="30.226" y2="9.8613375" width="0.254" layer="16"/>
 <via x="30.226" y="9.8613375" extent="1-16" drill="0.35"/>
+<contactref element="U1" pad="23"/>
+<wire x1="27.83719375" y1="9.507784375" x2="30.226" y2="9.8613375" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="ACCELX">
 <contactref element="U4" pad="P$6"/>
@@ -2052,9 +2052,6 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="22.987" y1="13.843" x2="22.987" y2="17.272" width="0.254" layer="16"/>
 <wire x1="22.987" y1="17.272" x2="24.13" y2="18.288" width="0.254" layer="16"/>
 <wire x1="24.13" y1="18.288" x2="24.13" y2="18.669" width="0.254" layer="16"/>
-</signal>
-<signal name="N$9">
-<contactref element="U1" pad="41"/>
 </signal>
 <signal name="!RESET">
 <contactref element="JP1" pad="10"/>

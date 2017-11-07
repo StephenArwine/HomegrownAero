@@ -89,7 +89,6 @@ volatile u16_t ignighterA;
     ignighterA = adc_read(senseAPin);
 
 
-           delay_ms(50);
 
         counter++;
 //       pinToggle(LedPin);
