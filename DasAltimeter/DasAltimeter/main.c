@@ -20,16 +20,17 @@ void init() {
     delayInit();
     adcInit();
     dmaInit();
+    RtcInit();
 
     NVIC_EnableIRQ(DMAC_IRQn);
     NVIC_SetPriority(DMAC_IRQn, 0x00);
 
     pinOut(LedPin);
     pinAnalog(senseBatPin);
-	
+
     pinAnalog(senseAPin);
     pinOut(fireAPin);
-	pinLow(fireAPin);
+    pinLow(fireAPin);
 
 
     pinOut(spi1MOSI);
@@ -60,7 +61,6 @@ void init() {
 
     sercomClockEnable(SPI1, 3, 4);
     sercomSpiMasterInit(SPI1, 3, 0, 0, 0, 0x00);
-
 }
 
 
@@ -81,27 +81,26 @@ int main(void) {
 
     volatile u16_t analogSample;
     volatile float accelX;
+    volatile u32_t time;
+    volatile u32_t lastTime;
+    volatile u32_t CyclesTime;
 
-volatile u16_t ignighterA;
+    volatile u16_t ignighterA;
 
     while (1) {
 
-    ignighterA = adc_read(senseAPin);
+        ignighterA = adc_read(senseAPin);
 
 
-           delay_ms(50);
+        //  delay_ms(50);
 
         counter++;
-//       pinToggle(LedPin);
 
 
-           sampleTick(&my_altimeter);
+        sampleTick(&my_altimeter);
 
-        pinToggle(buzzerPin);
-        delay_ms(1);
+        //  pinToggle(buzzerPin);
 
-        uint8_t dummy_Tx = 0xFF;
-        uint8_t dummy_rx;
 
         analogSample = adc_read(analogAccelPin);
         accelX = (analogSample - 3920) * 0.0227;
@@ -109,8 +108,18 @@ volatile u16_t ignighterA;
         averageAccel = averageAccel + accelX;
         averageAlt = averageAlt + my_altimeter.myBarometer.heightFeet;
 
-        if (counter == 100) {
+        time = millis();
+
+
+
+         if ((time - lastTime)  > 100000) {
             pinToggle(LedPin);
+            lastTime = millis();
+        }
+
+
+        if (counter == 100) {
+         //   pinToggle(LedPin);
 
             averageAlt = averageAlt / 100;
             averageAccel = averageAccel / 100;

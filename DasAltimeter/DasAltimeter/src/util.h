@@ -35,7 +35,7 @@ void sampleTick(Altimeter *my_altimeter);
 
 //dma.c
 inline static Sercom* sercom(SercomId id) {
-	return (Sercom*) (0x42000800U + id * 1024);
+    return (Sercom*) (0x42000800U + id * 1024);
 }
 
 #define DMA_DESC_ALIGN __attribute__((aligned(16)))
@@ -55,6 +55,9 @@ u32_t dmaRemaining(DmaChan chan);
 
 //clocks.c
 void GclkInit();
+void RtcInit();
+uint32_t millis(void);
+void RTC_Handler(void);
 void gclkEnable(u32_t id, u32_t src, u32_t div);
 void delayInit(void);
 void delay_ms(uint32_t delay);
@@ -93,16 +96,16 @@ uint8_t byteIn(Pin SCK_PIN, Pin MISO_PIN);
 
 
 static inline void delay_cycles(
-const uint32_t n) {
-	if (n > 0) {
-		SysTick->LOAD = n;
-		SysTick->VAL = 0;
+    const uint32_t n) {
+    if (n > 0) {
+        SysTick->LOAD = n;
+        SysTick->VAL = 0;
 
-		while (!(SysTick->CTRL & SysTick_CTRL_COUNTFLAG_Msk)) {
-		};
-	}
+        while (!(SysTick->CTRL & SysTick_CTRL_COUNTFLAG_Msk)) {
+        };
+    }
 }
 
 static inline void SPI_sync(SercomId id) {
-	while  (sercom(id)->SPI.SYNCBUSY.bit.CTRLB);
+    while  (sercom(id)->SPI.SYNCBUSY.bit.CTRLB);
 };

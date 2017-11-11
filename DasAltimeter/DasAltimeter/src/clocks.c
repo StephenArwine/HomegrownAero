@@ -31,16 +31,8 @@ void GclkInit() {
     //wait for crystal to warm up
     while((SYSCTRL->PCLKSR.reg & (SYSCTRL_PCLKSR_XOSC32KRDY)) == 0);
 
-
-
-
-
-
-
-
 //Configure the FDLL48MHz FLL, we will use this to provide a clock to the CPU
 //Set the course and fine step sizes, these should be less than 50% of the values used for the course and fine values (P150)
-
 
 #define NVM_DFLL_COARSE_POS    58
 #define NVM_DFLL_COARSE_SIZE   6
@@ -78,6 +70,60 @@ void GclkInit() {
     //For generic clock generator 0, select the DFLL48 Clock as input
     GCLK->GENDIV.reg  = (GCLK_GENDIV_DIV(1)  | GCLK_GENDIV_ID(0));
     GCLK->GENCTRL.reg = (GCLK_GENCTRL_ID(0)  | (GCLK_GENCTRL_SRC_DFLL48M) | (GCLK_GENCTRL_GENEN));
+}
+
+void RtcInit() {
+    GCLK->GENDIV.reg = GCLK_GENDIV_ID(2) | GCLK_GENDIV_DIV(8);
+
+    GCLK->GENCTRL.reg = GCLK_GENCTRL_ID(2) |
+                        GCLK_GENCTRL_SRC(GCLK_SOURCE_XOSC32K) |
+                        GCLK_GENCTRL_IDC |
+                        GCLK_GENCTRL_RUNSTDBY |
+                        GCLK_GENCTRL_GENEN;
+    while (GCLK->STATUS.reg & GCLK_STATUS_SYNCBUSY);
+
+    // Configure RTC
+    GCLK->CLKCTRL.reg = GCLK_CLKCTRL_ID(RTC_GCLK_ID) |
+                        GCLK_CLKCTRL_CLKEN |
+                        GCLK_CLKCTRL_GEN(2);
+
+    RTC->MODE1.CTRL.reg = RTC_MODE1_CTRL_MODE_COUNT16;
+    while (RTC->MODE1.STATUS.bit.SYNCBUSY);
+
+    // Prescaler needs to be enabled separately from the mode for some reason
+    RTC->MODE1.CTRL.reg |= RTC_MODE1_CTRL_PRESCALER_DIV1;
+    while (RTC->MODE1.STATUS.bit.SYNCBUSY);
+
+    RTC->MODE1.PER.reg = 998;
+    while (RTC->MODE1.STATUS.bit.SYNCBUSY);
+
+    RTC->MODE1.READREQ.reg |= RTC_READREQ_RCONT | RTC_READREQ_ADDR(0x10);
+
+    RTC->MODE1.INTENSET.reg = RTC_MODE1_INTENSET_OVF;
+
+    RTC->MODE1.CTRL.bit.ENABLE = 1;
+    while (RTC->MODE1.STATUS.bit.SYNCBUSY);
+
+    NVIC_SetPriority (RTC_IRQn, (1<<__NVIC_PRIO_BITS) - 1);
+    NVIC_EnableIRQ(RTC_IRQn);
+}
+
+volatile uint32_t time_ms = 0;
+
+void RTC_Handler(void) {
+    time_ms += 1000;
+
+    RTC->MODE1.INTFLAG.reg = 0xFF;
+}
+
+uint32_t millis(void) {
+    uint32_t ms;
+    ATOMIC_SECTION_ENTER
+    ms = time_ms + RTC->MODE1.COUNT.reg;
+    if (RTC->MODE1.INTFLAG.bit.OVF)
+        ms = time_ms + RTC->MODE1.COUNT.reg + 1000;
+    ATOMIC_SECTION_LEAVE
+    return ms;
 }
 
 void gclkEnable(u32_t id, u32_t src, u32_t div) {
