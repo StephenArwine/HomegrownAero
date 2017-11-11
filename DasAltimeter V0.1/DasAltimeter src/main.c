@@ -67,9 +67,10 @@ void init() {
 //    sercomClockEnable(SPI2, 3, 4);
 //   sercomSpiMasterInit(SPI2, 3, 0, 0, 0, 0x00);
 
-    sercomClockEnable(SPI0, 3, 32);
+    sercomClockEnable(SPI0, 3, 4);
     sercomSpiMasterInit(SPI0, 3, 0, 0, 0, 0x00);
 
+    IMUinit();
 }
 
 
@@ -89,7 +90,7 @@ int main(void) {
     volatile float averageAlt;
 
     volatile u16_t analogSample;
-    volatile float accelX;
+    volatile float analogAccelX;
 
     volatile u16_t ignighterA;
 
@@ -99,15 +100,8 @@ int main(void) {
     uint8_t dummy_Tx = 0xFF;
     uint8_t dummy_rx;
 
-    pinLow(cs_accel);
-    dummy_rx = spiDataTransfer(SPI0, 0x80 | 0x0F);
-    volatile u8_t _byte1 = spiDataTransfer(SPI0,dummy_Tx);
-    pinHigh(cs_accel);
-
     delay_ms(300);
 
-    volatile int16_t accelZ;
-	
 
 
     while (1) {
@@ -115,38 +109,10 @@ int main(void) {
         sampleTick(&my_altimeter);
 
 
-
-
-
-        pinLow(cs_accel);
-        dummy_rx = spiDataTransfer(SPI0, 0x80 | 0x06);
-        volatile u8_t _byte1 = spiDataTransfer(SPI0,dummy_Tx);
-        volatile u8_t _byte2 = spiDataTransfer(SPI0,dummy_Tx);
-        pinHigh(cs_accel);
-
-        bool negativeZ = (_byte2 & (1<<7)) != 0;
-
-        accelZ = (_byte2 << 8) | _byte1;
-
-        if (_byte2 != 1) {
-            if (negativeZ) {
-				
-                accelZ = accelZ | ~((1 << 16) - 1);
-                accelZ = accelZ >> 4;
-
-            } else {
-                accelZ = accelZ >> 4;
-            }
-        }
-
-        volatile float accelZF = accelZ * .000976;
-
-
-
         analogSample = adc_read(analogAccelPin);
-        accelX = (analogSample - 3878) * -0.0227;
+        analogAccelX = (analogSample - 3878) * -0.0227;
 
-        averageAccel = averageAccel + accelX;
+        averageAccel = averageAccel + analogAccelX;
         averageAlt = averageAlt + my_altimeter.myBarometer.heightFeet;
 
         if (counter == 100) {

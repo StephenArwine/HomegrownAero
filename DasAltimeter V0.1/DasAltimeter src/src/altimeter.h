@@ -1,5 +1,5 @@
 
-
+void IMUinit();
 
 
 
@@ -14,12 +14,12 @@ typedef struct Barometer {
     uint32_t temperatureCelcus;
 
     uint32_t pressurePa;
-	
-	uint32_t pressureMbar;
+
+    uint32_t pressureMbar;
 
     float heightCm;
-	
-	float heightFeet;
+
+    float heightFeet;
 
 
 } Barometer;
@@ -47,12 +47,15 @@ typedef struct IMU {
 
     u8_t accelXHigh;
     u8_t accelXLow;
+    int16_t accelXint;
 
     u8_t accelYHigh;
     u8_t accelYLow;
+    int16_t accelYint;
 
     u8_t accelZHigh;
     u8_t accelZLow;
+    int16_t accelZint;
 
     u16_t gyroXData;
 
@@ -71,10 +74,10 @@ typedef struct IMU {
 
 
 typedef struct AnalogAccelerometer {
-	
-	u16_t analogRaw;
-	
-	float analogAccel;
+
+    u16_t analogRaw;
+
+    float analogAccel;
 
 
 
@@ -88,8 +91,8 @@ typedef struct Altimeter {
     IMU myIMU;
 
     AnalogAccelerometer myAnalogAccelerometer;
-	
-	float batV;
+
+    float batV;
 
 
 } Altimeter;

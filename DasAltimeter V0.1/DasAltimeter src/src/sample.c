@@ -33,22 +33,54 @@ void sampleTick(Altimeter *my_altimeter) {
     pascalToCent(&my_altimeter->myBarometer);
     my_altimeter->myBarometer.heightFeet = 0.03281 * my_altimeter->myBarometer.heightCm;
 
+    pinLow(cs_accel);
+    dummy_rx = spiDataTransfer(SPI0, 0x80 | 0x02);
+    my_altimeter->myIMU.accelXLow = spiDataTransfer(SPI0,dummy_Tx);
+    my_altimeter->myIMU.accelXHigh = spiDataTransfer(SPI0,dummy_Tx);
+    my_altimeter->myIMU.accelYLow = spiDataTransfer(SPI0,dummy_Tx);
+    my_altimeter->myIMU.accelYHigh = spiDataTransfer(SPI0,dummy_Tx);
+    my_altimeter->myIMU.accelZLow = spiDataTransfer(SPI0,dummy_Tx);
+    my_altimeter->myIMU.accelZHigh = spiDataTransfer(SPI0,dummy_Tx);
+    pinHigh(cs_accel);
 
+    bool negativeX = (my_altimeter->myIMU.accelXHigh & (1<<7)) != 0;
+    bool negativeY = (my_altimeter->myIMU.accelYHigh & (1<<7)) != 0;
+    bool negativeZ = (my_altimeter->myIMU.accelZHigh & (1<<7)) != 0;
 
+    my_altimeter->myIMU.accelXint = (my_altimeter->myIMU.accelXHigh << 8) | my_altimeter->myIMU.accelXLow;
+    my_altimeter->myIMU.accelYint = (my_altimeter->myIMU.accelYHigh << 8) | my_altimeter->myIMU.accelYLow;
+    my_altimeter->myIMU.accelZint = (my_altimeter->myIMU.accelZHigh << 8) | my_altimeter->myIMU.accelZLow;
 
-
-    //check if last bit in second byte is 1 therefor negative number
-    int16_t negativez = (my_altimeter->myIMU.accelZLow & (1 <<7)) != 0;
-    if (negativez) {
-        // if negative then preform 2's complement to int conversion
-        my_altimeter->myIMU.accelZ = ((my_altimeter->myIMU.accelZLow | ~((1 << 8) - 1)) << 8 ) | my_altimeter->myIMU.accelZHigh;
-    } else {
-        my_altimeter->myIMU.accelZ = (my_altimeter->myIMU.accelZLow << 8) + my_altimeter->myIMU.accelZHigh;
+    if (my_altimeter->myIMU.accelXHigh != 1) {
+        if (negativeX) {
+            my_altimeter->myIMU.accelXint = my_altimeter->myIMU.accelXint | ~((1 << 16) - 1);
+            my_altimeter->myIMU.accelXint = my_altimeter->myIMU.accelXint >> 4;
+        } else {
+            my_altimeter->myIMU.accelXint = my_altimeter->myIMU.accelXint >> 4;
+        }
     }
-    my_altimeter->myIMU.accelZ = my_altimeter->myIMU.accelZ *0.00006103;
 
+    if (my_altimeter->myIMU.accelYHigh != 1) {
+        if (negativeY) {
+            my_altimeter->myIMU.accelYint = my_altimeter->myIMU.accelYint | ~((1 << 16) - 1);
+            my_altimeter->myIMU.accelYint = my_altimeter->myIMU.accelYint >> 4;
+        } else {
+            my_altimeter->myIMU.accelYint = my_altimeter->myIMU.accelYint >> 4;
+        }
+    }
 
+    if (my_altimeter->myIMU.accelZHigh != 1) {
+        if (negativeZ) {
+            my_altimeter->myIMU.accelZint = my_altimeter->myIMU.accelZint | ~((1 << 16) - 1);
+            my_altimeter->myIMU.accelZint = my_altimeter->myIMU.accelZint >> 4;
+        } else {
+            my_altimeter->myIMU.accelZint = my_altimeter->myIMU.accelZint >> 4;
+        }
+    }
 
+    my_altimeter->myIMU.accelX = my_altimeter->myIMU.accelXint * .00781;
+    my_altimeter->myIMU.accelY = my_altimeter->myIMU.accelYint * .00781;
+    my_altimeter->myIMU.accelZ = my_altimeter->myIMU.accelZint * .00781;
 
 
 }
