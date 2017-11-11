@@ -5084,9 +5084,9 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <label x="83.82" y="12.7" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U1" gate="G$1" pin="PA14(XIN/SER2:2+)"/>
-<wire x1="231.14" y1="144.78" x2="233.68" y2="144.78" width="0.1524" layer="91"/>
-<label x="233.68" y="144.78" size="1.27" layer="95" xref="yes"/>
+<pinref part="U1" gate="G$1" pin="PA15(XOUT/SER2:3+)"/>
+<wire x1="231.14" y1="142.24" x2="233.68" y2="142.24" width="0.1524" layer="91"/>
+<label x="233.68" y="142.24" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="CS_BARO" class="0">
@@ -5100,9 +5100,9 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <label x="132.08" y="7.62" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U1" gate="G$1" pin="PA15(XOUT/SER2:3+)"/>
-<wire x1="231.14" y1="142.24" x2="233.68" y2="142.24" width="0.1524" layer="91"/>
-<label x="233.68" y="142.24" size="1.27" layer="95" xref="yes"/>
+<pinref part="U1" gate="G$1" pin="PA14(XIN/SER2:2+)"/>
+<wire x1="231.14" y1="144.78" x2="233.68" y2="144.78" width="0.1524" layer="91"/>
+<label x="233.68" y="144.78" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="ACCELX" class="0">

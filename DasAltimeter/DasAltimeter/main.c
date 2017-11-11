@@ -92,7 +92,10 @@ int main(void) {
         ignighterA = adc_read(senseAPin);
 
 
+<<<<<<< HEAD
         //  delay_ms(50);
+=======
+>>>>>>> a9d2c79e69a17e803081a492f03c253d8bfe2885
 
         counter++;
 

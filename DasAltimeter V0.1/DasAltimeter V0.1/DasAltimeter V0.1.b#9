@@ -1238,8 +1238,8 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <attribute name="NAME" x="15.367" y="5.08" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center"/>
 <attribute name="PROD_ID" value=" " x="13.589" y="5.588" size="1.778" layer="27" display="off"/>
 </element>
-<element name="SG1" library="SparkFun-Electromechanical" package="BUZZER-CCV-KIT" value="BUZZER-SMD_KIT" x="33.528" y="15.748" smashed="yes" rot="MR180">
-<attribute name="PROD_ID" value="COMP-08568" x="33.528" y="15.748" size="1.778" layer="28" rot="MR180" display="off"/>
+<element name="SG1" library="SparkFun-Electromechanical" package="BUZZER-CCV-KIT" value="BUZZER-SMD_KIT" x="33.528" y="16.002" smashed="yes" rot="MR180">
+<attribute name="PROD_ID" value="COMP-08568" x="33.528" y="16.002" size="1.778" layer="28" rot="MR180" display="off"/>
 </element>
 <element name="U$1" library="SaL-lib1" package="PB-5R0H104-R" value="PB-5R0H104-R" x="15.367" y="14.732" rot="MR180"/>
 <element name="U1" library="SparkFun-IC-Microcontroller" package="TQFP-48" value="ATSAMD21G-A" x="23.241" y="10.922" smashed="yes" rot="R45">
@@ -1368,8 +1368,8 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="17.653" y1="16.129" x2="17.526" y2="15.933246875" width="0.254" layer="1"/>
 <wire x1="18.385875" y1="16.412121875" x2="17.653" y2="16.187246875" width="0.254" layer="1"/>
 <wire x1="17.653" y1="16.187246875" x2="17.653" y2="16.129" width="0.254" layer="1"/>
-<via x="36.449" y="17.272" extent="1-16" drill="0.35"/>
-<via x="33.274" y="13.462" extent="1-16" drill="0.35"/>
+<via x="36.449" y="17.653" extent="1-16" drill="0.35"/>
+<via x="33.147" y="13.589" extent="1-16" drill="0.35"/>
 <via x="32.512" y="4.318" extent="1-16" drill="0.35"/>
 <wire x1="32.512" y1="4.318" x2="31.989" y2="4.318" width="0.254" layer="1"/>
 <via x="27.305" y="3.048" extent="1-16" drill="0.35"/>
@@ -1405,6 +1405,12 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="27.104659375" y1="3.8762" x2="27.305" y2="3.675859375" width="0.254" layer="1"/>
 <wire x1="27.305" y1="3.675859375" x2="27.305" y2="3.048" width="0.254" layer="1"/>
 <wire x1="29.337" y1="20.653" x2="29.337" y2="19.685" width="0.254" layer="1"/>
+<via x="20.066" y="6.35" extent="1-16" drill="0.35"/>
+<via x="29.591" y="6.858" extent="1-16" drill="0.35"/>
+<via x="31.496" y="17.526" extent="1-16" drill="0.35"/>
+<via x="29.337" y="10.668" extent="1-16" drill="0.35"/>
+<via x="28.575" y="5.334" extent="1-16" drill="0.35"/>
+<via x="18.796" y="1.778" extent="1-16" drill="0.35"/>
 </signal>
 <signal name="N$1">
 <contactref element="R7" pad="1"/>
@@ -1832,7 +1838,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <signal name="BUZZER">
 <contactref element="SG1" pad="-"/>
 <via x="27.559" y="16.129" extent="1-16" drill="0.35"/>
-<wire x1="27.559" y1="16.129" x2="29.378" y2="15.748" width="0.254" layer="16"/>
+<wire x1="27.559" y1="16.129" x2="29.378" y2="16.002" width="0.254" layer="16"/>
 <contactref element="U1" pad="30"/>
 <wire x1="26.422978125" y1="13.750425" x2="27.305" y2="14.632446875" width="0.254" layer="1"/>
 <wire x1="27.305" y1="14.632446875" x2="27.305" y2="15.875" width="0.254" layer="1"/>
@@ -1853,10 +1859,12 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="25.781" y1="11.176" x2="25.908" y2="11.049" width="0.254" layer="1"/>
 <wire x1="25.908" y1="11.049" x2="26.035" y2="11.049" width="0.254" layer="1"/>
 <via x="26.035" y="11.049" extent="1-16" drill="0.35"/>
-<wire x1="26.035" y1="11.049" x2="27.813" y2="12.827" width="0.254" layer="16"/>
-<wire x1="27.813" y1="12.827" x2="36.957" y2="12.827" width="0.254" layer="16"/>
+<wire x1="26.035" y1="11.049" x2="27.813" y2="12.954" width="0.254" layer="16"/>
+<wire x1="27.813" y1="12.954" x2="34.798" y2="12.954" width="0.254" layer="16"/>
+<wire x1="34.798" y1="12.954" x2="35.306" y2="13.335" width="0.254" layer="16"/>
+<wire x1="35.306" y1="13.335" x2="36.576" y2="13.335" width="0.254" layer="16"/>
 <wire x1="38.1" y1="11.684" x2="38.1" y2="11.025" width="0.254" layer="16"/>
-<wire x1="36.957" y1="12.827" x2="38.1" y2="11.684" width="0.254" layer="16"/>
+<wire x1="36.576" y1="13.335" x2="38.1" y2="11.684" width="0.254" layer="16"/>
 </signal>
 <signal name="CS_MEM">
 <contactref element="MEM" pad="!CS"/>
@@ -1962,12 +1970,12 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="30.662" y1="2.159" x2="30.13" y2="2.056" width="0.254" layer="1"/>
 <wire x1="30.13" y1="2.056" x2="29.845" y2="2.056" width="0.254" layer="1"/>
 <wire x1="28.9485" y1="2.056" x2="29.845" y2="2.056" width="0.254" layer="1"/>
-<wire x1="26.422978125" y1="8.093571875" x2="27.53155" y2="6.985" width="0.254" layer="1"/>
-<via x="28.067" y="6.985" extent="1-16" drill="0.35"/>
-<wire x1="28.067" y1="6.985" x2="29.845" y2="5.207" width="0.254" layer="16"/>
+<wire x1="26.422978125" y1="8.093571875" x2="27.27755" y2="7.239" width="0.254" layer="1"/>
+<via x="27.813" y="7.239" extent="1-16" drill="0.35"/>
+<wire x1="27.813" y1="7.239" x2="29.845" y2="5.207" width="0.254" layer="16"/>
 <wire x1="29.845" y1="5.207" x2="29.845" y2="2.056" width="0.254" layer="16"/>
 <via x="29.845" y="2.056" extent="1-16" drill="0.35"/>
-<wire x1="27.53155" y1="6.985" x2="28.067" y2="6.985" width="0.254" layer="1"/>
+<wire x1="27.27755" y1="7.239" x2="27.813" y2="7.239" width="0.254" layer="1"/>
 <wire x1="28.9485" y1="2.048" x2="28.9485" y2="2.056" width="0.1524" layer="1"/>
 </signal>
 <signal name="SPI0_MOSI">
