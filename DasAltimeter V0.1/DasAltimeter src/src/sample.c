@@ -15,13 +15,15 @@ void sampleTick(Altimeter *my_altimeter) {
 
 
     pinLow(cs_baro);
-    dummy_rx = spiDataTransfer(SPI2, 0x50);
+    // dummy_rx = spiDataTransfer(SPI2, 0x50);
+    byteOut(spi2SCK,spi2MOSI, 0x50);
     pinHigh(cs_baro);
     delay_ms(2);
     my_altimeter->myBarometer.rawTempatureData = readMS5803AdcResults();
 
     pinLow(cs_baro);
-    dummy_rx = spiDataTransfer(SPI2, 0x42);
+    //  dummy_rx = spiDataTransfer(SPI2, 0x42);
+    byteOut(spi2SCK,spi2MOSI, 0x42);
     pinHigh(cs_baro);
     delay_ms(2);
     my_altimeter->myBarometer.rawPressureData = readMS5803AdcResults();
@@ -32,7 +34,7 @@ void sampleTick(Altimeter *my_altimeter) {
     my_altimeter->myBarometer.heightFeet = 0.03281 * my_altimeter->myBarometer.heightCm;
 
 
- 
+
 
 
     //check if last bit in second byte is 1 therefor negative number

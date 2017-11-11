@@ -32,24 +32,30 @@ void init() {
     pinLow(fireAPin);
 
 
-    //pinOut(spi1MOSI);
-    //pinOut(spi1SCK);
-    //pinIn(spi1MISO);
-    //pinMux(spi1MISO);
-    //pinMux(spi1SCK);
-    //pinMux(spi1MOSI);
+    pinOut(spi0MOSI);
+    pinOut(spi0SCK);
+    pinIn(spi0MISO);
+    pinMux(spi0MISO);
+    pinMux(spi0SCK);
+    pinMux(spi0MOSI);
 
-    //  pinOut(spi2MOSI);
-//   pinOut(spi2SCK);
-    //  pinIn(spi2MISO);
+    pinOut(cs_accel);
+    pinHigh(cs_accel);
+
+    pinOut(cs_gyro);
+    pinHigh(cs_gyro);
+
+    pinOut(spi2MOSI);
+    pinOut(spi2SCK);
+    pinIn(spi2MISO);
     //  pinMux(spi2MISO);
     //  pinMux(spi2SCK);
     //  pinMux(spi2MOSI);
 
 
-  //  pinOut(cs_imu);
-  //  pinHigh(cs_imu);
-  //  pinGpio(cs_imu);
+    //  pinOut(cs_imu);
+    //  pinHigh(cs_imu);
+    //  pinGpio(cs_imu);
 
     pinOut(cs_baro);
     pinHigh(cs_baro);
@@ -58,8 +64,11 @@ void init() {
     pinOut(buzzerPin);
     pinCfg(buzzerPin);
 
-    sercomClockEnable(SPI2, 3, 4);
-    sercomSpiMasterInit(SPI2, 3, 0, 0, 0, 0x00);
+//    sercomClockEnable(SPI2, 3, 4);
+//   sercomSpiMasterInit(SPI2, 3, 0, 0, 0, 0x00);
+
+    sercomClockEnable(SPI0, 3, 32);
+    sercomSpiMasterInit(SPI0, 3, 0, 0, 0, 0x00);
 
 }
 
@@ -84,27 +93,58 @@ int main(void) {
 
     volatile u16_t ignighterA;
 
+
+
+
+    uint8_t dummy_Tx = 0xFF;
+    uint8_t dummy_rx;
+
+    pinLow(cs_accel);
+    dummy_rx = spiDataTransfer(SPI0, 0x80 | 0x0F);
+    volatile u8_t _byte1 = spiDataTransfer(SPI0,dummy_Tx);
+    pinHigh(cs_accel);
+
+    delay_ms(300);
+
+    volatile int16_t accelZ;
+	
+
+
     while (1) {
-
-        ignighterA = adc_read(senseAPin);
-
-
-     //   delay_ms(50);
-
         counter++;
-     //   pinToggle(LedPin);
-
-
         sampleTick(&my_altimeter);
 
-       // pinToggle(buzzerPin);
-        delay_ms(1);
 
-        uint8_t dummy_Tx = 0xFF;
-        uint8_t dummy_rx;
+
+
+
+        pinLow(cs_accel);
+        dummy_rx = spiDataTransfer(SPI0, 0x80 | 0x06);
+        volatile u8_t _byte1 = spiDataTransfer(SPI0,dummy_Tx);
+        volatile u8_t _byte2 = spiDataTransfer(SPI0,dummy_Tx);
+        pinHigh(cs_accel);
+
+        bool negativeZ = (_byte2 & (1<<7)) != 0;
+
+        accelZ = (_byte2 << 8) | _byte1;
+
+        if (_byte2 != 1) {
+            if (negativeZ) {
+				
+                accelZ = accelZ | ~((1 << 16) - 1);
+                accelZ = accelZ >> 4;
+
+            } else {
+                accelZ = accelZ >> 4;
+            }
+        }
+
+        volatile float accelZF = accelZ * .000976;
+
+
 
         analogSample = adc_read(analogAccelPin);
-        accelX = (analogSample - 3920) * 0.0227;
+        accelX = (analogSample - 3878) * -0.0227;
 
         averageAccel = averageAccel + accelX;
         averageAlt = averageAlt + my_altimeter.myBarometer.heightFeet;
@@ -113,7 +153,7 @@ int main(void) {
             pinToggle(LedPin);
 
             averageAccel = averageAccel / 100;
-
+            averageAlt = averageAlt / 100;
             counter = -1;
 
             averageAccel = 0;
