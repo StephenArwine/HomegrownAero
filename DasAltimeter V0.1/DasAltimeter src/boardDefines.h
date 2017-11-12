@@ -26,7 +26,7 @@ const static Pin spi2MISO = {.group = 0, .pin = 13, .mux = MUX_PA13C_SERCOM2_PAD
 const static Pin spi2SCK = {.group = 0, .pin = 14, .mux = MUX_PA15C_SERCOM2_PAD3};
 
 const static Pin LedPin = {.group = 0, .pin = 20};
-const static Pin buzzerPin = {.group = 0, .pin = 21, .cfg = 0x00};
+const static Pin buzzerPin = {.group = 0, .pin = 21, .cfg = 0x40};
 const static Pin senseBatPin = {.group = 0, .pin = 6, .chan = 6};
 
 const static Pin senseAPin = {.group = 0, .pin = 8, .chan = 8};

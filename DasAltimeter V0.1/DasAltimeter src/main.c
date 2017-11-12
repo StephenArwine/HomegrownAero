@@ -68,7 +68,6 @@ void init() {
     sercomClockEnable(SPI0, 3, 4);
     sercomSpiMasterInit(SPI0, 3, 0, 0, 0, 0x00);
 
-    IMUinit();
 }
 
 
@@ -79,6 +78,7 @@ int main(void) {
     Altimeter my_altimeter;
 
     initMS5803Barometer(&my_altimeter.myBarometer);
+    IMUinit();
 
 
     u8_t counter = 0;
@@ -118,24 +118,28 @@ int main(void) {
 
 
 
-
+        /*
         if (abs(averageAlt - baseAltitude) > 20) {
-            for (u16_t buzz = 0; buzz < 200; ++buzz) {
-                delay_us(150);
-                pinToggle(buzzerPin);
-            }
+        	for (u16_t buzz = 0; buzz < 200; ++buzz) {
+        		delay_us(150);
+        		pinToggle(buzzerPin);
+        	}
         }
+        */
 
         if ((time - lastTime) > 10000) {
             pinToggle(LedPin);
-
-
             lastTime = time;
         }
 
 
         if (counter == 100) {
             //  pinToggle(LedPin);
+
+            for (u16_t buzz = 0; buzz < 200; ++buzz) {
+                pinToggle(buzzerPin);
+                delay_us(50);
+            }
 
 
             counter = -1;
