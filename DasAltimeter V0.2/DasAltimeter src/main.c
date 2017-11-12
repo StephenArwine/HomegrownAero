@@ -17,7 +17,6 @@
 void init() {
     SystemInit();
     GclkInit();
-    RtcInit();
     delayInit();
     adcInit();
     dmaInit();
@@ -54,6 +53,9 @@ void init() {
     //  pinMux(spi2MOSI);
 
 
+    //  pinOut(cs_imu);
+    //  pinHigh(cs_imu);
+    //  pinGpio(cs_imu);
 
     pinOut(cs_baro);
     pinHigh(cs_baro);
@@ -81,64 +83,63 @@ int main(void) {
     initMS5803Barometer(&my_altimeter.myBarometer);
 
 
-    u8_t counter = 0;
+    volatile long counter = 0;
 
-
+    volatile float sumAccel;
     volatile float averageAccel;
     volatile float averageAlt;
-    volatile float baseAltitude;
 
+    volatile u16_t analogSample;
+    volatile float analogAccelX;
+
+    volatile u16_t ignighterA;
+
+
+
+
+    uint8_t dummy_Tx = 0xFF;
+    uint8_t dummy_rx;
 
     delay_ms(300);
 
-    for (u16_t baseNum = 0; baseNum < 400; ++baseNum) {
-        sampleTick(&my_altimeter);
 
-        baseAltitude -= baseAltitude / 50;
-        baseAltitude += my_altimeter.myBarometer.heightFeet / 50;
-        delay_us(150);
-
-    }
-
-    averageAlt = baseAltitude;
-
-    u32_t time = 0;
-    u32_t lastTime = 0;
 
     while (1) {
-        time = millis();
         counter++;
         sampleTick(&my_altimeter);
 
-        averageAlt -= averageAlt / 20;
-        averageAlt += my_altimeter.myBarometer.heightFeet / 20;
 
-        averageAccel -= averageAccel / 10;
-        averageAccel += my_altimeter.myAnalogAccelerometer.analogAccel / 10;
+        analogSample = adc_read(analogAccelPin);
+        analogAccelX = (analogSample - 3878) * -0.0227;
 
+        averageAccel = averageAccel + analogAccelX;
+        averageAlt = averageAlt + my_altimeter.myBarometer.heightFeet;
 
+        /*
+                if (my_altimeter.myIMU.accelX > 2) {
+                    for (u16_t buzz = 0; buzz < 400; ++buzz) {
+                        delay_us(150);
+                        pinToggle(buzzerPin);
+                    }
+                }
+                if (my_altimeter.myIMU.accelY > 4) {
+                    for (u16_t buzz = 0; buzz < 400; ++buzz) {
+                        delay_us(100);
+                        pinToggle(buzzerPin);
+                    }
+                }
+        		*/
 
-
-        if (abs(averageAlt - baseAltitude) > 20) {
-            for (u16_t buzz = 0; buzz < 200; ++buzz) {
-                delay_us(150);
-                pinToggle(buzzerPin);
-            }
-        }
-
-        if ((time - lastTime) > 10000) {
+        if (counter == 100) {
             pinToggle(LedPin);
 
 
-            lastTime = time;
-        }
-
-
-        if (counter == 100) {
-            //  pinToggle(LedPin);
-
-
+            averageAccel = averageAccel / 100;
+            averageAlt = averageAlt / 100;
             counter = -1;
+
+            averageAccel = 0;
+            averageAlt = 0;
         }
 
 

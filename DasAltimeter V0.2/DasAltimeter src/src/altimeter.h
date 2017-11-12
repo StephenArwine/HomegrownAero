@@ -25,7 +25,6 @@ typedef struct Barometer {
 } Barometer;
 
 
-
 typedef struct IMU {
 
     float accelX;

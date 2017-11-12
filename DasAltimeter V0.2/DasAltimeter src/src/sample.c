@@ -8,15 +8,11 @@ void sampleTick(Altimeter *my_altimeter) {
 
     my_altimeter->batV = (0.001906 * adc_read(senseBatPin));
 
-    my_altimeter->myAnalogAccelerometer.analogRaw = adc_read(analogAccelPin);
-    my_altimeter->myAnalogAccelerometer.analogAccel = (my_altimeter->myAnalogAccelerometer.analogRaw - 3878) * -0.0227;
-
-
-
 
 
     uint8_t dummy_Tx = 0xFF;
     uint8_t dummy_rx;
+
 
     pinLow(cs_baro);
     // dummy_rx = spiDataTransfer(SPI2, 0x50);
