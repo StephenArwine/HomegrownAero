@@ -61,6 +61,8 @@ void delayInit(void);
 void delay_ms(uint32_t delay);
 void delay_us(uint32_t delay);
 uint32_t millis(void);
+void TC4Init();
+void TC5Init();
 
 //sercom.c
 void sercomClockEnable(SercomId id, uint32_t clock_channel, u8_t divider);

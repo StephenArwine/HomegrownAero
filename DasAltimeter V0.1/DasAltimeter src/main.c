@@ -10,6 +10,7 @@
 #include <util.h>
 #include <flight.h>
 #include <boardDefines.h>
+#include "math.h"
 
 
 
@@ -29,9 +30,22 @@ void init() {
     pinAnalog(senseBatPin);
 
     pinAnalog(senseAPin);
+    pinMux(senseAPin);
     pinOut(fireAPin);
     pinLow(fireAPin);
 
+    pinAnalog(senseBPin);
+    pinMux(senseBPin);
+    pinOut(fireBPin);
+    pinLow(fireBPin);
+
+    pinAnalog(senseCPin);
+    pinOut(fireCPin);
+    pinLow(fireCPin);
+
+    pinAnalog(senseDPin);
+    pinOut(fireDPin);
+    pinLow(fireDPin);
 
     pinOut(spi0MOSI);
     pinOut(spi0SCK);
@@ -54,6 +68,8 @@ void init() {
     //  pinMux(spi2MOSI);
 
 
+    pinOut(TxPo);
+
 
     pinOut(cs_baro);
     pinHigh(cs_baro);
@@ -68,7 +84,10 @@ void init() {
     sercomClockEnable(SPI0, 3, 4);
     sercomSpiMasterInit(SPI0, 3, 0, 0, 0, 0x00);
 
+    TC4Init();
+//   TC5Init();
 }
+
 
 
 int main(void) {
@@ -83,6 +102,10 @@ int main(void) {
 
     u8_t counter = 0;
 
+
+    volatile float averageXAccel;
+    volatile float averageYAccel;
+    volatile float averageZAccel;
 
     volatile float averageAccel;
     volatile float averageAlt;
@@ -108,14 +131,37 @@ int main(void) {
     while (1) {
         time = millis();
         counter++;
-        sampleTick(&my_altimeter);
+
+        if (takeSample) {
+            sampleTick(&my_altimeter);
+            takeSample = false;
+            pinToggle(TxPo);
+        }
+
+
+        if (my_altimeter.myBarometer.rawTempatureData == 0 || my_altimeter.myBarometer.rawPressureData == 0) {
+            for (u16_t buzz = 0; buzz < 500; ++buzz) {
+                pinToggle(buzzerPin);
+                delay_us(122);
+            }
+
+        }
 
         averageAlt -= averageAlt / 20;
         averageAlt += my_altimeter.myBarometer.heightFeet / 20;
 
+
         averageAccel -= averageAccel / 10;
         averageAccel += my_altimeter.myAnalogAccelerometer.analogAccel / 10;
 
+        averageXAccel -= averageXAccel / 5;
+        averageXAccel += my_altimeter.myIMU.accelX / 5;
+
+        averageYAccel -= averageYAccel / 5;
+        averageYAccel += my_altimeter.myIMU.accelY / 5;
+
+        averageZAccel -= averageZAccel / 5;
+        averageZAccel += my_altimeter.myIMU.accelZ / 5;
 
 
         /*
@@ -126,21 +172,34 @@ int main(void) {
         	}
         }
         */
+        volatile float sumAccel = (averageXAccel*averageXAccel + averageYAccel*averageYAccel + averageZAccel*averageZAccel);
 
-        if ((time - lastTime) > 10000) {
+
+        if (sumAccel < 0.5) {
+            for (u16_t buzz = 0; buzz < 500; ++buzz) {
+                pinToggle(buzzerPin);
+                delay_us(122);
+            }
+        }
+
+
+        if ((time - lastTime) > 1000) {
             pinToggle(LedPin);
             lastTime = time;
         }
 
 
         if (counter == 100) {
+
+
             //  pinToggle(LedPin);
 
-            for (u16_t buzz = 0; buzz < 200; ++buzz) {
-                pinToggle(buzzerPin);
-                delay_us(50);
-            }
-
+            /*
+                                    for (u16_t buzz = 0; buzz < 1000; ++buzz) {
+                                        pinToggle(buzzerPin);
+                                        delay_us(122);
+                                    }
+            */
 
             counter = -1;
         }

@@ -90,5 +90,13 @@ typedef struct Altimeter {
 
     float batV;
 
+    u16_t senseA;
+
+    u16_t senseB;
+
+    u16_t senseC;
+
+    u16_t senseD;
+
 
 } Altimeter;

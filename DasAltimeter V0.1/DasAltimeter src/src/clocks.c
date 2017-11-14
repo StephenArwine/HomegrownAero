@@ -1,6 +1,7 @@
 
 
 #include <util.h>
+#include <boardDefines.h>
 
 
 // Configure DFLL in USB recovery mode
@@ -162,7 +163,6 @@ volatile uint32_t time_ms = 0;
 
 void RTC_Handler(void) {
     time_ms += 1000;
-
     RTC->MODE1.INTFLAG.reg = 0xFF;
 }
 
@@ -174,4 +174,58 @@ uint32_t millis(void) {
         ms = time_ms + RTC->MODE1.COUNT.reg + 1000;
     ATOMIC_SECTION_LEAVE
     return ms;
+}
+
+void TC4Init() {
+
+    GCLK->CLKCTRL.reg = GCLK_CLKCTRL_ID(TC4_GCLK_ID) |
+                        GCLK_CLKCTRL_CLKEN |
+                        GCLK_CLKCTRL_GEN(2);
+
+    PM->APBCMASK.reg |= PM_APBCMASK_TC4;
+
+    TC4->COUNT8.CTRLA.reg = TC_CTRLA_MODE_COUNT8 |
+                            TC_CTRLA_RUNSTDBY |
+                            TC_CTRLA_PRESCALER_DIV2;
+    TC4->COUNT8.PER.reg = 0x50;
+
+    TC4->COUNT8.INTENSET.reg = TC_INTENSET_OVF;
+
+    TC4->COUNT8.EVCTRL.reg = TC_EVCTRL_OVFEO;
+
+    TC4->COUNT8.CTRLA.reg |= TC_CTRLA_ENABLE;
+
+    NVIC_EnableIRQ(TC4_IRQn);
+}
+
+void TC4_Handler( void ) {
+    TC4->COUNT8.INTFLAG.reg = 0xFF;
+    takeSample = true;
+}
+
+void TC5Init() {
+
+    GCLK->CLKCTRL.reg = GCLK_CLKCTRL_ID(TC5_GCLK_ID) |
+                        GCLK_CLKCTRL_CLKEN |
+                        GCLK_CLKCTRL_GEN(2);
+
+    PM->APBCMASK.reg |= PM_APBCMASK_TC5;
+
+    TC5->COUNT8.CTRLA.reg = TC_CTRLA_MODE_COUNT8 |
+                            TC_CTRLA_RUNSTDBY |
+                            TC_CTRLA_PRESCALER_DIV1;
+    TC5->COUNT8.PER.reg = 0x03;
+
+    TC5->COUNT8.INTENSET.reg = TC_INTENSET_OVF;
+
+    TC5->COUNT8.EVCTRL.reg = TC_EVCTRL_OVFEO;
+
+    TC5->COUNT8.CTRLA.reg |= TC_CTRLA_ENABLE;
+
+    NVIC_EnableIRQ(TC5_IRQn);
+}
+
+void TC5_Handler( void ) {
+    TC5->COUNT8.INTFLAG.reg = 0xFF;
+    pinToggle(buzzerPin);
 }

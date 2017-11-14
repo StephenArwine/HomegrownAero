@@ -215,6 +215,10 @@
       <SubType>compile</SubType>
       <Link>MS5803.c</Link>
     </Compile>
+    <Compile Include="src\port.h">
+      <SubType>compile</SubType>
+      <Link>port.h</Link>
+    </Compile>
     <Compile Include="src\sample.c">
       <SubType>compile</SubType>
       <Link>sample.c</Link>

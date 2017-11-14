@@ -7,6 +7,13 @@
 void sampleTick(Altimeter *my_altimeter) {
 
     my_altimeter->batV = (0.001906 * adc_read(senseBatPin));
+    my_altimeter->senseA = adc_read(senseAPin);
+    my_altimeter->senseB = adc_read(senseBPin);
+    my_altimeter->senseC = adc_read(senseCPin);
+    my_altimeter->senseD = adc_read(senseDPin);
+
+
+
 
     my_altimeter->myAnalogAccelerometer.analogRaw = adc_read(analogAccelPin);
     my_altimeter->myAnalogAccelerometer.analogAccel = (my_altimeter->myAnalogAccelerometer.analogRaw - 3878) * -0.0227;
@@ -22,20 +29,13 @@ void sampleTick(Altimeter *my_altimeter) {
     // dummy_rx = spiDataTransfer(SPI2, 0x50);
     byteOut(spi2SCK,spi2MOSI, 0x50);
     pinHigh(cs_baro);
-    delay_ms(2);
+    delay_us(500);
     my_altimeter->myBarometer.rawTempatureData = readMS5803AdcResults();
 
     pinLow(cs_baro);
     //  dummy_rx = spiDataTransfer(SPI2, 0x42);
     byteOut(spi2SCK,spi2MOSI, 0x42);
     pinHigh(cs_baro);
-    delay_ms(2);
-    my_altimeter->myBarometer.rawPressureData = readMS5803AdcResults();
-
-
-    ConvertPressureTemperature(&my_altimeter->myBarometer);
-    pascalToCent(&my_altimeter->myBarometer);
-    my_altimeter->myBarometer.heightFeet = 0.03281 * my_altimeter->myBarometer.heightCm;
 
 // Accel data
     pinLow(cs_accel);
@@ -137,6 +137,12 @@ void sampleTick(Altimeter *my_altimeter) {
     my_altimeter->myIMU.gyroX = my_altimeter->myIMU.gyroXint * .00781;
     my_altimeter->myIMU.gyroY = my_altimeter->myIMU.gyroYint * .00781;
     my_altimeter->myIMU.gyroZ = my_altimeter->myIMU.gyroZint * .00781;
+
+    delay_us(800);
+    my_altimeter->myBarometer.rawPressureData = readMS5803AdcResults();
+    ConvertPressureTemperature(&my_altimeter->myBarometer);
+    pascalToCent(&my_altimeter->myBarometer);
+    my_altimeter->myBarometer.heightFeet = 0.03281 * my_altimeter->myBarometer.heightCm;
 
 
 }
