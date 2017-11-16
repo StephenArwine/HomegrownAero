@@ -6,7 +6,11 @@ Device_Startup\startup_samd21.c
 
 Device_Startup\system_samd21.c
 
+drivers\AT25SF.c
+
 drivers\MPU9250.c
+
+drivers\MS5803.c
 
 main.c
 
@@ -21,8 +25,6 @@ src\clocks.c
 src\dma.c
 
 src\flight.c
-
-src\MS5803.c
 
 src\sample.c
 

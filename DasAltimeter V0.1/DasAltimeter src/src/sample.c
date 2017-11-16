@@ -6,6 +6,8 @@
 
 void sampleTick(Altimeter *my_altimeter) {
 
+    my_altimeter->sampleTick = millis();
+
     my_altimeter->batV = (0.001906 * adc_read(senseBatPin));
     my_altimeter->senseA = adc_read(senseAPin);
     my_altimeter->senseB = adc_read(senseBPin);
@@ -18,7 +20,7 @@ void sampleTick(Altimeter *my_altimeter) {
     my_altimeter->myAnalogAccelerometer.analogRaw = adc_read(analogAccelPin);
     my_altimeter->myAnalogAccelerometer.analogAccel = (my_altimeter->myAnalogAccelerometer.analogRaw - 3878) * -0.0227;
 
-
+    my_altimeter->myIMU.perviousAccelX = my_altimeter->myIMU.accelX;
 
 
 
@@ -40,12 +42,21 @@ void sampleTick(Altimeter *my_altimeter) {
 // Accel data
     pinLow(cs_accel);
     dummy_rx = spiDataTransfer(SPI0, 0x80 | 0x02);
+    //spiDataOut(SPI0, 0x80 | 0x02);
+
     my_altimeter->myIMU.accelXLow = spiDataTransfer(SPI0,dummy_Tx);
     my_altimeter->myIMU.accelXHigh = spiDataTransfer(SPI0,dummy_Tx);
     my_altimeter->myIMU.accelYLow = spiDataTransfer(SPI0,dummy_Tx);
     my_altimeter->myIMU.accelYHigh = spiDataTransfer(SPI0,dummy_Tx);
     my_altimeter->myIMU.accelZLow = spiDataTransfer(SPI0,dummy_Tx);
     my_altimeter->myIMU.accelZHigh = spiDataTransfer(SPI0,dummy_Tx);
+    //spiDataOut(SPI0, 0x80 | 0x02);
+    //my_altimeter->myIMU.accelXLow = spiDataIn(SPI0);
+    //my_altimeter->myIMU.accelXHigh = spiDataIn(SPI0);
+    //my_altimeter->myIMU.accelYLow = spiDataIn(SPI0);
+    //my_altimeter->myIMU.accelYHigh = spiDataIn(SPI0);
+    //my_altimeter->myIMU.accelZLow = spiDataIn(SPI0);
+    //my_altimeter->myIMU.accelZHigh = spiDataIn(SPI0);
     pinHigh(cs_accel);
 
     bool negativeX = (my_altimeter->myIMU.accelXHigh & (1<<7)) != 0;

@@ -187,7 +187,7 @@ void TC4Init() {
     TC4->COUNT8.CTRLA.reg = TC_CTRLA_MODE_COUNT8 |
                             TC_CTRLA_RUNSTDBY |
                             TC_CTRLA_PRESCALER_DIV2;
-    TC4->COUNT8.PER.reg = 0x50;
+    TC4->COUNT8.PER.reg = 0x41;
 
     TC4->COUNT8.INTENSET.reg = TC_INTENSET_OVF;
 
@@ -213,8 +213,8 @@ void TC5Init() {
 
     TC5->COUNT8.CTRLA.reg = TC_CTRLA_MODE_COUNT8 |
                             TC_CTRLA_RUNSTDBY |
-                            TC_CTRLA_PRESCALER_DIV1;
-    TC5->COUNT8.PER.reg = 0x03;
+                            TC_CTRLA_PRESCALER_DIV256;
+    TC5->COUNT8.PER.reg = 0x80;
 
     TC5->COUNT8.INTENSET.reg = TC_INTENSET_OVF;
 
@@ -227,5 +227,5 @@ void TC5Init() {
 
 void TC5_Handler( void ) {
     TC5->COUNT8.INTFLAG.reg = 0xFF;
-    pinToggle(buzzerPin);
+    pinToggle(LedPin);
 }

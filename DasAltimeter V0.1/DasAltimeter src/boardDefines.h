@@ -7,6 +7,7 @@
 //dasAltimeter
 
 bool takeSample;
+bool writeSample;
 
 const static Pin cs_mem = {.group = 0, .pin = 18};
 const static Pin cs_baro = {.group = 0, .pin = 15};

@@ -164,6 +164,14 @@
     <Compile Include="Device_Startup\system_samd21.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="drivers\AT25SF.c">
+      <SubType>compile</SubType>
+      <Link>AT25SF.c</Link>
+    </Compile>
+    <Compile Include="drivers\AT25SF.h">
+      <SubType>compile</SubType>
+      <Link>AT25SF.h</Link>
+    </Compile>
     <Compile Include="drivers\MPU9250.c">
       <SubType>compile</SubType>
       <Link>MPU9250.c</Link>
@@ -171,6 +179,10 @@
     <Compile Include="drivers\MPU9250.h">
       <SubType>compile</SubType>
       <Link>MPU9250.h</Link>
+    </Compile>
+    <Compile Include="drivers\MS5803.c">
+      <SubType>compile</SubType>
+      <Link>MS5803.c</Link>
     </Compile>
     <Compile Include="drivers\MS5803.h">
       <SubType>compile</SubType>
@@ -210,10 +222,6 @@
     <Compile Include="src\flight.h">
       <SubType>compile</SubType>
       <Link>flight.h</Link>
-    </Compile>
-    <Compile Include="src\MS5803.c">
-      <SubType>compile</SubType>
-      <Link>MS5803.c</Link>
     </Compile>
     <Compile Include="src\port.h">
       <SubType>compile</SubType>

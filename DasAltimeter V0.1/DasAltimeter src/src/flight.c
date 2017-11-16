@@ -1,17 +1,22 @@
-#include <flight.h>
 #include <util.h>
+#include <boardDefines.h>
 
-enum flight_state my_flight_state; // current flight state.
 
 
-void flight() {
+void flight(Altimeter *my_altimeter) {
+	
 
-    delay_ms(1);
 
-    my_flight_state = flightStatrup;
-
-    switch(my_flight_state) {
+    switch(my_altimeter->myFlightState) {
     case flightStatrup:
+
+        my_altimeter->myIMU.gravityOffsetBuffer = 	my_altimeter->myIMU.gravityOffsetBuffer*0.5 + my_altimeter->myIMU.accelZ*0.5;
+
+        if ((millis() - my_altimeter->myIMU.offsetBufferTime) > 2000) {
+            //recursive filter
+            my_altimeter->myIMU.gravityOffset = my_altimeter->myIMU.gravityOffsetBuffer; 
+            my_altimeter->myIMU.offsetBufferTime = millis();
+        }
 
 
         break;

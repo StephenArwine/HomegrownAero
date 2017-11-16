@@ -40,7 +40,9 @@ SUBDIRS :=  \
 C_SRCS +=  \
 ../Device_Startup/startup_samd21.c \
 ../Device_Startup/system_samd21.c \
+../drivers/AT25SF.c \
 ../drivers/MPU9250.c \
+../drivers/MS5803.c \
 ../main.c \
 ../src/altimeter.c \
 ../src/analog.c \
@@ -48,7 +50,6 @@ C_SRCS +=  \
 ../src/clocks.c \
 ../src/dma.c \
 ../src/flight.c \
-../src/MS5803.c \
 ../src/sample.c \
 ../src/sercom.c
 
@@ -62,7 +63,9 @@ ASM_SRCS +=
 OBJS +=  \
 Device_Startup/startup_samd21.o \
 Device_Startup/system_samd21.o \
+AT25SF.o \
 MPU9250.o \
+MS5803.o \
 main.o \
 altimeter.o \
 analog.o \
@@ -70,14 +73,15 @@ bitBang.o \
 clocks.o \
 dma.o \
 flight.o \
-MS5803.o \
 sample.o \
 sercom.o
 
 OBJS_AS_ARGS +=  \
 Device_Startup/startup_samd21.o \
 Device_Startup/system_samd21.o \
+AT25SF.o \
 MPU9250.o \
+MS5803.o \
 main.o \
 altimeter.o \
 analog.o \
@@ -85,14 +89,15 @@ bitBang.o \
 clocks.o \
 dma.o \
 flight.o \
-MS5803.o \
 sample.o \
 sercom.o
 
 C_DEPS +=  \
 Device_Startup/startup_samd21.d \
 Device_Startup/system_samd21.d \
+AT25SF.d \
 MPU9250.d \
+MS5803.d \
 main.d \
 altimeter.d \
 analog.d \
@@ -100,14 +105,15 @@ bitBang.d \
 clocks.d \
 dma.d \
 flight.d \
-MS5803.d \
 sample.d \
 sercom.d
 
 C_DEPS_AS_ARGS +=  \
 Device_Startup/startup_samd21.d \
 Device_Startup/system_samd21.d \
+AT25SF.d \
 MPU9250.d \
+MS5803.d \
 main.d \
 altimeter.d \
 analog.d \
@@ -115,7 +121,6 @@ bitBang.d \
 clocks.d \
 dma.d \
 flight.d \
-MS5803.d \
 sample.d \
 sercom.d
 
@@ -135,6 +140,8 @@ LINKER_SCRIPT_DEP+=  \
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 

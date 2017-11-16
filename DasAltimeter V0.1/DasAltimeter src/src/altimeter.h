@@ -1,4 +1,11 @@
 
+#ifndef ALTIMETER_H_
+#define ALTIMETER_H_
+
+
+
+
+
 void IMUinit();
 
 
@@ -27,8 +34,16 @@ typedef struct Barometer {
 
 
 typedef struct IMU {
+	
+	u32_t offsetBufferTime;
+	
+	float gravityOffset;
+	
+	float gravityOffsetBuffer;
 
     float accelX;
+	
+	float perviousAccelX;
 
     float accelY;
 
@@ -79,8 +94,27 @@ typedef struct AnalogAccelerometer {
 
 } AnalogAccelerometer;
 
+enum flightState {
+
+    flightStatrup = 0,
+    flightIdle = 1,
+    flightPad = 2,
+    flightBoost = 3,
+    flightFast = 4,
+    flightCoast = 5,
+    flightDrogue = 6,
+    flightMain = 7,
+    flightLanded = 8,
+    flightTest = 10
+
+} flightState;
+
 
 typedef struct Altimeter {
+
+    enum flightState myFlightState;
+
+    uint32_t currentAddress;
 
     Barometer myBarometer;
 
@@ -97,6 +131,13 @@ typedef struct Altimeter {
     u16_t senseC;
 
     u16_t senseD;
+	
+	u32_t sampleTick;
+	
+	u32_t lastSampleTick;
 
 
 } Altimeter;
+
+
+#endif

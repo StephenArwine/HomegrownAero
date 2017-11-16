@@ -8,7 +8,6 @@
 
 #include "sam.h"
 #include <util.h>
-#include <flight.h>
 #include <boardDefines.h>
 #include "math.h"
 
@@ -60,6 +59,18 @@ void init() {
     pinOut(cs_gyro);
     pinHigh(cs_gyro);
 
+    pinOut(spi1MOSI);
+    pinOut(spi1SCK);
+    pinIn(spi1MISO);
+    pinMux(spi1MISO);
+    pinMux(spi1SCK);
+    pinMux(spi1MOSI);
+
+    pinOut(cs_mem);
+    pinHigh(cs_mem);
+
+
+
     pinOut(spi2MOSI);
     pinOut(spi2SCK);
     pinIn(spi2MISO);
@@ -67,16 +78,15 @@ void init() {
     //  pinMux(spi2SCK);
     //  pinMux(spi2MOSI);
 
-
-    pinOut(TxPo);
-
-
     pinOut(cs_baro);
     pinHigh(cs_baro);
-    pinGpio(cs_baro);
+
+
 
     pinOut(buzzerPin);
     pinCfg(buzzerPin);
+
+    pinOut(TxPo);
 
 //    sercomClockEnable(SPI2, 3, 4);
 //   sercomSpiMasterInit(SPI2, 3, 0, 0, 0, 0x00);
@@ -84,8 +94,15 @@ void init() {
     sercomClockEnable(SPI0, 3, 4);
     sercomSpiMasterInit(SPI0, 3, 0, 0, 0, 0x00);
 
+    sercomClockEnable(SPI1, 3, 4);
+    sercomSpiMasterInit(SPI1, 3, 0, 0, 0, 0x00);
+
     TC4Init();
-//   TC5Init();
+    TC5Init();
+}
+
+void testFunction() {
+
 }
 
 
@@ -95,6 +112,7 @@ int main(void) {
     init();
 
     Altimeter my_altimeter;
+    my_altimeter.myFlightState = flightStatrup;
 
     initMS5803Barometer(&my_altimeter.myBarometer);
     IMUinit();
@@ -112,7 +130,6 @@ int main(void) {
     volatile float baseAltitude;
 
 
-    delay_ms(300);
 
     for (u16_t baseNum = 0; baseNum < 400; ++baseNum) {
         sampleTick(&my_altimeter);
@@ -128,24 +145,33 @@ int main(void) {
     u32_t time = 0;
     u32_t lastTime = 0;
 
+    //AT25SFErace4KBlock(0);
+
+    my_altimeter.currentAddress = 0x00;
+
+
+
     while (1) {
         time = millis();
-        counter++;
+
 
         if (takeSample) {
             sampleTick(&my_altimeter);
+            flight(&my_altimeter);
             takeSample = false;
             pinToggle(TxPo);
+
+        }
+
+        if (writeSample) {
+            //AT25SFWriteByte(my_altimeter.currentAddress,my_altimeter.myBarometer);
+            //volatile u8_t byte1 = AT25SFGetByte(my_altimeter.currentAddress);
+            my_altimeter.currentAddress++;
         }
 
 
-        if (my_altimeter.myBarometer.rawTempatureData == 0 || my_altimeter.myBarometer.rawPressureData == 0) {
-            for (u16_t buzz = 0; buzz < 500; ++buzz) {
-                pinToggle(buzzerPin);
-                delay_us(122);
-            }
 
-        }
+
 
         averageAlt -= averageAlt / 20;
         averageAlt += my_altimeter.myBarometer.heightFeet / 20;
@@ -154,55 +180,27 @@ int main(void) {
         averageAccel -= averageAccel / 10;
         averageAccel += my_altimeter.myAnalogAccelerometer.analogAccel / 10;
 
-        averageXAccel -= averageXAccel / 5;
-        averageXAccel += my_altimeter.myIMU.accelX / 5;
+        averageXAccel -= averageXAccel / 3;
+        averageXAccel += my_altimeter.myIMU.accelX / 3;
 
-        averageYAccel -= averageYAccel / 5;
-        averageYAccel += my_altimeter.myIMU.accelY / 5;
+        averageYAccel -= averageYAccel / 3;
+        averageYAccel += my_altimeter.myIMU.accelY / 3;
 
-        averageZAccel -= averageZAccel / 5;
-        averageZAccel += my_altimeter.myIMU.accelZ / 5;
+        averageZAccel -= averageZAccel / 3;
+        averageZAccel += my_altimeter.myIMU.accelZ / 3;
 
 
-        /*
-        if (abs(averageAlt - baseAltitude) > 20) {
-        	for (u16_t buzz = 0; buzz < 200; ++buzz) {
-        		delay_us(150);
-        		pinToggle(buzzerPin);
-        	}
-        }
-        */
+
         volatile float sumAccel = (averageXAccel*averageXAccel + averageYAccel*averageYAccel + averageZAccel*averageZAccel);
 
 
-        if (sumAccel < 0.5) {
+        if (sumAccel > 1.3) {
             for (u16_t buzz = 0; buzz < 500; ++buzz) {
                 pinToggle(buzzerPin);
                 delay_us(122);
             }
         }
 
-
-        if ((time - lastTime) > 1000) {
-            pinToggle(LedPin);
-            lastTime = time;
-        }
-
-
-        if (counter == 100) {
-
-
-            //  pinToggle(LedPin);
-
-            /*
-                                    for (u16_t buzz = 0; buzz < 1000; ++buzz) {
-                                        pinToggle(buzzerPin);
-                                        delay_us(122);
-                                    }
-            */
-
-            counter = -1;
-        }
 
 
     }

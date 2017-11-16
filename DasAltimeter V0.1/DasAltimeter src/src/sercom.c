@@ -45,9 +45,9 @@ void sercomSpiSlaveInit(SercomId id, u32_t dipo, u32_t dopo, bool cpol, bool cph
 
 
 void sercomSpiMasterInit(SercomId id, u32_t dipo, u32_t dopo, bool cpol, bool cpha, u8_t baud) {
-		
+
     sercomReset(id);
-	
+
     sercom(id)->SPI.CTRLB.reg
         = SERCOM_SPI_CTRLB_RXEN;
 
@@ -94,5 +94,15 @@ void sercomUartInit(SercomId id, u32_t rxpo, u32_t txpo, u32_t baud) {
 u8_t spiDataTransfer(SercomId id, u8_t data) {
     sercom(id)->SPI.DATA.reg = data;
     while(sercom(id)->SPI.INTFLAG.bit.RXC == 0);
+    return sercom(id)->SPI.DATA.reg;
+}
+
+void spiDataOut(SercomId id, u8_t data) {
+    while(sercom(id)->SPI.INTFLAG.bit.DRE ==0);
+    sercom(id)->SPI.DATA.reg = data;
+}
+
+u8_t spiDataIn(SercomId id) {
+    while(sercom(id)->SPI.INTFLAG.bit.DRE == 0);
     return sercom(id)->SPI.DATA.reg;
 }

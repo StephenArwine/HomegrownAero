@@ -28,7 +28,9 @@ typedef uint8_t SercomId;
 // my includes
 #include <port.h>
 #include <altimeter.h>
+#include <flight.h>
 #include <MPU9250.h>
+#include <AT25SF.h>
 
 //sample.c
 void sampleTick(Altimeter *my_altimeter);
@@ -72,6 +74,8 @@ void sercomSpiMasterInit(SercomId id, u32_t dipo, u32_t dopo, bool cpol, bool cp
 void sercomI2cMasterInit(SercomId id, u8_t baud);
 void sercomUartInit(SercomId id, u32_t rxpo, u32_t txpo, u32_t baud);
 u8_t spiDataTransfer(SercomId id, u8_t data);
+void spiDataOut(SercomId id, u8_t data);
+u8_t spiDataIn(SercomId id);
 
 
 //analog.c
