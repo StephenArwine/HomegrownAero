@@ -87,6 +87,7 @@ void init() {
     pinCfg(buzzerPin);
 
     pinOut(TxPo);
+    pinMux(TxPo);
 
 //    sercomClockEnable(SPI2, 3, 4);
 //   sercomSpiMasterInit(SPI2, 3, 0, 0, 0, 0x00);
@@ -97,12 +98,11 @@ void init() {
     sercomClockEnable(SPI1, 3, 4);
     sercomSpiMasterInit(SPI1, 3, 0, 0, 0, 0x00);
 
+    sercomClockEnable(SERCOM3, 4, 8);
+    sercomUartInit(SERCOM3,1,0,63858);
+
     TC4Init();
     TC5Init();
-}
-
-void testFunction() {
-
 }
 
 
@@ -155,11 +155,24 @@ int main(void) {
         time = millis();
 
 
+
         if (takeSample) {
             sampleTick(&my_altimeter);
             flight(&my_altimeter);
             takeSample = false;
-            pinToggle(TxPo);
+            //pinToggle(TxPo);
+            usartDataOut(SERCOM3,0x68);
+            usartDataOut(SERCOM3,0x65);
+            usartDataOut(SERCOM3,0x6c);
+            usartDataOut(SERCOM3,0x6c);
+            usartDataOut(SERCOM3,0x6f);
+            usartDataOut(SERCOM3,0x21);
+
+
+
+
+
+
 
         }
 

@@ -3,6 +3,8 @@
 #define SPI0 0
 #define SPI1 1
 #define SPI2 2
+#define  SERCOM3 3
+
 
 //dasAltimeter
 
@@ -14,9 +16,8 @@ const static Pin cs_baro = {.group = 0, .pin = 15};
 const static Pin cs_gyro = {.group = 0, .pin = 10};
 const static Pin cs_accel = {.group = 1, .pin = 10};
 
-const static Pin TxPo = {.group = 0, .pin = 22};
-
-
+const static Pin TxPo = {.group = 0, .pin = 22, .mux = MUX_PA22C_SERCOM3_PAD0};
+const static Pin RxPo = {.group = 0, .pin = 23, .mux = MUX_PA23C_SERCOM3_PAD1};
 
 const static Pin spi0MOSI = {.group = 0, .pin = 8, .mux = MUX_PA08C_SERCOM0_PAD0};
 const static Pin spi0MISO = {.group = 0, .pin = 11, .mux = MUX_PA11C_SERCOM0_PAD3};
@@ -49,5 +50,3 @@ const static Pin fireDPin = {.group = 0, .pin = 24};
 const static Pin analogAccelPin = {.group = 0, .pin = 7, .chan = 7};
 
 
-#define DMA_SERCOM1_TX 1
-#define DMA_SERCOM1_RX 2

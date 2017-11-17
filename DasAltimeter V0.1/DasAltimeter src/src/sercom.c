@@ -65,15 +65,6 @@ void sercomSpiMasterInit(SercomId id, u32_t dipo, u32_t dopo, bool cpol, bool cp
 }
 
 
-void sercomI2cMasterInit(SercomId id, u8_t baud) {
-    sercomReset(id);
-    sercom(id)->I2CM.CTRLA.reg = SERCOM_I2CM_CTRLA_MODE_I2C_MASTER;
-    sercom(id)->I2CM.BAUD.reg = baud;
-    sercom(id)->I2CM.CTRLA.reg
-        = SERCOM_I2CM_CTRLA_ENABLE
-          | SERCOM_I2CM_CTRLA_MODE_I2C_MASTER;
-    sercom(id)->I2CM.STATUS.reg = SERCOM_I2CM_STATUS_BUSSTATE(1);
-}
 
 
 void sercomUartInit(SercomId id, u32_t rxpo, u32_t txpo, u32_t baud) {
@@ -98,11 +89,16 @@ u8_t spiDataTransfer(SercomId id, u8_t data) {
 }
 
 void spiDataOut(SercomId id, u8_t data) {
-    while(sercom(id)->SPI.INTFLAG.bit.DRE ==0);
+    while(sercom(id)->SPI.INTFLAG.bit.DRE == 0);
     sercom(id)->SPI.DATA.reg = data;
 }
 
 u8_t spiDataIn(SercomId id) {
     while(sercom(id)->SPI.INTFLAG.bit.DRE == 0);
     return sercom(id)->SPI.DATA.reg;
+}
+
+void usartDataOut(SercomId id, u8_t data) {
+    sercom(id)->USART.DATA.reg = data;
+    while(sercom(id)->USART.INTFLAG.bit.DRE == 0);
 }

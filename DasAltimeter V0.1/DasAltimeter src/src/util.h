@@ -76,6 +76,7 @@ void sercomUartInit(SercomId id, u32_t rxpo, u32_t txpo, u32_t baud);
 u8_t spiDataTransfer(SercomId id, u8_t data);
 void spiDataOut(SercomId id, u8_t data);
 u8_t spiDataIn(SercomId id);
+void usartDataOut(SercomId id, u8_t data);
 
 
 //analog.c
