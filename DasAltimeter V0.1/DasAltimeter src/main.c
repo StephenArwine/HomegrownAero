@@ -98,8 +98,8 @@ void init() {
     sercomClockEnable(SPI1, 3, 4);
     sercomSpiMasterInit(SPI1, 3, 0, 0, 0, 0x00);
 
-    sercomClockEnable(SERCOM3, 4, 8);
-    sercomUartInit(SERCOM3,1,0,63858);
+    sercomClockEnable(USART3, 4, 8);
+    sercomUartInit(USART3,1,0,63858);
 
     TC4Init();
     TC5Init();
@@ -161,12 +161,12 @@ int main(void) {
             flight(&my_altimeter);
             takeSample = false;
             //pinToggle(TxPo);
-            usartDataOut(SERCOM3,0x68);
-            usartDataOut(SERCOM3,0x65);
-            usartDataOut(SERCOM3,0x6c);
-            usartDataOut(SERCOM3,0x6c);
-            usartDataOut(SERCOM3,0x6f);
-            usartDataOut(SERCOM3,0x21);
+            usartDataOut(USART3,0x68);
+            usartDataOut(USART3,0x65);
+            usartDataOut(USART3,0x6c);
+            usartDataOut(USART3,0x6c);
+            usartDataOut(USART3,0x6f);
+            usartDataOut(USART3,0x21);
 
 
 
@@ -209,8 +209,8 @@ int main(void) {
 
         if (sumAccel > 1.3) {
             for (u16_t buzz = 0; buzz < 500; ++buzz) {
-                pinToggle(buzzerPin);
-                delay_us(122);
+                //    pinToggle(buzzerPin);
+              // delay_us(122);
             }
         }
 

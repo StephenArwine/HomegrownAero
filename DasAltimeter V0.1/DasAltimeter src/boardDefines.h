@@ -3,7 +3,7 @@
 #define SPI0 0
 #define SPI1 1
 #define SPI2 2
-#define  SERCOM3 3
+#define  USART3 3
 
 
 //dasAltimeter

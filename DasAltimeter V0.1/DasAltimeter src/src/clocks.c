@@ -23,16 +23,16 @@ void GclkInit() {
     NVMCTRL->CTRLB.reg |= NVMCTRL_CTRLB_RWS_HALF;
 
 
-  
-    // start and enable external 32k crystal
-        SYSCTRL->XOSC32K.reg = SYSCTRL_XOSC32K_ENABLE |
-                               SYSCTRL_XOSC32K_XTALEN |
-                               SYSCTRL_XOSC32K_EN32K |
-                               ( 6 << SYSCTRL_XOSC32K_STARTUP_Pos);
+    /*
+      // start and enable external 32k crystal
+          SYSCTRL->XOSC32K.reg = SYSCTRL_XOSC32K_ENABLE |
+                                 SYSCTRL_XOSC32K_XTALEN |
+                                 SYSCTRL_XOSC32K_EN32K |
+                                 ( 6 << SYSCTRL_XOSC32K_STARTUP_Pos);
 
-        //wait for crystal to warm up
-        while((SYSCTRL->PCLKSR.reg & (SYSCTRL_PCLKSR_XOSC32KRDY)) == 0);
-    
+          //wait for crystal to warm up
+          while((SYSCTRL->PCLKSR.reg & (SYSCTRL_PCLKSR_XOSC32KRDY)) == 0);
+      */
 
 
 
@@ -83,10 +83,32 @@ void GclkInit() {
 }
 
 void RtcInit() {
+
+    SYSCTRL->OSC32K.bit.CALIB =
+        ((*(uint32_t *)FUSES_OSC32K_CAL_ADDR >>
+          FUSES_OSC32K_CAL_Pos) & 0x7Ful);
+
+    SYSCTRL->OSC32K.reg = SYSCTRL_OSC32K_STARTUP( 0x6u ) | /* cf table 15.10 of product datasheet in chapter 15.8.6 */
+                          SYSCTRL_OSC32K_EN32K;
+    SYSCTRL->OSC32K.bit.CALIB =
+        ((*(uint32_t *)FUSES_OSC32K_CAL_ADDR >>
+          FUSES_OSC32K_CAL_Pos) & 0x7Ful);
+
+    SYSCTRL->OSC32K.bit.ENABLE = 1; /* separate call, as described in chapter 15.6.3 */
+
+    while (  (SYSCTRL->PCLKSR.reg & SYSCTRL_PCLKSR_OSC32KRDY) == 0 ) {
+        /* Wait for oscillator stabilization */
+    }
+
+
+    SYSCTRL->OSC32K.reg = SYSCTRL_OSC32K_ENABLE |
+                          SYSCTRL_OSC32K_EN32K |
+                          ( 6 << SYSCTRL_OSC32K_STARTUP_Pos);
+
     GCLK->GENDIV.reg = GCLK_GENDIV_ID(2) | GCLK_GENDIV_DIV(1);
 
     GCLK->GENCTRL.reg = GCLK_GENCTRL_ID(2) |
-                        GCLK_GENCTRL_SRC(GCLK_GENCTRL_SRC_XOSC32K) |
+                        GCLK_GENCTRL_SRC(GCLK_GENCTRL_SRC_OSC32K) |
                         GCLK_GENCTRL_IDC |
                         GCLK_GENCTRL_RUNSTDBY |
                         GCLK_GENCTRL_GENEN;
