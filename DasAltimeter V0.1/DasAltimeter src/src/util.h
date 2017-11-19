@@ -31,6 +31,7 @@ typedef uint8_t SercomId;
 #include <flight.h>
 #include <MPU9250.h>
 #include <AT25SF.h>
+#include <BMI055.h>
 
 //sample.c
 void sampleTick(Altimeter *my_altimeter);
@@ -77,7 +78,7 @@ u8_t spiDataTransfer(SercomId id, u8_t data);
 void spiDataOut(SercomId id, u8_t data);
 u8_t spiDataIn(SercomId id);
 void usartDataOut(SercomId id, u8_t data);
-
+u8_t usartDataIn(SercomId id);
 
 //analog.c
 void adcInit();

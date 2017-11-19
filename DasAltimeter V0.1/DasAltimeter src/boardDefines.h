@@ -9,7 +9,7 @@
 //dasAltimeter
 
 bool takeSample;
-bool writeSample;
+bool writeLog;
 
 const static Pin cs_mem = {.group = 0, .pin = 18};
 const static Pin cs_baro = {.group = 0, .pin = 15};
@@ -29,7 +29,7 @@ const static Pin spi1SCK = {.group = 0, .pin = 17, .mux = MUX_PA17C_SERCOM1_PAD1
 
 const static Pin spi2MOSI = {.group = 0, .pin = 12, .mux = MUX_PA12C_SERCOM2_PAD0};
 const static Pin spi2MISO = {.group = 0, .pin = 13, .mux = MUX_PA13C_SERCOM2_PAD1};
-const static Pin spi2SCK = {.group = 0, .pin = 14, .mux = MUX_PA15C_SERCOM2_PAD3};
+const static Pin spi2SCK = {.group = 0, .pin = 14, .mux = MUX_PA14C_SERCOM2_PAD2};
 
 const static Pin LedPin = {.group = 0, .pin = 20};
 const static Pin buzzerPin = {.group = 0, .pin = 21, .cfg = 0x40};

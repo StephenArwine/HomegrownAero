@@ -23,16 +23,16 @@ void GclkInit() {
     NVMCTRL->CTRLB.reg |= NVMCTRL_CTRLB_RWS_HALF;
 
 
-    /*
-      // start and enable external 32k crystal
-          SYSCTRL->XOSC32K.reg = SYSCTRL_XOSC32K_ENABLE |
-                                 SYSCTRL_XOSC32K_XTALEN |
-                                 SYSCTRL_XOSC32K_EN32K |
-                                 ( 6 << SYSCTRL_XOSC32K_STARTUP_Pos);
+    // start and enable external 32k crystal
+    SYSCTRL->XOSC32K.reg = SYSCTRL_XOSC32K_ENABLE |
+                           SYSCTRL_XOSC32K_XTALEN |
+                           SYSCTRL_XOSC32K_EN32K |
+                           ( 6 << SYSCTRL_XOSC32K_STARTUP_Pos);
 
-          //wait for crystal to warm up
-          while((SYSCTRL->PCLKSR.reg & (SYSCTRL_PCLKSR_XOSC32KRDY)) == 0);
-      */
+    //wait for crystal to warm up
+    while((SYSCTRL->PCLKSR.reg & (SYSCTRL_PCLKSR_XOSC32KRDY)) == 0);
+
+
 
 
 
@@ -84,6 +84,11 @@ void GclkInit() {
 
 void RtcInit() {
 
+    SYSCTRL->OSC32K.reg = SYSCTRL_OSC32K_ENABLE |
+                          SYSCTRL_OSC32K_EN32K |
+                          ( 6 << SYSCTRL_OSC32K_STARTUP_Pos);
+
+
     SYSCTRL->OSC32K.bit.CALIB =
         ((*(uint32_t *)FUSES_OSC32K_CAL_ADDR >>
           FUSES_OSC32K_CAL_Pos) & 0x7Ful);
@@ -101,9 +106,9 @@ void RtcInit() {
     }
 
 
-    SYSCTRL->OSC32K.reg = SYSCTRL_OSC32K_ENABLE |
-                          SYSCTRL_OSC32K_EN32K |
-                          ( 6 << SYSCTRL_OSC32K_STARTUP_Pos);
+
+
+
 
     GCLK->GENDIV.reg = GCLK_GENDIV_ID(2) | GCLK_GENDIV_DIV(1);
 
@@ -249,5 +254,5 @@ void TC5Init() {
 
 void TC5_Handler( void ) {
     TC5->COUNT8.INTFLAG.reg = 0xFF;
-    pinToggle(LedPin);
+    writeLog = true;
 }

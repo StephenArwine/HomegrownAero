@@ -102,3 +102,7 @@ void usartDataOut(SercomId id, u8_t data) {
     sercom(id)->USART.DATA.reg = data;
     while(sercom(id)->USART.INTFLAG.bit.DRE == 0);
 }
+
+u8_t usartDataIn(SercomId id) {
+    return sercom(id)->USART.DATA.reg;
+}

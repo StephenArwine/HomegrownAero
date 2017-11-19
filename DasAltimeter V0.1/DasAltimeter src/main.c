@@ -88,6 +88,8 @@ void init() {
 
     pinOut(TxPo);
     pinMux(TxPo);
+    pinIn(RxPo);
+    pinMux(RxPo);
 
 //    sercomClockEnable(SPI2, 3, 4);
 //   sercomSpiMasterInit(SPI2, 3, 0, 0, 0, 0x00);
@@ -105,6 +107,35 @@ void init() {
     TC5Init();
 }
 
+void startUp(Altimeter *my_altimeter) {
+
+    u32_t startupTime = millis();
+
+    sampleTick(my_altimeter);
+    //flight(my_altimeter);
+
+    delay_ms(1000);
+    while((millis() - startupTime) < 10000) {
+
+
+        usartDataOut(USART3,'T');
+        delay_ms(40);
+        if (sercom(USART3)->SPI.INTFLAG.bit.RXC == 1) {
+            volatile data1 = usartDataIn(USART3);
+            if (data1 == 0x41) {
+                logSensors(my_altimeter);
+                break;
+            }
+        }
+    }
+
+    sampleTick(my_altimeter);
+    flight(my_altimeter);
+
+
+
+}
+
 
 
 int main(void) {
@@ -117,37 +148,28 @@ int main(void) {
     initMS5803Barometer(&my_altimeter.myBarometer);
     IMUinit();
 
+    startUp(&my_altimeter);
 
-    u8_t counter = 0;
-
-
-    volatile float averageXAccel;
-    volatile float averageYAccel;
-    volatile float averageZAccel;
-
-    volatile float averageAccel;
-    volatile float averageAlt;
-    volatile float baseAltitude;
-
-
-
-    for (u16_t baseNum = 0; baseNum < 400; ++baseNum) {
-        sampleTick(&my_altimeter);
-
-        baseAltitude -= baseAltitude / 50;
-        baseAltitude += my_altimeter.myBarometer.heightFeet / 50;
-        delay_us(150);
-
-    }
-
-    averageAlt = baseAltitude;
 
     u32_t time = 0;
     u32_t lastTime = 0;
-
-    //AT25SFErace4KBlock(0);
-
     my_altimeter.currentAddress = 0x00;
+
+
+
+
+    //volatile data1 = usartDataIn(USART3);
+    //if (data1 == 0x41) {
+    //delay_ms(10);
+    //usartDataOut(USART3,0x31);
+    //delay_ms(10);
+    //usartDataOut(USART3,0x0A);
+//
+//
+    //}
+
+
+
 
 
 
@@ -160,60 +182,21 @@ int main(void) {
             sampleTick(&my_altimeter);
             flight(&my_altimeter);
             takeSample = false;
-            //pinToggle(TxPo);
-            usartDataOut(USART3,0x68);
-            usartDataOut(USART3,0x65);
-            usartDataOut(USART3,0x6c);
-            usartDataOut(USART3,0x6c);
-            usartDataOut(USART3,0x6f);
-            usartDataOut(USART3,0x21);
 
 
-
-
-
-
+            //logSensors(&my_altimeter);
+            delay_ms(50);
 
         }
 
-        if (writeSample) {
-            //AT25SFWriteByte(my_altimeter.currentAddress,my_altimeter.myBarometer);
-            //volatile u8_t byte1 = AT25SFGetByte(my_altimeter.currentAddress);
-            my_altimeter.currentAddress++;
+
+        if (writeLog) {
+            writeLog = false;
+
+            logSensors(&my_altimeter);
+
+
         }
-
-
-
-
-
-        averageAlt -= averageAlt / 20;
-        averageAlt += my_altimeter.myBarometer.heightFeet / 20;
-
-
-        averageAccel -= averageAccel / 10;
-        averageAccel += my_altimeter.myAnalogAccelerometer.analogAccel / 10;
-
-        averageXAccel -= averageXAccel / 3;
-        averageXAccel += my_altimeter.myIMU.accelX / 3;
-
-        averageYAccel -= averageYAccel / 3;
-        averageYAccel += my_altimeter.myIMU.accelY / 3;
-
-        averageZAccel -= averageZAccel / 3;
-        averageZAccel += my_altimeter.myIMU.accelZ / 3;
-
-
-
-        volatile float sumAccel = (averageXAccel*averageXAccel + averageYAccel*averageYAccel + averageZAccel*averageZAccel);
-
-
-        if (sumAccel > 1.3) {
-            for (u16_t buzz = 0; buzz < 500; ++buzz) {
-                //    pinToggle(buzzerPin);
-              // delay_us(122);
-            }
-        }
-
 
 
     }

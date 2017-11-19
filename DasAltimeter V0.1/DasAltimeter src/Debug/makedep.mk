@@ -26,6 +26,8 @@ src\dma.c
 
 src\flight.c
 
+src\log.c
+
 src\sample.c
 
 src\sercom.c

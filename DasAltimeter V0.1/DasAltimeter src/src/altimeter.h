@@ -24,9 +24,13 @@ typedef struct Barometer {
 
     uint32_t pressureMbar;
 
-    float heightCm;
+    uint32_t heightCm;
 
     float heightFeet;
+
+    float groundOffset;
+
+    float groundOffsetBuffer;
 
 
 } Barometer;
@@ -34,16 +38,16 @@ typedef struct Barometer {
 
 
 typedef struct IMU {
-	
-	u32_t offsetBufferTime;
-	
-	float gravityOffset;
-	
-	float gravityOffsetBuffer;
+
+    u32_t offsetBufferTime;
+
+    float gravityOffset;
+
+    float gravityOffsetBuffer;
 
     float accelX;
-	
-	float perviousAccelX;
+
+    float perviousAccelX;
 
     float accelY;
 
@@ -55,28 +59,26 @@ typedef struct IMU {
 
     float gyroZ;
 
-    u8_t accelXHigh;
-    u8_t accelXLow;
+
+    u16_t accelXRaw;
     int16_t accelXint;
 
-    u8_t accelYHigh;
-    u8_t accelYLow;
+
+    u16_t accelYRaw;
     int16_t accelYint;
 
-    u8_t accelZHigh;
-    u8_t accelZLow;
+
+    u16_t accelZRaw;
     int16_t accelZint;
 
-    u8_t gyroXHigh;
-    u8_t gyroXLow;
+    u16_t gyroXRaw;
     int16_t gyroXint;
 
-    u8_t gyroYHigh;
-    u8_t gyroYLow;
+
+    u16_t gyroYRaw;
     int16_t gyroYint;
 
-    u8_t gyroZHigh;
-    u8_t gyroZLow;
+    u16_t gyroZRaw;
     int16_t gyroZint;
 
 
@@ -122,7 +124,7 @@ typedef struct Altimeter {
 
     AnalogAccelerometer myAnalogAccelerometer;
 
-    float batV;
+    u16_t batV;
 
     u16_t senseA;
 
@@ -131,10 +133,10 @@ typedef struct Altimeter {
     u16_t senseC;
 
     u16_t senseD;
-	
-	u32_t sampleTick;
-	
-	u32_t lastSampleTick;
+
+    u32_t sampleTick;
+
+    u32_t lastSampleTick;
 
 
 } Altimeter;

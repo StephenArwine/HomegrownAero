@@ -4,7 +4,7 @@
 
 
 void flight(Altimeter *my_altimeter) {
-	
+
 
 
     switch(my_altimeter->myFlightState) {
@@ -12,9 +12,12 @@ void flight(Altimeter *my_altimeter) {
 
         my_altimeter->myIMU.gravityOffsetBuffer = 	my_altimeter->myIMU.gravityOffsetBuffer*0.5 + my_altimeter->myIMU.accelZ*0.5;
 
+        my_altimeter->myBarometer.groundOffsetBuffer = my_altimeter->myBarometer.groundOffsetBuffer*0.5 + my_altimeter->myBarometer.heightFeet*0.5;
+
         if ((millis() - my_altimeter->myIMU.offsetBufferTime) > 2000) {
             //recursive filter
-            my_altimeter->myIMU.gravityOffset = my_altimeter->myIMU.gravityOffsetBuffer; 
+            my_altimeter->myBarometer.groundOffset = my_altimeter->myBarometer.groundOffsetBuffer;
+            my_altimeter->myIMU.gravityOffset = my_altimeter->myIMU.gravityOffsetBuffer;
             my_altimeter->myIMU.offsetBufferTime = millis();
         }
 

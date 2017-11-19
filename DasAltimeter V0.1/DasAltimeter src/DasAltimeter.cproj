@@ -110,6 +110,7 @@
   <armgcc.common.outputfiles.eep>True</armgcc.common.outputfiles.eep>
   <armgcc.common.outputfiles.bin>True</armgcc.common.outputfiles.bin>
   <armgcc.common.outputfiles.srec>True</armgcc.common.outputfiles.srec>
+  <armgcc.compiler.general.ChangeDefaultCharTypeUnsigned>True</armgcc.compiler.general.ChangeDefaultCharTypeUnsigned>
   <armgcc.compiler.symbols.DefSymbols>
     <ListValues>
       <Value>DEBUG</Value>
@@ -128,6 +129,7 @@
   <armgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>True</armgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>
   <armgcc.compiler.optimization.DebugLevel>Maximum (-g3)</armgcc.compiler.optimization.DebugLevel>
   <armgcc.compiler.warnings.AllWarnings>True</armgcc.compiler.warnings.AllWarnings>
+  <armgcc.linker.general.AdditionalSpecs>Use syscall stubs (--specs=nosys.specs)</armgcc.linker.general.AdditionalSpecs>
   <armgcc.linker.libraries.Libraries>
     <ListValues>
       <Value>libm</Value>
@@ -169,6 +171,10 @@
     <Compile Include="drivers\AT25SF.h">
       <SubType>compile</SubType>
       <Link>AT25SF.h</Link>
+    </Compile>
+    <Compile Include="drivers\BMI055.h">
+      <SubType>compile</SubType>
+      <Link>BMI055.h</Link>
     </Compile>
     <Compile Include="drivers\MPU9250.c">
       <SubType>compile</SubType>
@@ -220,6 +226,14 @@
     <Compile Include="src\flight.h">
       <SubType>compile</SubType>
       <Link>flight.h</Link>
+    </Compile>
+    <Compile Include="src\log.c">
+      <SubType>compile</SubType>
+      <Link>log.c</Link>
+    </Compile>
+    <Compile Include="src\log.h">
+      <SubType>compile</SubType>
+      <Link>log.h</Link>
     </Compile>
     <Compile Include="src\port.h">
       <SubType>compile</SubType>
