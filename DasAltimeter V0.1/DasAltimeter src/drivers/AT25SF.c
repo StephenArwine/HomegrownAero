@@ -72,6 +72,75 @@ void AT25SFErace4KBlock(uint8_t blockToErace) {
     dummy_rx = spiDataTransfer(SPI1,((address & 0x0000FF) >>  0));
     pinHigh(cs_mem);
 
-    delay_ms(60);
+    delay_ms(70);
+
+}
+
+
+u8_t AT25SESplitPageWrite(u8_t startingAddress, u8_t len, u8_t *data) {
+
+    u8_t bytesSent = 0;
+
+    pinLow(cs_mem);
+    dummy_rx = spiDataTransfer(SPI1,OPCODE_PROGRAM);
+    dummy_rx = spiDataTransfer(SPI1,((startingAddress & 0xFF0000) >> 16));
+    dummy_rx = spiDataTransfer(SPI1,((startingAddress & 0x00FF00) >>  8));
+    dummy_rx = spiDataTransfer(SPI1,((startingAddress & 0x0000FF) >>  0));
+
+    for (u8_t pos = 0; pos < len; ++pos) {
+        ++bytesSent;
+        dummy_rx = spiDataTransfer(SPI1,data[pos]);
+    }
+    pinHigh(cs_mem);
+
+
+    return bytesSent;
+}
+
+
+u8_t AT25SEWriteSample(u8_t startingAddress, u8_t len, u8_t *data) {
+
+    u8_t bytesSent = 0;
+
+    pinLow(cs_mem);
+    dummy_rx = spiDataTransfer(SPI1,OPCODE_WRITEENABLE);
+    pinHigh(cs_mem);
+
+    if ((startingAddress + len) > 0xFF) {
+
+        data[0] = 'B';
+        bytesSent = AT25SESplitPageWrite(startingAddress,len,data);
+
+    } else {
+
+        pinLow(cs_mem);
+        dummy_rx = spiDataTransfer(SPI1,OPCODE_PROGRAM);
+        dummy_rx = spiDataTransfer(SPI1,((startingAddress & 0xFF0000) >> 16));
+        dummy_rx = spiDataTransfer(SPI1,((startingAddress & 0x00FF00) >>  8));
+        dummy_rx = spiDataTransfer(SPI1,((startingAddress & 0x0000FF) >>  0));
+
+        for (u8_t pos = 0; pos < len; ++pos) {
+            ++bytesSent;
+            dummy_rx = spiDataTransfer(SPI1,data[pos]);
+        }
+        pinHigh(cs_mem);
+
+    }
+
+    return bytesSent;
+}
+
+void AT25SEreadSample(u8_t startingAddress, u8_t len, u8_t *data) {
+
+    pinLow(cs_mem);
+    dummy_rx = spiDataTransfer(SPI1,OPCODE_SLOWREAD_ARRAY);
+    dummy_rx = spiDataTransfer(SPI1,((startingAddress & 0xFF0000) >> 16));
+    dummy_rx = spiDataTransfer(SPI1,((startingAddress & 0x00FF00) >>  8));
+    dummy_rx = spiDataTransfer(SPI1,((startingAddress & 0x0000FF) >>  0));
+
+    for (u8_t pos = 0; pos < len; ++pos) {
+        data[pos] = spiDataTransfer(SPI1,dummy_rx);
+    }
+    pinHigh(cs_mem);
 
 }

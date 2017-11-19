@@ -64,4 +64,10 @@ void AT25SFErace32KBlock(uint8_t blockToErace);
 
 void AT25SFErace4KBlock(uint8_t blockToErace);
 
+u8_t AT25SESplitPageWrite(u8_t startingAddress, u8_t len, u8_t *data);
+
+u8_t AT25SEWriteSample(u8_t startingAddress, u8_t len, u8_t *data);
+
+void AT25SEreadSample(u8_t startingAddress, u8_t len, u8_t *data);
+
 #endif

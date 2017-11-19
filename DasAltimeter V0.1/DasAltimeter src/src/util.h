@@ -32,6 +32,7 @@ typedef uint8_t SercomId;
 #include <MPU9250.h>
 #include <AT25SF.h>
 #include <BMI055.h>
+#include <log.h>
 
 //sample.c
 void sampleTick(Altimeter *my_altimeter);

@@ -115,15 +115,25 @@ void startUp(Altimeter *my_altimeter) {
     //flight(my_altimeter);
 
     delay_ms(1000);
-    while((millis() - startupTime) < 10000) {
+    while((millis() - startupTime) < 5000) {
 
 
         usartDataOut(USART3,'T');
         delay_ms(40);
         if (sercom(USART3)->SPI.INTFLAG.bit.RXC == 1) {
-            volatile data1 = usartDataIn(USART3);
+            u8_t data1 = usartDataIn(USART3);
             if (data1 == 0x41) {
-                logSensors(my_altimeter);
+
+                u8_t bytesToSend = 23;
+                u8_t data[23] = {0};
+
+                AT25SEreadSample(my_altimeter->currentAddress, bytesToSend, data);
+
+                for (u8_t dataByte = 0; dataByte < bytesToSend; ++dataByte) {
+                    usartDataOut(USART3, data[dataByte]);
+                }
+
+
                 break;
             }
         }
@@ -131,9 +141,6 @@ void startUp(Altimeter *my_altimeter) {
 
     sampleTick(my_altimeter);
     flight(my_altimeter);
-
-
-
 }
 
 
@@ -144,34 +151,25 @@ int main(void) {
 
     Altimeter my_altimeter;
     my_altimeter.myFlightState = flightStatrup;
-
     initMS5803Barometer(&my_altimeter.myBarometer);
     IMUinit();
 
-    startUp(&my_altimeter);
+    sampleTick(&my_altimeter);
+
+
+    // startUp(&my_altimeter);
 
 
     u32_t time = 0;
     u32_t lastTime = 0;
-    my_altimeter.currentAddress = 0x00;
+    my_altimeter.currentAddress = 0x00000100;
+
+    AT25SFErace4KBlock(my_altimeter.currentAddress);
+    logSensors(&my_altimeter);
+    delay_ms(5);
 
 
-
-
-    //volatile data1 = usartDataIn(USART3);
-    //if (data1 == 0x41) {
-    //delay_ms(10);
-    //usartDataOut(USART3,0x31);
-    //delay_ms(10);
-    //usartDataOut(USART3,0x0A);
-//
-//
-    //}
-
-
-
-
-
+    startUp(&my_altimeter);
 
     while (1) {
         time = millis();
@@ -183,19 +181,13 @@ int main(void) {
             flight(&my_altimeter);
             takeSample = false;
 
-
-            //logSensors(&my_altimeter);
-            delay_ms(50);
-
         }
 
 
         if (writeLog) {
             writeLog = false;
 
-            logSensors(&my_altimeter);
-
-
+            //logSensors(&my_altimeter);
         }
 
 

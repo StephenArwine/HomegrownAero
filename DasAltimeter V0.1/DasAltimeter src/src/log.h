@@ -1,3 +1,8 @@
+#ifndef LOG_H_
+#define LOG_H_
+
+
+
 #include <util.h>
 
 
@@ -27,7 +32,7 @@ extern char stateSample;
 extern u8_t reasonCodeSample;
 
 
- struct dataLog {
+struct dataLog {
     char logType;					/* 0  */
     u8_t cSum;						/* 1  */
     uint32_t tick;					/* 2  */
@@ -67,7 +72,7 @@ extern u8_t reasonCodeSample;
             u32_t temp;				/* 16  */
         } vAndT;					/* 20 total */
     } u;
-} DATALOG;
+};
 
 
 
@@ -75,3 +80,4 @@ extern u8_t reasonCodeSample;
 void logSensors(Altimeter *my_altimeter);
 
 
+#endif
