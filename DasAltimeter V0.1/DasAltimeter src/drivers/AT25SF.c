@@ -98,7 +98,7 @@ u8_t AT25SESplitPageWrite(u8_t startingAddress, u8_t len, u8_t *data) {
 }
 
 
-u8_t AT25SEWriteSample(u8_t startingAddress, u8_t len, u8_t *data) {
+u8_t AT25SEWritePage(u8_t startingAddress, u8_t len, u8_t *data) {
 
     u8_t bytesSent = 0;
 
@@ -106,26 +106,18 @@ u8_t AT25SEWriteSample(u8_t startingAddress, u8_t len, u8_t *data) {
     dummy_rx = spiDataTransfer(SPI1,OPCODE_WRITEENABLE);
     pinHigh(cs_mem);
 
-    if (((startingAddress >> 0) + len) > 0xFF) {
+    pinLow(cs_mem);
+    dummy_rx = spiDataTransfer(SPI1,OPCODE_PROGRAM);
+    dummy_rx = spiDataTransfer(SPI1,((startingAddress & 0xFF0000) >> 16));
+    dummy_rx = spiDataTransfer(SPI1,((startingAddress & 0x00FF00) >>  8));
+    dummy_rx = spiDataTransfer(SPI1,((startingAddress & 0x0000FF) >>  0));
 
-        data[0] = 'B';
-        bytesSent = AT25SESplitPageWrite(startingAddress,len,data);
-
-    } else {
-
-        pinLow(cs_mem);
-        dummy_rx = spiDataTransfer(SPI1,OPCODE_PROGRAM);
-        dummy_rx = spiDataTransfer(SPI1,((startingAddress & 0xFF0000) >> 16));
-        dummy_rx = spiDataTransfer(SPI1,((startingAddress & 0x00FF00) >>  8));
-        dummy_rx = spiDataTransfer(SPI1,((startingAddress & 0x0000FF) >>  0));
-
-        for (u8_t pos = 0; pos < len; ++pos) {
-            ++bytesSent;
-            dummy_rx = spiDataTransfer(SPI1,data[pos]);
-        }
-        pinHigh(cs_mem);
-
+    for (u8_t pos = 0; pos < len; ++pos) {
+        ++bytesSent;
+        dummy_rx = spiDataTransfer(SPI1,data[pos]);
     }
+    pinHigh(cs_mem);
+
 
     return bytesSent;
 }

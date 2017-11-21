@@ -45,7 +45,7 @@ void logSensors(Altimeter *my_altimeter) {
     //for (u8_t dataByte = 0; dataByte < bytesToSend; ++dataByte) {
         //usartDataOut(USART3, dataToSend[dataByte]);
     //}
-     u8_t bytesSent = AT25SEWriteSample(my_altimeter->currentAddress,bytesToSend,dataToSend);
+     u8_t bytesSent = AT25SEWritePage(my_altimeter->currentAddress,bytesToSend,dataToSend);
 
 }
 
