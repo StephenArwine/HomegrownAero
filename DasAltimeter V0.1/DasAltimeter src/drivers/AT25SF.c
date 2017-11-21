@@ -106,7 +106,7 @@ u8_t AT25SEWriteSample(u8_t startingAddress, u8_t len, u8_t *data) {
     dummy_rx = spiDataTransfer(SPI1,OPCODE_WRITEENABLE);
     pinHigh(cs_mem);
 
-    if ((startingAddress + len) > 0xFF) {
+    if (((startingAddress >> 0) + len) > 0xFF) {
 
         data[0] = 'B';
         bytesSent = AT25SESplitPageWrite(startingAddress,len,data);

@@ -2,10 +2,11 @@ clc;
 clear all;
 close all;
 numSec=1;
+clearvars;
 
 
 
-s1 = serial('COM5');    % define serial port
+s1 = serial('COM13');    % define serial port
 s1.BaudRate=9600;               % define baud rate
 %% Connect the serial port to Arduino
 s1.InputBufferSize = 1; % read only one byte every time
@@ -34,7 +35,7 @@ while toc <= Tmax
     
     logType = fread(s1);
     
-    if logType == 'A' | 'B';
+    if logType == 'A';
         
         dataLog(1) = fread(s1); %% time byte
         dataLog(2) = fread(s1); %% time byte

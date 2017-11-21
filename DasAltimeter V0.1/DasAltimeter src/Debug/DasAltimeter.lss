@@ -638,7 +638,7 @@ inline static void pinHigh(Pin p) {
      2c8:	61ba      	str	r2, [r7, #24]
     pinHigh(cs_mem);
 
-    if ((startingAddress + len) > 0xFF) {
+    if (((startingAddress >> 0) + len) > 0xFF) {
      2ca:	19a2      	adds	r2, r4, r6
      2cc:	9701      	str	r7, [sp, #4]
      2ce:	002f      	movs	r7, r5
@@ -654,7 +654,7 @@ inline static void pinHigh(Pin p) {
     dummy_rx = spiDataTransfer(SPI1,OPCODE_WRITEENABLE);
     pinHigh(cs_mem);
 
-    if ((startingAddress + len) > 0xFF) {
+    if (((startingAddress >> 0) + len) > 0xFF) {
 
         data[0] = 'B';
      2dc:	7013      	strb	r3, [r2, #0]
@@ -4671,7 +4671,10 @@ void logSensors(Altimeter *my_altimeter) {
     11f2:	758b      	strb	r3, [r1, #22]
 
 
-    u8_t bytesSent = AT25SEWriteSample(my_altimeter->currentAddress,bytesToSend,dataToSend);
+    //for (u8_t dataByte = 0; dataByte < bytesToSend; ++dataByte) {
+        //usartDataOut(USART3, dataToSend[dataByte]);
+    //}
+     u8_t bytesSent = AT25SEWriteSample(my_altimeter->currentAddress,bytesToSend,dataToSend);
     11f4:	6840      	ldr	r0, [r0, #4]
     11f6:	2117      	movs	r1, #23
     11f8:	4b02      	ldr	r3, [pc, #8]	; (1204 <logSensors+0x94>)

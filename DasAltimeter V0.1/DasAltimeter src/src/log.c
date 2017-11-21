@@ -41,7 +41,11 @@ void logSensors(Altimeter *my_altimeter) {
     dataToSend[22] = my_altimeter->myAnalogAccelerometer.analogRaw >> 8;
 
 
-    u8_t bytesSent = AT25SEWriteSample(my_altimeter->currentAddress,bytesToSend,dataToSend);
+
+    //for (u8_t dataByte = 0; dataByte < bytesToSend; ++dataByte) {
+        //usartDataOut(USART3, dataToSend[dataByte]);
+    //}
+     u8_t bytesSent = AT25SEWriteSample(my_altimeter->currentAddress,bytesToSend,dataToSend);
 
 }
 
