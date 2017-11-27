@@ -85,6 +85,16 @@ typedef struct IMU {
 
 } IMU;
 
+typedef struct flashMemory {
+
+    uint32_t currentAddress;
+
+    u8_t pageToWrite[255];
+
+    u8_t pageBuffer[255];
+
+} flashMemory;
+
 
 typedef struct AnalogAccelerometer {
 
@@ -116,13 +126,13 @@ typedef struct Altimeter {
 
     enum flightState myFlightState;
 
-    uint32_t currentAddress;
-
     Barometer myBarometer;
 
     IMU myIMU;
 
     AnalogAccelerometer myAnalogAccelerometer;
+
+    flashMemory myFlashMemory;
 
     u16_t batV;
 
