@@ -241,6 +241,7 @@ void TC5Init() {
     TC5->COUNT8.CTRLA.reg = TC_CTRLA_MODE_COUNT8 |
                             TC_CTRLA_RUNSTDBY |
                             TC_CTRLA_PRESCALER_DIV256;
+							
     TC5->COUNT8.PER.reg = 0x80;
 
     TC5->COUNT8.INTENSET.reg = TC_INTENSET_OVF;

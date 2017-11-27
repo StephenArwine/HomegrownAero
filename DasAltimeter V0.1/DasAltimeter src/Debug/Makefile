@@ -47,6 +47,7 @@ C_SRCS +=  \
 ../src/altimeter.c \
 ../src/analog.c \
 ../src/bitBang.c \
+../src/buzzer.c \
 ../src/clocks.c \
 ../src/dma.c \
 ../src/flight.c \
@@ -71,6 +72,7 @@ main.o \
 altimeter.o \
 analog.o \
 bitBang.o \
+buzzer.o \
 clocks.o \
 dma.o \
 flight.o \
@@ -88,6 +90,7 @@ main.o \
 altimeter.o \
 analog.o \
 bitBang.o \
+buzzer.o \
 clocks.o \
 dma.o \
 flight.o \
@@ -105,6 +108,7 @@ main.d \
 altimeter.d \
 analog.d \
 bitBang.d \
+buzzer.d \
 clocks.d \
 dma.d \
 flight.d \
@@ -122,6 +126,7 @@ main.d \
 altimeter.d \
 analog.d \
 bitBang.d \
+buzzer.d \
 clocks.d \
 dma.d \
 flight.d \
@@ -145,6 +150,8 @@ LINKER_SCRIPT_DEP+=  \
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 

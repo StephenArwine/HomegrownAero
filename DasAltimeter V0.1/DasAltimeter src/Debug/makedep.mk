@@ -20,6 +20,8 @@ src\analog.c
 
 src\bitBang.c
 
+src\buzzer.c
+
 src\clocks.c
 
 src\dma.c

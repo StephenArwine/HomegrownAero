@@ -109,12 +109,14 @@ void init() {
 
 void startUp(Altimeter *my_altimeter) {
 
+
+    beep(400);
+
     u32_t startupTime = millis();
 
     sampleTick(my_altimeter);
-    //flight(my_altimeter);
+    flight(my_altimeter);
 
-    delay_ms(1000);
     while((millis() - startupTime) < 5000) {
 
 
@@ -132,8 +134,6 @@ void startUp(Altimeter *my_altimeter) {
                 for (u8_t dataByte = 0; dataByte < bytesToSend; ++dataByte) {
                     usartDataOut(USART3, data[dataByte]);
                 }
-
-
                 break;
             }
         }
@@ -141,6 +141,17 @@ void startUp(Altimeter *my_altimeter) {
 
     sampleTick(my_altimeter);
     flight(my_altimeter);
+
+    beep(300);
+    delay_ms(80);
+    beep(300);
+    delay_ms(250);
+    beep(300);
+    delay_ms(80);
+    beep(300);
+    delay_ms(500);
+
+
 }
 
 
@@ -157,7 +168,7 @@ int main(void) {
     sampleTick(&my_altimeter);
 
 
-    // startUp(&my_altimeter);
+    startUp(&my_altimeter);
 
 
     u32_t time = 0;
@@ -169,7 +180,6 @@ int main(void) {
     delay_ms(5);
 
 
-    startUp(&my_altimeter);
 
     while (1) {
         time = millis();
@@ -187,7 +197,9 @@ int main(void) {
         if (writeLog) {
             writeLog = false;
 
+            //  beep();
             //logSensors(&my_altimeter);
+            pinToggle(LedPin);
         }
 
 

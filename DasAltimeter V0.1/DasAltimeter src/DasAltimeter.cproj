@@ -211,6 +211,10 @@
       <SubType>compile</SubType>
       <Link>bitBang.c</Link>
     </Compile>
+    <Compile Include="src\buzzer.c">
+      <SubType>compile</SubType>
+      <Link>buzzer.c</Link>
+    </Compile>
     <Compile Include="src\clocks.c">
       <SubType>compile</SubType>
       <Link>clocks.c</Link>
