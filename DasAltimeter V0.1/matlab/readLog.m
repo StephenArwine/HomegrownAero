@@ -18,15 +18,18 @@ catch err
 end
 
 tic % Start timer
-Tmax = 20;
+Tmax = 10;
 
 
-while fread(s1) ~= 'T'
-end
+%%while fread(s1) ~= 'T'
+%%end
 
-fwrite(s1,'A');
+%%fwrite(s1,'A');
 
 while toc <= Tmax
+    
+    
+    
     
     
     logType = 0;

@@ -40,12 +40,40 @@ void logSensors(Altimeter *my_altimeter) {
     dataToSend[21] = my_altimeter->myAnalogAccelerometer.analogRaw >> 0;
     dataToSend[22] = my_altimeter->myAnalogAccelerometer.analogRaw >> 8;
 
+    u8_t location = my_altimeter->myFlashMemory.pageLocation;
+    u8_t bytesWritten = 0;
 
+    if ((location + bytesToSend) > 0xFF) {
+        for (u8_t dataByte = 0; (dataByte + location) < 0xFF; ++dataByte) {
+            my_altimeter->myFlashMemory.pageBuffer[(dataByte + location)] = dataToSend[dataByte];
+            bytesWritten++;
+        }
 
-    for (u8_t dataByte = 0; dataByte < bytesToSend; ++dataByte) {
-        usartDataOut(USART3, dataToSend[dataByte]);
+        for(u8_t i = 0; i < 0xFF; ++i) {
+            my_altimeter->myFlashMemory.pageToWrite[i] = my_altimeter->myFlashMemory.pageBuffer[i];
+            my_altimeter->myFlashMemory.pageBuffer[i] = 0;
+        }
+
+        my_altimeter->myFlashMemory.pageReady = true;
+
+        for (u8_t dataByte = 0; bytesWritten <= bytesToSend; ++dataByte) {
+            my_altimeter->myFlashMemory.pageBuffer[dataByte] = dataToSend[dataByte];
+            bytesWritten++;
+			
+            my_altimeter->myFlashMemory.pageLocation = dataByte; // fix this (iterates every step)
+        }
+    } else {
+        for (u8_t dataByte = 0; bytesWritten <= bytesToSend; ++dataByte) {
+            my_altimeter->myFlashMemory.pageBuffer[(dataByte + location)] = dataToSend[dataByte];
+            bytesWritten++;
+        }
+        my_altimeter->myFlashMemory.pageLocation = location + bytesWritten;
     }
-     //u8_t bytesSent = AT25SEWritePage(my_altimeter->currentAddress,bytesToSend,dataToSend);
+
+//       for (u8_t dataByte = 0; dataByte < bytesToSend; ++dataByte) {
+//           usartDataOut(USART3, dataToSend[dataByte]);
+//       }
+//u8_t bytesSent = AT25SEWritePage(my_altimeter->currentAddress,bytesToSend,dataToSend);
 
 }
 
