@@ -6,7 +6,7 @@ clearvars;
 
 
 
-s1 = serial('COM13');    % define serial port
+s1 = serial('COM14');    % define serial port
 s1.BaudRate=9600;               % define baud rate
 %% Connect the serial port to Arduino
 s1.InputBufferSize = 1; % read only one byte every time
