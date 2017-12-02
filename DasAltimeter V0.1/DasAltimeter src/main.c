@@ -117,22 +117,36 @@ void startUp(Altimeter *my_altimeter) {
     sampleTick(my_altimeter);
     flight(my_altimeter);
 
-    while((millis() - startupTime) < 1000) {
+    while(!my_altimeter->myFlashMemory.pageReady) {
+		delay_ms(10);
+        sampleTick(my_altimeter);
+        logSensors(my_altimeter);
+    }
+
+    my_altimeter->myFlashMemory.pageReady = false;
 
 
-        usartDataOut(USART3,'T');
-        delay_ms(40);
+    while((millis() - startupTime) < 5000) {
+
+
         if (sercom(USART3)->SPI.INTFLAG.bit.RXC == 1) {
             u8_t data1 = usartDataIn(USART3);
             if (data1 == 0x41) {
 
-                u8_t bytesToSend = 23;
-                u8_t data[23] = {0};
+                u16_t length = sizeof(my_altimeter->myFlashMemory.pageToWrite);
 
-                AT25SEreadSample(my_altimeter->myFlashMemory.currentAddress, bytesToSend, data);
+                usartDataOut(USART3, 'T');
 
-                for (u8_t dataByte = 0; dataByte < bytesToSend; ++dataByte) {
-                    usartDataOut(USART3, data[dataByte]);
+                usartDataOut(USART3, length >> 0);
+                usartDataOut(USART3, length >> 8);
+
+
+                //          AT25SEreadSample(my_altimeter->myFlashMemory.currentAddress, bytesToSend, data);
+
+
+
+                for (u8_t dataByte = 0; dataByte < length; ++dataByte) {
+                    usartDataOut(USART3, my_altimeter->myFlashMemory.pageToWrite[dataByte]);
                 }
                 break;
             }
@@ -167,6 +181,8 @@ int main(void) {
 
     sampleTick(&my_altimeter);
 
+    my_altimeter.myFlashMemory.pageLocation = 0x00;
+
 
     startUp(&my_altimeter);
 
@@ -174,6 +190,7 @@ int main(void) {
     u32_t time = 0;
     u32_t lastTime = 0;
     my_altimeter.myFlashMemory.currentAddress = 0x00000100;
+    my_altimeter.myFlashMemory.pageLocation = 0x00;
 
     AT25SFErace4KBlock(my_altimeter.myFlashMemory.currentAddress);
     //logSensors(&my_altimeter);
@@ -200,15 +217,31 @@ int main(void) {
             if (my_altimeter.myFlashMemory.pageReady) {
                 my_altimeter.myFlashMemory.pageReady = false;
 
-                beep(400);
+                pinToggle(LedPin);
+                delay_ms(80);
+                pinToggle(LedPin);
+
+                //beep(400);
+
+
+
+                u16_t logLen = 510;
+                usartDataOut(USART3, 'T');
+                usartDataOut(USART3, logLen >> 0);
+                usartDataOut(USART3, logLen >> 8);
+
                 for (u8_t dataByte = 0; dataByte < 0xFF; ++dataByte) {
                     usartDataOut(USART3, my_altimeter.myFlashMemory.pageToWrite[dataByte]);
                 }
+                for (u8_t dataByte = 0; dataByte < 0xFF; ++dataByte) {
+                    usartDataOut(USART3, my_altimeter.myFlashMemory.pageToWrite[dataByte]);
+                }
+
+
             }
 
-            //  beep();
             logSensors(&my_altimeter);
-            pinToggle(LedPin);
+
         }
 
 

@@ -9,6 +9,7 @@ void beep(u16_t toggles) {
         pinToggle(buzzerPin);
         delay_us(122);
     }
+    pinLow(buzzerPin);
     pinToggle(LedPin);
 
 

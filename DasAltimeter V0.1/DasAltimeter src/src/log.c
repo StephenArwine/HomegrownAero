@@ -49,30 +49,32 @@ void logSensors(Altimeter *my_altimeter) {
             bytesWritten++;
         }
 
+
         for(u8_t i = 0; i < 0xFF; ++i) {
             my_altimeter->myFlashMemory.pageToWrite[i] = my_altimeter->myFlashMemory.pageBuffer[i];
             my_altimeter->myFlashMemory.pageBuffer[i] = 0;
         }
 
-        my_altimeter->myFlashMemory.pageReady = true;
-
         for (u8_t dataByte = 0; bytesWritten <= bytesToSend; ++dataByte) {
             my_altimeter->myFlashMemory.pageBuffer[dataByte] = dataToSend[dataByte];
             bytesWritten++;
-			
+
             my_altimeter->myFlashMemory.pageLocation = dataByte; // fix this (iterates every step)
         }
+
+        my_altimeter->myFlashMemory.pageReady = true;
+
+
     } else {
+
         for (u8_t dataByte = 0; bytesWritten <= bytesToSend; ++dataByte) {
             my_altimeter->myFlashMemory.pageBuffer[(dataByte + location)] = dataToSend[dataByte];
             bytesWritten++;
         }
         my_altimeter->myFlashMemory.pageLocation = location + bytesWritten;
+
     }
 
-//       for (u8_t dataByte = 0; dataByte < bytesToSend; ++dataByte) {
-//           usartDataOut(USART3, dataToSend[dataByte]);
-//       }
 //u8_t bytesSent = AT25SEWritePage(my_altimeter->currentAddress,bytesToSend,dataToSend);
 
 }

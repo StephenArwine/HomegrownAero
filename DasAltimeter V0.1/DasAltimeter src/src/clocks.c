@@ -27,7 +27,7 @@ void GclkInit() {
     SYSCTRL->XOSC32K.reg = SYSCTRL_XOSC32K_ENABLE |
                            SYSCTRL_XOSC32K_XTALEN |
                            SYSCTRL_XOSC32K_EN32K |
-                           ( 6 << SYSCTRL_XOSC32K_STARTUP_Pos);
+                           ( 6 << SYSCTRL_OSC32K_STARTUP_Pos);
 
     //wait for crystal to warm up
     while((SYSCTRL->PCLKSR.reg & (SYSCTRL_PCLKSR_XOSC32KRDY)) == 0);
@@ -113,7 +113,7 @@ void RtcInit() {
     GCLK->GENDIV.reg = GCLK_GENDIV_ID(2) | GCLK_GENDIV_DIV(1);
 
     GCLK->GENCTRL.reg = GCLK_GENCTRL_ID(2) |
-                        GCLK_GENCTRL_SRC(GCLK_GENCTRL_SRC_OSC32K) |
+                        GCLK_GENCTRL_SRC(GCLK_GENCTRL_SRC_XOSC32K) |
                         GCLK_GENCTRL_IDC |
                         GCLK_GENCTRL_RUNSTDBY |
                         GCLK_GENCTRL_GENEN;
