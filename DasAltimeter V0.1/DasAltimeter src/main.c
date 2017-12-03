@@ -114,12 +114,7 @@ void startUp(Altimeter *my_altimeter) {
 
     u32_t startupTime = millis();
 
-    sampleTick(my_altimeter);
-    flight(my_altimeter);
-
-
     while((millis() - startupTime) < 10000) {
-
 
         if (sercom(USART3)->SPI.INTFLAG.bit.RXC == 1) {
             u8_t data1 = usartDataIn(USART3);
@@ -127,7 +122,7 @@ void startUp(Altimeter *my_altimeter) {
 
                 usartDataOut(USART3, 'T');
 
-                u8_t pagesToSend = 5;
+                u8_t pagesToSend = 10;
                 usartDataOut(USART3, pagesToSend);
 
 
@@ -186,7 +181,6 @@ int main(void) {
 
     //AT25SFErace4KBlock(0x000000);
 
-    //logSensors(&my_altimeter);
     delay_ms(5);
 
     u8_t pagesWritten = 0;
@@ -215,7 +209,7 @@ int main(void) {
                 delay_ms(80);
                 pinToggle(LedPin);
 
-                if (pagesWritten <= 5) {
+                if (pagesWritten <= 10) {
 
                     //u8_t bytesWritten = AT25SEWritePage(my_altimeter.myFlashMemory.currentAddress,my_altimeter.myFlashMemory.pageToWrite);
                     my_altimeter.myFlashMemory.currentAddress = my_altimeter.myFlashMemory.currentAddress + 0x100;
