@@ -77,34 +77,15 @@ void AT25SFErace4KBlock(uint8_t blockToErace) {
 }
 
 
-u8_t AT25SESplitPageWrite(u8_t startingAddress, u8_t len, u8_t *data) {
+u8_t AT25SEWritePage(u32_t startingAddress, u8_t *data) {
 
     u8_t bytesSent = 0;
-
-    pinLow(cs_mem);
-    dummy_rx = spiDataTransfer(SPI1,OPCODE_PROGRAM);
-    dummy_rx = spiDataTransfer(SPI1,((startingAddress & 0xFF0000) >> 16));
-    dummy_rx = spiDataTransfer(SPI1,((startingAddress & 0x00FF00) >>  8));
-    dummy_rx = spiDataTransfer(SPI1,((startingAddress & 0x0000FF) >>  0));
-
-    for (u8_t pos = 0; pos < len; ++pos) {
-        ++bytesSent;
-        dummy_rx = spiDataTransfer(SPI1,data[pos]);
-    }
-    pinHigh(cs_mem);
-
-
-    return bytesSent;
-}
-
-
-u8_t AT25SEWritePage(u8_t startingAddress, u8_t len, u8_t *data) {
-
-    u8_t bytesSent = 0;
-
+	
     pinLow(cs_mem);
     dummy_rx = spiDataTransfer(SPI1,OPCODE_WRITEENABLE);
     pinHigh(cs_mem);
+	
+	delay_ms(3);
 
     pinLow(cs_mem);
     dummy_rx = spiDataTransfer(SPI1,OPCODE_PROGRAM);
@@ -112,7 +93,8 @@ u8_t AT25SEWritePage(u8_t startingAddress, u8_t len, u8_t *data) {
     dummy_rx = spiDataTransfer(SPI1,((startingAddress & 0x00FF00) >>  8));
     dummy_rx = spiDataTransfer(SPI1,((startingAddress & 0x0000FF) >>  0));
 
-    for (u8_t pos = 0; pos < len; ++pos) {
+
+    for (u8_t pos = 0; pos < 255; ++pos) {
         ++bytesSent;
         dummy_rx = spiDataTransfer(SPI1,data[pos]);
     }
@@ -122,15 +104,35 @@ u8_t AT25SEWritePage(u8_t startingAddress, u8_t len, u8_t *data) {
     return bytesSent;
 }
 
-void AT25SEreadSample(u8_t startingAddress, u8_t len, u8_t *data) {
+void AT25SEreadSample(u32_t startingAddress, u8_t len, u8_t *data) {
 
     pinLow(cs_mem);
-    dummy_rx = spiDataTransfer(SPI1,OPCODE_SLOWREAD_ARRAY);
+    dummy_rx = spiDataTransfer(SPI1,OPCODE_FASTREAD_ARRAY);
     dummy_rx = spiDataTransfer(SPI1,((startingAddress & 0xFF0000) >> 16));
     dummy_rx = spiDataTransfer(SPI1,((startingAddress & 0x00FF00) >>  8));
     dummy_rx = spiDataTransfer(SPI1,((startingAddress & 0x0000FF) >>  0));
+    dummy_rx = spiDataTransfer(SPI1, 0xFF);
+
 
     for (u8_t pos = 0; pos < len; ++pos) {
+        data[pos] = spiDataTransfer(SPI1,dummy_rx);
+    }
+    pinHigh(cs_mem);
+
+}
+
+void AT25SEreadPage(u32_t startingAddress, u8_t *data) {
+
+
+    pinLow(cs_mem);
+    dummy_rx = spiDataTransfer(SPI1,OPCODE_FASTREAD_ARRAY);
+    dummy_rx = spiDataTransfer(SPI1,((startingAddress & 0xFF0000) >> 16));
+    dummy_rx = spiDataTransfer(SPI1,((startingAddress & 0x00FF00) >>  8));
+    dummy_rx = spiDataTransfer(SPI1,((startingAddress & 0x0000FF) >>  0));
+    dummy_rx = spiDataTransfer(SPI1, 0xFF);
+
+
+    for (u8_t pos = 0; pos < 255; ++pos) {
         data[pos] = spiDataTransfer(SPI1,dummy_rx);
     }
     pinHigh(cs_mem);

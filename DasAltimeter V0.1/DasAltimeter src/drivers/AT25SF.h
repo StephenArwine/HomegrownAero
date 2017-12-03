@@ -44,6 +44,7 @@
 
 
 #define OPCODE_SLOWREAD_ARRAY 0x03
+#define OPCODE_FASTREAD_ARRAY 0x0b
 #define OPCODE_WRITEENABLE    0x06
 #define OPCODE_PROGRAM        0x02
 #define OPCODE_04K_ERASE      0x20  // Erase a  4K block
@@ -66,8 +67,10 @@ void AT25SFErace4KBlock(uint8_t blockToErace);
 
 u8_t AT25SESplitPageWrite(u8_t startingAddress, u8_t len, u8_t *data);
 
-u8_t AT25SEWritePage(u8_t startingAddress, u8_t len, u8_t *data);
+u8_t AT25SEWritePage(u32_t startingAddress, u8_t *data);
 
-void AT25SEreadSample(u8_t startingAddress, u8_t len, u8_t *data);
+void AT25SEreadSample(u32_t startingAddress, u8_t len, u8_t *data);
+
+void AT25SEreadPage(u32_t startingAddress, u8_t *data);
 
 #endif

@@ -117,36 +117,32 @@ void startUp(Altimeter *my_altimeter) {
     sampleTick(my_altimeter);
     flight(my_altimeter);
 
-    while(!my_altimeter->myFlashMemory.pageReady) {
-        delay_ms(10);
-        sampleTick(my_altimeter);
-        logSensors(my_altimeter);
-    }
 
-    my_altimeter->myFlashMemory.pageReady = false;
-
-
-    while((millis() - startupTime) < 5000) {
+    while((millis() - startupTime) < 10000) {
 
 
         if (sercom(USART3)->SPI.INTFLAG.bit.RXC == 1) {
             u8_t data1 = usartDataIn(USART3);
             if (data1 == 0x41) {
 
-                u16_t length = sizeof(my_altimeter->myFlashMemory.pageToWrite);
-
                 usartDataOut(USART3, 'T');
 
-                usartDataOut(USART3, length >> 0);
-                usartDataOut(USART3, length >> 8);
+                u8_t pagesToSend = 5;
+                usartDataOut(USART3, pagesToSend);
 
 
-                //          AT25SEreadSample(my_altimeter->myFlashMemory.currentAddress, bytesToSend, data);
+                u32_t addressToSend = my_altimeter->myFlashMemory.currentAddress;
 
+                for (u8_t page = 0; page <= pagesToSend; ++page) {
 
+                    u8_t data[255];
+                    AT25SEreadPage(addressToSend, data);
 
-                for (u8_t dataByte = 0; dataByte < length; ++dataByte) {
-                    usartDataOut(USART3, my_altimeter->myFlashMemory.pageToWrite[dataByte]);
+                    for (u8_t dataByte = 0; dataByte < 255; ++dataByte) {
+                        usartDataOut(USART3, data[dataByte]);
+                    }
+
+                    addressToSend = addressToSend + 0x100;
                 }
                 break;
             }
@@ -182,15 +178,13 @@ int main(void) {
     sampleTick(&my_altimeter);
 
     my_altimeter.myFlashMemory.pageLocation = 0x00;
+    my_altimeter.myFlashMemory.currentAddress = 0x000500;
+
 
     /* this looks for a USART connection	 */
-    //startUp(&my_altimeter);
+    startUp(&my_altimeter);
 
-
-    my_altimeter.myFlashMemory.currentAddress = 0x00000100;
-    my_altimeter.myFlashMemory.pageLocation = 0x00;
-
-    AT25SFErace4KBlock(my_altimeter.myFlashMemory.currentAddress);
+    //AT25SFErace4KBlock(0x000000);
 
     //logSensors(&my_altimeter);
     delay_ms(5);
@@ -211,6 +205,8 @@ int main(void) {
 
         if (writeLog) {
             writeLog = false;
+            logSensors(&my_altimeter);
+
 
             if (my_altimeter.myFlashMemory.pageReady) {
                 my_altimeter.myFlashMemory.pageReady = false;
@@ -219,23 +215,10 @@ int main(void) {
                 delay_ms(80);
                 pinToggle(LedPin);
 
+                if (pagesWritten <= 5) {
 
-
-
-                //beep(400);
-
-                u16_t logLen = 0xFF;
-                //usartDataOut(USART3, 'T');
-                //usartDataOut(USART3, logLen >> 0);
-                //usartDataOut(USART3, logLen >> 8);
-
-                if (pagesWritten <= 10) {
-
-
-                    for (u8_t dataByte = 0; dataByte < 0xFF; ++dataByte) {
-                        //usartDataOut(USART3, my_altimeter.myFlashMemory.pageToWrite[dataByte]);
-                        u8_t bytesWritten = AT25SEWritePage(my_altimeter.myFlashMemory.currentAddress,logLen,my_altimeter.myFlashMemory.pageToWrite);
-                    }
+                    //u8_t bytesWritten = AT25SEWritePage(my_altimeter.myFlashMemory.currentAddress,my_altimeter.myFlashMemory.pageToWrite);
+                    my_altimeter.myFlashMemory.currentAddress = my_altimeter.myFlashMemory.currentAddress + 0x100;
                     pagesWritten++;
 
                 } else {
@@ -250,20 +233,9 @@ int main(void) {
                     delay_ms(80);
 
                 }
-
-                my_altimeter.myFlashMemory.currentAddress = my_altimeter.myFlashMemory.currentAddress + 0xFF;
-
             }
-
-
-            logSensors(&my_altimeter);
-
         }
-
-
     }
-
-
 }
 
 

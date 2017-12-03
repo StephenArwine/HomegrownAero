@@ -13,4 +13,4 @@ def twosComplement( byteOne, byteTwo):
         twos = (byteOne << 0) + (byteTwo << 8)
         twos = twos >> 4
 
-    return twos * 0.0078125
+    return twos

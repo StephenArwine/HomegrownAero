@@ -27,9 +27,9 @@ class SensorPoint:
 
 
 pointList = []
-data = []
 pageLocation = 0
 
+data = []
 
 sensor_sample = 0
 
@@ -38,36 +38,55 @@ ser.write(b'A')
 logtype = ser.read(1)
 
 if logtype == b'T':
+    pages_to_read = ser.read(1)
+    pages = int.from_bytes(pages_to_read,byteorder='big')
+    print('pages to read: ',pages)
 
-    bytes_to_read = ser.read(2)
-    databytes = bytes_to_read[0] + bytes_to_read[1]
+    for page in range(0,pages):
 
-    data = ser.read(databytes)
+        PageOfData = []
+        PageOfData = ser.read(255)
 
-    for samples in range(0,10):
+        data.append(PageOfData)
 
-        if data[0] == 0x41:
 
-            sensor_sample = data[pageLocation:pageLocation + 24]
+#for i in range(0,255):
+    #print('{0:3d} {1:4X} {2:4X} {3:4X} {4:4X} {5:4X}'.format( i, data[0][i], data[1][i], data[2][i], data[3][i], data[4][i]))
 
-            point1 = SensorPoint()
-            point1.sampleTick = (sensor_sample[1] << 0) + (sensor_sample[2] << 8)
-            point1.sampleTick = point1.sampleTick + (sensor_sample[3] << 16) + (sensor_sample[4] << 24)
+LocationInPage = 0
+NextPage = 0
 
-            point1.heightCM = (sensor_sample[5] << 0) + (sensor_sample[6] << 8)
-            point1.heightCM = point1.heightCM + (sensor_sample[7] << 16) + (sensor_sample[8] << 24)
+for page2 in range(0,pages):
+    NextPage = 0
 
-            point1.accelX = twosComp.twosComplement(sensor_sample[9], sensor_sample[10]) #Accel X conv
-            point1.accelY = twosComp.twosComplement(sensor_sample[11], sensor_sample[12]) #Accel Y conv
-            point1.accelZ = twosComp.twosComplement(sensor_sample[13], sensor_sample[14]) #Accel Z conv
+    while (NextPage < 1):
 
-            pageLocation = pageLocation + 24
+        if data[page2][LocationInPage] == 0x41:
+            sensor_sample = data[page2][pageLocation:pageLocation + 24]
 
-            pointList.append(point1)
+            point = SensorPoint()
+            point.sampleTick = int.from_bytes(sensor_sample[1:4],byteorder='little')
+            point.heightCM = int.from_bytes(sensor_sample[5:8], byteorder='little')
+            point.accelX = twosComp.twosComplement(sensor_sample[9], sensor_sample[10]) * 0.0078125 #Accel X conv
+            point.accelY = twosComp.twosComplement(sensor_sample[11], sensor_sample[12]) * 0.0078125 #Accel Y conv
+            point.accelZ = twosComp.twosComplement(sensor_sample[13], sensor_sample[14]) * 0.0078125 #Accel Z conv
+
+            if (pageLocation + 24) > 255:
+                NextPage = 1
+                pageLocation = (pageLocation + 24) - 255
+
+            else:
+                pageLocation = pageLocation + 24
+
+
+            print(point.sampleTick,' ',point.heightCM,' ',point.accelX,' ',point.accelZ)
+            pointList.append(point)
+
 
 
 ser.close()
 
-for x in range(0,10):
-    print('Sample tick: ',pointList[x].sampleTick,' Height CM: ',pointList[x].heightCM,' AccelX :',pointList[x].accelX,' AccelY :',pointList[x].accelY,' AccelZ :',pointList[x].accelZ)
+print('done')
+   # for x in range(0,10):
+    # print('Sample tick: ',pointList[x].sampleTick,' Height CM: ',pointList[x].heightCM,' AccelX :',pointList[x].accelX,' AccelY :',pointList[x].accelY,' AccelZ :',pointList[x].accelZ)
 
