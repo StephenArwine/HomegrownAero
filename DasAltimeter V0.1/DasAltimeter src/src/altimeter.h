@@ -48,10 +48,10 @@ typedef struct IMU {
     float gravityOffset;
 
     float gravityOffsetBuffer;
-	
-	u16_t gravityOffsetBufferRaw;
-	
-	u16_t gravityOffsetRaw;	
+
+    u16_t gravityOffsetBufferRaw;
+
+    u16_t gravityOffsetRaw;
 
     float accelX;
 
@@ -137,8 +137,8 @@ enum flightState {
 typedef struct Altimeter {
 
     enum flightState myFlightState;
-	
-	u8_t flightNumb;
+
+    u8_t flightNumb;
 
     Barometer myBarometer;
 
@@ -167,3 +167,5 @@ typedef struct Altimeter {
 
 
 #endif
+
+void findFlight(Altimeter *my_altimeter);

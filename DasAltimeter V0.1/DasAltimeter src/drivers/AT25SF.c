@@ -27,7 +27,7 @@ uint8_t AT25SFGetByte(uint32_t address) {
     return _byte;
 }
 
-void AT25SFWriteByte(uint32_t address, uint8_t byteToWrite) {
+void AT25SFWriteBytes(uint32_t address, u8_t len, uint8_t *bytes) {
 
 
     pinLow(cs_mem);
@@ -40,7 +40,10 @@ void AT25SFWriteByte(uint32_t address, uint8_t byteToWrite) {
     dummy_rx = spiDataTransfer(SPI1,((address & 0x00FF00) >>  8));
     dummy_rx = spiDataTransfer(SPI1,((address & 0x0000FF) >>  0));
 
-    dummy_rx = spiDataTransfer(SPI1,byteToWrite);
+    for (u8_t pos = 0; pos < len; ++pos) {
+        dummy_rx = spiDataTransfer(SPI1, bytes[pos]);
+    }
+
     pinHigh(cs_mem);
 
 }
@@ -87,11 +90,11 @@ u8_t AT25SEWritePage(u32_t startingAddress, u8_t *data) {
 
     u8_t bytesSent = 0;
 
-    
+
     pinLow(cs_mem);
     dummy_rx = spiDataTransfer(SPI1,OPCODE_WRITEENABLE);
     pinHigh(cs_mem);
-    
+
 
     pinLow(cs_mem);
     dummy_rx = spiDataTransfer(SPI1,OPCODE_PROGRAM);

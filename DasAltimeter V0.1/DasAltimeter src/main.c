@@ -115,7 +115,7 @@ void startUp(Altimeter *my_altimeter) {
 
                 usartDataOut(USART3, 'T');
 
-                u8_t pagesToSend = my_altimeter->myFlashMemory.endingAddress / 0xFF;
+                u8_t pagesToSend = (my_altimeter->myFlashMemory.endingAddress - my_altimeter->myFlashMemory.currentAddress) / 0xFF;
                 usartDataOut(USART3, pagesToSend);
 
                 u32_t addressToSend = my_altimeter->myFlashMemory.currentAddress;
@@ -161,25 +161,34 @@ int main(void) {
     IMUinit();
 
     my_altimeter.myFlashMemory.pageLocation = 0x00;
-    my_altimeter.myFlashMemory.currentAddress = 0x000000;
+    my_altimeter.myFlashMemory.currentAddress = 0x001000;
     my_altimeter.myFlashMemory.endingAddress = 0x002FFF;
 
     /* this looks for a USART connection	 */
-    startUp(&my_altimeter);
+    //startUp(&my_altimeter);
 
     //AT25SFErace4KBlock(0x00);
     //AT25SFErace4KBlock(0x01);
     //AT25SFErace4KBlock(0x02);
+    //AT25SFErace4KBlock(0x03);
+
+    u8_t address[3] = {0x00,0x10,0x00};
+    //AT25SFWriteBytes(LOGONESTART, 3, address);
+
+    findFlight(&my_altimeter);
+
+
+
 
     u32_t timeNow = millis();
-
-
     while((millis() - timeNow) < 3000) {
         sampleTick(&my_altimeter);
         flight(&my_altimeter);
     }
-	
-	logFlight(&my_altimeter);
+
+    logFlight(&my_altimeter);
+
+    beep(300);
 
     while (1) {
 

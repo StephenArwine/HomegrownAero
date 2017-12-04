@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 ser = serial.Serial()
 ser.baudrate = 19200
-ser.port = 'COM7'
+ser.port = 'COM14'
 ser.timeout = 5
 
 if ser.is_open:
@@ -160,6 +160,10 @@ while ProcessLog:
 
         pointList.append(point)
 
+
+runningAverage = 0
+
+
 elapsedTime = (time.clock() - StartTime)
 print('Took:', elapsedTime, 'seconds to read and process', pointList.__len__(), 'data points')
 
@@ -168,10 +172,13 @@ print('Flight Numb:', flight.FlightNumb, 'Buffer Time:', flight.bufferTick, 'Gro
 
 for x in range(0, pointList.__len__()):
     if x == 0:
+        runningAverage = pointList[x].heightCM
         print('Sample tick:', pointList[x].sampleTick, 'Height CM:', pointList[x].heightCM, 'AccelX:',
               pointList[x].accelX, 'AccelY:', pointList[x].accelY, 'AccelZ:', pointList[x].accelZ)
 
     elif x > 0:
+        runningAverage = runningAverage*0.9 + pointList[x].heightCM*0.1
+
         dt = pointList[x].sampleTick - pointList[x - 1].sampleTick
         print('Sample tick:', pointList[x].sampleTick, 'Sample DT:', dt, 'Height CM:', pointList[x].heightCM, 'AccelX:',
               pointList[x].accelX, 'AccelY:', pointList[x].accelY, 'AccelZ:', pointList[x].accelZ)
@@ -182,7 +189,7 @@ for x in range(0, pointList.__len__()):
     plt.plot(pointList[x].sampleTick, pointList[x].accelZ, 'b.')
 
     plt.subplot(2, 1, 2)
-    plt.plot(pointList[x].sampleTick, pointList[x].heightCM, 'r.')
+    plt.plot(pointList[x].sampleTick, runningAverage, 'r.')
     # plt.plot(pointList[x].sampleTick, pointList[x].gyroX, 'r.')
     # plt.plot(pointList[x].sampleTick, pointList[x].gyroY, 'g.')
     # plt.plot(pointList[x].sampleTick, pointList[x].gyroZ, 'b.')

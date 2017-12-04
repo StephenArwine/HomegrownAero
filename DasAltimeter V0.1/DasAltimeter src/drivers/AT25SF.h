@@ -60,7 +60,7 @@ void AT25SFWriteEnable();
 
 uint8_t AT25SFGetByte(uint32_t address);
 
-void AT25SFWriteByte(uint32_t address, uint8_t byteToWrite);
+void AT25SFWriteBytes(uint32_t address, u8_t len, uint8_t *bytes);
 
 void AT25SFErace32KBlock(uint8_t blockToErace);
 
