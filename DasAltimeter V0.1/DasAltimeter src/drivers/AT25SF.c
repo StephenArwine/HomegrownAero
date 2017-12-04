@@ -6,6 +6,12 @@
 uint8_t dummy_Tx = 0xFF;
 uint8_t dummy_rx;
 
+void AT25SFWriteEnable() {
+
+    pinLow(cs_mem);
+    dummy_rx = spiDataTransfer(SPI1,OPCODE_WRITEENABLE);
+    pinHigh(cs_mem);
+}
 
 uint8_t AT25SFGetByte(uint32_t address) {
 
@@ -80,12 +86,12 @@ void AT25SFErace4KBlock(uint8_t blockToErace) {
 u8_t AT25SEWritePage(u32_t startingAddress, u8_t *data) {
 
     u8_t bytesSent = 0;
-	
+
+    
     pinLow(cs_mem);
     dummy_rx = spiDataTransfer(SPI1,OPCODE_WRITEENABLE);
     pinHigh(cs_mem);
-	
-	delay_ms(3);
+    
 
     pinLow(cs_mem);
     dummy_rx = spiDataTransfer(SPI1,OPCODE_PROGRAM);

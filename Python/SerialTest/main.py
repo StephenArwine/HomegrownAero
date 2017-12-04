@@ -1,11 +1,11 @@
 import serial
 import twosComp
+import time
 import matplotlib.pyplot as plt
 
-
 ser = serial.Serial()
-ser.baudrate = 9600
-ser.port = 'COM14'
+ser.baudrate = 19200
+ser.port = 'COM7'
 ser.timeout = 5
 
 if ser.is_open:
@@ -28,7 +28,17 @@ class SensorPoint:
         self.analogRaw = 0
 
 
+class FlightPoint:
+    def __init__(self):
+        self.FlightNumb = 0
+        self.bufferTick = 0
+        self.groundOffset = 0
+        self.groundTemperature = 0
+        self.groundAccel = 0
+
+
 pointList = []
+flight = FlightPoint()
 
 data = []
 
@@ -40,26 +50,27 @@ ser.write(b'A')
 logtype = ser.read(1)
 
 if logtype == b'T':
+    StartTime = time.clock()
+
     pages_to_read = ser.read(1)
-    pages = int.from_bytes(pages_to_read,byteorder='big')
-    print('pages to read: ',pages)
+    pages = int.from_bytes(pages_to_read, byteorder='big')
+    print('pages to read: ', pages)
 
-    for page in range(0,pages):
-
+    for page in range(0, pages):
         PageOfData = []
         PageOfData = ser.read(255)
 
+        # print(PageOfData)
+
         data.append(PageOfData)
 
-
-#for i in range(0,255):
-    #print('{0:3d} {1:4X} {2:4X} {3:4X} {4:4X} {5:4X}'.format( i, data[0][i], data[1][i], data[2][i], data[3][i], data[4][i]))
-
+ser.close()
 
 CurrentPage = 0
 LocationInPage = 0
 ProcessLog = True
 
+print('Reading page ', CurrentPage)
 
 while ProcessLog:
 
@@ -67,17 +78,53 @@ while ProcessLog:
         ProcessLog = False
         break
 
-    print('Current Page: ', CurrentPage, ' Current Location: ', LocationInPage)
+    # Flight point decode
+    if data[CurrentPage][LocationInPage] == 0x46:
 
-    if data[CurrentPage][LocationInPage] == 0x41:
-        if (LocationInPage + 24) >= 255:
+        if (LocationInPage + 17) >= 255:
 
-            if (CurrentPage + 1) > 9:
+            if (CurrentPage + 1) >= pages:
                 ProcessLog = False
                 break
 
             sensor_sample_part = data[CurrentPage][LocationInPage:255]
-            sensor_sample = sensor_sample_part + data[CurrentPage+1][0:(24-(255-LocationInPage))]
+            sensor_sample = sensor_sample_part + data[CurrentPage + 1][0:(17 - (255 - LocationInPage))]
+
+            point = FlightPoint()
+            point.FlightNumb = sensor_sample[1]
+            point.bufferTick = int.from_bytes(sensor_sample[2:5], byteorder='little')
+            point.groundOffset = int.from_bytes(sensor_sample[6:9], byteorder='little')
+            point.groundTemperature = int.from_bytes(sensor_sample[10:13], byteorder='little')
+            point.groundAccel = twosComp.twosComplement(sensor_sample[14], sensor_sample[15]) * 0.0078125
+
+            CurrentPage += 1
+            LocationInPage -= 238  # rollover + 16
+
+        else:
+            sensor_sample = data[CurrentPage][LocationInPage:LocationInPage + 17]
+
+            point = FlightPoint()
+            point.FlightNumb = sensor_sample[1]
+            point.bufferTick = int.from_bytes(sensor_sample[2:5], byteorder='little')
+            point.groundOffset = int.from_bytes(sensor_sample[6:9], byteorder='little')
+            point.groundTemperature = int.from_bytes(sensor_sample[10:13], byteorder='little')
+            point.groundAccel = twosComp.twosComplement(sensor_sample[14], sensor_sample[15]) * 0.0078125
+
+            LocationInPage += 17
+
+        flight = point
+
+    # Sensor point decoding
+    if data[CurrentPage][LocationInPage] == 0x41:
+
+        if (LocationInPage + 24) >= 255:
+
+            if (CurrentPage + 1) >= pages:
+                ProcessLog = False
+                break
+
+            sensor_sample_part = data[CurrentPage][LocationInPage:255]
+            sensor_sample = sensor_sample_part + data[CurrentPage + 1][0:(24 - (255 - LocationInPage))]
 
             point = SensorPoint()
             point.sampleTick = int.from_bytes(sensor_sample[1:4], byteorder='little')
@@ -86,8 +133,14 @@ while ProcessLog:
             point.accelY = twosComp.twosComplement(sensor_sample[11], sensor_sample[12]) * 0.0078125  # Accel Y conv
             point.accelZ = twosComp.twosComplement(sensor_sample[13], sensor_sample[14]) * 0.0078125  # Accel Z conv
 
+            point.gyroX = twosComp.twosComplement(sensor_sample[15], sensor_sample[16]) * 0.0078125  # Accel Z conv
+            point.gyroY = twosComp.twosComplement(sensor_sample[17], sensor_sample[18]) * 0.0078125  # Accel Z conv
+            point.gyroZ = twosComp.twosComplement(sensor_sample[19], sensor_sample[20]) * 0.0078125  # Accel Z conv
+
             CurrentPage += 1
-            LocationInPage -= 231 # rollover + 24
+            LocationInPage -= 231  # rollover + 24
+
+            print('Reading page ', CurrentPage, ' starting Location ', LocationInPage)
 
         else:
             sensor_sample = data[CurrentPage][LocationInPage:LocationInPage + 24]
@@ -99,21 +152,39 @@ while ProcessLog:
             point.accelY = twosComp.twosComplement(sensor_sample[11], sensor_sample[12]) * 0.0078125  # Accel Y conv
             point.accelZ = twosComp.twosComplement(sensor_sample[13], sensor_sample[14]) * 0.0078125  # Accel Z conv
 
+            point.gyroX = twosComp.twosComplement(sensor_sample[15], sensor_sample[16]) * 0.0078125  # Accel Z conv
+            point.gyroY = twosComp.twosComplement(sensor_sample[17], sensor_sample[18]) * 0.0078125  # Accel Z conv
+            point.gyroZ = twosComp.twosComplement(sensor_sample[19], sensor_sample[20]) * 0.0078125  # Accel Z conv
+
             LocationInPage += 24
 
         pointList.append(point)
 
+elapsedTime = (time.clock() - StartTime)
+print('Took:', elapsedTime, 'seconds to read and process', pointList.__len__(), 'data points')
 
-ser.close()
+print('Flight Numb:', flight.FlightNumb, 'Buffer Time:', flight.bufferTick, 'Ground Offset:', flight.groundOffset,
+      'Ground Temperature', flight.groundTemperature)
 
-print(pointList.__len__())
+for x in range(0, pointList.__len__()):
+    if x == 0:
+        print('Sample tick:', pointList[x].sampleTick, 'Height CM:', pointList[x].heightCM, 'AccelX:',
+              pointList[x].accelX, 'AccelY:', pointList[x].accelY, 'AccelZ:', pointList[x].accelZ)
 
-for x in range(0,pointList.__len__()):
-    print('Sample tick: ', pointList[x].sampleTick,' Height CM: ',pointList[x].heightCM,' AccelX :',pointList[x].accelX,' AccelY :',pointList[x].accelY,' AccelZ :',pointList[x].accelZ)
-    plt.plot(pointList[x].sampleTick, pointList[x].accelZ, 'bo')
+    elif x > 0:
+        dt = pointList[x].sampleTick - pointList[x - 1].sampleTick
+        print('Sample tick:', pointList[x].sampleTick, 'Sample DT:', dt, 'Height CM:', pointList[x].heightCM, 'AccelX:',
+              pointList[x].accelX, 'AccelY:', pointList[x].accelY, 'AccelZ:', pointList[x].accelZ)
 
+    plt.subplot(2, 1, 1)
+    plt.plot(pointList[x].sampleTick, pointList[x].accelX, 'r.')
+    # plt.plot(pointList[x].sampleTick, pointList[x].accelY, 'go')
+    plt.plot(pointList[x].sampleTick, pointList[x].accelZ, 'b.')
+
+    plt.subplot(2, 1, 2)
+    plt.plot(pointList[x].sampleTick, pointList[x].heightCM, 'r.')
+    # plt.plot(pointList[x].sampleTick, pointList[x].gyroX, 'r.')
+    # plt.plot(pointList[x].sampleTick, pointList[x].gyroY, 'g.')
+    # plt.plot(pointList[x].sampleTick, pointList[x].gyroZ, 'b.')
 
 plt.show()
-
-
-

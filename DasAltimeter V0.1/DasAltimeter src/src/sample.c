@@ -15,14 +15,10 @@ void sampleTick(Altimeter *my_altimeter) {
     my_altimeter->senseC = adc_read(senseCPin);
     my_altimeter->senseD = adc_read(senseDPin);
 
-
-
-
     my_altimeter->myAnalogAccelerometer.analogRaw = adc_read(analogAccelPin);
     my_altimeter->myAnalogAccelerometer.analogAccel = (my_altimeter->myAnalogAccelerometer.analogRaw - 3900) * -0.0154;
 
     my_altimeter->myIMU.perviousAccelX = my_altimeter->myIMU.accelX;
-
 
 
     uint8_t dummy_Tx = 0xFF;
@@ -63,22 +59,18 @@ void sampleTick(Altimeter *my_altimeter) {
     my_altimeter->myIMU.accelYint = my_altimeter->myIMU.accelYRaw;
     my_altimeter->myIMU.accelZint = my_altimeter->myIMU.accelZRaw;
 
-
     if (negativeX) {
         my_altimeter->myIMU.accelXint = my_altimeter->myIMU.accelXint | ~((1 << 16) - 1);
         my_altimeter->myIMU.accelXint = my_altimeter->myIMU.accelXint >> 4;
     } else {
         my_altimeter->myIMU.accelXint = my_altimeter->myIMU.accelXint >> 4;
     }
-
     if (negativeY) {
         my_altimeter->myIMU.accelYint = my_altimeter->myIMU.accelYint | ~((1 << 16) - 1);
         my_altimeter->myIMU.accelYint = my_altimeter->myIMU.accelYint >> 4;
     } else {
         my_altimeter->myIMU.accelYint = my_altimeter->myIMU.accelYint >> 4;
     }
-
-
     if (negativeZ) {
         my_altimeter->myIMU.accelZint = my_altimeter->myIMU.accelZint | ~((1 << 16) - 1);
         my_altimeter->myIMU.accelZint = my_altimeter->myIMU.accelZint >> 4;
@@ -118,7 +110,6 @@ void sampleTick(Altimeter *my_altimeter) {
         my_altimeter->myIMU.gyroXint = my_altimeter->myIMU.gyroXint >> 4;
     }
 
-
     if (negativeYgyro) {
         my_altimeter->myIMU.gyroYint = my_altimeter->myIMU.gyroYint | ~((1 << 16) - 1);
         my_altimeter->myIMU.gyroYint = my_altimeter->myIMU.gyroYint >> 4;
@@ -126,14 +117,12 @@ void sampleTick(Altimeter *my_altimeter) {
         my_altimeter->myIMU.gyroYint = my_altimeter->myIMU.gyroYint >> 4;
     }
 
-
     if (negativeZgyro) {
         my_altimeter->myIMU.gyroZint = my_altimeter->myIMU.gyroZint | ~((1 << 16) - 1);
         my_altimeter->myIMU.gyroZint = my_altimeter->myIMU.gyroZint >> 4;
     } else {
         my_altimeter->myIMU.gyroZint = my_altimeter->myIMU.gyroZint >> 4;
     }
-
 
     my_altimeter->myIMU.gyroX = my_altimeter->myIMU.gyroXint * BMI055_GYRO_2000DS_DIV;
     my_altimeter->myIMU.gyroY = my_altimeter->myIMU.gyroYint * BMI055_GYRO_2000DS_DIV;

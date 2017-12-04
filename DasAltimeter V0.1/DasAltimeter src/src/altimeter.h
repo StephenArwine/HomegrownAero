@@ -28,9 +28,13 @@ typedef struct Barometer {
 
     float heightFeet;
 
-    float groundOffset;
+    uint32_t groundOffset;
 
-    float groundOffsetBuffer;
+    uint32_t groundOffsetBuffer;
+
+    uint32_t groundTemperature;
+
+    uint32_t groundTemperatureBuffer;
 
 
 } Barometer;
@@ -44,6 +48,10 @@ typedef struct IMU {
     float gravityOffset;
 
     float gravityOffsetBuffer;
+	
+	u16_t gravityOffsetBufferRaw;
+	
+	u16_t gravityOffsetRaw;	
 
     float accelX;
 
@@ -81,13 +89,13 @@ typedef struct IMU {
     u16_t gyroZRaw;
     int16_t gyroZint;
 
-
-
 } IMU;
 
 typedef struct flashMemory {
 
     uint32_t currentAddress;
+
+    uint32_t endingAddress;
 
     u8_t pageToWrite[255];
 
@@ -129,6 +137,8 @@ enum flightState {
 typedef struct Altimeter {
 
     enum flightState myFlightState;
+	
+	u8_t flightNumb;
 
     Barometer myBarometer;
 

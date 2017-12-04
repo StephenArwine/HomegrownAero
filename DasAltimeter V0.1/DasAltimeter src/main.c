@@ -12,8 +12,6 @@
 #include "math.h"
 
 
-
-
 void init() {
     SystemInit();
     GclkInit();
@@ -69,8 +67,6 @@ void init() {
     pinOut(cs_mem);
     pinHigh(cs_mem);
 
-
-
     pinOut(spi2MOSI);
     pinOut(spi2SCK);
     pinIn(spi2MISO);
@@ -80,8 +76,6 @@ void init() {
 
     pinOut(cs_baro);
     pinHigh(cs_baro);
-
-
 
     pinOut(buzzerPin);
     pinCfg(buzzerPin);
@@ -101,14 +95,13 @@ void init() {
     sercomSpiMasterInit(SPI1, 3, 0, 0, 0, 0x00);
 
     sercomClockEnable(USART3, 4, 8);
-    sercomUartInit(USART3,1,0,63858);
+    sercomUartInit(USART3,1,0,62180);
 
     TC4Init();
     TC5Init();
 }
 
 void startUp(Altimeter *my_altimeter) {
-
 
     beep(400);
 
@@ -122,9 +115,8 @@ void startUp(Altimeter *my_altimeter) {
 
                 usartDataOut(USART3, 'T');
 
-                u8_t pagesToSend = 10;
+                u8_t pagesToSend = my_altimeter->myFlashMemory.endingAddress / 0xFF;
                 usartDataOut(USART3, pagesToSend);
-
 
                 u32_t addressToSend = my_altimeter->myFlashMemory.currentAddress;
 
@@ -155,8 +147,6 @@ void startUp(Altimeter *my_altimeter) {
     delay_ms(80);
     beep(300);
     delay_ms(500);
-
-
 }
 
 
@@ -170,22 +160,26 @@ int main(void) {
     initMS5803Barometer(&my_altimeter.myBarometer);
     IMUinit();
 
-    sampleTick(&my_altimeter);
-
     my_altimeter.myFlashMemory.pageLocation = 0x00;
-    my_altimeter.myFlashMemory.currentAddress = 0x000500;
-
+    my_altimeter.myFlashMemory.currentAddress = 0x000000;
+    my_altimeter.myFlashMemory.endingAddress = 0x002FFF;
 
     /* this looks for a USART connection	 */
     startUp(&my_altimeter);
 
-    //AT25SFErace4KBlock(0x000000);
+    //AT25SFErace4KBlock(0x00);
+    //AT25SFErace4KBlock(0x01);
+    //AT25SFErace4KBlock(0x02);
 
-    delay_ms(5);
-
-    u8_t pagesWritten = 0;
+    u32_t timeNow = millis();
 
 
+    while((millis() - timeNow) < 3000) {
+        sampleTick(&my_altimeter);
+        flight(&my_altimeter);
+    }
+	
+	logFlight(&my_altimeter);
 
     while (1) {
 
@@ -193,28 +187,21 @@ int main(void) {
             sampleTick(&my_altimeter);
             flight(&my_altimeter);
             takeSample = false;
-
         }
-
 
         if (writeLog) {
             writeLog = false;
             logSensors(&my_altimeter);
 
-
             if (my_altimeter.myFlashMemory.pageReady) {
                 my_altimeter.myFlashMemory.pageReady = false;
 
                 pinToggle(LedPin);
-                delay_ms(80);
-                pinToggle(LedPin);
 
-                if (pagesWritten <= 10) {
+                if (my_altimeter.myFlashMemory.currentAddress <= my_altimeter.myFlashMemory.endingAddress) {
 
                     //u8_t bytesWritten = AT25SEWritePage(my_altimeter.myFlashMemory.currentAddress,my_altimeter.myFlashMemory.pageToWrite);
                     my_altimeter.myFlashMemory.currentAddress = my_altimeter.myFlashMemory.currentAddress + 0x100;
-                    pagesWritten++;
-
                 } else {
                     delay_ms(80);
                     pinToggle(LedPin);
@@ -225,7 +212,6 @@ int main(void) {
                     delay_ms(80);
                     pinToggle(LedPin);
                     delay_ms(80);
-
                 }
             }
         }

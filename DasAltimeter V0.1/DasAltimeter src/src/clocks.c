@@ -23,23 +23,6 @@ void GclkInit() {
     NVMCTRL->CTRLB.reg |= NVMCTRL_CTRLB_RWS_HALF;
 
 
-    // start and enable external 32k crystal
-    SYSCTRL->XOSC32K.reg = SYSCTRL_XOSC32K_ENABLE |
-                           SYSCTRL_XOSC32K_XTALEN |
-                           SYSCTRL_XOSC32K_EN32K |
-                           ( 6 << SYSCTRL_OSC32K_STARTUP_Pos);
-
-    //wait for crystal to warm up
-    while((SYSCTRL->PCLKSR.reg & (SYSCTRL_PCLKSR_XOSC32KRDY)) == 0);
-
-
-
-
-
-
-
-
-
 //Configure the FDLL48MHz FLL, we will use this to provide a clock to the CPU
 //Set the course and fine step sizes, these should be less than 50% of the values used for the course and fine values (P150)
 
@@ -83,7 +66,18 @@ void GclkInit() {
 }
 
 void RtcInit() {
+	
+	    // start and enable external 32k crystal
+	    SYSCTRL->XOSC32K.reg = SYSCTRL_XOSC32K_ENABLE |
+	    SYSCTRL_XOSC32K_XTALEN |
+	    SYSCTRL_XOSC32K_EN32K |
+	    ( 6 << SYSCTRL_OSC32K_STARTUP_Pos);
 
+	    //wait for crystal to warm up
+	    while((SYSCTRL->PCLKSR.reg & (SYSCTRL_PCLKSR_XOSC32KRDY)) == 0);
+	
+	
+/*
     SYSCTRL->OSC32K.reg = SYSCTRL_OSC32K_ENABLE |
                           SYSCTRL_OSC32K_EN32K |
                           ( 6 << SYSCTRL_OSC32K_STARTUP_Pos);
@@ -93,19 +87,21 @@ void RtcInit() {
         ((*(uint32_t *)FUSES_OSC32K_CAL_ADDR >>
           FUSES_OSC32K_CAL_Pos) & 0x7Ful);
 
-    SYSCTRL->OSC32K.reg = SYSCTRL_OSC32K_STARTUP( 0x6u ) | /* cf table 15.10 of product datasheet in chapter 15.8.6 */
+    SYSCTRL->OSC32K.reg = SYSCTRL_OSC32K_STARTUP( 0x6u ) | // cf table 15.10 of product datasheet in chapter 15.8.6
                           SYSCTRL_OSC32K_EN32K;
     SYSCTRL->OSC32K.bit.CALIB =
         ((*(uint32_t *)FUSES_OSC32K_CAL_ADDR >>
           FUSES_OSC32K_CAL_Pos) & 0x7Ful);
 
-    SYSCTRL->OSC32K.bit.ENABLE = 1; /* separate call, as described in chapter 15.6.3 */
+
+
+    SYSCTRL->OSC32K.bit.ENABLE = 1; // separate call, as described in chapter 15.6.3 
 
     while (  (SYSCTRL->PCLKSR.reg & SYSCTRL_PCLKSR_OSC32KRDY) == 0 ) {
-        /* Wait for oscillator stabilization */
+        // Wait for oscillator stabilization 
     }
 
-
+*/
 
 
 
@@ -240,7 +236,7 @@ void TC5Init() {
 
     TC5->COUNT8.CTRLA.reg = TC_CTRLA_MODE_COUNT8 |
                             TC_CTRLA_RUNSTDBY |
-                            TC_CTRLA_PRESCALER_DIV256;
+                            TC_CTRLA_PRESCALER_DIV64;
 							
     TC5->COUNT8.PER.reg = 0x20;
 

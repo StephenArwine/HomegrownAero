@@ -78,6 +78,8 @@ struct dataLog {
 
 
 void logSensors(Altimeter *my_altimeter);
+void logFlight(Altimeter *my_altimeter);
+
 
 
 #endif
