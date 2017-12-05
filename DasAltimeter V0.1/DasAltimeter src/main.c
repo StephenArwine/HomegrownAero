@@ -125,7 +125,7 @@ void startUp(Altimeter *my_altimeter) {
                     u8_t data[256];
                     AT25SEreadPage(addressToSend, data);
 
-                    for (u8_t dataByte = 0; dataByte < 255; ++dataByte) {
+                    for (u8_t dataByte = 0; dataByte <= 255; ++dataByte) {
                         usartDataOut(USART3, data[dataByte]);
                     }
 
