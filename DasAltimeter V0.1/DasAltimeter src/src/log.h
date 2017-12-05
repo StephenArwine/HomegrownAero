@@ -77,6 +77,7 @@ struct dataLog {
 
 
 
+void makePage(Altimeter *my_altimeter, u8_t bytesToWrite, u8_t *data);
 void logSensors(Altimeter *my_altimeter);
 void logFlight(Altimeter *my_altimeter);
 
