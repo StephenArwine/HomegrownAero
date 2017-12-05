@@ -222,7 +222,7 @@ int main(void) {
                 if (my_altimeter.myFlashMemory.currentAddress <= my_altimeter.myFlashMemory.endingAddress) {
 
                     //u8_t bytesWritten = AT25SEWritePage(my_altimeter.myFlashMemory.currentAddress,my_altimeter.myFlashMemory.pageToWrite);
-                    my_altimeter.myFlashMemory.currentAddress = my_altimeter.myFlashMemory.currentAddress + 0x100;
+                    my_altimeter.myFlashMemory.currentAddress = my_altimeter.myFlashMemory.currentAddress << 1;
                 } else {
                     delay_ms(80);
                     pinToggle(LedPin);
