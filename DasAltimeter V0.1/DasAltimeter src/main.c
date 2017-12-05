@@ -129,7 +129,7 @@ void startUp(Altimeter *my_altimeter) {
                         usartDataOut(USART3, data[dataByte]);
                     }
 
-                    addressToSend = addressToSend + 0x100;
+                    addressToSend = addressToSend << 1;
                 }
                 break;
             }
