@@ -103,7 +103,7 @@ u8_t AT25SEWritePage(u32_t startingAddress, u8_t *data) {
     dummy_rx = spiDataTransfer(SPI1,((startingAddress & 0x0000FF) >>  0));
 
 
-    for (u8_t pos = 0; pos < 256; ++pos) {
+    for (u8_t pos = 0; pos <= 255; ++pos) {
         ++bytesSent;
         dummy_rx = spiDataTransfer(SPI1,data[pos]);
     }
