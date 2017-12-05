@@ -141,7 +141,7 @@ void AT25SEreadPage(u32_t startingAddress, u8_t *data) {
     dummy_rx = spiDataTransfer(SPI1, 0xFF);
 
 
-    for (u8_t pos = 0; pos < 255; ++pos) {
+    for (u8_t pos = 0; pos <= 255; ++pos) {
         data[pos] = spiDataTransfer(SPI1,dummy_rx);
     }
     pinHigh(cs_mem);
