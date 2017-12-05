@@ -115,7 +115,7 @@ void startUp(Altimeter *my_altimeter) {
 
                 usartDataOut(USART3, 'T');
 
-                u8_t pagesToSend = (my_altimeter->myFlashMemory.endingAddress - my_altimeter->myFlashMemory.currentAddress) / 0xFF;
+                u8_t pagesToSend = (my_altimeter->myFlashMemory.endingAddress - my_altimeter->myFlashMemory.currentAddress) >> 8;
                 usartDataOut(USART3, pagesToSend);
 
                 u32_t addressToSend = my_altimeter->myFlashMemory.currentAddress;
