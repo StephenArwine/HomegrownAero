@@ -122,7 +122,7 @@ void startUp(Altimeter *my_altimeter) {
 
                 for (u8_t page = 0; page <= pagesToSend; ++page) {
 
-                    u8_t data[255];
+                    u8_t data[256];
                     AT25SEreadPage(addressToSend, data);
 
                     for (u8_t dataByte = 0; dataByte < 255; ++dataByte) {
@@ -161,21 +161,33 @@ int main(void) {
     IMUinit();
 
     my_altimeter.myFlashMemory.pageLocation = 0x00;
-    my_altimeter.myFlashMemory.currentAddress = 0x001000;
+    my_altimeter.myFlashMemory.currentAddress = 0x002000;
     my_altimeter.myFlashMemory.endingAddress = 0x002FFF;
 
     /* this looks for a USART connection	 */
-    //startUp(&my_altimeter);
+    startUp(&my_altimeter);
 
-    //AT25SFErace4KBlock(0x00);
-    //AT25SFErace4KBlock(0x01);
-    //AT25SFErace4KBlock(0x02);
-    //AT25SFErace4KBlock(0x03);
+/*
 
-    u8_t address[3] = {0x00,0x10,0x00};
-    //AT25SFWriteBytes(LOGONESTART, 3, address);
+    AT25SFErace4KBlock(0x00);
+    AT25SFErace4KBlock(0x01);
+    AT25SFErace4KBlock(0x02);
+    AT25SFErace4KBlock(0x03);
 
-    findFlight(&my_altimeter);
+/*
+    u8_t address[3] = {0x00,0x10,0x00}; // test flight one add
+    u8_t address2[3] = {0x00,0x20,0x00}; // test flight two add
+
+    AT25SFWriteBytes(FLIGHTONESTART, 3, address);
+    delay_ms(10);
+    AT25SFWriteBytes(FLIGHTTWOSTART, 3, address2);
+    delay_ms(10);
+
+
+*/
+
+
+    //findFlight(&my_altimeter);
 
 
 

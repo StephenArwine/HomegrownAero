@@ -17,24 +17,70 @@ void IMUinit() {
 
 void findFlight(Altimeter *my_altimeter) {
 
-    u8_t flightFound = 0;
-    u8_t beeps = 1;
+    volatile u8_t lastFlightFound = 0;
+    u8_t beeps = 0;
 
-    for (u8_t flightAddress = LOGONESTART; flightAddress <= LOGTENEND; flightAddress += 0x06) {
+    for (volatile flightAddress = FLIGHTONESTART; flightAddress <= FLIGHTTENSTART; flightAddress += 0x03) {
+
+        ++beeps;
 
         u8_t addressToCheck[3] = {0x00, 0x00, 0x00};
         AT25SEreadSample(flightAddress, 0x03, addressToCheck);
 
-       volatile u32_t proposedAddress = addressToCheck[0] << 0 | addressToCheck[1] << 8 | addressToCheck[2] << 16;
+        u32_t proposedAddress = addressToCheck[0] << 0 | addressToCheck[1] << 8 | addressToCheck[2] << 16;
 
         if (proposedAddress == 0xFFFFFF) {
             while ( beeps > 0 ) {
-                beep(300);
-                delay_ms(80);
+                beep(400);
+                delay_ms(200);
                 --beeps;
             }
+            delay_ms(200);
+            volatile u32_t previousFlightEnd = findFlightEnding(my_altimeter, lastFlightFound);
+            beep(1000);
+            delay_ms(200);
+            beep(1000);
             break;
         }
-        ++beeps;
+        ++lastFlightFound;
+    }
+}
+
+u32_t findFlightEnding(Altimeter *my_altimeter, u8_t lastFlightFound) {
+
+    u32_t flightToSearch = (lastFlightFound * 0x03) + (FLIGHTONESTART - 0x03);
+
+    u8_t searchStartByte[3] = {0x00, 0x00, 0x00};
+    AT25SEreadSample(flightToSearch, 0x03, searchStartByte);
+
+    volatile u32_t searchStart = searchStartByte[0] << 0 | searchStartByte[1] << 8 | searchStartByte[2] << 16;
+
+    volatile u32_t byteToCheckAddress = searchStart;
+
+    volatile int16_t sensorsFound = 0;
+    volatile int16_t flightSampFound = 0;
+
+    volatile u8_t checkPage[256];
+    volatile u8_t checkPage2[256];
+
+
+    bool flightEndFound = false;
+    while (!flightEndFound) {
+
+        volatile u8_t byteToCheck = AT25SFGetByte(byteToCheckAddress);
+
+        AT25SEreadPage((byteToCheckAddress >> 8) << 8, checkPage);
+        AT25SEreadPage(((byteToCheckAddress >> 8) << 8) + 0x100, checkPage2);
+
+
+        if (byteToCheck == 0x41) {
+            byteToCheckAddress += 24;
+            ++sensorsFound;
+        } else if (byteToCheck == 0x46) {
+            byteToCheckAddress += 17;
+            ++flightSampFound;
+        } else if (byteToCheck == 0xFF) {
+            return byteToCheckAddress;
+        }
     }
 }

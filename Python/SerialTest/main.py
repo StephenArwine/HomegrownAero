@@ -58,9 +58,10 @@ if logtype == b'T':
 
     for page in range(0, pages):
         PageOfData = []
-        PageOfData = ser.read(255)
+        PageOfData = ser.read(256)
 
-        # print(PageOfData)
+        for i in range(0,256):
+            print(i,' ', PageOfData[i])
 
         data.append(PageOfData)
 
@@ -80,6 +81,7 @@ while ProcessLog:
 
     # Flight point decode
     if data[CurrentPage][LocationInPage] == 0x46:
+        print('F found, location', LocationInPage)
 
         if (LocationInPage + 17) >= 255:
 
@@ -98,10 +100,10 @@ while ProcessLog:
             point.groundAccel = twosComp.twosComplement(sensor_sample[14], sensor_sample[15]) * 0.0078125
 
             CurrentPage += 1
-            LocationInPage -= 238  # rollover + 16
+            LocationInPage -= 239  # rollover + 16
 
         else:
-            sensor_sample = data[CurrentPage][LocationInPage:LocationInPage + 17]
+            sensor_sample = data[CurrentPage][LocationInPage:LocationInPage + 16]
 
             point = FlightPoint()
             point.FlightNumb = sensor_sample[1]
@@ -116,15 +118,16 @@ while ProcessLog:
 
     # Sensor point decoding
     if data[CurrentPage][LocationInPage] == 0x41:
+        print('A found, location', LocationInPage)
 
-        if (LocationInPage + 24) >= 255:
+        if (LocationInPage + 23) >= 255:
 
             if (CurrentPage + 1) >= pages:
                 ProcessLog = False
                 break
 
             sensor_sample_part = data[CurrentPage][LocationInPage:255]
-            sensor_sample = sensor_sample_part + data[CurrentPage + 1][0:(24 - (255 - LocationInPage))]
+            sensor_sample = sensor_sample_part + data[CurrentPage + 1][0:(23 - (255 - LocationInPage))]
 
             point = SensorPoint()
             point.sampleTick = int.from_bytes(sensor_sample[1:4], byteorder='little')
@@ -138,12 +141,12 @@ while ProcessLog:
             point.gyroZ = twosComp.twosComplement(sensor_sample[19], sensor_sample[20]) * 0.0078125  # Accel Z conv
 
             CurrentPage += 1
-            LocationInPage -= 231  # rollover + 24
+            LocationInPage -= 232  # rollover + 24
 
             print('Reading page ', CurrentPage, ' starting Location ', LocationInPage)
 
         else:
-            sensor_sample = data[CurrentPage][LocationInPage:LocationInPage + 24]
+            sensor_sample = data[CurrentPage][LocationInPage:LocationInPage + 23]
 
             point = SensorPoint()
             point.sampleTick = int.from_bytes(sensor_sample[1:4], byteorder='little')
@@ -173,14 +176,14 @@ print('Flight Numb:', flight.FlightNumb, 'Buffer Time:', flight.bufferTick, 'Gro
 for x in range(0, pointList.__len__()):
     if x == 0:
         runningAverage = pointList[x].heightCM
-        print('Sample tick:', pointList[x].sampleTick, 'Height CM:', pointList[x].heightCM, 'AccelX:',
+        print('Sample 0 tick:', pointList[x].sampleTick, 'Height CM:', pointList[x].heightCM, 'AccelX:',
               pointList[x].accelX, 'AccelY:', pointList[x].accelY, 'AccelZ:', pointList[x].accelZ)
 
     elif x > 0:
         runningAverage = runningAverage*0.9 + pointList[x].heightCM*0.1
 
         dt = pointList[x].sampleTick - pointList[x - 1].sampleTick
-        print('Sample tick:', pointList[x].sampleTick, 'Sample DT:', dt, 'Height CM:', pointList[x].heightCM, 'AccelX:',
+        print('Sample', x, 'tick:', pointList[x].sampleTick, 'Sample DT:', dt, 'Height CM:', pointList[x].heightCM, 'AccelX:',
               pointList[x].accelX, 'AccelY:', pointList[x].accelY, 'AccelZ:', pointList[x].accelZ)
 
     plt.subplot(2, 1, 1)

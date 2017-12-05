@@ -50,33 +50,23 @@ const static Pin fireDPin = {.group = 0, .pin = 24};
 const static Pin analogAccelPin = {.group = 0, .pin = 7, .chan = 7};
 
 
-#define LOGONESTART 0x00
-#define LOGONEEND 0x03
+#define FLIGHTONESTART 0x100
 
-#define LOGTWOSTART 0x06
-#define LOGTWOEND 0x09
+#define FLIGHTTWOSTART 0x103
 
-#define LOGTHREESTART 0x0C
-#define LOGTHREEEND 0x0F
+#define FLIGHTTHREESTART 0x106
 
-#define LOGFOURSTART 0x12
-#define LOGFOUREND 0x15
+#define FLIGHTFOURSTART 0x109
 
-#define LOGFIVESTART 0x18
-#define LOGFIVEEND 0x21
+#define FLIGHTFIVESTART 0x10C
 
-#define LOGSIXSTART 0x24
-#define LOGSIXEND 0x27
+#define FLIGHTSIXSTART 0x10F
 
-#define LOGSEVENSTART 0x2A
-#define LOGSEVENEND 0x2D
+#define FLIGHTSEVENSTART 0x112
 
-#define LOGEIGHTSTART 0x30
-#define LOGEIGHTEND 0x33
+#define FLIGHTEIGHTSTART 0x115
 
-#define LOGNINESTART 0x36
-#define LOGNINEEND 0x39
+#define FLIGHTNINESTART 0x118
 
-#define LOGTENSTART 0x3C
-#define LOGTENEND 0x3F
+#define FLIGHTTENSTART 0x11B
 
