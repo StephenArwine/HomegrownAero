@@ -4,6 +4,39 @@
 #include <boardDefines.h>
 
 
+void makePage(Altimeter *my_altimeter, u8_t bytesToWrite, u8_t *data){
+
+
+	u8_t location = my_altimeter->myFlashMemory.pageLocation;
+		u8_t bytesWritten = 0;
+
+		if ((location + bytesToSend) >= 0xFF) {
+			for (u8_t dataByte = 0; (dataByte + location) <= 0xFF; ++dataByte) {
+				my_altimeter->myFlashMemory.pageBuffer[(dataByte + location)] = dataToSend[dataByte];
+				bytesWritten++;
+			}
+			my_altimeter->myFlashMemory.pageLocation = 0x00;
+			for(u8_t i = 0; i <= 0xFF; ++i) {
+				my_altimeter->myFlashMemory.pageToWrite[i] = my_altimeter->myFlashMemory.pageBuffer[i];
+				my_altimeter->myFlashMemory.pageBuffer[i] = 0;
+			}
+			for (u8_t dataByte = 0; bytesWritten < bytesToSend; ++dataByte) {
+				my_altimeter->myFlashMemory.pageBuffer[dataByte] = dataToSend[bytesWritten];
+				bytesWritten++;
+			}
+			my_altimeter->myFlashMemory.pageLocation = dataByte + 1;
+			my_altimeter->myFlashMemory.pageReady = true;
+
+		} else {
+			for (u8_t dataByte = 0; dataByte <= bytesToSend; ++dataByte) {
+				my_altimeter->myFlashMemory.pageBuffer[(dataByte + location)] = dataToSend[dataByte];
+				bytesWritten++;
+			}
+			my_altimeter->myFlashMemory.pageLocation = location + dataByte + 1;
+		}
+}
+
+
 void logFlight(Altimeter *my_altimeter) {
 
     u8_t bytesToSend = 16;
@@ -29,33 +62,8 @@ void logFlight(Altimeter *my_altimeter) {
 
     dataToSend[14] = my_altimeter->myIMU.gravityOffsetRaw >> 0;
     dataToSend[15] = my_altimeter->myIMU.gravityOffsetRaw >> 8;
-
-    u8_t location = my_altimeter->myFlashMemory.pageLocation;
-    u8_t bytesWritten = 0;
-
-    if ((location + bytesToSend) > 0xFF) {
-        for (u8_t dataByte = 0; (dataByte + location) < 0xFF; ++dataByte) {
-            my_altimeter->myFlashMemory.pageBuffer[(dataByte + location)] = dataToSend[dataByte];
-            bytesWritten++;
-        }
-        for(u8_t i = 0; i < 0xFF; ++i) {
-            my_altimeter->myFlashMemory.pageToWrite[i] = my_altimeter->myFlashMemory.pageBuffer[i];
-            my_altimeter->myFlashMemory.pageBuffer[i] = 0;
-        }
-        for (u8_t dataByte = 0; bytesWritten <= bytesToSend; ++dataByte) {
-            my_altimeter->myFlashMemory.pageBuffer[dataByte] = dataToSend[bytesWritten];
-            bytesWritten++;
-            my_altimeter->myFlashMemory.pageLocation = dataByte + 1; // fix this (iterates every step)
-        }
-        my_altimeter->myFlashMemory.pageReady = true;
-
-    } else {
-        for (u8_t dataByte = 0; bytesWritten <= bytesToSend; ++dataByte) {
-            my_altimeter->myFlashMemory.pageBuffer[(dataByte + location)] = dataToSend[dataByte];
-            bytesWritten++;
-        }
-        my_altimeter->myFlashMemory.pageLocation = location + bytesWritten;
-    }
+   
+   makePage(my_altimeter, bytesToSend, dataToSend);
 }
 
 void logSensors(Altimeter *my_altimeter) {
@@ -91,35 +99,7 @@ void logSensors(Altimeter *my_altimeter) {
     dataToSend[21] = my_altimeter->myAnalogAccelerometer.analogRaw >> 0;
     dataToSend[22] = my_altimeter->myAnalogAccelerometer.analogRaw >> 8;
 
-    u8_t location = my_altimeter->myFlashMemory.pageLocation;
-    u8_t bytesWritten = 0;
-
-    if ((location + bytesToSend) > 0xFF) {
-        for (u8_t dataByte = 0; (dataByte + location) < 0xFF; ++dataByte) {
-            my_altimeter->myFlashMemory.pageBuffer[(dataByte + location)] = dataToSend[dataByte];
-            bytesWritten++;
-        }
-
-        for(u8_t i = 0; i < 0xFF; ++i) {
-            my_altimeter->myFlashMemory.pageToWrite[i] = my_altimeter->myFlashMemory.pageBuffer[i];
-            my_altimeter->myFlashMemory.pageBuffer[i] = 0;
-        }
-
-        for (u8_t dataByte = 0; bytesWritten <= bytesToSend; ++dataByte) {
-            my_altimeter->myFlashMemory.pageBuffer[dataByte] = dataToSend[bytesWritten];
-            bytesWritten++;
-
-            my_altimeter->myFlashMemory.pageLocation = dataByte + 1; // fix this (iterates every step)
-        }
-        my_altimeter->myFlashMemory.pageReady = true;
-
-    } else {
-        for (u8_t dataByte = 0; bytesWritten <= bytesToSend; ++dataByte) {
-            my_altimeter->myFlashMemory.pageBuffer[(dataByte + location)] = dataToSend[dataByte];
-            bytesWritten++;
-        }
-        my_altimeter->myFlashMemory.pageLocation = location + bytesWritten;
-    }
+   makePage(my_altimeter, bytesToSend, dataToSend);
 }
 
 
