@@ -25,6 +25,7 @@ void findFlight(Altimeter *my_altimeter) {
         if (isFlightLogged(flightNumbToCheck)) {
 			
             my_altimeter->myFlashMemory.currentAddress = findNextBegining(lastFlightFound);
+            my_altimeter->flightNumb = lastFlightFound;
             break;
         }
     }
