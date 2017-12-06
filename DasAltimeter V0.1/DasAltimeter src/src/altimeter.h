@@ -97,11 +97,11 @@ typedef struct flashMemory {
 
     uint32_t endingAddress;
 
-    u8_t pageToWrite[255];
+    u8_t pageToWrite[256];
 
     u8_t pageLocation;
 
-    u8_t pageBuffer[255];
+    u8_t pageBuffer[256];
 
     bool pageReady;
 
