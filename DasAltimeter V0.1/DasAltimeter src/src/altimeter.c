@@ -20,7 +20,7 @@ void findFlight(Altimeter *my_altimeter) {
     volatile u8_t lastFlightFound = 0;
     u8_t beeps = 0;
 
-    for (volatile flightAddress = FLIGHTONESTART; flightAddress <= FLIGHTTENSTART; flightAddress += 0x03) {
+    for (u16_t flightAddress = FLIGHTZEROSTART; flightAddress <= FLIGHTTENSTART; flightAddress += 0x03) {
 
         ++beeps;
 
@@ -49,7 +49,7 @@ void findFlight(Altimeter *my_altimeter) {
 
 u32_t findFlightEnding(Altimeter *my_altimeter, u8_t lastFlightFound) {
 
-    u32_t flightToSearch = (lastFlightFound * 0x03) + (FLIGHTONESTART - 0x03);
+    u32_t flightToSearch = (lastFlightFound * 0x03) + (FLIGHTZEROSTART - 0x03);
 
     u8_t searchStartByte[3] = {0x00, 0x00, 0x00};
     AT25SEreadSample(flightToSearch, 0x03, searchStartByte);
@@ -76,4 +76,26 @@ u32_t findFlightEnding(Altimeter *my_altimeter, u8_t lastFlightFound) {
             return ((byteToCheckAddress >> 8) << 8);
         }
     }
+}
+
+
+bool isFlightLogged(u8_t flightNumbToCheck) {
+
+
+
+    u8_t addressToCheck[3] = {0x00, 0x00, 0x00};
+
+    u16_t flightAddressLoc = FLIGHTZEROSTART + (flightNumbToCheck * 0x03);
+
+    AT25SEreadSample(flightAddressLoc, 0x03, addressToCheck);
+
+    u32_t possibleStart = addressToCheck[0] << 0 | addressToCheck[1] << 8 | addressToCheck[2] << 16;
+
+    if (possibleStart == 0xFFFFFF) {
+        return false;
+    } else {
+        return true;
+    }
+
+
 }

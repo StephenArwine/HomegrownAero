@@ -165,17 +165,20 @@ int main(void) {
     my_altimeter.myFlashMemory.endingAddress = 0x005FFF;
     my_altimeter.myFlashMemory.pageReady = false;
 
+
+    //findFlight(&my_altimeter);
+
     /* this looks for a USART connection	 */
-    startUp(&my_altimeter);
+    //startUp(&my_altimeter);
 
 
 
     //AT25SFErace4KBlock(0x00);
-   // AT25SFErace4KBlock(0x01);
-   // AT25SFErace4KBlock(0x02);
-   // AT25SFErace4KBlock(0x03);
-   // AT25SFErace4KBlock(0x04);
-   // AT25SFErace4KBlock(0x05);
+    // AT25SFErace4KBlock(0x01);
+    // AT25SFErace4KBlock(0x02);
+    // AT25SFErace4KBlock(0x03);
+    // AT25SFErace4KBlock(0x04);
+    // AT25SFErace4KBlock(0x05);
 
 
 
@@ -183,15 +186,14 @@ int main(void) {
     //u8_t address[3] = {0x00,0x10,0x00}; // test flight one add
     //u8_t address2[3] = {0x00,0x20,0x00}; // test flight two add
 
-    //AT25SFWriteBytes(FLIGHTONESTART, 3, address);
+    //AT25SFWriteBytes(FLIGHZEROESTART, 3, address);
     //delay_ms(10);
-    //AT25SFWriteBytes(FLIGHTTWOSTART, 3, address2);
+    //AT25SFWriteBytes(FLIGHTONESTART, 3, address2);
     //delay_ms(10);
 
 
 
 
-    findFlight(&my_altimeter);
 
 
 
@@ -204,7 +206,20 @@ int main(void) {
 
     logFlight(&my_altimeter);
 
-    beep(300);
+    //beep(300);
+
+    if (isFlightLogged(0)) {
+        beep(2000);
+        delay_ms(500);
+
+    }
+
+    if (isFlightLogged(1)) {
+        beep(2000);
+        delay_ms(500);
+
+    }
+
 
     while (1) {
 

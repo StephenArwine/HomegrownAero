@@ -45,6 +45,11 @@ data = []
 sensor_sample = 0
 sensor_sample_part = 0
 
+LogToRead = input('Which Log would you like to load? ')
+
+print(LogToRead)
+
+
 ser.write(b'A')
 
 logtype = ser.read(1)
