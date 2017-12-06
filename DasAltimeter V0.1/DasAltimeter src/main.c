@@ -136,9 +136,6 @@ void startUp(Altimeter *my_altimeter) {
         }
     }
 
-    sampleTick(my_altimeter);
-    flight(my_altimeter);
-
     beep(300);
     delay_ms(80);
     beep(300);
