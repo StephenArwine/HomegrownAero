@@ -17,15 +17,22 @@ void IMUinit() {
 
 void findFlight(Altimeter *my_altimeter) {
 
-    volatile u8_t lastFlightFound = 0;
-    u8_t beeps = 0;
 
-    for (u8_t flightNumbToCheck = 0;flightNumbToCheck < 11; ++flightNumbToCheck) {
+    for (u8_t flightNumbToCheck = 0; flightNumbToCheck < 11; ++flightNumbToCheck) {
 
-        if (isFlightLogged(flightNumbToCheck)) {
-			
-            my_altimeter->myFlashMemory.currentAddress = findNextBegining(lastFlightFound);
-            my_altimeter->flightNumb = lastFlightFound;
+        if (!isFlightLogged(flightNumbToCheck)) {
+
+            my_altimeter->myFlashMemory.currentAddress = findNextBegining(flightNumbToCheck);
+            my_altimeter->flightNumb = flightNumbToCheck;
+
+            beep(500);
+            delay_ms(500);
+            while (flightNumbToCheck > 0) {
+                beep(500);
+                delay_ms(500);
+                --flightNumbToCheck;
+            }
+            delay_ms(500);
             break;
         }
     }
@@ -49,10 +56,8 @@ u32_t findNextBegining(u8_t lastFlightStart) {
 
         if (byteToCheck == 0x41) {
             byteToCheckAddress += 24;
-            ++sensorsFound;
         } else if (byteToCheck == 0x46) {
             byteToCheckAddress += 17;
-            ++flightSampFound;
         } else if (byteToCheck == 0xFF) {
             return ((byteToCheckAddress >> 8) << 8);
         }

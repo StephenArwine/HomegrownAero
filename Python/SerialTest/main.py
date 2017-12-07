@@ -2,17 +2,12 @@ import serial
 import twosComp
 import time
 import matplotlib.pyplot as plt
+import os
 
 ser = serial.Serial()
 ser.baudrate = 19200
 ser.port = 'COM14'
 ser.timeout = 5
-
-if ser.is_open:
-    print('already open')
-    ser.close()
-else:
-    ser.open()
 
 
 class SensorPoint:
@@ -45,21 +40,50 @@ data = []
 sensor_sample = 0
 sensor_sample_part = 0
 
-LogToRead = input('Which Log would you like to load? ')
+input(' Wait for startup beep and press ENTER')
 
-print(LogToRead)
+ser.open()
 
+ser.write(b'H')
 
-ser.write(b'A')
+handshake = ser.read(1)
 
-logtype = ser.read(1)
+if handshake == b'H':
+    print('')
+    print(' Altimeter connected, what would you like to do?')
+    print('     P    Print sensors')
+    print('     L    Download flight log')
+    print('')
 
-if logtype == b'T':
+    option = input(' ').upper()
+
+    print('')
+
+if option == 'L':
+
+    ser.write(b'L')
+
+    print(' Which flight log would you like to download?')
+
+    allFlightsFound = 1
+    while allFlightsFound:
+        flightNumb = ser.read(1)
+
+        if flightNumb == b'\x04':
+            break
+        else:
+            print('    ',flightNumb.decode('utf-8'))
+
+    print('')
+    flightToRead = input(' ')
+    print('')
+    ser.write(flightToRead.encode('utf-8'))
+
     StartTime = time.clock()
 
     pages_to_read = ser.read(1)
     pages = int.from_bytes(pages_to_read, byteorder='big')
-    print('pages to read: ', pages)
+    print('Reading', ((pages * 256)/1000), 'kilobytes of data.')
 
     for page in range(0, pages):
         PageOfData = []
@@ -67,13 +91,11 @@ if logtype == b'T':
 
         data.append(PageOfData)
 
-ser.close()
+    ser.close()
 
 CurrentPage = 0
 LocationInPage = 0
 ProcessLog = True
-
-print('Reading page ', CurrentPage)
 
 samplenum = 0
 
@@ -122,7 +144,7 @@ while ProcessLog:
 
     # Sensor point decoding
     if data[CurrentPage][LocationInPage] == 0x41:
-        #print('A found, location', LocationInPage, 'Sample number:', samplenum)
+        # print('A found, location', LocationInPage, 'Sample number:', samplenum)
         samplenum += 1
 
         if (LocationInPage + 23) > 255:
@@ -147,7 +169,7 @@ while ProcessLog:
             CurrentPage += 1
             LocationInPage -= 232  # rollover + 24
 
-            #print('Reading page ', CurrentPage, ' starting Location ', LocationInPage, 'point',
+            # print('Reading page ', CurrentPage, ' starting Location ', LocationInPage, 'point',
             #      hex(data[CurrentPage][LocationInPage]))
 
         else:
@@ -176,6 +198,11 @@ print('Took:', elapsedTime, 'seconds to read and process', pointList.__len__(), 
 print('Flight Numb:', flight.FlightNumb, 'Buffer Time:', flight.bufferTick, 'Ground Offset:', flight.groundOffset,
       'Ground Temperature', flight.groundTemperature)
 
+plt.figure()
+
+ax1 = plt.subplot(2, 1, 1)
+ax2 = plt.subplot(2, 1, 2)
+
 for x in range(0, pointList.__len__()):
     if x == 0:
         runningAverage = pointList[x].heightCM
@@ -190,15 +217,15 @@ for x in range(0, pointList.__len__()):
               'AccelX:',
               pointList[x].accelX, 'AccelY:', pointList[x].accelY, 'AccelZ:', pointList[x].accelZ)
 
-    plt.subplot(2, 1, 1)
-    plt.plot(pointList[x].sampleTick, pointList[x].accelX, 'r.')
+    ax1.plot(pointList[x].sampleTick, pointList[x].accelX, 'r.')
     # plt.plot(pointList[x].sampleTick, pointList[x].accelY, 'go')
-    plt.plot(pointList[x].sampleTick, pointList[x].accelZ, 'b.')
+    ax1.plot(pointList[x].sampleTick, pointList[x].accelZ, 'b.')
 
-    plt.subplot(2, 1, 2)
-    plt.plot(pointList[x].sampleTick, runningAverage, 'r.')
+    ax2.plot(pointList[x].sampleTick, runningAverage, 'r.')
     # plt.plot(pointList[x].sampleTick, pointList[x].gyroX, 'r.')
-    plt.plot(pointList[x].sampleTick, pointList[x].heightCM, 'g.')
+    ax2.plot(pointList[x].sampleTick, pointList[x].heightCM, 'g.')
     # plt.plot(pointList[x].sampleTick, pointList[x].gyroZ, 'b.')
 
 plt.show()
+print('')
+input('press ENTER to close')

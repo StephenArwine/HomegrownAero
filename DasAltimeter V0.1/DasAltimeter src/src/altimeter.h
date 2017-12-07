@@ -169,6 +169,6 @@ typedef struct Altimeter {
 #endif
 
 void findFlight(Altimeter *my_altimeter);
-u32_t findNextBegining(u8_t lastFlightStart)
+u32_t findNextBegining(u8_t lastFlightStart);
 
 bool isFlightLogged( u8_t flightNumbToCheck);
