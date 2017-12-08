@@ -33,9 +33,7 @@ typedef uint8_t SercomId;
 #include <AT25SF.h>
 #include <BMI055.h>
 #include <log.h>
-
-//sample.c
-void sampleTick(Altimeter *my_altimeter);
+#include <sample.h>
 
 //dma.c
 inline static Sercom* sercom(SercomId id) {
