@@ -151,7 +151,7 @@ u32_t findNextBlankPage(u8_t lastFlightStart) {
 }
 
 
-void findNextFlightStart(Altimeter *my_altimeter) {
+void findNewFlightStart(Altimeter *my_altimeter) {
 
 
     for (u8_t flightNumbToCheck = 0; flightNumbToCheck < 11; ++flightNumbToCheck) {
