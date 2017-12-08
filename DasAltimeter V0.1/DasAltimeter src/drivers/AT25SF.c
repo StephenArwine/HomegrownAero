@@ -13,6 +13,13 @@ void AT25SFWriteEnable() {
     pinHigh(cs_mem);
 }
 
+void AT25SFChipErase() {
+
+    pinLow(cs_mem);
+    dummy_rx = spiDataTransfer(SPI1,OPCODE_CHIP_ERASE);
+    pinHigh(cs_mem);
+}
+
 uint8_t AT25SFGetByte(uint32_t address) {
 
     pinLow(cs_mem);
