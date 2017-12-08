@@ -17,6 +17,7 @@ SampleBool = false;
 
 
 void sampleTick(Altimeter *my_altimeter) {
+    SampleBool = false;
 
     my_altimeter->sampleTick = millis();
 
