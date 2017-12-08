@@ -2,6 +2,14 @@
 #include <boardDefines.h>
 #include <MS5803.h>
 
+bool takeSample(){
+return SampleBool;
+}
+
+void pullSample(){
+SampleBool = true;
+}
+
 
 
 void sampleTick(Altimeter *my_altimeter) {
