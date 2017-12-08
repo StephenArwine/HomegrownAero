@@ -49,6 +49,7 @@
 #define OPCODE_PROGRAM        0x02
 #define OPCODE_04K_ERASE      0x20  // Erase a  4K block
 #define OPCODE_32K_ERASE      0x52
+#define OPCODE_CHIP_ERASE     0x60
 
 static const uint32_t memoryBlock34KHeaders[] = {0x000000, 0x008000, 0x010000, 0x018000, 0x020000, 0x028000, 0x030000, 0x038000,
                                                  0x040000, 0x048000, 0x050000, 0x058000, 0x060000, 0x068000, 0x070000, 0x078000,
