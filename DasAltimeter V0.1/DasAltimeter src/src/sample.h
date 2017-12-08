@@ -2,7 +2,8 @@
 
 
 bool SampleBool;
+bool takeSample();
 
-bool Sample();
-void takeSample();
-void pullSample(Altimeter *my_altimeter);
+void pullSample();
+
+void sampleTick(Altimeter *my_altimeter);
