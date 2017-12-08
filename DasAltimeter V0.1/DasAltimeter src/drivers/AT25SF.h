@@ -62,9 +62,9 @@ uint8_t AT25SFGetByte(uint32_t address);
 
 void AT25SFWriteBytes(uint32_t address, u8_t len, uint8_t *bytes);
 
-void AT25SFErace32KBlock(uint8_t blockToErace);
+void AT25SFErace32KBlock(uint32_t address);
 
-void AT25SFErace4KBlock(uint8_t blockToErace);
+void AT25SFErace4KBlock(uint32_t address);
 
 u8_t AT25SESplitPageWrite(u8_t startingAddress, u8_t len, u8_t *data);
 
