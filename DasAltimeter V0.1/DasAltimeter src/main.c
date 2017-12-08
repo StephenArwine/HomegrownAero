@@ -167,7 +167,7 @@ int main(void) {
     my_altimeter.myFlashMemory.pageReady = false;
 
 
-    //findFlight(&my_altimeter);
+    //findNewFlightStart(&my_altimeter);
 
     /* this looks for a USART connection	 */
     startUp(&my_altimeter);
