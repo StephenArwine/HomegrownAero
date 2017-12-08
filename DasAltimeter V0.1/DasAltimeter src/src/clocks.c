@@ -223,7 +223,7 @@ void TC4Init() {
 
 void TC4_Handler( void ) {
     TC4->COUNT8.INTFLAG.reg = 0xFF;
-    takeSample = true;
+    pullSample();
 }
 
 void TC5Init() {
