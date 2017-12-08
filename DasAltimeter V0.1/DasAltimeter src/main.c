@@ -109,49 +109,48 @@ void startUp(Altimeter *my_altimeter) {
 
     while((millis() - startupTime) < 10000) {
 		
-		if USARTconnectionAvaliable(){
+		 if USARTconnectionAvaliable(){
 
-			//wait for user to tell us what they want
-            while(sercom(USART3)->SPI.INTFLAG.bit.RXC == 0);
-			u8_t option = usartDataIn(USART3);
+			 //wait for user to tell us what they want
+             while(sercom(USART3)->SPI.INTFLAG.bit.RXC == 0);
+			 u8_t option = usartDataIn(USART3);
 
-			//user wants to read flight logs
-			if (option == 0x4C) {
+			 //user wants to read flight logs
+			 if (option == 0x4C) {
 
-				//send list of avaliable flight logs
-                for (u8_t flightLog = 0; flightLog < 11; ++flightLog) {
+				 //send list of avaliable flight logs
+                 for (u8_t flightLog = 0; flightLog < 11; ++flightLog) {
 
-                    if (isFlightLogged(flightLog)) {
+                     if (isFlightLogged(flightLog)) {
 
-						usartDataOut(USART3, flightLog + 0x30);
+						 usartDataOut(USART3, flightLog + 0x30);
+                        }
                     }
-                }
-				//done sending flight numbers
-                usartDataOut(USART3, 0x04);
+				 //done sending flight numbers
+                 usartDataOut(USART3, 0x04);
 
-				//wait for user to pick which flight to read
-                while(sercom(USART3)->SPI.INTFLAG.bit.RXC == 0);
-				u8_t flightToRead = usartDataIn(USART3) - 0x30;
+			 	 //wait for user to pick which flight to read
+                 while(sercom(USART3)->SPI.INTFLAG.bit.RXC == 0);
+				 u8_t flightToRead = usartDataIn(USART3) - 0x30;
 
 				
-                u32_t flightStartAddress = getFlightStartAddress(flightToRead);
-                u32_t flightEndAddress = FindFlightEndingAddress(flightToRead);
+                 u32_t flightStartAddress = getFlightStartAddress(flightToRead);
+                 u32_t flightEndAddress = FindFlightEndingAddress(flightToRead);
 
-				//inform of page numbers
-                u8_t pagesToSend = (flightEndAddress  - flightStartAddress) >> 8
-				usartDataOut(USART3, pagesToSend);
+			     //inform of page numbers
+                 u8_t pagesToSend = (flightEndAddress  - flightStartAddress) >> 8
+				 usartDataOut(USART3, pagesToSend);
 				
-				//USART out the flights pages
-                sendTheasePagesToComputer(flightStartAddress, flightEndAddress);
+				 //USART out the flights pages
+                 sendTheasePagesToComputer(flightStartAddress, flightEndAddress);
 				
-                break;
+                 break;
             }
             
         }
     }
 	startupJingle();
 }
-
 
 int main(void) {
 
