@@ -88,6 +88,7 @@ u16_t adc_read(Pin p);
 
 //buzzer.c
 void beep(u16_t toggles);
+void startupjingle();
 
 
 //bigBang.c
