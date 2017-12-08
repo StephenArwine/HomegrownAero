@@ -139,27 +139,25 @@ void startUp(Altimeter *my_altimeter) {
 
                     flightToRead -= 0x30;
 
-                    u32_t flightLogAddress = FLIGHTZEROSTART + (flightToRead * 0x03);
+                    u32_t flightStartAddress = getFlightStartAddress(flightToRead);
+u32_t flightEndAddress = FindFlightEndingAddress(flightToRead);
 
-                    u8_t flightStartAddressByte[3];
-                    AT25SEreadSample(flightLogAddress, 0x03, flightStartAddressByte);
-
-                    u32_t flightStartAddress = flightStartAddressByte[0] << 0 | flightStartAddressByte[1] << 8 | flightStartAddressByte[2] << 16;
-
-                    u8_t pagesToSend = (my_altimeter->myFlashMemory.endingAddress - flightStartAddress) >> 8;
+                    u8_t pagesToSend = (flightEndAddress  - flightStartAddress) >> 8;
                     usartDataOut(USART3, pagesToSend);
+
+u32_t pageToReadAddress = flightStartAddress;
 
 
                     for (u8_t page = 0; page <= pagesToSend; ++page) {
 
                         u8_t data[256];
-                        AT25SEreadPage(flightStartAddress, data);
+                        AT25SEreadPage(pageToReadAddress , data);
 
                         for (u16_t dataByte = 0; dataByte < 256; ++dataByte) {
                             usartDataOut(USART3, data[dataByte]);
                         }
 
-                        flightStartAddress = flightStartAddress + 0x100;
+                        pageToReadAddress = pageToReadAddress + 0x100;
                     }
                     break;
                 }
