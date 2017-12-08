@@ -150,6 +150,19 @@ u32_t findNextBlankPage(u8_t lastFlightStart) {
     }
 }
 
+u32_t FindFlightEndingAddress(u8_t findThisFlightsEnd){
+	
+	u8_t nextFlight = findThisFlightsEnd + 1;
+	u32_t thisFlightsEndingAddress;
+	
+	if (isFlightLogged(nextFlight){
+		thisFlightsEndingAddress = getFlightStartAddress(nextFlight) - 0x100;
+	} else {
+	thisFlightsEndingAddress = findNextBlankPage(findThisFlightsEnd) - 0x100;
+	}
+	return thisFlightsEndingAddress;
+}
+
 
 void findNewFlightStart(Altimeter *my_altimeter) {
 
