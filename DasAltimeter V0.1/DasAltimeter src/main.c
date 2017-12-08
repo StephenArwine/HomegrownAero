@@ -140,12 +140,12 @@ void startUp(Altimeter *my_altimeter) {
                     flightToRead -= 0x30;
 
                     u32_t flightStartAddress = getFlightStartAddress(flightToRead);
-u32_t flightEndAddress = FindFlightEndingAddress(flightToRead);
+                    u32_t flightEndAddress = FindFlightEndingAddress(flightToRead);
 
                     u8_t pagesToSend = (flightEndAddress  - flightStartAddress) >> 8;
                     usartDataOut(USART3, pagesToSend);
 
-u32_t pageToReadAddress = flightStartAddress;
+                    u32_t pageToReadAddress = flightStartAddress;
 
 
                     for (u8_t page = 0; page <= pagesToSend; ++page) {
