@@ -110,6 +110,8 @@ void startUp(Altimeter *my_altimeter) {
     while((millis() - startupTime) < 10000) {
 		
 		 if USARTconnectionAvaliable(){
+		 
+			my_altimeter->myFlightState = flightIdle;
 
 			 //wait for user to tell us what they want
              while(sercom(USART3)->SPI.INTFLAG.bit.RXC == 0);
@@ -171,6 +173,8 @@ int main(void) {
 
     /* this looks for a USART connection	 */
     startUp(&my_altimeter);
+	
+	flight(&my_altimeter);
 
 
 
@@ -212,11 +216,12 @@ int main(void) {
 
 
     while (1) {
+	
 
-        if (takeSample) {
-            sampleTick(&my_altimeter);
-            flight(&my_altimeter);
-            takeSample = false;
+
+        if (takeSample()) {
+			sampleTick(&my_altimeter);
+			flight(&my_altimeter);
         }
 
         if (writeLog) {
