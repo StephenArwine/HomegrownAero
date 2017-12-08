@@ -10,6 +10,10 @@ void pullSample(){
 SampleBool = true;
 }
 
+void sampleTaken(){
+SampleBool = false;
+}
+
 
 
 void sampleTick(Altimeter *my_altimeter) {
