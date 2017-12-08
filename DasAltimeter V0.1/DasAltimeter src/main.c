@@ -175,12 +175,12 @@ int main(void) {
 
 
 
-    //AT25SFErace4KBlock(0x00);
-    // AT25SFErace4KBlock(0x01);
-    // AT25SFErace4KBlock(0x02);
-    // AT25SFErace4KBlock(0x03);
-    // AT25SFErace4KBlock(0x04);
-    // AT25SFErace4KBlock(0x05);
+    // AT25SFErace4KBlock(0x000000);
+    // AT25SFErace4KBlock(0x001000);
+    // AT25SFErace4KBlock(0x002000);
+    // AT25SFErace4KBlock(0x003000);
+    // AT25SFErace4KBlock(0x004000);
+    // AT25SFErace4KBlock(0x005000);
 
 
 
@@ -248,6 +248,3 @@ int main(void) {
         }
     }
 }
-
-
-
