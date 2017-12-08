@@ -29,3 +29,21 @@ bool USARTconnectionAvaliable(){
 		return false;
   }
 
+void sendTheasePagesToComputer(u32_t firstPage, u32_t lastPage){
+	
+     u8_t pagesToSend = (lastPage - firstPage) >> 8
+	 
+	 u32_t pageToReadAddress = firstPage;
+
+	for (u8_t page = 0; page <= pagesToSend; ++page) {
+
+        u8_t data[256];
+        AT25SEreadPage(pageToReadAddress , data);
+
+        for (u16_t dataByte = 0; dataByte < 256; ++dataByte) {
+			usartDataOut(USART3, data[dataByte]);
+            }
+
+        pageToReadAddress = pageToReadAddress + 0x100;
+    }
+ }
