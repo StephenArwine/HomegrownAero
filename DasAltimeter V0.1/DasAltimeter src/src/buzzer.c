@@ -11,8 +11,17 @@ void beep(u16_t toggles) {
     }
     pinLow(buzzerPin);
     pinToggle(LedPin);
+}
 
-
+void startupJingle(){
+    beep(300);
+    delay_ms(80);
+    beep(300);
+    delay_ms(250);
+    beep(300);
+    delay_ms(80);
+    beep(300);
+    delay_ms(500);
 }
 
 
