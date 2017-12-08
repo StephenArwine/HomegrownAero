@@ -59,6 +59,8 @@ static const uint32_t memoryBlock34KHeaders[] = {0x000000, 0x008000, 0x010000, 0
 
 void AT25SFWriteEnable();
 
+void AT25SFChipErase();
+
 uint8_t AT25SFGetByte(uint32_t address);
 
 void AT25SFWriteBytes(uint32_t address, u8_t len, uint8_t *bytes);
