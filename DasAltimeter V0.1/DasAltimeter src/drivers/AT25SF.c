@@ -48,9 +48,7 @@ void AT25SFWriteBytes(uint32_t address, u8_t len, uint8_t *bytes) {
 
 }
 
-void AT25SFErace32KBlock(uint8_t blockToErace) {
-
-    uint32_t address = 0x008000*blockToErace;
+void AT25SFErace32KBlock(uint32_t address ) {
 
     pinLow(cs_mem);
     dummy_rx = spiDataTransfer(SPI1,OPCODE_WRITEENABLE);
@@ -66,9 +64,7 @@ void AT25SFErace32KBlock(uint8_t blockToErace) {
     delay_ms(300);
 }
 
-void AT25SFErace4KBlock(uint8_t blockToErace) {
-
-    uint32_t address = 0x001000*blockToErace;
+void AT25SFErace4KBlock(uint32_t address) {
 
     pinLow(cs_mem);
     dummy_rx = spiDataTransfer(SPI1,OPCODE_WRITEENABLE);
