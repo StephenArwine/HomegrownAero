@@ -31,9 +31,9 @@ bool USARTconnectionAvaliable(){
 
 void sendTheasePagesToComputer(u32_t firstPage, u32_t lastPage){
 	
-     u8_t pagesToSend = (lastPage - firstPage) >> 8
-	 
-	 u32_t pageToReadAddress = firstPage;
+    u8_t pagesToSend = (lastPage - firstPage) >> 8
+	
+	u32_t pageToReadAddress = firstPage;
 
 	for (u8_t page = 0; page <= pagesToSend; ++page) {
 
