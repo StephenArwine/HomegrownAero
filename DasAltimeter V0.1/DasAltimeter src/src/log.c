@@ -104,39 +104,36 @@ void logSensors(Altimeter *my_altimeter) {
     makePage(my_altimeter, bytesToSend, dataToSend);
 }
 
-void findFlight(Altimeter *my_altimeter) {
 
 
-    for (u8_t flightNumbToCheck = 0; flightNumbToCheck < 11; ++flightNumbToCheck) {
+u32_t getFlightStartAddress(u8_t flightToFind){
+	
+	u8_t addressToCheck[3];
 
-        if (!isFlightLogged(flightNumbToCheck)) {
+    u16_t flightAddressLoc = FLIGHTZEROSTART + (flightNumbToCheck * 0x03);
 
-            my_altimeter->myFlashMemory.currentAddress = findNextBegining(flightNumbToCheck);
-            my_altimeter->flightNumb = flightNumbToCheck;
+    AT25SEreadSample(flightAddressLoc, 0x03, addressToCheck);
 
-            beep(500);
-            delay_ms(500);
-            while (flightNumbToCheck > 0) {
-                beep(500);
-                delay_ms(500);
-                --flightNumbToCheck;
-            }
-            delay_ms(500);
-            break;
-        }
+    u32_t flightStartAddress = addressToCheck[0] << 0 | addressToCheck[1] << 8 | addressToCheck[2] << 16;
+	
+	return flightStartAddress;
+}
+
+bool isFlightLogged(u8_t flightNumbToCheck) {
+
+    u32_t possibleStart = getFlightStartAddress(flightNumbToCheck);
+	
+    if (possibleStart == 0xFFFFFF) {
+        return false;
+    } else {
+        return true;
     }
 }
 
-u32_t findNextBegining(u8_t lastFlightStart) {
 
-    u32_t flightToSearch = (lastFlightStart * 0x03) + FLIGHTZEROSTART;
+u32_t findNextBlankPage(u8_t lastFlightStart) {
 
-    u8_t searchStartByte[3] = {0x00, 0x00, 0x00};
-    AT25SEreadSample(flightToSearch, 0x03, searchStartByte);
-
-    u32_t searchStart = searchStartByte[0] << 0 | searchStartByte[1] << 8 | searchStartByte[2] << 16;
-
-    u32_t byteToCheckAddress = searchStart;
+    u32_t byteToCheckAddress = getFlightStartAddress(lastFlightStart);
 
     bool flightEndFound = false;
     while (!flightEndFound) {
@@ -154,24 +151,25 @@ u32_t findNextBegining(u8_t lastFlightStart) {
 }
 
 
-bool isFlightLogged(u8_t flightNumbToCheck) {
+void findNextFlightStart(Altimeter *my_altimeter) {
 
 
+    for (u8_t flightNumbToCheck = 0; flightNumbToCheck < 11; ++flightNumbToCheck) {
 
-    u8_t addressToCheck[3] = {0x00, 0x00, 0x00};
+        if (!isFlightLogged(flightNumbToCheck)) {
 
-    u16_t flightAddressLoc = FLIGHTZEROSTART + (flightNumbToCheck * 0x03);
+            my_altimeter->myFlashMemory.currentAddress = findNextBlankPage(flightNumbToCheck);
+            my_altimeter->flightNumb = flightNumbToCheck;
 
-    AT25SEreadSample(flightAddressLoc, 0x03, addressToCheck);
-
-    u32_t possibleStart = addressToCheck[0] << 0 | addressToCheck[1] << 8 | addressToCheck[2] << 16;
-
-    if (possibleStart == 0xFFFFFF) {
-        return false;
-    } else {
-        return true;
+            beep(500);
+            delay_ms(500);
+            while (flightNumbToCheck > 0) {
+                beep(500);
+                delay_ms(500);
+                --flightNumbToCheck;
+            }
+            delay_ms(500);
+            break;
+        }
     }
-
-
 }
-
