@@ -81,9 +81,12 @@ void makePage(Altimeter *my_altimeter, u8_t bytesToWrite, u8_t *data);
 void logSensors(Altimeter *my_altimeter);
 void logFlight(Altimeter *my_altimeter);
 
-void findFlight(Altimeter *my_altimeter); 
-u32_t findNextBegining(u8_t lastFlightStart); 
+
+u32_t getFlightStartAddress(u8_t flightToFind);
 bool isFlightLogged( u8_t flightNumbToCheck); 
+u32_t findNextBlankPage(u8_t lastFlightStart);
+void findNewFlightStart(Altimeter *my_altimeter);  
+
 
 
 #endif
