@@ -108,72 +108,49 @@ void startUp(Altimeter *my_altimeter) {
     u32_t startupTime = millis();
 
     while((millis() - startupTime) < 10000) {
+		
+		if USARTconnectionAvaliable(){
 
-        if (sercom(USART3)->SPI.INTFLAG.bit.RXC == 1) {
+			//wait for user to tell us what they want
+            while(sercom(USART3)->SPI.INTFLAG.bit.RXC == 0);
+			u8_t option = usartDataIn(USART3);
 
-            u8_t connectAttempt = usartDataIn(USART3);
-            if (connectAttempt == 0x48) {
-                usartDataOut(USART3, 'H');
+			//user wants to read flight logs
+			if (option == 0x4C) {
 
-                while(sercom(USART3)->SPI.INTFLAG.bit.RXC == 0);
-                u8_t option = usartDataIn(USART3);
+				//send list of avaliable flight logs
+                for (u8_t flightLog = 0; flightLog < 11; ++flightLog) {
 
-                if (option == 0x4C) {
+                    if (isFlightLogged(flightLog)) {
 
-                    u8_t highestFlight = 0;
-
-                    for (u8_t flightLog = 0; flightLog < 11; ++flightLog) {
-
-                        if (isFlightLogged(flightLog)) {
-
-                            usartDataOut(USART3, flightLog + 0x30);
-
-                            highestFlight = flightLog;
-                        }
+						usartDataOut(USART3, flightLog + 0x30);
                     }
-
-                    usartDataOut(USART3, 0x04);
-
-                    while(sercom(USART3)->SPI.INTFLAG.bit.RXC == 0);
-                    u8_t flightToRead = usartDataIn(USART3);
-
-                    flightToRead -= 0x30;
-
-                    u32_t flightStartAddress = getFlightStartAddress(flightToRead);
-                    u32_t flightEndAddress = FindFlightEndingAddress(flightToRead);
-
-                    u8_t pagesToSend = (flightEndAddress  - flightStartAddress) >> 8;
-                    usartDataOut(USART3, pagesToSend);
-
-                    u32_t pageToReadAddress = flightStartAddress;
-
-
-                    for (u8_t page = 0; page <= pagesToSend; ++page) {
-
-                        u8_t data[256];
-                        AT25SEreadPage(pageToReadAddress , data);
-
-                        for (u16_t dataByte = 0; dataByte < 256; ++dataByte) {
-                            usartDataOut(USART3, data[dataByte]);
-                        }
-
-                        pageToReadAddress = pageToReadAddress + 0x100;
-                    }
-                    break;
                 }
+				//done sending flight numbers
+                usartDataOut(USART3, 0x04);
+
+				//wait for user to pick which flight to read
+                while(sercom(USART3)->SPI.INTFLAG.bit.RXC == 0);
+				u8_t flightToRead = usartDataIn(USART3) - 0x30;
+
+				
+                u32_t flightStartAddress = getFlightStartAddress(flightToRead);
+                u32_t flightEndAddress = FindFlightEndingAddress(flightToRead);
+
+				//inform of page numbers
+                u8_t pagesToSend = (flightEndAddress  - flightStartAddress) >> 8
+				usartDataOut(USART3, pagesToSend);
+				
+				//USART out the flights pages
+                sendTheasePagesToComputer(flightStartAddress, flightEndAddress);
+				
+                break;
             }
+            
         }
     }
-    beep(300);
-    delay_ms(80);
-    beep(300);
-    delay_ms(250);
-    beep(300);
-    delay_ms(80);
-    beep(300);
-    delay_ms(500);
+	startupJingle();
 }
-
 
 
 int main(void) {
