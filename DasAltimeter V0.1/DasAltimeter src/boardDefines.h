@@ -8,7 +8,7 @@
 
 //dasAltimeter
 
-bool takeSample;
+
 bool writeLog;
 
 const static Pin cs_mem = {.group = 0, .pin = 18};

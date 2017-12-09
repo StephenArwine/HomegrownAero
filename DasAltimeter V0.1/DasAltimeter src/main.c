@@ -107,51 +107,58 @@ void startUp(Altimeter *my_altimeter) {
 
     u32_t startupTime = millis();
 
-    while((millis() - startupTime) < 10000) {
-		
-		 if USARTconnectionAvaliable(){
-		 
-			my_altimeter->myFlightState = flightIdle;
+    while((millis() - startupTime) < 15000) {
 
-			 //wait for user to tell us what they want
-             while(sercom(USART3)->SPI.INTFLAG.bit.RXC == 0);
-			 u8_t option = usartDataIn(USART3);
+        if (USARTconnectionAvaliable()) {
 
-			 //user wants to read flight logs
-			 if (option == 0x4C) {
+            my_altimeter->myFlightState = flightIdle;
 
-				 //send list of avaliable flight logs
-                 for (u8_t flightLog = 0; flightLog < 11; ++flightLog) {
+            //wait for user to tell us what they want
+            while(sercom(USART3)->SPI.INTFLAG.bit.RXC == 0);
+            u8_t option = usartDataIn(USART3);
 
-                     if (isFlightLogged(flightLog)) {
+            //user wants to read flight logs
+            if (option == 0x4C) {
 
-						 usartDataOut(USART3, flightLog + 0x30);
-                        }
+                //send list of available flight logs
+                for (u8_t flightLog = 0; flightLog < 11; ++flightLog) {
+
+                    if (isFlightLogged(flightLog)) {
+
+                        usartDataOut(USART3, flightLog + 0x30);
                     }
-				 //done sending flight numbers
-                 usartDataOut(USART3, 0x04);
+                }
+                //done sending flight numbers
+                usartDataOut(USART3, 0x0F);
 
-			 	 //wait for user to pick which flight to read
-                 while(sercom(USART3)->SPI.INTFLAG.bit.RXC == 0);
-				 u8_t flightToRead = usartDataIn(USART3) - 0x30;
+                //wait for user to pick which flight to read
+                while(sercom(USART3)->SPI.INTFLAG.bit.RXC == 0);
+                u8_t flightToRead = usartDataIn(USART3) - 0x30;
 
-				
-                 u32_t flightStartAddress = getFlightStartAddress(flightToRead);
-                 u32_t flightEndAddress = FindFlightEndingAddress(flightToRead);
 
-			     //inform of page numbers
-                 u8_t pagesToSend = (flightEndAddress  - flightStartAddress) >> 8
-				 usartDataOut(USART3, pagesToSend);
-				
-				 //USART out the flights pages
-                 sendTheasePagesToComputer(flightStartAddress, flightEndAddress);
-				
-                 break;
+                u32_t flightStartAddress = getFlightStartAddress(flightToRead);
+                u32_t flightEndAddress = FindFlightEndingAddress(flightToRead);
+
+                //inform of page numbers
+                u8_t pagesToSend = (flightEndAddress  - flightStartAddress) >> 8;
+                usartDataOut(USART3, pagesToSend);
+
+                //USART out the flights pages
+                sendTheasePagesToComputer(flightStartAddress, flightEndAddress);
+
+                break;
             }
-            
+            //user wants to erase chip
+            if (option == 0x45) {
+                AT25SFChipErase();
+				
+                usartDataOut(USART3, 'E');
+                break;
+            }
         }
     }
-	startupJingle();
+
+    startupJingle();
 }
 
 int main(void) {
@@ -164,43 +171,18 @@ int main(void) {
     IMUinit();
 
     my_altimeter.myFlashMemory.pageLocation = 0x00;
-    my_altimeter.myFlashMemory.currentAddress = 0x002000;
-    my_altimeter.myFlashMemory.endingAddress = 0x005FFF;
     my_altimeter.myFlashMemory.pageReady = false;
 
 
-    //findNewFlightStart(&my_altimeter);
-
     /* this looks for a USART connection	 */
     startUp(&my_altimeter);
-	
-	flight(&my_altimeter);
+
+    //my_altimeter.myFlightState = flightIdle;
 
 
+    flight(&my_altimeter);
 
-    // AT25SFErace4KBlock(0x000000);
-    // AT25SFErace4KBlock(0x001000);
-    // AT25SFErace4KBlock(0x002000);
-    // AT25SFErace4KBlock(0x003000);
-    // AT25SFErace4KBlock(0x004000);
-    // AT25SFErace4KBlock(0x005000);
-
-
-
-
-    //u8_t address[3] = {0x00,0x10,0x00}; // test flight one add
-    //u8_t address2[3] = {0x00,0x20,0x00}; // test flight two add
-
-    //AT25SFWriteBytes(FLIGHTZEROSTART, 3, address);
-    //delay_ms(10);
-    //AT25SFWriteBytes(FLIGHTONESTART, 3, address2);
-    //delay_ms(10);
-
-
-
-
-
-
+    sampleTaken();
 
 
     u32_t timeNow = millis();
@@ -209,19 +191,25 @@ int main(void) {
         flight(&my_altimeter);
     }
 
-    logFlight(&my_altimeter);
+    if (my_altimeter.myFlightState != flightIdle) {
+        findNewFlightStart(&my_altimeter);
+        logFlight(&my_altimeter);
+    }
 
-    beep(300);
-
+    sampleTaken();
+    writeLog = false;
 
 
     while (1) {
-	
-
 
         if (takeSample()) {
-			sampleTick(&my_altimeter);
-			flight(&my_altimeter);
+            sampleTick(&my_altimeter);
+            flight(&my_altimeter);
+
+            if (my_altimeter.batFloat < 3.4) {
+                my_altimeter.myFlightState = flightIdle;
+                beep(1000);
+            }
         }
 
         if (writeLog) {
@@ -233,21 +221,9 @@ int main(void) {
 
                 pinToggle(LedPin);
 
-                if (my_altimeter.myFlashMemory.currentAddress <= my_altimeter.myFlashMemory.endingAddress) {
+                u8_t bytesWritten = AT25SEWritePage(my_altimeter.myFlashMemory.currentAddress,my_altimeter.myFlashMemory.pageToWrite);
+                my_altimeter.myFlashMemory.currentAddress = (my_altimeter.myFlashMemory.currentAddress + 0x100);
 
-                    //u8_t bytesWritten = AT25SEWritePage(my_altimeter.myFlashMemory.currentAddress,my_altimeter.myFlashMemory.pageToWrite);
-                    my_altimeter.myFlashMemory.currentAddress = (my_altimeter.myFlashMemory.currentAddress + 0x100);
-                } else {
-                    delay_ms(80);
-                    pinToggle(LedPin);
-                    delay_ms(80);
-                    pinToggle(LedPin);
-                    delay_ms(80);
-                    pinToggle(LedPin);
-                    delay_ms(80);
-                    pinToggle(LedPin);
-                    delay_ms(80);
-                }
             }
         }
     }

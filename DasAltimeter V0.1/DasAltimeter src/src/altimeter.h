@@ -67,21 +67,17 @@ typedef struct IMU {
 
     float gyroZ;
 
-
     u16_t accelXRaw;
     int16_t accelXint;
 
-
     u16_t accelYRaw;
     int16_t accelYint;
-
 
     u16_t accelZRaw;
     int16_t accelZint;
 
     u16_t gyroXRaw;
     int16_t gyroXint;
-
 
     u16_t gyroYRaw;
     int16_t gyroYint;
@@ -113,8 +109,6 @@ typedef struct AnalogAccelerometer {
     u16_t analogRaw;
 
     float analogAccel;
-
-
 
 } AnalogAccelerometer;
 
@@ -149,6 +143,8 @@ typedef struct Altimeter {
     flashMemory myFlashMemory;
 
     u16_t batV;
+
+    float batFloat;
 
     u16_t senseA;
 

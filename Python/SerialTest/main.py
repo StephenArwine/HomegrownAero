@@ -53,11 +53,25 @@ if handshake == b'H':
     print(' Altimeter connected, what would you like to do?')
     print('     P    Print sensors')
     print('     L    Download flight log')
+    print('     E    Chip Erase')
     print('')
 
     option = input(' ').upper()
 
     print('')
+
+
+if option == 'E':
+    ser.write(b'E')
+    print('')
+    print(' Please wait.')
+
+    time.sleep(15)
+    isWriteDone = ser.read(1)
+    if isWriteDone == b'E':
+        print('')
+        print('Chip erased')
+        input(' Wait for startup beep and press ENTER')
 
 if option == 'L':
 
@@ -69,7 +83,7 @@ if option == 'L':
     while allFlightsFound:
         flightNumb = ser.read(1)
 
-        if flightNumb == b'\x04':
+        if flightNumb == b'\x0F':
             break
         else:
             print('    ',flightNumb.decode('utf-8'))
@@ -191,6 +205,9 @@ while ProcessLog:
         pointList.append(point)
 
 runningAverage = 0
+averageX = 0
+averageY = 0
+averageZ = 0
 
 elapsedTime = (time.clock() - StartTime)
 print('Took:', elapsedTime, 'seconds to read and process', pointList.__len__(), 'data points')
@@ -206,24 +223,30 @@ ax2 = plt.subplot(2, 1, 2)
 for x in range(0, pointList.__len__()):
     if x == 0:
         runningAverage = pointList[x].heightCM
+        averageX = pointList[x].accelX
+        averageY = pointList[x].accelY
+        averageZ = pointList[x].accelZ
         print('Sample 0 tick:', pointList[x].sampleTick, 'Height CM:', pointList[x].heightCM, 'AccelX:',
               pointList[x].accelX, 'AccelY:', pointList[x].accelY, 'AccelZ:', pointList[x].accelZ)
 
     elif x > 0:
         runningAverage = runningAverage * 0.9 + pointList[x].heightCM * 0.1
+        averageX = averageX * 0.6 + pointList[x].accelX * 0.4
+        averageY = averageY * 0.6 + pointList[x].accelY * 0.4
+        averageZ = averageZ * 0.6 + pointList[x].accelZ * 0.4
 
         dt = pointList[x].sampleTick - pointList[x - 1].sampleTick
         print('Sample', x, 'tick:', pointList[x].sampleTick, 'Sample DT:', dt, 'Height CM:', pointList[x].heightCM,
               'AccelX:',
               pointList[x].accelX, 'AccelY:', pointList[x].accelY, 'AccelZ:', pointList[x].accelZ)
 
-    ax1.plot(pointList[x].sampleTick, pointList[x].accelX, 'r.')
-    # plt.plot(pointList[x].sampleTick, pointList[x].accelY, 'go')
-    ax1.plot(pointList[x].sampleTick, pointList[x].accelZ, 'b.')
+    ax1.plot(pointList[x].sampleTick, averageX, 'r.')
+    ax1.plot(pointList[x].sampleTick, averageY, 'g.')
+    ax1.plot(pointList[x].sampleTick, averageZ, 'b.')
 
     ax2.plot(pointList[x].sampleTick, runningAverage, 'r.')
     # plt.plot(pointList[x].sampleTick, pointList[x].gyroX, 'r.')
-    ax2.plot(pointList[x].sampleTick, pointList[x].heightCM, 'g.')
+    #ax2.plot(pointList[x].sampleTick, pointList[x].heightCM, 'g.')
     # plt.plot(pointList[x].sampleTick, pointList[x].gyroZ, 'b.')
 
 plt.show()

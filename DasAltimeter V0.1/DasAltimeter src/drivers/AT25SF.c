@@ -16,6 +16,12 @@ void AT25SFWriteEnable() {
 void AT25SFChipErase() {
 
     pinLow(cs_mem);
+    dummy_rx = spiDataTransfer(SPI1,OPCODE_WRITEENABLE);
+    pinHigh(cs_mem);
+
+    delay_ms(30000);
+
+    pinLow(cs_mem);
     dummy_rx = spiDataTransfer(SPI1,OPCODE_CHIP_ERASE);
     pinHigh(cs_mem);
 }

@@ -380,7 +380,7 @@ UsedLibraryUrn="urn:adsk.eagle:library:177"
 
 [Win_1]
 Type="Control Panel"
-Loc="1912 -8 3831 1008"
+Loc="1920 0 3839 1016"
 State=1
 Number=0
 

@@ -16,6 +16,8 @@ SampleBool = false;
 
 
 
+
+
 void sampleTick(Altimeter *my_altimeter) {
     SampleBool = false;
 
@@ -23,6 +25,8 @@ void sampleTick(Altimeter *my_altimeter) {
 
     my_altimeter->batV = adc_read(senseBatPin);
     my_altimeter->batV = my_altimeter->batV;
+	my_altimeter->batFloat = my_altimeter->batV * 0.0019;
+	
     my_altimeter->senseA = adc_read(senseAPin);
     my_altimeter->senseB = adc_read(senseBPin);
     my_altimeter->senseC = adc_read(senseCPin);

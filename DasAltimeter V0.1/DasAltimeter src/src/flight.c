@@ -28,8 +28,9 @@ void flight(Altimeter *my_altimeter) {
 
         break;
     case flightIdle:
-           TC4->COUNT8.CTRLA.reg |= TC_CTRLA_ENABLE;
-           TC5->COUNT8.CTRLA.reg |= TC_CTRLA_ENABLE;
+           TC4->COUNT8.CTRLA.reg = 0;
+           TC5->COUNT8.CTRLA.reg = 0;
+		   
 
 
 
