@@ -16,7 +16,7 @@ class SensorPointType:
         self.analogRaw = 0
 
 
-def build_sensor_point( data, currentPage, pages, locationInPage):
+def build_sensor_point(data, currentPage, pages, locationInPage):
 
     point = SensorPointType()
 

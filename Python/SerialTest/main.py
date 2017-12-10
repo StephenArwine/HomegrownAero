@@ -115,7 +115,6 @@ if handshake == b'H':
         PageOfData = []
         PageOfData = ser.read(256)
 
-        # print(PageOfData)
         data.append(PageOfData)
 
     ser.close()
@@ -174,7 +173,6 @@ while ProcessLog:
         #print('A found, page', CurrentPage, ' ,Location', LocationInPage, ',Sample number:', samplenum)
         samplenum += 1
 
-        point = sensorPoint.SensorPointType()
         point, CurrentPage, LocationInPage = sensorPoint.build_sensor_point(data, CurrentPage, pages, LocationInPage)
 
         pointList.append(point)
@@ -195,11 +193,11 @@ plt.figure()
 ax1 = plt.subplot(2, 1, 1)
 ax2 = plt.subplot(2, 1, 2)
 
-for x in range(0, pointList.__len__()):
+x = 0
 
-    pointToPlot = sensorPoint.SensorPointType()
+previousPoint = sensorPoint.SensorPointType()
 
-    pointToPlot = pointList[x]
+for pointToPlot in pointList:
 
     pointToPlot.sampleTick = pointToPlot.sampleTick - flight.bufferTick
 
@@ -219,7 +217,7 @@ for x in range(0, pointList.__len__()):
         averageY = averageY * 0.6 + pointToPlot.accelY * 0.4
         averageZ = averageZ * 0.6 + pointToPlot.accelZ * 0.4
 
-        dt = pointToPlot.sampleTick - perviousPoint.sampleTick
+        dt = pointToPlot.sampleTick - previousPoint.sampleTick
         print('Sample', x, 'tick:', pointToPlot.sampleTick, 'Sample DT:', dt, 'Height Feet:', pointToPlot.heightFeet,
               'AccelX:',
               pointToPlot.accelX, 'AccelY:', pointToPlot.accelY, 'AccelZ:', pointToPlot.accelZ)
@@ -231,7 +229,8 @@ for x in range(0, pointList.__len__()):
     ax2.plot(pointToPlot.sampleTick, pointToPlot.heightFeet, 'r.')
     ax2.plot(pointToPlot.sampleTick, runningAverageFeet, 'g.')
 
-    perviousPoint = pointToPlot
+    previousPoint = pointToPlot
+    x += 1
 
 
 plt.show()
