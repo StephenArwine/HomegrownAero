@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 #from sensorPoint import build_sensor_point
 #import sensorPoint
 
-#from sensorPoint import SensorPointType
+from sensorPoint import SensorPointType
 
 
 ser = serial.Serial()
@@ -170,12 +170,11 @@ while ProcessLog:
 
     # Sensor point decoding
     if data[CurrentPage][LocationInPage] == 0x41:
-        #print('A found, page', CurrentPage, ' ,Location', LocationInPage, ',Sample number:', samplenum)
+        # print('A found, page', CurrentPage, ' ,Location', LocationInPage, ',Sample number:', samplenum)
         samplenum += 1
 
         point, CurrentPage, LocationInPage = sensorPoint.build_sensor_point(data, CurrentPage, pages, LocationInPage)
-
-        pointList.append(point)
+        if isinstance(point, SensorPointType): pointList.append(point)
 
 runningAverageFeet = 0
 averageX = 0

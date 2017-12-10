@@ -36,9 +36,9 @@ def build_sensor_point(data, currentPage, pages, locationInPage):
         point.accelY = twos_complement(sensor_sample[11], sensor_sample[12]) * 0.0078125  # Accel Y conv
         point.accelZ = twos_complement(sensor_sample[13], sensor_sample[14]) * 0.0078125  # Accel Z conv
 
-        point.gyroX = twos_complement(sensor_sample[15], sensor_sample[16]) * 0.0078125  # Accel Z conv
-        point.gyroY = twos_complement(sensor_sample[17], sensor_sample[18]) * 0.0078125  # Accel Z conv
-        point.gyroZ = twos_complement(sensor_sample[19], sensor_sample[20]) * 0.0078125  # Accel Z conv
+        point.gyroX = twos_complement(sensor_sample[15], sensor_sample[16]) * 0.0078125  # Gyro X conv
+        point.gyroY = twos_complement(sensor_sample[17], sensor_sample[18]) * 0.0078125  # Gyro Y conv
+        point.gyroZ = twos_complement(sensor_sample[19], sensor_sample[20]) * 0.0078125  # Gyro Z conv
 
         currentPage += 1
         locationInPage -= 232  # rollover + 24
