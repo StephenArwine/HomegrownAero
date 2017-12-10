@@ -2,6 +2,7 @@
 #include <MS5803.h>
 #include <boardDefines.h>
 #include <math.h>
+//#include <tgmath.h>
 
 
 u32_t readMS5803AdcResults() {
@@ -25,28 +26,30 @@ u32_t readMS5803AdcResults() {
 }
 
 void ConvertPressureTemperature(Barometer *my_barometer) {
-    volatile const u16_t C1 = my_barometer->coefficients_[0];
-    volatile const u16_t C2 = my_barometer->coefficients_[1];
-    volatile const u16_t C3 = my_barometer->coefficients_[2];
-    volatile const u16_t C4 = my_barometer->coefficients_[3];
-    volatile const u16_t C5 = my_barometer->coefficients_[4];
-    volatile const u16_t C6 = my_barometer->coefficients_[5];
+    const u16_t C1 = my_barometer->coefficients_[0];
+    const u16_t C2 = my_barometer->coefficients_[1];
+    const u16_t C3 = my_barometer->coefficients_[2];
+    const u16_t C4 = my_barometer->coefficients_[3];
+    const u16_t C5 = my_barometer->coefficients_[4];
+    const u16_t C6 = my_barometer->coefficients_[5];
 
     // calculate 1st order pressure and temperature (MS5607 1st order algorithm)
     const  int32_t dT = (my_barometer->rawTempatureData) - ((int32_t)C5 << 8);
-    my_barometer->temperatureCelcus  = 2000 + (((int64_t)dT * C6) >> 32) ;
+    my_barometer->temperatureCelcus  = 2000 + (((int64_t)dT * C6) >> 23) ;
 
-    volatile const  int64_t OFF   = ((int64_t)C2 << 16) + (((C4 * (int64_t)dT)) >> 7);
-    volatile const  int64_t SENS  =  ((int64_t)C1 << 15) + (((C3 * (int64_t)dT)) >> 8);
-    my_barometer->pressureMbar = (((my_barometer->rawPressureData * SENS) / 2097152) - OFF) / 32768;
+    const  int64_t OFF   = ((int64_t)C2 << 16) + ((C4 * (int64_t)dT) >> 7);
+    const  int64_t SENS  =  ((int64_t)C1 << 15) + ((C3 * (int64_t)dT) >> 8);
+    my_barometer->pressureMbar = ((((my_barometer->rawPressureData * SENS) >> 21) - OFF) >> 15);
+
 }
 
 void paToFeetNOAA(Barometer *my_barometer) {
 
-    my_barometer->pressurePa = my_barometer->pressureMbar *10;
+    double lower =(((double)(my_barometer->pressureMbar)/10)/1013.25);
+    double exponent = 0.190284;
 
-    double altFeet = (1-pow((my_barometer->pressurePa/1013.25),(0.190284)))*145366.45;
-    my_barometer->heightFeet = (float)altFeet;
+    double altFeet = (1-pow(lower,exponent))*145366.45;
+    my_barometer->heightFeet = altFeet;
 
 }
 

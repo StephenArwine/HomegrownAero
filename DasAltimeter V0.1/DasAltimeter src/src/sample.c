@@ -2,16 +2,16 @@
 #include <boardDefines.h>
 #include <MS5803.h>
 
-bool takeSample(){
-return SampleBool;
+bool takeSample() {
+    return SampleBool;
 }
 
-void pullSample(){
-SampleBool = true;
+void pullSample() {
+    SampleBool = true;
 }
 
-void sampleTaken(){
-SampleBool = false;
+void sampleTaken() {
+    SampleBool = false;
 }
 
 
@@ -25,8 +25,8 @@ void sampleTick(Altimeter *my_altimeter) {
 
     my_altimeter->batV = adc_read(senseBatPin);
     my_altimeter->batV = my_altimeter->batV;
-	my_altimeter->batFloat = my_altimeter->batV * 0.0019;
-	
+    my_altimeter->batFloat = my_altimeter->batV * 0.0019;
+
     my_altimeter->senseA = adc_read(senseAPin);
     my_altimeter->senseB = adc_read(senseBPin);
     my_altimeter->senseC = adc_read(senseCPin);
@@ -50,7 +50,7 @@ void sampleTick(Altimeter *my_altimeter) {
 
     pinLow(cs_baro);
     //  dummy_rx = spiDataTransfer(SPI2, 0x42);
-    byteOut(spi2SCK,spi2MOSI, 0x42);
+    byteOut(spi2SCK,spi2MOSI, 0x46);
     pinHigh(cs_baro);
 
 
@@ -145,11 +145,11 @@ void sampleTick(Altimeter *my_altimeter) {
     my_altimeter->myIMU.gyroY = my_altimeter->myIMU.gyroYint * BMI055_GYRO_2000DS_DIV;
     my_altimeter->myIMU.gyroZ = my_altimeter->myIMU.gyroZint * BMI055_GYRO_2000DS_DIV;
 
-    delay_us(800);
+    //delay_us(800);
+    delay_ms(5);
     my_altimeter->myBarometer.rawPressureData = readMS5803AdcResults();
     ConvertPressureTemperature(&my_altimeter->myBarometer);
-    pascalToCent(&my_altimeter->myBarometer);
-    my_altimeter->myBarometer.heightFeet = 0.03281 * my_altimeter->myBarometer.heightCm;
+    paToFeetNOAA(&my_altimeter->myBarometer);
 
 
 }

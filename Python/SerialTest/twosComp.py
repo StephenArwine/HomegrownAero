@@ -2,7 +2,7 @@
 
 
 # two's Complement
-def twosComplement( byteOne, byteTwo):
+def twos_complement( byteOne, byteTwo):
 
     if (byteTwo >> 7) == 1:
         twos = (byteOne << 0) + (byteTwo << 8)

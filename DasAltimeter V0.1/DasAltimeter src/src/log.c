@@ -79,10 +79,10 @@ void logSensors(Altimeter *my_altimeter) {
     dataToSend[3] = my_altimeter->sampleTick >> 16;
     dataToSend[4] = my_altimeter->sampleTick >> 24;
 
-    dataToSend[5] = my_altimeter->myBarometer.heightCm >> 0;
-    dataToSend[6] = my_altimeter->myBarometer.heightCm >> 8;
-    dataToSend[7] = my_altimeter->myBarometer.heightCm >> 16;
-    dataToSend[8] = my_altimeter->myBarometer.heightCm >> 24;
+    dataToSend[5] = my_altimeter->myBarometer.heightFeet >> 0;
+    dataToSend[6] = my_altimeter->myBarometer.heightFeet >> 8;
+    dataToSend[7] = my_altimeter->myBarometer.heightFeet >> 16;
+    dataToSend[8] = my_altimeter->myBarometer.heightFeet >> 24;
 
     dataToSend[9] = my_altimeter->myIMU.accelXRaw >> 0;
     dataToSend[10] = my_altimeter->myIMU.accelXRaw >> 8;
@@ -178,6 +178,8 @@ void findNewFlightStart(Altimeter *my_altimeter) {
 
                 u16_t flightAddressLoc = FLIGHTZEROSTART + (flightNumbToCheck * 0x03);
                 AT25SFWriteBytes(flightAddressLoc, 3, address);
+
+                // for flight 0, starting address is always 0x00100 (beginning of second 4k block)
             } else {
                 u8_t address[3] = {0x00,0x10,0x00};
                 AT25SFWriteBytes(FLIGHTZEROSTART, 3, address);

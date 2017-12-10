@@ -140,8 +140,16 @@ void startUp(Altimeter *my_altimeter) {
                 u32_t flightEndAddress = FindFlightEndingAddress(flightToRead);
 
                 //inform of page numbers
-                u8_t pagesToSend = (flightEndAddress  - flightStartAddress) >> 8;
-                usartDataOut(USART3, pagesToSend);
+                u16_t pagesToSend = (flightEndAddress  - flightStartAddress) >> 8;
+                usartDataOut(USART3, pagesToSend >> 0);
+                usartDataOut(USART3, pagesToSend >> 8);
+
+                //send flight end address for % full
+                usartDataOut(USART3, flightEndAddress >> 0);
+                usartDataOut(USART3, flightEndAddress >> 8);
+                usartDataOut(USART3, flightEndAddress >> 16);
+
+
 
                 //USART out the flights pages
                 sendTheasePagesToComputer(flightStartAddress, flightEndAddress);
@@ -151,7 +159,7 @@ void startUp(Altimeter *my_altimeter) {
             //user wants to erase chip
             if (option == 0x45) {
                 AT25SFChipErase();
-				
+
                 usartDataOut(USART3, 'E');
                 break;
             }
@@ -206,9 +214,16 @@ int main(void) {
             sampleTick(&my_altimeter);
             flight(&my_altimeter);
 
-            if (my_altimeter.batFloat < 3.4) {
+            if (my_altimeter.batFloat < 3.5) {
                 my_altimeter.myFlightState = flightIdle;
-                beep(1000);
+                beep(300);
+                delay_ms(80);
+                beep(300);
+                pinLow(buzzerPin);
+                pinLow(LedPin);
+                TC4->COUNT8.CTRLA.reg = 0;
+                TC5->COUNT8.CTRLA.reg = 0;
+				writeLog = false;
             }
         }
 

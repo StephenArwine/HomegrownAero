@@ -22,11 +22,11 @@ typedef struct Barometer {
 
     uint32_t pressurePa;
 
-    uint32_t pressureMbar;
+    int32_t pressureMbar;
 
     uint32_t heightCm;
 
-    float heightFeet;
+    u32_t heightFeet;
 
     uint32_t groundOffset;
 
