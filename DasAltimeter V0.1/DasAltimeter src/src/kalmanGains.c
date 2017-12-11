@@ -152,7 +152,7 @@ void computeKalmanStates(Altimeter *my_altimeter) {
     double accel = my_altimeter->myIMU.accelZ*32.17417;
     double pressure = my_altimeter->myBarometer.altitudefeet;
 
-
+    // combind thease next three for readability
     double	phi[3][3]     = { 1, 0, 0,
                               0, 1, 0,
                               0, 0, 1.0
