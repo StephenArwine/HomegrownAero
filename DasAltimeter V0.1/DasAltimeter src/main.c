@@ -101,78 +101,6 @@ void init() {
     TC5Init();
 }
 
-void startUp(Altimeter *my_altimeter) {
-
-    beep(400);
-
-    u32_t startupTime = millis();
-
-    while((millis() - startupTime) < 10000) {
-
-        if (USARTconnectionAvaliable()) {
-
-            my_altimeter->myFlightState = flightIdle;
-
-            //wait for user to tell us what they want
-            while(sercom(USART3)->SPI.INTFLAG.bit.RXC == 0);
-            u8_t option = usartDataIn(USART3);
-
-            //user wants to read flight logs
-            if (option == 0x4C) {
-
-                //send list of available flight logs
-                for (u8_t flightLog = 0; flightLog < 11; ++flightLog) {
-
-                    if (isFlightLogged(flightLog)) {
-
-                        usartDataOut(USART3, flightLog + 0x30);
-                    }
-                }
-                //done sending flight numbers
-                usartDataOut(USART3, 0x0F);
-
-                //wait for user to pick which flight to read
-                while(sercom(USART3)->SPI.INTFLAG.bit.RXC == 0);
-                u8_t flightToRead = usartDataIn(USART3) - 0x30;
-
-
-                u32_t flightStartAddress = getFlightStartAddress(flightToRead);
-                u32_t flightEndAddress = FindFlightEndingAddress(flightToRead);
-
-                //inform of page numbers
-                u16_t pagesToSend = (flightEndAddress  - flightStartAddress) >> 8;
-                usartDataOut(USART3, pagesToSend >> 0);
-                usartDataOut(USART3, pagesToSend >> 8);
-
-                //send flight end address for % full
-                usartDataOut(USART3, flightEndAddress >> 0);
-                usartDataOut(USART3, flightEndAddress >> 8);
-                usartDataOut(USART3, flightEndAddress >> 16);
-
-
-
-                //USART out the flights pages
-                sendTheasePagesToComputer(flightStartAddress, flightEndAddress);
-
-                break;
-            }
-            //user wants to erase chip
-            if (option == 0x45) { // 'E'
-                AT25SFChipErase();
-
-                usartDataOut(USART3, 'E');
-                break;
-            }
-
-            if (option == 0x83 ) { // 'S'
-
-
-            }
-        }
-    }
-
-    startupJingle();
-}
 
 int main(void) {
 
@@ -189,35 +117,10 @@ int main(void) {
     my_altimeter.myFlashMemory.pageLocation = 0x00;
     my_altimeter.myFlashMemory.pageReady = false;
 
+    my_altimeter.myFlightState = flightStatrup;
+    
 
-    /* this looks for a USART connection	 */
-    startUp(&my_altimeter);
-
-    //my_altimeter.myFlightState = flightIdle;
-
-
-    flight(&my_altimeter);
-
-    sampleTaken();
-
-    computeKalmanGains(&my_altimeter.myKalmanFilter);
-
-    u32_t timeNow = millis();
-    if (my_altimeter.myFlightState != flightIdle) {
-        while((millis() - timeNow) < 4000) {
-            sampleTick(&my_altimeter);
-            computeKalmanStates(&my_altimeter);
-            flight(&my_altimeter);
-        }
-
-        findNewFlightStart(&my_altimeter);
-        logFlight(&my_altimeter);
-
-     my_altimeter.myFlightState = flightPad;
-    }
-
-    sampleTaken();
-    writeLog = false;
+	
 
 
     while (1) {
@@ -227,37 +130,8 @@ int main(void) {
             flight(&my_altimeter);
             computeKalmanStates(&my_altimeter);
 
-
-            if (my_altimeter.batFloat < 3.5) {
-                my_altimeter.myFlightState = flightIdle;
-                beep(300);
-                delay_ms(80);
-                beep(300);
-                pinLow(buzzerPin);
-                pinLow(LedPin);
-                TC4->COUNT8.CTRLA.reg = 0;
-                TC5->COUNT8.CTRLA.reg = 0;
-                writeLog = false;
-            }
         }
 
-        if (writeLog) {
-            writeLog = false;
-
-
-
-            logSensors(&my_altimeter);
-
-            if (my_altimeter.myFlashMemory.pageReady) {
-                my_altimeter.myFlashMemory.pageReady = false;
-
-                pinToggle(LedPin);
-                if (my_altimeter.myFlightState != flightIdle) {
-                     u8_t bytesWritten = AT25SEWritePage(my_altimeter.myFlashMemory.currentAddress,my_altimeter.myFlashMemory.pageToWrite);
-                     my_altimeter.myFlashMemory.currentAddress = (my_altimeter.myFlashMemory.currentAddress + 0x100);
-                }
-
-            }
-        }
+        
     }
 }
