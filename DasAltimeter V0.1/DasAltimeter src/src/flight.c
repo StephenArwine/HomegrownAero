@@ -11,7 +11,6 @@ void flight(Altimeter *my_altimeter) {
     case flightStatrup:
 
         my_altimeter->myIMU.gravityOffsetBuffer = 	my_altimeter->myIMU.gravityOffsetBuffer*0.8 + my_altimeter->myIMU.accelZ*0.2;
-        my_altimeter->myIMU.gravityOffsetBufferRaw = 	my_altimeter->myIMU.gravityOffsetBufferRaw*0.8 + my_altimeter->myIMU.accelZRaw*0.2;
         my_altimeter->myBarometer.groundOffsetBuffer = my_altimeter->myBarometer.groundOffsetBuffer*0.8 + my_altimeter->myBarometer.heightCm*0.2;
         my_altimeter->myBarometer.groundTemperatureBuffer = my_altimeter->myBarometer.groundTemperatureBuffer*0.8 + my_altimeter->myBarometer.temperatureCelcus*0.2;
 
@@ -21,7 +20,6 @@ void flight(Altimeter *my_altimeter) {
             my_altimeter->myBarometer.groundOffset = my_altimeter->myBarometer.groundOffsetBuffer;
             my_altimeter->myBarometer.groundTemperature = my_altimeter->myBarometer.groundTemperatureBuffer;
             my_altimeter->myIMU.gravityOffset = my_altimeter->myIMU.gravityOffsetBuffer;
-            my_altimeter->myIMU.gravityOffsetRaw = my_altimeter->myIMU.gravityOffsetBufferRaw;
             my_altimeter->myIMU.offsetBufferTime = millis();
         }
 
