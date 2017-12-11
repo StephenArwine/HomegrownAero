@@ -51,10 +51,6 @@ typedef struct IMU {
 
     double gravityOffsetBuffer;
 
-    u16_t gravityOffsetBufferRaw;
-
-    u16_t gravityOffsetRaw;
-
     float accelX;
 
     float perviousAccelX;
