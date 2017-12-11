@@ -250,8 +250,8 @@ int main(void) {
 
                 pinToggle(LedPin);
                 if (my_altimeter.myFlightState != flightIdle) {
-                u8_t bytesWritten = AT25SEWritePage(my_altimeter.myFlashMemory.currentAddress,my_altimeter.myFlashMemory.pageToWrite);
-                my_altimeter.myFlashMemory.currentAddress = (my_altimeter.myFlashMemory.currentAddress + 0x100);
+                     u8_t bytesWritten = AT25SEWritePage(my_altimeter.myFlashMemory.currentAddress,my_altimeter.myFlashMemory.pageToWrite);
+                     my_altimeter.myFlashMemory.currentAddress = (my_altimeter.myFlashMemory.currentAddress + 0x100);
                 }
 
             }
