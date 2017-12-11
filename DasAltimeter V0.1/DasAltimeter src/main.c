@@ -209,6 +209,8 @@ int main(void) {
 
         findNewFlightStart(&my_altimeter);
         logFlight(&my_altimeter);
+
+     my_altimeter.myFlightState = flightPad;
     }
 
     sampleTaken();
@@ -247,9 +249,10 @@ int main(void) {
                 my_altimeter.myFlashMemory.pageReady = false;
 
                 pinToggle(LedPin);
-
+                if (my_altimeter.myFlightState != flightIdle) {
                 u8_t bytesWritten = AT25SEWritePage(my_altimeter.myFlashMemory.currentAddress,my_altimeter.myFlashMemory.pageToWrite);
                 my_altimeter.myFlashMemory.currentAddress = (my_altimeter.myFlashMemory.currentAddress + 0x100);
+                }
 
             }
         }
