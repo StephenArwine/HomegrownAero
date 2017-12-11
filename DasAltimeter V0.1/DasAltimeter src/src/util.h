@@ -90,6 +90,10 @@ void beep(u16_t toggles);
 void startupJingle();
 
 
+//transfer.c
+void attemptConnection(Altimeter *my_altimeter);
+
+
 //bigBang.c
 void byteOut(Pin SCK_PIN, Pin MOSI_PIN, uint8_t byte);
 uint8_t byteIn(Pin SCK_PIN, Pin MISO_PIN);
