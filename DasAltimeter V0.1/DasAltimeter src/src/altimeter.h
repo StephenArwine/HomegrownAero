@@ -167,6 +167,8 @@ typedef struct Altimeter {
 
     u32_t sampleTick;
 
+u32_t StartupTick;
+
     u32_t tickDelta;
 
 
