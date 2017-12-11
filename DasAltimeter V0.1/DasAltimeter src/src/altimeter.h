@@ -47,9 +47,9 @@ typedef struct IMU {
 
     u32_t offsetBufferTime;
 
-    float gravityOffset;
+    double gravityOffset;
 
-    float gravityOffsetBuffer;
+    double gravityOffsetBuffer;
 
     u16_t gravityOffsetBufferRaw;
 
