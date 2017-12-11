@@ -27,11 +27,7 @@ void computeKalmanGains(kalmanFilter *my_kalmanFilter) {
                               0, 0, 0,
                               0, 0, 0
                             };
-    double	phi[3][3]     = { 1, 0, 0,
-                              0, 1, 0,
-                              0, 0, 1.0
-                           };
-    double  phit[3][3]    = { 1, 0, 0,
+        double  phit[3][3]    = { 1, 0, 0,
                               0, 1, 0,
                               0, 0, 1.0
                             };
@@ -151,17 +147,6 @@ void computeKalmanStates(Altimeter *my_altimeter) {
 
     double accel = (my_altimeter->myIMU.accelZ - my_altimeter->myIMU.gravityOffset) * 32.17417;
     double pressure = my_altimeter->myBarometer.altitudefeet;
-
-    // combind thease next three for readability
-    double	phi[3][3]     = { 1, 0, 0,
-                              0, 1, 0,
-                              0, 0, 1.0
-                           };
-    double dt = 0.008;
-
-    phi[0][1]    = dt;
-    phi[1][2]    = dt;
-    phi[0][2]    = dt*dt/2.0;
 
     if (my_altimeter->myKalmanFilter.est[0] == 0) {
         my_altimeter->myKalmanFilter.est[0] = pressure;
