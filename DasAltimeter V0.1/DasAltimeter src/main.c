@@ -107,7 +107,7 @@ void startUp(Altimeter *my_altimeter) {
 
     u32_t startupTime = millis();
 
-    while((millis() - startupTime) < 15000) {
+    while((millis() - startupTime) < 10000) {
 
         if (USARTconnectionAvaliable()) {
 
