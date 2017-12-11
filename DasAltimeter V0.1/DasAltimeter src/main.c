@@ -200,13 +200,13 @@ int main(void) {
     computeKalmanGains(&my_altimeter.myKalmanFilter);
 
     u32_t timeNow = millis();
-    while((millis() - timeNow) < 4000) {
-        sampleTick(&my_altimeter);
-        computeKalmanStates(&my_altimeter);
-        flight(&my_altimeter);
-    }
-
     if (my_altimeter.myFlightState != flightIdle) {
+        while((millis() - timeNow) < 4000) {
+            sampleTick(&my_altimeter);
+            computeKalmanStates(&my_altimeter);
+            flight(&my_altimeter);
+        }
+
         findNewFlightStart(&my_altimeter);
         logFlight(&my_altimeter);
     }
