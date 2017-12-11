@@ -8,7 +8,7 @@ void attemptConnection(Altimeter *my_altimeter){
 
         if (USARTconnectionAvaliable()) {
 
-            my_altimeter->myFlightState = flightIdle;
+            my_altimeter->myFlightState = flightTest;
 
             //wait for user to tell us what they want
             while(sercom(USART3)->SPI.INTFLAG.bit.RXC == 0);
