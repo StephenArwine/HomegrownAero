@@ -49,6 +49,7 @@ void paToFeetNOAA(Barometer *my_barometer) {
     double exponent = 0.190284;
 
     double altFeet = (1-pow(lower,exponent))*145366.45;
+    my_barometer->altitudefeet = altFeet;
     my_barometer->heightFeet = altFeet;
 
 }

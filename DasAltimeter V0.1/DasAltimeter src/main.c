@@ -157,11 +157,16 @@ void startUp(Altimeter *my_altimeter) {
                 break;
             }
             //user wants to erase chip
-            if (option == 0x45) {
+            if (option == 0x45) { // 'E'
                 AT25SFChipErase();
 
                 usartDataOut(USART3, 'E');
                 break;
+            }
+
+            if (option == 0x83 ) { // 'S'
+
+
             }
         }
     }
@@ -192,10 +197,12 @@ int main(void) {
 
     sampleTaken();
 
+    computeKalmanGains(&my_altimeter.myKalmanFilter);
 
     u32_t timeNow = millis();
-    while((millis() - timeNow) < 3000) {
+    while((millis() - timeNow) < 4000) {
         sampleTick(&my_altimeter);
+        computeKalmanStates(&my_altimeter);
         flight(&my_altimeter);
     }
 
@@ -213,6 +220,8 @@ int main(void) {
         if (takeSample()) {
             sampleTick(&my_altimeter);
             flight(&my_altimeter);
+            computeKalmanStates(&my_altimeter);
+
 
             if (my_altimeter.batFloat < 3.5) {
                 my_altimeter.myFlightState = flightIdle;
@@ -223,12 +232,15 @@ int main(void) {
                 pinLow(LedPin);
                 TC4->COUNT8.CTRLA.reg = 0;
                 TC5->COUNT8.CTRLA.reg = 0;
-				writeLog = false;
+                writeLog = false;
             }
         }
 
         if (writeLog) {
             writeLog = false;
+
+
+
             logSensors(&my_altimeter);
 
             if (my_altimeter.myFlashMemory.pageReady) {

@@ -3,6 +3,8 @@ import twosComp
 import sensorPoint
 import time
 import matplotlib.pyplot as plt
+from kalmanFliter import filter_data_with_kalman
+import numpy
 
 #from sensorPoint import build_sensor_point
 #import sensorPoint
@@ -173,8 +175,16 @@ while ProcessLog:
         # print('A found, page', CurrentPage, ' ,Location', LocationInPage, ',Sample number:', samplenum)
         samplenum += 1
 
-        point, CurrentPage, LocationInPage = sensorPoint.build_sensor_point(data, CurrentPage, pages, LocationInPage)
+        if pointList.__len__() > 0:
+            lastTick = pointList[pointList.__len__() - 1].sampleTick
+        else:
+            lastTick = 0
+
+        point, CurrentPage, LocationInPage = sensorPoint.build_sensor_point(data, CurrentPage, pages, LocationInPage,
+                                                                            lastTick)
         if isinstance(point, SensorPointType): pointList.append(point)
+
+
 
 runningAverageFeet = 0
 averageX = 0
@@ -193,6 +203,9 @@ ax1 = plt.subplot(2, 1, 1)
 ax2 = plt.subplot(2, 1, 2)
 
 x = 0
+
+stdheight = []
+stdaccel = []
 
 previousPoint = sensorPoint.SensorPointType()
 
@@ -217,20 +230,25 @@ for pointToPlot in pointList:
         averageZ = averageZ * 0.6 + pointToPlot.accelZ * 0.4
 
         dt = pointToPlot.sampleTick - previousPoint.sampleTick
-        print('Sample', x, 'tick:', pointToPlot.sampleTick, 'Sample DT:', dt, 'Height Feet:', pointToPlot.heightFeet,
-              'AccelX:',
-              pointToPlot.accelX, 'AccelY:', pointToPlot.accelY, 'AccelZ:', pointToPlot.accelZ)
+        print('Sample', x, 'tick:', pointToPlot.sampleTick, 'Sample DT:', pointToPlot.Dt, 'Height Feet:', pointToPlot.heightFeet,
+            'AccelX:',
+             pointToPlot.accelX, 'AccelY:', pointToPlot.accelY, 'AccelZ:', pointToPlot.accelZ)
 
-    ax1.plot(pointToPlot.sampleTick, averageX, 'r.')
-    ax1.plot(pointToPlot.sampleTick, averageY, 'g.')
-    ax1.plot(pointToPlot.sampleTick, averageZ, 'b.')
+    #ax1.plot(pointToPlot.sampleTick, pointToPlot.accelX, 'r.')
+    #ax1.plot(pointToPlot.sampleTick, pointToPlot.accelY, 'g.')
+    ax1.plot(pointToPlot.sampleTick, pointToPlot.accelZ, 'b.')
 
     ax2.plot(pointToPlot.sampleTick, pointToPlot.heightFeet, 'r.')
-    ax2.plot(pointToPlot.sampleTick, runningAverageFeet, 'g.')
+    #ax2.plot(pointToPlot.sampleTick, runningAverageFeet, 'g.')
 
     previousPoint = pointToPlot
     x += 1
 
+    stdaccel.append(pointToPlot.accelZ)
+    stdheight.append(pointToPlot.heightFeet)
+
+print('accel StdDev ', numpy.std(stdaccel))
+print('height StdDev ', numpy.std(stdheight))
 
 plt.show()
 print('')

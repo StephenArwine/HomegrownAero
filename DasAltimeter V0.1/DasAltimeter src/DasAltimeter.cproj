@@ -231,6 +231,14 @@
       <SubType>compile</SubType>
       <Link>flight.h</Link>
     </Compile>
+    <Compile Include="src\kalmanGains.c">
+      <SubType>compile</SubType>
+      <Link>kalmanGains.c</Link>
+    </Compile>
+    <Compile Include="src\kalmanGains.h">
+      <SubType>compile</SubType>
+      <Link>kalmanGains.h</Link>
+    </Compile>
     <Compile Include="src\log.c">
       <SubType>compile</SubType>
       <Link>log.c</Link>

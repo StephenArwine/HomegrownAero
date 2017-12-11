@@ -28,6 +28,8 @@ typedef struct Barometer {
 
     u32_t heightFeet;
 
+    double altitudefeet;
+
     uint32_t groundOffset;
 
     uint32_t groundOffsetBuffer;
@@ -103,6 +105,17 @@ typedef struct flashMemory {
 
 } flashMemory;
 
+typedef struct kalmanFilter {
+
+    double  kgain[3][2];
+    double est[3];
+    double estp[3];
+
+    int16_t kalmanAccel;
+    uint32_t kalmanAltitude;
+
+} kalmanFilter;
+
 
 typedef struct AnalogAccelerometer {
 
@@ -136,6 +149,8 @@ typedef struct Altimeter {
 
     Barometer myBarometer;
 
+    kalmanFilter myKalmanFilter;
+
     IMU myIMU;
 
     AnalogAccelerometer myAnalogAccelerometer;
@@ -156,7 +171,7 @@ typedef struct Altimeter {
 
     u32_t sampleTick;
 
-    u32_t lastSampleTick;
+    u32_t tickDelta;
 
 
 } Altimeter;

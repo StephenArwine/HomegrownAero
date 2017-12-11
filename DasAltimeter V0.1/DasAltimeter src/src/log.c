@@ -79,17 +79,24 @@ void logSensors(Altimeter *my_altimeter) {
     dataToSend[3] = my_altimeter->sampleTick >> 16;
     dataToSend[4] = my_altimeter->sampleTick >> 24;
 
-    dataToSend[5] = my_altimeter->myBarometer.heightFeet >> 0;
-    dataToSend[6] = my_altimeter->myBarometer.heightFeet >> 8;
-    dataToSend[7] = my_altimeter->myBarometer.heightFeet >> 16;
-    dataToSend[8] = my_altimeter->myBarometer.heightFeet >> 24;
+    //dataToSend[5] = my_altimeter->myBarometer.heightFeet >> 0;
+    //dataToSend[6] = my_altimeter->myBarometer.heightFeet >> 8;
+    //dataToSend[7] = my_altimeter->myBarometer.heightFeet >> 16;
+    //dataToSend[8] = my_altimeter->myBarometer.heightFeet >> 24;
+
+    dataToSend[5] = my_altimeter->myKalmanFilter.kalmanAltitude >> 0;
+    dataToSend[6] = my_altimeter->myKalmanFilter.kalmanAltitude >> 8;
+    dataToSend[7] = my_altimeter->myKalmanFilter.kalmanAltitude >> 16;
+    dataToSend[8] = my_altimeter->myKalmanFilter.kalmanAltitude >> 24;
 
     dataToSend[9] = my_altimeter->myIMU.accelXRaw >> 0;
     dataToSend[10] = my_altimeter->myIMU.accelXRaw >> 8;
     dataToSend[11] = my_altimeter->myIMU.accelYRaw >> 0;
     dataToSend[12] = my_altimeter->myIMU.accelYRaw >> 8;
-    dataToSend[13] = my_altimeter->myIMU.accelZRaw >> 0;
-    dataToSend[14] = my_altimeter->myIMU.accelZRaw >> 8;
+    //dataToSend[13] = my_altimeter->myIMU.accelZRaw >> 0;
+    //dataToSend[14] = my_altimeter->myIMU.accelZRaw >> 8;
+    dataToSend[13] = my_altimeter->myKalmanFilter.kalmanAccel >> 0;
+    dataToSend[14] = my_altimeter->myKalmanFilter.kalmanAccel >> 8;
 
     dataToSend[15] = my_altimeter->myIMU.gyroXRaw >> 0;
     dataToSend[16] = my_altimeter->myIMU.gyroXRaw >> 8;

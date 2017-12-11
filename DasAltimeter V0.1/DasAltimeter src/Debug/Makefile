@@ -51,6 +51,7 @@ C_SRCS +=  \
 ../src/clocks.c \
 ../src/dma.c \
 ../src/flight.c \
+../src/kalmanGains.c \
 ../src/log.c \
 ../src/sample.c \
 ../src/sercom.c
@@ -76,6 +77,7 @@ buzzer.o \
 clocks.o \
 dma.o \
 flight.o \
+kalmanGains.o \
 log.o \
 sample.o \
 sercom.o
@@ -94,6 +96,7 @@ buzzer.o \
 clocks.o \
 dma.o \
 flight.o \
+kalmanGains.o \
 log.o \
 sample.o \
 sercom.o
@@ -112,6 +115,7 @@ buzzer.d \
 clocks.d \
 dma.d \
 flight.d \
+kalmanGains.d \
 log.d \
 sample.d \
 sercom.d
@@ -130,6 +134,7 @@ buzzer.d \
 clocks.d \
 dma.d \
 flight.d \
+kalmanGains.d \
 log.d \
 sample.d \
 sercom.d
@@ -150,6 +155,8 @@ LINKER_SCRIPT_DEP+=  \
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 

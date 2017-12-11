@@ -21,6 +21,8 @@ void sampleTaken() {
 void sampleTick(Altimeter *my_altimeter) {
     SampleBool = false;
 
+	// take last samples time to discover Dt before setting new time
+    my_altimeter->tickDelta = millis() - my_altimeter->sampleTick;
     my_altimeter->sampleTick = millis();
 
     my_altimeter->batV = adc_read(senseBatPin);

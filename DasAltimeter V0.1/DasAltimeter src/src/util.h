@@ -34,6 +34,7 @@ typedef uint8_t SercomId;
 #include <BMI055.h>
 #include <log.h>
 #include <sample.h>
+#include <kalmanGains.h>
 
 //dma.c
 inline static Sercom* sercom(SercomId id) {
