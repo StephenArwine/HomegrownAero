@@ -192,10 +192,7 @@ print('Took:', elapsedTime, 'seconds to read and process', pointList.__len__(), 
 print('Flight Numb:', flight.FlightNumb, 'Buffer Time:', flight.bufferTick, 'Ground Offset:', flight.groundOffset,
       'Ground Temperature', flight.groundTemperature)
 
-plt.figure()
 
-ax1 = plt.subplot(2, 1, 1)
-ax2 = plt.subplot(2, 1, 2)
 
 
 x = 0
@@ -226,10 +223,6 @@ for pointToPlot in pointList:
     accelplot.append(pointToPlot.accelZ)
     heightplot.append(pointToPlot.heightFeet)
 
-    #ax1.plot(pointToPlot.sampleTick, pointToPlot.accelZ, 'b.')
-
-    #ax2.plot(pointToPlot.sampleTick, pointToPlot.heightFeet, 'r.')
-
     previousPoint = pointToPlot
     x += 1
 
@@ -239,9 +232,20 @@ for pointToPlot in pointList:
 #print('accel StdDev ', numpy.std(stdaccel))
 #print('height StdDev ', numpy.std(stdheight))
 
-ax1.plot(tick,accelplot)
-ax2.plot(tick,heightplot)
+#plt.figure()
 
+fig, ax1 = plt.subplots()
+ax2 = ax1.twinx()
+
+ax1.plot(tick,heightplot, color='b')
+ax1.set_xlabel('time (s)')
+ax1.set_ylabel('Height (ft)')
+
+ax2.plot(tick,accelplot, color ='r')
+ax2.set_ylabel('Accel (ft/sec/sec)')
+
+
+fig.tight_layout()
 plt.show()
 print('')
 input('press ENTER to close')
