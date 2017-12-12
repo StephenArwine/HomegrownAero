@@ -15,7 +15,7 @@ void AT25SFWriteEnable() {
 
 bool AT25SFIsReady(){
 	pinLow(cs_mem);
-	dummy_rx = spiDataTransfer(SPI1,OPCODE_READSTATUSREGISTER01);
+	dummy_rx = spiDataTransfer(SPI1,OPCODE_READSTATUS);
 	pinHigh(cs_mem);
 	
 	pinLow(cs_mem);
@@ -38,8 +38,6 @@ void AT25SFChipErase() {
     pinLow(cs_mem);
     dummy_rx = spiDataTransfer(SPI1,OPCODE_CHIP_ERASE);
     pinHigh(cs_mem);
-
-    delay_ms(30000);
 }
 
 uint8_t AT25SFGetByte(uint32_t address) {
