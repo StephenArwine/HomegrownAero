@@ -13,6 +13,22 @@ void AT25SFWriteEnable() {
     pinHigh(cs_mem);
 }
 
+bool AT25SFIsReady(){
+	pinLow(cs_mem);
+	dummy_rx = spiDataTransfer(SPI1,OPCODE_READSTATUSREGISTER01);
+	pinHigh(cs_mem);
+	
+	pinLow(cs_mem);
+	uint8_t _byte = spiDataTransfer(SPI1,dummy_rx);
+	pinHigh(cs_mem);
+	
+	if ( _byte & 0x01 == 0x00){
+	return true;
+	}
+	else {
+	return false;
+	}
+}
 void AT25SFChipErase() {
 
     pinLow(cs_mem);
