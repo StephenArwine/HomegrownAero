@@ -200,8 +200,9 @@ ax2 = plt.subplot(2, 1, 2)
 
 x = 0
 
-stdheight = []
-stdaccel = []
+accelplot = []
+heightplot = []
+tick = []
 
 previousPoint = sensorPoint.SensorPointType()
 
@@ -221,13 +222,13 @@ for pointToPlot in pointList:
             'AccelX:',
              pointToPlot.accelX, 'AccelY:', pointToPlot.accelY, 'AccelZ:', pointToPlot.accelZ)
 
+    tick.append(pointToPlot.sampleTick)
+    accelplot.append(pointToPlot.accelZ)
+    heightplot.append(pointToPlot.heightFeet)
 
-    #ax1.plot(pointToPlot.sampleTick, pointToPlot.accelX, 'r.')
-    #ax1.plot(pointToPlot.sampleTick, pointToPlot.accelY, 'g.')
-    ax1.plot(pointToPlot.sampleTick, pointToPlot.accelZ, 'b.')
+    #ax1.plot(pointToPlot.sampleTick, pointToPlot.accelZ, 'b.')
 
-    ax2.plot(pointToPlot.sampleTick, pointToPlot.heightFeet, 'r.')
-    #ax2.plot(pointToPlot.sampleTick, runningAverageFeet, 'g.')
+    #ax2.plot(pointToPlot.sampleTick, pointToPlot.heightFeet, 'r.')
 
     previousPoint = pointToPlot
     x += 1
@@ -237,6 +238,9 @@ for pointToPlot in pointList:
 
 #print('accel StdDev ', numpy.std(stdaccel))
 #print('height StdDev ', numpy.std(stdheight))
+
+ax1.plot(tick,accelplot)
+ax2.plot(tick,heightplot)
 
 plt.show()
 print('')
