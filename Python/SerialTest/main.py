@@ -18,9 +18,13 @@ ser.port = 'COM14'
 ser.timeout = 5
 
 
+def make_patch_spines_invisible(ax):
+    ax.set_frame_on(True)
+    ax.patch.set_visible(False)
+    for sp in ax.spines.values():
+        sp.set_visible(False)
 
-
-
+		
 class FlightPoint:
     def __init__(self):
         self.FlightNumb = 0
@@ -237,15 +241,29 @@ for pointToPlot in pointList:
 fig, ax1 = plt.subplots()
 ax2 = ax1.twinx()
 
-ax1.plot(tick,heightplot, color='b')
+
+p1, =ax1.plot(tick,heightplot, color='b')
 ax1.set_xlabel('time (s)')
 ax1.set_ylabel('Height (ft)')
 
-ax2.plot(tick,accelplot, color ='r')
+p2, =ax2.plot(tick,accelplot, color ='r')
+ax2.spines["left"].set_position(("axes", -0.4))
+make_patch_spines_invisible(ax2)
+ax2.spines["left"].set_visible(True)
+ax2.yaxis.set_label_position('left')
+ax2.yaxis.set_ticks_position('left')
 ax2.set_ylabel('Accel (ft/sec/sec)')
 
 
-fig.tight_layout()
+tkw = dict(size=4, width=1.5)
+ax1.tick_params(axis='y', colors=p1.get_color(), **tkw)
+ax2.tick_params(axis='y', colors=p2.get_color(), **tkw)
+
+
+ax1.set_zorder(1)
+ax2.set_zorder(2)
+
+#fig.tight_layout()
 plt.show()
 print('')
 input('press ENTER to close')
