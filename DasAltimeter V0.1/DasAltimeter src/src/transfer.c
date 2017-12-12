@@ -56,6 +56,10 @@ void attemptConnection(Altimeter *my_altimeter) {
         if (option == 0x45) { // 'E'
             AT25SFChipErase();
 
+			while(!AT25SFIsReady()){
+			delay_ms(100);
+			}
+
             usartDataOut(USART3, 'E');
             beep(400);
 
