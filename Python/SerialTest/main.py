@@ -186,11 +186,6 @@ while ProcessLog:
 
 
 
-runningAverageFeet = 0
-averageX = 0
-averageY = 0
-averageZ = 0
-
 elapsedTime = (time.clock() - StartTime)
 print('Took:', elapsedTime, 'seconds to read and process', pointList.__len__(), 'data points')
 
@@ -201,6 +196,7 @@ plt.figure()
 
 ax1 = plt.subplot(2, 1, 1)
 ax2 = plt.subplot(2, 1, 2)
+
 
 x = 0
 
@@ -214,25 +210,17 @@ for pointToPlot in pointList:
     pointToPlot.sampleTick = pointToPlot.sampleTick - flight.bufferTick
 
     if x == 0:
-        runningAverageFeet = pointToPlot.heightFeet
 
-        averageX = pointToPlot.accelX
-        averageY = pointToPlot.accelY
-        averageZ = pointToPlot.accelZ
         print('Sample 0 tick:', pointToPlot.sampleTick, 'Height Feet:', pointToPlot.heightFeet, 'AccelX:',
               pointToPlot.accelX, 'AccelY:', pointToPlot.accelY, 'AccelZ:', pointToPlot.accelZ)
 
     elif x > 0:
-        runningAverageFeet = runningAverageFeet * 0.9 + pointToPlot.heightFeet * 0.1
-
-        averageX = averageX * 0.6 + pointToPlot.accelX * 0.4
-        averageY = averageY * 0.6 + pointToPlot.accelY * 0.4
-        averageZ = averageZ * 0.6 + pointToPlot.accelZ * 0.4
 
         dt = pointToPlot.sampleTick - previousPoint.sampleTick
         print('Sample', x, 'tick:', pointToPlot.sampleTick, 'Sample DT:', pointToPlot.Dt, 'Height Feet:', pointToPlot.heightFeet,
             'AccelX:',
              pointToPlot.accelX, 'AccelY:', pointToPlot.accelY, 'AccelZ:', pointToPlot.accelZ)
+
 
     #ax1.plot(pointToPlot.sampleTick, pointToPlot.accelX, 'r.')
     #ax1.plot(pointToPlot.sampleTick, pointToPlot.accelY, 'g.')
@@ -244,11 +232,11 @@ for pointToPlot in pointList:
     previousPoint = pointToPlot
     x += 1
 
-    stdaccel.append(pointToPlot.accelZ)
-    stdheight.append(pointToPlot.heightFeet)
+    #stdaccel.append(pointToPlot.accelZ)
+    #stdheight.append(pointToPlot.heightFeet)
 
-print('accel StdDev ', numpy.std(stdaccel))
-print('height StdDev ', numpy.std(stdheight))
+#print('accel StdDev ', numpy.std(stdaccel))
+#print('height StdDev ', numpy.std(stdheight))
 
 plt.show()
 print('')

@@ -2,6 +2,7 @@
 #include <log.h>
 #include <flight.h>
 #include <boardDefines.h>
+#include <math.h>
 
 
 void makePage(Altimeter *my_altimeter, u8_t bytesToWrite, u8_t *data) {
@@ -62,8 +63,8 @@ void logFlight(Altimeter *my_altimeter) {
     dataToSend[12] = my_altimeter->myBarometer.groundTemperature >> 16;
     dataToSend[13] = my_altimeter->myBarometer.groundTemperature >> 24;
 
-    dataToSend[14] = my_altimeter->myIMU.gravityOffsetRaw >> 0;
-    dataToSend[15] = my_altimeter->myIMU.gravityOffsetRaw >> 8;
+    dataToSend[14] = my_altimeter->myIMU.accelXRaw >> 0;
+    dataToSend[15] = my_altimeter->myIMU.accelXRaw >> 8;
 
     makePage(my_altimeter, bytesToSend, dataToSend);
 }
@@ -95,11 +96,18 @@ void logSensors(Altimeter *my_altimeter) {
     dataToSend[12] = my_altimeter->myIMU.accelYRaw >> 8;
     //dataToSend[13] = my_altimeter->myIMU.accelZRaw >> 0;
     //dataToSend[14] = my_altimeter->myIMU.accelZRaw >> 8;
-    dataToSend[13] = my_altimeter->myKalmanFilter.kalmanAccel >> 0;
-    dataToSend[14] = my_altimeter->myKalmanFilter.kalmanAccel >> 8;
+    volatile u16_t intpart;
+    volatile u16_t fractpart;
 
-    dataToSend[15] = my_altimeter->myIMU.gyroXRaw >> 0;
-    dataToSend[16] = my_altimeter->myIMU.gyroXRaw >> 8;
+    intpart = (int)(my_altimeter->myKalmanFilter.kalmanAccel);
+    float fractional = my_altimeter->myKalmanFilter.kalmanAccel - intpart;
+    fractpart = fractional * 1000;
+
+    dataToSend[13] = fractpart >> 0;
+    dataToSend[14] = fractpart >> 8;
+
+    dataToSend[15] = intpart >> 0;
+    dataToSend[16] = intpart >> 8;
     dataToSend[17] = my_altimeter->myIMU.gyroYRaw >> 0;
     dataToSend[18] = my_altimeter->myIMU.gyroYRaw >> 8;
     dataToSend[19] = my_altimeter->myIMU.gyroZRaw >> 0;

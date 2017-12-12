@@ -4,13 +4,18 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include <kalmanGains.h>
+#include <util.h>
 
 /* default values */
 
 #define  ALTITUDESIGMA	       5.0
 #define  ACCELERATIONSIGMA      2.
 #define  MODELSIGMA		0.6
+
+double	phi[3][3]     = { 1, 0, 0,
+                          0, 1, 0,
+                          0, 0, 1.0
+                       };
 
 double altitude_variance = ALTITUDESIGMA*ALTITUDESIGMA;
 double acceleration_variance = ACCELERATIONSIGMA*ACCELERATIONSIGMA;
@@ -27,7 +32,7 @@ void computeKalmanGains(kalmanFilter *my_kalmanFilter) {
                               0, 0, 0,
                               0, 0, 0
                             };
-        double  phit[3][3]    = { 1, 0, 0,
+    double  phit[3][3]    = { 1, 0, 0,
                               0, 1, 0,
                               0, 0, 1.0
                             };

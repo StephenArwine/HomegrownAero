@@ -107,7 +107,7 @@ typedef struct kalmanFilter {
     double est[3];
     double estp[3];
 
-    int16_t kalmanAccel;
+    float kalmanAccel;
     uint32_t kalmanAltitude;
 
 } kalmanFilter;
@@ -167,7 +167,7 @@ typedef struct Altimeter {
 
     u32_t sampleTick;
 
-u32_t StartupTick;
+    u32_t StartupTick;
 
     u32_t tickDelta;
 

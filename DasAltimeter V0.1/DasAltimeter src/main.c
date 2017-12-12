@@ -108,8 +108,8 @@ int main(void) {
 
     Altimeter my_altimeter;
     my_altimeter.myFlightState = flightStatrup;
-    my_altimeter.myIMU.gravityOffsetBuffer = -1.0
-    my_altimeter.myIMU.gravityOffset = -1.0
+    my_altimeter.myIMU.gravityOffsetBuffer = -1.0;
+    my_altimeter.myIMU.gravityOffset = -1.0;
 
     initMS5803Barometer(&my_altimeter.myBarometer);
     IMUinit();

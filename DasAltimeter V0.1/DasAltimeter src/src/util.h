@@ -34,7 +34,15 @@ typedef uint8_t SercomId;
 #include <BMI055.h>
 #include <log.h>
 #include <sample.h>
-#include <kalmanGains.h>
+
+
+
+//kalman.c
+
+
+void computeKalmanGains(kalmanFilter *my_kalmanFilter);
+void computeKalmanStates(Altimeter *my_altimeter);
+
 
 //dma.c
 inline static Sercom* sercom(SercomId id) {

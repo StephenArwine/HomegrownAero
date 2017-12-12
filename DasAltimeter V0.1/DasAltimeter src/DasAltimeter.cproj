@@ -263,6 +263,10 @@
       <SubType>compile</SubType>
       <Link>sercom.c</Link>
     </Compile>
+    <Compile Include="src\transfer.c">
+      <SubType>compile</SubType>
+      <Link>transfer.c</Link>
+    </Compile>
     <Compile Include="src\util.h">
       <SubType>compile</SubType>
       <Link>util.h</Link>
