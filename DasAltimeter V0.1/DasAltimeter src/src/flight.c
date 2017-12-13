@@ -87,6 +87,7 @@ void flight(Altimeter *my_altimeter) {
 
         if (my_altimeter->batFloat < 3.5) {
             my_altimeter->myFlightState = flightTest;
+            writeFlightEndAddress(my_altimeter)
             delay_ms(80);
             beep(300);
             delay_ms(80);
