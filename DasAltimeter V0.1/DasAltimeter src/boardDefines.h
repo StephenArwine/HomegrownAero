@@ -51,24 +51,6 @@ const static Pin analogAccelPin = {.group = 0, .pin = 7, .chan = 7};
 
 
 #define FLIGHTZEROSTART 0x100
+#define FLIGHTZEROSTART 0x103
 
-#define FLIGHTONESTART 0x103
-
-#define FLIGHTTWOSTART 0x106
-
-#define FLIGHTTHREESTART 0x109
-
-#define FLIGHTFOURSTART 0x10C
-
-#define FLIGHTFIVESTART 0x10F
-
-#define FLIGHTSIXSTART 0x112
-
-#define FLIGHTSEVENSTART 0x115
-
-#define FLIGHTEIGHTSTART 0x118
-
-#define FLIGHTNINESTART 0x11B
-
-#define FLIGHTTENSTART 0x11E
 
