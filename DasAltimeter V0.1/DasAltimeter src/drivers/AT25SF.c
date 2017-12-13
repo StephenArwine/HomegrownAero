@@ -16,10 +16,7 @@ void AT25SFWriteEnable() {
 bool AT25SFIsReady(){
 	pinLow(cs_mem);
 	dummy_rx = spiDataTransfer(SPI1,OPCODE_READSTATUS);
-	pinHigh(cs_mem);
-	
-	pinLow(cs_mem);
-	uint8_t _byte = spiDataTransfer(SPI1,dummy_rx);
+	volatile uint8_t _byte = spiDataTransfer(SPI1,dummy_rx);
 	pinHigh(cs_mem);
 	
 	if ( _byte & 0x01 == 0x00){
