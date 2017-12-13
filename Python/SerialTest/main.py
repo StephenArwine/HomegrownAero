@@ -67,7 +67,7 @@ if handshake == b'H':
         print('')
         print(' Please wait.')
 
-        time.sleep(25)
+        ser.timeout = None
         isWriteDone = ser.read(1)
         if isWriteDone == b'E':
             print('')
