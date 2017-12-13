@@ -22,6 +22,8 @@ void flight(Altimeter *my_altimeter) {
         break;
     case flightIdle:
 
+attemptConnection(my_altimeter);
+
 
         my_altimeter->myIMU.gravityOffsetBuffer = 	my_altimeter->myIMU.gravityOffsetBuffer*0.9 + my_altimeter->myIMU.accelZ*0.1;
         my_altimeter->myBarometer.groundOffsetBuffer = my_altimeter->myBarometer.groundOffsetBuffer*0.1 + my_altimeter->myBarometer.heightCm*0.9;
@@ -43,7 +45,7 @@ void flight(Altimeter *my_altimeter) {
             my_altimeter->myFlightState = flightPad;
         }
 
-        attemptConnection(my_altimeter);
+        
 
 
         if (my_altimeter->batFloat < 3.5) {
