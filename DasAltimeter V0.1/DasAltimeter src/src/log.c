@@ -125,7 +125,7 @@ u32_t getFlightStartAddress(u8_t flightToFind) {
 
     u8_t addressToCheck[3];
 
-    u16_t flightAddressLoc = FLIGHTZEROSTART + (flightToFind * 0x03);
+    u16_t flightAddressLoc = FLIGHTZEROSTART + (flightToFind * 0x06);
 
     AT25SEreadSample(flightAddressLoc, 0x03, addressToCheck);
 
@@ -167,16 +167,28 @@ u32_t findNextBlankPage(u8_t lastFlightStart) {
 
 u32_t FindFlightEndingAddress(u8_t findThisFlightsEnd) {
 
-    u8_t nextFlight = findThisFlightsEnd + 1;
-    u32_t thisFlightsEndingAddress;
+    u8_t addressToCheck[3];
 
-    if (isFlightLogged(nextFlight)) {
-        thisFlightsEndingAddress = getFlightStartAddress(nextFlight) - 0x100;
-    } else {
-        thisFlightsEndingAddress = findNextBlankPage(findThisFlightsEnd) - 0x100;
-    }
-    return thisFlightsEndingAddress;
+    u16_t flightAddressLoc = FLIGHTZEROEND + (findThisFlightsEnd * 0x06);
+
+    AT25SEreadSample(flightAddressLoc, 0x03, addressToCheck);
+
+    u32_t flightEndAddress = addressToCheck[0] << 0 | addressToCheck[1] << 8 | addressToCheck[2] << 16;
+
+    return flightEndAddress;
 }
+
+
+void writeFlightEndAddress(Altimeter *my_altimeter){
+
+	u32_t address = my_altimeter->myFlashMemory.currentAddress;
+
+    u16_t flightAddressLoc = FLIGHTZEROEND + (my_altimeter->flightNumb * 0x06);
+	AT25SFWriteBytes(flightAddressLoc, 3, address);
+
+}
+
+
 
 
 void findNewFlightStart(Altimeter *my_altimeter) {
@@ -186,12 +198,16 @@ void findNewFlightStart(Altimeter *my_altimeter) {
         if (!isFlightLogged(flightNumbToCheck)) {
 
             if (flightNumbToCheck > 0) {
-                u32_t startAddress = findNextBlankPage(flightNumbToCheck - 1) + 0x100;
+			
+			
+                u32_t startAddress = FindFlightEndingAddress(flightNumbToCheck - 1) + 0x100;
+				startAddress = (startAddress >> 8) << 8);
+				
                 my_altimeter->myFlashMemory.currentAddress = startAddress;
 
                 u8_t address[3] = {startAddress >> 16, startAddress >> 8, startAddress >> 0};
 
-                u16_t flightAddressLoc = FLIGHTZEROSTART + (flightNumbToCheck * 0x03);
+                u16_t flightAddressLoc = FLIGHTZEROSTART + (flightNumbToCheck * 0x06);
                 AT25SFWriteBytes(flightAddressLoc, 3, address);
 
                 // for flight 0, starting address is always 0x00100 (beginning of second 4k block)
