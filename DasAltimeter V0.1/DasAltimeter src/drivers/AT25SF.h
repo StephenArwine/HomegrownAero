@@ -62,6 +62,8 @@ void AT25SFWriteEnable();
 
 void AT25SFChipErase();
 
+void AT25SFHoldTillReady();
+
 uint8_t AT25SFGetByte(uint32_t address);
 
 void AT25SFWriteBytes(uint32_t address, u8_t len, uint8_t *bytes);
