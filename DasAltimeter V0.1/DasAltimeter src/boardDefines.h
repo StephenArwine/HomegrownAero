@@ -51,6 +51,6 @@ const static Pin analogAccelPin = {.group = 0, .pin = 7, .chan = 7};
 
 
 #define FLIGHTZEROSTART 0x100
-#define FLIGHTZEROEND 0x103
+#define FLIGHTZEROEND 0x203
 
 

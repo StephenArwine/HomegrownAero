@@ -98,14 +98,10 @@ if handshake == b'H':
 
         pages_to_read = ser.read(2)
 
-        # print(pages_to_read[0] << 0, ' ', pages_to_read[1] << 8)
 
         pages = (pages_to_read[0] << 0) + (pages_to_read[1] << 8)
 
-        # print(pagesToRead)
-        # pages = int.from_bytes(pagesToRead, byteorder='big')
         print('Reading', ((pages * 256) / 1000), 'kilobytes of data.')
-        # print('reading',pages)
 
         flightEndingAddressbytes = ser.read(3)
         flightEndingAddress = (flightEndingAddressbytes[0] << 0) + (flightEndingAddressbytes[1] << 8) + (
@@ -113,9 +109,18 @@ if handshake == b'H':
 
         memoryPercent = (flightEndingAddress / 1048575) * 100
 
-        # print('Memory is', memoryPercent,'% full.')
         print('Memory is {0:2.2f}% full.'.format(memoryPercent))
 
+        flightStartingAddressbytes = ser.read(3)
+        flightStartingAddressbytes = (flightStartingAddressbytes[0] << 0) + (flightStartingAddressbytes[1] << 8) + (
+            flightStartingAddressbytes[2] << 16)
+
+        print('flight starts', hex(flightStartingAddressbytes))
+
+
+        print('flight ends', hex(flightEndingAddress))
+
+    num = 0
 
     for page in range(0, pages):
         PageOfData = []
@@ -176,7 +181,7 @@ while ProcessLog:
 
     # Sensor point decoding
     if data[CurrentPage][LocationInPage] == 0x41:
-        # print('A found, page', CurrentPage, ' ,Location', LocationInPage, ',Sample number:', samplenum)
+        #print('A found, page', CurrentPage, ' ,Location', LocationInPage)
         samplenum += 1
 
         if pointList.__len__() > 0:

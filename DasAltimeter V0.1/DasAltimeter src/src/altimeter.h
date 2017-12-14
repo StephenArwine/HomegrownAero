@@ -95,6 +95,7 @@ typedef struct flashMemory {
 
     u8_t pageLocation;
 
+
     u8_t pageBuffer[256];
 
     bool pageReady;

@@ -125,13 +125,26 @@ u32_t getFlightStartAddress(u8_t flightToFind) {
 
     u8_t addressToCheck[3];
 
-    u16_t flightAddressLoc = FLIGHTZEROSTART + (flightToFind * 0x06);
+    u16_t flightAddressLoc = FLIGHTZEROSTART + (flightToFind * 0x03);
 
     AT25SEreadSample(flightAddressLoc, 0x03, addressToCheck);
 
     u32_t flightStartAddress = addressToCheck[0] << 0 | addressToCheck[1] << 8 | addressToCheck[2] << 16;
 
     return flightStartAddress;
+}
+
+u32_t FindFlightEndingAddress(u8_t findThisFlightsEnd) {
+
+    u8_t addressToCheck[3];
+
+    u16_t flightAddressLoc = FLIGHTZEROEND + (findThisFlightsEnd * 0x03);
+
+    AT25SEreadSample(flightAddressLoc, 0x03, addressToCheck);
+
+    u32_t flightEndAddress = addressToCheck[0] << 0 | addressToCheck[1] << 8 | addressToCheck[2] << 16;
+
+    return flightEndAddress;
 }
 
 bool isFlightLogged(u8_t flightNumbToCheck) {
@@ -146,45 +159,16 @@ bool isFlightLogged(u8_t flightNumbToCheck) {
 }
 
 
-u32_t findNextBlankPage(u8_t lastFlightStart) {
 
-    u32_t byteToCheckAddress = getFlightStartAddress(lastFlightStart);
+void writeFlightEndAddress(Altimeter *my_altimeter) {
 
-    bool flightEndFound = false;
-    while (!flightEndFound) {
+    u32_t endingAddress = my_altimeter->myFlashMemory.currentAddress;
 
-        u8_t byteToCheck = AT25SFGetByte(byteToCheckAddress);
+    u8_t address[3] = {endingAddress >> 0, endingAddress >> 8, endingAddress >> 16};
 
-        if (byteToCheck == 0x41) {
-            byteToCheckAddress += 24;
-        } else if (byteToCheck == 0x46) {
-            byteToCheckAddress += 17;
-        } else if (byteToCheck == 0xFF) {
-            return ((byteToCheckAddress >> 8) << 8);
-        }
-    }
-}
-
-u32_t FindFlightEndingAddress(u8_t findThisFlightsEnd) {
-
-    u8_t addressToCheck[3];
-
-    u16_t flightAddressLoc = FLIGHTZEROEND + (findThisFlightsEnd * 0x06);
-
-    AT25SEreadSample(flightAddressLoc, 0x03, addressToCheck);
-
-    u32_t flightEndAddress = addressToCheck[0] << 0 | addressToCheck[1] << 8 | addressToCheck[2] << 16;
-
-    return flightEndAddress;
-}
-
-
-void writeFlightEndAddress(Altimeter *my_altimeter){
-
-	u32_t address = my_altimeter->myFlashMemory.currentAddress;
-
-    u16_t flightAddressLoc = FLIGHTZEROEND + (my_altimeter->flightNumb * 0x06);
-	AT25SFWriteBytes(flightAddressLoc, 3, address);
+    u16_t flightAddressLoc = FLIGHTZEROEND + (my_altimeter->flightNumb * 0x03);
+    AT25SFWriteBytes(flightAddressLoc, 3, address);
+    delay_ms(10);
 
 }
 
@@ -193,21 +177,21 @@ void writeFlightEndAddress(Altimeter *my_altimeter){
 
 void findNewFlightStart(Altimeter *my_altimeter) {
 
-    for (u8_t flightNumbToCheck = 0; flightNumbToCheck < 11; ++flightNumbToCheck) {
+    for (u8_t flightNumbToCheck = 0; flightNumbToCheck < 20; ++flightNumbToCheck) {
 
         if (!isFlightLogged(flightNumbToCheck)) {
 
             if (flightNumbToCheck > 0) {
-			
-			
-                u32_t startAddress = FindFlightEndingAddress(flightNumbToCheck - 1) + 0x100;
-				startAddress = (startAddress >> 8) << 8);
-				
+
+
+                u32_t startAddress = FindFlightEndingAddress(flightNumbToCheck - 1);
+                delay_ms(5);
+
                 my_altimeter->myFlashMemory.currentAddress = startAddress;
 
-                u8_t address[3] = {startAddress >> 16, startAddress >> 8, startAddress >> 0};
+                u8_t address[3] = {startAddress >> 0, startAddress >> 8, startAddress >> 16};
 
-                u16_t flightAddressLoc = FLIGHTZEROSTART + (flightNumbToCheck * 0x06);
+                u16_t flightAddressLoc = FLIGHTZEROSTART + (flightNumbToCheck * 0x03);
                 AT25SFWriteBytes(flightAddressLoc, 3, address);
 
                 // for flight 0, starting address is always 0x00100 (beginning of second 4k block)

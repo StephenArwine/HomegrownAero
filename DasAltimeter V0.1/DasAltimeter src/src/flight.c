@@ -14,6 +14,8 @@ void flight(Altimeter *my_altimeter) {
 
         computeKalmanGains(&my_altimeter->myKalmanFilter);
 
+        my_altimeter->myIMU.gravityOffset = my_altimeter->myIMU.accelZ;
+        my_altimeter->myBarometer.groundOffset = my_altimeter->myBarometer.altitudefeet;
 
         my_altimeter->StartupTick = millis();
 
@@ -22,12 +24,11 @@ void flight(Altimeter *my_altimeter) {
         break;
     case flightIdle:
 
-attemptConnection(my_altimeter);
 
 
-        my_altimeter->myIMU.gravityOffsetBuffer = 	my_altimeter->myIMU.gravityOffsetBuffer*0.9 + my_altimeter->myIMU.accelZ*0.1;
-        my_altimeter->myBarometer.groundOffsetBuffer = my_altimeter->myBarometer.groundOffsetBuffer*0.1 + my_altimeter->myBarometer.heightCm*0.9;
-        my_altimeter->myBarometer.groundTemperatureBuffer = my_altimeter->myBarometer.groundTemperatureBuffer*0.8 + my_altimeter->myBarometer.temperatureCelcus*0.2;
+        my_altimeter->myIMU.gravityOffsetBuffer = 	my_altimeter->myIMU.gravityOffsetBuffer * 0.8 + my_altimeter->myIMU.accelZ * 0.2;
+        my_altimeter->myBarometer.groundOffsetBuffer = my_altimeter->myBarometer.groundOffsetBuffer * 0.5 + my_altimeter->myBarometer.altitudefeet * 0.5;
+        my_altimeter->myBarometer.groundTemperatureBuffer = my_altimeter->myBarometer.groundTemperatureBuffer * 0.8 + my_altimeter->myBarometer.temperatureCelcus * 0.2;
 
         if ((millis() - my_altimeter->myIMU.offsetBufferTime) > 3000) {
             //recursive filter
@@ -38,18 +39,22 @@ attemptConnection(my_altimeter);
         }
 
 
-        if ((millis() - my_altimeter->StartupTick) > 15000) {
+        if ((millis() - my_altimeter->StartupTick) > 10000) {
             findNewFlightStart(my_altimeter);
             logFlight(my_altimeter);
             startupJingle();
             my_altimeter->myFlightState = flightPad;
+			break;
         }
 
-        
+        attemptConnection(my_altimeter);
+
 
 
         if (my_altimeter->batFloat < 3.5) {
             my_altimeter->myFlightState = flightTest;
+            delay_ms(80);
+            beep(300);
             delay_ms(80);
             beep(300);
             delay_ms(80);
@@ -79,7 +84,8 @@ attemptConnection(my_altimeter);
                 my_altimeter->myFlashMemory.pageReady = false;
 
                 pinToggle(LedPin);
-
+               
+			    AT25SFHoldTillReady();
                 u8_t bytesWritten = AT25SEWritePage(my_altimeter->myFlashMemory.currentAddress,my_altimeter->myFlashMemory.pageToWrite);
                 my_altimeter->myFlashMemory.currentAddress = (my_altimeter->myFlashMemory.currentAddress + 0x100);
 
@@ -89,7 +95,8 @@ attemptConnection(my_altimeter);
 
         if (my_altimeter->batFloat < 3.5) {
             my_altimeter->myFlightState = flightTest;
-            writeFlightEndAddress(my_altimeter)
+            AT25SFHoldTillReady();
+            writeFlightEndAddress(my_altimeter);
             delay_ms(80);
             beep(300);
             delay_ms(80);
