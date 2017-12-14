@@ -78,6 +78,7 @@ void sercomUartInit(SercomId id, u32_t rxpo, u32_t txpo, u32_t baud) {
         = SERCOM_USART_CTRLA_ENABLE
           | SERCOM_USART_CTRLA_MODE_USART_INT_CLK
           | SERCOM_SPI_CTRLA_DORD
+          | SERCOM_USART_CTRLA_SAMPR(2)
           | SERCOM_USART_CTRLA_TXPO(txpo)
           | SERCOM_USART_CTRLA_RXPO(rxpo);
 }
