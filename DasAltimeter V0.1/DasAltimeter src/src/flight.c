@@ -85,7 +85,7 @@ void flight(Altimeter *my_altimeter) {
 
                 pinToggle(LedPin);
                
-			    AT25SFHoldTillReady();
+			    //AT25SFHoldTillReady();
                 u8_t bytesWritten = AT25SEWritePage(my_altimeter->myFlashMemory.currentAddress,my_altimeter->myFlashMemory.pageToWrite);
                 my_altimeter->myFlashMemory.currentAddress = (my_altimeter->myFlashMemory.currentAddress + 0x100);
 
