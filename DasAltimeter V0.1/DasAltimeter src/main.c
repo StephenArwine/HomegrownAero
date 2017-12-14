@@ -115,9 +115,17 @@ int main(void) {
     my_altimeter.myFlashMemory.pageLocation = 0x00;
     my_altimeter.myFlashMemory.pageReady = false;
 
-    
+    computeKalmanGains(&my_altimeter.myKalmanFilter);
 
-	
+    my_altimeter.myIMU.gravityOffset = my_altimeter.myIMU.accelZ;
+    my_altimeter.myBarometer.groundOffset = my_altimeter.myBarometer.altitudefeet;
+
+    my_altimeter.StartupTick = millis();
+
+    my_altimeter.myFlightState = flightStatrup;
+
+	beep(400);
+
 
 
     while (1) {
