@@ -81,7 +81,7 @@ void sercomReset(SercomId id);
 void sercomSpiSlaveInit(SercomId id, u32_t dipo, u32_t dopo, bool cpol, bool cpha);
 void sercomSpiMasterInit(SercomId id, u32_t dipo, u32_t dopo, bool cpol, bool cpha, u8_t baud);
 void sercomI2cMasterInit(SercomId id, u8_t baud);
-void sercomUartInit(SercomId id, u32_t rxpo, u32_t txpo, u32_t baud);
+void sercomUartInit(SercomId id, u32_t rxpo, u32_t txpo, u32_t fBUAD);
 u8_t spiDataTransfer(SercomId id, u8_t data);
 void spiDataOut(SercomId id, u8_t data);
 u8_t spiDataIn(SercomId id);
