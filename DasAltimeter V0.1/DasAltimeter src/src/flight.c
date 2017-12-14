@@ -9,23 +9,7 @@ void flight(Altimeter *my_altimeter) {
 
     switch(my_altimeter->myFlightState) {
     case flightStatrup:
-
-        beep(400);
-
-        computeKalmanGains(&my_altimeter->myKalmanFilter);
-
-        my_altimeter->myIMU.gravityOffset = my_altimeter->myIMU.accelZ;
-        my_altimeter->myBarometer.groundOffset = my_altimeter->myBarometer.altitudefeet;
-
-        my_altimeter->StartupTick = millis();
-
-        my_altimeter->myFlightState = flightIdle;
-
-        break;
-    case flightIdle:
-
-
-
+	
         my_altimeter->myIMU.gravityOffsetBuffer = 	my_altimeter->myIMU.gravityOffsetBuffer * 0.8 + my_altimeter->myIMU.accelZ * 0.2;
         my_altimeter->myBarometer.groundOffsetBuffer = my_altimeter->myBarometer.groundOffsetBuffer * 0.5 + my_altimeter->myBarometer.altitudefeet * 0.5;
         my_altimeter->myBarometer.groundTemperatureBuffer = my_altimeter->myBarometer.groundTemperatureBuffer * 0.8 + my_altimeter->myBarometer.temperatureCelcus * 0.2;
@@ -54,7 +38,7 @@ void flight(Altimeter *my_altimeter) {
 
 
         if (my_altimeter->batFloat < 3.5) {
-            my_altimeter->myFlightState = flightTest;
+            my_altimeter->myFlightState = flightIdle;
             delay_ms(80);
             beep(300);
             delay_ms(80);
@@ -65,6 +49,17 @@ void flight(Altimeter *my_altimeter) {
             pinLow(buzzerPin);
             pinLow(LedPin);
         }
+
+        break;
+    case flightIdle:
+
+	    TC4->COUNT8.CTRLA.reg = 0;
+        TC5->COUNT8.CTRLA.reg = 0;
+		
+		delay_ms(1000);
+		pinToggle(LedPin);
+
+
 
         break;
     case flightPad:
@@ -96,7 +91,7 @@ void flight(Altimeter *my_altimeter) {
         }
 
         if (my_altimeter->batFloat < 3.5) {
-            my_altimeter->myFlightState = flightTest;
+            my_altimeter->myFlightState = flightIdle;
             AT25SFHoldTillReady();
             writeFlightEndAddress(my_altimeter);
             delay_ms(80);
@@ -155,8 +150,6 @@ void flight(Altimeter *my_altimeter) {
         break;
     case flightTest:
 
-        TC4->COUNT8.CTRLA.reg = 0;
-        TC5->COUNT8.CTRLA.reg = 0;
 
 
 
