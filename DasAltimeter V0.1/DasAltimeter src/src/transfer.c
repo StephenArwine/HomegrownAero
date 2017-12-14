@@ -46,11 +46,6 @@ void attemptConnection(Altimeter *my_altimeter) {
             usartDataOut(USART3, flightEndAddress >> 8);
             usartDataOut(USART3, flightEndAddress >> 16);
 
-            usartDataOut(USART3, flightStartAddress >> 0);
-            usartDataOut(USART3, flightStartAddress >> 8);
-            usartDataOut(USART3, flightStartAddress >> 16);
-
-
             //USART out the flights pages
             sendTheasePagesToComputer(flightStartAddress, flightEndAddress);
 
