@@ -13,7 +13,7 @@ from sensorPoint import SensorPointType
 
 
 ser = serial.Serial()
-ser.baudrate = 19200
+ser.baudrate = 115200
 ser.port = 'COM14'
 ser.timeout = 5
 
