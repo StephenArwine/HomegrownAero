@@ -34,9 +34,7 @@ void attemptConnection(Altimeter *my_altimeter) {
 
 
             u32_t flightStartAddress = getFlightStartAddress(flightToRead);
-            delay_ms(10);
             u32_t flightEndAddress = FindFlightEndingAddress(flightToRead) - 0x100;
-            delay_ms(10);
 
             //inform of page numbers
             u16_t pagesToSend = (flightEndAddress  - flightStartAddress) >> 8;
