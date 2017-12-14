@@ -38,6 +38,8 @@ void flight(Altimeter *my_altimeter) {
             my_altimeter->myIMU.offsetBufferTime = millis();
         }
 
+        logSensors(my_altimeter);
+
 
         if ((millis() - my_altimeter->StartupTick) > 10000) {
             findNewFlightStart(my_altimeter);
