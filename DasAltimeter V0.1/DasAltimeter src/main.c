@@ -122,8 +122,6 @@ int main(void) {
 
     my_altimeter.StartupTick = millis();
 
-    my_altimeter.myFlightState = flightStatrup;
-
 	beep(400);
 
 

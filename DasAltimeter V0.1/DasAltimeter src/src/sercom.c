@@ -67,13 +67,14 @@ void sercomSpiMasterInit(SercomId id, u32_t dipo, u32_t dopo, bool cpol, bool cp
 
 
 
-void sercomUartInit(SercomId id, u32_t rxpo, u32_t txpo, u32_t fBAUD) {
+void sercomUartInit(SercomId id, u32_t rxpo, u32_t txpo, int32_t fBAUD) {
 
-    u32_t BAUD = 65536*(1-(8*(fBAUD/(48000000/32))));
+     //float BAUD = 65536*(1-(8*(fBAUD/(48000000/32))));
+			      //65536*(1-(8*(fBAUD/(48000000/32))))
 
     sercomReset(id);
     sercom(id)->USART.CTRLA.reg = SERCOM_USART_CTRLA_MODE_USART_INT_CLK;
-    sercom(id)->USART.BAUD.reg = BAUD;
+    sercom(id)->USART.BAUD.reg = 62180;
     sercom(id)->USART.CTRLB.reg
         = SERCOM_USART_CTRLB_RXEN
           | SERCOM_USART_CTRLB_TXEN;
@@ -81,7 +82,6 @@ void sercomUartInit(SercomId id, u32_t rxpo, u32_t txpo, u32_t fBAUD) {
         = SERCOM_USART_CTRLA_ENABLE
           | SERCOM_USART_CTRLA_MODE_USART_INT_CLK
           | SERCOM_SPI_CTRLA_DORD
-          | SERCOM_USART_CTRLA_SAMPR(2)
           | SERCOM_USART_CTRLA_TXPO(txpo)
           | SERCOM_USART_CTRLA_RXPO(rxpo);
 }

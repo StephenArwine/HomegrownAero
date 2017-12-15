@@ -9,7 +9,7 @@ void flight(Altimeter *my_altimeter) {
 
     switch(my_altimeter->myFlightState) {
     case flightStatrup:
-	
+
         my_altimeter->myIMU.gravityOffsetBuffer = 	my_altimeter->myIMU.gravityOffsetBuffer * 0.8 + my_altimeter->myIMU.accelZ * 0.2;
         my_altimeter->myBarometer.groundOffsetBuffer = my_altimeter->myBarometer.groundOffsetBuffer * 0.5 + my_altimeter->myBarometer.altitudefeet * 0.5;
         my_altimeter->myBarometer.groundTemperatureBuffer = my_altimeter->myBarometer.groundTemperatureBuffer * 0.8 + my_altimeter->myBarometer.temperatureCelcus * 0.2;
@@ -22,7 +22,7 @@ void flight(Altimeter *my_altimeter) {
             my_altimeter->myIMU.offsetBufferTime = millis();
         }
 
-        logSensors(my_altimeter);
+        //logSensors(my_altimeter);
 
 
         if ((millis() - my_altimeter->StartupTick) > 10000) {
@@ -30,7 +30,7 @@ void flight(Altimeter *my_altimeter) {
             logFlight(my_altimeter);
             startupJingle();
             my_altimeter->myFlightState = flightPad;
-			break;
+            break;
         }
 
         attemptConnection(my_altimeter);
@@ -53,11 +53,11 @@ void flight(Altimeter *my_altimeter) {
         break;
     case flightIdle:
 
-	    TC4->COUNT8.CTRLA.reg = 0;
+        TC4->COUNT8.CTRLA.reg = 0;
         TC5->COUNT8.CTRLA.reg = 0;
-		
-		delay_ms(1000);
-		pinToggle(LedPin);
+
+        delay_ms(1000);
+        pinToggle(LedPin);
 
 
 
@@ -81,8 +81,8 @@ void flight(Altimeter *my_altimeter) {
                 my_altimeter->myFlashMemory.pageReady = false;
 
                 pinToggle(LedPin);
-               
-			    //AT25SFHoldTillReady();
+
+                //AT25SFHoldTillReady();
                 u8_t bytesWritten = AT25SEWritePage(my_altimeter->myFlashMemory.currentAddress,my_altimeter->myFlashMemory.pageToWrite);
                 my_altimeter->myFlashMemory.currentAddress = (my_altimeter->myFlashMemory.currentAddress + 0x100);
 
