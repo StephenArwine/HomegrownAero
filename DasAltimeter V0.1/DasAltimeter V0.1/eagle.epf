@@ -470,6 +470,11 @@ Sheet="1"
 
 [Win_3]
 Type="Control Panel"
+<<<<<<< HEAD
+=======
+Loc="0 0 1919 1016"
+State=1
+>>>>>>> parent of 0304c3c... playing with mini altimeter idea
 Number=0
 
 [Desktop]
