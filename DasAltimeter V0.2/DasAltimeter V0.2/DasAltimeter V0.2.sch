@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="8.4.2">
+<eagle version="8.5.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -3372,8 +3372,8 @@ SparkFun Single Axis Accelerometer Breakout - ADXL193 (+/-250g)&lt;/a&gt; (SEN-0
 <description>&lt;b&gt;Molex Connectors&lt;/b&gt;&lt;p&gt;
 &lt;author&gt;Created by librarian@cadsoft.de&lt;/author&gt;</description>
 <packages>
-<package name="22-23-2041" library_version="1">
-<description>.100" (2.54mm) Center Header - 4 Pin</description>
+<package name="22-23-2041" library_version="2">
+<description>&lt;b&gt;KK® 254 Solid Header, Vertical, with Friction Lock, 4 Circuits, Tin (Sn) Plating&lt;/b&gt;&lt;p&gt;&lt;a href =http://www.molex.com/pdm_docs/sd/022232041_sd.pdf&gt;Datasheet &lt;/a&gt;</description>
 <wire x1="-5.08" y1="3.175" x2="5.08" y2="3.175" width="0.254" layer="21"/>
 <wire x1="5.08" y1="3.175" x2="5.08" y2="1.27" width="0.254" layer="21"/>
 <wire x1="5.08" y1="1.27" x2="5.08" y2="-3.175" width="0.254" layer="21"/>
@@ -3403,7 +3403,7 @@ SparkFun Single Axis Accelerometer Breakout - ADXL193 (+/-250g)&lt;/a&gt; (SEN-0
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="22-23-2041" prefix="X" library_version="1">
+<deviceset name="22-23-2041" prefix="X" library_version="2">
 <description>.100" (2.54mm) Center Header - 4 Pin</description>
 <gates>
 <gate name="-1" symbol="MV" x="0" y="2.54" addlevel="always" swaplevel="1"/>
@@ -3437,15 +3437,14 @@ SparkFun Single Axis Accelerometer Breakout - ADXL193 (+/-250g)&lt;/a&gt; (SEN-0
 <package name="PB-5R0H104-R">
 <pad name="+5V" x="0" y="0" drill="0.55" shape="square"/>
 <pad name="GND" x="0" y="7.32" drill="0.55"/>
-<wire x1="0" y1="7.3" x2="2" y2="7.3" width="0.127" layer="21"/>
-<wire x1="0" y1="0" x2="2" y2="0" width="0.127" layer="21"/>
-<wire x1="2" y1="0" x2="2" y2="7.3" width="0.127" layer="21"/>
-<wire x1="2" y1="7.3" x2="2" y2="9" width="0.127" layer="21"/>
-<wire x1="2" y1="0" x2="2" y2="-2" width="0.127" layer="21"/>
-<wire x1="2" y1="-2" x2="15" y2="-2" width="0.127" layer="21"/>
-<wire x1="15" y1="-2" x2="15" y2="9.3" width="0.127" layer="21"/>
-<wire x1="15" y1="9.3" x2="2" y2="9.3" width="0.127" layer="21"/>
-<wire x1="2" y1="9.3" x2="2" y2="9" width="0.127" layer="21"/>
+<wire x1="0" y1="7.3" x2="1.619" y2="7.3" width="0.127" layer="21"/>
+<wire x1="0" y1="0" x2="1.619" y2="0" width="0.127" layer="21"/>
+<wire x1="1.619" y1="0" x2="1.619" y2="7.3" width="0.127" layer="21"/>
+<wire x1="1.619" y1="7.3" x2="1.619" y2="9.3" width="0.127" layer="21"/>
+<wire x1="1.619" y1="0" x2="1.619" y2="-2" width="0.127" layer="21"/>
+<wire x1="1.619" y1="-2" x2="14.111" y2="-2" width="0.127" layer="21"/>
+<wire x1="14.111" y1="-2" x2="14.111" y2="9.3" width="0.127" layer="21"/>
+<wire x1="14.111" y1="9.3" x2="1.619" y2="9.3" width="0.127" layer="21"/>
 </package>
 <package name="SI7232DN">
 <description>Vishay Siliconix SI7232DN-T1-GE3</description>
