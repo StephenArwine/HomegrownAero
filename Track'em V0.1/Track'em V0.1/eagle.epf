@@ -377,6 +377,7 @@ UsedLibraryUrn="urn:adsk.eagle:library:533"
 UsedLibraryUrn="urn:adsk.eagle:library:531"
 UsedLibraryUrn="urn:adsk.eagle:library:534"
 UsedLibraryUrn="urn:adsk.eagle:library:535"
+UsedLibrary="C:/Users/Stephen Arwine/Dropbox/eagle/lib/SparkFun-Eagle-Libraries/SparkFun-Capacitors.lbr"
 
 [Win_1]
 Type="Control Panel"

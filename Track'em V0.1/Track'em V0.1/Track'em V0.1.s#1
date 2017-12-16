@@ -346,11 +346,11 @@ FRAME-LETTER</description>
 <smd name="18" x="0" y="1.78" dx="0.28" dy="0.76" layer="1"/>
 <smd name="19" x="-0.5" y="1.78" dx="0.28" dy="0.76" layer="1"/>
 <smd name="20" x="-1" y="1.78" dx="0.28" dy="0.76" layer="1"/>
-<pad name="P$1" x="-0.75" y="0.75" drill="0.2" diameter="0.4572" stop="no" thermals="no"/>
-<pad name="P$2" x="0.75" y="0.75" drill="0.2" diameter="0.4572" stop="no" thermals="no"/>
-<pad name="P$3" x="0.75" y="-0.75" drill="0.2" diameter="0.4572" stop="no" thermals="no"/>
-<pad name="P$4" x="-0.75" y="-0.75" drill="0.2" diameter="0.4572" stop="no" thermals="no"/>
-<pad name="P$5" x="0" y="0" drill="0.2" diameter="0.4572" stop="no" thermals="no"/>
+<pad name="P$1" x="-0.75" y="0.75" drill="0.254" diameter="0.4572" stop="no" thermals="no"/>
+<pad name="P$2" x="0.75" y="0.75" drill="0.254" diameter="0.4572" stop="no" thermals="no"/>
+<pad name="P$3" x="0.75" y="-0.75" drill="0.254" diameter="0.4572" stop="no" thermals="no"/>
+<pad name="P$4" x="-0.75" y="-0.75" drill="0.254" diameter="0.4572" stop="no" thermals="no"/>
+<pad name="P$5" x="0" y="0" drill="0.254" diameter="0.4572" stop="no" thermals="no"/>
 </package>
 <package name="0433BM15A0001">
 <smd name="2" x="0" y="0.9" dx="1" dy="0.35" layer="1" rot="R90"/>
@@ -4257,9 +4257,8 @@ Example: SX-32S</description>
 <segment>
 <pinref part="MEM" gate="G$1" pin="!CS"/>
 <wire x1="45.72" y1="119.38" x2="48.26" y2="119.38" width="0.1524" layer="91"/>
-<wire x1="48.26" y1="119.38" x2="50.8" y2="119.38" width="0.1524" layer="91"/>
 <junction x="48.26" y="119.38"/>
-<label x="50.8" y="119.38" size="1.27" layer="95" xref="yes"/>
+<label x="48.26" y="119.38" size="1.27" layer="95" xref="yes"/>
 <pinref part="R5" gate="G$1" pin="1"/>
 </segment>
 <segment>
@@ -4467,26 +4466,16 @@ Example: SX-32S</description>
 <wire x1="66.04" y1="22.86" x2="66.04" y2="27.94" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$19" class="0">
-<segment>
-<pinref part="U$1" gate="G$1" pin="XOSC_Q1"/>
-<pinref part="C13" gate="G$1" pin="2"/>
-<wire x1="66.04" y1="50.8" x2="68.58" y2="48.26" width="0.1524" layer="91"/>
-<pinref part="Y1" gate="G$1" pin="2"/>
-<wire x1="68.58" y1="48.26" x2="66.04" y2="43.18" width="0.1524" layer="91"/>
-<junction x="68.58" y="48.26"/>
-</segment>
-</net>
 <net name="N$20" class="0">
 <segment>
 <pinref part="U$1" gate="G$1" pin="XOSC_Q2"/>
+<wire x1="76.2" y1="48.26" x2="76.2" y2="40.64" width="0.1524" layer="91"/>
+<wire x1="76.2" y1="40.64" x2="66.04" y2="40.64" width="0.1524" layer="91"/>
 <pinref part="C14" gate="G$1" pin="1"/>
-<wire x1="76.2" y1="50.8" x2="73.66" y2="48.26" width="0.1524" layer="91"/>
-<wire x1="73.66" y1="48.26" x2="74.676" y2="46.482" width="0.1524" layer="91"/>
-<wire x1="74.676" y1="46.482" x2="74.676" y2="40.64" width="0.1524" layer="91"/>
-<wire x1="74.676" y1="40.64" x2="66.04" y2="40.64" width="0.1524" layer="91"/>
+<wire x1="76.2" y1="50.8" x2="76.2" y2="48.26" width="0.1524" layer="91"/>
 <pinref part="Y1" gate="G$1" pin="1"/>
-<junction x="73.66" y="48.26"/>
+<wire x1="73.66" y1="48.26" x2="76.2" y2="48.26" width="0.1524" layer="91"/>
+<junction x="76.2" y="48.26"/>
 </segment>
 </net>
 <net name="CNT" class="0">
@@ -4545,6 +4534,17 @@ Example: SX-32S</description>
 <wire x1="45.72" y1="170.18" x2="45.72" y2="167.64" width="0.1524" layer="91"/>
 <junction x="45.72" y="170.18"/>
 <label x="40.64" y="170.18" size="1.778" layer="95" rot="R180"/>
+</segment>
+</net>
+<net name="N$4" class="0">
+<segment>
+<pinref part="U$1" gate="G$1" pin="XOSC_Q1"/>
+<pinref part="C13" gate="G$1" pin="2"/>
+<wire x1="66.04" y1="43.18" x2="66.04" y2="48.26" width="0.1524" layer="91"/>
+<pinref part="Y1" gate="G$1" pin="2"/>
+<wire x1="66.04" y1="48.26" x2="66.04" y2="50.8" width="0.1524" layer="91"/>
+<wire x1="68.58" y1="48.26" x2="66.04" y2="48.26" width="0.1524" layer="91"/>
+<junction x="66.04" y="48.26"/>
 </segment>
 </net>
 </nets>
