@@ -2,6 +2,7 @@ import twosComp
 from twosComp import twos_complement
 import time
 
+sensorPointLength = 23
 
 class FlightPointType:
     def __init__(self):
@@ -65,14 +66,14 @@ def build_flight_point(data, CurrentPage, pages, LocationInPage):
 def build_sensor_point(data, currentPage, pages, locationInPage, lastTick):
     point = SensorPointType()
 
-    if (locationInPage + 24) > 255:
+    if (locationInPage + sensorPointLength + 1) > 255:
 
         if (currentPage + 1) >= pages:
             ProcessLog = False
             return 0, currentPage + 1, 0
 
         sensor_sample_part = data[currentPage][locationInPage:255]
-        sensor_sample = sensor_sample_part + data[currentPage + 1][0:(23 - (256 - locationInPage))]
+        sensor_sample = sensor_sample_part + data[currentPage + 1][0:(sensorPointLength - (256 - locationInPage))]
 
         point.sampleTick = int.from_bytes(sensor_sample[1:4], byteorder='little')
         point.Dt = point.sampleTick - lastTick
@@ -92,13 +93,13 @@ def build_sensor_point(data, currentPage, pages, locationInPage, lastTick):
         point.gyroZ = twos_complement(sensor_sample[19], sensor_sample[20]) * 0.0078125  # Gyro Z conv
 
         currentPage += 1
-        locationInPage -= 232  # rollover + 24
+        locationInPage -= (0xff - sensorPointLength)
 
         # print('Reading page ', currentPage, ' starting Location ', locationInPage, 'point',
         #      hex(data[currentPage][locationInPage]))
 
     else:
-        sensor_sample = data[currentPage][locationInPage:locationInPage + 23]
+        sensor_sample = data[currentPage][locationInPage:locationInPage + sensorPointLength]
 
         point.sampleTick = int.from_bytes(sensor_sample[1:4], byteorder='little')
         point.Dt = point.sampleTick - lastTick
@@ -117,7 +118,7 @@ def build_sensor_point(data, currentPage, pages, locationInPage, lastTick):
         point.gyroY = twos_complement(sensor_sample[17], sensor_sample[18]) * 0.0078125  # Accel Z conv
         point.gyroZ = twos_complement(sensor_sample[19], sensor_sample[20]) * 0.0078125  # Accel Z conv
 
-        locationInPage += 24
+        locationInPage += sensorPointLength + 1
 
     return point, currentPage, locationInPage
 
