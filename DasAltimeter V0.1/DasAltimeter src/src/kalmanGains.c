@@ -12,10 +12,11 @@
 #define  ACCELERATIONSIGMA      2.0
 #define  MODELSIGMA		0.6
 
-double	phi[3][3]     = { 1, 0, 0,
-                          0, 1, 0,
-                          0, 0, 1.0
-                       };
+double	phi[3][3]     = {
+    {1, 0, 0},
+    {0, 1, 0},
+    {0, 0, 1.0}
+};
 
 double altitude_variance = ALTITUDESIGMA*ALTITUDESIGMA;
 double acceleration_variance = ACCELERATIONSIGMA*ACCELERATIONSIGMA;
@@ -24,18 +25,21 @@ double model_variance  = MODELSIGMA*MODELSIGMA;
 void computeKalmanGains(kalmanFilter *my_kalmanFilter) {
     int     i, j, k, notdone;
 
-    double	pest[3][3]    = { 2, 0, 0,
-                              0, 9, 0,
-                              0, 0, 9
-                           };
-    double  pestp[3][3]   = { 0, 0, 0,
-                              0, 0, 0,
-                              0, 0, 0
-                            };
-    double  phit[3][3]    = { 1, 0, 0,
-                              0, 1, 0,
-                              0, 0, 1.0
-                            };
+    double	pest[3][3]    = {
+        {2, 0, 0},
+        {0, 9, 0},
+        {0, 0, 9}
+    };
+    double  pestp[3][3]   = {
+        {0, 0, 0},
+        {0, 0, 0},
+        {0, 0, 0}
+    };
+    double  phit[3][3]    = {
+        {1, 0, 0},
+        {0, 1, 0},
+        {0, 0, 1.0}
+    };
     double  kgain[3][2], lastkgain[3][2];
     double  dt, det;
     double	term[3][3];
@@ -174,8 +178,9 @@ void computeKalmanStates(Altimeter *my_altimeter) {
     my_altimeter->myKalmanFilter.est[1] = my_altimeter->myKalmanFilter.estp[1] + my_altimeter->myKalmanFilter.kgain[1][0] * alt_inovation + my_altimeter->myKalmanFilter.kgain[1][1] * accel_inovation;
     my_altimeter->myKalmanFilter.est[2] = my_altimeter->myKalmanFilter.estp[2] + my_altimeter->myKalmanFilter.kgain[2][0] * alt_inovation + my_altimeter->myKalmanFilter.kgain[2][1] * accel_inovation;
 
-    my_altimeter->myKalmanFilter.kalmanAccel = my_altimeter->myKalmanFilter.est[2];
-    my_altimeter->myKalmanFilter.kalmanAltitude = my_altimeter->myKalmanFilter.est[0];
+    my_altimeter->Acceleration = my_altimeter->myKalmanFilter.est[2];
+    my_altimeter->Velocity = my_altimeter->myKalmanFilter.est[1];
+    my_altimeter->Altitude = my_altimeter->myKalmanFilter.est[0];
 
 
 }

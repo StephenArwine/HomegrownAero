@@ -108,10 +108,25 @@ typedef struct kalmanFilter {
     double est[3];
     double estp[3];
 
-    float kalmanAccel;
-    uint32_t kalmanAltitude;
+
 
 } kalmanFilter;
+
+typedef struct voltages {
+
+    u16_t batV;
+
+    float batFloat;
+
+    u16_t senseA;
+
+    u16_t senseB;
+
+    u16_t senseC;
+
+    u16_t senseD;
+
+} voltages;
 
 
 typedef struct AnalogAccelerometer {
@@ -142,6 +157,8 @@ typedef struct Altimeter {
 
     enum flightState myFlightState;
 
+    u32_t maxAltitude;
+
     u8_t flightNumb;
 
     Barometer myBarometer;
@@ -154,23 +171,20 @@ typedef struct Altimeter {
 
     flashMemory myFlashMemory;
 
-    u16_t batV;
+    voltages myVoltages;
 
-    float batFloat;
-
-    u16_t senseA;
-
-    u16_t senseB;
-
-    u16_t senseC;
-
-    u16_t senseD;
 
     u32_t sampleTick;
 
     u32_t StartupTick;
 
     u32_t tickDelta;
+
+    float Acceleration;
+
+    uint32_t Altitude;
+
+    float Velocity;
 
 
 } Altimeter;

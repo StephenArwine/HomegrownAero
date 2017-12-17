@@ -37,7 +37,7 @@ void flight(Altimeter *my_altimeter) {
 
 
 
-        if (my_altimeter->batFloat < 3.5) {
+        if (my_altimeter->myVoltages.batFloat < 3.5) {
             my_altimeter->myFlightState = flightIdle;
             delay_ms(80);
             beep(300);
@@ -53,11 +53,11 @@ void flight(Altimeter *my_altimeter) {
         break;
     case flightIdle:
 
-        TC4->COUNT8.CTRLA.reg = 0;
-        TC5->COUNT8.CTRLA.reg = 0;
+        //TC4->COUNT8.CTRLA.reg = 0;
+        //TC5->COUNT8.CTRLA.reg = 0;
 
-        delay_ms(1000);
-        pinToggle(LedPin);
+        //delay_ms(1000);
+        //pinToggle(LedPin);
 
 
 
@@ -90,7 +90,7 @@ void flight(Altimeter *my_altimeter) {
             }
         }
 
-        if (my_altimeter->batFloat < 3.5) {
+        if (my_altimeter->myVoltages.batFloat < 3.5) {
             my_altimeter->myFlightState = flightIdle;
             AT25SFHoldTillReady();
             writeFlightEndAddress(my_altimeter);

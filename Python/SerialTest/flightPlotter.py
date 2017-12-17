@@ -20,16 +20,13 @@ def PlotFlight(pointList, flight):
 
         if x == 0:
 
-            print('Sample 0 tick:', pointToPlot.sampleTick, 'Height Feet:', pointToPlot.heightFeet, 'AccelX:',
-                  pointToPlot.accelX, 'AccelY:', pointToPlot.accelY, 'AccelZ:', pointToPlot.accelZ)
+            print('Sample 0 tick:', pointToPlot.sampleTick, 'Height Feet:', 'Velocity:', pointToPlot.velocity, 'AccelZ:', pointToPlot.accelZ)
 
         elif x > 0:
 
             dt = pointToPlot.sampleTick - previousPoint.sampleTick
             print('Sample', x, 'tick:', pointToPlot.sampleTick, 'Sample DT:', pointToPlot.Dt, 'Height Feet:',
-                  pointToPlot.heightFeet,
-                  'AccelX:',
-                  pointToPlot.accelX, 'AccelY:', pointToPlot.accelY, 'AccelZ:', pointToPlot.accelZ)
+                  pointToPlot.heightFeet, 'Velocity:', pointToPlot.velocity, 'AccelZ:', pointToPlot.accelZ)
 
         tick.append(pointToPlot.sampleTick / 1000)
         accelplot.append(pointToPlot.accelZ / 32.17417)
@@ -46,17 +43,23 @@ def PlotFlight(pointList, flight):
 
     fig, ax1 = plt.subplots()
     ax2 = ax1.twinx()
+    ax3 = ax2.twinx()
 
     p1, = ax1.plot(tick, heightplot, color='b')
     ax1.set_xlabel('time (s)')
     ax1.set_ylabel('Height (ft)')
     ax2.set_ylabel('Accel (g)')
+    ax3.set_ylabel('Velocity (ft/s)')
 
     ax2.spines["left"].set_position(("axes", -0.1))
     # ax1.spines["left"].set_position(("axes", -0.2))
 
+    ax3.spines["left"].set_position(("axes", -0.2))
+
 
     p2, = ax2.plot(tick, accelplot, color='r')
+    p3, = ax3.plot(tick, accelplot, color='g')
+
 
     # make_patch_spines_invisible(ax1)
     # make_patch_spines_invisible(ax2)
@@ -68,16 +71,22 @@ def PlotFlight(pointList, flight):
     # ax2.spines["left"].set_visible(True)
     ax2.yaxis.set_label_position('left')
     ax2.yaxis.set_ticks_position('left')
-    ax2.set_ylim(-.5, 2)
+    ax2.set_ylim(-.5, 1.5)
+
+    ax3.yaxis.set_label_position('left')
+    ax3.yaxis.set_ticks_position('left')
+    #ax3.set_ylim(-.5, 1.5)
 
     tkw = dict(size=4, width=1.5)
     ax1.tick_params(axis='y', colors=p1.get_color(), **tkw)
     ax2.tick_params(axis='y', colors=p2.get_color(), **tkw)
+    ax3.tick_params(axis='y', colors=p3.get_color(), **tkw)
+
 
     ax1.set_zorder(1)
     ax2.set_zorder(2)
+    ax3.set_zorder(3)
+
 
     fig.tight_layout()
     plt.show()
-    print('')
-    input('press ENTER to close')

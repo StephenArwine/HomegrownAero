@@ -95,7 +95,7 @@ void init() {
     sercomSpiMasterInit(SPI1, 3, 0, 0, 0, 0x00);
 
     sercomClockEnable(USART3, 4, 8);
-    sercomUartInit(USART3,1,0,115200);
+    sercomUartInit(USART3,1,0,19200);
 
     TC4Init();
     TC5Init();

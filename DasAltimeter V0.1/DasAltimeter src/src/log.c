@@ -80,34 +80,44 @@ void logSensors(Altimeter *my_altimeter) {
     dataToSend[3] = my_altimeter->sampleTick >> 16;
     dataToSend[4] = my_altimeter->sampleTick >> 24;
 
+    dataToSend[5] = my_altimeter->Altitude >> 0;
+    dataToSend[6] = my_altimeter->Altitude >> 8;
+    dataToSend[7] = my_altimeter->Altitude >> 16;
+    dataToSend[8] = my_altimeter->Altitude >> 24;
+
+    float fractionalAccel = my_altimeter->Acceleration - (int16_t)(my_altimeter->Acceleration);
+    u16_t fractAccelPart = fractionalAccel * 1000;
+
+    dataToSend[9] = (int16_t)(my_altimeter->Acceleration) >> 0;
+    dataToSend[10] = (int16_t)(my_altimeter->Acceleration) >> 8;
+    dataToSend[11] = fractAccelPart >> 0;
+    dataToSend[12] = fractAccelPart >> 8;
+
+
+    float fractionalVelocity = my_altimeter->Velocity - (int16_t)(my_altimeter->Velocity);
+    u16_t fractVelocityPart = fractionalVelocity * 1000;
+
+    dataToSend[13] = (int16_t)(my_altimeter->Velocity) >> 0;
+    dataToSend[14] = (int16_t)(my_altimeter->Velocity) >> 8;
+    dataToSend[15] = fractVelocityPart >> 0;
+    dataToSend[16] = fractVelocityPart >> 8;
+
     //dataToSend[5] = my_altimeter->myBarometer.heightFeet >> 0;
     //dataToSend[6] = my_altimeter->myBarometer.heightFeet >> 8;
     //dataToSend[7] = my_altimeter->myBarometer.heightFeet >> 16;
     //dataToSend[8] = my_altimeter->myBarometer.heightFeet >> 24;
 
-    dataToSend[5] = my_altimeter->myKalmanFilter.kalmanAltitude >> 0;
-    dataToSend[6] = my_altimeter->myKalmanFilter.kalmanAltitude >> 8;
-    dataToSend[7] = my_altimeter->myKalmanFilter.kalmanAltitude >> 16;
-    dataToSend[8] = my_altimeter->myKalmanFilter.kalmanAltitude >> 24;
 
-    dataToSend[9] = my_altimeter->myIMU.accelXRaw >> 0;
-    dataToSend[10] = my_altimeter->myIMU.accelXRaw >> 8;
-    dataToSend[11] = my_altimeter->myIMU.accelYRaw >> 0;
-    dataToSend[12] = my_altimeter->myIMU.accelYRaw >> 8;
+
+    //dataToSend[9] = my_altimeter->myIMU.accelXRaw >> 0;
+    //dataToSend[10] = my_altimeter->myIMU.accelXRaw >> 8;
+    //dataToSend[11] = my_altimeter->myIMU.accelYRaw >> 0;
+    //dataToSend[12] = my_altimeter->myIMU.accelYRaw >> 8;
     //dataToSend[13] = my_altimeter->myIMU.accelZRaw >> 0;
     //dataToSend[14] = my_altimeter->myIMU.accelZRaw >> 8;
-    volatile u16_t intpart;
-    volatile u16_t fractpart;
 
-    intpart = (int)(my_altimeter->myKalmanFilter.kalmanAccel);
-    float fractional = my_altimeter->myKalmanFilter.kalmanAccel - intpart;
-    fractpart = fractional * 1000;
 
-    dataToSend[13] = fractpart >> 0;
-    dataToSend[14] = fractpart >> 8;
 
-    dataToSend[15] = intpart >> 0;
-    dataToSend[16] = intpart >> 8;
     dataToSend[17] = my_altimeter->myIMU.gyroYRaw >> 0;
     dataToSend[18] = my_altimeter->myIMU.gyroYRaw >> 8;
     dataToSend[19] = my_altimeter->myIMU.gyroZRaw >> 0;
@@ -125,7 +135,7 @@ u32_t getFlightStartAddress(u8_t flightToFind) {
 
     u8_t addressToCheck[3];
 
-    u16_t flightAddressLoc = FLIGHTZEROSTART + (flightToFind * 0x03);
+    u16_t flightAddressLoc = FLIGHTZEROSTART + (flightToFind * 0x06);
 
     AT25SEreadSample(flightAddressLoc, 0x03, addressToCheck);
 
@@ -138,7 +148,7 @@ u32_t FindFlightEndingAddress(u8_t findThisFlightsEnd) {
 
     u8_t addressToCheck[3];
 
-    u16_t flightAddressLoc = FLIGHTZEROEND + (findThisFlightsEnd * 0x03);
+    u16_t flightAddressLoc = FLIGHTZEROEND + (findThisFlightsEnd * 0x06);
 
     AT25SEreadSample(flightAddressLoc, 0x03, addressToCheck);
 
@@ -166,7 +176,7 @@ void writeFlightEndAddress(Altimeter *my_altimeter) {
 
     u8_t address[3] = {endingAddress >> 0, endingAddress >> 8, endingAddress >> 16};
 
-    u16_t flightAddressLoc = FLIGHTZEROEND + (my_altimeter->flightNumb * 0x03);
+    u16_t flightAddressLoc = FLIGHTZEROEND + (my_altimeter->flightNumb * 0x06);
     AT25SFWriteBytes(flightAddressLoc, 3, address);
     delay_ms(10);
 
@@ -191,7 +201,7 @@ void findNewFlightStart(Altimeter *my_altimeter) {
 
                 u8_t address[3] = {startAddress >> 0, startAddress >> 8, startAddress >> 16};
 
-                u16_t flightAddressLoc = FLIGHTZEROSTART + (flightNumbToCheck * 0x03);
+                u16_t flightAddressLoc = FLIGHTZEROSTART + (flightNumbToCheck * 0x06);
                 AT25SFWriteBytes(flightAddressLoc, 3, address);
 
                 // for flight 0, starting address is always 0x00100 (beginning of second 4k block)

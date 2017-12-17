@@ -7,6 +7,8 @@ from kalmanFliter import filter_data_with_kalman
 from flightPlotter import PlotFlight
 import numpy
 from sensorPoint import processDataLog
+import csv
+
 
 # from sensorPoint import build_sensor_point
 # import sensorPoint
@@ -15,7 +17,7 @@ from sensorPoint import SensorPointType
 from sensorPoint import FlightPointType
 
 ser = serial.Serial()
-ser.baudrate = 19200
+ser.baudrate = 115200
 ser.port = 'COM14'
 ser.timeout = 5
 
@@ -34,6 +36,25 @@ data = []
 
 sensor_sample = 0
 sensor_sample_part = 0
+
+
+def saveFlightData(pointList, flight):
+
+    myFlile = open('logs/flightLog.csv', 'w')
+
+    with myFlile:
+        #fieldnames = ['Sample Tick', 'Height Feet',' Acceleration X']
+        # writer = csv.DictWriter(myFlile, fieldnames=fieldnames)
+
+        writer = csv.writer(myFlile)
+
+        writer.writerow(['Sample Tick', 'Height Feet',' Acceleration X'])
+
+        for point in pointList:
+            row = [point.sampleTick, point.heightFeet, point.accelX]
+            writer.writerow(row)
+
+    print('done')
 
 
 def DownloadFlightData():
@@ -77,6 +98,13 @@ def DownloadFlightData():
 
     pointList, flight = processDataLog(data, pages, StartTime)
     PlotFlight(pointList, flight)
+
+    print('Would you like to save this flight data? [Y/N]')
+
+    savechoice = input(' ').upper()
+
+    if savechoice == 'Y':
+        saveFlightData(pointList, flight)
 
 
 def EraseChip():

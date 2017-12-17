@@ -21,18 +21,19 @@ void sampleTaken() {
 void sampleTick(Altimeter *my_altimeter) {
     SampleBool = false;
 
-	// take last samples time to discover Dt before setting new time
+    // take last samples time to discover Dt before setting new time
     my_altimeter->tickDelta = millis() - my_altimeter->sampleTick;
     my_altimeter->sampleTick = millis();
 
-    my_altimeter->batV = adc_read(senseBatPin);
-    my_altimeter->batV = my_altimeter->batV;
-    my_altimeter->batFloat = my_altimeter->batV * 0.0019;
+    my_altimeter->myVoltages.batV = adc_read(senseBatPin);
+    my_altimeter->myVoltages.batV = my_altimeter->myVoltages.batV;
+    my_altimeter->myVoltages.batFloat = my_altimeter->myVoltages.batV * 0.0019;
 
-    my_altimeter->senseA = adc_read(senseAPin);
-    my_altimeter->senseB = adc_read(senseBPin);
-    my_altimeter->senseC = adc_read(senseCPin);
-    my_altimeter->senseD = adc_read(senseDPin);
+
+    my_altimeter->myVoltages.senseA = adc_read(senseAPin);
+    my_altimeter->myVoltages.senseB = adc_read(senseBPin);
+    my_altimeter->myVoltages.senseC = adc_read(senseCPin);
+    my_altimeter->myVoltages.senseD = adc_read(senseDPin);
 
     my_altimeter->myAnalogAccelerometer.analogRaw = adc_read(analogAccelPin);
     my_altimeter->myAnalogAccelerometer.analogAccel = (my_altimeter->myAnalogAccelerometer.analogRaw - 3900) * -0.0154;

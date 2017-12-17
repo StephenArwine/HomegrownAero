@@ -69,12 +69,12 @@ void sercomSpiMasterInit(SercomId id, u32_t dipo, u32_t dopo, bool cpol, bool cp
 
 void sercomUartInit(SercomId id, u32_t rxpo, u32_t txpo, int32_t fBAUD) {
 
-     //float BAUD = 65536*(1-(8*(fBAUD/(48000000/32))));
-			      //65536*(1-(8*(fBAUD/(48000000/32))))
-
+    //float BAUD = 65536*(1-(16*(115200/(48000000/8))));
+	
+	
     sercomReset(id);
     sercom(id)->USART.CTRLA.reg = SERCOM_USART_CTRLA_MODE_USART_INT_CLK;
-    sercom(id)->USART.BAUD.reg = 62180;
+    sercom(id)->USART.BAUD.reg = 45403;
     sercom(id)->USART.CTRLB.reg
         = SERCOM_USART_CTRLB_RXEN
           | SERCOM_USART_CTRLB_TXEN;
