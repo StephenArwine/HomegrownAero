@@ -8,6 +8,7 @@ from flightPlotter import PlotFlight
 import numpy
 from sensorPoint import processDataLog
 import csv
+import sys
 
 
 # from sensorPoint import build_sensor_point
@@ -29,8 +30,9 @@ def make_patch_spines_invisible(ax):
         sp.set_visible(False)
 
 
-pointList = []
-flight = FlightPointType()
+#pointList = []
+#eventList = []
+#flight = FlightPointType()
 
 data = []
 
@@ -48,10 +50,10 @@ def saveFlightData(pointList, flight):
 
         writer = csv.writer(myFlile)
 
-        writer.writerow(['Sample Tick', 'Height Feet',' Acceleration X'])
+        writer.writerow(['Sample Tick', 'Height Feet',' Acceleration Z', 'Velocity'])
 
         for point in pointList:
-            row = [point.sampleTick, point.heightFeet, point.accelX]
+            row = [point.sampleTick, point.heightFeet, point.accelZ, point.velocity]
             writer.writerow(row)
 
     print('done')
@@ -96,8 +98,8 @@ def DownloadFlightData():
 
     ser.close()
 
-    pointList, flight = processDataLog(data, pages, StartTime)
-    PlotFlight(pointList, flight)
+    pointList, flight, eventList = processDataLog(data, pages, StartTime)
+    PlotFlight(pointList, flight, eventList)
 
     print('Would you like to save this flight data? [Y/N]')
 
@@ -117,7 +119,6 @@ def EraseChip():
     if isWriteDone == b'E':
         print('')
         print('Chip erased')
-        input('press ENTER to Continue')
     ser.close()
 
 
@@ -128,6 +129,9 @@ def LoadSavedData():
 
 def resetAltimeter():
     print(' Attempting reset')
+    ser.open()
+    ser.write(b'R')
+    ser.close()
 
 
 def connectToAltimeter():
@@ -160,6 +164,9 @@ def connectToAltimeter():
 
 running = 1
 while running:
+
+    data.clear()
+
     print(' ')
     print(' What would you like to do?')
     print('     L    Load saved Flight Data.')

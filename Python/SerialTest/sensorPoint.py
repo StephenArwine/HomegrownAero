@@ -3,6 +3,7 @@ from twosComp import twos_complement
 import time
 
 sensorPointLength = 23
+eventSampleLength = 12
 
 class FlightPointType:
     def __init__(self):
@@ -28,6 +29,14 @@ class SensorPointType:
         self.gyroY = 0
         self.gyroZ = 0
         self.analogRaw = 0
+        self.rawFeet = 0
+
+class EventPointType:
+    def __init__(self):
+        self.eventType = 0
+        self.sampleTick = 0
+        self.altitude = 0
+        self.voltage = 0
 
 
 def build_flight_point(data, CurrentPage, pages, LocationInPage):
@@ -89,8 +98,10 @@ def build_sensor_point(data, currentPage, pages, locationInPage, lastTick):
         point.velocityfract = point.velocityfract / 1000
         point.velocity = point.velocityfract + point.velocityfract
 
-        point.gyroY = twos_complement(sensor_sample[17], sensor_sample[18]) * 0.0078125  # Gyro Y conv
-        point.gyroZ = twos_complement(sensor_sample[19], sensor_sample[20]) * 0.0078125  # Gyro Z conv
+        point.rawFeet = int.from_bytes(sensor_sample[17:20], byteorder='little')
+
+        #point.gyroY = twos_complement(sensor_sample[17], sensor_sample[18]) * 0.0078125  # Gyro Y conv
+        #point.gyroZ = twos_complement(sensor_sample[19], sensor_sample[20]) * 0.0078125  # Gyro Z conv
 
         currentPage += 1
         locationInPage -= (0xff - sensorPointLength)
@@ -115,16 +126,52 @@ def build_sensor_point(data, currentPage, pages, locationInPage, lastTick):
         point.velocityfract = point.velocityfract / 1000
         point.velocity = point.velocityfract + point.velocityfract
 
-        point.gyroY = twos_complement(sensor_sample[17], sensor_sample[18]) * 0.0078125  # Accel Z conv
-        point.gyroZ = twos_complement(sensor_sample[19], sensor_sample[20]) * 0.0078125  # Accel Z conv
+        point.rawFeet = int.from_bytes(sensor_sample[17:20], byteorder='little')
+
+
+        #point.gyroY = twos_complement(sensor_sample[17], sensor_sample[18]) * 0.0078125  # Accel Z conv
+        #point.gyroZ = twos_complement(sensor_sample[19], sensor_sample[20]) * 0.0078125  # Accel Z conv
 
         locationInPage += sensorPointLength + 1
 
     return point, currentPage, locationInPage
 
 
+def build_event_point(data,currentPage, pages, locationInPage):
+
+    event = EventPointType()
+
+    if (locationInPage + eventSampleLength + 1) > 255:
+
+        eventSamplePart = data[currentPage][locationInPage:255]
+        eventSample = eventSamplePart + data[currentPage + 1][0:(eventSampleLength - (256 - locationInPage))]
+        if (currentPage + 1) >= pages:
+            ProcessLog = False
+            return 0, currentPage + 1, 0
+
+        event.eventType = eventSample[1]
+        event.sampleTick = int.from_bytes(eventSample[2:5], byteorder='little')
+
+
+        currentPage += 1
+        locationInPage -= (0xff - eventSampleLength)
+
+    else:
+        eventSample = data[currentPage][locationInPage:locationInPage + eventSampleLength]
+
+        event.eventType = eventSample[1]
+        event.sampleTick = int.from_bytes(eventSample[2:5], byteorder='little')
+
+
+
+        locationInPage += eventSampleLength + 1
+
+    return currentPage, locationInPage, event
+
+
 def processDataLog(data, pages, StartTime):
     pointList = []
+    eventList = []
     CurrentPage = 0
     LocationInPage = 0
     ProcessLog = True
@@ -137,13 +184,16 @@ def processDataLog(data, pages, StartTime):
             ProcessLog = False
             break
 
+        #print(chr(data[CurrentPage][LocationInPage]))
+
         # Flight point decode
-        if data[CurrentPage][LocationInPage] == 0x46:
+        if chr(data[CurrentPage][LocationInPage]) == 'F':
             # print('F found, location', LocationInPage)
             flightPoint, CurrentPage, LocationInPage = build_flight_point(data, CurrentPage, pages, LocationInPage)
+            continue
 
         # Sensor point decoding
-        if data[CurrentPage][LocationInPage] == 0x41:
+        if chr(data[CurrentPage][LocationInPage]) == 'S':
             # print('A found, page', CurrentPage, ' ,Location', LocationInPage)
             samplenum += 1
 
@@ -156,7 +206,22 @@ def processDataLog(data, pages, StartTime):
                                                                     lastTick)
             if isinstance(point, SensorPointType): pointList.append(point)
 
+            continue
+
+        if chr(data[CurrentPage][LocationInPage]) == 'E':
+
+            if (CurrentPage + 1) >= pages:
+                ProcessLog = False
+                return 0, CurrentPage + 1, 0
+                print('event')
+
+            CurrentPage, LocationInPage, event = build_event_point(data, CurrentPage, pages, LocationInPage)
+
+            eventList.append(event)
+            continue
+
+
     elapsedTime = (time.clock() - StartTime)
     print('Took:', elapsedTime, 'seconds to read and process', pointList.__len__(), 'data points')
 
-    return pointList, flightPoint
+    return pointList, flightPoint, eventList

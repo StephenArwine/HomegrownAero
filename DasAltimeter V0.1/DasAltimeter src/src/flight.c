@@ -29,6 +29,7 @@ void flight(Altimeter *my_altimeter) {
             findNewFlightStart(my_altimeter);
             logFlight(my_altimeter);
             startupJingle();
+            logEvent(my_altimeter, 'L');
             my_altimeter->myFlightState = flightPad;
             break;
         }
@@ -59,7 +60,12 @@ void flight(Altimeter *my_altimeter) {
         //delay_ms(1000);
         //pinToggle(LedPin);
 
-
+        if (sercom(USART3)->SPI.INTFLAG.bit.RXC == 1) {
+            u8_t possibleReset = usartDataIn(USART3);
+            if (possibleReset == 0x52) {
+                NVIC_SystemReset();
+            }
+        }
 
         break;
     case flightPad:

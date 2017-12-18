@@ -69,6 +69,30 @@ void logFlight(Altimeter *my_altimeter) {
     makePage(my_altimeter, bytesToSend, dataToSend);
 }
 
+void logEvent(Altimeter *my_altimeter, u8_t eventType) {
+
+    u8_t bytesToSend = 12;
+    u8_t dataToSend[12];
+
+    dataToSend[0] = EVENT_LOG;
+	dataToSend[1] = eventType;
+    dataToSend[2] = my_altimeter->sampleTick >> 0;
+    dataToSend[3] = my_altimeter->sampleTick >> 8;
+    dataToSend[4] = my_altimeter->sampleTick >> 16;
+    dataToSend[5] = my_altimeter->sampleTick >> 24;
+
+    dataToSend[6] = my_altimeter->Altitude >> 0;
+    dataToSend[7] = my_altimeter->Altitude >> 8;
+    dataToSend[8] = my_altimeter->Altitude >> 16;
+    dataToSend[9] = my_altimeter->Altitude >> 24;
+
+    dataToSend[10] = my_altimeter->myVoltages.batV >> 0;
+    dataToSend[11] = my_altimeter->myVoltages.batV >> 8;
+
+    makePage(my_altimeter, bytesToSend, dataToSend);
+
+}
+
 void logSensors(Altimeter *my_altimeter) {
 
     u8_t bytesToSend = 23;
@@ -102,10 +126,10 @@ void logSensors(Altimeter *my_altimeter) {
     dataToSend[15] = fractVelocityPart >> 0;
     dataToSend[16] = fractVelocityPart >> 8;
 
-    //dataToSend[5] = my_altimeter->myBarometer.heightFeet >> 0;
-    //dataToSend[6] = my_altimeter->myBarometer.heightFeet >> 8;
-    //dataToSend[7] = my_altimeter->myBarometer.heightFeet >> 16;
-    //dataToSend[8] = my_altimeter->myBarometer.heightFeet >> 24;
+    dataToSend[17] = my_altimeter->myBarometer.heightFeet >> 0;
+    dataToSend[18] = my_altimeter->myBarometer.heightFeet >> 8;
+    dataToSend[19] = my_altimeter->myBarometer.heightFeet >> 16;
+    dataToSend[20] = my_altimeter->myBarometer.heightFeet >> 24;
 
 
 
@@ -115,13 +139,11 @@ void logSensors(Altimeter *my_altimeter) {
     //dataToSend[12] = my_altimeter->myIMU.accelYRaw >> 8;
     //dataToSend[13] = my_altimeter->myIMU.accelZRaw >> 0;
     //dataToSend[14] = my_altimeter->myIMU.accelZRaw >> 8;
+    //dataToSend[17] = my_altimeter->myIMU.gyroYRaw >> 0;
+    //dataToSend[18] = my_altimeter->myIMU.gyroYRaw >> 8;
+    //dataToSend[19] = my_altimeter->myIMU.gyroZRaw >> 0;
+    //dataToSend[20] = my_altimeter->myIMU.gyroZRaw >> 8;
 
-
-
-    dataToSend[17] = my_altimeter->myIMU.gyroYRaw >> 0;
-    dataToSend[18] = my_altimeter->myIMU.gyroYRaw >> 8;
-    dataToSend[19] = my_altimeter->myIMU.gyroZRaw >> 0;
-    dataToSend[20] = my_altimeter->myIMU.gyroZRaw >> 8;
 
     dataToSend[21] = my_altimeter->myAnalogAccelerometer.analogRaw >> 0;
     dataToSend[22] = my_altimeter->myAnalogAccelerometer.analogRaw >> 8;

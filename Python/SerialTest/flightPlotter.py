@@ -1,8 +1,10 @@
 import matplotlib.pyplot as plt
 from sensorPoint import SensorPointType
+from sensorPoint import EventPointType
+import numpy
 
 
-def PlotFlight(pointList, flight):
+def PlotFlight(pointList, flight, eventList):
     print('Flight Numb:', flight.FlightNumb, 'Buffer Time:', flight.bufferTick, 'Ground Offset:', flight.groundOffset,
           'Ground Temperature', flight.groundTemperature)
 
@@ -10,7 +12,9 @@ def PlotFlight(pointList, flight):
 
     accelplot = []
     heightplot = []
+    velocityplot = []
     tick = []
+    stdheight = []
 
     previousPoint = SensorPointType()
 
@@ -26,20 +30,24 @@ def PlotFlight(pointList, flight):
 
             dt = pointToPlot.sampleTick - previousPoint.sampleTick
             print('Sample', x, 'tick:', pointToPlot.sampleTick, 'Sample DT:', pointToPlot.Dt, 'Height Feet:',
-                  pointToPlot.heightFeet, 'Velocity:', pointToPlot.velocity, 'AccelZ:', pointToPlot.accelZ)
+                  pointToPlot.heightFeet,'Raw feet:', pointToPlot.rawFeet, 'Velocity:', pointToPlot.velocity, 'AccelZ:', pointToPlot.accelZ)
 
         tick.append(pointToPlot.sampleTick / 1000)
         accelplot.append(pointToPlot.accelZ / 32.17417)
         heightplot.append(pointToPlot.heightFeet)
+        velocityplot.append(pointToPlot.velocity)
 
         previousPoint = pointToPlot
         x += 1
 
         #stdaccel.append(pointToPlot.accelZ)
-        #stdheight.append(pointToPlot.heightFeet)
+        stdheight.append(pointToPlot.heightFeet)
+
+    for event in eventList:
+        print(event.eventType, event.sampleTick - flight.bufferTick)
 
     #print('accel StdDev ', numpy.std(stdaccel))
-    #print('height StdDev ', numpy.std(stdheight))
+    print('height StdDev ', numpy.std(stdheight))
 
     fig, ax1 = plt.subplots()
     ax2 = ax1.twinx()
@@ -51,14 +59,15 @@ def PlotFlight(pointList, flight):
     ax2.set_ylabel('Accel (g)')
     ax3.set_ylabel('Velocity (ft/s)')
 
-    ax2.spines["left"].set_position(("axes", -0.1))
-    # ax1.spines["left"].set_position(("axes", -0.2))
+    ax2.spines["right"].set_position(("axes", 1))
 
-    ax3.spines["left"].set_position(("axes", -0.2))
-
+    ax3.spines["right"].set_position(("axes", 1.1))
 
     p2, = ax2.plot(tick, accelplot, color='r')
-    p3, = ax3.plot(tick, accelplot, color='g')
+    p3, = ax3.plot(tick, velocityplot, color='g')
+
+    ax3.axhline(y = 0, color='g', linestyle='--', linewidth =0.5)
+
 
 
     # make_patch_spines_invisible(ax1)
@@ -67,15 +76,17 @@ def PlotFlight(pointList, flight):
     ax1.spines["left"].set_visible(True)
     ax1.yaxis.set_label_position('left')
     ax1.yaxis.set_ticks_position('left')
+    ax1.grid(True)
+
 
     # ax2.spines["left"].set_visible(True)
-    ax2.yaxis.set_label_position('left')
-    ax2.yaxis.set_ticks_position('left')
+    ax2.yaxis.set_label_position('right')
+    ax2.yaxis.set_ticks_position('right')
     ax2.set_ylim(-.5, 1.5)
 
-    ax3.yaxis.set_label_position('left')
-    ax3.yaxis.set_ticks_position('left')
-    #ax3.set_ylim(-.5, 1.5)
+    ax3.yaxis.set_label_position('right')
+    ax3.yaxis.set_ticks_position('right')
+    ax3.set_ylim(-.75, .75)
 
     tkw = dict(size=4, width=1.5)
     ax1.tick_params(axis='y', colors=p1.get_color(), **tkw)

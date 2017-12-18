@@ -7,7 +7,8 @@
 
 
 #define FLIGHT_LOG 'F'
-#define SENSOR_LOG 'A'
+#define SENSOR_LOG 'S'
+#define EVENT_LOG 'E'
 #define VOLTAGE_TEMP_LOG 'V'
 #define STATE_LOG 'S'
 
@@ -79,14 +80,15 @@ struct dataLog {
 
 void makePage(Altimeter *my_altimeter, u8_t bytesToWrite, u8_t *data);
 void logSensors(Altimeter *my_altimeter);
+void logEvent(Altimeter *my_altimeter, u8_t eventType);
 void logFlight(Altimeter *my_altimeter);
 
 void writeFlightEndAddress(Altimeter *my_altimeter);
 u32_t getFlightStartAddress(u8_t flightToFind);
-bool isFlightLogged( u8_t flightNumbToCheck); 
+bool isFlightLogged( u8_t flightNumbToCheck);
 u32_t findNextBlankPage(u8_t lastFlightStart);
 u32_t FindFlightEndingAddress(u8_t findThisFlightsEnd);
-void findNewFlightStart(Altimeter *my_altimeter);  
+void findNewFlightStart(Altimeter *my_altimeter);
 
 
 

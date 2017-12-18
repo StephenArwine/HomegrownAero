@@ -8,7 +8,7 @@
 
 /* default values */
 
-#define  ALTITUDESIGMA	       5.0
+#define  ALTITUDESIGMA	       4.0
 #define  ACCELERATIONSIGMA      2.0
 #define  MODELSIGMA		0.6
 
