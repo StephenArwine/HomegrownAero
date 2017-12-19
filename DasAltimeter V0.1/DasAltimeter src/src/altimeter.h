@@ -30,26 +30,12 @@ typedef struct Barometer {
 
     double altitudefeet;
 
-    uint32_t groundOffset;
-
-    uint32_t groundOffsetBuffer;
-
-    uint32_t groundTemperature;
-
-    uint32_t groundTemperatureBuffer;
-
 
 } Barometer;
 
 
 
 typedef struct IMU {
-
-    u32_t offsetBufferTime;
-
-    double gravityOffset;
-
-    double gravityOffsetBuffer;
 
     float accelX;
 
@@ -128,6 +114,30 @@ typedef struct voltages {
 
 } voltages;
 
+typedef struct Offsets {
+
+
+    u32_t offsetBufferTime;
+
+    double gravityOffset;
+
+    double gravityOffsetBuffer;
+	
+	uint32_t groundOffset;
+
+    uint32_t groundOffsetBuffer;
+
+    uint32_t groundTemperature;
+
+    uint32_t groundTemperatureBuffer;
+	
+	u32_t StartupTick;
+
+    u32_t tickDelta;
+
+	
+} Offsets;
+
 
 typedef struct AnalogAccelerometer {
 
@@ -172,13 +182,11 @@ typedef struct Altimeter {
     flashMemory myFlashMemory;
 
     voltages myVoltages;
-
+	
+	Offsets offsets;
 
     u32_t sampleTick;
 
-    u32_t StartupTick;
-
-    u32_t tickDelta;
 
     float Acceleration;
 
