@@ -18,6 +18,8 @@ double	phi[3][3]     = {
     {0, 0, 1.0}
 };
 
+double altitude, velocity, accel
+
 double altitude_variance = ALTITUDESIGMA*ALTITUDESIGMA;
 double acceleration_variance = ACCELERATIONSIGMA*ACCELERATIONSIGMA;
 double model_variance  = MODELSIGMA*MODELSIGMA;
