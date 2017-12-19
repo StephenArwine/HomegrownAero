@@ -200,6 +200,7 @@ typedef struct Altimeter {
 
 bool USARTconnectionAvaliable();
 void sendTheasePagesToComputer(u32_t firstPage, u32_t lastPage);
+bool unplugged(Altimeter *my_altimeter);
 
 #endif
 
