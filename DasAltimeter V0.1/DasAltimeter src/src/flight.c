@@ -29,7 +29,7 @@ void flight(Altimeter *my_altimeter) {
 
 
 
-        if (my_altimeter->myVoltages.batFloat < 3.5) {
+        if (unplugged(my_altimeter)) {
             my_altimeter->myFlightState = flightIdle;
             unpluggedJingle();
         }
@@ -74,7 +74,7 @@ void flight(Altimeter *my_altimeter) {
 
 
 
-        if (my_altimeter->myVoltages.batFloat < 3.5) {
+        if (unplugged(my_altimeter)) {
             my_altimeter->myFlightState = flightIdle;
             AT25SFHoldTillReady();
             writeFlightEndAddress(my_altimeter);
@@ -108,7 +108,7 @@ void flight(Altimeter *my_altimeter) {
 
         }
 
-        if (my_altimeter->myVoltages.batFloat < 3.5) {
+        if (unplugged(my_altimeter)) {
             my_altimeter->myFlightState = flightIdle;
             AT25SFHoldTillReady();
             writeFlightEndAddress(my_altimeter);
@@ -145,7 +145,7 @@ void flight(Altimeter *my_altimeter) {
         }
 
 
-        if (my_altimeter->myVoltages.batFloat < 3.5) {
+        if (unplugged(my_altimeter)) {
             my_altimeter->myFlightState = flightIdle;
             AT25SFHoldTillReady();
             writeFlightEndAddress(my_altimeter);
@@ -174,7 +174,7 @@ void flight(Altimeter *my_altimeter) {
                 my_altimeter->myFlashMemory.currentAddress = (my_altimeter->myFlashMemory.currentAddress + 0x100);
             }
         }
-        if (my_altimeter->myVoltages.batFloat < 3.5) {
+        if (unplugged(my_altimeter)) {
             my_altimeter->myFlightState = flightIdle;
             AT25SFHoldTillReady();
             writeFlightEndAddress(my_altimeter);
