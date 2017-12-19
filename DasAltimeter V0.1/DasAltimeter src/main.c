@@ -115,23 +115,23 @@ int main(void) {
 
     init();
 
-    Altimeter my_altimeter;
-    my_altimeter.myFlightState = flightStatrup;
 
-    initMS5803Barometer(&my_altimeter.myBarometer);
+    altimeter.myFlightState = flightStatrup;
+
+    initMS5803Barometer();
     IMUinit();
 
-    my_altimeter.myFlashMemory.pageLocation = 0x00;
-    my_altimeter.myFlashMemory.pageReady = false;
+    altimeter.myFlashMemory.pageLocation = 0x00;
+    altimeter.myFlashMemory.pageReady = false;
 
-    computeKalmanGains(&my_altimeter.myKalman);
+    computeKalmanGains();
 
-    sampleTick(&my_altimeter);
+    sampleTick();
 
-    my_altimeter.offsets.gravityOffset = my_altimeter.offsets.accelZ;
-    my_altimeter.offsets.gravityOffsetBuffer = my_altimeter.offsets.gravityOffset;
-    my_altimeter.offsets.groundOffset = my_altimeter.offsets.altitudefeet;
-    my_altimeter.offsets.groundOffsetBuffer = my_altimeter.offsets.groundOffset;
+    altimeter.offsets.gravityOffset = altimeter.offsets.accelZ;
+    altimeter.offsets.gravityOffsetBuffer = altimeter.offsets.gravityOffset;
+    altimeter.offsets.groundOffset = altimeter.offsets.altitudefeet;
+    altimeter.offsets.groundOffsetBuffer = altimeter.offsets.groundOffset;
 
 
 	
@@ -144,17 +144,18 @@ int main(void) {
     while (1) {
 
         if (takeSample()) {
-			if (my_altimeter.Altitude > 1000000)
+			if (altimeter.Altitude > 1000000)
 			{
 				    beep(400);
 
 			}
-            sampleTick(&my_altimeter);
-            flight(&my_altimeter);
-            computeKalmanStates(&my_altimeter);
+            sampleTick();
+            flight();
+            computeKalmanStates();
 
         }
 
 
     }
 }
+
