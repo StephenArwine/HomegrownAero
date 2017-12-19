@@ -122,7 +122,7 @@ int main(void) {
     my_altimeter.myFlashMemory.pageLocation = 0x00;
     my_altimeter.myFlashMemory.pageReady = false;
 
-    computeKalmanGains(&my_altimeter.myKalmanFilter);
+    computeKalmanGains(&my_altimeter.myKalman);
 
     sampleTick(&my_altimeter);
 
