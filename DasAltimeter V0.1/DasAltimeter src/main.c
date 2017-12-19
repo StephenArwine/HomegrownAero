@@ -126,10 +126,10 @@ int main(void) {
 
     sampleTick(&my_altimeter);
 
-    my_altimeter.myIMU.gravityOffset = my_altimeter.myIMU.accelZ;
-    my_altimeter.myIMU.gravityOffsetBuffer = my_altimeter.myIMU.gravityOffset;
-    my_altimeter.myBarometer.groundOffset = my_altimeter.myBarometer.altitudefeet;
-    my_altimeter.myBarometer.groundOffsetBuffer = my_altimeter.myBarometer.groundOffset;
+    my_altimeter.offsets.gravityOffset = my_altimeter.offsets.accelZ;
+    my_altimeter.offsets.gravityOffsetBuffer = my_altimeter.offsets.gravityOffset;
+    my_altimeter.offsets.groundOffset = my_altimeter.offsets.altitudefeet;
+    my_altimeter.offsets.groundOffsetBuffer = my_altimeter.offsets.groundOffset;
 
 
 	
