@@ -24,4 +24,17 @@ void startupJingle(){
     delay_ms(500);
 }
 
+void unpluggedJingle(){
+            delay_ms(80);
+            beep(300);
+            delay_ms(80);
+            beep(300);
+            delay_ms(80);
+            beep(300);
+            delay_ms(80);
+            pinLow(buzzerPin);
+            pinLow(LedPin);
+
+}
+
 
