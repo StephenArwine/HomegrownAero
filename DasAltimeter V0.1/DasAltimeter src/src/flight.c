@@ -29,8 +29,8 @@ void flight(Altimeter *my_altimeter) {
             findNewFlightStart(my_altimeter);
             logFlight(my_altimeter);
             startupJingle();
-			my_altimeter->myFlightState = flightTest;
-            //my_altimeter->myFlightState = flightPad;
+			//my_altimeter->myFlightState = flightTest;
+            my_altimeter->myFlightState = flightPad;
             break;
         }
 
@@ -95,7 +95,7 @@ void flight(Altimeter *my_altimeter) {
             pinToggle(LedPin);
         }
 
-        if ((my_altimeter->Velocity > 0.15) && ((my_altimeter->Altitude - my_altimeter->myBarometer.groundOffset) > 6)) {
+        if ((my_altimeter->Velocity > 0.1) && ((my_altimeter->Altitude - my_altimeter->myBarometer.groundOffset) > 6)) {
             my_altimeter->myFlightState = flightBoost;
             logEvent(my_altimeter, 'L');
         }
