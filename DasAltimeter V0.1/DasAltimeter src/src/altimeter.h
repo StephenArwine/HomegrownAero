@@ -88,16 +88,6 @@ typedef struct flashMemory {
 
 } flashMemory;
 
-typedef struct kalmanFilter {
-
-    double  kgain[3][2];
-    double est[3];
-    double estp[3];
-
-
-
-} kalmanFilter;
-
 typedef struct voltages {
 
     u16_t batV;
