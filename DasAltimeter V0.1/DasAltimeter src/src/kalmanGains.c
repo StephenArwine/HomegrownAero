@@ -157,30 +157,30 @@ void computeKalmanStates(Altimeter *my_altimeter) {
     double accel = (my_altimeter->myIMU.accelZ - my_altimeter->myIMU.gravityOffset) * 32.17417;
     double pressure = my_altimeter->myBarometer.altitudefeet;
 
-    if (my_altimeter->myKalmanFilter.est[0] == 0) {
-        my_altimeter->myKalmanFilter.est[0] = pressure;
+    if (my_altimeter->myKalman.est[0] == 0) {
+        my_altimeter->myKalman.est[0] = pressure;
     }
 
     /* Compute the innovations */
-    alt_inovation = pressure - my_altimeter->myKalmanFilter.estp[0];
-    accel_inovation = accel - my_altimeter->myKalmanFilter.estp[2];
+    alt_inovation = pressure - my_altimeter->myKalman.estp[0];
+    accel_inovation = accel - my_altimeter->myKalman.estp[2];
 
 
     /* Propagate state */
-    my_altimeter->myKalmanFilter.estp[0] = phi[0][0] * my_altimeter->myKalmanFilter.est[0] + phi[0][1] * my_altimeter->myKalmanFilter.est[1] + phi[0][2] * my_altimeter->myKalmanFilter.est[2];
-    my_altimeter->myKalmanFilter.estp[1] = phi[1][0] * my_altimeter->myKalmanFilter.est[0] + phi[1][1] * my_altimeter->myKalmanFilter.est[1] + phi[1][2] * my_altimeter->myKalmanFilter.est[2];
-    my_altimeter->myKalmanFilter.estp[2] = phi[2][0] * my_altimeter->myKalmanFilter.est[0] + phi[2][1] * my_altimeter->myKalmanFilter.est[1] + phi[2][2] * my_altimeter->myKalmanFilter.est[2];
+    my_altimeter->myKalman.estp[0] = phi[0][0] * my_altimeter->myKalman.est[0] + phi[0][1] * my_altimeter->myKalman.est[1] + phi[0][2] * my_altimeter->myKalman.est[2];
+    my_altimeter->myKalman.estp[1] = phi[1][0] * my_altimeter->myKalman.est[0] + phi[1][1] * my_altimeter->myKalman.est[1] + phi[1][2] * my_altimeter->myKalman.est[2];
+    my_altimeter->myKalman.estp[2] = phi[2][0] * my_altimeter->myKalman.est[0] + phi[2][1] * my_altimeter->myKalman.est[1] + phi[2][2] * my_altimeter->myKalman.est[2];
 
     /*
     Update state
     */
-    my_altimeter->myKalmanFilter.est[0] = my_altimeter->myKalmanFilter.estp[0] + my_altimeter->myKalmanFilter.kgain[0][0] * alt_inovation + my_altimeter->myKalmanFilter.kgain[0][1] * accel_inovation;
-    my_altimeter->myKalmanFilter.est[1] = my_altimeter->myKalmanFilter.estp[1] + my_altimeter->myKalmanFilter.kgain[1][0] * alt_inovation + my_altimeter->myKalmanFilter.kgain[1][1] * accel_inovation;
-    my_altimeter->myKalmanFilter.est[2] = my_altimeter->myKalmanFilter.estp[2] + my_altimeter->myKalmanFilter.kgain[2][0] * alt_inovation + my_altimeter->myKalmanFilter.kgain[2][1] * accel_inovation;
+    my_altimeter->myKalman.est[0] = my_altimeter->myKalman.estp[0] + my_altimeter->myKalman.kgain[0][0] * alt_inovation + my_altimeter->myKalman.kgain[0][1] * accel_inovation;
+    my_altimeter->myKalman.est[1] = my_altimeter->myKalman.estp[1] + my_altimeter->myKalman.kgain[1][0] * alt_inovation + my_altimeter->myKalman.kgain[1][1] * accel_inovation;
+    my_altimeter->myKalman.est[2] = my_altimeter->myKalman.estp[2] + my_altimeter->myKalman.kgain[2][0] * alt_inovation + my_altimeter->myKalman.kgain[2][1] * accel_inovation;
 
-    my_altimeter->Acceleration = my_altimeter->myKalmanFilter.est[2];
-    my_altimeter->Velocity = my_altimeter->myKalmanFilter.est[1];
-    my_altimeter->Altitude = my_altimeter->myKalmanFilter.est[0];
+    my_altimeter->Acceleration = my_altimeter->myKalman.est[2];
+    my_altimeter->Velocity = my_altimeter->myKalman.est[1];
+    my_altimeter->Altitude = my_altimeter->myKalman.est[0];
 
 
 }
