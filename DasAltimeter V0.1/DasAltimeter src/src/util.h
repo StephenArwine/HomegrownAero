@@ -27,13 +27,14 @@ typedef uint8_t SercomId;
 
 // my includes
 #include <port.h>
-#include <altimeter.h>
-#include <flight.h>
 #include <MPU9250.h>
 #include <AT25SF.h>
 #include <BMI055.h>
-#include <log.h>
 #include <sample.h>
+#include <altimeter.h>
+#include <flight.h>
+#include <log.h>
+
 
 
 
@@ -44,25 +45,12 @@ void computeKalmanGains();
 void computeKalmanStates();
 
 
-//dma.c
+
 inline static Sercom* sercom(SercomId id) {
     return (Sercom*) (0x42000800U + id * 1024);
 }
 
-#define DMA_DESC_ALIGN __attribute__((aligned(16)))
 
-void dmaInit();
-void dmaSercomStartTx(DmaChan chan, SercomId id, u8_t* src, unsigned size);
-void dmaSercomStartRx(DmaChan chan, SercomId id, u8_t* dst, unsigned size);
-void dmaAbort(DmaChan chan);
-void dmaEnableInterrupt(DmaChan chan);
-void dmaFillSercomTx(DmacDescriptor* desc, SercomId id, u8_t *src, unsigned size);
-void dmaFillSercomRx(DmacDescriptor* desc, SercomId id, u8_t *dst, unsigned size);
-void dmaSercomConfigureTx(DmaChan chan, SercomId id);
-void dmaSercomConfigureRx(DmaChan chan, SercomId id);
-void dmaLinkChain(DmacDescriptor* chain, u32_t count);
-void dmaStartDescriptor(DmaChan chan, DmacDescriptor* chain);
-u32_t dmaRemaining(DmaChan chan);
 
 //clocks.c
 void GclkInit();
