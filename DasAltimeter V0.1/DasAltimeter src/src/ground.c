@@ -1,3 +1,5 @@
+#include <util.h>
+
 	void updateGround(Altimeter *my_altimeter){
 	
 	   my_altimeter->myIMU.gravityOffsetBuffer = 	my_altimeter->myIMU.gravityOffsetBuffer * 0.8 + my_altimeter->myIMU.accelZ * 0.2;
