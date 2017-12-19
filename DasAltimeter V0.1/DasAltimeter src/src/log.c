@@ -137,16 +137,16 @@ void logSensors(Altimeter *my_altimeter) {
     //dataToSend[10] = my_altimeter->myIMU.accelXRaw >> 8;
     //dataToSend[11] = my_altimeter->myIMU.accelYRaw >> 0;
     //dataToSend[12] = my_altimeter->myIMU.accelYRaw >> 8;
-    //dataToSend[13] = my_altimeter->myIMU.accelZRaw >> 0;
-    //dataToSend[14] = my_altimeter->myIMU.accelZRaw >> 8;
+    dataToSend[21] = my_altimeter->myIMU.accelZRaw >> 0;
+    dataToSend[22] = my_altimeter->myIMU.accelZRaw >> 8;
     //dataToSend[17] = my_altimeter->myIMU.gyroYRaw >> 0;
     //dataToSend[18] = my_altimeter->myIMU.gyroYRaw >> 8;
     //dataToSend[19] = my_altimeter->myIMU.gyroZRaw >> 0;
     //dataToSend[20] = my_altimeter->myIMU.gyroZRaw >> 8;
 
 
-    dataToSend[21] = my_altimeter->myAnalogAccelerometer.analogRaw >> 0;
-    dataToSend[22] = my_altimeter->myAnalogAccelerometer.analogRaw >> 8;
+    //dataToSend[21] = my_altimeter->myAnalogAccelerometer.analogRaw >> 0;
+    //dataToSend[22] = my_altimeter->myAnalogAccelerometer.analogRaw >> 8;
 
     makePage(my_altimeter, bytesToSend, dataToSend);
 }

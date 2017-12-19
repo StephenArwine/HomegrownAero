@@ -184,7 +184,7 @@ def processDataLog(data, pages, StartTime):
             ProcessLog = False
             break
 
-        #print(chr(data[CurrentPage][LocationInPage]))
+        #print(chr(data[CurrentPage][LocationInPage]), CurrentPage, LocationInPage)
 
         # Flight point decode
         if chr(data[CurrentPage][LocationInPage]) == 'F':

@@ -51,9 +51,11 @@ C_SRCS +=  \
 ../src/clocks.c \
 ../src/dma.c \
 ../src/flight.c \
+../src/kalmanGains.c \
 ../src/log.c \
 ../src/sample.c \
-../src/sercom.c
+../src/sercom.c \
+../src/transfer.c
 
 
 PREPROCESSING_SRCS += 
@@ -76,9 +78,11 @@ buzzer.o \
 clocks.o \
 dma.o \
 flight.o \
+kalmanGains.o \
 log.o \
 sample.o \
-sercom.o
+sercom.o \
+transfer.o
 
 OBJS_AS_ARGS +=  \
 Device_Startup/startup_samd21.o \
@@ -94,9 +98,11 @@ buzzer.o \
 clocks.o \
 dma.o \
 flight.o \
+kalmanGains.o \
 log.o \
 sample.o \
-sercom.o
+sercom.o \
+transfer.o
 
 C_DEPS +=  \
 Device_Startup/startup_samd21.d \
@@ -112,9 +118,11 @@ buzzer.d \
 clocks.d \
 dma.d \
 flight.d \
+kalmanGains.d \
 log.d \
 sample.d \
-sercom.d
+sercom.d \
+transfer.d
 
 C_DEPS_AS_ARGS +=  \
 Device_Startup/startup_samd21.d \
@@ -130,9 +138,11 @@ buzzer.d \
 clocks.d \
 dma.d \
 flight.d \
+kalmanGains.d \
 log.d \
 sample.d \
-sercom.d
+sercom.d \
+transfer.d
 
 OUTPUT_FILE_PATH +=DasAltimeter.elf
 
@@ -150,6 +160,10 @@ LINKER_SCRIPT_DEP+=  \
 
 
 # AVR32/GNU C Compiler
+
+
+
+
 
 
 

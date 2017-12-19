@@ -100,7 +100,7 @@ void sampleTick(Altimeter *my_altimeter) {
 
     my_altimeter->myIMU.accelX = my_altimeter->myIMU.accelXint * BMI055_ACCEL_16G_DIV;
     my_altimeter->myIMU.accelY = my_altimeter->myIMU.accelYint * BMI055_ACCEL_16G_DIV;
-    my_altimeter->myIMU.accelZ = my_altimeter->myIMU.accelZint * BMI055_ACCEL_16G_DIV;
+    my_altimeter->myIMU.accelZ = -my_altimeter->myIMU.accelZint * BMI055_ACCEL_16G_DIV;
 
 
     // Gyro data

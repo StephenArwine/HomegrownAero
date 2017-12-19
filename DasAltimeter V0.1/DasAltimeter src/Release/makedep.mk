@@ -28,9 +28,13 @@ src\dma.c
 
 src\flight.c
 
+src\kalmanGains.c
+
 src\log.c
 
 src\sample.c
 
 src\sercom.c
+
+src\transfer.c
 

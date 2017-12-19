@@ -14,11 +14,11 @@
 
 void init() {
 
-   /* Set 1 Flash Wait State for 48MHz, cf tables 20.9 and 35.27 in SAMD21 Datasheet */ 
-   NVMCTRL->CTRLB.bit.RWS = NVMCTRL_CTRLB_RWS_HALF_Val; 
+    /* Set 1 Flash Wait State for 48MHz, cf tables 20.9 and 35.27 in SAMD21 Datasheet */
+    //NVMCTRL->CTRLB.bit.RWS = NVMCTRL_CTRLB_RWS_HALF_Val;
 
-   /* Turn on the digital interface clock */ 
-   PM->APBAMASK.reg |= PM_APBAMASK_GCLK; 
+    /* Turn on the digital interface clock */
+    //PM->APBAMASK.reg |= PM_APBAMASK_GCLK;
 
     SystemInit();
     GclkInit();
@@ -113,6 +113,9 @@ int main(void) {
 
     init();
 
+    delay_ms(500);
+
+
     Altimeter my_altimeter;
     my_altimeter.myFlightState = flightStatrup;
 
@@ -124,24 +127,35 @@ int main(void) {
 
     computeKalmanGains(&my_altimeter.myKalmanFilter);
 
+    sampleTick(&my_altimeter);
+
     my_altimeter.myIMU.gravityOffset = my_altimeter.myIMU.accelZ;
+    my_altimeter.myIMU.gravityOffsetBuffer = my_altimeter.myIMU.gravityOffset;
     my_altimeter.myBarometer.groundOffset = my_altimeter.myBarometer.altitudefeet;
+    my_altimeter.myBarometer.groundOffsetBuffer = my_altimeter.myBarometer.groundOffset;
+
+
+	
+
+    beep(400);
 
     my_altimeter.StartupTick = millis();
-
-	beep(400);
-
-
-
+	my_altimeter.myIMU.offsetBufferTime =  my_altimeter.StartupTick;
+	
     while (1) {
 
         if (takeSample()) {
+			if (my_altimeter.Altitude > 1000000)
+			{
+				    beep(400);
+
+			}
             sampleTick(&my_altimeter);
             flight(&my_altimeter);
             computeKalmanStates(&my_altimeter);
 
         }
 
-        
+
     }
 }

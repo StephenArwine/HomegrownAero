@@ -11,10 +11,10 @@ void flight(Altimeter *my_altimeter) {
     case flightStatrup:
 
         my_altimeter->myIMU.gravityOffsetBuffer = 	my_altimeter->myIMU.gravityOffsetBuffer * 0.8 + my_altimeter->myIMU.accelZ * 0.2;
-        my_altimeter->myBarometer.groundOffsetBuffer = my_altimeter->myBarometer.groundOffsetBuffer * 0.5 + my_altimeter->myBarometer.altitudefeet * 0.5;
+        my_altimeter->myBarometer.groundOffsetBuffer = my_altimeter->myBarometer.groundOffsetBuffer * 0.5 + my_altimeter->Altitude * 0.5;
         my_altimeter->myBarometer.groundTemperatureBuffer = my_altimeter->myBarometer.groundTemperatureBuffer * 0.8 + my_altimeter->myBarometer.temperatureCelcus * 0.2;
 
-        if ((millis() - my_altimeter->myIMU.offsetBufferTime) > 3000) {
+        if ((millis() - my_altimeter->myIMU.offsetBufferTime) > 2000) {
             //recursive filter
             my_altimeter->myBarometer.groundOffset = my_altimeter->myBarometer.groundOffsetBuffer;
             my_altimeter->myBarometer.groundTemperature = my_altimeter->myBarometer.groundTemperatureBuffer;
@@ -29,8 +29,8 @@ void flight(Altimeter *my_altimeter) {
             findNewFlightStart(my_altimeter);
             logFlight(my_altimeter);
             startupJingle();
-            logEvent(my_altimeter, 'L');
-            my_altimeter->myFlightState = flightPad;
+			my_altimeter->myFlightState = flightTest;
+            //my_altimeter->myFlightState = flightPad;
             break;
         }
 
@@ -76,25 +76,31 @@ void flight(Altimeter *my_altimeter) {
         *  baro alt > 40ft
         */
 
+        my_altimeter->myIMU.gravityOffsetBuffer = 	my_altimeter->myIMU.gravityOffsetBuffer * 0.8 + my_altimeter->myIMU.accelZ * 0.2;
+        my_altimeter->myBarometer.groundOffsetBuffer = my_altimeter->myBarometer.groundOffsetBuffer * 0.5 + my_altimeter->Altitude * 0.5;
+        my_altimeter->myBarometer.groundTemperatureBuffer = my_altimeter->myBarometer.groundTemperatureBuffer * 0.8 + my_altimeter->myBarometer.temperatureCelcus * 0.2;
+
+        if ((millis() - my_altimeter->myIMU.offsetBufferTime) > 2000) {
+            //recursive filter
+            my_altimeter->myBarometer.groundOffset = my_altimeter->myBarometer.groundOffsetBuffer;
+            my_altimeter->myBarometer.groundTemperature = my_altimeter->myBarometer.groundTemperatureBuffer;
+            my_altimeter->myIMU.gravityOffset = my_altimeter->myIMU.gravityOffsetBuffer;
+            my_altimeter->myIMU.offsetBufferTime = millis();
+            break;
+        }
+
         if (writeLog) {
             writeLog = false;
-
-
-
-            logSensors(my_altimeter);
-
-            if (my_altimeter->myFlashMemory.pageReady) {
-                my_altimeter->myFlashMemory.pageReady = false;
-
-                pinToggle(LedPin);
-
-                //AT25SFHoldTillReady();
-                u8_t bytesWritten = AT25SEWritePage(my_altimeter->myFlashMemory.currentAddress,my_altimeter->myFlashMemory.pageToWrite);
-                my_altimeter->myFlashMemory.currentAddress = (my_altimeter->myFlashMemory.currentAddress + 0x100);
-
-
-            }
+            //logSensors(my_altimeter);
+            pinToggle(LedPin);
         }
+
+        if ((my_altimeter->Velocity > 0.15) && ((my_altimeter->Altitude - my_altimeter->myBarometer.groundOffset) > 6)) {
+            my_altimeter->myFlightState = flightBoost;
+            logEvent(my_altimeter, 'L');
+        }
+
+
 
         if (my_altimeter->myVoltages.batFloat < 3.5) {
             my_altimeter->myFlightState = flightIdle;
@@ -119,7 +125,39 @@ void flight(Altimeter *my_altimeter) {
         *	Accel > 1/4G
         */
 
+        if (writeLog) {
+            writeLog = false;
+            logSensors(my_altimeter);
+            if (my_altimeter->myFlashMemory.pageReady) {
+                my_altimeter->myFlashMemory.pageReady = false;
+                pinToggle(LedPin);
+                u8_t bytesWritten = AT25SEWritePage(my_altimeter->myFlashMemory.currentAddress,my_altimeter->myFlashMemory.pageToWrite);
+                my_altimeter->myFlashMemory.currentAddress = (my_altimeter->myFlashMemory.currentAddress + 0x100);
+            }
+        }
 
+
+        if (my_altimeter->Velocity < 0) {
+            my_altimeter->myFlightState = flightDrogue;
+            logEvent(my_altimeter, 'A');
+            beep(100);
+
+        }
+
+        if (my_altimeter->myVoltages.batFloat < 3.5) {
+            my_altimeter->myFlightState = flightIdle;
+            AT25SFHoldTillReady();
+            writeFlightEndAddress(my_altimeter);
+            delay_ms(80);
+            beep(300);
+            delay_ms(80);
+            beep(300);
+            delay_ms(80);
+            beep(300);
+            delay_ms(80);
+            pinLow(buzzerPin);
+            pinLow(LedPin);
+        }
 
         break;
     case flightFast:
@@ -142,7 +180,29 @@ void flight(Altimeter *my_altimeter) {
     case flightDrogue:
 
 
+        if (my_altimeter->myFlashMemory.pageReady) {
+            my_altimeter->myFlashMemory.pageReady = false;
+            pinToggle(LedPin);
+            //AT25SFHoldTillReady();
+            u8_t bytesWritten = AT25SEWritePage(my_altimeter->myFlashMemory.currentAddress,my_altimeter->myFlashMemory.pageToWrite);
+            my_altimeter->myFlashMemory.currentAddress = (my_altimeter->myFlashMemory.currentAddress + 0x100);
+        }
 
+
+        if (my_altimeter->myVoltages.batFloat < 3.5) {
+            my_altimeter->myFlightState = flightIdle;
+            AT25SFHoldTillReady();
+            writeFlightEndAddress(my_altimeter);
+            delay_ms(80);
+            beep(300);
+            delay_ms(80);
+            beep(300);
+            delay_ms(80);
+            beep(300);
+            delay_ms(80);
+            pinLow(buzzerPin);
+            pinLow(LedPin);
+        }
         break;
     case flightMain:
 
@@ -156,7 +216,30 @@ void flight(Altimeter *my_altimeter) {
         break;
     case flightTest:
 
-
+        if (writeLog) {
+            writeLog = false;
+            logSensors(my_altimeter);
+            if (my_altimeter->myFlashMemory.pageReady) {
+                my_altimeter->myFlashMemory.pageReady = false;
+                pinToggle(LedPin);
+                u8_t bytesWritten = AT25SEWritePage(my_altimeter->myFlashMemory.currentAddress,my_altimeter->myFlashMemory.pageToWrite);
+                my_altimeter->myFlashMemory.currentAddress = (my_altimeter->myFlashMemory.currentAddress + 0x100);
+            }
+        }
+        if (my_altimeter->myVoltages.batFloat < 3.5) {
+            my_altimeter->myFlightState = flightIdle;
+            AT25SFHoldTillReady();
+            writeFlightEndAddress(my_altimeter);
+            delay_ms(80);
+            beep(300);
+            delay_ms(80);
+            beep(300);
+            delay_ms(80);
+            beep(300);
+            delay_ms(80);
+            pinLow(buzzerPin);
+            pinLow(LedPin);
+        }
 
 
         break;
