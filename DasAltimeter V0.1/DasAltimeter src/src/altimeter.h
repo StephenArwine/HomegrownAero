@@ -163,7 +163,7 @@ typedef struct Altimeter {
 
     Barometer myBarometer;
 
-    kalmanFilter myKalmanFilter;
+    kalmanFilter myKalman;
 
     IMU myIMU;
 
