@@ -154,7 +154,7 @@ void computeKalmanStates(Altimeter *my_altimeter) {
     double alt_inovation, accel_inovation;
 
 
-    double accel = (my_altimeter->myIMU.accelZ - my_altimeter->myIMU.gravityOffset) * 32.17417;
+    double accel = (my_altimeter->myIMU.accelZ - my_altimeter->offsets.gravityOffset) * 32.17417;
     double pressure = my_altimeter->myBarometer.altitudefeet;
 
     if (my_altimeter->myKalman.est[0] == 0) {
