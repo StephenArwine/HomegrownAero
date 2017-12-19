@@ -51,3 +51,7 @@ u32_t getAltitude() {
 
     return;
 }
+
+bool unplugged(Altimeter *my_altimeter){
+if (my_altimeter->myVoltages.batFloat < 3.5){ return true;}
+}
