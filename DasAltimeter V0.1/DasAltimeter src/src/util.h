@@ -75,6 +75,9 @@ uint32_t millis(void);
 void TC4Init();
 void TC5Init();
 
+//ground.c
+void updateGround(Altimeter *my_altimeter);
+
 //sercom.c
 void sercomClockEnable(SercomId id, uint32_t clock_channel, u8_t divider);
 void sercomReset(SercomId id);
