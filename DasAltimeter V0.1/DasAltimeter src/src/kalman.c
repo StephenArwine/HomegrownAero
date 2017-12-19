@@ -1,5 +1,7 @@
 
 
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -20,11 +22,14 @@ double	phi[3][3]     = {
 
 double altitude, velocity, accel
 
+    double  kgain[3][2];
+    double estp[3];
+
 double altitude_variance = ALTITUDESIGMA*ALTITUDESIGMA;
 double acceleration_variance = ACCELERATIONSIGMA*ACCELERATIONSIGMA;
 double model_variance  = MODELSIGMA*MODELSIGMA;
 
-void computeKalmanGains(kalmanFilter *my_kalmanFilter) {
+void computeKalmanGains() {
     int     i, j, k, notdone;
 
     double	pest[3][3]    = {
@@ -143,15 +148,9 @@ void computeKalmanGains(kalmanFilter *my_kalmanFilter) {
         else
             break;
     }
-
-    for( i = 0; i <= 2; i++) {
-        for( j = 0; j <=1; j++) {
-            my_kalmanFilter->kgain[i][j] = kgain[i][j];
-        }
-    }
 }
 
-void computeKalmanStates(Altimeter *my_altimeter) {
+void computeKalmanStates() {
 
     double alt_inovation, accel_inovation;
 
@@ -159,8 +158,8 @@ void computeKalmanStates(Altimeter *my_altimeter) {
     double accel = (my_altimeter->myIMU.accelZ - my_altimeter->offsets.gravityOffset) * 32.17417;
     double pressure = my_altimeter->myBarometer.altitudefeet;
 
-    if (my_altimeter->myKalman.est[0] == 0) {
-        my_altimeter->myKalman.est[0] = pressure;
+    if (altitude == 0) {
+        altitude = pressure;
     }
 
     /* Compute the innovations */
@@ -169,21 +168,15 @@ void computeKalmanStates(Altimeter *my_altimeter) {
 
 
     /* Propagate state */
-    my_altimeter->myKalman.estp[0] = phi[0][0] * my_altimeter->myKalman.est[0] + phi[0][1] * my_altimeter->myKalman.est[1] + phi[0][2] * my_altimeter->myKalman.est[2];
-    my_altimeter->myKalman.estp[1] = phi[1][0] * my_altimeter->myKalman.est[0] + phi[1][1] * my_altimeter->myKalman.est[1] + phi[1][2] * my_altimeter->myKalman.est[2];
-    my_altimeter->myKalman.estp[2] = phi[2][0] * my_altimeter->myKalman.est[0] + phi[2][1] * my_altimeter->myKalman.est[1] + phi[2][2] * my_altimeter->myKalman.est[2];
+    estp[0] = phi[0][0] * altitude + phi[0][1] *velocity + phi[0][2] * accel;
+    estp[1] = phi[1][0] * altitude + phi[1][1] * velocity + phi[1][2] * accel;
+    estp[2] = phi[2][0] * altitude + phi[2][1] * velocity + phi[2][2] * accel;
 
     /*
     Update state
     */
-    my_altimeter->myKalman.est[0] = my_altimeter->myKalman.estp[0] + my_altimeter->myKalman.kgain[0][0] * alt_inovation + my_altimeter->myKalman.kgain[0][1] * accel_inovation;
-    my_altimeter->myKalman.est[1] = my_altimeter->myKalman.estp[1] + my_altimeter->myKalman.kgain[1][0] * alt_inovation + my_altimeter->myKalman.kgain[1][1] * accel_inovation;
-    my_altimeter->myKalman.est[2] = my_altimeter->myKalman.estp[2] + my_altimeter->myKalman.kgain[2][0] * alt_inovation + my_altimeter->myKalman.kgain[2][1] * accel_inovation;
-
-    my_altimeter->Acceleration = my_altimeter->myKalman.est[2];
-    my_altimeter->Velocity = my_altimeter->myKalman.est[1];
-    my_altimeter->Altitude = my_altimeter->myKalman.est[0];
-
+    altitude = estp[0] + kgain[0][0] * alt_inovation + kgain[0][1] * accel_inovation;
+    velocity = estp[1] + kgain[1][0] * alt_inovation + kgain[1][1] * accel_inovation;
+    accel =    estp[2] + kgain[2][0] * alt_inovation + kgain[2][1] * accel_inovation;
 
 }
-
