@@ -113,9 +113,6 @@ int main(void) {
 
     init();
 
-    delay_ms(500);
-
-
     Altimeter my_altimeter;
     my_altimeter.myFlightState = flightStatrup;
 
