@@ -11,6 +11,8 @@
 #include <boardDefines.h>
 #include "math.h"
 
+Altimeter altemeter
+
 
 void init() {
 
