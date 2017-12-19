@@ -40,8 +40,8 @@ typedef uint8_t SercomId;
 //kalman.c
 
 
-void computeKalmanGains(kalmanFilter *my_kalmanFilter);
-void computeKalmanStates(Altimeter *my_altimeter);
+void computeKalmanGains();
+void computeKalmanStates();
 
 
 //dma.c
