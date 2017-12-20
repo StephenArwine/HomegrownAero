@@ -8571,7 +8571,7 @@ inline static void pinHigh(Pin p) {
     24de:	47a8      	blx	r5
     24e0:	4b3e      	ldr	r3, [pc, #248]	; (25dc <sampleTick+0x300>)
     24e2:	4798      	blx	r3
-    sample.accelZ = - accelZint * BMI055_ACCEL_16G_DIV;
+    sample.accelZ = -accelZint * BMI055_ACCEL_16G_DIV;
     24e4:	9b02      	ldr	r3, [sp, #8]
     } else {
         accelZint =  accelZint >> 4;
@@ -8580,7 +8580,7 @@ inline static void pinHigh(Pin p) {
     sample.accelX =  accelXint * BMI055_ACCEL_16G_DIV;
     sample.accelY =  accelYint * BMI055_ACCEL_16G_DIV;
     24e6:	6260      	str	r0, [r4, #36]	; 0x24
-    sample.accelZ = - accelZint * BMI055_ACCEL_16G_DIV;
+    sample.accelZ = -accelZint * BMI055_ACCEL_16G_DIV;
     24e8:	4258      	negs	r0, r3
     24ea:	4b38      	ldr	r3, [pc, #224]	; (25cc <sampleTick+0x2f0>)
     24ec:	4798      	blx	r3
