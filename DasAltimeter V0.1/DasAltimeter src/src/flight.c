@@ -1,36 +1,37 @@
 #include <util.h>
 #include <boardDefines.h>
 
+flightState_t flightState;
 
 
-void flight(Altimeter *my_altimeter) {
+void flight() {
 
 
 
-    switch(my_altimeter->myFlightState) {
+    switch(flightState) {
     case flightStatrup:
 
-    
-	    updateGround(my_altimeter);
 
-        //logSensors(my_altimeter);
+        updateGround( );
+
+        //logSensors( );
 
 
-        if ((millis() - my_altimeter->StartupTick) > 10000) {
-            findNewFlightStart(my_altimeter);
-            logFlight(my_altimeter);
+        if ((millis() - startupTick) > 10000) {
+            findNewFlightStart( );
+            logFlight( );
             startupJingle();
-			//my_altimeter->myFlightState = flightTest;
-            my_altimeter->myFlightState = flightPad;
+            flightState = flightTest;
+            //flightState = flightPad;
             break;
         }
 
-        attemptConnection(my_altimeter);
+        attemptConnection();
 
 
 
-        if (unplugged(my_altimeter)) {
-            my_altimeter->myFlightState = flightIdle;
+        if (unplugged()) {
+            flightState = flightIdle;
             unpluggedJingle();
         }
 
@@ -59,25 +60,25 @@ void flight(Altimeter *my_altimeter) {
         *  baro alt > 40ft
         */
 
-        updateGround(my_altimeter);
+        updateGround();
 
         if (writeLog) {
             writeLog = false;
-            //logSensors(my_altimeter);
+            //logSensors( );
             pinToggle(LedPin);
         }
 
-        if ((my_altimeter->Velocity > 0.1) && ((my_altimeter->Altitude - my_altimeter->myBarometer.groundOffset) > 6)) {
-            my_altimeter->myFlightState = flightBoost;
-            logEvent(my_altimeter, 'L');
+        if (( velocity > 0.1) && ((altitude - offsets.groundOffset) > 6)) {
+            flightState = flightBoost;
+            logEvent('L');
         }
 
 
 
-        if (unplugged(my_altimeter)) {
-            my_altimeter->myFlightState = flightIdle;
+        if (sample.voltage.batFloat < 3.5) {
+            flightState = flightIdle;
             AT25SFHoldTillReady();
-            writeFlightEndAddress(my_altimeter);
+            writeFlightEndAddress( );
             unpluggedJingle();
         }
 
@@ -91,28 +92,28 @@ void flight(Altimeter *my_altimeter) {
 
         if (writeLog) {
             writeLog = false;
-            logSensors(my_altimeter);
-            if (my_altimeter->myFlashMemory.pageReady) {
-                my_altimeter->myFlashMemory.pageReady = false;
+            logSensors( );
+            if (pageReady) {
+                pageReady = false;
                 pinToggle(LedPin);
-                u8_t bytesWritten = AT25SEWritePage(my_altimeter->myFlashMemory.currentAddress,my_altimeter->myFlashMemory.pageToWrite);
-                my_altimeter->myFlashMemory.currentAddress = (my_altimeter->myFlashMemory.currentAddress + 0x100);
+                u8_t bytesWritten = AT25SEWritePage(currentAddress,pageToWrite);
+                currentAddress = (currentAddress + 0x100);
             }
         }
 
 
-        if (my_altimeter->Velocity < 0) {
-            my_altimeter->myFlightState = flightDrogue;
-            logEvent(my_altimeter, 'A');
+        if (velocity < 0) {
+            flightState = flightDrogue;
+            logEvent('A');
             beep(100);
 
         }
 
-        if (unplugged(my_altimeter)) {
-            my_altimeter->myFlightState = flightIdle;
+        if (sample.voltage.batFloat < 3.5) {
+            flightState = flightIdle;
             AT25SFHoldTillReady();
-            writeFlightEndAddress(my_altimeter);
-			unpluggedJingle();
+            writeFlightEndAddress( );
+            unpluggedJingle();
         }
 
         break;
@@ -136,20 +137,20 @@ void flight(Altimeter *my_altimeter) {
     case flightDrogue:
 
 
-        if (my_altimeter->myFlashMemory.pageReady) {
-            my_altimeter->myFlashMemory.pageReady = false;
+        if (pageReady) {
+            pageReady = false;
             pinToggle(LedPin);
             //AT25SFHoldTillReady();
-            u8_t bytesWritten = AT25SEWritePage(my_altimeter->myFlashMemory.currentAddress,my_altimeter->myFlashMemory.pageToWrite);
-            my_altimeter->myFlashMemory.currentAddress = (my_altimeter->myFlashMemory.currentAddress + 0x100);
+            u8_t bytesWritten = AT25SEWritePage(currentAddress,pageToWrite);
+            currentAddress = (currentAddress + 0x100);
         }
 
 
-        if (unplugged(my_altimeter)) {
-            my_altimeter->myFlightState = flightIdle;
+        if (sample.voltage.batFloat < 3.5) {
+            flightState = flightIdle;
             AT25SFHoldTillReady();
-            writeFlightEndAddress(my_altimeter);
-			unpluggedJingle();
+            writeFlightEndAddress( );
+            unpluggedJingle();
         }
         break;
     case flightMain:
@@ -166,19 +167,21 @@ void flight(Altimeter *my_altimeter) {
 
         if (writeLog) {
             writeLog = false;
-            logSensors(my_altimeter);
-            if (my_altimeter->myFlashMemory.pageReady) {
-                my_altimeter->myFlashMemory.pageReady = false;
+            logSensors( );
+            if (pageReady) {
+                pageReady = false;
                 pinToggle(LedPin);
-                u8_t bytesWritten = AT25SEWritePage(my_altimeter->myFlashMemory.currentAddress,my_altimeter->myFlashMemory.pageToWrite);
-                my_altimeter->myFlashMemory.currentAddress = (my_altimeter->myFlashMemory.currentAddress + 0x100);
+                u8_t bytesWritten = AT25SEWritePage(currentAddress,pageToWrite);
+                currentAddress = (currentAddress + 0x100);
             }
         }
-        if (unplugged(my_altimeter)) {
-            my_altimeter->myFlightState = flightIdle;
+
+
+        if (sample.voltage.batFloat < 3.5) {
+            flightState = flightIdle;
             AT25SFHoldTillReady();
-            writeFlightEndAddress(my_altimeter);
-			unpluggedJingle();
+            writeFlightEndAddress( );
+            unpluggedJingle();
         }
 
 

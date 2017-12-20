@@ -1,16 +1,17 @@
 #include <util.h>
+#include <altimeter.h>
 
-void updateGround(Altimeter *my_altimeter){
-	
-my_altimeter->offsets.gravityOffsetBuffer = my_altimeter->offsets.gravityOffsetBuffer * 0.8 + my_altimeter->myIMU.accelZ * 0.2;
-my_altimeter->offsets.groundOffsetBuffer = my_altimeter->offsets.groundOffsetBuffer * 0.5 + my_altimeter->Altitude * 0.5;
-my_altimeter->offsets.groundTemperatureBuffer = my_altimeter->offsets.groundTemperatureBuffer * 0.8 + my_altimeter->offsets.temperatureCelcus * 0.2;
+void updateGround(Altimeter *my_altimeter) {
 
-if ((millis() - my_altimeter->myIMU.offsetBufferTime) > 2000) {
-    //recursive filter
-    my_altimeter->offsets.groundOffset = my_altimeter->offsets.groundOffsetBuffer;
-    my_altimeter->offsets.groundTemperature = my_altimeter->offsets.groundTemperatureBuffer;
-    my_altimeter->offsets.gravityOffset = my_altimeter->offsets.gravityOffsetBuffer;
-    my_altimeter->offsets.offsetBufferTime = millis();
+    offsets.gravityOffsetBuffer = offsets.gravityOffsetBuffer * 0.8 + sample.accelZ * 0.2;
+    offsets.groundOffsetBuffer = offsets.groundOffsetBuffer * 0.5 + altitude * 0.5;
+    offsets.groundTemperatureBuffer = offsets.groundTemperatureBuffer * 0.8 + sample.temperatureCelcus * 0.2;
+
+    if ((millis() - offsets.offsetBufferTime) > 2000) {
+        //recursive filter
+        offsets.groundOffset = offsets.groundOffsetBuffer;
+        offsets.groundTemperature = offsets.groundTemperatureBuffer;
+        offsets.gravityOffset = offsets.gravityOffsetBuffer;
+        offsets.offsetBufferTime = millis();
     }
 }

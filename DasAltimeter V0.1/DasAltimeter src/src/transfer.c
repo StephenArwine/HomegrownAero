@@ -2,13 +2,11 @@
 #include <boardDefines.h>
 
 
-
-
-void attemptConnection(Altimeter *my_altimeter) {
+void attemptConnection() {
 
     if (USARTconnectionAvaliable()) {
 
-        my_altimeter->myFlightState = flightIdle;
+        flightState = flightIdle;
 
         //wait for user to tell us what they want
         while(sercom(USART3)->SPI.INTFLAG.bit.RXC == 0);

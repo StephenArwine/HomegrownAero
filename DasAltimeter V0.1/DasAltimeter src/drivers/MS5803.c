@@ -25,35 +25,35 @@ u32_t readMS5803AdcResults() {
     return _receive;
 }
 
-void ConvertPressureTemperature(Barometer *my_barometer) {
-    const u16_t C1 = my_barometer->coefficients_[0];
-    const u16_t C2 = my_barometer->coefficients_[1];
-    const u16_t C3 = my_barometer->coefficients_[2];
-    const u16_t C4 = my_barometer->coefficients_[3];
-    const u16_t C5 = my_barometer->coefficients_[4];
-    const u16_t C6 = my_barometer->coefficients_[5];
+void ConvertPressureTemperature(u32_t pressureRaw, u32_t tempRaw, u32_t* temperatureCelcus, int32_t* pressureMbar ) {
+    const u16_t C1 = coefficients_[0];
+    const u16_t C2 = coefficients_[1];
+    const u16_t C3 = coefficients_[2];
+    const u16_t C4 = coefficients_[3];
+    const u16_t C5 = coefficients_[4];
+    const u16_t C6 = coefficients_[5];
 
     // calculate 1st order pressure and temperature (MS5607 1st order algorithm)
-    const  int32_t dT = (my_barometer->rawTempatureData) - ((int32_t)C5 << 8);
-    my_barometer->temperatureCelcus  = 2000 + (((int64_t)dT * C6) >> 23) ;
+    const  int32_t dT = (tempRaw) - ((int32_t)C5 << 8);
+    *temperatureCelcus  = 2000 + (((int64_t)dT * C6) >> 23) ;
 
     const  int64_t OFF   = ((int64_t)C2 << 16) + ((C4 * (int64_t)dT) >> 7);
-    const  int64_t SENS  =  ((int64_t)C1 << 15) + ((C3 * (int64_t)dT) >> 8);
-    my_barometer->pressureMbar = ((((my_barometer->rawPressureData * SENS) >> 21) - OFF) >> 15);
+     const  int64_t SENS  =  ((int64_t)C1 << 15) + ((C3 * (int64_t)dT) >> 8);
+    *pressureMbar = ((((pressureRaw * SENS) >> 21) - OFF) >> 15);
 
 }
 
-void paToFeetNOAA(Barometer *my_barometer) {
+double paToFeetNOAA(int32_t pressureMbar) {
 
-    double lower =(((double)(my_barometer->pressureMbar)/10)/1013.25);
+    double lower =(((double)(pressureMbar)/10)/1013.25);
     double exponent = 0.190284;
 
     double altFeet = (1-pow(lower,exponent))*145366.45;
-    my_barometer->altitudefeet = altFeet;
-    my_barometer->heightFeet = altFeet;
+    return altFeet;
 
 }
 
+/*
 void pascalToCent(Barometer *my_barometer) {
 
     static const int32_t PZLUT_ENTRIES = 77;
@@ -96,7 +96,9 @@ void pascalToCent(Barometer *my_barometer) {
     }
 }
 
-void readMS5803Coefficients(Barometer *my_barometer) {
+*/
+
+void readMS5803Coefficients() {
 
     u8_t dummy_tx = 0xFF;
     u8_t dummy_rx;
@@ -113,12 +115,12 @@ void readMS5803Coefficients(Barometer *my_barometer) {
         u8_t _byte1 = byteIn(spi2SCK,spi2MISO);
         u8_t _byte2 = byteIn(spi2SCK,spi2MISO);
         pinHigh(cs_baro);
-        my_barometer->coefficients_[coeff_num] = (_byte1 << 8) | _byte2;
+        coefficients_[coeff_num] = (_byte1 << 8) | _byte2;
     }
 
 }
 
-void initMS5803Barometer(Barometer *my_barometer) {
+void initMS5803Barometer() {
 
     u8_t dummy_tx = 0xFF;
     u8_t dummy_rx;
@@ -128,13 +130,13 @@ void initMS5803Barometer(Barometer *my_barometer) {
     byteOut(spi2SCK,spi2MOSI, MS5803_CMD_RES);
     pinHigh(cs_baro);
     delay_ms(200);
-    readMS5803Coefficients(my_barometer);
+    readMS5803Coefficients();
 
-    my_barometer->heightCm = 4000;
-    my_barometer->pressurePa = 10000;
-    my_barometer->rawPressureData = 4311550;
-    my_barometer->rawTempatureData = 8387300;
-    my_barometer->temperatureCelcus = 2000;
+    //my_barometer->heightCm = 4000;
+    //my_barometer->pressurePa = 10000;
+    //my_barometer->rawPressureData = 4311550;
+    //my_barometer->rawTempatureData = 8387300;
+    //my_barometer->temperatureCelcus = 2000;
 
 
 

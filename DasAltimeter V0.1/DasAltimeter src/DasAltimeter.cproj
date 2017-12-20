@@ -219,10 +219,6 @@
       <SubType>compile</SubType>
       <Link>clocks.c</Link>
     </Compile>
-    <Compile Include="src\dma.c">
-      <SubType>compile</SubType>
-      <Link>dma.c</Link>
-    </Compile>
     <Compile Include="src\flight.c">
       <SubType>compile</SubType>
       <Link>flight.c</Link>
@@ -231,13 +227,17 @@
       <SubType>compile</SubType>
       <Link>flight.h</Link>
     </Compile>
-    <Compile Include="src\kalmanGains.c">
+    <Compile Include="src\ground.c">
       <SubType>compile</SubType>
-      <Link>kalmanGains.c</Link>
+      <Link>ground.c</Link>
     </Compile>
-    <Compile Include="src\kalmanGains.h">
+    <Compile Include="src\kalman.c">
       <SubType>compile</SubType>
-      <Link>kalmanGains.h</Link>
+      <Link>kalman.c</Link>
+    </Compile>
+    <Compile Include="src\kalman.h">
+      <SubType>compile</SubType>
+      <Link>kalman.h</Link>
     </Compile>
     <Compile Include="src\log.c">
       <SubType>compile</SubType>

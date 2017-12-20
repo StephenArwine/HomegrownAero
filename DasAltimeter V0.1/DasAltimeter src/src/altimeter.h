@@ -10,101 +10,7 @@ void IMUinit();
 
 
 
-typedef struct Barometer {
-
-    u16_t coefficients_[6];
-
-    uint32_t rawPressureData;
-
-    uint32_t rawTempatureData;
-
-    uint32_t temperatureCelcus;
-
-    uint32_t pressurePa;
-
-    int32_t pressureMbar;
-
-    uint32_t heightCm;
-
-    u32_t heightFeet;
-
-    double altitudefeet;
-
-
-} Barometer;
-
-
-
-typedef struct IMU {
-
-    float accelX;
-
-    float perviousAccelX;
-
-    float accelY;
-
-    float accelZ;
-
-    float gyroX;
-
-    float gyroY;
-
-    float gyroZ;
-
-    u16_t accelXRaw;
-    int16_t accelXint;
-
-    u16_t accelYRaw;
-    int16_t accelYint;
-
-    u16_t accelZRaw;
-    int16_t accelZint;
-
-    u16_t gyroXRaw;
-    int16_t gyroXint;
-
-    u16_t gyroYRaw;
-    int16_t gyroYint;
-
-    u16_t gyroZRaw;
-    int16_t gyroZint;
-
-} IMU;
-
-typedef struct flashMemory {
-
-    uint32_t currentAddress;
-
-    uint32_t endingAddress;
-
-    u8_t pageToWrite[256];
-
-    u8_t pageLocation;
-
-
-    u8_t pageBuffer[256];
-
-    bool pageReady;
-
-} flashMemory;
-
-typedef struct voltages {
-
-    u16_t batV;
-
-    float batFloat;
-
-    u16_t senseA;
-
-    u16_t senseB;
-
-    u16_t senseC;
-
-    u16_t senseD;
-
-} voltages;
-
-typedef struct Offsets {
+typedef struct offsets_t {
 
 
     u32_t offsetBufferTime;
@@ -112,32 +18,28 @@ typedef struct Offsets {
     double gravityOffset;
 
     double gravityOffsetBuffer;
-	
-	uint32_t groundOffset;
+
+    uint32_t groundOffset;
 
     uint32_t groundOffsetBuffer;
 
     uint32_t groundTemperature;
 
     uint32_t groundTemperatureBuffer;
-	
-	u32_t StartupTick;
+
+    u32_t StartupTick;
 
     u32_t tickDelta;
 
-	
-} Offsets;
+
+} offsets_t;
+
+extern offsets_t offsets;
+offsets_t offsets;
 
 
-typedef struct AnalogAccelerometer {
 
-    u16_t analogRaw;
-
-    float analogAccel;
-
-} AnalogAccelerometer;
-
-enum flightState {
+typedef enum flightState_t {
 
     flightStatrup = 0,
     flightIdle = 1,
@@ -150,47 +52,26 @@ enum flightState {
     flightLanded = 8,
     flightTest = 10
 
-} flightState;
+} flightState_t;
+
+extern flightState_t flightState;
 
 
 typedef struct Altimeter {
-
-    enum flightState myFlightState;
 
     u32_t maxAltitude;
 
     u8_t flightNumb;
 
-    Barometer myBarometer;
-
-    kalmanFilter myKalman;
-
-    IMU myIMU;
-
-    AnalogAccelerometer myAnalogAccelerometer;
-
-    flashMemory myFlashMemory;
-
-    voltages myVoltages;
-	
-	Offsets offsets;
-
-    u32_t sampleTick;
-
-
-    float Acceleration;
-
-    uint32_t Altitude;
-
-    float Velocity;
-
 
 } Altimeter;
 
+extern u32_t startupTick;
+u32_t startupTick;
 
 bool USARTconnectionAvaliable();
 void sendTheasePagesToComputer(u32_t firstPage, u32_t lastPage);
-bool unplugged(Altimeter *my_altimeter);
+bool unplugged();
 
 #endif
 

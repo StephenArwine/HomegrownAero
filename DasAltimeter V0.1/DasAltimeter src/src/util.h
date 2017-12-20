@@ -27,13 +27,15 @@ typedef uint8_t SercomId;
 
 // my includes
 #include <port.h>
-#include <MPU9250.h>
 #include <AT25SF.h>
+#include <MS5803.h>
 #include <BMI055.h>
 #include <sample.h>
+#include <kalman.h>
 #include <altimeter.h>
-#include <flight.h>
 #include <log.h>
+#include <flight.h>
+
 
 
 
@@ -64,7 +66,7 @@ void TC4Init();
 void TC5Init();
 
 //ground.c
-void updateGround(Altimeter *my_altimeter);
+void updateGround();
 
 //sercom.c
 void sercomClockEnable(SercomId id, uint32_t clock_channel, u8_t divider);
@@ -91,7 +93,7 @@ void unpluggedJingle();
 
 
 //transfer.c
-void attemptConnection(Altimeter *my_altimeter);
+void attemptConnection();
 
 
 //bigBang.c

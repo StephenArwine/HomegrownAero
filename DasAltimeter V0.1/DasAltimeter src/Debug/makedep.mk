@@ -24,11 +24,11 @@ src\buzzer.c
 
 src\clocks.c
 
-src\dma.c
-
 src\flight.c
 
-src\kalmanGains.c
+src\ground.c
+
+src\kalman.c
 
 src\log.c
 

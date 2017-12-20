@@ -47,11 +47,9 @@ void sendTheasePagesToComputer(u32_t firstPage, u32_t lastPage) {
     }
 }
 
-u32_t getAltitude() {
 
-    return;
-}
-
-bool unplugged(Altimeter *my_altimeter){
-if (my_altimeter->myVoltages.batFloat < 3.5){ return true;}
+bool unplugged() {
+    if (sample.voltage.batFloat < 3.5) {
+        return false;
+    }
 }

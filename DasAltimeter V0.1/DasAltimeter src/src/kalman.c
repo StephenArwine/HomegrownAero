@@ -11,7 +11,7 @@
 /* default values */
 
 #define  ALTITUDESIGMA	       5.0
-#define  ACCELERATIONSIGMA      2.0
+#define  ACCELERATIONSIGMA      2.5
 #define  MODELSIGMA		0.5
 
 double	phi[3][3]     = {
@@ -20,10 +20,10 @@ double	phi[3][3]     = {
     {0, 0, 1.0}
 };
 
-double altitude, velocity, accel
+double altitude, velocity, accel;
 
-    double  kgain[3][2];
-    double estp[3];
+double  kgain[3][2];
+double estp[3];
 
 double altitude_variance = ALTITUDESIGMA*ALTITUDESIGMA;
 double acceleration_variance = ACCELERATIONSIGMA*ACCELERATIONSIGMA;
@@ -47,7 +47,7 @@ void computeKalmanGains() {
         {0, 1, 0},
         {0, 0, 1.0}
     };
-    double  kgain[3][2], lastkgain[3][2];
+    double  lastkgain[3][2];
     double  dt, det;
     double	term[3][3];
 
@@ -155,16 +155,16 @@ void computeKalmanStates() {
     double alt_inovation, accel_inovation;
 
 
-    double accel = (my_altimeter->myIMU.accelZ - my_altimeter->offsets.gravityOffset) * 32.17417;
-    double pressure = my_altimeter->myBarometer.altitudefeet;
+    double acceleration = (sample.accelZ - offsets.gravityOffset) * 32.17417;
+    double pressure = sample.altitudefeet;
 
     if (altitude == 0) {
         altitude = pressure;
     }
 
     /* Compute the innovations */
-    alt_inovation = pressure - my_altimeter->myKalman.estp[0];
-    accel_inovation = accel - my_altimeter->myKalman.estp[2];
+    alt_inovation = pressure - estp[0];
+    accel_inovation = acceleration - estp[2];
 
 
     /* Propagate state */
