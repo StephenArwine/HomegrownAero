@@ -96,8 +96,6 @@ def DownloadFlightData():
         PageOfData = ser.read(256)
         data.append(PageOfData)
 
-        #print(PageOfData)
-
     ser.close()
 
     pointList, flight, eventList = processDataLog(data, pages, StartTime)

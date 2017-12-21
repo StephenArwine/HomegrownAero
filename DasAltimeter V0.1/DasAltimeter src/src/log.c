@@ -3,25 +3,25 @@
 #include <boardDefines.h>
 #include <math.h>
 
- uint32_t currentAddress;
+uint32_t currentAddress;
 
- uint32_t endingAddress;
+uint32_t endingAddress;
 
- u8_t pageToWrite[256];
+u8_t pageToWrite[256];
 
- u8_t pageLocation;
- 
-  bool pageReady;
+u8_t pageLocation;
+
+bool pageReady;
 
 
-void makePage(u8_t bytesToWrite, u8_t *data) {
+void makePage(u8_t bytesToWrite, u8_t* data) {
 
 
     u8_t location = pageLocation;
     u8_t bytesWritten = 0;
 
-    if ((location + bytesToWrite) >= 0xFF) {
-        for (u16_t dataByte = 0; (dataByte + location) < 0xFF; ++dataByte) {
+    if ((location + bytesToWrite) > 0xFF) {
+        for (u16_t dataByte = 0; (dataByte + location) <= 0xFF; ++dataByte) {
             pageBuffer[(dataByte + location)] = data[dataByte];
             bytesWritten++;
         }
@@ -30,21 +30,19 @@ void makePage(u8_t bytesToWrite, u8_t *data) {
             pageToWrite[i] = pageBuffer[i];
             pageBuffer[i] = 0;
         }
-        for (u8_t dataByte = 0; bytesWritten < bytesToWrite; ++dataByte) {
+        for (u16_t dataByte = 0; bytesWritten < bytesToWrite; ++dataByte) {
             pageBuffer[dataByte] = data[bytesWritten];
             bytesWritten++;
             pageLocation = dataByte + 1;
         }
-
         pageReady = true;
 
     } else {
         for (u16_t dataByte = 0; dataByte <= bytesToWrite; ++dataByte) {
             pageBuffer[(dataByte + location)] = data[dataByte];
             bytesWritten++;
-            pageLocation = location + dataByte + 1;
+            pageLocation = location + dataByte;
         }
-
     }
 }
 
@@ -73,7 +71,7 @@ void logFlight() {
     dataToSend[13] = offsets.groundTemperature >> 24;
 
     //dataToSend[14] = accel >> 0;
-    //dataToSend[15] = accel >> 8;
+    dataToSend[15] = 0xfe;
 
     makePage(bytesToSend, dataToSend);
 }
@@ -104,10 +102,11 @@ void logEvent(u8_t eventType) {
 
 void logSensors() {
 
-    u8_t bytesToSend = 23;
-    u8_t dataToSend[23];
+    u8_t bytesToSend = 24;
+    u8_t dataToSend[24];
 
     dataToSend[0] = SENSOR_LOG;
+	
     dataToSend[1] = sample.sampleTick >> 0;
     dataToSend[2] = sample.sampleTick >> 8;
     dataToSend[3] = sample.sampleTick >> 16;
@@ -140,7 +139,12 @@ void logSensors() {
     dataToSend[19] = (u32_t)sample.altitudefeet >> 16;
     dataToSend[20] = (u32_t)sample.altitudefeet >> 24;
 
+    float fractionalAccelraw = sample.accelZ - (int16_t)(sample.accelZ);
+    u8_t fractAccelRawPart = fractionalAccelraw * 256;
 
+    dataToSend[21] = (int16_t)(sample.accelZ) >> 0;
+    dataToSend[22] = (int16_t)(sample.accelZ) >> 8;
+    dataToSend[23] = fractAccelRawPart >> 0;
 
     //dataToSend[9] = my_altimeter->myIMU.accelXRaw >> 0;
     //dataToSend[10] = my_altimeter->myIMU.accelXRaw >> 8;
@@ -156,6 +160,33 @@ void logSensors() {
 
     //dataToSend[21] = my_altimeter->myAnalogAccelerometer.analogRaw >> 0;
     //dataToSend[22] = my_altimeter->myAnalogAccelerometer.analogRaw >> 8;
+	
+	/*
+	 dataToSend[1] = 0xff;
+	 dataToSend[2] = 0xff;
+	 dataToSend[3] = 0xff;
+	 dataToSend[4] = 0xff;
+	 dataToSend[5] = 0xff;
+	 dataToSend[6] = 0xff;
+	 dataToSend[7] = 0xff;
+	 dataToSend[8] = 0xff;
+	 dataToSend[9] = 0xff;
+	 dataToSend[10] = 0xff;
+	 dataToSend[11] = 0xff;
+	 dataToSend[12] = 0xff;
+	 dataToSend[13] = 0xff;
+	 dataToSend[14] = 0xff;
+	 dataToSend[15] = 0xff;
+	 dataToSend[16] = 0xff;
+	 dataToSend[17] = 0xff;
+	 dataToSend[18] = 0xff;
+	 dataToSend[19] = 0xff;
+	 dataToSend[20] = 0xff;
+	 dataToSend[21] = 0xfc;
+	 dataToSend[22] = 0xfd;
+	 dataToSend[23] = 0xfe;
+	 
+	 */
 
     makePage(bytesToSend, dataToSend);
 }

@@ -15,6 +15,7 @@ def PlotFlight(pointList, flight, eventList):
     velocityplot = []
     tick = []
     stdheight = []
+    stdaccel = []
 
     previousPoint = SensorPointType()
 
@@ -30,7 +31,7 @@ def PlotFlight(pointList, flight, eventList):
 
             dt = pointToPlot.sampleTick - previousPoint.sampleTick
             print('Sample', x, 'tick:', pointToPlot.sampleTick, 'Sample DT:', pointToPlot.Dt, 'Height Feet:',
-                  pointToPlot.heightFeet,'Raw feet:', pointToPlot.rawFeet, 'Velocity:', pointToPlot.velocity, 'AccelZ:', pointToPlot.accelZ)
+                  pointToPlot.heightFeet,'Raw feet:', pointToPlot.rawFeet, 'Velocity:', pointToPlot.velocity, 'AccelZ:', pointToPlot.accelZ, 'accelZRaw', pointToPlot.accelZraw / 32.17417)
 
         tick.append(pointToPlot.sampleTick / 1000)
         accelplot.append(pointToPlot.accelZ / 32.17417)
@@ -40,13 +41,13 @@ def PlotFlight(pointList, flight, eventList):
         previousPoint = pointToPlot
         x += 1
 
-        #stdaccel.append(pointToPlot.accelZ)
-        stdheight.append(pointToPlot.heightFeet)
+        stdaccel.append(pointToPlot.accelZraw / 32.17417)
+        stdheight.append(pointToPlot.rawFeet)
 
     for event in eventList:
         print(event.eventType, event.sampleTick - flight.bufferTick)
 
-    #print('accel StdDev ', numpy.std(stdaccel))
+    print('accel StdDev ', numpy.std(stdaccel))
     print('height StdDev ', numpy.std(stdheight))
 
     fig, ax1 = plt.subplots()
@@ -86,7 +87,7 @@ def PlotFlight(pointList, flight, eventList):
 
     ax3.yaxis.set_label_position('right')
     ax3.yaxis.set_ticks_position('right')
-    ax3.set_ylim(-.75, .75)
+    ax3.set_ylim(-2, 2)
 
     tkw = dict(size=4, width=1.5)
     ax1.tick_params(axis='y', colors=p1.get_color(), **tkw)

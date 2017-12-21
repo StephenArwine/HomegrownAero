@@ -11,7 +11,7 @@
 /* default values */
 
 #define  ALTITUDESIGMA	       5.0
-#define  ACCELERATIONSIGMA      2.5
+#define  ACCELERATIONSIGMA      1.5
 #define  MODELSIGMA		0.5
 
 double	phi[3][3]     = {

@@ -29,7 +29,7 @@ u8_t flightNumb;
 
 
 
-void makePage(u8_t bytesToWrite, u8_t *data);
+void makePage(u8_t bytesToWrite, u8_t* data);
 void logSensors();
 void logEvent(u8_t eventType);
 void logFlight();

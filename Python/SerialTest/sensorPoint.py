@@ -2,8 +2,9 @@ import twosComp
 from twosComp import twos_complement
 import time
 
-sensorPointLength = 23
+sensorPointLength = 24
 eventSampleLength = 12
+flightPointLength = 16
 
 class FlightPointType:
     def __init__(self):
@@ -25,6 +26,8 @@ class SensorPointType:
         self.accelY = 0
         self.accelZ = 0
         self.accelZFract = 0
+        self.accelZraw = 0
+        self.accelZrawFract = 0
         self.gyroX = 0
         self.gyroY = 0
         self.gyroZ = 0
@@ -42,10 +45,10 @@ class EventPointType:
 def build_flight_point(data, CurrentPage, pages, LocationInPage):
     flight = FlightPointType()
 
-    if (LocationInPage + 17) >= 255:
+    if (LocationInPage + flightPointLength + 1) >= 255:
 
         sensor_sample_part = data[CurrentPage][LocationInPage:255]
-        sensor_sample = sensor_sample_part + data[CurrentPage + 1][0:(16 - (256 - LocationInPage))]
+        sensor_sample = sensor_sample_part + data[CurrentPage + 1][0:(flightPointLength - (256 - LocationInPage))]
 
         point = FlightPointType()
         point.FlightNumb = sensor_sample[1]
@@ -58,7 +61,7 @@ def build_flight_point(data, CurrentPage, pages, LocationInPage):
         LocationInPage -= 240  # rollover + 16
 
     else:
-        sensor_sample = data[CurrentPage][LocationInPage:LocationInPage + 16]
+        sensor_sample = data[CurrentPage][LocationInPage:LocationInPage + flightPointLength]
 
         point = FlightPointType()
         point.FlightNumb = sensor_sample[1]
@@ -67,7 +70,7 @@ def build_flight_point(data, CurrentPage, pages, LocationInPage):
         point.groundTemperature = int.from_bytes(sensor_sample[10:13], byteorder='little')
         point.groundAccel = twosComp.twos_complement(sensor_sample[14], sensor_sample[15]) * 0.0078125
 
-        LocationInPage += 17
+        LocationInPage += flightPointLength
 
     return point, CurrentPage, LocationInPage
 
@@ -75,13 +78,13 @@ def build_flight_point(data, CurrentPage, pages, LocationInPage):
 def build_sensor_point(data, currentPage, pages, locationInPage, lastTick):
     point = SensorPointType()
 
-    if (locationInPage + sensorPointLength + 1) > 255:
+    if (locationInPage + sensorPointLength + 1) >= 255:
 
         if (currentPage + 1) >= pages:
             ProcessLog = False
             return 0, currentPage + 1, 0
 
-        sensor_sample_part = data[currentPage][locationInPage:255]
+        sensor_sample_part = data[currentPage][locationInPage:256]
         sensor_sample = sensor_sample_part + data[currentPage + 1][0:(sensorPointLength - (256 - locationInPage))]
 
         point.sampleTick = int.from_bytes(sensor_sample[1:4], byteorder='little')
@@ -96,15 +99,19 @@ def build_sensor_point(data, currentPage, pages, locationInPage, lastTick):
         point.velocity = twos_complement(sensor_sample[13], sensor_sample[14])
         point.velocityfract = twos_complement(sensor_sample[15], sensor_sample[16])
         point.velocityfract = point.velocityfract / 1000
-        point.velocity = point.velocityfract + point.velocityfract
+        point.velocity = point.velocity + point.velocityfract
 
         point.rawFeet = int.from_bytes(sensor_sample[17:20], byteorder='little')
+
+        point.accelZraw = twos_complement(sensor_sample[21], sensor_sample[22])
+        point.accelZrawFract = sensor_sample[23] / 256
+        point.accelZraw = point.accelZraw + point.accelZrawFract
 
         #point.gyroY = twos_complement(sensor_sample[17], sensor_sample[18]) * 0.0078125  # Gyro Y conv
         #point.gyroZ = twos_complement(sensor_sample[19], sensor_sample[20]) * 0.0078125  # Gyro Z conv
 
         currentPage += 1
-        locationInPage -= (0xff - sensorPointLength)
+        locationInPage -= (0xff - sensorPointLength + 1 )
 
         # print('Reading page ', currentPage, ' starting Location ', locationInPage, 'point',
         #      hex(data[currentPage][locationInPage]))
@@ -128,11 +135,16 @@ def build_sensor_point(data, currentPage, pages, locationInPage, lastTick):
 
         point.rawFeet = int.from_bytes(sensor_sample[17:20], byteorder='little')
 
+        point.accelZraw = twos_complement(sensor_sample[21], sensor_sample[22])
+        point.accelZrawFract = sensor_sample[23] / 256
+        point.accelZraw = point.accelZraw + point.accelZrawFract
+
+
 
         #point.gyroY = twos_complement(sensor_sample[17], sensor_sample[18]) * 0.0078125  # Accel Z conv
         #point.gyroZ = twos_complement(sensor_sample[19], sensor_sample[20]) * 0.0078125  # Accel Z conv
 
-        locationInPage += sensorPointLength + 1
+        locationInPage += sensorPointLength
 
     return point, currentPage, locationInPage
 
@@ -164,7 +176,7 @@ def build_event_point(data,currentPage, pages, locationInPage):
 
 
 
-        locationInPage += eventSampleLength + 1
+        locationInPage += eventSampleLength
 
     return currentPage, locationInPage, event
 
@@ -184,7 +196,7 @@ def processDataLog(data, pages, StartTime):
             ProcessLog = False
             break
 
-        #print(chr(data[CurrentPage][LocationInPage]), CurrentPage, LocationInPage)
+        print(chr(data[CurrentPage][LocationInPage]), CurrentPage, LocationInPage)
 
         # Flight point decode
         if chr(data[CurrentPage][LocationInPage]) == 'F':
@@ -194,7 +206,7 @@ def processDataLog(data, pages, StartTime):
 
         # Sensor point decoding
         if chr(data[CurrentPage][LocationInPage]) == 'S':
-            # print('A found, page', CurrentPage, ' ,Location', LocationInPage)
+            # print('S found, page', CurrentPage, ' ,Location', LocationInPage)
             samplenum += 1
 
             if pointList.__len__() > 0:

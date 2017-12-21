@@ -30,7 +30,7 @@ void flight() {
 
 
 
-        if (unplugged()) {
+        if (sample.voltage.batFloat < 3.5) {
             flightState = flightIdle;
             unpluggedJingle();
         }
@@ -68,7 +68,7 @@ void flight() {
             pinToggle(LedPin);
         }
 
-        if (( velocity > 0.1) && ((altitude - offsets.groundOffset) > 6)) {
+        if (( velocity > 0.05) && ((altitude - offsets.groundOffset) > 5)) {
             flightState = flightBoost;
             logEvent('L');
         }
