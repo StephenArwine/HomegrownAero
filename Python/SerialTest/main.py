@@ -8,7 +8,7 @@ from flightPlotter import PlotFlight
 import numpy
 from sensorPoint import processDataLog
 import csv
-import sys
+from os import walk
 
 
 # from sensorPoint import build_sensor_point
@@ -19,7 +19,7 @@ from sensorPoint import FlightPointType
 
 ser = serial.Serial()
 ser.baudrate = 115200
-ser.port = 'COM14'
+ser.port = 'COM7'
 ser.timeout = 5
 
 
@@ -40,21 +40,21 @@ sensor_sample = 0
 sensor_sample_part = 0
 
 
-def saveFlightData(pointList, flight):
+def saveFlightData(data):
+    f = []
+    for (dirpath, dirnames, filenames) in walk('logs/'):
+        f.extend(filenames)
+        break
 
-    myFlile = open('logs/flightLog.csv', 'w')
+    print(filenames)
+
+    myFlile = open(str('logs/flightLog_' + time.strftime('%b%d%Y_%H%M', time.localtime()) + '.csv'), 'w', newline='')
 
     with myFlile:
-        #fieldnames = ['Sample Tick', 'Height Feet',' Acceleration X']
-        # writer = csv.DictWriter(myFlile, fieldnames=fieldnames)
-
         writer = csv.writer(myFlile)
 
-        writer.writerow(['Sample Tick', 'Height Feet',' Acceleration Z', 'Velocity'])
-
-        for point in pointList:
-            row = [point.sampleTick, point.heightFeet, point.accelZ, point.velocity]
-            writer.writerow(row)
+        for page in data:
+            writer.writerow(page)
 
     print('done')
 
@@ -106,7 +106,7 @@ def DownloadFlightData():
     savechoice = input(' ').upper()
 
     if savechoice == 'Y':
-        saveFlightData(pointList, flight)
+        saveFlightData(data)
 
 
 def EraseChip():
@@ -122,9 +122,28 @@ def EraseChip():
     ser.close()
 
 
-
 def LoadSavedData():
+
     print(' loading data')
+    data = []
+
+    with open('logs/flightLog.csv', newline='') as myFile:
+
+        dataIn = csv.reader(myFile)
+
+        for row in dataIn:
+            pointLocation = 0
+            for point in row:
+                row[pointLocation] = int(point)
+                pointLocation += 1
+
+            data.append(row)
+
+    StartTime = time.clock()
+
+    pointList, flight, eventList = processDataLog(data, data.__len__(), StartTime)
+    PlotFlight(pointList, flight, eventList)
+
 
 
 def resetAltimeter():
