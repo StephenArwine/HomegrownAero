@@ -14,11 +14,6 @@
 #include "math.h"
 
 
-
-
-
-
-
 void init() {
 
 
@@ -142,40 +137,21 @@ void init() {
 
 int main(void) {
 
-
     init();
-
-
-
-
-    //  altimeter.myFlightState = flightStatrup;
-
 
     initMS5803Barometer();
     IMUinit();
-
-
-    //  altimeter.myFlashMemory.pageLocation = 0x00;
-    //  altimeter.myFlashMemory.pageReady = false;
-
 
     computeKalmanGains();
 
 
     sampleTick();
 
-
-    //  altimeter.offsets.gravityOffset = altimeter.offsets.accelZ;
-    //  altimeter.offsets.gravityOffsetBuffer = altimeter.offsets.gravityOffset;
-    //  altimeter.offsets.groundOffset = altimeter.offsets.altitudefeet;
-    //  altimeter.offsets.groundOffsetBuffer = altimeter.offsets.groundOffset;
-
-
     beep(400);
 
 
     startupTick = millis();
-// 	my_altimeter.myIMU.offsetBufferTime =  my_altimeter.StartupTick;
+
 
     while (1) {
 
@@ -187,9 +163,5 @@ int main(void) {
 
 
         }
-
-
-
-
     }
 }
