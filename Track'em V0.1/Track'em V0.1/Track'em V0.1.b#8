@@ -46,9 +46,9 @@
 <layer number="36" name="bGlue" color="7" fill="5" visible="no" active="yes"/>
 <layer number="37" name="tTest" color="7" fill="1" visible="no" active="yes"/>
 <layer number="38" name="bTest" color="7" fill="1" visible="no" active="yes"/>
-<layer number="39" name="tKeepout" color="4" fill="11" visible="yes" active="yes"/>
-<layer number="40" name="bKeepout" color="1" fill="11" visible="yes" active="yes"/>
-<layer number="41" name="tRestrict" color="4" fill="10" visible="yes" active="yes"/>
+<layer number="39" name="tKeepout" color="4" fill="11" visible="no" active="yes"/>
+<layer number="40" name="bKeepout" color="1" fill="11" visible="no" active="yes"/>
+<layer number="41" name="tRestrict" color="4" fill="10" visible="no" active="yes"/>
 <layer number="42" name="bRestrict" color="1" fill="10" visible="yes" active="yes"/>
 <layer number="43" name="vRestrict" color="2" fill="10" visible="yes" active="yes"/>
 <layer number="44" name="Drills" color="7" fill="1" visible="no" active="yes"/>
@@ -1162,20 +1162,20 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <polygon width="0.254" layer="1">
 <vertex x="0" y="0"/>
 <vertex x="47.244" y="0"/>
-<vertex x="47.244" y="18.288"/>
-<vertex x="0" y="18.288"/>
+<vertex x="47.244" y="17.018"/>
+<vertex x="0" y="17.018"/>
 </polygon>
 <polygon width="0.254" layer="2">
 <vertex x="0" y="0"/>
-<vertex x="0" y="19.558"/>
-<vertex x="47.498" y="19.558"/>
+<vertex x="0" y="17.018"/>
+<vertex x="47.498" y="17.018"/>
 <vertex x="47.498" y="0"/>
 </polygon>
 <polygon width="0.254" layer="16">
 <vertex x="0" y="0"/>
 <vertex x="47.498" y="0"/>
-<vertex x="47.498" y="22.352"/>
-<vertex x="0" y="22.352"/>
+<vertex x="47.498" y="17.018"/>
+<vertex x="0" y="17.018"/>
 </polygon>
 <contactref element="IC1" pad="10"/>
 <contactref element="IC1" pad="11"/>
@@ -1249,8 +1249,8 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="5.9351" y1="10.5791" x2="6.7183" y2="10.5791" width="0.254" layer="1"/>
 <polygon width="0.254" layer="15">
 <vertex x="0" y="0"/>
-<vertex x="0" y="20.828"/>
-<vertex x="47.498" y="20.828"/>
+<vertex x="0" y="17.018"/>
+<vertex x="47.498" y="17.018"/>
 <vertex x="47.498" y="0"/>
 </polygon>
 <via x="39.5859" y="6.7691" extent="1-16" drill="0.254"/>
@@ -1686,27 +1686,27 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 </signal>
 </signals>
 <errors>
-<approved hash="7,39,cc3ac34003400c3a"/>
 <approved hash="7,39,afea6350a3576fed"/>
+<approved hash="7,39,cc3ac34003400c3a"/>
 <approved hash="19,1,177202b9034116a6"/>
-<approved hash="5,1,121bbe00cf967a0a"/>
-<approved hash="5,1,e92b95db8bd65926"/>
+<approved hash="5,1,587ee660580cde33"/>
 <approved hash="5,1,992c34dd3cd09120"/>
-<approved hash="5,1,91a598829a936b3d"/>
+<approved hash="5,1,121bbe00cf967a0a"/>
+<approved hash="5,1,932c3cdd34d39b23"/>
 <approved hash="5,1,679f7cc8f2b7ed7f"/>
 <approved hash="5,1,97d3e899e89eedb0"/>
 <approved hash="5,1,e4d4c279f640d356"/>
-<approved hash="5,1,587ee660580cde33"/>
+<approved hash="5,1,e92b95db8bd65926"/>
 <approved hash="5,1,db2c14dd1cd39323"/>
-<approved hash="5,1,932c3cdd34d39b23"/>
-<approved hash="5,1,0bc8368188136c5d"/>
+<approved hash="5,1,91a598829a936b3d"/>
 <approved hash="5,1,080101b82f72c92d"/>
-<approved hash="5,1,0bc82e8a8218a653"/>
+<approved hash="5,1,0bc8368188136c5d"/>
 <approved hash="5,1,2ce617e405193157"/>
-<approved hash="5,16,db2c14dd1cd39323"/>
+<approved hash="5,1,0bc82e8a8218a653"/>
+<approved hash="5,16,992c34dd3cd09120"/>
 <approved hash="5,16,932c3cdd34d39b23"/>
 <approved hash="5,16,e92b95db8bd65926"/>
-<approved hash="5,16,992c34dd3cd09120"/>
+<approved hash="5,16,db2c14dd1cd39323"/>
 </errors>
 </board>
 </drawing>

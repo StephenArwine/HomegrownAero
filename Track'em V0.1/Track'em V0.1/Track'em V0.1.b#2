@@ -1097,7 +1097,8 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <attribute name="NAME" x="22.606" y="6.477" size="0.6096" layer="25" font="vector" ratio="20" rot="R90" align="bottom-center"/>
 <attribute name="PROD_ID" value=" " x="23.368" y="6.477" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
-<element name="C16" library="SparkFun-Capacitors" package="0603-POL" value="10uF" x="18.542" y="3.048">
+<element name="C16" library="SparkFun-Capacitors" package="0603-POL" value="10uF" x="18.542" y="3.048" smashed="yes">
+<attribute name="NAME" x="20.701" y="2.794" size="0.6096" layer="25" font="vector" ratio="20"/>
 <attribute name="PROD_ID" value="CAP-13210" x="18.542" y="3.048" size="1.778" layer="27" display="off"/>
 </element>
 </elements>

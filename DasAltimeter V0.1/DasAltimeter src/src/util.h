@@ -22,7 +22,7 @@ typedef uint8_t DmaChan;
 typedef uint8_t SercomId;
 
 
-
+#include <nvmctrl.h>
 
 
 // my includes

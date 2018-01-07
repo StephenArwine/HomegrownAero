@@ -280,11 +280,11 @@ FRAME-LETTER</description>
 <smd name="18" x="0" y="1.78" dx="0.28" dy="0.76" layer="1"/>
 <smd name="19" x="-0.5" y="1.78" dx="0.28" dy="0.76" layer="1"/>
 <smd name="20" x="-1" y="1.78" dx="0.28" dy="0.76" layer="1"/>
-<pad name="P$1" x="-0.75" y="0.75" drill="0.2" diameter="0.4572" stop="no" thermals="no"/>
-<pad name="P$2" x="0.75" y="0.75" drill="0.2" diameter="0.4572" stop="no" thermals="no"/>
-<pad name="P$3" x="0.75" y="-0.75" drill="0.2" diameter="0.4572" stop="no" thermals="no"/>
-<pad name="P$4" x="-0.75" y="-0.75" drill="0.2" diameter="0.4572" stop="no" thermals="no"/>
-<pad name="P$5" x="0" y="0" drill="0.2" diameter="0.4572" stop="no" thermals="no"/>
+<pad name="P$1" x="-0.75" y="0.75" drill="0.254" diameter="0.4572" stop="no" thermals="no"/>
+<pad name="P$2" x="0.75" y="0.75" drill="0.254" diameter="0.4572" stop="no" thermals="no"/>
+<pad name="P$3" x="0.75" y="-0.75" drill="0.254" diameter="0.4572" stop="no" thermals="no"/>
+<pad name="P$4" x="-0.75" y="-0.75" drill="0.254" diameter="0.4572" stop="no" thermals="no"/>
+<pad name="P$5" x="0" y="0" drill="0.254" diameter="0.4572" stop="no" thermals="no"/>
 </package>
 <package name="0433BM15A0001">
 <smd name="2" x="0" y="0.9" dx="1" dy="0.35" layer="1" rot="R90"/>
@@ -789,7 +789,7 @@ Example: SX-32S</description>
 <class number="0" name="default" width="0" drill="0">
 </class>
 </classes>
-<designrules name="oshpark-4layer-tented">
+<designrules name="oshpark-4layer-tented *">
 <description language="en">&lt;b&gt;OSH Park Design Rules&lt;/b&gt;
 &lt;p&gt;
 Please make sure your boards conform to these design rules.
@@ -850,8 +850,8 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <param name="psElongationOffset" value="100"/>
 <param name="mvStopFrame" value="1"/>
 <param name="mvCreamFrame" value="0"/>
-<param name="mlMinStopFrame" value="2.5mil"/>
-<param name="mlMaxStopFrame" value="2.5mil"/>
+<param name="mlMinStopFrame" value="1.5mil"/>
+<param name="mlMaxStopFrame" value="1.5mil"/>
 <param name="mlMinCreamFrame" value="0mil"/>
 <param name="mlMaxCreamFrame" value="0mil"/>
 <param name="mlViaStopLimit" value="20mil"/>
@@ -1686,27 +1686,27 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 </signal>
 </signals>
 <errors>
-<approved hash="7,39,afea6350a3576fed"/>
 <approved hash="7,39,cc3ac34003400c3a"/>
+<approved hash="7,39,afea6350a3576fed"/>
+<approved hash="5,1,91a598829a936b3d"/>
 <approved hash="19,1,177202b9034116a6"/>
-<approved hash="5,1,587ee660580cde33"/>
-<approved hash="5,1,992c34dd3cd09120"/>
+<approved hash="5,1,0bc82e8a8218a653"/>
+<approved hash="5,1,080101b82f72c92d"/>
+<approved hash="5,1,2ce617e405193157"/>
 <approved hash="5,1,121bbe00cf967a0a"/>
-<approved hash="5,1,932c3cdd34d39b23"/>
 <approved hash="5,1,679f7cc8f2b7ed7f"/>
 <approved hash="5,1,97d3e899e89eedb0"/>
 <approved hash="5,1,e4d4c279f640d356"/>
+<approved hash="5,1,587ee660580cde33"/>
 <approved hash="5,1,e92b95db8bd65926"/>
+<approved hash="5,1,992c34dd3cd09120"/>
 <approved hash="5,1,db2c14dd1cd39323"/>
-<approved hash="5,1,91a598829a936b3d"/>
-<approved hash="5,1,080101b82f72c92d"/>
+<approved hash="5,1,932c3cdd34d39b23"/>
 <approved hash="5,1,0bc8368188136c5d"/>
-<approved hash="5,1,2ce617e405193157"/>
-<approved hash="5,1,0bc82e8a8218a653"/>
-<approved hash="5,16,992c34dd3cd09120"/>
-<approved hash="5,16,932c3cdd34d39b23"/>
 <approved hash="5,16,e92b95db8bd65926"/>
+<approved hash="5,16,992c34dd3cd09120"/>
 <approved hash="5,16,db2c14dd1cd39323"/>
+<approved hash="5,16,932c3cdd34d39b23"/>
 </errors>
 </board>
 </drawing>

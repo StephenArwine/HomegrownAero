@@ -3863,7 +3863,6 @@ Example: SX-32S</description>
 <part name="C4" library="SparkFun-Capacitors" deviceset="2.2UF" device="-0603-10V-20%" value="1000pF"/>
 <part name="H1" library="SparkFun-Hardware" deviceset="STAND-OFF" device="TIGHT"/>
 <part name="H2" library="SparkFun-Hardware" deviceset="STAND-OFF" device="TIGHT"/>
-<part name="H3" library="SparkFun-Hardware" deviceset="STAND-OFF" device="TIGHT"/>
 <part name="IC1" library="ubloxLib" deviceset="SAM-M8Q" device=""/>
 <part name="C5" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="0.1uF"/>
 <part name="C6" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="0.1uF"/>
@@ -3901,6 +3900,8 @@ Example: SX-32S</description>
 <part name="SUPPLY3" library="SparkFun-PowerSymbols" deviceset="3.3V" device=""/>
 <part name="SUPPLY6" library="SparkFun-Aesthetics" deviceset="3.3V" device=""/>
 <part name="GND19" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
+<part name="SUPPLY7" library="SparkFun-Aesthetics" deviceset="3.3V" device=""/>
+<part name="GND20" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -3938,7 +3939,6 @@ Example: SX-32S</description>
 <instance part="C4" gate="G$1" x="210.82" y="165.1" rot="R90"/>
 <instance part="H1" gate="G$1" x="215.9" y="63.5"/>
 <instance part="H2" gate="G$1" x="218.44" y="63.5"/>
-<instance part="H3" gate="G$1" x="220.98" y="63.5"/>
 <instance part="IC1" gate="G$1" x="76.2" y="48.26"/>
 <instance part="C5" gate="G$1" x="154.94" y="48.26"/>
 <instance part="C6" gate="G$1" x="144.78" y="104.14"/>
@@ -3985,6 +3985,8 @@ Example: SX-32S</description>
 <instance part="SUPPLY3" gate="G$1" x="205.74" y="154.94" rot="R270"/>
 <instance part="SUPPLY6" gate="G$1" x="96.52" y="83.82"/>
 <instance part="GND19" gate="1" x="71.12" y="55.88"/>
+<instance part="SUPPLY7" gate="G$1" x="10.16" y="45.72"/>
+<instance part="GND20" gate="1" x="10.16" y="38.1"/>
 </instances>
 <busses>
 </busses>
@@ -4124,6 +4126,15 @@ Example: SX-32S</description>
 <pinref part="IC1" gate="G$1" pin="GND"/>
 <pinref part="GND19" gate="1" pin="GND"/>
 </segment>
+<segment>
+<pinref part="J1" gate="G$1" pin="GND@5"/>
+<pinref part="GND20" gate="1" pin="GND"/>
+<wire x1="10.16" y1="40.64" x2="17.78" y2="40.64" width="0.1524" layer="91"/>
+<pinref part="J1" gate="G$1" pin="GND@3"/>
+<wire x1="17.78" y1="43.18" x2="10.16" y2="43.18" width="0.1524" layer="91"/>
+<wire x1="10.16" y1="43.18" x2="10.16" y2="40.64" width="0.1524" layer="91"/>
+<junction x="10.16" y="40.64"/>
+</segment>
 </net>
 <net name="3.3V" class="0">
 <segment>
@@ -4228,6 +4239,11 @@ Example: SX-32S</description>
 <segment>
 <pinref part="IC1" gate="G$1" pin="VCC"/>
 <pinref part="SUPPLY6" gate="G$1" pin="3.3V"/>
+</segment>
+<segment>
+<pinref part="J1" gate="G$1" pin="VCC"/>
+<pinref part="SUPPLY7" gate="G$1" pin="3.3V"/>
+<wire x1="10.16" y1="45.72" x2="17.78" y2="45.72" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="CS_MEM" class="0">

@@ -1587,26 +1587,15 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="29.075" y1="12.829" x2="29.075" y2="13.89" width="0.254" layer="1"/>
 <wire x1="29.075" y1="13.89" x2="29.464" y2="14.279" width="0.254" layer="1"/>
 </signal>
-<signal name="N$19">
-<contactref element="U$1" pad="8"/>
-<contactref element="C13" pad="2"/>
-<contactref element="Y1" pad="3"/>
-<wire x1="28.575" y1="9.269" x2="28.575" y2="8.5979" width="0.254" layer="1"/>
-<wire x1="26.725" y1="6.7479" x2="26.725" y2="4.572" width="0.254" layer="1"/>
-<wire x1="28.575" y1="8.5979" x2="26.725" y2="6.7479" width="0.254" layer="1"/>
-<wire x1="26.725" y1="4.572" x2="26.725" y2="2.721" width="0.254" layer="1"/>
-<wire x1="26.725" y1="2.721" x2="27.908" y2="1.538" width="0.254" layer="1"/>
-</signal>
 <signal name="N$20">
 <contactref element="U$1" pad="10"/>
-<contactref element="C14" pad="1"/>
-<contactref element="Y1" pad="1"/>
 <wire x1="29.575" y1="9.269" x2="29.575" y2="8.8552" width="0.254" layer="1"/>
 <wire x1="29.575" y1="8.8552" x2="29.9974" y2="8.4328" width="0.254" layer="1"/>
 <wire x1="29.9974" y1="8.4328" x2="29.9974" y2="4.8556" width="0.254" layer="1"/>
-<wire x1="29.9974" y1="4.8556" x2="30.281" y2="4.572" width="0.254" layer="1"/>
-<wire x1="30.281" y1="4.572" x2="30.281" y2="3.311" width="0.254" layer="1"/>
-<wire x1="30.281" y1="3.311" x2="30.258" y2="3.288" width="0.254" layer="1"/>
+<contactref element="C14" pad="1"/>
+<contactref element="Y1" pad="1"/>
+<wire x1="30.281" y1="4.572" x2="29.9974" y2="4.8556" width="0" layer="19" extent="1-1"/>
+<wire x1="30.258" y1="3.288" x2="30.281" y2="4.572" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="CNT">
 <contactref element="U$1" pad="6"/>
@@ -1683,6 +1672,13 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="10.3124" y1="4.0259" x2="9.5228" y2="4.0259" width="0.6096" layer="1"/>
 <wire x1="5.175" y1="6.334" x2="5.175" y2="6.604" width="0.254" layer="16"/>
 <wire x1="5.175" y1="6.604" x2="5.445" y2="6.604" width="0.254" layer="16"/>
+</signal>
+<signal name="N$4">
+<contactref element="U$1" pad="8"/>
+<contactref element="C13" pad="2"/>
+<contactref element="Y1" pad="3"/>
+<wire x1="26.725" y1="4.572" x2="28.575" y2="9.269" width="0" layer="19" extent="1-1"/>
+<wire x1="27.908" y1="1.538" x2="26.725" y2="4.572" width="0" layer="19" extent="1-1"/>
 </signal>
 </signals>
 <errors>
