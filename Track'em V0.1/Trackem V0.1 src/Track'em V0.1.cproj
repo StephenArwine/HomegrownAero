@@ -179,9 +179,25 @@
       <SubType>compile</SubType>
       <Link>bitBang.c</Link>
     </Compile>
+    <Compile Include="src\cc1101.c">
+      <SubType>compile</SubType>
+      <Link>cc1101.c</Link>
+    </Compile>
+    <Compile Include="src\cc1101.h">
+      <SubType>compile</SubType>
+      <Link>cc1101.h</Link>
+    </Compile>
     <Compile Include="src\clocks.c">
       <SubType>compile</SubType>
       <Link>clocks.c</Link>
+    </Compile>
+    <Compile Include="src\GPS.c">
+      <SubType>compile</SubType>
+      <Link>GPS.c</Link>
+    </Compile>
+    <Compile Include="src\GPS.h">
+      <SubType>compile</SubType>
+      <Link>GPS.h</Link>
     </Compile>
     <Compile Include="src\port.h">
       <SubType>compile</SubType>

@@ -10,7 +10,11 @@ main.c
 
 src\bitBang.c
 
+src\cc1101.c
+
 src\clocks.c
+
+src\GPS.c
 
 src\sercom.c
 

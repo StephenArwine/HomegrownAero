@@ -1,7 +1,5 @@
 #pragma once
 
-//#include <samd21g18a.h>
-//#include <samd21.h>
 #include <samd11c14a.h>
 #include <samd11.h>
 
@@ -29,6 +27,9 @@ typedef uint8_t SercomId;
 // my includes
 
 #include <port.h>
+#include <GPS.h>
+#include <cc1101.h>
+
 //#include <AT25SF.h>
 //#include <MS5803.h>
 //#include <BMI055.h>
@@ -55,7 +56,7 @@ void delayInit(void);
 void delay_ms(uint32_t delay);
 void delay_us(uint32_t delay);
 uint32_t millis(void);
-//void TC4Init();
+void TC1Init();
 //void TC5Init();
 
 
@@ -82,6 +83,7 @@ u8_t usartDataIn(SercomId id);
 //bigBang.c
 void byteOut(Pin SCK_PIN, Pin MOSI_PIN, uint8_t byte);
 uint8_t byteIn(Pin SCK_PIN, Pin MISO_PIN);
+uint8_t syncByte(Pin SCK_PIN, Pin MISO_PIN, Pin MOSI_PIN, uint8_t byte);
 
 
 #define CONTAINER_OF(ptr, type, field_name) \

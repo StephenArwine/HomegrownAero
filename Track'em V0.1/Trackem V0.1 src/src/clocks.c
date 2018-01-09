@@ -66,18 +66,18 @@ void GclkInit() {
 }
 
 void RtcInit() {
-	
-	/*
-	    // start and enable external 32k crystal
-	    SYSCTRL->XOSC32K.reg = SYSCTRL_XOSC32K_ENABLE |
-	    SYSCTRL_XOSC32K_XTALEN |
-	    SYSCTRL_XOSC32K_EN32K |
-	    ( 6 << SYSCTRL_OSC32K_STARTUP_Pos);
 
-	    //wait for crystal to warm up
-	    while((SYSCTRL->PCLKSR.reg & (SYSCTRL_PCLKSR_XOSC32KRDY)) == 0);
-	*/
-	
+    /*
+        // start and enable external 32k crystal
+        SYSCTRL->XOSC32K.reg = SYSCTRL_XOSC32K_ENABLE |
+        SYSCTRL_XOSC32K_XTALEN |
+        SYSCTRL_XOSC32K_EN32K |
+        ( 6 << SYSCTRL_OSC32K_STARTUP_Pos);
+
+        //wait for crystal to warm up
+        while((SYSCTRL->PCLKSR.reg & (SYSCTRL_PCLKSR_XOSC32KRDY)) == 0);
+    */
+
 
     SYSCTRL->OSC32K.reg = SYSCTRL_OSC32K_ENABLE |
                           SYSCTRL_OSC32K_EN32K |
@@ -96,10 +96,10 @@ void RtcInit() {
 
 
 
-    SYSCTRL->OSC32K.bit.ENABLE = 1; // separate call, as described in chapter 15.6.3 
+    SYSCTRL->OSC32K.bit.ENABLE = 1; // separate call, as described in chapter 15.6.3
 
     while (  (SYSCTRL->PCLKSR.reg & SYSCTRL_PCLKSR_OSC32KRDY) == 0 ) {
-        // Wait for oscillator stabilization 
+        // Wait for oscillator stabilization
     }
 
 
@@ -200,34 +200,39 @@ uint32_t millis(void) {
     return ms;
 }
 
-/*
 
-void TC4Init() {
 
-    GCLK->CLKCTRL.reg = GCLK_CLKCTRL_ID(TC4_GCLK_ID) |
+void TC1Init() {
+
+    GCLK->CLKCTRL.reg = GCLK_CLKCTRL_ID(TC1_GCLK_ID) |
                         GCLK_CLKCTRL_CLKEN |
                         GCLK_CLKCTRL_GEN(2);
 
-    PM->APBCMASK.reg |= PM_APBCMASK_TC4;
+    PM->APBCMASK.reg |= PM_APBCMASK_TC1;
 
-    TC4->COUNT8.CTRLA.reg = TC_CTRLA_MODE_COUNT8 |
+    TC1->COUNT8.CTRLA.reg = TC_CTRLA_MODE_COUNT8 |
                             TC_CTRLA_RUNSTDBY |
-                            TC_CTRLA_PRESCALER_DIV2;
-    TC4->COUNT8.PER.reg = 0x41;
+                            TC_CTRLA_PRESCALER_DIV1024;
+    //TC1->COUNT8.PER.reg = 0x20; // 32.768kHz / 1024 / 32 = 1.0hz = every 1 sec
+    TC1->COUNT8.PER.reg = 0x40; // 32.768kHz / 1024 / 64 = 0.5hz = every 2 sec
+    //TC1->COUNT8.PER.reg = 0x80; // 32.768kHz / 1024 / 128 = 0.25hz = every 4 sec
+    //TC1->COUNT8.PER.reg = 0xFF; // 32.768kHz / 1024 / 255 = 0.125hz = every 8 sec
 
-    TC4->COUNT8.INTENSET.reg = TC_INTENSET_OVF;
+    TC1->COUNT8.INTENSET.reg = TC_INTENSET_OVF;
 
-    TC4->COUNT8.EVCTRL.reg = TC_EVCTRL_OVFEO;
+    TC1->COUNT8.EVCTRL.reg = TC_EVCTRL_OVFEO;
 
-    TC4->COUNT8.CTRLA.reg |= TC_CTRLA_ENABLE;
+    TC1->COUNT8.CTRLA.reg |= TC_CTRLA_ENABLE;
 
-    NVIC_EnableIRQ(TC4_IRQn);
+    NVIC_EnableIRQ(TC1_IRQn);
 }
 
-void TC4_Handler( void ) {
-    TC4->COUNT8.INTFLAG.reg = 0xFF;
-    pullSample();
+void TC1_Handler( void ) {
+    TC1->COUNT8.INTFLAG.reg = 0xFF;
+    myMessage.transmitMessage = true;
 }
+
+/*
 
 void TC5Init() {
 
@@ -240,7 +245,7 @@ void TC5Init() {
     TC5->COUNT8.CTRLA.reg = TC_CTRLA_MODE_COUNT8 |
                             TC_CTRLA_RUNSTDBY |
                             TC_CTRLA_PRESCALER_DIV64;
-							
+
     TC5->COUNT8.PER.reg = 0x20;
 
     TC5->COUNT8.INTENSET.reg = TC_INTENSET_OVF;
