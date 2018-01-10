@@ -66,6 +66,13 @@ int main(void) {
 
     /* Replace with your application code */
 
+    pinLow(cs_tx);
+    while(pinRead(spiMISO) == true);
+    byteOut(spiSCK, spiMOSI, CC1101_SRES);
+    pinHigh(cs_tx);
+
+    delay_ms(100);
+
     pinLow(cs_mem);
     byteOut(spiSCK,spiMOSI,0x9f);
     volatile u8_t ID = byteIn(spiSCK, spiMISO);
@@ -73,10 +80,21 @@ int main(void) {
     volatile u8_t ID3 = byteIn(spiSCK, spiMISO);
     pinHigh(cs_mem);
 
+    volatile u8_t status1 = cc1101_get_status();
+
+    sendreg();
+
     pinLow(cs_tx);
-    volatile u8_t status = syncByte(spiSCK, spiMISO, spiMOSI, 0x3d);
-    volatile u8_t status2 = byteIn(spiSCK, spiMISO);
+    while(pinRead(spiMISO) == true);
+    byteOut(spiSCK, spiMOSI, CC1101_STX);
     pinHigh(cs_tx);
+
+    
+    volatile u8_t status2 = cc1101_get_status();
+
+    delay_ms(100);
+
+    volatile u8_t status3 = cc1101_get_status();
 
 
     while (1) {
@@ -89,11 +107,11 @@ int main(void) {
 
             sendUSARTMessage(myMessage);
 
-            char message1[] = "message,";
+            //char message1[] = 		printf("status");
 
-            SendUSART(message1, strlen(message1));
+            //SendUSART(message1, strlen(message1));
             //SendUSART(cc1101_reg[CC1101_IOCFG0].addr, strlen(cc1101_reg[CC1101_IOCFG0].addr));
-            sendreg();
+            //sendreg();
         }
     }
 

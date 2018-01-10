@@ -1,8 +1,10 @@
 #include <util.h>
+#include <boardDefines.h>
 #include <cc1101.h>
 
 
-
+#define cc1101_select()     pinLow(cs_tx)
+#define cc1101_deselect()	pinHigh(cs_tx)
 
 
 
@@ -77,8 +79,32 @@ static const struct cc1101_reg cc1101_reg[] = {
 
 };
 
+u8_t cc1101_num_reg = (sizeof(cc1101_reg) / sizeof(cc1101_reg[0]));
+
 void sendreg() {
 
-    volatile u8_t testreg = cc1101_reg[CC1101_FREQ2].addr;
+    volatile u8_t i;
 
+    for (i = 0; i < cc1101_num_reg ; i++) {
+
+        cc1101_select();
+        while(pinRead(spiMISO) == true);
+        byteOut(spiSCK, spiMOSI, cc1101_reg[i].addr | 0x80);
+        u8_t reg_data = byteIn(spiSCK,spiMISO);
+        cc1101_deselect();
+
+        SendUSART(reg_data, strlen(reg_data));
+        SendUSART(cc1101_reg[i].name, strlen(cc1101_reg[i].name));
+
+    }
+}
+
+u8_t cc1101_get_status() {
+
+    cc1101_select();
+    volatile u8_t status = syncByte(spiSCK, spiMISO, spiMOSI, 0x3d | 0x80);
+    volatile u8_t status2 = byteIn(spiSCK, spiMISO);
+    cc1101_deselect();
+
+return status2;
 }
