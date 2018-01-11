@@ -153,8 +153,8 @@
 /* Whitening = false */
 #define RF_IOCFG2           0x29
 #define RF_IOCFG1           0x2E
-#define RF_IOCFG0           0x02
-#define RF_FIFOTHR          0x4F
+#define RF_IOCFG0           0x06
+#define RF_FIFOTHR          0x03
 #define RF_SYNC1            0xD3
 #define RF_SYNC0            0x91
 #define RF_PKTLEN           0xFF
