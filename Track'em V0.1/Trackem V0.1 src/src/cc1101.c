@@ -81,6 +81,60 @@ static const struct cc1101_reg cc1101_reg[] = {
 
 u8_t cc1101_num_reg = (sizeof(cc1101_reg) / sizeof(cc1101_reg[0]));
 
+
+void CC1101_set_RX_state(){
+
+	cc1101_select();
+    while(pinRead(spiMISO) == true);
+	byteOut(spiSCK, spiMOSI, CC1101_SRX);
+	cc1101_deselect();
+}
+
+void CC1101_set_TX_state(){
+
+	cc1101_select();
+    while(pinRead(spiMISO) == true);
+	byteOut(spiSCK, spiMOSI, CC1101_STX);
+	cc1101_deselect();
+}
+
+u8_t cc1101_read_reg(u8_t reg){
+
+    cc1101_select();
+    while(pinRead(spiMISO) == true);
+	byteOut(spiSCK, spiMOSI, reg);
+    u8_t reg = byteIn(spiSCK, spiMISO);
+	cc1101_deselect();
+
+	return reg;
+}
+
+void CC1101_write_reg(u8_t reg, u8_t value){
+
+    cc1101_select();
+    while(pinRead(spiMISO) == true);
+	byteOut(spiSCK, spiMOSI, reg);
+	byteOut(spiSCK, spiMOSI, value);
+	cc1101_deselect();
+
+}
+
+void CC1101_write_burst_reg(u8_t reg, u8_t* buffer, u8_t length){
+
+	u8_t i = 0;
+	u8_t add = reg | WRITE_BURST;
+
+    cc1101_select();
+    while(pinRead(spiMISO) == true);
+	byteOut(spiSCK, spiMOSI, reg);
+	for(i = 0; i < length; i++){
+		byteOut(spiSCK, spiMOSI, buffer[i]);
+	}
+	cc1101_deselect();
+
+}
+
+
 void sendreg() {
 
     volatile u8_t regirsterssss[200];
@@ -99,18 +153,78 @@ void sendreg() {
 
     }
     cc1101_deselect();
-
-
 }
 
-u8_t cc1101_get_status() {
+bool CC1101_tx_data(u8_t* packet, u8_t packenlen){
 
-    cc1101_select();
-    volatile u8_t status = syncByte(spiSCK, spiMISO, spiMOSI, 0x3d);
-    volatile u8_t status2 = byteIn(spiSCK, spiMISO);
-    cc1101_deselect();
+	u8_t marcstate;
+	bool res = false;
+	
+	//Enter RX state
+	CC1101_set_RX_state();
+	
+   u16_t tries = 0
+   // Check that the RX state has been entered 
+   while (tries++ < 1000 && ((marcState = CC1101_read_status_reg(CC1101_MARCSTATE)) & 0x1F) != 0x0D) 
+   { 
+    if (marcState == 0x11){        // RX_OVERFLOW 
+    //  flushRxFifo();     // flush receive queue 
+		} 
+	if (tries >= 1000) { 
+		// TODO: MarcState sometimes never enters the expected state; this is a hack workaround. 
+		return false; 
+		}
+   } 
 
-    return status2;
+   delay_us(500);
+   
+   CC1101_write_reg(CC1101_TXFIFO, packenlen);
+   CC1101_write_burst_reg(CC1101_TXFIFO, packet, packenlen);
+   
+   
+   CC1101_set_TX_state();
+   
+   
+   
+   // Check that TX state is being entered (state = RXTX_SETTLING) 
+   marcState = readStatusReg(CC1101_MARCSTATE) & 0x1F; 
+   if ((marcState != 0x13) && (marcState != 0x14) && (marcState != 0x15)) 
+   { 
+   
+		cc1101_select();
+		while(pinRead(spiMISO) == true);
+		byteOut(spiSCK, spiMOSI, CC1101_SIDLE);	// Enter IDLE state 
+		cc1101_deselect();  
+
+		cc1101_select();
+		while(pinRead(spiMISO) == true);
+		byteOut(spiSCK, spiMOSI, CC1101_SFTX);	// Flush Tx FIFO  
+		cc1101_deselect(); 
+	
+		cc1101_select();
+		while(pinRead(spiMISO) == true);
+		byteOut(spiSCK, spiMOSI, CC1101_SFRX);	// Back to RX state 
+		cc1101_deselect(); 
+		flushTxFifo();         
+		setRxState();          
+ 
+		return false; 
+   } 
+
+   delay_ms(200);
+
+   if (CC1101_read_status_reg(CC1101_TXBYTES) &0x70) == 0){
+   		cc1101_select();
+		while(pinRead(spiMISO) == true);
+		byteOut(spiSCK, spiMOSI, CC1101_SIDLE);	// Enter IDLE state 
+		cc1101_deselect(); 
+		
+		res = true;
+   
+   
+   }
+
+return res;
 }
 
 void write_cc1101_status_regersters() {
