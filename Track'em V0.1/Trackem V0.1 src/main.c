@@ -80,8 +80,7 @@ int main(void) {
     volatile u8_t ID3 = byteIn(spiSCK, spiMISO);
     pinHigh(cs_mem);
 
-    volatile u8_t status1 = cc1101_get_status();
-    delay_ms(100);
+   
 
     write_cc1101_status_regersters();
     delay_ms(100);
@@ -91,64 +90,21 @@ int main(void) {
     delay_ms(100);
 
 
-    pinLow(cs_tx);
-    while(pinRead(spiMISO) == true);
-    byteOut(spiSCK, spiMOSI, CC1101_STX);
-    pinHigh(cs_tx);
-
-
-    volatile u8_t status2 = cc1101_get_status();
-
-    delay_ms(10);
-
-
-    pinLow(cs_tx);
-    while(pinRead(spiMISO) == true);
-    byteOut(spiSCK, spiMOSI, 0x7F);
-    byteOut(spiSCK, spiMOSI, 0x03);
-    byteOut(spiSCK, spiMOSI, 0xAA);
-    byteOut(spiSCK, spiMOSI, 0xAA);
-    byteOut(spiSCK, spiMOSI, 0x11);
-
-    pinHigh(cs_tx);
-
-    volatile u8_t status3 = cc1101_get_status();
-
 
     while (1) {
 
-        pinLow(cs_tx);
-        while(pinRead(spiMISO) == true);
-        byteOut(spiSCK, spiMOSI, CC1101_STX);
-        pinHigh(cs_tx);
-        //delay_ms(1);
-        //volatile u8_t status6 = cc1101_get_status();
+        u8_t packet[9] = {0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA};
+		
+		volatile u8_t status1 = CC1101_read_status_reg(CC1101_TXBYTES);
+		
+		volatile bool sent = CC1101_tx_data(&packet, 0x09);
+		
+		volatile u8_t status2 = CC1101_read_status_reg(CC1101_TXBYTES);
 
 
-
-        pinLow(cs_tx);
-        while(pinRead(spiMISO) == true);
-        byteOut(spiSCK, spiMOSI, 0x7F);
-        byteOut(spiSCK, spiMOSI, 0x09);
-        byteOut(spiSCK, spiMOSI, 0xAA);
-        byteOut(spiSCK, spiMOSI, 0xAA);
-        byteOut(spiSCK, spiMOSI, 0xAA);
-        byteOut(spiSCK, spiMOSI, 0xAA);
-        byteOut(spiSCK, spiMOSI, 0xAA);
-        byteOut(spiSCK, spiMOSI, 0xAA);
-        byteOut(spiSCK, spiMOSI, 0xAA);
-        byteOut(spiSCK, spiMOSI, 0xAA);
-        byteOut(spiSCK, spiMOSI, 0xAA);
-
-        pinHigh(cs_tx);
-
-        volatile u8_t status4 = cc1101_get_status();
-
-        delay_ms(1);
-
-        volatile u8_t status5 = cc1101_get_status();
-
-        parseGPSMessage();
+     
+		
+		parseGPSMessage();
 
         if (myMessage.messageReady == true && myMessage.transmitMessage == true) {
             myMessage.messageReady = false;
