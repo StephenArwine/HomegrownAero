@@ -23,7 +23,47 @@
 #define CC1101_SWORRST		0x3C	// Reset real time clock to Event1 value.
 #define CC1101_SNOP			0x3D	// No operation. May be used to get access to the chip status byte.
 
+/** 
+ * Type of transfers 
+ */ 
+#define WRITE_BURST              0x40 
+#define READ_SINGLE              0x80 
+#define READ_BURST               0xC0 
 
+ 
+/** 
+ * Type of register 
+ */ 
+#define CC1101_CONFIG_REGISTER   READ_SINGLE 
+#define CC1101_STATUS_REGISTER   READ_BURST 
+
+ 
+/** 
+ * PATABLE & FIFO's 
+ */ 
+#define CC1101_PATABLE           0x3E        // PATABLE address 
+#define CC1101_TXFIFO            0x3F        // TX FIFO address 
+#define CC1101_RXFIFO            0x3F        // RX FIFO address 
+
+
+
+ /** 
+  * Status registers 
+  */ 
+#define CC1101_PARTNUM           0x30        // Chip ID 
+#define CC1101_VERSION           0x31        // Chip ID 
+#define CC1101_FREQEST           0x32        // Frequency Offset Estimate from Demodulator 
+#define CC1101_LQI               0x33        // Demodulator Estimate for Link Quality 
+#define CC1101_RSSI              0x34        // Received Signal Strength Indication 
+#define CC1101_MARCSTATE         0x35        // Main Radio Control State Machine State 
+#define CC1101_WORTIME1          0x36        // High Byte of WOR Time 
+#define CC1101_WORTIME0          0x37        // Low Byte of WOR Time 
+#define CC1101_PKTSTATUS         0x38        // Current GDOx Status and Packet Status 
+#define CC1101_VCO_VC_DAC        0x39        // Current Setting from PLL Calibration Module 
+#define CC1101_TXBYTES           0x3A        // Underflow and Number of Bytes 
+#define CC1101_RXBYTES           0x3B        // Overflow and Number of Bytes 
+#define CC1101_RCCTRL1_STATUS    0x3C        // Last RC Oscillator Calibration Result 
+#define CC1101_RCCTRL0_STATUS    0x3D        // Last RC Oscillator Calibration Result  
 
 #define RADIO_CC1101
 #define CC1101_IOCFG2           0x00    //GDO2 OUTPUT PIN CONFIGURATION
@@ -174,8 +214,21 @@
 #define RF_RCCTRL0_STATUS   0x00
 
 
+// Read CC1101 Config register 
+#define CC1101_read_config_reg(regAddr)    cc1101_read_reg(regAddr | CC1101_CONFIG_REGISTER) 
+// Read CC1101 Status register 
+#define CC1101_read_status_reg(regAddr)    cc1101_read_reg(regAddr | CC1101_STATUS_REGISTER) 
+
+void CC1101_set_RX_state();
+void CC1101_set_TX_state();
+
+void CC1101_write_reg(u8_t reg, u8_t value);
+void CC1101_write_burst_reg(u8_t reg, u8_t* buffer, u8_t length);
+CC1101_tx_data(u8_t* packet, u8_t packenlen);
 
 void sendreg();
-u8_t cc1101_get_status();
+u8_t cc1101_read_reg(u8_t reg);
+
+
 void write_cc1101_status_regersters();
 
