@@ -83,28 +83,177 @@ u8_t cc1101_num_reg = (sizeof(cc1101_reg) / sizeof(cc1101_reg[0]));
 
 void sendreg() {
 
+    volatile u8_t regirsterssss[200];
+
     volatile u8_t i;
 
     for (i = 0; i < cc1101_num_reg ; i++) {
 
         cc1101_select();
         while(pinRead(spiMISO) == true);
-        byteOut(spiSCK, spiMOSI, cc1101_reg[i].addr | 0x80);
-        u8_t reg_data = byteIn(spiSCK,spiMISO);
+        byteOut(spiSCK, spiMOSI, i | 0x80);
+        volatile u8_t reg_data = byteIn(spiSCK,spiMISO);
         cc1101_deselect();
 
-        SendUSART(reg_data, strlen(reg_data));
-        SendUSART(cc1101_reg[i].name, strlen(cc1101_reg[i].name));
+        regirsterssss[i] = reg_data;
 
     }
+    cc1101_deselect();
+
+
 }
 
 u8_t cc1101_get_status() {
 
     cc1101_select();
-    volatile u8_t status = syncByte(spiSCK, spiMISO, spiMOSI, 0x3d | 0x80);
+    volatile u8_t status = syncByte(spiSCK, spiMISO, spiMOSI, 0x3d);
     volatile u8_t status2 = byteIn(spiSCK, spiMISO);
     cc1101_deselect();
 
-return status2;
+    return status2;
+}
+
+void write_cc1101_status_regersters() {
+
+    cc1101_select();
+    while(pinRead(spiMISO) == true);
+    byteOut(spiSCK, spiMOSI, CC1101_IOCFG0);
+    byteOut(spiSCK, spiMOSI, RF_IOCFG0);
+    cc1101_deselect();
+
+
+    cc1101_select();
+    while(pinRead(spiMISO) == true);
+    byteOut(spiSCK, spiMOSI, CC1101_FIFOTHR);
+    byteOut(spiSCK, spiMOSI, RF_FIFOTHR);
+    cc1101_deselect();
+
+    cc1101_select();
+    while(pinRead(spiMISO) == true);
+    byteOut(spiSCK, spiMOSI, CC1101_PKTCTRL0);
+    byteOut(spiSCK, spiMOSI, RF_PKTCTRL0);
+    cc1101_deselect();
+
+    cc1101_select();
+    while(pinRead(spiMISO) == true);
+    byteOut(spiSCK, spiMOSI, CC1101_FSCTRL1);
+    byteOut(spiSCK, spiMOSI, RF_FSCTRL1);
+    cc1101_deselect();
+
+    cc1101_select();
+    while(pinRead(spiMISO) == true);
+    byteOut(spiSCK, spiMOSI, CC1101_FREQ2);
+    byteOut(spiSCK, spiMOSI, RF_FREQ2);
+    cc1101_deselect();
+
+    cc1101_select();
+    while(pinRead(spiMISO) == true);
+    byteOut(spiSCK, spiMOSI, CC1101_FREQ1);
+    byteOut(spiSCK, spiMOSI, RF_FREQ1);
+    cc1101_deselect();
+
+    cc1101_select();
+    while(pinRead(spiMISO) == true);
+    byteOut(spiSCK, spiMOSI, CC1101_FREQ0);
+    byteOut(spiSCK, spiMOSI, RF_FREQ0);
+    cc1101_deselect();
+
+    cc1101_select();
+    while(pinRead(spiMISO) == true);
+    byteOut(spiSCK, spiMOSI, CC1101_MDMCFG4);
+    byteOut(spiSCK, spiMOSI, RF_MDMCFG4);
+    cc1101_deselect();
+
+    cc1101_select();
+    while(pinRead(spiMISO) == true);
+    byteOut(spiSCK, spiMOSI, CC1101_MDMCFG3);
+    byteOut(spiSCK, spiMOSI, RF_MDMCFG3);
+    cc1101_deselect();
+
+    cc1101_select();
+    while(pinRead(spiMISO) == true);
+    byteOut(spiSCK, spiMOSI, CC1101_MDMCFG2);
+    byteOut(spiSCK, spiMOSI, RF_MDMCFG2);
+    cc1101_deselect();
+
+    cc1101_select();
+    while(pinRead(spiMISO) == true);
+    byteOut(spiSCK, spiMOSI, CC1101_DEVIATN);
+    byteOut(spiSCK, spiMOSI, RF_DEVIATN);
+    cc1101_deselect();
+	
+    cc1101_select();
+    while(pinRead(spiMISO) == true);
+    byteOut(spiSCK, spiMOSI, CC1101_MCSM1);
+    byteOut(spiSCK, spiMOSI, RF_MCSM0);
+    cc1101_deselect();
+
+
+    cc1101_select();
+    while(pinRead(spiMISO) == true);
+    byteOut(spiSCK, spiMOSI, CC1101_MCSM0);
+    byteOut(spiSCK, spiMOSI, RF_MCSM0);
+    cc1101_deselect();
+
+    cc1101_select();
+    while(pinRead(spiMISO) == true);
+    byteOut(spiSCK, spiMOSI, CC1101_FOCCFG);
+    byteOut(spiSCK, spiMOSI, RF_FOCCFG);
+    cc1101_deselect();
+
+    cc1101_select();
+    while(pinRead(spiMISO) == true);
+    byteOut(spiSCK, spiMOSI, CC1101_WORCTRL);
+    byteOut(spiSCK, spiMOSI, RF_WORCTRL);
+    cc1101_deselect();
+
+    cc1101_select();
+    while(pinRead(spiMISO) == true);
+    byteOut(spiSCK, spiMOSI, CC1101_FSCAL3);
+    byteOut(spiSCK, spiMOSI, RF_FSCAL3);
+    cc1101_deselect();
+
+    cc1101_select();
+    while(pinRead(spiMISO) == true);
+    byteOut(spiSCK, spiMOSI, CC1101_FSCAL2);
+    byteOut(spiSCK, spiMOSI, RF_FSCAL2);
+    cc1101_deselect();
+
+    cc1101_select();
+    while(pinRead(spiMISO) == true);
+    byteOut(spiSCK, spiMOSI, CC1101_FSCAL1);
+    byteOut(spiSCK, spiMOSI, RF_FSCAL1);
+    cc1101_deselect();
+
+    cc1101_select();
+    while(pinRead(spiMISO) == true);
+    byteOut(spiSCK, spiMOSI, CC1101_FSCAL0);
+    byteOut(spiSCK, spiMOSI, RF_FSCAL0);
+    cc1101_deselect();
+
+    cc1101_select();
+    while(pinRead(spiMISO) == true);
+    byteOut(spiSCK, spiMOSI, CC1101_TEST2);
+    byteOut(spiSCK, spiMOSI, RF_TEST2);
+    cc1101_deselect();
+
+    cc1101_select();
+    while(pinRead(spiMISO) == true);
+    byteOut(spiSCK, spiMOSI, CC1101_TEST1);
+    byteOut(spiSCK, spiMOSI, RF_TEST1);
+    cc1101_deselect();
+
+    cc1101_select();
+    while(pinRead(spiMISO) == true);
+    byteOut(spiSCK, spiMOSI, CC1101_TEST0);
+    byteOut(spiSCK, spiMOSI, RF_TEST0);
+    cc1101_deselect();
+
+    cc1101_select();
+    while(pinRead(spiMISO) == true);
+    byteOut(spiSCK, spiMOSI, 0x3E);
+    byteOut(spiSCK, spiMOSI, 0xC0);
+    cc1101_deselect();
+
+
 }

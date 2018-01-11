@@ -1,21 +1,21 @@
 #include <util.h>
 
-	
+
 #define CC1101_SRES			0x30	// Reset chip.
 #define CC1101_SFSTXON		0x31	// Enable and calibrate frequency synthesizer (if MCSM0.FS_AUTOCAL=1). If in RX (with CCA):
-							//Go to a wait state where only the synthesizer is running (for quick RX / TX turnaround).
+//Go to a wait state where only the synthesizer is running (for quick RX / TX turnaround).
 
 #define CC1101_SXOFF		0x32	// Turn off crystal oscillator.
 #define CC1101_SCAL			0x33	// Calibrate frequency synthesizer and turn it off. SCAL can be strobed from IDLE mode without
-							//setting manual calibration mode (MCSM0.FS_AUTOCAL=0)
+//setting manual calibration mode (MCSM0.FS_AUTOCAL=0)
 
 #define CC1101_SRX		    0x34	// Enable RX. Perform calibration first if coming from IDLE and MCSM0.FS_AUTOCAL=1.
 #define CC1101_STX			0x35	// In IDLE state: Enable TX. Perform calibration first if MCSM0.FS_AUTOCAL=1.
-							//If in RX state and CCA is enabled: Only go to TX if channel is clear.
+//If in RX state and CCA is enabled: Only go to TX if channel is clear.
 
 #define CC1101_SIDLE		0x36	// Exit RX / TX, turn off frequency synthesizer and exit Wake-On-Radio mode if applicable.
 #define CC1101_SWOR			0x38	// Start automatic RX polling sequence (Wake-on-Radio) as described in Section 19.5 if
-							//WORCTRL.RC_PD=0.
+//WORCTRL.RC_PD=0.
 
 #define CC1101_SPWD			0x39	// Enter power down mode when CSn goes high.
 #define CC1101_SFRX			0x3A	// Flush the RX FIFO buffer. Only issue SFRX in IDLE or RXFIFO_OVERFLOW states.
@@ -113,8 +113,8 @@
 /* Whitening = false */
 #define RF_IOCFG2           0x29
 #define RF_IOCFG1           0x2E
-#define RF_IOCFG0           0x06
-#define RF_FIFOTHR          0x47
+#define RF_IOCFG0           0x02
+#define RF_FIFOTHR          0x4F
 #define RF_SYNC1            0xD3
 #define RF_SYNC0            0x91
 #define RF_PKTLEN           0xFF
@@ -126,7 +126,7 @@
 #define RF_FSCTRL0          0x00
 #define RF_FREQ2            0x10
 #define RF_FREQ1            0xB3
-#define RF_FREQ0            0xB1
+#define RF_FREQ0            0x72
 #define RF_MDMCFG4          0xF5
 #define RF_MDMCFG3          0x83
 #define RF_MDMCFG2          0x13
@@ -134,7 +134,7 @@
 #define RF_MDMCFG0          0xF8
 #define RF_DEVIATN          0x15
 #define RF_MCSM2            0x07
-#define RF_MCSM1            0x30
+#define RF_MCSM1            0x32
 #define RF_MCSM0            0x18
 #define RF_FOCCFG           0x16
 #define RF_BSCFG            0x6C
@@ -173,5 +173,9 @@
 #define RF_RCCTRL1_STATUS   0x00
 #define RF_RCCTRL0_STATUS   0x00
 
+
+
 void sendreg();
 u8_t cc1101_get_status();
+void write_cc1101_status_regersters();
+

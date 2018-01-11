@@ -81,23 +81,72 @@ int main(void) {
     pinHigh(cs_mem);
 
     volatile u8_t status1 = cc1101_get_status();
+    delay_ms(100);
+
+    write_cc1101_status_regersters();
+    delay_ms(100);
 
     sendreg();
+
+    delay_ms(100);
+
 
     pinLow(cs_tx);
     while(pinRead(spiMISO) == true);
     byteOut(spiSCK, spiMOSI, CC1101_STX);
     pinHigh(cs_tx);
 
-    
+
     volatile u8_t status2 = cc1101_get_status();
 
-    delay_ms(100);
+    delay_ms(10);
+
+
+    pinLow(cs_tx);
+    while(pinRead(spiMISO) == true);
+    byteOut(spiSCK, spiMOSI, 0x7F);
+    byteOut(spiSCK, spiMOSI, 0x03);
+    byteOut(spiSCK, spiMOSI, 0xAA);
+    byteOut(spiSCK, spiMOSI, 0xAA);
+    byteOut(spiSCK, spiMOSI, 0x11);
+
+    pinHigh(cs_tx);
 
     volatile u8_t status3 = cc1101_get_status();
 
 
     while (1) {
+
+        pinLow(cs_tx);
+        while(pinRead(spiMISO) == true);
+        byteOut(spiSCK, spiMOSI, CC1101_STX);
+        pinHigh(cs_tx);
+        //delay_ms(1);
+        //volatile u8_t status6 = cc1101_get_status();
+
+
+
+        pinLow(cs_tx);
+        while(pinRead(spiMISO) == true);
+        byteOut(spiSCK, spiMOSI, 0x7F);
+        byteOut(spiSCK, spiMOSI, 0x09);
+        byteOut(spiSCK, spiMOSI, 0xAA);
+        byteOut(spiSCK, spiMOSI, 0xAA);
+        byteOut(spiSCK, spiMOSI, 0xAA);
+        byteOut(spiSCK, spiMOSI, 0xAA);
+        byteOut(spiSCK, spiMOSI, 0xAA);
+        byteOut(spiSCK, spiMOSI, 0xAA);
+        byteOut(spiSCK, spiMOSI, 0xAA);
+        byteOut(spiSCK, spiMOSI, 0xAA);
+        byteOut(spiSCK, spiMOSI, 0xAA);
+
+        pinHigh(cs_tx);
+
+        volatile u8_t status4 = cc1101_get_status();
+
+        delay_ms(1);
+
+        volatile u8_t status5 = cc1101_get_status();
 
         parseGPSMessage();
 
@@ -112,6 +161,7 @@ int main(void) {
             //SendUSART(message1, strlen(message1));
             //SendUSART(cc1101_reg[CC1101_IOCFG0].addr, strlen(cc1101_reg[CC1101_IOCFG0].addr));
             //sendreg();
+
         }
     }
 
