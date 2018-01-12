@@ -65,6 +65,8 @@ void SendUSART(char message[], int length) {
 
 }
 
+u8_t packet[18] = {0xAA, 0x0A, 0xAA, 0xFA, 0xAA, 0xAA, 0xA2, 0xAA, 0xAA, 0xAA, 0x0A, 0xAA, 0xAA, 0xAA, 0xAA, 0xA7, 0xAA, 0xAA};
+
 
 int main(void) {
     /* Initialize the SAM system */
@@ -73,12 +75,6 @@ int main(void) {
 
     /* Replace with your application code */
 
-//     pinLow(cs_tx);
-//     while(pinRead(spiMISO) == true);
-//     byteOut(spiSCK, spiMOSI, CC1101_SRES);
-//     pinHigh(cs_tx);
-
-    // delay_ms(100);
 
     pinLow(cs_mem);
     byteOut(spiSCK,spiMOSI,0x9f);
@@ -88,12 +84,11 @@ int main(void) {
     pinHigh(cs_mem);
 
 
-    write_cc1101_status_regersters();
+
+    CC1101_reset_chip();
     delay_ms(100);
 
     //sendreg();
-
-    delay_ms(100);
 
 
     CC1101_cmd_strobe(CC1101_SFSTXON);
@@ -103,11 +98,8 @@ int main(void) {
 
     while (1) {
 
-//         u8_t packet[18] = {0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA};
-//
-//         volatile bool sent = CC1101_tx_data(packet, 0x18);
-//
-//         u8_t status2 = CC1101_read_status_reg(CC1101_MARCSTATE);
+
+
 
 
         parseGPSMessage();
@@ -116,24 +108,16 @@ int main(void) {
             myMessage.messageReady = false;
             myMessage.transmitMessage = false;
 
-            u8_t packet[18] = {0xAA, 0x0A, 0xAA, 0xFA, 0xAA, 0xAA, 0xA2, 0xAA, 0xAA, 0xAA, 0x0A, 0xAA, 0xAA, 0xAA, 0xAA, 0xA7, 0xAA, 0xAA};
-
-            volatile bool sent = CC1101_tx_data(packet, 0x18);
-
-            u8_t status2 = CC1101_read_status_reg(CC1101_MARCSTATE);
-
+			//Send the parsed GPS message over USART
             sendUSARTMessage(myMessage);
-
+			
+			//TX packed over VHF
+            volatile bool sent = CC1101_tx_data(packet, 0x18);
+            u8_t status2 = CC1101_read_status_reg(CC1101_MARCSTATE);
+			
+			//send result of TX over USART
             char * sencC = sent ? "true" : "false";
-
-
             SendUSART(sencC, strlen(sencC));
-            //SendUSART(cc1101_reg[CC1101_IOCFG0].addr, strlen(cc1101_reg[CC1101_IOCFG0].addr));
-            //write_cc1101_status_regersters();
-
-            //sendreg();
-
-
 
         }
     }

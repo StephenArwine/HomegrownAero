@@ -324,6 +324,7 @@ void sendreg();
 void write_cc1101_status_regersters();
 u8_t cc1101_read_reg(u8_t reg);
 
+void CC1101_reset_chip();
 
 
 

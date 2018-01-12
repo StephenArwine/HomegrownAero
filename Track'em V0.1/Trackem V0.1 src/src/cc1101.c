@@ -83,6 +83,8 @@ static const struct cc1101_reg cc1101_reg[] = {
 u8_t cc1101_num_reg = (sizeof(cc1101_reg) / sizeof(cc1101_reg[0]));
 
 
+
+
 void CC1101_cmd_strobe(u8_t reg) {
 
     cc1101_select();
@@ -105,7 +107,6 @@ void CC1101_set_TX_state() {
     cc1101_select();
     while(pinRead(spiMISO) == true);
     byteOut(spiSCK, spiMOSI, CC1101_STX);
-
     cc1101_deselect();
 }
 
@@ -196,7 +197,7 @@ bool CC1101_tx_data(u8_t *packet, u8_t packenlen) {
 
     delay_us(500);
 
-    cc1101_write_reg(CC1101_TXFIFO, packenlen);
+    //cc1101_write_reg(CC1101_TXFIFO, packenlen);
     CC1101_write_burst_reg(CC1101_TXFIFO, packet, packenlen);
 
     delay_us(500);
@@ -209,7 +210,7 @@ bool CC1101_tx_data(u8_t *packet, u8_t packenlen) {
 
 
     // Check that TX state is being entered (state = RXTX_SETTLING)
-    marcstate =  CC1101_read_status_reg(CC1101_MARCSTATE);
+    marcstate =  CC1101_read_status_reg(CC1101_MARCSTATE) & 0x1F;
     if ((marcstate != 0x13) && (marcstate != 0x14) && (marcstate != 0x15)) {
 
         cc1101_select();
@@ -226,9 +227,7 @@ bool CC1101_tx_data(u8_t *packet, u8_t packenlen) {
         while(pinRead(spiMISO) == true);
         byteOut(spiSCK, spiMOSI, CC1101_SFRX);	// Back to RX state
         cc1101_deselect();
-        //flushTxFifo();
-        //setRxState();
-
+		
         return false;
     }
 
@@ -243,8 +242,6 @@ bool CC1101_tx_data(u8_t *packet, u8_t packenlen) {
         cc1101_deselect();
 
         res = true;
-
-
     }
 
     return res;
@@ -314,9 +311,28 @@ void write_cc1101_status_regersters() {
     cc1101_write_reg(CC1101_RCCTRL1_STATUS,RF_RCCTRL1_STATUS);
     cc1101_write_reg(CC1101_RCCTRL0_STATUS,RF_RCCTRL0_STATUS);
 
+    cc1101_select();
+    while(pinRead(spiMISO) == true);
+    cc1101_deselect();
+}
 
+void CC1101_reset_chip() {
 
+    cc1101_deselect();
+    delay_us(30);
+    cc1101_select();
+    delay_us(30);
+    cc1101_deselect();
+    delay_us(45);
 
+    //send Reset
+    cc1101_select();
+    while(pinRead(spiMISO) == true);
+    byteOut(spiSCK, spiMOSI, CC1101_SRES);
+    while(pinRead(spiMISO) == true);
+    cc1101_deselect();
 
+    //configure reg
+    write_cc1101_status_regersters();
 
 }
