@@ -12,6 +12,13 @@
 
 void init() {
 
+    /* Set 1 Flash Wait State for 48MHz, cf tables 20.9 and 35.27 in SAMD21 Datasheet */
+    NVMCTRL->CTRLB.bit.RWS = NVMCTRL_CTRLB_RWS_HALF_Val;
+
+
+    /* Turn on the digital interface clock */
+    PM->APBAMASK.reg |= PM_APBAMASK_GCLK;
+
     SystemInit();
     GclkInit();
     RtcInit();
@@ -66,57 +73,67 @@ int main(void) {
 
     /* Replace with your application code */
 
-    pinLow(cs_tx);
-    while(pinRead(spiMISO) == true);
-    byteOut(spiSCK, spiMOSI, CC1101_SRES);
-    pinHigh(cs_tx);
+//     pinLow(cs_tx);
+//     while(pinRead(spiMISO) == true);
+//     byteOut(spiSCK, spiMOSI, CC1101_SRES);
+//     pinHigh(cs_tx);
 
-    delay_ms(100);
+    // delay_ms(100);
 
     pinLow(cs_mem);
     byteOut(spiSCK,spiMOSI,0x9f);
-    volatile u8_t ID = byteIn(spiSCK, spiMISO);
-    volatile u8_t ID2 = byteIn(spiSCK, spiMISO);
-    volatile u8_t ID3 = byteIn(spiSCK, spiMISO);
+    u8_t ID = byteIn(spiSCK, spiMISO);
+    u8_t ID2 = byteIn(spiSCK, spiMISO);
+    u8_t ID3 = byteIn(spiSCK, spiMISO);
     pinHigh(cs_mem);
 
-   
 
     write_cc1101_status_regersters();
     delay_ms(100);
 
-    sendreg();
+    //sendreg();
 
     delay_ms(100);
+
+
+    CC1101_cmd_strobe(CC1101_SFSTXON);
+
 
 
 
     while (1) {
 
-        u8_t packet[9] = {0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA};
-		
-		volatile u8_t status1 = CC1101_read_status_reg(CC1101_TXBYTES);
-		
-		volatile bool sent = CC1101_tx_data(&packet, 0x09);
-		
-		volatile u8_t status2 = CC1101_read_status_reg(CC1101_TXBYTES);
+//         u8_t packet[18] = {0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA};
+//
+//         volatile bool sent = CC1101_tx_data(packet, 0x18);
+//
+//         u8_t status2 = CC1101_read_status_reg(CC1101_MARCSTATE);
 
 
-     
-		
-		parseGPSMessage();
+        parseGPSMessage();
 
         if (myMessage.messageReady == true && myMessage.transmitMessage == true) {
             myMessage.messageReady = false;
             myMessage.transmitMessage = false;
 
+            u8_t packet[18] = {0xAA, 0x0A, 0xAA, 0xFA, 0xAA, 0xAA, 0xA2, 0xAA, 0xAA, 0xAA, 0x0A, 0xAA, 0xAA, 0xAA, 0xAA, 0xA7, 0xAA, 0xAA};
+
+            volatile bool sent = CC1101_tx_data(packet, 0x18);
+
+            u8_t status2 = CC1101_read_status_reg(CC1101_MARCSTATE);
+
             sendUSARTMessage(myMessage);
 
-            //char message1[] = 		printf("status");
+            char * sencC = sent ? "true" : "false";
 
-            //SendUSART(message1, strlen(message1));
+
+            SendUSART(sencC, strlen(sencC));
             //SendUSART(cc1101_reg[CC1101_IOCFG0].addr, strlen(cc1101_reg[CC1101_IOCFG0].addr));
+            //write_cc1101_status_regersters();
+
             //sendreg();
+
+
 
         }
     }

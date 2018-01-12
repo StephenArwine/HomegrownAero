@@ -23,33 +23,33 @@
 #define CC1101_SWORRST		0x3C	// Reset real time clock to Event1 value.
 #define CC1101_SNOP			0x3D	// No operation. May be used to get access to the chip status byte.
 
-/** 
- * Type of transfers 
- */ 
-#define WRITE_BURST              0x40 
-#define READ_SINGLE              0x80 
-#define READ_BURST               0xC0 
+/**
+ * Type of transfers
+ */
+#define WRITE_BURST              0x40
+#define READ_SINGLE              0x80
+#define READ_BURST               0xC0
 
- 
-/** 
- * Type of register 
- */ 
-#define CC1101_CONFIG_REGISTER   READ_SINGLE 
-#define CC1101_STATUS_REGISTER   READ_BURST 
 
- 
-/** 
- * PATABLE & FIFO's 
- */ 
+/**
+ * Type of register
+ */
+#define CC1101_CONFIG_REGISTER   READ_SINGLE
+#define CC1101_STATUS_REGISTER   READ_BURST
+
+
+/**
+ * PATABLE & FIFO's
+ */
 #define CC1101_PATABLE           0x3E        // PATABLE address 
 #define CC1101_TXFIFO            0x3F        // TX FIFO address 
 #define CC1101_RXFIFO            0x3F        // RX FIFO address 
 
 
 
- /** 
-  * Status registers 
-  */ 
+/**
+ * Status registers
+ */
 #define CC1101_PARTNUM           0x30        // Chip ID 
 #define CC1101_VERSION           0x31        // Chip ID 
 #define CC1101_FREQEST           0x32        // Frequency Offset Estimate from Demodulator 
@@ -79,9 +79,9 @@
 #define CC1101_CHANNR           0x0A    //CHANNEL NUMBER
 #define CC1101_FSCTRL1          0x0B    //FREQUENCY SYNTHESIZER CONTROL
 #define CC1101_FSCTRL0          0x0C    //FREQUENCY SYNTHESIZER CONTROL
-#define CC1101_FREQ2            0x0D    //FREQUENCY CONTROL WORD, HIGH BYTE
-#define CC1101_FREQ1            0x0E    //FREQUENCY CONTROL WORD, MIDDLE BYTE
-#define CC1101_FREQ0            0x0F    //FREQUENCY CONTROL WORD, LOW BYTE
+#define CC1101_FREQ2            0x10    //FREQUENCY CONTROL WORD, HIGH BYTE
+#define CC1101_FREQ1            0xB5    //FREQUENCY CONTROL WORD, MIDDLE BYTE
+#define CC1101_FREQ0            0x2B    //FREQUENCY CONTROL WORD, LOW BYTE
 #define CC1101_MDMCFG4          0x10    //MODEM CONFIGURATION
 #define CC1101_MDMCFG3          0x11    //MODEM CONFIGURATION
 #define CC1101_MDMCFG2          0x12    //MODEM CONFIGURATION
@@ -130,10 +130,10 @@
 
 
 /* Address Config = No address check */
-/* Base Frequency = 434.249908 */
+/* Base Frequency = 443.999908 */
 /* CRC Autoflush = false */
 /* CRC Enable = true */
-/* Carrier Frequency = 434.249908 */
+/* Carrier Frequency = 443.999908 */
 /* Channel Number = 0 */
 /* Channel Spacing = 199.951172 */
 /* Data Format = Normal mode */
@@ -142,19 +142,19 @@
 /* Device Address = 0 */
 /* Manchester Enable = false */
 /* Modulated = true */
-/* Modulation Format = GFSK */
+/* Modulation Format = 2-FSK */
 /* PA Ramping = false */
 /* Packet Length = 255 */
 /* Packet Length Mode = Variable packet length mode. Packet length configured by the first byte after sync word */
 /* Preamble Count = 4 */
 /* RX Filter BW = 58.035714 */
 /* Sync Word Qualifier Mode = 30/32 sync word bits detected */
-/* TX Power = 0 */
+/* TX Power = 10 */
 /* Whitening = false */
 #define RF_IOCFG2           0x29
 #define RF_IOCFG1           0x2E
 #define RF_IOCFG0           0x06
-#define RF_FIFOTHR          0x03
+#define RF_FIFOTHR          0x47
 #define RF_SYNC1            0xD3
 #define RF_SYNC0            0x91
 #define RF_PKTLEN           0xFF
@@ -164,17 +164,17 @@
 #define RF_CHANNR           0x00
 #define RF_FSCTRL1          0x06
 #define RF_FSCTRL0          0x00
-#define RF_FREQ2            0x10
-#define RF_FREQ1            0xB3
-#define RF_FREQ0            0x72
+#define RF_FREQ2            0x11
+#define RF_FREQ1            0x13
+#define RF_FREQ0            0xB1
 #define RF_MDMCFG4          0xF5
 #define RF_MDMCFG3          0x83
-#define RF_MDMCFG2          0x13
+#define RF_MDMCFG2          0x03
 #define RF_MDMCFG1          0x22
 #define RF_MDMCFG0          0xF8
 #define RF_DEVIATN          0x15
 #define RF_MCSM2            0x07
-#define RF_MCSM1            0x32
+#define RF_MCSM1            0x30
 #define RF_MCSM0            0x18
 #define RF_FOCCFG           0x16
 #define RF_BSCFG            0x6C
@@ -214,21 +214,116 @@
 #define RF_RCCTRL0_STATUS   0x00
 
 
-// Read CC1101 Config register 
-#define CC1101_read_config_reg(regAddr)    cc1101_read_reg(regAddr | CC1101_CONFIG_REGISTER) 
-// Read CC1101 Status register 
-#define CC1101_read_status_reg(regAddr)    cc1101_read_reg(regAddr | CC1101_STATUS_REGISTER) 
+
+
+
+/* Address Config = No address check */
+/* Base Frequency = 443.999542 */
+/* CRC Autoflush = false */
+/* CRC Enable = true */
+/* Carrier Frequency = 443.999542 */
+/* Channel Number = 0 */
+/* Channel Spacing = 207.641602 */
+/* Data Format = Normal mode */
+/* Data Rate = 1.20056 */
+/* Deviation = 4.943848 */
+/* Device Address = 0 */
+/* Manchester Enable = false */
+/* Modulated = true */
+/* Modulation Format = 2-FSK */
+/* PA Ramping = false */
+/* Packet Length = 255 */
+/* Packet Length Mode = Variable packet length mode. Packet length configured by the first byte after sync word */
+/* Preamble Count = 4 */
+/* RX Filter BW = 60.267857 */
+/* Sync Word Qualifier Mode = 30/32 sync word bits detected */
+/* TX Power = 20 */
+/* Whitening = false */
+
+/*
+#define RF_IOCFG2           0x29
+#define RF_IOCFG1           0x2E
+#define RF_IOCFG0           0x06
+#define RF_FIFOTHR          0xC7
+#define RF_SYNC1            0xD3
+#define RF_SYNC0            0x91
+#define RF_PKTLEN           0xFF
+#define RF_PKTCTRL1         0x04
+#define RF_PKTCTRL0         0x01
+#define RF_ADDR             0x00
+#define RF_CHANNR           0x00
+#define RF_FSCTRL1          0x06
+#define RF_FSCTRL0          0x00
+#define RF_FREQ2            0x10
+#define RF_FREQ1            0x71
+#define RF_FREQ0            0xC6
+#define RF_MDMCFG4          0xF5
+#define RF_MDMCFG3          0x75
+#define RF_MDMCFG2          0x03
+#define RF_MDMCFG1          0x22
+#define RF_MDMCFG0          0xF8
+#define RF_DEVIATN          0x14
+#define RF_MCSM2            0x07
+#define RF_MCSM1            0x30
+#define RF_MCSM0            0x18
+#define RF_FOCCFG           0x16
+#define RF_BSCFG            0x6C
+#define RF_AGCCTRL2         0x03
+#define RF_AGCCTRL1         0x40
+#define RF_AGCCTRL0         0x91
+#define RF_WOREVT1          0x87
+#define RF_WOREVT0          0x6B
+#define RF_WORCTRL          0xFB
+#define RF_FREND1           0x56
+#define RF_FREND0           0x10
+#define RF_FSCAL3           0xE9
+#define RF_FSCAL2           0x2A
+#define RF_FSCAL1           0x00
+#define RF_FSCAL0           0x1F
+#define RF_RCCTRL1          0x41
+#define RF_RCCTRL0          0x00
+#define RF_FSTEST           0x59
+#define RF_PTEST            0x7F
+#define RF_AGCTEST          0x3F
+#define RF_TEST2            0x81
+#define RF_TEST1            0x2D
+#define RF_TEST0            0x09
+#define RF_PARTNUM          0x00
+#define RF_VERSION          0x04
+#define RF_FREQEST          0x00
+#define RF_LQI              0x00
+#define RF_RSSI             0x00
+#define RF_MARCSTATE        0x00
+#define RF_WORTIME1         0x00
+#define RF_WORTIME0         0x00
+#define RF_PKTSTATUS        0x00
+#define RF_VCO_VC_DAC       0x00
+#define RF_TXBYTES          0x00
+#define RF_RXBYTES          0x00
+#define RF_RCCTRL1_STATUS   0x00
+#define RF_RCCTRL0_STATUS   0x00
+
+*/
+
+
+void CC1101_cmd_strobe(u8_t reg);
+// Read CC1101 Config register
+#define CC1101_read_config_reg(regAddr)    cc1101_read_reg(regAddr | CC1101_CONFIG_REGISTER)
+// Read CC1101 Status register
+#define CC1101_read_status_reg(regAddr)    cc1101_read_reg(regAddr | CC1101_STATUS_REGISTER)
 
 void CC1101_set_RX_state();
 void CC1101_set_TX_state();
 
-void CC1101_write_reg(u8_t reg, u8_t value);
-void CC1101_write_burst_reg(u8_t reg, u8_t* buffer, u8_t length);
-CC1101_tx_data(u8_t* packet, u8_t packenlen);
 
+void CC1101_write_burst_reg(u8_t reg, u8_t* buffer, u8_t length);
+void cc1101_write_reg(u8_t reg, u8_t value);
+bool CC1101_tx_data(u8_t *packet, u8_t packenlen);
 void sendreg();
+
+void write_cc1101_status_regersters();
 u8_t cc1101_read_reg(u8_t reg);
 
 
-void write_cc1101_status_regersters();
+
 

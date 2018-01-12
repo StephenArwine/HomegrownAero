@@ -102,7 +102,7 @@ void parseGPSMessage() {
 
         if (message[4] == 0x47 && message[5] == 0x47) {
 
-            u8_t nextComma = findNextComma(&message);
+            u8_t nextComma = findNextComma(message);
 
             msgToParse = strchr(msgToParse,',') + 1;
             nextComma = findNextComma(msgToParse);
@@ -148,7 +148,7 @@ void parseGPSMessage() {
 
             myMessage.messageReady = false;
 
-            u8_t nextComma = findNextComma(&message);
+            u8_t nextComma = findNextComma(message);
 
             msgToParse = strchr(msgToParse,',') + 1;
             msgToParse = strchr(msgToParse,',') + 1;

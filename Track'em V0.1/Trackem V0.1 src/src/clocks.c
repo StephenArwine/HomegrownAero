@@ -25,19 +25,24 @@ void GclkInit() {
 
 //Configure the FDLL48MHz FLL, we will use this to provide a clock to the CPU
 //Set the course and fine step sizes, these should be less than 50% of the values used for the course and fine values (P150)
+#define NVM_DFLL_COARSE_POS   58
+#define NVM_DFLL_COARSE_SIZE  6
+
+#define NVM_DFLL_FINE_POS     64
+#define NVM_DFLL_FINE_SIZE    10
 
 
-#define NVM_DFLL_COARSE_POS    58
-#define NVM_DFLL_COARSE_SIZE   6
-#define NVM_DFLL_FINE_POS      64
-#define NVM_DFLL_FINE_SIZE     10
+
     uint32_t coarse =( *((uint32_t *)(NVMCTRL_OTP4)
                          + (NVM_DFLL_COARSE_POS / 32))
                        >> (NVM_DFLL_COARSE_POS % 32))
                      & ((1 << NVM_DFLL_COARSE_SIZE) - 1);
+
+    /* In some revision chip, the coarse calibration value is not correct. */
     if (coarse == 0x3f) {
         coarse = 0x1f;
     }
+
     uint32_t fine =( *((uint32_t *)(NVMCTRL_OTP4)
                        + (NVM_DFLL_FINE_POS / 32))
                      >> (NVM_DFLL_FINE_POS % 32))
@@ -45,6 +50,7 @@ void GclkInit() {
     if (fine == 0x3ff) {
         fine = 0x1ff;
     }
+
 
 
     // Disable ONDEMAND mode while writing configurations (errata 9905)
@@ -57,7 +63,7 @@ void GclkInit() {
     while((SYSCTRL->PCLKSR.reg & (SYSCTRL_PCLKSR_DFLLRDY)) == 0);
 
 
-    SYSCTRL->DFLLCTRL.reg = dfll_ctrl_usb;
+    //SYSCTRL->DFLLCTRL.reg = dfll_ctrl_usb;
 
 
     //For generic clock generator 0, select the DFLL48 Clock as input
