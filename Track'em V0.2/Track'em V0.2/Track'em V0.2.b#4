@@ -1373,6 +1373,11 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="39.806" y1="6.35" x2="39.171" y2="5.7277" width="0.254" layer="1"/>
 <wire x1="39.171" y1="5.7277" x2="39.0906" y2="5.6896" width="0.254" layer="1"/>
 <via x="39.0906" y="5.6896" extent="1-16" drill="0.254"/>
+<contactref element="IC1" pad="3"/>
+<contactref element="IC1" pad="2"/>
+<wire x1="22.86" y1="10.16" x2="24.639" y2="10.16" width="0.254" layer="16"/>
+<wire x1="24.639" y1="10.16" x2="25.015" y2="10.536" width="0.254" layer="16"/>
+<wire x1="25.015" y1="8.636" x2="25.015" y2="10.536" width="0.254" layer="16"/>
 </signal>
 <signal name="CS_MEM">
 <contactref element="MEM" pad="!CS"/>
@@ -1667,31 +1672,31 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 </signal>
 <signal name="USART_RX">
 <contactref element="J1" pad="6"/>
-<contactref element="U$2" pad="10"/>
 <wire x1="37.973" y1="3.048" x2="37.973" y2="3.683" width="0.254" layer="16"/>
 <wire x1="37.973" y1="3.683" x2="37.084" y2="4.572" width="0.254" layer="16"/>
 <wire x1="37.084" y1="4.572" x2="34.036" y2="4.572" width="0.254" layer="16"/>
 <wire x1="32.512" y1="3.048" x2="34.036" y2="4.572" width="0.254" layer="16"/>
-<wire x1="16.51" y1="5.888" x2="16.51" y2="2.54" width="0.254" layer="1"/>
 <wire x1="16.51" y1="2.54" x2="17.018" y2="2.032" width="0.254" layer="1"/>
 <wire x1="24.638" y1="2.032" x2="25.654" y2="3.048" width="0.254" layer="1"/>
 <via x="25.654" y="3.048" extent="1-16" drill="0.254"/>
 <wire x1="17.018" y1="2.032" x2="24.638" y2="2.032" width="0.254" layer="1"/>
 <wire x1="25.654" y1="3.048" x2="32.512" y2="3.048" width="0.254" layer="16"/>
+<contactref element="U$2" pad="9"/>
+<wire x1="16.51" y1="2.54" x2="15.24" y2="5.888" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="USART_TX">
 <contactref element="J1" pad="8"/>
-<contactref element="U$2" pad="9"/>
 <wire x1="36.703" y1="3.048" x2="36.703" y2="3.683" width="0.254" layer="16"/>
 <wire x1="36.322" y1="4.064" x2="34.544" y2="4.064" width="0.254" layer="16"/>
 <wire x1="32.766" y1="2.286" x2="34.544" y2="4.064" width="0.254" layer="16"/>
 <wire x1="36.703" y1="3.683" x2="36.322" y2="4.064" width="0.254" layer="16"/>
-<wire x1="15.24" y1="5.888" x2="15.24" y2="1.778" width="0.254" layer="1"/>
 <wire x1="15.24" y1="1.778" x2="15.748" y2="1.27" width="0.254" layer="1"/>
 <wire x1="25.146" y1="1.27" x2="26.162" y2="2.286" width="0.254" layer="1"/>
 <via x="26.162" y="2.286" extent="1-16" drill="0.254"/>
 <wire x1="15.748" y1="1.27" x2="25.146" y2="1.27" width="0.254" layer="1"/>
 <wire x1="26.162" y1="2.286" x2="32.766" y2="2.286" width="0.254" layer="16"/>
+<contactref element="U$2" pad="10"/>
+<wire x1="15.24" y1="1.778" x2="16.51" y2="5.888" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="RAW">
 <contactref element="JP5" pad="VCC"/>

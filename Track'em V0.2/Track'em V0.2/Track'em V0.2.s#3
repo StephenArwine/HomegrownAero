@@ -3966,6 +3966,7 @@ Example: SX-32S</description>
 <part name="C16" library="SparkFun-Capacitors" deviceset="10UF-6.3V-20%(0603)(TANT)" device="&quot;" value="10uF"/>
 <part name="C17" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="0.1uF"/>
 <part name="GND3" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
+<part name="SUPPLY11" library="SparkFun-Aesthetics" deviceset="3.3V" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -4054,6 +4055,7 @@ Example: SX-32S</description>
 <instance part="C16" gate="G$1" x="68.58" y="114.3"/>
 <instance part="C17" gate="G$1" x="208.28" y="154.94"/>
 <instance part="GND3" gate="1" x="208.28" y="149.86"/>
+<instance part="SUPPLY11" gate="G$1" x="177.8" y="71.12"/>
 </instances>
 <busses>
 </busses>
@@ -4324,6 +4326,16 @@ Example: SX-32S</description>
 <segment>
 <pinref part="R3" gate="G$1" pin="1"/>
 <pinref part="SUPPLY8" gate="G$1" pin="3.3V"/>
+</segment>
+<segment>
+<pinref part="IC1" gate="G$1" pin="V_BCKP"/>
+<pinref part="SUPPLY11" gate="G$1" pin="3.3V"/>
+<wire x1="182.88" y1="63.5" x2="177.8" y2="63.5" width="0.1524" layer="91"/>
+<wire x1="177.8" y1="63.5" x2="177.8" y2="68.58" width="0.1524" layer="91"/>
+<pinref part="IC1" gate="G$1" pin="VCC_IO"/>
+<wire x1="177.8" y1="68.58" x2="177.8" y2="71.12" width="0.1524" layer="91"/>
+<wire x1="182.88" y1="68.58" x2="177.8" y2="68.58" width="0.1524" layer="91"/>
+<junction x="177.8" y="68.58"/>
 </segment>
 </net>
 <net name="CS_MEM" class="0">

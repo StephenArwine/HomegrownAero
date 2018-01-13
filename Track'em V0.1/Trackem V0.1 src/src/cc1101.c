@@ -152,11 +152,11 @@ void cc1101_write_reg(u8_t reg, u8_t value) {
 
 void sendreg() {
 
-    volatile u8_t regirsterssss[65];
+    volatile u8_t regirsterssss[cc1101_num_reg];
 
     volatile u8_t i;
 
-    for (i = 0; i < cc1101_num_reg ; i++) {
+    for (i = 0; i <= cc1101_num_reg ; i++) {
 
         cc1101_select();
         while(pinRead(spiMISO) == true);
@@ -180,8 +180,11 @@ bool CC1101_tx_data(u8_t *packet, u8_t packenlen) {
     u16_t tries = 0;
 
     // Check that the RX state has been entered
-    while (((marcstate = CC1101_read_status_reg(CC1101_MARCSTATE)) & 0x1F) != 0x0D) {
+    while (((marcstate = CC1101_read_status_reg(CC1101_MARCSTATE))) != 0x0D) {
         if (marcstate == 0x11) {     // RX_OVERFLOW
+
+            SendUSART("RX overflow", strlen("RX overflow"));
+            SendUSART(0x15, 1);
             cc1101_select();
             while(pinRead(spiMISO) == true);
             byteOut(spiSCK, spiMOSI, CC1101_SFRX);	// Flush RXFIFO
@@ -197,7 +200,7 @@ bool CC1101_tx_data(u8_t *packet, u8_t packenlen) {
 
     delay_us(500);
 
-    //cc1101_write_reg(CC1101_TXFIFO, packenlen);
+    cc1101_write_reg(CC1101_TXFIFO, packenlen);
     CC1101_write_burst_reg(CC1101_TXFIFO, packet, packenlen);
 
     delay_us(500);
@@ -206,12 +209,15 @@ bool CC1101_tx_data(u8_t *packet, u8_t packenlen) {
 
     CC1101_set_TX_state();
 
-
+    delay_us(500);
 
 
     // Check that TX state is being entered (state = RXTX_SETTLING)
     marcstate =  CC1101_read_status_reg(CC1101_MARCSTATE) & 0x1F;
     if ((marcstate != 0x13) && (marcstate != 0x14) && (marcstate != 0x15)) {
+
+        SendUSART("TX not entered", strlen("TX not entered"));
+        SendUSART(0x15, 1);
 
         cc1101_select();
         while(pinRead(spiMISO) == true);
@@ -227,13 +233,13 @@ bool CC1101_tx_data(u8_t *packet, u8_t packenlen) {
         while(pinRead(spiMISO) == true);
         byteOut(spiSCK, spiMOSI, CC1101_SFRX);	// Back to RX state
         cc1101_deselect();
-		
+
         return false;
     }
 
-    delay_ms(100);
-
-    volatile u8_t txbuffsize = CC1101_read_status_reg(CC1101_TXBYTES);
+    while (CC1101_read_status_reg(CC1101_TXBYTES) != 0) {
+        delay_ms(10);
+    };
 
     if ((CC1101_read_status_reg(CC1101_TXBYTES)) == 0) {
         cc1101_select();

@@ -1101,6 +1101,9 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <attribute name="NAME" x="20.701" y="2.794" size="0.6096" layer="25" font="vector" ratio="20"/>
 <attribute name="PROD_ID" value="CAP-13210" x="18.542" y="3.048" size="1.778" layer="27" display="off"/>
 </element>
+<element name="C17" library="SparkFun-Capacitors" package="0402" value="0.1uF" x="40.386" y="6.35">
+<attribute name="PROD_ID" value="CAP-12416" x="40.386" y="6.35" size="1.778" layer="27" display="off"/>
+</element>
 </elements>
 <signals>
 <signal name="GND">
@@ -1241,6 +1244,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="17.835" y1="4.064" x2="17.835" y2="4.572" width="0.508" layer="1"/>
 <wire x1="17.1196" y1="3.9243" x2="17.6953" y2="3.9243" width="0.508" layer="1"/>
 <wire x1="17.6953" y1="3.9243" x2="17.835" y2="4.064" width="0.508" layer="1"/>
+<contactref element="C17" pad="2"/>
 </signal>
 <signal name="3.3V">
 <contactref element="U2" pad="5"/>
@@ -1286,7 +1290,6 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <vertex x="47.498" y="17.018"/>
 <vertex x="47.498" y="0"/>
 </polygon>
-<via x="39.5859" y="6.7691" extent="1-16" drill="0.254"/>
 <contactref element="U$1" pad="18"/>
 <contactref element="C9" pad="2"/>
 <contactref element="U$1" pad="4"/>
@@ -1344,7 +1347,6 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <contactref element="U$4" pad="4"/>
 <contactref element="IC1" pad="17"/>
 <wire x1="39.562" y1="7.247" x2="39.5859" y2="7.247" width="0.254" layer="1"/>
-<wire x1="39.5859" y1="7.247" x2="39.5859" y2="6.7691" width="0.254" layer="1"/>
 <wire x1="10.16" y1="9.192" x2="10.16" y2="7.7978" width="0.254" layer="1"/>
 <wire x1="10.16" y1="7.7978" x2="10.2277" y2="7.7978" width="0.254" layer="1"/>
 <via x="16.4846" y="14.2113" extent="1-16" drill="0.254"/>
@@ -1365,6 +1367,17 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="19.7612" y1="3.9116" x2="19.2024" y2="3.9116" width="0.508" layer="1"/>
 <wire x1="19.2024" y1="3.9116" x2="19.05" y2="4.064" width="0.508" layer="1"/>
 <wire x1="20.2565" y1="3.9116" x2="19.7612" y2="3.9116" width="0.508" layer="1"/>
+<contactref element="C17" pad="1"/>
+<wire x1="39.562" y1="7.247" x2="39.815" y2="7.247" width="0.254" layer="1"/>
+<wire x1="39.815" y1="7.247" x2="39.806" y2="6.35" width="0.254" layer="1"/>
+<wire x1="39.806" y1="6.35" x2="39.171" y2="5.7277" width="0.254" layer="1"/>
+<wire x1="39.171" y1="5.7277" x2="39.0906" y2="5.6896" width="0.254" layer="1"/>
+<via x="39.0906" y="5.6896" extent="1-16" drill="0.254"/>
+<contactref element="IC1" pad="3"/>
+<contactref element="IC1" pad="2"/>
+<wire x1="22.86" y1="10.16" x2="24.639" y2="10.16" width="0.254" layer="16"/>
+<wire x1="24.639" y1="10.16" x2="25.015" y2="10.536" width="0.254" layer="16"/>
+<wire x1="25.015" y1="8.636" x2="25.015" y2="10.536" width="0.254" layer="16"/>
 </signal>
 <signal name="CS_MEM">
 <contactref element="MEM" pad="!CS"/>
