@@ -6,7 +6,9 @@
 #define cc1101_select()     pinLow(cs_tx)
 #define cc1101_deselect()	pinHigh(cs_tx)
 #define CC1101_wait_miso()      while(pinRead(spiMISO) == true)
-
+#define cc1101_set_idle()			CC1101_cmd_strobe(CC1101_SIDLE)
+#define CC1101_set_RX_state()		CC1101_cmd_strobe(CC1101_SRX)
+#define CC1101_set_TX_state()		CC1101_cmd_strobe(CC1101_STX)
 
 
 
@@ -92,22 +94,6 @@ void CC1101_cmd_strobe(u8_t reg) {
     byteOut(spiSCK, spiMOSI, reg);
     cc1101_deselect();
 
-}
-
-void CC1101_set_RX_state() {
-
-    cc1101_select();
-    while(pinRead(spiMISO) == true);
-    byteOut(spiSCK, spiMOSI, CC1101_SRX);
-    cc1101_deselect();
-}
-
-void CC1101_set_TX_state() {
-
-    cc1101_select();
-    while(pinRead(spiMISO) == true);
-    byteOut(spiSCK, spiMOSI, CC1101_STX);
-    cc1101_deselect();
 }
 
 u8_t cc1101_read_reg(u8_t regester) {
@@ -196,8 +182,6 @@ bool CC1101_tx_data(u8_t *packet, u8_t packenlen) {
         }
     }
 
-
-
     delay_us(500);
 
     cc1101_write_reg(CC1101_TXFIFO, packenlen);
@@ -211,7 +195,6 @@ bool CC1101_tx_data(u8_t *packet, u8_t packenlen) {
 
     delay_us(500);
 
-
     // Check that TX state is being entered (state = RXTX_SETTLING)
     marcstate =  CC1101_read_status_reg(CC1101_MARCSTATE) & 0x1F;
     if ((marcstate != 0x13) && (marcstate != 0x14) && (marcstate != 0x15)) {
@@ -219,20 +202,9 @@ bool CC1101_tx_data(u8_t *packet, u8_t packenlen) {
         SendUSART("TX not entered", strlen("TX not entered"));
         SendUSART(0x15, 1);
 
-        cc1101_select();
-        while(pinRead(spiMISO) == true);
-        byteOut(spiSCK, spiMOSI, CC1101_SIDLE);	// Enter IDLE state
-        cc1101_deselect();
-
-        cc1101_select();
-        while(pinRead(spiMISO) == true);
-        byteOut(spiSCK, spiMOSI, CC1101_SFTX);	// Flush Tx FIFO
-        cc1101_deselect();
-
-        cc1101_select();
-        while(pinRead(spiMISO) == true);
-        byteOut(spiSCK, spiMOSI, CC1101_SFRX);	// Back to RX state
-        cc1101_deselect();
+        cc1101_set_idle();
+        CC1101_cmd_strobe(CC1101_SFTX);	// Flush Tx FIFO
+        CC1101_set_RX_state();
 
         return false;
     }
@@ -241,14 +213,14 @@ bool CC1101_tx_data(u8_t *packet, u8_t packenlen) {
         delay_ms(10);
     };
 
-    if ((CC1101_read_status_reg(CC1101_TXBYTES)) == 0) {
-        cc1101_select();
-        while(pinRead(spiMISO) == true);
-        byteOut(spiSCK, spiMOSI, CC1101_SIDLE);	// Enter IDLE state
-        cc1101_deselect();
 
+    if ((CC1101_read_status_reg(CC1101_TXBYTES)) == 0) {
         res = true;
     }
+
+    cc1101_set_idle();// Enter IDLE state
+    CC1101_cmd_strobe(CC1101_SFTX); // Flush Tx FIFO
+    CC1101_set_RX_state(); // enter RX state
 
     return res;
 }

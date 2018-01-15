@@ -130,19 +130,19 @@
 
 
 /* Address Config = No address check */
-/* Base Frequency = 430.999908 */
+/* Base Frequency = 432.999817 */
 /* CRC Autoflush = false */
 /* CRC Enable = false */
-/* Carrier Frequency = 430.999908 */
+/* Carrier Frequency = 432.999817 */
 /* Channel Number = 0 */
 /* Channel Spacing = 199.951172 */
 /* Data Format = Normal mode */
 /* Data Rate = 1.19948 */
-/* Deviation = 5.157471 */
+/* Deviation = 14.282227 */
 /* Device Address = 0 */
 /* Manchester Enable = false */
 /* Modulated = true */
-/* Modulation Format = 2-FSK */
+/* Modulation Format = GFSK */
 /* PA Ramping = false */
 /* Packet Length = 255 */
 /* Packet Length Mode = Variable packet length mode. Packet length configured by the first byte after sync word */
@@ -150,7 +150,7 @@
 /* RX Filter BW = 58.035714 */
 /* Sync Word Qualifier Mode = No preamble/sync */
 /* TX Power = 10 */
-/* Whitening = false */
+/* Whitening = true */
 #define RF_IOCFG2           0x29
 #define RF_IOCFG1           0x2E
 #define RF_IOCFG0           0x06
@@ -159,20 +159,20 @@
 #define RF_SYNC0            0x91
 #define RF_PKTLEN           0xFF
 #define RF_PKTCTRL1         0x00
-#define RF_PKTCTRL0         0x01
+#define RF_PKTCTRL0         0x41
 #define RF_ADDR             0x00
 #define RF_CHANNR           0x00
 #define RF_FSCTRL1          0x06
 #define RF_FSCTRL0          0x00
 #define RF_FREQ2            0x10
-#define RF_FREQ1            0x93
-#define RF_FREQ0            0xB1
+#define RF_FREQ1            0xA7
+#define RF_FREQ0            0x62
 #define RF_MDMCFG4          0xF5
 #define RF_MDMCFG3          0x83
-#define RF_MDMCFG2          0x00
+#define RF_MDMCFG2          0x10
 #define RF_MDMCFG1          0x22
 #define RF_MDMCFG0          0xF8
-#define RF_DEVIATN          0x15
+#define RF_DEVIATN          0x31
 #define RF_MCSM2            0x07
 #define RF_MCSM1            0x30
 #define RF_MCSM0            0x18
@@ -212,6 +212,13 @@
 #define RF_RXBYTES          0x00
 #define RF_RCCTRL1_STATUS   0x00
 #define RF_RCCTRL0_STATUS   0x00
+
+
+
+
+
+
+
 
 
 
