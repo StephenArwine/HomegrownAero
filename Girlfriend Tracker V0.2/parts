@@ -1,0 +1,69 @@
+Partlist
+
+Exported from Girlfriend Tracker V0.1.sch at 1/19/2018 5:04 PM
+
+EAGLE Version 8.5.0 Copyright (c) 1988-2017 Autodesk, Inc.
+
+Assembly variant: 
+
+Part     Value                      Device                       Package                  Library                     Sheet
+
+C1       2.2uF                      2.2UF-0603-10V-20%           0603                     SparkFun-Capacitors         1
+C2       2.2uF                      2.2UF-0603-10V-20%           0603                     SparkFun-Capacitors         1
+C3       3.9pF                      0.1UF-0402-16V-10%           0402                     SparkFun-Capacitors         1
+C4       3.9pF                      0.1UF-0402-16V-10%           0402                     SparkFun-Capacitors         1
+C5       100nF                      0.1UF-0402-16V-10%           0402                     SparkFun-Capacitors         1
+C6       100nF                      0.1UF-0402-16V-10%           0402                     SparkFun-Capacitors         1
+C7       10nF                       0.1UF-0402-16V-10%           0402                     SparkFun-Capacitors         1
+C8       0.1uF                      0.1UF-0402-16V-10%           0402                     SparkFun-Capacitors         1
+C9       220pF                      0.1UF-0402-16V-10%           0402                     SparkFun-Capacitors         1
+C10      10nF                       0.1UF-0402-16V-10%           0402                     SparkFun-Capacitors         1
+C11      220pF                      0.1UF-0402-16V-10%           0402                     SparkFun-Capacitors         1
+C12      220pF                      0.1UF-0402-16V-10%           0402                     SparkFun-Capacitors         1
+C13      15pF                       0.1UF-0402-16V-10%           0402                     SparkFun-Capacitors         1
+C14      15pF                       0.1UF-0402-16V-10%           0402                     SparkFun-Capacitors         1
+C15      10uF                       CAP_POL1206                  EIA3216                  SparkFun                    1
+C17      220pF                      0.1UF-0402-16V-10%           0402                     SparkFun-Capacitors         1
+C18      0.01uF                     0.1UF-0402-16V-10%           0402                     SparkFun-Capacitors         1
+C19      8.2pF                      0.1UF-0402-16V-10%           0402                     SparkFun-Capacitors         1
+C20      5.6pF                      0.1UF-0402-16V-10%           0402                     SparkFun-Capacitors         1
+C21      220pF                      0.1UF-0402-16V-10%           0402                     SparkFun-Capacitors         1
+C22      0.01uF                     0.1UF-0402-16V-10%           0402                     SparkFun-Capacitors         1
+C23      2.2uF                      2.2UF-0603-10V-20%           0603                     SparkFun-Capacitors         1
+C24      0.1uF                      2.2UF-0603-10V-20%           0603                     SparkFun-Capacitors         1
+C25      0.1uF                      0.1UF-0402-16V-10%           0402                     SparkFun-Capacitors         1
+C26      1uF                        0.1UF-0402-16V-10%           0402                     SparkFun-Capacitors         1
+C27      0.1uF                      0.1UF-0402-16V-10%           0402                     SparkFun-Capacitors         1
+C28      15pF                       15PF-0402-50V-5%             0402                     SparkFun-Capacitors         1
+C29      15pF                       15PF-0402-50V-5%             0402                     SparkFun-Capacitors         1
+C30      2.2uF                      2.2UF-0603-10V-20%           0603                     SparkFun-Capacitors         1
+C31      2.2uF                      2.2UF-0603-10V-20%           0603                     SparkFun-Capacitors         1
+C32      10uF                       CAP_POL1206                  EIA3216                  SparkFun                    1
+C33      0.1uF                      0.1UF-0402-16V-10%           0402                     SparkFun-Capacitors         1
+C34      10uF                       CAP_POL1206                  EIA3216                  SparkFun                    1
+D2       GREEN                      LED-GREEN1206                LED-1206                 SparkFun-LED                1
+IC1      SAM-M8Q                    SAM-M8Q                      SAM-M8Q                  ubloxLib                    1
+JP1      CORTEX_DEBUG_PTH           CORTEX_DEBUG_PTH             2X5-PTH-1.27MM           SparkFun-Connectors         1
+JP5      Lipo                       M024UCON-15767               JST-2-SMD-VERT           SparkFun-Connectors         1
+L1       27NH                       INDUCTOR-0402-3.9NH          0402                     SparkFun-Coils              1
+L2       27NH                       INDUCTOR-0402-3.9NH          0402                     SparkFun-Coils              1
+L3       27NH                       INDUCTOR-0402-3.9NH          0402                     SparkFun-Coils              1
+L4       22NH                       INDUCTOR-0402-3.9NH          0402                     SparkFun-Coils              1
+L5       36nH                       INDUCTOR-0402-3.9NH          0402                     SparkFun-Coils              1
+L6       51nH                       INDUCTOR-0402-3.9NH          0402                     SparkFun-Coils              1
+L7       FB 30Ohm                   INDUCTOR-0603-33NH           0603                     SparkFun-Coils              1
+MEM      AT25SF081                  AT25SF081                    AT25SF081                SaL-lib                     1
+R1       56k                        RESISTOR0402                 0402                     SparkFun-Resistors          1
+R3       10k                        RESISTOR0402                 0402                     SparkFun-Resistors          1
+R4                                  RESISTOR0402                 0402                     SparkFun-Resistors          1
+R5       10k                        RESISTOR0402                 0402                     SparkFun-Resistors          1
+R6       63                         RESISTOR0402                 0402                     SparkFun-Resistors          1
+U$1      CC1101                     CC1101                       CC1101                   SaL-lib1                    1
+U$3      HMC356                     HMC356                       QFN16_HMC356             SaL-lib1                    1
+U1       3.6V/200mA -  TLV70036DDCR V_REG_MIC52053.3V            SOT23-5                  SparkFun-IC-Power           1
+U2       3.6V/200mA -  TLV70036DDCR V_REG_MIC52053.3V            SOT23-5                  SparkFun-IC-Power           1
+U3       ATSAMD21G-A                ATSAMD21G-A                  TQFP-48                  SparkFun-IC-Microcontroller 1
+U4       3.6V/200mA -  TLV70036DDCR V_REG_MIC52053.3V            SOT23-5                  SparkFun-IC-Power           1
+X1       SMA-142-0701-851/861       SMA-142-0701-851/861         J502-ND-142-0701-851/861 con-coax                    1
+Y1       26MHz                      CRYSTALSMD-3.2X2.5           CRYSTAL-SMD-3.2X2.5MM    SparkFun-Clocks             1
+Y2       32.768kHz                  CRYSTAL-32.768KHZSMD-3.2X1.5 CRYSTAL-SMD-3.2X1.5MM    SparkFun-Clocks             1

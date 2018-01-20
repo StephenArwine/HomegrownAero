@@ -5783,6 +5783,8 @@ Source: www.johnsoncomponents.com .. J502-ND.pdf</description>
 <part name="H3" library="SparkFun-Hardware" deviceset="STAND-OFF" device="TIGHT"/>
 <part name="SUPPLY18" library="SparkFun-PowerSymbols" library_urn="urn:adsk.eagle:library:530" deviceset="3.3V" device=""/>
 <part name="GND20" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
+<part name="C33" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="0.1uF"/>
+<part name="GND29" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -5944,6 +5946,8 @@ Source: www.johnsoncomponents.com .. J502-ND.pdf</description>
 <instance part="H3" gate="G$1" x="-149.606" y="-99.06"/>
 <instance part="SUPPLY18" gate="G$1" x="-106.68" y="17.78"/>
 <instance part="GND20" gate="1" x="-66.04" y="-137.16"/>
+<instance part="C33" gate="G$1" x="35.56" y="-106.68"/>
+<instance part="GND29" gate="1" x="35.56" y="-114.3"/>
 </instances>
 <busses>
 </busses>
@@ -6171,6 +6175,11 @@ Source: www.johnsoncomponents.com .. J502-ND.pdf</description>
 <pinref part="GND20" gate="1" pin="GND"/>
 <junction x="-66.04" y="-134.62"/>
 <wire x1="-66.04" y1="-134.62" x2="-66.04" y2="-132.08" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="C33" gate="G$1" pin="2"/>
+<pinref part="GND29" gate="1" pin="GND"/>
+<wire x1="35.56" y1="-111.76" x2="35.56" y2="-109.22" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="CS_MEM" class="0">
@@ -6662,6 +6671,8 @@ Source: www.johnsoncomponents.com .. J502-ND.pdf</description>
 <wire x1="27.94" y1="-101.6" x2="27.94" y2="-93.98" width="0.1524" layer="91"/>
 <junction x="27.94" y="-101.6"/>
 <pinref part="SUPPLY13" gate="G$1" pin="3.3V"/>
+<pinref part="C33" gate="G$1" pin="1"/>
+<wire x1="27.94" y1="-101.6" x2="35.56" y2="-101.6" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="JP1" gate="G$1" pin="VCC"/>

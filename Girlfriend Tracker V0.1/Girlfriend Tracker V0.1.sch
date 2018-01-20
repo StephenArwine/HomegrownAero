@@ -5653,16 +5653,16 @@ Source: www.johnsoncomponents.com .. J502-ND.pdf</description>
 <part name="GND10" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND11" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND19" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
-<part name="L2" library="SparkFun-Coils" library_urn="urn:adsk.eagle:library:512" deviceset="INDUCTOR" device="-0402-3.9NH" package3d_urn="urn:adsk.eagle:package:37575/1" value="6.8NH"/>
+<part name="L2" library="SparkFun-Coils" library_urn="urn:adsk.eagle:library:512" deviceset="INDUCTOR" device="-0402-3.9NH" package3d_urn="urn:adsk.eagle:package:37575/1" value="27NH"/>
 <part name="C3" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="3.9pF"/>
-<part name="C4" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="8.2pF"/>
+<part name="C4" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="3.9pF"/>
 <part name="C17" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="220pF"/>
-<part name="C19" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="1000pF"/>
-<part name="C20" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="1000pF"/>
-<part name="C21" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="1000pF"/>
+<part name="C19" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="8.2pF"/>
+<part name="C20" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="5.6pF"/>
+<part name="C21" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="220pF"/>
 <part name="L1" library="SparkFun-Coils" library_urn="urn:adsk.eagle:library:512" deviceset="INDUCTOR" device="-0402-3.9NH" package3d_urn="urn:adsk.eagle:package:37575/1" value="27NH"/>
 <part name="L3" library="SparkFun-Coils" library_urn="urn:adsk.eagle:library:512" deviceset="INDUCTOR" device="-0402-3.9NH" package3d_urn="urn:adsk.eagle:package:37575/1" value="27NH"/>
-<part name="L4" library="SparkFun-Coils" library_urn="urn:adsk.eagle:library:512" deviceset="INDUCTOR" device="-0402-3.9NH" package3d_urn="urn:adsk.eagle:package:37575/1" value="6.8NH"/>
+<part name="L4" library="SparkFun-Coils" library_urn="urn:adsk.eagle:library:512" deviceset="INDUCTOR" device="-0402-3.9NH" package3d_urn="urn:adsk.eagle:package:37575/1" value="22NH"/>
 <part name="GND3" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND13" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND14" library="SparkFun-Aesthetics" deviceset="GND" device=""/>

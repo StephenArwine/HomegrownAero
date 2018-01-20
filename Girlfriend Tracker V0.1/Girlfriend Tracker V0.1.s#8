@@ -6292,18 +6292,6 @@ Source: www.johnsoncomponents.com .. J502-ND.pdf</description>
 <label x="27.94" y="-132.08" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="USART_RX" class="0">
-<segment>
-<wire x1="-88.9" y1="-38.1" x2="-91.44" y2="-38.1" width="0.1524" layer="91"/>
-<label x="-91.44" y="-38.1" size="1.27" layer="95" rot="R180" xref="yes"/>
-</segment>
-</net>
-<net name="USART_TX" class="0">
-<segment>
-<wire x1="-88.9" y1="-35.56" x2="-91.44" y2="-35.56" width="0.1524" layer="91"/>
-<label x="-91.44" y="-35.56" size="1.27" layer="95" rot="R180" xref="yes"/>
-</segment>
-</net>
 <net name="N$4" class="0">
 <segment>
 <pinref part="U$1" gate="G$1" pin="XOSC_Q1"/>
