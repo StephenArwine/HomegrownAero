@@ -7030,11 +7030,6 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <wire x1="246.38" y1="22.86" x2="246.38" y2="25.4" width="0.1524" layer="91"/>
 <label x="246.38" y="25.4" size="1.27" layer="95" rot="R90" xref="yes"/>
 </segment>
-<segment>
-<pinref part="U3" gate="G$1" pin="PA15(XOUT/SER2:3+)"/>
-<wire x1="218.44" y1="58.42" x2="220.98" y2="58.42" width="0.1524" layer="91"/>
-<label x="220.98" y="58.42" size="1.27" layer="95" xref="yes"/>
-</segment>
 </net>
 <net name="SWCLK" class="0">
 <segment>
@@ -7389,30 +7384,6 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <pinref part="R9" gate="G$1" pin="1"/>
 </segment>
 </net>
-<net name="N$25" class="0">
-<segment>
-<pinref part="IC2" gate="G$1" pin="TXD"/>
-<wire x1="2.54" y1="223.52" x2="5.08" y2="223.52" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$26" class="0">
-<segment>
-<pinref part="IC2" gate="G$1" pin="RXD"/>
-<wire x1="2.54" y1="220.98" x2="5.08" y2="220.98" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$27" class="0">
-<segment>
-<pinref part="IC2" gate="G$1" pin="RTS#"/>
-<wire x1="2.54" y1="218.44" x2="5.08" y2="218.44" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$28" class="0">
-<segment>
-<pinref part="IC2" gate="G$1" pin="CTS#"/>
-<wire x1="2.54" y1="215.9" x2="5.08" y2="215.9" width="0.1524" layer="91"/>
-</segment>
-</net>
 <net name="USB_VIN" class="0">
 <segment>
 <pinref part="JP2" gate="G$1" pin="VBUS"/>
@@ -7423,6 +7394,54 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <pinref part="IC2" gate="G$1" pin="VCC"/>
 <wire x1="-30.48" y1="223.52" x2="-33.02" y2="223.52" width="0.1524" layer="91"/>
 <label x="-33.02" y="223.52" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+</net>
+<net name="CTS" class="0">
+<segment>
+<pinref part="U3" gate="G$1" pin="PA15(XOUT/SER2:3+)"/>
+<wire x1="218.44" y1="58.42" x2="220.98" y2="58.42" width="0.1524" layer="91"/>
+<label x="220.98" y="58.42" size="1.27" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="IC2" gate="G$1" pin="CTS#"/>
+<wire x1="2.54" y1="215.9" x2="5.08" y2="215.9" width="0.1524" layer="91"/>
+<label x="5.08" y="215.9" size="1.27" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="RTS" class="0">
+<segment>
+<pinref part="U3" gate="G$1" pin="PA14(XIN/SER2:2+)"/>
+<wire x1="218.44" y1="60.96" x2="220.98" y2="60.96" width="0.1524" layer="91"/>
+<label x="220.98" y="60.96" size="1.27" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="IC2" gate="G$1" pin="RTS#"/>
+<wire x1="2.54" y1="218.44" x2="5.08" y2="218.44" width="0.1524" layer="91"/>
+<label x="5.08" y="218.44" size="1.27" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="RXD" class="0">
+<segment>
+<pinref part="U3" gate="G$1" pin="PA13(I2C/SER2:1+)"/>
+<wire x1="218.44" y1="63.5" x2="220.98" y2="63.5" width="0.1524" layer="91"/>
+<label x="220.98" y="63.5" size="1.27" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="IC2" gate="G$1" pin="TXD"/>
+<wire x1="2.54" y1="223.52" x2="5.08" y2="223.52" width="0.1524" layer="91"/>
+<label x="5.08" y="223.52" size="1.27" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="TXD" class="0">
+<segment>
+<pinref part="U3" gate="G$1" pin="PA12(I2C/SER2:0+)"/>
+<wire x1="218.44" y1="66.04" x2="220.98" y2="66.04" width="0.1524" layer="91"/>
+<label x="220.98" y="66.04" size="1.27" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="IC2" gate="G$1" pin="RXD"/>
+<wire x1="2.54" y1="220.98" x2="5.08" y2="220.98" width="0.1524" layer="91"/>
+<label x="5.08" y="220.98" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 </nets>
