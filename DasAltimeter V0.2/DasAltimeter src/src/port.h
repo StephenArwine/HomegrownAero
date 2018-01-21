@@ -72,7 +72,7 @@ inline static void pinGpio(Pin p) {
 
 
 inline static void pinCfg(Pin p) {
-    PORT->Group[p.group].PINCFG[p.pin].reg |= p.cfg;
+    PORT->Group[p.group].PINCFG[p.pin].reg = p.cfg;
 }
 
 

@@ -19,7 +19,7 @@ from sensorPoint import FlightPointType
 
 ser = serial.Serial()
 ser.baudrate = 115200
-ser.port = 'COM7'
+ser.port = 'COM3'
 ser.timeout = 5
 
 

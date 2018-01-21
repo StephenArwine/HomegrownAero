@@ -110,6 +110,7 @@
   <armgcc.common.outputfiles.eep>True</armgcc.common.outputfiles.eep>
   <armgcc.common.outputfiles.bin>True</armgcc.common.outputfiles.bin>
   <armgcc.common.outputfiles.srec>True</armgcc.common.outputfiles.srec>
+  <armgcc.compiler.general.ChangeDefaultCharTypeUnsigned>True</armgcc.compiler.general.ChangeDefaultCharTypeUnsigned>
   <armgcc.compiler.symbols.DefSymbols>
     <ListValues>
       <Value>DEBUG</Value>
@@ -124,10 +125,11 @@
       <Value>../drivers</Value>
     </ListValues>
   </armgcc.compiler.directories.IncludePaths>
-  <armgcc.compiler.optimization.level>Optimize (-O1)</armgcc.compiler.optimization.level>
+  <armgcc.compiler.optimization.level>Optimize for size (-Os)</armgcc.compiler.optimization.level>
   <armgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>True</armgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>
   <armgcc.compiler.optimization.DebugLevel>Maximum (-g3)</armgcc.compiler.optimization.DebugLevel>
   <armgcc.compiler.warnings.AllWarnings>True</armgcc.compiler.warnings.AllWarnings>
+  <armgcc.linker.general.AdditionalSpecs>Use syscall stubs (--specs=nosys.specs)</armgcc.linker.general.AdditionalSpecs>
   <armgcc.linker.libraries.Libraries>
     <ListValues>
       <Value>libm</Value>
@@ -136,8 +138,6 @@
   <armgcc.linker.libraries.LibrarySearchPaths>
     <ListValues>
       <Value>%24(ProjectDir)\Device_Startup</Value>
-      <Value>../src</Value>
-      <Value>C:\Users\ancar\Documents\Git\HomegrownAero\DasAltimeter\DasAltimeter\src</Value>
     </ListValues>
   </armgcc.linker.libraries.LibrarySearchPaths>
   <armgcc.linker.optimization.GarbageCollectUnusedSections>True</armgcc.linker.optimization.GarbageCollectUnusedSections>
@@ -164,6 +164,18 @@
     <Compile Include="Device_Startup\system_samd21.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="drivers\AT25SF.c">
+      <SubType>compile</SubType>
+      <Link>AT25SF.c</Link>
+    </Compile>
+    <Compile Include="drivers\AT25SF.h">
+      <SubType>compile</SubType>
+      <Link>AT25SF.h</Link>
+    </Compile>
+    <Compile Include="drivers\BMI055.h">
+      <SubType>compile</SubType>
+      <Link>BMI055.h</Link>
+    </Compile>
     <Compile Include="drivers\MPU9250.c">
       <SubType>compile</SubType>
       <Link>MPU9250.c</Link>
@@ -171,6 +183,10 @@
     <Compile Include="drivers\MPU9250.h">
       <SubType>compile</SubType>
       <Link>MPU9250.h</Link>
+    </Compile>
+    <Compile Include="drivers\MS5803.c">
+      <SubType>compile</SubType>
+      <Link>MS5803.c</Link>
     </Compile>
     <Compile Include="drivers\MS5803.h">
       <SubType>compile</SubType>
@@ -195,13 +211,13 @@
       <SubType>compile</SubType>
       <Link>bitBang.c</Link>
     </Compile>
+    <Compile Include="src\buzzer.c">
+      <SubType>compile</SubType>
+      <Link>buzzer.c</Link>
+    </Compile>
     <Compile Include="src\clocks.c">
       <SubType>compile</SubType>
       <Link>clocks.c</Link>
-    </Compile>
-    <Compile Include="src\dma.c">
-      <SubType>compile</SubType>
-      <Link>dma.c</Link>
     </Compile>
     <Compile Include="src\flight.c">
       <SubType>compile</SubType>
@@ -211,9 +227,29 @@
       <SubType>compile</SubType>
       <Link>flight.h</Link>
     </Compile>
-    <Compile Include="src\MS5803.c">
+    <Compile Include="src\ground.c">
       <SubType>compile</SubType>
-      <Link>MS5803.c</Link>
+      <Link>ground.c</Link>
+    </Compile>
+    <Compile Include="src\kalman.c">
+      <SubType>compile</SubType>
+      <Link>kalman.c</Link>
+    </Compile>
+    <Compile Include="src\kalman.h">
+      <SubType>compile</SubType>
+      <Link>kalman.h</Link>
+    </Compile>
+    <Compile Include="src\log.c">
+      <SubType>compile</SubType>
+      <Link>log.c</Link>
+    </Compile>
+    <Compile Include="src\log.h">
+      <SubType>compile</SubType>
+      <Link>log.h</Link>
+    </Compile>
+    <Compile Include="src\port.h">
+      <SubType>compile</SubType>
+      <Link>port.h</Link>
     </Compile>
     <Compile Include="src\sample.c">
       <SubType>compile</SubType>
@@ -226,6 +262,10 @@
     <Compile Include="src\sercom.c">
       <SubType>compile</SubType>
       <Link>sercom.c</Link>
+    </Compile>
+    <Compile Include="src\transfer.c">
+      <SubType>compile</SubType>
+      <Link>transfer.c</Link>
     </Compile>
     <Compile Include="src\util.h">
       <SubType>compile</SubType>

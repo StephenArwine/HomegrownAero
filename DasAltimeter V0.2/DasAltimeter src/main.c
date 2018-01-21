@@ -1,35 +1,66 @@
 /*
- * DasAltimeter.c
- *
- * Created: 10/4/2017 5:28:21 PM
- * Author : ancar
- */
+  * DasAltimeter.c
+  *
+  * Created: 10/4/2017 5:28:21 PM
+  * Author : ancar
+  */
+
+
 
 
 #include "sam.h"
 #include <util.h>
-#include <flight.h>
 #include <boardDefines.h>
-
-
+#include "math.h"
 
 
 void init() {
+
+
+    /* Set 1 Flash Wait State for 48MHz, cf tables 20.9 and 35.27 in SAMD21 Datasheet */
+    NVMCTRL->CTRLB.bit.RWS = NVMCTRL_CTRLB_RWS_HALF_Val;
+
+
+    /* Turn on the digital interface clock */
+    PM->APBAMASK.reg |= PM_APBAMASK_GCLK;
+
+
     SystemInit();
     GclkInit();
+    RtcInit();
     delayInit();
     adcInit();
-    dmaInit();
+
+
 
     NVIC_EnableIRQ(DMAC_IRQn);
     NVIC_SetPriority(DMAC_IRQn, 0x00);
 
+
     pinOut(LedPin);
     pinAnalog(senseBatPin);
 
+
     pinAnalog(senseAPin);
+    pinMux(senseAPin);
     pinOut(fireAPin);
     pinLow(fireAPin);
+
+
+    pinAnalog(senseBPin);
+    pinMux(senseBPin);
+    pinOut(fireBPin);
+    pinLow(fireBPin);
+
+
+    pinAnalog(senseCPin);
+    pinOut(fireCPin);
+    pinLow(fireCPin);
+
+
+    pinAnalog(senseDPin);
+    pinOut(fireDPin);
+    pinLow(fireDPin);
 
 
     pinOut(spi0MOSI);
@@ -39,111 +70,98 @@ void init() {
     pinMux(spi0SCK);
     pinMux(spi0MOSI);
 
+
     pinOut(cs_accel);
     pinHigh(cs_accel);
+
 
     pinOut(cs_gyro);
     pinHigh(cs_gyro);
 
+
+    pinOut(spi1MOSI);
+    pinOut(spi1SCK);
+    pinIn(spi1MISO);
+    pinMux(spi1MISO);
+    pinMux(spi1SCK);
+    pinMux(spi1MOSI);
+
+
+    pinOut(cs_mem);
+    pinHigh(cs_mem);
+
+
     pinOut(spi2MOSI);
     pinOut(spi2SCK);
     pinIn(spi2MISO);
-    //  pinMux(spi2MISO);
-    //  pinMux(spi2SCK);
-    //  pinMux(spi2MOSI);
+    //pinMux(spi2MISO);
+    //pinMux(spi2SCK);
+    //pinMux(spi2MOSI);
 
-
-    //  pinOut(cs_imu);
-    //  pinHigh(cs_imu);
-    //  pinGpio(cs_imu);
 
     pinOut(cs_baro);
     pinHigh(cs_baro);
-    pinGpio(cs_baro);
 
     pinOut(buzzerPin);
     pinCfg(buzzerPin);
 
-//    sercomClockEnable(SPI2, 3, 4);
-//   sercomSpiMasterInit(SPI2, 3, 0, 0, 0, 0x00);
+
+    pinOut(TxPo);
+    pinMux(TxPo);
+    pinIn(RxPo);
+    pinMux(RxPo);
+
+
+    sercomClockEnable(SPI2, 3, 4);
+    sercomSpiMasterInit(SPI2, 1, 3, 0, 0, 45403);
+
 
     sercomClockEnable(SPI0, 3, 4);
     sercomSpiMasterInit(SPI0, 3, 0, 0, 0, 0x00);
 
-    IMUinit();
+
+    sercomClockEnable(SPI1, 3, 4);
+    sercomSpiMasterInit(SPI1, 3, 0, 0, 0, 0x00);
+
+
+    sercomClockEnable(USART3, 4, 8);
+    sercomUartInit(USART3,1,0,19200);
+
+
+    TC4Init();
+    TC5Init();
 }
+
+
 
 
 int main(void) {
 
     init();
 
-    Altimeter my_altimeter;
+    initMS5803Barometer();
+    IMUinit();
 
-    initMS5803Barometer(&my_altimeter.myBarometer);
-
-
-    volatile long counter = 0;
-
-    volatile float sumAccel;
-    volatile float averageAccel;
-    volatile float averageAlt;
-
-    volatile u16_t analogSample;
-    volatile float analogAccelX;
-
-    volatile u16_t ignighterA;
+    computeKalmanGains();
 
 
+    sampleTick();
+
+    beep(400);
 
 
-    uint8_t dummy_Tx = 0xFF;
-    uint8_t dummy_rx;
-
-    delay_ms(300);
-
+    startupTick = millis();
 
 
     while (1) {
-        counter++;
-        sampleTick(&my_altimeter);
 
 
-        analogSample = adc_read(analogAccelPin);
-        analogAccelX = (analogSample - 3878) * -0.0227;
-
-        averageAccel = averageAccel + analogAccelX;
-        averageAlt = averageAlt + my_altimeter.myBarometer.heightFeet;
-
-        /*
-                if (my_altimeter.myIMU.accelX > 2) {
-                    for (u16_t buzz = 0; buzz < 400; ++buzz) {
-                        delay_us(150);
-                        pinToggle(buzzerPin);
-                    }
-                }
-                if (my_altimeter.myIMU.accelY > 4) {
-                    for (u16_t buzz = 0; buzz < 400; ++buzz) {
-                        delay_us(100);
-                        pinToggle(buzzerPin);
-                    }
-                }
-        		*/
-
-        if (counter == 100) {
-            pinToggle(LedPin);
+        if (takeSample()) {
+            sampleTick();
+            flight();
+            computeKalmanStates();
 
 
-            averageAccel = averageAccel / 100;
-            averageAlt = averageAlt / 100;
-            counter = -1;
-
-            averageAccel = 0;
-            averageAlt = 0;
         }
-
-
     }
 }
-
-

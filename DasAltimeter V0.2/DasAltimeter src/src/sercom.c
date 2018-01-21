@@ -45,9 +45,9 @@ void sercomSpiSlaveInit(SercomId id, u32_t dipo, u32_t dopo, bool cpol, bool cph
 
 
 void sercomSpiMasterInit(SercomId id, u32_t dipo, u32_t dopo, bool cpol, bool cpha, u8_t baud) {
-		
+
     sercomReset(id);
-	
+
     sercom(id)->SPI.CTRLB.reg
         = SERCOM_SPI_CTRLB_RXEN;
 
@@ -65,21 +65,16 @@ void sercomSpiMasterInit(SercomId id, u32_t dipo, u32_t dopo, bool cpol, bool cp
 }
 
 
-void sercomI2cMasterInit(SercomId id, u8_t baud) {
-    sercomReset(id);
-    sercom(id)->I2CM.CTRLA.reg = SERCOM_I2CM_CTRLA_MODE_I2C_MASTER;
-    sercom(id)->I2CM.BAUD.reg = baud;
-    sercom(id)->I2CM.CTRLA.reg
-        = SERCOM_I2CM_CTRLA_ENABLE
-          | SERCOM_I2CM_CTRLA_MODE_I2C_MASTER;
-    sercom(id)->I2CM.STATUS.reg = SERCOM_I2CM_STATUS_BUSSTATE(1);
-}
 
 
-void sercomUartInit(SercomId id, u32_t rxpo, u32_t txpo, u32_t baud) {
+void sercomUartInit(SercomId id, u32_t rxpo, u32_t txpo, int32_t fBAUD) {
+
+    //float BAUD = 65536*(1-(16*(115200/(48000000/8))));
+
+
     sercomReset(id);
     sercom(id)->USART.CTRLA.reg = SERCOM_USART_CTRLA_MODE_USART_INT_CLK;
-    sercom(id)->USART.BAUD.reg = baud;
+    sercom(id)->USART.BAUD.reg = 45403;
     sercom(id)->USART.CTRLB.reg
         = SERCOM_USART_CTRLB_RXEN
           | SERCOM_USART_CTRLB_TXEN;
@@ -95,4 +90,23 @@ u8_t spiDataTransfer(SercomId id, u8_t data) {
     sercom(id)->SPI.DATA.reg = data;
     while(sercom(id)->SPI.INTFLAG.bit.RXC == 0);
     return sercom(id)->SPI.DATA.reg;
+}
+
+void spiDataOut(SercomId id, u8_t data) {
+    while(sercom(id)->SPI.INTFLAG.bit.DRE == 0);
+    sercom(id)->SPI.DATA.reg = data;
+}
+
+u8_t spiDataIn(SercomId id) {
+    while(sercom(id)->SPI.INTFLAG.bit.DRE == 0);
+    return sercom(id)->SPI.DATA.reg;
+}
+
+void usartDataOut(SercomId id, u8_t data) {
+    sercom(id)->USART.DATA.reg = data;
+    while(sercom(id)->USART.INTFLAG.bit.DRE == 0);
+}
+
+u8_t usartDataIn(SercomId id) {
+    return sercom(id)->USART.DATA.reg;
 }

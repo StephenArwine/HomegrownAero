@@ -40,17 +40,22 @@ SUBDIRS :=  \
 C_SRCS +=  \
 ../Device_Startup/startup_samd21.c \
 ../Device_Startup/system_samd21.c \
+../drivers/AT25SF.c \
 ../drivers/MPU9250.c \
+../drivers/MS5803.c \
 ../main.c \
 ../src/altimeter.c \
 ../src/analog.c \
 ../src/bitBang.c \
+../src/buzzer.c \
 ../src/clocks.c \
-../src/dma.c \
 ../src/flight.c \
-../src/MS5803.c \
+../src/ground.c \
+../src/kalman.c \
+../src/log.c \
 ../src/sample.c \
-../src/sercom.c
+../src/sercom.c \
+../src/transfer.c
 
 
 PREPROCESSING_SRCS += 
@@ -62,62 +67,82 @@ ASM_SRCS +=
 OBJS +=  \
 Device_Startup/startup_samd21.o \
 Device_Startup/system_samd21.o \
+AT25SF.o \
 MPU9250.o \
+MS5803.o \
 main.o \
 altimeter.o \
 analog.o \
 bitBang.o \
+buzzer.o \
 clocks.o \
-dma.o \
 flight.o \
-MS5803.o \
+ground.o \
+kalman.o \
+log.o \
 sample.o \
-sercom.o
+sercom.o \
+transfer.o
 
 OBJS_AS_ARGS +=  \
 Device_Startup/startup_samd21.o \
 Device_Startup/system_samd21.o \
+AT25SF.o \
 MPU9250.o \
+MS5803.o \
 main.o \
 altimeter.o \
 analog.o \
 bitBang.o \
+buzzer.o \
 clocks.o \
-dma.o \
 flight.o \
-MS5803.o \
+ground.o \
+kalman.o \
+log.o \
 sample.o \
-sercom.o
+sercom.o \
+transfer.o
 
 C_DEPS +=  \
 Device_Startup/startup_samd21.d \
 Device_Startup/system_samd21.d \
+AT25SF.d \
 MPU9250.d \
+MS5803.d \
 main.d \
 altimeter.d \
 analog.d \
 bitBang.d \
+buzzer.d \
 clocks.d \
-dma.d \
 flight.d \
-MS5803.d \
+ground.d \
+kalman.d \
+log.d \
 sample.d \
-sercom.d
+sercom.d \
+transfer.d
 
 C_DEPS_AS_ARGS +=  \
 Device_Startup/startup_samd21.d \
 Device_Startup/system_samd21.d \
+AT25SF.d \
 MPU9250.d \
+MS5803.d \
 main.d \
 altimeter.d \
 analog.d \
 bitBang.d \
+buzzer.d \
 clocks.d \
-dma.d \
 flight.d \
-MS5803.d \
+ground.d \
+kalman.d \
+log.d \
 sample.d \
-sercom.d
+sercom.d \
+transfer.d
 
 OUTPUT_FILE_PATH +=DasAltimeter.elf
 
@@ -135,6 +160,16 @@ LINKER_SCRIPT_DEP+=  \
 
 
 # AVR32/GNU C Compiler
+
+
+
+
+
+
+
+
+
+
 
 
 

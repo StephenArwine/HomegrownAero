@@ -2,137 +2,152 @@
 #include <boardDefines.h>
 #include <MS5803.h>
 
+bool takeSample() {
+    return SampleBool;
+}
 
+void pullSample() {
+    SampleBool = true;
+}
 
-void sampleTick(Altimeter *my_altimeter) {
+void sampleTaken() {
+    SampleBool = false;
+}
 
-    my_altimeter->batV = (0.001906 * adc_read(senseBatPin));
+volatile sample_t sample;
+
+void sampleTick() {
+    SampleBool = false;
+
+    // take last samples time to discover Dt before setting new time
+    sample.tickDelta = millis() - sample.sampleTick;
+    sample.sampleTick = millis();
+
+    sample.voltage.batV = adc_read(senseBatPin);
+    sample.voltage.batFloat = sample.voltage.batV * 0.0019;
+
+    sample.voltage.senseA = adc_read(senseAPin);
+    sample.voltage.senseB = adc_read(senseBPin);
+    sample.voltage.senseC = adc_read(senseCPin);
+    sample.voltage.senseD = adc_read(senseDPin);
+
+    sample.analogRaw = adc_read(analogAccelPin);
+    sample.analogAccel = (sample.analogRaw - 3900) * -0.0154;
 
 
 
     uint8_t dummy_Tx = 0xFF;
     uint8_t dummy_rx;
 
-
     pinLow(cs_baro);
-    // dummy_rx = spiDataTransfer(SPI2, 0x50);
+    //dummy_rx = spiDataTransfer(SPI2, 0x50);
     byteOut(spi2SCK,spi2MOSI, 0x50);
     pinHigh(cs_baro);
-    delay_ms(2);
-    my_altimeter->myBarometer.rawTempatureData = readMS5803AdcResults();
+    delay_us(600);
+    uint32_t tempRaw = readMS5803AdcResults();
 
     pinLow(cs_baro);
-    //  dummy_rx = spiDataTransfer(SPI2, 0x42);
-    byteOut(spi2SCK,spi2MOSI, 0x42);
+    //dummy_rx = spiDataTransfer(SPI2, 0x46);
+    byteOut(spi2SCK,spi2MOSI, 0x46);
     pinHigh(cs_baro);
-    delay_ms(2);
-    my_altimeter->myBarometer.rawPressureData = readMS5803AdcResults();
 
 
-    ConvertPressureTemperature(&my_altimeter->myBarometer);
-    pascalToCent(&my_altimeter->myBarometer);
-    my_altimeter->myBarometer.heightFeet = 0.03281 * my_altimeter->myBarometer.heightCm;
 
 // Accel data
     pinLow(cs_accel);
-    dummy_rx = spiDataTransfer(SPI0, 0x80 | 0x02);
-    my_altimeter->myIMU.accelXLow = spiDataTransfer(SPI0,dummy_Tx);
-    my_altimeter->myIMU.accelXHigh = spiDataTransfer(SPI0,dummy_Tx);
-    my_altimeter->myIMU.accelYLow = spiDataTransfer(SPI0,dummy_Tx);
-    my_altimeter->myIMU.accelYHigh = spiDataTransfer(SPI0,dummy_Tx);
-    my_altimeter->myIMU.accelZLow = spiDataTransfer(SPI0,dummy_Tx);
-    my_altimeter->myIMU.accelZHigh = spiDataTransfer(SPI0,dummy_Tx);
+    dummy_rx = spiDataTransfer(SPI0, BMI055_X_ACC_LSB | BMI055_READ_REG);
+
+    u16_t accelXRaw = spiDataTransfer(SPI0,dummy_Tx);
+    accelXRaw = accelXRaw |  (spiDataTransfer(SPI0,dummy_Tx) << 8);
+    u16_t accelYRaw = spiDataTransfer(SPI0,dummy_Tx);
+    accelYRaw = accelYRaw |  (spiDataTransfer(SPI0,dummy_Tx) << 8);
+    u16_t accelZRaw = spiDataTransfer(SPI0,dummy_Tx);
+    accelZRaw = accelZRaw |  (spiDataTransfer(SPI0,dummy_Tx) << 8);
+
     pinHigh(cs_accel);
 
-    bool negativeX = (my_altimeter->myIMU.accelXHigh & (1<<7)) != 0;
-    bool negativeY = (my_altimeter->myIMU.accelYHigh & (1<<7)) != 0;
-    bool negativeZ = (my_altimeter->myIMU.accelZHigh & (1<<7)) != 0;
+    bool negativeX = ( accelXRaw & (1<<15)) != 0;
+    bool negativeY =  ( accelYRaw & (1<<15)) != 0;
+    bool negativeZ =  ( accelZRaw & (1<<15)) != 0;
 
-    my_altimeter->myIMU.accelXint = (my_altimeter->myIMU.accelXHigh << 8) | my_altimeter->myIMU.accelXLow;
-    my_altimeter->myIMU.accelYint = (my_altimeter->myIMU.accelYHigh << 8) | my_altimeter->myIMU.accelYLow;
-    my_altimeter->myIMU.accelZint = (my_altimeter->myIMU.accelZHigh << 8) | my_altimeter->myIMU.accelZLow;
+    int16_t accelXint = accelXRaw;
+    int16_t accelYint = accelYRaw;
+    int16_t accelZint = accelZRaw;
 
-    if (my_altimeter->myIMU.accelXHigh != 1) {
-        if (negativeX) {
-            my_altimeter->myIMU.accelXint = my_altimeter->myIMU.accelXint | ~((1 << 16) - 1);
-            my_altimeter->myIMU.accelXint = my_altimeter->myIMU.accelXint >> 4;
-        } else {
-            my_altimeter->myIMU.accelXint = my_altimeter->myIMU.accelXint >> 4;
-        }
+    if (negativeX) {
+        accelXint = accelXint | ~((1 << 16) - 1);
+        accelXint =  accelXint >> 4;
+    } else {
+        accelXint =  accelXint >> 4;
+    }
+    if (negativeY) {
+        accelYint =  accelYint | ~((1 << 16) - 1);
+        accelYint =  accelYint >> 4;
+    } else {
+        accelYint =  accelYint >> 4;
+    }
+    if (negativeZ) {
+        accelZint =  accelZint | ~((1 << 16) - 1);
+        accelZint =  accelZint >> 4;
+    } else {
+        accelZint =  accelZint >> 4;
     }
 
-    if (my_altimeter->myIMU.accelYHigh != 1) {
-        if (negativeY) {
-            my_altimeter->myIMU.accelYint = my_altimeter->myIMU.accelYint | ~((1 << 16) - 1);
-            my_altimeter->myIMU.accelYint = my_altimeter->myIMU.accelYint >> 4;
-        } else {
-            my_altimeter->myIMU.accelYint = my_altimeter->myIMU.accelYint >> 4;
-        }
-    }
-
-    if (my_altimeter->myIMU.accelZHigh != 1) {
-        if (negativeZ) {
-            my_altimeter->myIMU.accelZint = my_altimeter->myIMU.accelZint | ~((1 << 16) - 1);
-            my_altimeter->myIMU.accelZint = my_altimeter->myIMU.accelZint >> 4;
-        } else {
-            my_altimeter->myIMU.accelZint = my_altimeter->myIMU.accelZint >> 4;
-        }
-    }
-
-    my_altimeter->myIMU.accelX = my_altimeter->myIMU.accelXint * .00781;
-    my_altimeter->myIMU.accelY = my_altimeter->myIMU.accelYint * .00781;
-    my_altimeter->myIMU.accelZ = my_altimeter->myIMU.accelZint * .00781;
+    sample.accelX =  accelXint * BMI055_ACCEL_16G_DIV;
+    sample.accelY =  accelYint * BMI055_ACCEL_16G_DIV;
+    sample.accelZ = -accelZint * BMI055_ACCEL_16G_DIV;
 
 
     // Gyro data
     pinLow(cs_gyro);
-    dummy_rx = spiDataTransfer(SPI0, 0x80 | 0x02);
-    my_altimeter->myIMU.gyroXLow = spiDataTransfer(SPI0,dummy_Tx);
-    my_altimeter->myIMU.gyroXHigh = spiDataTransfer(SPI0,dummy_Tx);
-    my_altimeter->myIMU.gyroYLow = spiDataTransfer(SPI0,dummy_Tx);
-    my_altimeter->myIMU.gyroYHigh = spiDataTransfer(SPI0,dummy_Tx);
-    my_altimeter->myIMU.gyroZLow = spiDataTransfer(SPI0,dummy_Tx);
-    my_altimeter->myIMU.gyroZHigh = spiDataTransfer(SPI0,dummy_Tx);
+    dummy_rx = spiDataTransfer(SPI0, BMI055_X_GYRO_LSB | BMI055_READ_REG);
+    u16_t gyroXRaw = spiDataTransfer(SPI0,dummy_Tx);
+    gyroXRaw =  gyroXRaw |  (spiDataTransfer(SPI0,dummy_Tx) << 8);
+    u16_t gyroYRaw = spiDataTransfer(SPI0,dummy_Tx);
+    gyroYRaw =  gyroYRaw |  (spiDataTransfer(SPI0,dummy_Tx) << 8);
+    u16_t gyroZRaw = spiDataTransfer(SPI0,dummy_Tx);
+    gyroZRaw =  gyroZRaw |  (spiDataTransfer(SPI0,dummy_Tx) << 8);
     pinHigh(cs_gyro);
 
-    bool negativeXgyro = (my_altimeter->myIMU.gyroXHigh & (1<<7)) != 0;
-    bool negativeYgyro = (my_altimeter->myIMU.gyroYHigh & (1<<7)) != 0;
-    bool negativeZgyro = (my_altimeter->myIMU.gyroZHigh & (1<<7)) != 0;
+    bool negativeXgyro = ( gyroXRaw & (1<<15)) != 0;
+    bool negativeYgyro = ( gyroYRaw & (1<<15)) != 0;
+    bool negativeZgyro = ( gyroZRaw & (1<<15)) != 0;
 
-    my_altimeter->myIMU.gyroXint = (my_altimeter->myIMU.gyroXHigh << 8) | my_altimeter->myIMU.gyroXLow;
-    my_altimeter->myIMU.gyroYint = (my_altimeter->myIMU.gyroYHigh << 8) | my_altimeter->myIMU.gyroYLow;
-    my_altimeter->myIMU.gyroZint = (my_altimeter->myIMU.gyroZHigh << 8) | my_altimeter->myIMU.gyroZLow;
+    int16_t gyroXint =  gyroXRaw;
+    int16_t gyroYint =  gyroYRaw;
+    int16_t gyroZint =  gyroZRaw;
 
-    if (my_altimeter->myIMU.gyroXHigh != 1) {
-        if (negativeXgyro) {
-            my_altimeter->myIMU.gyroXint = my_altimeter->myIMU.gyroXint | ~((1 << 16) - 1);
-            my_altimeter->myIMU.gyroXint = my_altimeter->myIMU.gyroXint >> 4;
-        } else {
-            my_altimeter->myIMU.gyroXint = my_altimeter->myIMU.gyroXint >> 4;
-        }
+
+    if (negativeXgyro) {
+        gyroXint =  gyroXint | ~((1 << 16) - 1);
+        gyroXint =  gyroXint >> 4;
+    } else {
+        gyroXint =  gyroXint >> 4;
     }
 
-    if (my_altimeter->myIMU.gyroYHigh != 1) {
-        if (negativeYgyro) {
-            my_altimeter->myIMU.gyroYint = my_altimeter->myIMU.gyroYint | ~((1 << 16) - 1);
-            my_altimeter->myIMU.gyroYint = my_altimeter->myIMU.gyroYint >> 4;
-        } else {
-            my_altimeter->myIMU.gyroYint = my_altimeter->myIMU.gyroYint >> 4;
-        }
+    if (negativeYgyro) {
+        gyroYint =  gyroYint | ~((1 << 16) - 1);
+        gyroYint =  gyroYint >> 4;
+    } else {
+        gyroYint =  gyroYint >> 4;
     }
 
-    if (my_altimeter->myIMU.gyroZHigh != 1) {
-        if (negativeZgyro) {
-            my_altimeter->myIMU.gyroZint = my_altimeter->myIMU.gyroZint | ~((1 << 16) - 1);
-            my_altimeter->myIMU.gyroZint = my_altimeter->myIMU.gyroZint >> 4;
-        } else {
-            my_altimeter->myIMU.gyroZint = my_altimeter->myIMU.gyroZint >> 4;
-        }
+    if (negativeZgyro) {
+        gyroZint =  gyroZint | ~((1 << 16) - 1);
+        gyroZint =  gyroZint >> 4;
+    } else {
+        gyroZint =  gyroZint >> 4;
     }
 
-    my_altimeter->myIMU.gyroX = my_altimeter->myIMU.gyroXint * .00781;
-    my_altimeter->myIMU.gyroY = my_altimeter->myIMU.gyroYint * .00781;
-    my_altimeter->myIMU.gyroZ = my_altimeter->myIMU.gyroZint * .00781;
+    sample.gyroX =  gyroXint * BMI055_GYRO_2000DS_DIV;
+    sample.gyroY =  gyroYint * BMI055_GYRO_2000DS_DIV;
+    sample.gyroZ =  gyroZint * BMI055_GYRO_2000DS_DIV;
+
+    //delay_us(800);
+    delay_ms(5);
+    u32_t PressureRaw = readMS5803AdcResults();
+    ConvertPressureTemperature(PressureRaw, tempRaw, &sample.temperatureCelcus, &sample.pressureMbar);
+    sample.altitudefeet = paToFeetNOAA(sample.pressureMbar);
 
 
 }

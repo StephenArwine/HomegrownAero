@@ -22,43 +22,51 @@ typedef uint8_t DmaChan;
 typedef uint8_t SercomId;
 
 
-
+//#include <nvmctrl.h>
 
 
 // my includes
 #include <port.h>
+#include <AT25SF.h>
+#include <MS5803.h>
+#include <BMI055.h>
+#include <sample.h>
+#include <kalman.h>
 #include <altimeter.h>
-#include <MPU9250.h>
+#include <log.h>
+#include <flight.h>
 
-//sample.c
-void sampleTick(Altimeter *my_altimeter);
 
-//dma.c
+
+
+
+//kalman.c
+
+
+void computeKalmanGains();
+void computeKalmanStates();
+
+
+
 inline static Sercom* sercom(SercomId id) {
-	return (Sercom*) (0x42000800U + id * 1024);
+    return (Sercom*) (0x42000800U + id * 1024);
 }
 
-#define DMA_DESC_ALIGN __attribute__((aligned(16)))
 
-void dmaInit();
-void dmaSercomStartTx(DmaChan chan, SercomId id, u8_t* src, unsigned size);
-void dmaSercomStartRx(DmaChan chan, SercomId id, u8_t* dst, unsigned size);
-void dmaAbort(DmaChan chan);
-void dmaEnableInterrupt(DmaChan chan);
-void dmaFillSercomTx(DmacDescriptor* desc, SercomId id, u8_t *src, unsigned size);
-void dmaFillSercomRx(DmacDescriptor* desc, SercomId id, u8_t *dst, unsigned size);
-void dmaSercomConfigureTx(DmaChan chan, SercomId id);
-void dmaSercomConfigureRx(DmaChan chan, SercomId id);
-void dmaLinkChain(DmacDescriptor* chain, u32_t count);
-void dmaStartDescriptor(DmaChan chan, DmacDescriptor* chain);
-u32_t dmaRemaining(DmaChan chan);
 
 //clocks.c
 void GclkInit();
 void gclkEnable(u32_t id, u32_t src, u32_t div);
+void RtcInit();
 void delayInit(void);
 void delay_ms(uint32_t delay);
 void delay_us(uint32_t delay);
+uint32_t millis(void);
+void TC4Init();
+void TC5Init();
+
+//ground.c
+void updateGround();
 
 //sercom.c
 void sercomClockEnable(SercomId id, uint32_t clock_channel, u8_t divider);
@@ -66,15 +74,26 @@ void sercomReset(SercomId id);
 void sercomSpiSlaveInit(SercomId id, u32_t dipo, u32_t dopo, bool cpol, bool cpha);
 void sercomSpiMasterInit(SercomId id, u32_t dipo, u32_t dopo, bool cpol, bool cpha, u8_t baud);
 void sercomI2cMasterInit(SercomId id, u8_t baud);
-void sercomUartInit(SercomId id, u32_t rxpo, u32_t txpo, u32_t baud);
+void sercomUartInit(SercomId id, u32_t rxpo, u32_t txpo, int32_t fBUAD);
 u8_t spiDataTransfer(SercomId id, u8_t data);
-
+void spiDataOut(SercomId id, u8_t data);
+u8_t spiDataIn(SercomId id);
+void usartDataOut(SercomId id, u8_t data);
+u8_t usartDataIn(SercomId id);
 
 //analog.c
 void adcInit();
 u16_t adcSample();
 u16_t adc_read(Pin p);
 
+//buzzer.c
+void beep(u16_t toggles);
+void startupJingle();
+void unpluggedJingle();
+
+
+//transfer.c
+void attemptConnection();
 
 
 //bigBang.c
@@ -93,16 +112,16 @@ uint8_t byteIn(Pin SCK_PIN, Pin MISO_PIN);
 
 
 static inline void delay_cycles(
-const uint32_t n) {
-	if (n > 0) {
-		SysTick->LOAD = n;
-		SysTick->VAL = 0;
+    const uint32_t n) {
+    if (n > 0) {
+        SysTick->LOAD = n;
+        SysTick->VAL = 0;
 
-		while (!(SysTick->CTRL & SysTick_CTRL_COUNTFLAG_Msk)) {
-		};
-	}
+        while (!(SysTick->CTRL & SysTick_CTRL_COUNTFLAG_Msk)) {
+        };
+    }
 }
 
 static inline void SPI_sync(SercomId id) {
-	while  (sercom(id)->SPI.SYNCBUSY.bit.CTRLB);
+    while  (sercom(id)->SPI.SYNCBUSY.bit.CTRLB);
 };
