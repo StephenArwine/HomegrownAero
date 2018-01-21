@@ -2043,22 +2043,22 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </packages>
 <symbols>
 <symbol name="SAM-M8Q">
-<wire x1="0" y1="0" x2="30.48" y2="0" width="0.254" layer="94"/>
-<wire x1="30.48" y1="0" x2="30.48" y2="30.48" width="0.254" layer="94"/>
-<wire x1="30.48" y1="30.48" x2="0" y2="30.48" width="0.254" layer="94"/>
-<wire x1="0" y1="30.48" x2="0" y2="0" width="0.254" layer="94"/>
-<pin name="VCC_IO" x="-5.08" y="20.32" length="middle"/>
-<pin name="V_BCKP" x="-5.08" y="15.24" length="middle"/>
-<pin name="GND" x="-5.08" y="10.16" length="middle"/>
-<pin name="TP" x="10.16" y="-5.08" length="middle" rot="R90"/>
-<pin name="SAFEBOOT_N" x="15.24" y="-5.08" length="middle" rot="R90"/>
-<pin name="SDA" x="20.32" y="-5.08" length="middle" rot="R90"/>
-<pin name="SCL" x="35.56" y="10.16" length="middle" rot="R180"/>
-<pin name="TXD" x="35.56" y="15.24" length="middle" rot="R180"/>
-<pin name="RXD" x="35.56" y="20.32" length="middle" rot="R180"/>
-<pin name="VCC" x="20.32" y="35.56" length="middle" rot="R270"/>
-<pin name="RESET_N" x="15.24" y="35.56" length="middle" rot="R270"/>
-<pin name="EXTINT" x="10.16" y="35.56" length="middle" rot="R270"/>
+<wire x1="0" y1="12.7" x2="22.86" y2="12.7" width="0.254" layer="94"/>
+<wire x1="22.86" y1="12.7" x2="22.86" y2="30.48" width="0.254" layer="94"/>
+<wire x1="22.86" y1="30.48" x2="0" y2="30.48" width="0.254" layer="94"/>
+<wire x1="0" y1="30.48" x2="0" y2="12.7" width="0.254" layer="94"/>
+<pin name="VCC_IO" x="-5.08" y="25.4" length="middle"/>
+<pin name="V_BCKP" x="-5.08" y="22.86" length="middle"/>
+<pin name="GND" x="-5.08" y="15.24" length="middle"/>
+<pin name="TP" x="27.94" y="17.78" length="middle" rot="R180"/>
+<pin name="SAFEBOOT_N" x="-5.08" y="17.78" length="middle"/>
+<pin name="SDA" x="27.94" y="20.32" length="middle" rot="R180"/>
+<pin name="SCL" x="27.94" y="22.86" length="middle" rot="R180"/>
+<pin name="TXD" x="27.94" y="25.4" length="middle" rot="R180"/>
+<pin name="RXD" x="27.94" y="27.94" length="middle" rot="R180"/>
+<pin name="VCC" x="-5.08" y="27.94" length="middle"/>
+<pin name="RESET_N" x="-5.08" y="20.32" length="middle"/>
+<pin name="EXTINT" x="27.94" y="15.24" length="middle" rot="R180"/>
 </symbol>
 </symbols>
 <devicesets>
@@ -6362,7 +6362,6 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <part name="C32" library="SparkFun" deviceset="CAP_POL" device="1206" value="10uF"/>
 <part name="SUPPLY3" library="SparkFun-PowerSymbols" library_urn="urn:adsk.eagle:library:530" deviceset="3.3V" device=""/>
 <part name="SUPPLY6" library="SparkFun-PowerSymbols" library_urn="urn:adsk.eagle:library:530" deviceset="3.3V" device=""/>
-<part name="SUPPLY8" library="SparkFun-PowerSymbols" library_urn="urn:adsk.eagle:library:530" deviceset="3.3V" device=""/>
 <part name="SUPPLY9" library="SparkFun-PowerSymbols" library_urn="urn:adsk.eagle:library:530" deviceset="3.3V" device=""/>
 <part name="SUPPLY10" library="SparkFun-PowerSymbols" library_urn="urn:adsk.eagle:library:530" deviceset="3.3V" device=""/>
 <part name="SUPPLY11" library="SparkFun-PowerSymbols" library_urn="urn:adsk.eagle:library:530" deviceset="3.3V" device=""/>
@@ -6410,7 +6409,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </instance>
 <instance part="H1" gate="G$1" x="210.82" y="2.54"/>
 <instance part="H2" gate="G$1" x="208.28" y="2.54"/>
-<instance part="IC1" gate="G$1" x="7.62" y="116.84"/>
+<instance part="IC1" gate="G$1" x="10.16" y="111.76"/>
 <instance part="C5" gate="G$1" x="101.6" y="162.56"/>
 <instance part="C6" gate="G$1" x="86.36" y="215.9"/>
 <instance part="C7" gate="G$1" x="96.52" y="215.9"/>
@@ -6518,8 +6517,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <instance part="C32" gate="G$1" x="116.84" y="58.42"/>
 <instance part="SUPPLY3" gate="G$1" x="88.9" y="63.5"/>
 <instance part="SUPPLY6" gate="G$1" x="66.04" y="55.88"/>
-<instance part="SUPPLY8" gate="G$1" x="27.94" y="152.4"/>
-<instance part="SUPPLY9" gate="G$1" x="-2.54" y="139.7"/>
+<instance part="SUPPLY9" gate="G$1" x="-2.54" y="147.32"/>
 <instance part="SUPPLY10" gate="G$1" x="127" y="93.98"/>
 <instance part="SUPPLY11" gate="G$1" x="134.62" y="93.98"/>
 <instance part="SUPPLY12" gate="G$1" x="147.32" y="93.98"/>
@@ -6627,6 +6625,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <segment>
 <pinref part="IC1" gate="G$1" pin="GND"/>
 <pinref part="GND19" gate="1" pin="GND"/>
+<wire x1="2.54" y1="127" x2="5.08" y2="127" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="C3" gate="G$1" pin="2"/>
@@ -7143,18 +7142,18 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <pinref part="SUPPLY6" gate="G$1" pin="3.3V"/>
 </segment>
 <segment>
-<pinref part="IC1" gate="G$1" pin="VCC"/>
-<pinref part="SUPPLY8" gate="G$1" pin="3.3V"/>
-</segment>
-<segment>
 <pinref part="IC1" gate="G$1" pin="V_BCKP"/>
-<wire x1="2.54" y1="132.08" x2="-2.54" y2="132.08" width="0.1524" layer="91"/>
-<wire x1="-2.54" y1="132.08" x2="-2.54" y2="137.16" width="0.1524" layer="91"/>
+<wire x1="5.08" y1="134.62" x2="-2.54" y2="134.62" width="0.1524" layer="91"/>
+<wire x1="-2.54" y1="134.62" x2="-2.54" y2="137.16" width="0.1524" layer="91"/>
 <pinref part="IC1" gate="G$1" pin="VCC_IO"/>
 <wire x1="-2.54" y1="137.16" x2="-2.54" y2="139.7" width="0.1524" layer="91"/>
-<wire x1="2.54" y1="137.16" x2="-2.54" y2="137.16" width="0.1524" layer="91"/>
+<wire x1="-2.54" y1="139.7" x2="-2.54" y2="147.32" width="0.1524" layer="91"/>
+<wire x1="5.08" y1="137.16" x2="-2.54" y2="137.16" width="0.1524" layer="91"/>
 <junction x="-2.54" y="137.16"/>
 <pinref part="SUPPLY9" gate="G$1" pin="3.3V"/>
+<pinref part="IC1" gate="G$1" pin="VCC"/>
+<wire x1="5.08" y1="139.7" x2="-2.54" y2="139.7" width="0.1524" layer="91"/>
+<junction x="-2.54" y="139.7"/>
 </segment>
 <segment>
 <pinref part="L7" gate="G$1" pin="2"/>
@@ -7290,8 +7289,8 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <net name="SER5_TX" class="0">
 <segment>
 <pinref part="IC1" gate="G$1" pin="RXD"/>
-<wire x1="43.18" y1="137.16" x2="45.72" y2="137.16" width="0.1524" layer="91"/>
-<label x="45.72" y="137.16" size="1.27" layer="95" xref="yes"/>
+<wire x1="38.1" y1="139.7" x2="43.18" y2="139.7" width="0.1524" layer="91"/>
+<label x="43.18" y="139.7" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
 <pinref part="U3" gate="G$1" pin="PB02(AIN10/SER5:0)"/>
@@ -7302,8 +7301,8 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <net name="SER5_RX" class="0">
 <segment>
 <pinref part="IC1" gate="G$1" pin="TXD"/>
-<wire x1="43.18" y1="132.08" x2="45.72" y2="132.08" width="0.1524" layer="91"/>
-<label x="45.72" y="132.08" size="1.27" layer="95" xref="yes"/>
+<wire x1="38.1" y1="137.16" x2="43.18" y2="137.16" width="0.1524" layer="91"/>
+<label x="43.18" y="137.16" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
 <pinref part="U3" gate="G$1" pin="PB03(AIN11/SER5:1)"/>
