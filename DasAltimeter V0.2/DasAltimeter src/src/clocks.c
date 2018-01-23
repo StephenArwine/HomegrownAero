@@ -111,7 +111,7 @@ void RtcInit() {
     GCLK->GENDIV.reg = GCLK_GENDIV_ID(2) | GCLK_GENDIV_DIV(1);
 
     GCLK->GENCTRL.reg = GCLK_GENCTRL_ID(2) |
-                        GCLK_GENCTRL_SRC(GCLK_GENCTRL_SRC_XOSC32K) |
+                        GCLK_GENCTRL_SRC(GCLK_GENCTRL_SRC_OSC32K) |
                         GCLK_GENCTRL_IDC |
                         GCLK_GENCTRL_RUNSTDBY |
                         GCLK_GENCTRL_GENEN;
