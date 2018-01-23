@@ -1,6 +1,8 @@
 
 
 
+
+
 #define	CHAN_A_SETTINGS_REG 0X200
 #define	CHAN_B_SETTINGS_REG 0X300
 #define	CHAN_C_SETTINGS_REG 0X400
@@ -41,3 +43,49 @@ typedef union {
 #define APPOGE_DELAY_Msk 		(_U(0xFF << APPOGE_DELAY_Pos)
 #define APPOGE_DELAY(value)	(APPOGE_DELAY_Msk & ((value) << APPOGE_DELAY_Pos)
 
+extern CHAN_SETTINGS_Type channel_A_settings;
+extern CHAN_SETTINGS_Type channel_B_settings;
+extern CHAN_SETTINGS_Type channel_C_settings;
+extern CHAN_SETTINGS_Type channel_D_settings;
+
+CHAN_SETTINGS_Type channel_A_settings;
+CHAN_SETTINGS_Type channel_B_settings;
+CHAN_SETTINGS_Type channel_C_settings;
+CHAN_SETTINGS_Type channel_D_settings;
+
+void getChannelSettings();
+void putChannelSettings();
+
+typedef struct {
+	
+	u8_t CHAN; 			
+	bool ENABLED;	
+	u8_t TYPE; 			
+	u16_t MAIN_DEPLOY; 
+	u8_t APPOGE_DELAY; 
+	
+} deploymentChannel_t;
+
+typedef struct { 
+ 
+    struct deploymentChannel channelASettings; 
+    struct deploymentChannel channelBSettings; 
+    struct deploymentChannel channelCSettings; 
+    struct deploymentChannel channelDSettings; 
+ 
+ 
+} deploymentSettings_t; 
+
+extern deploymentSettings_t deploymentSettings;
+deploymentSettings_t deploymentSettings;
+
+
+
+
+void getChannelSettings(){
+	
+	
+	
+	
+	
+}
