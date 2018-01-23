@@ -9,6 +9,18 @@
 void IMUinit();
 
 
+typedef struct deploymentCharges {
+
+    bool Afired;
+    bool Bfired;
+    bool Cfired;
+    bool Dfired;
+
+} deploymentCharges;
+
+extern deploymentCharges charges;
+deploymentCharges charges;
+
 
 typedef struct offsets_t {
 
@@ -63,8 +75,13 @@ typedef struct Altimeter {
 
     u8_t flightNumb;
 
+    u32_t flightTime;
+
 
 } Altimeter;
+
+extern Altimeter altimeter;
+Altimeter altimeter;
 
 extern u32_t startupTick;
 u32_t startupTick;

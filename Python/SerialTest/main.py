@@ -88,7 +88,7 @@ def DownloadFlightData():
     flightEndingAddress = (flightEndingAddressbytes[0] << 0) + (flightEndingAddressbytes[1] << 8) + (
         flightEndingAddressbytes[2] << 16)
 
-    memoryPercent = (flightEndingAddress / 1048575) * 100
+    memoryPercent = (flightEndingAddress / 2097151) * 100
     print('Memory is {0:2.2f}% full.'.format(memoryPercent))
 
     for page in range(0, pages):
@@ -165,12 +165,13 @@ def connectToAltimeter():
     if handshake == b'H':
         print('')
         print(' Altimeter connected, what would you like to do?')
-        print('     P    Print sensors')
-        print('     L    Download flight log')
+        print('     P    Print/stream sensor data')
+        print('     L    Download & Plot flight log')
+        print('     S    Change Altimeter settings')
         print('     E    Chip Erase')
         print('')
 
-        option = input(' ').upper()
+        option = input('Input : ').upper()
 
         print('')
 
@@ -193,7 +194,7 @@ while running:
     print('     C    Connect to Altimeter.')
     print(' ')
 
-    option = input(' ').upper()
+    option = input('Input : ').upper()
     print(' ')
 
     if option == 'L':

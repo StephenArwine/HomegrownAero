@@ -165,6 +165,13 @@ void flight() {
         break;
     case flightTest:
 
+        //simple continuity test
+        if ( (sample.voltage.senseA + sample.voltage.senseB +sample.voltage.senseC +sample.voltage.senseD) > 200) {
+            unpluggedJingle();
+        }
+
+
+
         if (writeLog) {
             writeLog = false;
             logSensors( );

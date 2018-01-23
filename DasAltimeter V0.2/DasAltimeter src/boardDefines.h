@@ -35,16 +35,16 @@ const static Pin LedPin = {.group = 0, .pin = 20};
 const static Pin buzzerPin = {.group = 0, .pin = 21, .cfg = 0x40};
 const static Pin senseBatPin = {.group = 0, .pin = 6, .chan = 6};
 
-const static Pin senseAPin = {.group = 1, .pin = 3, .mux = 1, .chan = 11};
+const static Pin senseAPin = {.group = 1, .pin = 3, .chan = 11, .mux = MUX_PB03B_ADC_AIN11};
 const static Pin fireAPin = {.group = 1, .pin = 23};
 
-const static Pin senseBPin = {.group = 1, .pin = 2, .mux = 1, .chan = 10};
+const static Pin senseBPin = {.group = 1, .pin = 2, .chan = 10, .mux = MUX_PB02B_ADC_AIN10};
 const static Pin fireBPin = {.group = 1, .pin = 22};
 
-const static Pin senseCPin = {.group = 0, .pin = 3, .chan = 3};
+const static Pin senseCPin = {.group = 0, .pin = 3, .chan = 1, .mux = MUX_PA03B_ADC_AIN1};
 const static Pin fireCPin = {.group = 0, .pin = 25};
 
-const static Pin senseDPin = {.group = 0, .pin = 2, .chan = 2};
+const static Pin senseDPin = {.group = 0, .pin = 2, .chan = 0, .mux = MUX_PA02B_ADC_AIN0};
 const static Pin fireDPin = {.group = 0, .pin = 24};
 
 const static Pin analogAccelPin = {.group = 0, .pin = 7, .chan = 7};

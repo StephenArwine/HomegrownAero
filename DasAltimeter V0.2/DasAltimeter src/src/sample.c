@@ -22,6 +22,7 @@ void sampleTick() {
     // take last samples time to discover Dt before setting new time
     sample.tickDelta = millis() - sample.sampleTick;
     sample.sampleTick = millis();
+    altimeter.flightTime = sample.sampleTick - offsets.StartupTick;
 
     sample.voltage.batV = adc_read(senseBatPin);
     sample.voltage.batFloat = sample.voltage.batV * 0.0019;

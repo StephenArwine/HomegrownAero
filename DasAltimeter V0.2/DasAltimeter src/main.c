@@ -41,26 +41,38 @@ void init() {
     pinAnalog(senseBatPin);
 
 
-    pinAnalog(senseAPin);
+    //pinAnalog(senseAPin);
+    pinIn(senseAPin);
     pinMux(senseAPin);
     pinOut(fireAPin);
     pinLow(fireAPin);
 
 
-    pinAnalog(senseBPin);
+    //pinAnalog(senseBPin);
+    pinIn(senseBPin);
     pinMux(senseBPin);
     pinOut(fireBPin);
     pinLow(fireBPin);
 
 
-    pinAnalog(senseCPin);
+    // pinAnalog(senseCPin);
+    pinIn(senseCPin);
+    pinMux(senseCPin);
     pinOut(fireCPin);
     pinLow(fireCPin);
 
 
-    pinAnalog(senseDPin);
+    // pinAnalog(senseDPin);
+    pinIn(senseDPin);
+    pinMux(senseDPin);
     pinOut(fireDPin);
     pinLow(fireDPin);
+
+    charges.Afired = false;
+    charges.Bfired = false;
+    charges.Cfired = false;
+    charges.Dfired = false;
+
 
 
     pinOut(spi0MOSI);
@@ -160,6 +172,7 @@ int main(void) {
             sampleTick();
             flight();
             computeKalmanStates();
+
 
 
         }
