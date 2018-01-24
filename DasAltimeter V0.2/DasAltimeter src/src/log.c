@@ -88,10 +88,10 @@ void logEvent(u8_t eventType) {
     dataToSend[4] = sample.sampleTick >> 16;
     dataToSend[5] = sample.sampleTick >> 24;
 
-    dataToSend[6] = (int)altitude >> 0;
-    dataToSend[7] = (int)altitude >> 8;
-    dataToSend[8] = (int)altitude >> 16;
-    dataToSend[9] = (int)altitude >> 24;
+    dataToSend[6] = altitudeAGL() >> 0;
+    dataToSend[7] = altitudeAGL() >> 8;
+    dataToSend[8] = altitudeAGL() >> 16;
+    dataToSend[9] = altitudeAGL() >> 24;
 
     dataToSend[10] = sample.voltage.batV >> 0;
     dataToSend[11] = sample.voltage.batV >> 8;
@@ -106,19 +106,19 @@ void logSensors() {
     u8_t dataToSend[24];
 
     dataToSend[0] = SENSOR_LOG;
-	
+
     dataToSend[1] = sample.sampleTick >> 0;
     dataToSend[2] = sample.sampleTick >> 8;
     dataToSend[3] = sample.sampleTick >> 16;
     dataToSend[4] = sample.sampleTick >> 24;
 
-    dataToSend[5] = (int)altitude >> 0;
-    dataToSend[6] = (int)altitude >> 8;
-    dataToSend[7] = (int)altitude >> 16;
-    dataToSend[8] = (int)altitude >> 24;
+    dataToSend[5] = altitudeAGL() >> 0;
+    dataToSend[6] = altitudeAGL() >> 8;
+    dataToSend[7] = altitudeAGL() >> 16;
+    dataToSend[8] = altitudeAGL() >> 24;
 
-    float fractionalAccel = accel - (int16_t)(accel);
-    u16_t fractAccelPart = fractionalAccel * 1000;
+    volatile float fractionalAccel = accel - (int16_t)(accel);
+    volatile int16_t fractAccelPart = fractionalAccel * 1000;
 
     dataToSend[9] = (int16_t)(accel) >> 0;
     dataToSend[10] = (int16_t)(accel) >> 8;
@@ -126,13 +126,18 @@ void logSensors() {
     dataToSend[12] = fractAccelPart >> 8;
 
 
-    float fractionalVelocity = velocity - (int16_t)(velocity);
-    u16_t fractVelocityPart = fractionalVelocity * 1000;
+    volatile float fractionalVelocity = velocity - (int16_t)(velocity);
+    volatile int16_t fractVelocityPart = fractionalVelocity * 1000;
+	volatile int16_t wholePart = (int16_t)(velocity);
 
     dataToSend[13] = (int16_t)(velocity) >> 0;
     dataToSend[14] = (int16_t)(velocity) >> 8;
     dataToSend[15] = fractVelocityPart >> 0;
     dataToSend[16] = fractVelocityPart >> 8;
+
+    if ( (fractVelocityPart < 0 & (int16_t)(velocity) > 0) | (fractVelocityPart > 0 & (int16_t)(velocity) < 0) ) {
+        beep(200);
+    }
 
     dataToSend[17] = (u32_t)sample.altitudefeet >> 0;
     dataToSend[18] = (u32_t)sample.altitudefeet >> 8;
@@ -160,33 +165,33 @@ void logSensors() {
 
     //dataToSend[21] = my_altimeter->myAnalogAccelerometer.analogRaw >> 0;
     //dataToSend[22] = my_altimeter->myAnalogAccelerometer.analogRaw >> 8;
-	
-	/*
-	 dataToSend[1] = 0xff;
-	 dataToSend[2] = 0xff;
-	 dataToSend[3] = 0xff;
-	 dataToSend[4] = 0xff;
-	 dataToSend[5] = 0xff;
-	 dataToSend[6] = 0xff;
-	 dataToSend[7] = 0xff;
-	 dataToSend[8] = 0xff;
-	 dataToSend[9] = 0xff;
-	 dataToSend[10] = 0xff;
-	 dataToSend[11] = 0xff;
-	 dataToSend[12] = 0xff;
-	 dataToSend[13] = 0xff;
-	 dataToSend[14] = 0xff;
-	 dataToSend[15] = 0xff;
-	 dataToSend[16] = 0xff;
-	 dataToSend[17] = 0xff;
-	 dataToSend[18] = 0xff;
-	 dataToSend[19] = 0xff;
-	 dataToSend[20] = 0xff;
-	 dataToSend[21] = 0xfc;
-	 dataToSend[22] = 0xfd;
-	 dataToSend[23] = 0xfe;
-	 
-	 */
+
+    /*
+     dataToSend[1] = 0xff;
+     dataToSend[2] = 0xff;
+     dataToSend[3] = 0xff;
+     dataToSend[4] = 0xff;
+     dataToSend[5] = 0xff;
+     dataToSend[6] = 0xff;
+     dataToSend[7] = 0xff;
+     dataToSend[8] = 0xff;
+     dataToSend[9] = 0xff;
+     dataToSend[10] = 0xff;
+     dataToSend[11] = 0xff;
+     dataToSend[12] = 0xff;
+     dataToSend[13] = 0xff;
+     dataToSend[14] = 0xff;
+     dataToSend[15] = 0xff;
+     dataToSend[16] = 0xff;
+     dataToSend[17] = 0xff;
+     dataToSend[18] = 0xff;
+     dataToSend[19] = 0xff;
+     dataToSend[20] = 0xff;
+     dataToSend[21] = 0xfc;
+     dataToSend[22] = 0xfd;
+     dataToSend[23] = 0xfe;
+
+     */
 
     makePage(bytesToSend, dataToSend);
 }

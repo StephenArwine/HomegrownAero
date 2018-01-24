@@ -83,11 +83,11 @@ def PlotFlight(pointList, flight, eventList):
     # ax2.spines["left"].set_visible(True)
     ax2.yaxis.set_label_position('right')
     ax2.yaxis.set_ticks_position('right')
-    ax2.set_ylim(-.5, 1.5)
+    ax2.set_ylim(-1.5, 2)
 
     ax3.yaxis.set_label_position('right')
     ax3.yaxis.set_ticks_position('right')
-    ax3.set_ylim(-2, 2)
+    ax3.set_ylim(-32, 32)
 
     tkw = dict(size=4, width=1.5)
     ax1.tick_params(axis='y', colors=p1.get_color(), **tkw)

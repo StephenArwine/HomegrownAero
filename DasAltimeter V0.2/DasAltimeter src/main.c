@@ -106,9 +106,9 @@ void init() {
     pinOut(spi2MOSI);
     pinOut(spi2SCK);
     pinIn(spi2MISO);
-    //pinMux(spi2MISO);
-    //pinMux(spi2SCK);
-    //pinMux(spi2MOSI);
+    pinMux(spi2MISO);
+    pinMux(spi2SCK);
+    pinMux(spi2MOSI);
 
 
     pinOut(cs_baro);
@@ -125,7 +125,7 @@ void init() {
 
 
     sercomClockEnable(SPI2, 3, 4);
-    sercomSpiMasterInit(SPI2, 1, 3, 0, 0, 45403);
+    sercomSpiMasterInit(SPI2, 1, 3, 0, 0, 0x00);
 
 
     sercomClockEnable(SPI0, 3, 4);
@@ -168,12 +168,11 @@ int main(void) {
     while (1) {
 
 
+
         if (takeSample()) {
             sampleTick();
             flight();
             computeKalmanStates();
-
-
 
         }
     }

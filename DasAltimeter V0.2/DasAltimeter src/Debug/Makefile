@@ -55,6 +55,7 @@ C_SRCS +=  \
 ../src/log.c \
 ../src/sample.c \
 ../src/sercom.c \
+../src/settings.c \
 ../src/transfer.c
 
 
@@ -82,6 +83,7 @@ kalman.o \
 log.o \
 sample.o \
 sercom.o \
+settings.o \
 transfer.o
 
 OBJS_AS_ARGS +=  \
@@ -102,6 +104,7 @@ kalman.o \
 log.o \
 sample.o \
 sercom.o \
+settings.o \
 transfer.o
 
 C_DEPS +=  \
@@ -122,6 +125,7 @@ kalman.d \
 log.d \
 sample.d \
 sercom.d \
+settings.d \
 transfer.d
 
 C_DEPS_AS_ARGS +=  \
@@ -142,6 +146,7 @@ kalman.d \
 log.d \
 sample.d \
 sercom.d \
+settings.d \
 transfer.d
 
 OUTPUT_FILE_PATH +=DasAltimeter.elf
@@ -160,6 +165,8 @@ LINKER_SCRIPT_DEP+=  \
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 

@@ -212,7 +212,7 @@ void TC4Init() {
     TC4->COUNT8.CTRLA.reg = TC_CTRLA_MODE_COUNT8 |
                             TC_CTRLA_RUNSTDBY |
                             TC_CTRLA_PRESCALER_DIV2;
-    TC4->COUNT8.PER.reg = 0x41;
+    TC4->COUNT8.PER.reg = 0x50;
 
     TC4->COUNT8.INTENSET.reg = TC_INTENSET_OVF;
 
@@ -225,6 +225,7 @@ void TC4Init() {
 
 void TC4_Handler( void ) {
     TC4->COUNT8.INTFLAG.reg = 0xFF;
+    //pinToggle(TxPo);
     pullSample();
 }
 
@@ -238,9 +239,12 @@ void TC5Init() {
 
     TC5->COUNT8.CTRLA.reg = TC_CTRLA_MODE_COUNT8 |
                             TC_CTRLA_RUNSTDBY |
-                            TC_CTRLA_PRESCALER_DIV64;
+                            TC_CTRLA_PRESCALER_DIV16;
 
-    TC5->COUNT8.PER.reg = 0x20;
+    u16_t logSpeed = 20; //Hz
+    u8_t PER_Reg = (long)((32768/16) / logSpeed);
+
+    TC5->COUNT8.PER.reg = PER_Reg;
 
     TC5->COUNT8.INTENSET.reg = TC_INTENSET_OVF;
 
@@ -253,5 +257,7 @@ void TC5Init() {
 
 void TC5_Handler( void ) {
     TC5->COUNT8.INTFLAG.reg = 0xFF;
+    
+
     writeLog = true;
 }

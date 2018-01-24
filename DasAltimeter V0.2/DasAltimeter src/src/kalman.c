@@ -10,7 +10,7 @@
 
 /* default values */
 
-#define  ALTITUDESIGMA	       5.0
+#define  ALTITUDESIGMA	       19.0
 #define  ACCELERATIONSIGMA      1.5
 #define  MODELSIGMA		0.5
 
@@ -55,7 +55,7 @@ void computeKalmanGains() {
 
     /* Initialize */
 
-    dt = 0.008;
+    dt = 0.005;
 
     /*
      Fill in state transition matrix and its transpose

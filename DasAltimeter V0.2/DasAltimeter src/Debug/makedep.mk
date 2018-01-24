@@ -36,5 +36,7 @@ src\sample.c
 
 src\sercom.c
 
+src\settings.c
+
 src\transfer.c
 

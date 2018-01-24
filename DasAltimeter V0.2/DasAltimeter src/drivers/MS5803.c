@@ -11,14 +11,14 @@ u32_t readMS5803AdcResults() {
     u8_t dummy_rx;
 
     pinLow(cs_baro);
-//    dummy_rx = spiDataTransfer(SPI2, cmdAdcRead_);
-//    u8_t _byte1 = spiDataTransfer(SPI2,dummy_tx);
-//    u8_t _byte2 = spiDataTransfer(SPI2,dummy_tx);
-//    u8_t _byte3 = spiDataTransfer(SPI2,dummy_tx);
-    byteOut(spi2SCK,spi2MOSI, cmdAdcRead_);
-    u8_t _byte1 = byteIn(spi2SCK,spi2MISO);
-    u8_t _byte2 = byteIn(spi2SCK,spi2MISO);
-    u8_t _byte3 = byteIn(spi2SCK,spi2MISO);
+    dummy_rx = spiDataTransfer(SPI2, cmdAdcRead_);
+    u8_t _byte1 = spiDataTransfer(SPI2,dummy_tx);
+    u8_t _byte2 = spiDataTransfer(SPI2,dummy_tx);
+    u8_t _byte3 = spiDataTransfer(SPI2,dummy_tx);
+//    byteOut(spi2SCK,spi2MOSI, cmdAdcRead_);
+//    u8_t _byte1 = byteIn(spi2SCK,spi2MISO);
+//    u8_t _byte2 = byteIn(spi2SCK,spi2MISO);
+//    u8_t _byte3 = byteIn(spi2SCK,spi2MISO);
     pinHigh(cs_baro);
 
     u32_t _receive = (_byte1 << 16) | (_byte2 << 8) | (_byte3);
@@ -108,12 +108,12 @@ void readMS5803Coefficients() {
         u8_t _cmd = MS5803_CMD_PROM_READ + ((coeff_num+1)*2);
         delay_us(600);
         pinLow(cs_baro);
-//      dummy_rx = spiDataTransfer(SPI1, _cmd);
-//      u8_t _byte1 = spiDataTransfer(SPI1,dummy_tx);
-//      u8_t _byte2 = spiDataTransfer(SPI1,dummy_tx);
-        byteOut(spi2SCK,spi2MOSI, _cmd);
-        u8_t _byte1 = byteIn(spi2SCK,spi2MISO);
-        u8_t _byte2 = byteIn(spi2SCK,spi2MISO);
+        dummy_rx = spiDataTransfer(SPI2, _cmd);
+        u8_t _byte1 = spiDataTransfer(SPI2,dummy_tx);
+        u8_t _byte2 = spiDataTransfer(SPI2,dummy_tx);
+//        byteOut(spi2SCK,spi2MOSI, _cmd);
+//        u8_t _byte1 = byteIn(spi2SCK,spi2MISO);
+//        u8_t _byte2 = byteIn(spi2SCK,spi2MISO);
         pinHigh(cs_baro);
         coefficients_[coeff_num] = (_byte1 << 8) | _byte2;
     }
@@ -126,8 +126,8 @@ void initMS5803Barometer() {
     u8_t dummy_rx;
 
     pinLow(cs_baro);
-//   dummy_rx = spiDataTransfer(SPI1, MS5803_CMD_RES);
-    byteOut(spi2SCK,spi2MOSI, MS5803_CMD_RES);
+    dummy_rx = spiDataTransfer(SPI2, MS5803_CMD_RES);
+    //byteOut(spi2SCK,spi2MOSI, MS5803_CMD_RES);
     pinHigh(cs_baro);
     delay_ms(200);
     readMS5803Coefficients();

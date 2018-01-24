@@ -166,7 +166,7 @@ def connectToAltimeter():
         print('')
         print(' Altimeter connected, what would you like to do?')
         print('     P    Print/stream sensor data')
-        print('     L    Download & Plot flight log')
+        print('     L    Download & Plo flight log')
         print('     S    Change Altimeter settings')
         print('     E    Chip Erase')
         print('')

@@ -7,7 +7,6 @@ flightState_t flightState;
 void flight() {
 
 
-
     switch(flightState) {
     case flightStatrup:
 
@@ -28,9 +27,7 @@ void flight() {
 
         attemptConnection();
 
-
-
-        if (sample.voltage.batFloat < 3.5) {
+        if (unplugged()) {
             flightState = flightIdle;
             unpluggedJingle();
         }
@@ -68,19 +65,11 @@ void flight() {
             pinToggle(LedPin);
         }
 
-        if (( velocity > 0.05) && ((altitude - offsets.groundOffset) > 5)) {
+        if (( velocity > 0.05) && (altitudeAGL() > 5)) {
             flightState = flightBoost;
             logEvent('L');
         }
 
-
-
-        if (sample.voltage.batFloat < 3.5) {
-            flightState = flightIdle;
-            AT25SFHoldTillReady();
-            writeFlightEndAddress( );
-            unpluggedJingle();
-        }
 
         break;
     case flightBoost:
@@ -109,12 +98,7 @@ void flight() {
 
         }
 
-        if (sample.voltage.batFloat < 3.5) {
-            flightState = flightIdle;
-            AT25SFHoldTillReady();
-            writeFlightEndAddress( );
-            unpluggedJingle();
-        }
+
 
         break;
     case flightFast:
@@ -146,12 +130,7 @@ void flight() {
         }
 
 
-        if (sample.voltage.batFloat < 3.5) {
-            flightState = flightIdle;
-            AT25SFHoldTillReady();
-            writeFlightEndAddress( );
-            unpluggedJingle();
-        }
+
         break;
     case flightMain:
 
@@ -165,10 +144,12 @@ void flight() {
         break;
     case flightTest:
 
-        //simple continuity test
-        if ( (sample.voltage.senseA + sample.voltage.senseB +sample.voltage.senseC +sample.voltage.senseD) > 200) {
-            unpluggedJingle();
-        }
+        /*
+           //simple continuity test
+           if ( (sample.voltage.senseA + sample.voltage.senseB +sample.voltage.senseC +sample.voltage.senseD) > 200) {
+               unpluggedJingle();
+           }
+        */
 
 
 
@@ -177,6 +158,7 @@ void flight() {
             logSensors( );
             if (pageReady) {
                 pageReady = false;
+
                 pinToggle(LedPin);
                 u8_t bytesWritten = AT25SEWritePage(currentAddress,pageToWrite);
                 currentAddress = (currentAddress + 0x100);
@@ -184,15 +166,11 @@ void flight() {
         }
 
 
-        if (sample.voltage.batFloat < 3.5) {
-            flightState = flightIdle;
-            AT25SFHoldTillReady();
-            writeFlightEndAddress( );
-            unpluggedJingle();
-        }
-
-
         break;
+    }
+
+    if (flightState != flightStatrup & flightState != flightIdle & unplugged()) {
+        finishFlight();
     }
 
 

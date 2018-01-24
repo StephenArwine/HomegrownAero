@@ -88,7 +88,10 @@ u32_t startupTick;
 
 bool USARTconnectionAvaliable();
 void sendTheasePagesToComputer(u32_t firstPage, u32_t lastPage);
+int32_t altitudeAGL();
 bool unplugged();
+
+void finishFlight();
 
 #endif
 

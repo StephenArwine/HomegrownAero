@@ -47,9 +47,23 @@ void sendTheasePagesToComputer(u32_t firstPage, u32_t lastPage) {
     }
 }
 
+int32_t altitudeAGL() {
+    return altitude - offsets.groundOffset;
+}
+
 
 bool unplugged() {
     if (sample.voltage.batFloat < 3.5) {
+        return true;
+    } else {
         return false;
     }
+}
+
+void finishFlight() {
+	
+    flightState = flightIdle;
+    AT25SFHoldTillReady();
+    writeFlightEndAddress( );
+    unpluggedJingle();
 }

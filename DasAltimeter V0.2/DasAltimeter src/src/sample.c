@@ -41,15 +41,13 @@ void sampleTick() {
     uint8_t dummy_rx;
 
     pinLow(cs_baro);
-    //dummy_rx = spiDataTransfer(SPI2, 0x50);
-    byteOut(spi2SCK,spi2MOSI, 0x50);
+    dummy_rx = spiDataTransfer(SPI2, 0x50);
     pinHigh(cs_baro);
     delay_us(600);
     uint32_t tempRaw = readMS5803AdcResults();
 
     pinLow(cs_baro);
-    //dummy_rx = spiDataTransfer(SPI2, 0x40);
-    byteOut(spi2SCK,spi2MOSI, 0x46);
+    dummy_rx = spiDataTransfer(SPI2, 0x40);
     pinHigh(cs_baro);
 
 
@@ -144,12 +142,15 @@ void sampleTick() {
     sample.gyroY =  gyroYint * BMI055_GYRO_2000DS_DIV;
     sample.gyroZ =  gyroZint * BMI055_GYRO_2000DS_DIV;
 
-    //delay_us(800);
-    //delay_ms(5);
-    delay_us(500);
+
+    delay_us(400);
     u32_t PressureRaw = readMS5803AdcResults();
     ConvertPressureTemperature(PressureRaw, tempRaw, &sample.temperatureCelcus, &sample.pressureMbar);
     sample.altitudefeet = paToFeetNOAA(sample.pressureMbar);
+
+    if ( PressureRaw < 10 | tempRaw < 10) {
+        beep(400);
+    }
 
 
 }

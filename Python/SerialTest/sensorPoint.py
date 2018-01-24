@@ -86,65 +86,36 @@ def build_sensor_point(data, currentPage, pages, locationInPage, lastTick):
 
         sensor_sample_part = data[currentPage][locationInPage:256]
         sensor_sample = sensor_sample_part + data[currentPage + 1][0:(sensorPointLength - (256 - locationInPage))]
-
-        point.sampleTick = int.from_bytes(sensor_sample[1:4], byteorder='little')
-        point.Dt = point.sampleTick - lastTick
-        point.heightFeet = int.from_bytes(sensor_sample[5:8], byteorder='little')
-
-        point.accelZ = twos_complement(sensor_sample[9], sensor_sample[10])
-        point.accelZFract = twos_complement(sensor_sample[11], sensor_sample[12])
-        point.accelZFract = point.accelZFract / 1000
-        point.accelZ = point.accelZ + point.accelZFract
-
-        point.velocity = twos_complement(sensor_sample[13], sensor_sample[14])
-        point.velocityfract = twos_complement(sensor_sample[15], sensor_sample[16])
-        point.velocityfract = point.velocityfract / 1000
-        point.velocity = point.velocity + point.velocityfract
-
-        point.rawFeet = int.from_bytes(sensor_sample[17:20], byteorder='little')
-
-        point.accelZraw = twos_complement(sensor_sample[21], sensor_sample[22])
-        point.accelZrawFract = sensor_sample[23] / 256
-        point.accelZraw = point.accelZraw + point.accelZrawFract
-
-        #point.gyroY = twos_complement(sensor_sample[17], sensor_sample[18]) * 0.0078125  # Gyro Y conv
-        #point.gyroZ = twos_complement(sensor_sample[19], sensor_sample[20]) * 0.0078125  # Gyro Z conv
-
         currentPage += 1
         locationInPage -= (0xff - sensorPointLength + 1 )
 
-        # print('Reading page ', currentPage, ' starting Location ', locationInPage, 'point',
-        #      hex(data[currentPage][locationInPage]))
-
     else:
         sensor_sample = data[currentPage][locationInPage:locationInPage + sensorPointLength]
-
-        point.sampleTick = int.from_bytes(sensor_sample[1:4], byteorder='little')
-        point.Dt = point.sampleTick - lastTick
-        point.heightFeet = int.from_bytes(sensor_sample[5:8], byteorder='little')
-
-        point.accelZ = twos_complement(sensor_sample[9], sensor_sample[10])
-        point.accelZFract = twos_complement(sensor_sample[11], sensor_sample[12])
-        point.accelZFract = point.accelZFract / 1000
-        point.accelZ = point.accelZ + point.accelZFract
-
-        point.velocity = twos_complement(sensor_sample[13], sensor_sample[14])
-        point.velocityfract = twos_complement(sensor_sample[15], sensor_sample[16])
-        point.velocityfract = point.velocityfract / 1000
-        point.velocity = point.velocityfract + point.velocityfract
-
-        point.rawFeet = int.from_bytes(sensor_sample[17:20], byteorder='little')
-
-        point.accelZraw = twos_complement(sensor_sample[21], sensor_sample[22])
-        point.accelZrawFract = sensor_sample[23] / 256
-        point.accelZraw = point.accelZraw + point.accelZrawFract
-
-
-
-        #point.gyroY = twos_complement(sensor_sample[17], sensor_sample[18]) * 0.0078125  # Accel Z conv
-        #point.gyroZ = twos_complement(sensor_sample[19], sensor_sample[20]) * 0.0078125  # Accel Z conv
-
         locationInPage += sensorPointLength
+
+
+    point.sampleTick = int.from_bytes(sensor_sample[1:4], byteorder='little')
+    point.Dt = point.sampleTick - lastTick
+    point.heightFeet = int.from_bytes(sensor_sample[5:8], byteorder='little', signed=True)
+
+    point.accelZ = twosComp.twos_complement(sensor_sample[9], sensor_sample[10])
+    point.accelZFract = twosComp.twos_complement(sensor_sample[11], sensor_sample[12])
+    point.accelZFract = point.accelZFract / 1000
+    point.accelZ = point.accelZ + point.accelZFract
+
+    point.velocity = twosComp.twos_complement(sensor_sample[13], sensor_sample[14])
+    fullvel = point.velocity
+    point.velocityfract = twosComp.twos_complement(sensor_sample[15], sensor_sample[16])
+    point15 = hex(sensor_sample[15])
+    point16 = hex(sensor_sample[16])
+    point.velocityfract = point.velocityfract / 1000
+    point.velocity = point.velocity + point.velocityfract
+
+    point.rawFeet = int.from_bytes(sensor_sample[17:20], byteorder='little')
+
+    point.accelZraw = twos_complement(sensor_sample[21], sensor_sample[22])
+    point.accelZrawFract = sensor_sample[23] / 256
+    point.accelZraw = point.accelZraw + point.accelZrawFract
 
     return point, currentPage, locationInPage
 
