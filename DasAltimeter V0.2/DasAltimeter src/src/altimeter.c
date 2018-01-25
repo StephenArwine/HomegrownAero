@@ -67,3 +67,61 @@ void finishFlight() {
     writeFlightEndAddress( );
     unpluggedJingle();
 }
+
+void POST(){
+	uint8_t dummy_rx;
+	uint8_t dummy_Tx = 0xFF;
+
+	bool postFailed = false;
+	u8_t failType = 0;
+
+
+	//Baro post first
+	pinLow(cs_baro);
+	dummy_rx = spiDataTransfer(SPI2, 0x50);
+
+	pinHigh(cs_baro);
+
+
+	//Memory Post
+	pinLow(cs_mem);
+	dummy_rx = spiDataTransfer(SPI1,0x9f); // read id and mfg code
+	u8_t mfgID = spiDataTransfer(SPI1,dummy_Tx);
+	u8_t deviceID1 = spiDataTransfer(SPI1,dummy_Tx);
+	u8_t deviceID2 = spiDataTransfer(SPI1,dummy_Tx);
+	pinHigh(cs_mem);
+	
+	if ( mfgID != 0x1f & deviceID1 != 0x86 & deviceID2 != 0x01){
+		postFailed = true;
+		failType = 2;
+	}
+	
+	
+	//Accelerometer Post
+	pinLow(cs_accel);
+	dummy_rx = spiDataTransfer(SPI0, BMI055_BGW_CHIPID | BMI055_READ_REG);
+	u8_t accelID = spiDataTransfer(SPI0,dummy_Tx);
+	pinHigh(cs_accel);
+	
+	if (accelID != 0xFA){
+		postFailed = true;
+		failType = 3;
+	}
+
+	//Gyro Post
+	pinLow(cs_gyro);
+	dummy_rx = spiDataTransfer(SPI0, BMI055_BGW_CHIPID | BMI055_READ_REG);
+	u8_t gyrolID = spiDataTransfer(SPI0,dummy_Tx);
+	pinHigh(cs_gyro);
+	
+	if (gyroID != 0x0F){
+		postFailed = true;
+		failType = 4;
+	}
+	
+	//Analog Accelerometer Post 
+
+
+
+
+}
