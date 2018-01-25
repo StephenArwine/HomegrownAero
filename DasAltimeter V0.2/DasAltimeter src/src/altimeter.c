@@ -131,6 +131,7 @@ void POST(){
 				beep(300);
 				delayms(300);
 			}	
+delayms(1500);
 		}
 	}
 }
