@@ -77,11 +77,12 @@ void POST(){
 
 
 	//Baro post first
-	pinLow(cs_baro);
-	dummy_rx = spiDataTransfer(SPI2, 0x50);
-
-	pinHigh(cs_baro);
-
+	u8_t crc = u8_t MS5803_CRC4();
+	if (crc != coefficients_[7]){
+		postFailed = true;
+		failType = 1;
+		
+	}
 
 	//Memory Post
 	pinLow(cs_mem);
