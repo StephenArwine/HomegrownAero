@@ -123,6 +123,14 @@ void POST(){
 	//Analog Accelerometer Post 
 
 
-
-
+	if (postFailed){
+		while (1){
+			u8_t beepCount;
+			
+			for (beepCount = failType; beepCount > 0; beepCount--){
+				beep(300);
+				delayms(300);
+			}	
+		}
+	}
 }
