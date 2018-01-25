@@ -23,4 +23,5 @@ double paToFeetNOAA(int32_t pressureMbar);
 void readMS5803Coefficients();
 void initMS5803Barometer();
 //void pascalToCent(Barometer *my_barometer);
+u8_t MS5803_CRC4();
 
