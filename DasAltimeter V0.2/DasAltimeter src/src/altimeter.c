@@ -129,9 +129,9 @@ void POST(){
 			
 			for (beepCount = failType; beepCount > 0; beepCount--){
 				beep(300);
-				delayms(300);
+				delay_ms(300);
 			}	
-delayms(1500);
+                        delay_ms(1500);
 		}
 	}
 }
