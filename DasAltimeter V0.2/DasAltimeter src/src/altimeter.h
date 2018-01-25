@@ -93,5 +93,7 @@ bool unplugged();
 
 void finishFlight();
 
+void POST();
+
 #endif
 
