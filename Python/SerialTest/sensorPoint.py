@@ -114,7 +114,11 @@ def build_sensor_point(data, currentPage, pages, locationInPage, lastTick):
     point.rawFeet = int.from_bytes(sensor_sample[17:20], byteorder='little')
 
     point.accelZraw = twos_complement(sensor_sample[21], sensor_sample[22])
-    point.accelZrawFract = sensor_sample[23] / 256
+    if (sensor_sample[23] >> 7) == 1:
+        point.accelZrawFract = sensor_sample[23] | ~((1<<8) - 1)
+    else:
+        point.accelZrawFract = sensor_sample[23]
+    point.accelZrawFract = point.accelZrawFract
     point.accelZraw = point.accelZraw + point.accelZrawFract
 
     return point, currentPage, locationInPage

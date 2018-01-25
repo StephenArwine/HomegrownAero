@@ -31,7 +31,7 @@ def PlotFlight(pointList, flight, eventList):
 
             dt = pointToPlot.sampleTick - previousPoint.sampleTick
             print('Sample', x, 'tick:', pointToPlot.sampleTick, 'Sample DT:', pointToPlot.Dt, 'Height Feet:',
-                  pointToPlot.heightFeet,'Raw feet:', pointToPlot.rawFeet, 'Velocity:', pointToPlot.velocity, 'AccelZ:', pointToPlot.accelZ, 'accelZRaw', pointToPlot.accelZraw / 32.17417)
+                  pointToPlot.heightFeet,'Raw feet:', pointToPlot.rawFeet, 'Velocity:', pointToPlot.velocity, 'AccelZ:', pointToPlot.accelZ, 'accelZRaw', pointToPlot.accelZraw)
 
         tick.append(pointToPlot.sampleTick / 1000)
         accelplot.append(pointToPlot.accelZ / 32.17417)
@@ -68,7 +68,7 @@ def PlotFlight(pointList, flight, eventList):
     p3, = ax3.plot(tick, velocityplot, color='g')
 
     ax3.axhline(y = 0, color='g', linestyle='--', linewidth =0.5)
-
+    ax2.axhline(y = 0, color='r', linestyle='--', linewidth =0.5)
 
 
     # make_patch_spines_invisible(ax1)
@@ -83,7 +83,7 @@ def PlotFlight(pointList, flight, eventList):
     # ax2.spines["left"].set_visible(True)
     ax2.yaxis.set_label_position('right')
     ax2.yaxis.set_ticks_position('right')
-    ax2.set_ylim(-1.5, 2)
+    ax2.set_ylim(-2, 4)
 
     ax3.yaxis.set_label_position('right')
     ax3.yaxis.set_ticks_position('right')

@@ -145,11 +145,11 @@ void logSensors() {
     dataToSend[20] = (u32_t)sample.altitudefeet >> 24;
 
     float fractionalAccelraw = sample.accelZ - (int16_t)(sample.accelZ);
-    u8_t fractAccelRawPart = fractionalAccelraw * 256;
+    u8_t fractAccelRawPart = fractionalAccelraw;
 
     dataToSend[21] = (int16_t)(sample.accelZ) >> 0;
     dataToSend[22] = (int16_t)(sample.accelZ) >> 8;
-    dataToSend[23] = fractAccelRawPart >> 0;
+    dataToSend[23] = fractAccelRawPart;
 
     //dataToSend[9] = my_altimeter->myIMU.accelXRaw >> 0;
     //dataToSend[10] = my_altimeter->myIMU.accelXRaw >> 8;
