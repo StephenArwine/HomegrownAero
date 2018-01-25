@@ -1,4 +1,3 @@
-
 #include <MS5803.h>
 #include <boardDefines.h>
 #include <math.h>
@@ -26,12 +25,12 @@ u32_t readMS5803AdcResults() {
 }
 
 void ConvertPressureTemperature(u32_t pressureRaw, u32_t tempRaw, u32_t* temperatureCelcus, int32_t* pressureMbar ) {
-    const u16_t C1 = coefficients_[0];
-    const u16_t C2 = coefficients_[1];
-    const u16_t C3 = coefficients_[2];
-    const u16_t C4 = coefficients_[3];
-    const u16_t C5 = coefficients_[4];
-    const u16_t C6 = coefficients_[5];
+    const u16_t C1 = coefficients_[1];
+    const u16_t C2 = coefficients_[2];
+    const u16_t C3 = coefficients_[3];
+    const u16_t C4 = coefficients_[4];
+    const u16_t C5 = coefficients_[5];
+    const u16_t C6 = coefficients_[6];
 
     // calculate 1st order pressure and temperature (MS5607 1st order algorithm)
     const  int32_t dT = (tempRaw) - ((int32_t)C5 << 8);
@@ -103,17 +102,14 @@ void readMS5803Coefficients() {
     u8_t dummy_tx = 0xFF;
     u8_t dummy_rx;
 
-    for (u8_t coeff_num = 0; coeff_num < 6 ; ++coeff_num ) {
+    for (u8_t coeff_num = 1; coeff_num < 7 ; ++coeff_num ) {
         delay_us(600);
-        u8_t _cmd = MS5803_CMD_PROM_READ + ((coeff_num+1)*2);
+        u8_t _cmd = MS5803_CMD_PROM_READ + ((coeff_num)*2);
         delay_us(600);
         pinLow(cs_baro);
         dummy_rx = spiDataTransfer(SPI2, _cmd);
         u8_t _byte1 = spiDataTransfer(SPI2,dummy_tx);
         u8_t _byte2 = spiDataTransfer(SPI2,dummy_tx);
-//        byteOut(spi2SCK,spi2MOSI, _cmd);
-//        u8_t _byte1 = byteIn(spi2SCK,spi2MISO);
-//        u8_t _byte2 = byteIn(spi2SCK,spi2MISO);
         pinHigh(cs_baro);
         coefficients_[coeff_num] = (_byte1 << 8) | _byte2;
     }
@@ -137,8 +133,36 @@ void initMS5803Barometer() {
     //my_barometer->rawPressureData = 4311550;
     //my_barometer->rawTempatureData = 8387300;
     //my_barometer->temperatureCelcus = 2000;
+}
 
-
-
-
+u8_t MS5803_CRC4(){
+	
+	u8_t count;
+	u8_t n_rem;
+	u8_t crc_read;
+	u8_t n_bit;
+	
+	n_rem = 0x00;
+	crc_read = coefficients_[7];
+	coefficients_[7] = (0xFF00 & (coefficients_[7]));
+	
+	for (count = 0; count < 16; count++){
+		if (count%2 = 1){
+			n_rem ^= (unsigned short) ((n_prom[cnt>>1]) & 0x00FF);
+		}
+		else{
+			n_rem ^= (unsigned short) (n_prom[cnt>>1]>>8);
+		}
+		for (n_bit = 8; n_bit > 0; n_bit--){
+			if(n_rem & (0x8000)){
+				n_rem = (n_rem << 1) ^ 0x3000;
+			}
+			else{
+				n_rem = (n_rem << 1);
+			}
+		}
+	}
+	n_rem = (0x000F & (n_rem >> 12);
+	coefficients_[7] = crc_read;
+	return (n_rem & 0x00); 
 }
