@@ -35,6 +35,7 @@ typedef uint8_t SercomId;
 #include <altimeter.h>
 #include <log.h>
 #include <flight.h>
+#include <settings.h>
 
 
 

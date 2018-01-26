@@ -7,31 +7,31 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
   1 .relocate     000004a0  20000000  00006388  00020000  2**3
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00000340  200004a0  00006828  000204a0  2**3
+  2 .bss          00000370  200004a0  00006828  000204a0  2**3
                   ALLOC
-  3 .stack        00002000  200007e0  00006b68  000204a0  2**0
+  3 .stack        00002000  20000810  00006b98  000204a0  2**0
                   ALLOC
   4 .ARM.attributes 00000028  00000000  00000000  000204a0  2**0
                   CONTENTS, READONLY
   5 .comment      00000059  00000000  00000000  000204c8  2**0
                   CONTENTS, READONLY
-  6 .debug_info   00027dc3  00000000  00000000  00020521  2**0
+  6 .debug_info   0002951d  00000000  00000000  00020521  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 0000310d  00000000  00000000  000482e4  2**0
+  7 .debug_abbrev 00003173  00000000  00000000  00049a3e  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_loc    00002324  00000000  00000000  0004b3f1  2**0
+  8 .debug_loc    00002324  00000000  00000000  0004cbb1  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_aranges 000003d8  00000000  00000000  0004d715  2**0
+  9 .debug_aranges 000003d8  00000000  00000000  0004eed5  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_ranges 00000ce0  00000000  00000000  0004daed  2**0
+ 10 .debug_ranges 00000ce0  00000000  00000000  0004f2ad  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_macro  000162ef  00000000  00000000  0004e7cd  2**0
+ 11 .debug_macro  00016401  00000000  00000000  0004ff8d  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_line   000096c7  00000000  00000000  00064abc  2**0
+ 12 .debug_line   0000978c  00000000  00000000  0006638e  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_str    00072e4b  00000000  00000000  0006e183  2**0
+ 13 .debug_str    00073290  00000000  00000000  0006fb1a  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_frame  00001058  00000000  00000000  000e0fd0  2**2
+ 14 .debug_frame  00001058  00000000  00000000  000e2dac  2**2
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -43,7 +43,7 @@ void SystemCoreClockUpdate(void)
 {
 	// Not implemented
 	SystemCoreClock = __SYSTEM_CLOCK;
-       0:	e0 27 00 20 19 01 00 00 15 01 00 00 15 01 00 00     .'. ............
+       0:	10 28 00 20 19 01 00 00 15 01 00 00 15 01 00 00     .(. ............
 	...
       2c:	15 01 00 00 00 00 00 00 00 00 00 00 15 01 00 00     ................
       3c:	15 01 00 00 15 01 00 00 15 01 00 00 15 01 00 00     ................
@@ -205,7 +205,7 @@ void Dummy_Handler(void)
      1a4:	20000000 	.word	0x20000000
      1a8:	200004a0 	.word	0x200004a0
      1ac:	200004a0 	.word	0x200004a0
-     1b0:	200007e0 	.word	0x200007e0
+     1b0:	20000810 	.word	0x20000810
      1b4:	00000000 	.word	0x00000000
      1b8:	e000ed00 	.word	0xe000ed00
      1bc:	410070fc 	.word	0x410070fc
@@ -268,7 +268,7 @@ inline static void pinLow(Pin p) {
      20e:	46c0      	nop			; (mov r8, r8)
      210:	41004400 	.word	0x41004400
      214:	00002615 	.word	0x00002615
-     218:	200004c0 	.word	0x200004c0
+     218:	200004c4 	.word	0x200004c4
 
 0000021c <AT25SFChipErase>:
 void AT25SFChipErase() {
@@ -309,7 +309,7 @@ void AT25SFChipErase() {
      242:	46c0      	nop			; (mov r8, r8)
      244:	41004400 	.word	0x41004400
      248:	00002615 	.word	0x00002615
-     24c:	200004c0 	.word	0x200004c0
+     24c:	200004c4 	.word	0x200004c4
 
 00000250 <AT25SFWriteBytes>:
     PORT->Group[p.group].OUTCLR.reg = (1<<p.pin);
@@ -406,7 +406,7 @@ void AT25SFWriteBytes(uint32_t address, u8_t len, uint8_t *bytes) {
      2ba:	46c0      	nop			; (mov r8, r8)
      2bc:	41004400 	.word	0x41004400
      2c0:	00002615 	.word	0x00002615
-     2c4:	200004c0 	.word	0x200004c0
+     2c4:	200004c4 	.word	0x200004c4
 
 000002c8 <AT25SEWritePage>:
     PORT->Group[p.group].OUTCLR.reg = (1<<p.pin);
@@ -509,7 +509,7 @@ u8_t AT25SEWritePage(u32_t startingAddress, u8_t *data) {
      32e:	bdfe      	pop	{r1, r2, r3, r4, r5, r6, r7, pc}
      330:	41004400 	.word	0x41004400
      334:	00002615 	.word	0x00002615
-     338:	200004c0 	.word	0x200004c0
+     338:	200004c4 	.word	0x200004c4
 
 0000033c <AT25SEreadSample>:
     PORT->Group[p.group].OUTCLR.reg = (1<<p.pin);
@@ -594,7 +594,7 @@ void AT25SEreadSample(u32_t startingAddress, u8_t len, u8_t *data) {
      39e:	46c0      	nop			; (mov r8, r8)
      3a0:	41004400 	.word	0x41004400
      3a4:	00002615 	.word	0x00002615
-     3a8:	200004c0 	.word	0x200004c0
+     3a8:	200004c4 	.word	0x200004c4
 
 000003ac <AT25SEreadPage>:
     PORT->Group[p.group].OUTCLR.reg = (1<<p.pin);
@@ -680,7 +680,7 @@ void AT25SEreadPage(u32_t startingAddress, u8_t *data) {
      40a:	46c0      	nop			; (mov r8, r8)
      40c:	41004400 	.word	0x41004400
      410:	00002615 	.word	0x00002615
-     414:	200004c0 	.word	0x200004c0
+     414:	200004c4 	.word	0x200004c4
 
 00000418 <readMS5803AdcResults>:
 #include <boardDefines.h>
@@ -855,7 +855,7 @@ void ConvertPressureTemperature(u32_t pressureRaw, u32_t tempRaw, u32_t* tempera
      4f2:	b009      	add	sp, #36	; 0x24
      4f4:	bdf0      	pop	{r4, r5, r6, r7, pc}
      4f6:	46c0      	nop			; (mov r8, r8)
-     4f8:	2000060e 	.word	0x2000060e
+     4f8:	2000063a 	.word	0x2000063a
      4fc:	00003a1d 	.word	0x00003a1d
 
 00000500 <paToFeetNOAA>:
@@ -909,10 +909,8 @@ double paToFeetNOAA(int32_t pressureMbar) {
      560:	0000510d 	.word	0x0000510d
 
 00000564 <readMS5803Coefficients>:
-    }
-}
 
-*/
+
 
 void readMS5803Coefficients() {
      564:	b5f7      	push	{r0, r1, r2, r4, r5, r6, r7, lr}
@@ -979,7 +977,7 @@ void readMS5803Coefficients() {
      5b4:	00000ec1 	.word	0x00000ec1
      5b8:	41004400 	.word	0x41004400
      5bc:	00002615 	.word	0x00002615
-     5c0:	2000060e 	.word	0x2000060e
+     5c0:	2000063a 	.word	0x2000063a
 
 000005c4 <initMS5803Barometer>:
 
@@ -989,8 +987,6 @@ void initMS5803Barometer() {
      5c6:	2580      	movs	r5, #128	; 0x80
      5c8:	4c06      	ldr	r4, [pc, #24]	; (5e4 <initMS5803Barometer+0x20>)
      5ca:	01ed      	lsls	r5, r5, #7
-
-
 
 
     pinLow(cs_baro);
@@ -1729,7 +1725,7 @@ __STATIC_INLINE void NVIC_EnableIRQ(IRQn_Type IRQn)
      9dc:	ff00ffff 	.word	0xff00ffff
      9e0:	41004400 	.word	0x41004400
      9e4:	41004488 	.word	0x41004488
-     9e8:	20000650 	.word	0x20000650
+     9e8:	20000680 	.word	0x20000680
      9ec:	00002509 	.word	0x00002509
      9f0:	00002569 	.word	0x00002569
      9f4:	000025cd 	.word	0x000025cd
@@ -1803,7 +1799,7 @@ int main(void) {
      a4c:	000021fd 	.word	0x000021fd
      a50:	00000c71 	.word	0x00000c71
      a54:	00000f35 	.word	0x00000f35
-     a58:	200004fc 	.word	0x200004fc
+     a58:	20000524 	.word	0x20000524
      a5c:	000021e5 	.word	0x000021e5
      a60:	0000103d 	.word	0x0000103d
      a64:	00001bbd 	.word	0x00001bbd
@@ -1972,9 +1968,9 @@ int32_t altitudeAGL() {
 }
      b2c:	bd10      	pop	{r4, pc}
      b2e:	46c0      	nop			; (mov r8, r8)
-     b30:	200004c8 	.word	0x200004c8
+     b30:	200004d0 	.word	0x200004d0
      b34:	00005d65 	.word	0x00005d65
-     b38:	20000668 	.word	0x20000668
+     b38:	20000698 	.word	0x20000698
      b3c:	0000560d 	.word	0x0000560d
      b40:	00005c79 	.word	0x00005c79
 
@@ -2002,7 +1998,7 @@ bool unplugged() {
     }
 }
      b5a:	bd10      	pop	{r4, pc}
-     b5c:	20000798 	.word	0x20000798
+     b5c:	200007c8 	.word	0x200007c8
      b60:	40600000 	.word	0x40600000
      b64:	000039cd 	.word	0x000039cd
 
@@ -2029,7 +2025,7 @@ void finishFlight() {
 }
      b7c:	bd10      	pop	{r4, pc}
      b7e:	46c0      	nop			; (mov r8, r8)
-     b80:	20000654 	.word	0x20000654
+     b80:	20000684 	.word	0x20000684
      b84:	000001e5 	.word	0x000001e5
      b88:	000020f1 	.word	0x000020f1
      b8c:	00000ce1 	.word	0x00000ce1
@@ -2987,7 +2983,7 @@ void TC5_Handler( void ) {
     1030:	4770      	bx	lr
     1032:	46c0      	nop			; (mov r8, r8)
     1034:	42003400 	.word	0x42003400
-    1038:	200004f8 	.word	0x200004f8
+    1038:	20000520 	.word	0x20000520
 
 0000103c <flight>:
 #include <boardDefines.h>
@@ -3260,10 +3256,10 @@ __STATIC_INLINE void NVIC_SystemReset(void)
     11b2:	4798      	blx	r3
     11b4:	e76e      	b.n	1094 <flight+0x58>
     11b6:	46c0      	nop			; (mov r8, r8)
-    11b8:	20000654 	.word	0x20000654
+    11b8:	20000684 	.word	0x20000684
     11bc:	00001235 	.word	0x00001235
     11c0:	00000f35 	.word	0x00000f35
-    11c4:	200004fc 	.word	0x200004fc
+    11c4:	20000524 	.word	0x20000524
     11c8:	00002710 	.word	0x00002710
     11cc:	0000212d 	.word	0x0000212d
     11d0:	00001e85 	.word	0x00001e85
@@ -3276,18 +3272,18 @@ __STATIC_INLINE void NVIC_SystemReset(void)
     11ec:	00002645 	.word	0x00002645
     11f0:	05fa0004 	.word	0x05fa0004
     11f4:	e000ed00 	.word	0xe000ed00
-    11f8:	200004f8 	.word	0x200004f8
+    11f8:	20000520 	.word	0x20000520
     11fc:	41004400 	.word	0x41004400
-    1200:	20000660 	.word	0x20000660
+    1200:	20000690 	.word	0x20000690
     1204:	9999999a 	.word	0x9999999a
     1208:	3fa99999 	.word	0x3fa99999
     120c:	00003981 	.word	0x00003981
     1210:	00000b11 	.word	0x00000b11
     1214:	00001ee1 	.word	0x00001ee1
     1218:	00001f35 	.word	0x00001f35
-    121c:	20000788 	.word	0x20000788
-    1220:	2000078c 	.word	0x2000078c
-    1224:	20000688 	.word	0x20000688
+    121c:	200007b8 	.word	0x200007b8
+    1220:	200007bc 	.word	0x200007bc
+    1224:	200006b8 	.word	0x200006b8
     1228:	000002c9 	.word	0x000002c9
     122c:	00003959 	.word	0x00003959
     1230:	00000c71 	.word	0x00000c71
@@ -3402,17 +3398,17 @@ void updateGround(Altimeter *my_altimeter) {
     }
 }
     12e2:	bdf7      	pop	{r0, r1, r2, r4, r5, r6, r7, pc}
-    12e4:	200004c8 	.word	0x200004c8
+    12e4:	200004d0 	.word	0x200004d0
     12e8:	0000510d 	.word	0x0000510d
     12ec:	9999999a 	.word	0x9999999a
     12f0:	3fe99999 	.word	0x3fe99999
-    12f4:	20000798 	.word	0x20000798
+    12f4:	200007c8 	.word	0x200007c8
     12f8:	00005dd5 	.word	0x00005dd5
     12fc:	3fc99999 	.word	0x3fc99999
     1300:	00004285 	.word	0x00004285
     1304:	00005d65 	.word	0x00005d65
     1308:	3fe00000 	.word	0x3fe00000
-    130c:	20000668 	.word	0x20000668
+    130c:	20000698 	.word	0x20000698
     1310:	00003aa1 	.word	0x00003aa1
     1314:	00000f35 	.word	0x00000f35
 
@@ -3949,7 +3945,7 @@ void computeKalmanGains() {
     16a0:	3eea36e2 	.word	0x3eea36e2
     16a4:	d2f1a9fc 	.word	0xd2f1a9fc
     16a8:	3f50624d 	.word	0x3f50624d
-    16ac:	20000620 	.word	0x20000620
+    16ac:	20000650 	.word	0x20000650
     16b0:	3ff00000 	.word	0x3ff00000
     16b4:	40220000 	.word	0x40220000
     16b8:	0000510d 	.word	0x0000510d
@@ -4460,7 +4456,7 @@ void computeKalmanGains() {
     1a44:	3eea36e2 	.word	0x3eea36e2
     1a48:	0000560d 	.word	0x0000560d
     1a4c:	000048a5 	.word	0x000048a5
-    1a50:	20000620 	.word	0x20000620
+    1a50:	20000650 	.word	0x20000650
     1a54:	3ff00000 	.word	0x3ff00000
     1a58:	9a12      	ldr	r2, [sp, #72]	; 0x48
     1a5a:	9b13      	ldr	r3, [sp, #76]	; 0x4c
@@ -4661,7 +4657,7 @@ void computeKalmanGains() {
     1b9e:	bdf0      	pop	{r4, r5, r6, r7, pc}
     1ba0:	0000560d 	.word	0x0000560d
     1ba4:	3ff00000 	.word	0x3ff00000
-    1ba8:	20000620 	.word	0x20000620
+    1ba8:	20000650 	.word	0x20000650
     1bac:	000048a5 	.word	0x000048a5
     1bb0:	3ee4f8b5 	.word	0x3ee4f8b5
     1bb4:	88e368f1 	.word	0x88e368f1
@@ -4960,21 +4956,21 @@ void computeKalmanStates() {
 }
     1db4:	b00f      	add	sp, #60	; 0x3c
     1db6:	bdf0      	pop	{r4, r5, r6, r7, pc}
-    1db8:	20000798 	.word	0x20000798
+    1db8:	200007c8 	.word	0x200007c8
     1dbc:	00005dd5 	.word	0x00005dd5
-    1dc0:	200004c8 	.word	0x200004c8
+    1dc0:	200004d0 	.word	0x200004d0
     1dc4:	0000560d 	.word	0x0000560d
     1dc8:	33daf8df 	.word	0x33daf8df
     1dcc:	4040164b 	.word	0x4040164b
     1dd0:	0000510d 	.word	0x0000510d
-    1dd4:	20000668 	.word	0x20000668
+    1dd4:	20000698 	.word	0x20000698
     1dd8:	0000394d 	.word	0x0000394d
-    1ddc:	20000670 	.word	0x20000670
-    1de0:	20000660 	.word	0x20000660
-    1de4:	20000658 	.word	0x20000658
+    1ddc:	200006a0 	.word	0x200006a0
+    1de0:	20000690 	.word	0x20000690
+    1de4:	20000688 	.word	0x20000688
     1de8:	20000010 	.word	0x20000010
     1dec:	00004285 	.word	0x00004285
-    1df0:	20000620 	.word	0x20000620
+    1df0:	20000650 	.word	0x20000650
 
 00001df4 <makePage>:
 u8_t pageLocation;
@@ -5087,10 +5083,10 @@ void makePage(u8_t bytesToWrite, u8_t* data) {
     1e6e:	7014      	strb	r4, [r2, #0]
     1e70:	0025      	movs	r5, r4
     1e72:	e7e9      	b.n	1e48 <makePage+0x54>
-    1e74:	20000794 	.word	0x20000794
-    1e78:	2000050d 	.word	0x2000050d
-    1e7c:	20000688 	.word	0x20000688
-    1e80:	20000788 	.word	0x20000788
+    1e74:	200007c4 	.word	0x200007c4
+    1e78:	20000539 	.word	0x20000539
+    1e7c:	200006b8 	.word	0x200006b8
+    1e80:	200007b8 	.word	0x200007b8
 
 00001e84 <logFlight>:
 
@@ -5177,7 +5173,7 @@ void logFlight() {
     1ed2:	b005      	add	sp, #20
     1ed4:	bd00      	pop	{pc}
     1ed6:	46c0      	nop			; (mov r8, r8)
-    1ed8:	200004c8 	.word	0x200004c8
+    1ed8:	200004d0 	.word	0x200004d0
     1edc:	00001df5 	.word	0x00001df5
 
 00001ee0 <logEvent>:
@@ -5255,7 +5251,7 @@ void logEvent(u8_t eventType) {
 }
     1f24:	bd7f      	pop	{r0, r1, r2, r3, r4, r5, r6, pc}
     1f26:	46c0      	nop			; (mov r8, r8)
-    1f28:	20000798 	.word	0x20000798
+    1f28:	200007c8 	.word	0x200007c8
     1f2c:	00000b11 	.word	0x00000b11
     1f30:	00001df5 	.word	0x00001df5
 
@@ -5479,9 +5475,9 @@ void logSensors() {
 }
     2038:	b00b      	add	sp, #44	; 0x2c
     203a:	bdf0      	pop	{r4, r5, r6, r7, pc}
-    203c:	20000798 	.word	0x20000798
+    203c:	200007c8 	.word	0x200007c8
     2040:	00000b11 	.word	0x00000b11
-    2044:	20000658 	.word	0x20000658
+    2044:	20000688 	.word	0x20000688
     2048:	00005c79 	.word	0x00005c79
     204c:	00005ce1 	.word	0x00005ce1
     2050:	0000560d 	.word	0x0000560d
@@ -5489,7 +5485,7 @@ void logSensors() {
     2058:	00003c2d 	.word	0x00003c2d
     205c:	447a0000 	.word	0x447a0000
     2060:	000041a5 	.word	0x000041a5
-    2064:	20000660 	.word	0x20000660
+    2064:	20000690 	.word	0x20000690
     2068:	00003aa1 	.word	0x00003aa1
     206c:	000041e5 	.word	0x000041e5
     2070:	00003e6d 	.word	0x00003e6d
@@ -5636,8 +5632,8 @@ void writeFlightEndAddress() {
 
 }
     211a:	bd07      	pop	{r0, r1, r2, pc}
-    211c:	2000078c 	.word	0x2000078c
-    2120:	200004f9 	.word	0x200004f9
+    211c:	200007bc 	.word	0x200007bc
+    2120:	20000521 	.word	0x20000521
     2124:	00000251 	.word	0x00000251
     2128:	00000eed 	.word	0x00000eed
 
@@ -5780,11 +5776,11 @@ void findNewFlightStart() {
     21c0:	e7df      	b.n	2182 <findNewFlightStart+0x56>
     21c2:	46c0      	nop			; (mov r8, r8)
     21c4:	000020d5 	.word	0x000020d5
-    21c8:	2000078c 	.word	0x2000078c
+    21c8:	200007bc 	.word	0x200007bc
     21cc:	000020a9 	.word	0x000020a9
     21d0:	00000eed 	.word	0x00000eed
     21d4:	00000251 	.word	0x00000251
-    21d8:	200004f9 	.word	0x200004f9
+    21d8:	20000521 	.word	0x20000521
     21dc:	000005dc 	.word	0x000005dc
     21e0:	00000c71 	.word	0x00000c71
 
@@ -5800,7 +5796,7 @@ bool takeSample() {
 }
     21e8:	4770      	bx	lr
     21ea:	46c0      	nop			; (mov r8, r8)
-    21ec:	2000050c 	.word	0x2000050c
+    21ec:	20000538 	.word	0x20000538
 
 000021f0 <pullSample>:
 
@@ -5811,7 +5807,7 @@ void pullSample() {
     21f4:	701a      	strb	r2, [r3, #0]
 }
     21f6:	4770      	bx	lr
-    21f8:	2000050c 	.word	0x2000050c
+    21f8:	20000538 	.word	0x20000538
 
 000021fc <sampleTick>:
 }
@@ -6303,12 +6299,12 @@ int16_t twosComp(u8_t byteOne, u8_t byteTwo) {
 }
     249c:	b007      	add	sp, #28
     249e:	bdf0      	pop	{r4, r5, r6, r7, pc}
-    24a0:	2000050c 	.word	0x2000050c
+    24a0:	20000538 	.word	0x20000538
     24a4:	00000f35 	.word	0x00000f35
-    24a8:	20000798 	.word	0x20000798
-    24ac:	200004c8 	.word	0x200004c8
+    24a8:	200007c8 	.word	0x200007c8
+    24ac:	200004d0 	.word	0x200004d0
     24b0:	00006264 	.word	0x00006264
-    24b4:	20000500 	.word	0x20000500
+    24b4:	20000528 	.word	0x20000528
     24b8:	00000c05 	.word	0x00000c05
     24bc:	00005ce1 	.word	0x00005ce1
     24c0:	77318fc5 	.word	0x77318fc5
@@ -6324,8 +6320,8 @@ int16_t twosComp(u8_t byteOne, u8_t byteTwo) {
     24e8:	00000419 	.word	0x00000419
     24ec:	41004494 	.word	0x41004494
     24f0:	41004498 	.word	0x41004498
-    24f4:	200007d4 	.word	0x200007d4
-    24f8:	200007d0 	.word	0x200007d0
+    24f4:	20000804 	.word	0x20000804
+    24f8:	20000800 	.word	0x20000800
     24fc:	00000459 	.word	0x00000459
     2500:	00000501 	.word	0x00000501
     2504:	00000c71 	.word	0x00000c71
@@ -6775,7 +6771,7 @@ void attemptConnection() {
     2710:	e7ef      	b.n	26f2 <attemptConnection+0x9e>
     2712:	46c0      	nop			; (mov r8, r8)
     2714:	00000a95 	.word	0x00000a95
-    2718:	20000654 	.word	0x20000654
+    2718:	20000684 	.word	0x20000684
     271c:	42001400 	.word	0x42001400
     2720:	00002645 	.word	0x00002645
     2724:	000020d5 	.word	0x000020d5

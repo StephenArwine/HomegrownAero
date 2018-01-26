@@ -82,12 +82,7 @@ void flight() {
         if (writeLog) {
             writeLog = false;
             logSensors( );
-            if (pageReady) {
-                pageReady = false;
-                pinToggle(LedPin);
-                u8_t bytesWritten = AT25SEWritePage(currentAddress,pageToWrite);
-                currentAddress = (currentAddress + 0x100);
-            }
+
         }
 
 
@@ -156,13 +151,7 @@ void flight() {
         if (writeLog) {
             writeLog = false;
             logSensors( );
-            if (pageReady) {
-                pageReady = false;
-
-                pinToggle(LedPin);
-                u8_t bytesWritten = AT25SEWritePage(currentAddress,pageToWrite);
-                currentAddress = (currentAddress + 0x100);
-            }
+           
         }
 
 
@@ -172,6 +161,7 @@ void flight() {
     if (flightState != flightStatrup & flightState != flightIdle & unplugged()) {
         finishFlight();
     }
+
 
 
 }

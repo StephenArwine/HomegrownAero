@@ -126,8 +126,8 @@ void logSensors() {
     dataToSend[12] = fractAccelPart >> 8;
 
 
-     float fractionalVelocity = velocity - (int16_t)(velocity);
-     int16_t fractVelocityPart = fractionalVelocity * 1000;
+    float fractionalVelocity = velocity - (int16_t)(velocity);
+    int16_t fractVelocityPart = fractionalVelocity * 1000;
 
     dataToSend[13] = (int16_t)(velocity) >> 0;
     dataToSend[14] = (int16_t)(velocity) >> 8;
@@ -165,34 +165,16 @@ void logSensors() {
     //dataToSend[21] = my_altimeter->myAnalogAccelerometer.analogRaw >> 0;
     //dataToSend[22] = my_altimeter->myAnalogAccelerometer.analogRaw >> 8;
 
-    /*
-     dataToSend[1] = 0xff;
-     dataToSend[2] = 0xff;
-     dataToSend[3] = 0xff;
-     dataToSend[4] = 0xff;
-     dataToSend[5] = 0xff;
-     dataToSend[6] = 0xff;
-     dataToSend[7] = 0xff;
-     dataToSend[8] = 0xff;
-     dataToSend[9] = 0xff;
-     dataToSend[10] = 0xff;
-     dataToSend[11] = 0xff;
-     dataToSend[12] = 0xff;
-     dataToSend[13] = 0xff;
-     dataToSend[14] = 0xff;
-     dataToSend[15] = 0xff;
-     dataToSend[16] = 0xff;
-     dataToSend[17] = 0xff;
-     dataToSend[18] = 0xff;
-     dataToSend[19] = 0xff;
-     dataToSend[20] = 0xff;
-     dataToSend[21] = 0xfc;
-     dataToSend[22] = 0xfd;
-     dataToSend[23] = 0xfe;
 
-     */
 
     makePage(bytesToSend, dataToSend);
+
+    if (pageReady) {
+        pageReady = false;
+        pinToggle(LedPin);
+        u8_t bytesWritten = AT25SEWritePage(currentAddress,pageToWrite);
+        currentAddress = (currentAddress + 0x100);
+    }
 }
 
 

@@ -2,3 +2,10 @@
 #include <boardDefines.h>
 
 
+void getSettings() {
+
+
+
+
+
+}
