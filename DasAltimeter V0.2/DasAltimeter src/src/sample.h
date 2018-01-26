@@ -59,4 +59,4 @@ typedef struct sample_t {
 
 }sample_t;
 
-volatile extern sample_t sample;
+extern sample_t sample;

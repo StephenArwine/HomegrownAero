@@ -126,18 +126,17 @@ void logSensors() {
     dataToSend[12] = fractAccelPart >> 8;
 
 
-    volatile float fractionalVelocity = velocity - (int16_t)(velocity);
-    volatile int16_t fractVelocityPart = fractionalVelocity * 1000;
-	volatile int16_t wholePart = (int16_t)(velocity);
+     float fractionalVelocity = velocity - (int16_t)(velocity);
+     int16_t fractVelocityPart = fractionalVelocity * 1000;
 
     dataToSend[13] = (int16_t)(velocity) >> 0;
     dataToSend[14] = (int16_t)(velocity) >> 8;
     dataToSend[15] = fractVelocityPart >> 0;
     dataToSend[16] = fractVelocityPart >> 8;
 
-    if ( (fractVelocityPart < 0 & (int16_t)(velocity) > 0) | (fractVelocityPart > 0 & (int16_t)(velocity) < 0) ) {
-        beep(200);
-    }
+//     if ( ((fractVelocityPart < 0) & ((int16_t)(velocity) > 0)) | ((fractVelocityPart > 0) & ((int16_t)(velocity) < 0)) ) {
+//         beep(200);
+//     }
 
     dataToSend[17] = (u32_t)sample.altitudefeet >> 0;
     dataToSend[18] = (u32_t)sample.altitudefeet >> 8;

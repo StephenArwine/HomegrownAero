@@ -77,7 +77,7 @@ void POST(){
 
 
 	//Baro post first
-	u8_t crc = u8_t MS5803_CRC4();
+	u8_t crc = MS5803_CRC4();
 	if (crc != coefficients_[7]){
 		postFailed = true;
 		failType = 1;
@@ -112,7 +112,7 @@ void POST(){
 	//Gyro Post
 	pinLow(cs_gyro);
 	dummy_rx = spiDataTransfer(SPI0, BMI055_BGW_CHIPID | BMI055_READ_REG);
-	u8_t gyrolID = spiDataTransfer(SPI0,dummy_Tx);
+	u8_t gyroID = spiDataTransfer(SPI0,dummy_Tx);
 	pinHigh(cs_gyro);
 	
 	if (gyroID != 0x0F){

@@ -14,7 +14,7 @@ void sampleTaken() {
     SampleBool = false;
 }
 
-volatile sample_t sample;
+sample_t sample;
 
 void sampleTick() {
     SampleBool = false;
@@ -148,7 +148,7 @@ void sampleTick() {
     ConvertPressureTemperature(PressureRaw, tempRaw, &sample.temperatureCelcus, &sample.pressureMbar);
     sample.altitudefeet = paToFeetNOAA(sample.pressureMbar);
 
-    if ( PressureRaw < 10 | tempRaw < 10) {
+    if ( (PressureRaw < 10) | (tempRaw < 10)) {
         beep(400);
     }
 

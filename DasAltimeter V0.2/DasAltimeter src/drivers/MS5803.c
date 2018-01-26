@@ -147,11 +147,11 @@ u8_t MS5803_CRC4(){
 	coefficients_[7] = (0xFF00 & (coefficients_[7]));
 	
 	for (count = 0; count < 16; count++){
-		if (count%2 = 1){
-			n_rem ^= (unsigned short) ((n_prom[cnt>>1]) & 0x00FF);
+		if (count%2 == 1){
+			n_rem ^= (unsigned short) ((coefficients_[count>>1]) & 0x00FF);
 		}
 		else{
-			n_rem ^= (unsigned short) (n_prom[cnt>>1]>>8);
+			n_rem ^= (unsigned short) (coefficients_[count>>1]>>8);
 		}
 		for (n_bit = 8; n_bit > 0; n_bit--){
 			if(n_rem & (0x8000)){
@@ -162,7 +162,7 @@ u8_t MS5803_CRC4(){
 			}
 		}
 	}
-	n_rem = (0x000F & (n_rem >> 12);
+	n_rem = (0x000F & (n_rem >> 12));
 	coefficients_[7] = crc_read;
 	return (n_rem & 0x00); 
 }
