@@ -116,15 +116,6 @@ void flight() {
     case flightDrogue:
 
 
-        if (pageReady) {
-            pageReady = false;
-            pinToggle(LedPin);
-            //AT25SFHoldTillReady();
-            u8_t bytesWritten = AT25SEWritePage(currentAddress,pageToWrite);
-            currentAddress = (currentAddress + 0x100);
-        }
-
-
 
         break;
     case flightMain:
