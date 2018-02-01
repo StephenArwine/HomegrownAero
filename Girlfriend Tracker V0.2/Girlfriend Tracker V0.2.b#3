@@ -1786,8 +1786,6 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 </signal>
 <signal name="LED">
 <contactref element="D2" pad="A"/>
-<contactref element="U3" pad="24"/>
-<wire x1="6.604" y1="5.31" x2="22.308" y2="8.196" width="0" layer="19" extent="1-16"/>
 </signal>
 <signal name="SWCLK">
 <contactref element="U3" pad="45"/>
@@ -2043,18 +2041,6 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="23.186" y1="2.976" x2="23.186" y2="2.54" width="0.254" layer="1"/>
 <wire x1="22.426" y1="3.736" x2="23.186" y2="2.976" width="0.254" layer="1"/>
 </signal>
-<signal name="N$25">
-<contactref element="IC2" pad="7"/>
-</signal>
-<signal name="N$26">
-<contactref element="IC2" pad="10"/>
-</signal>
-<signal name="N$27">
-<contactref element="IC2" pad="8"/>
-</signal>
-<signal name="N$28">
-<contactref element="IC2" pad="11"/>
-</signal>
 <signal name="USB_VIN">
 <contactref element="JP2" pad="VBUS1"/>
 <contactref element="IC2" pad="4"/>
@@ -2156,6 +2142,26 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 </signal>
 <signal name="N$49">
 <via x="30.226" y="18.288" extent="1-16" drill="0.4"/>
+</signal>
+<signal name="CTS">
+<contactref element="U3" pad="24"/>
+<contactref element="IC2" pad="11"/>
+<wire x1="22.426" y1="4.659" x2="22.308" y2="8.196" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="RTS">
+<contactref element="U3" pad="23"/>
+<contactref element="IC2" pad="8"/>
+<wire x1="22.426" y1="6.009" x2="21.808" y2="8.196" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="RXD">
+<contactref element="U3" pad="22"/>
+<contactref element="IC2" pad="10"/>
+<wire x1="22.426" y1="5.109" x2="21.308" y2="8.196" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="TXD">
+<contactref element="U3" pad="21"/>
+<contactref element="IC2" pad="7"/>
+<wire x1="22.426" y1="6.459" x2="20.808" y2="8.196" width="0" layer="19" extent="1-1"/>
 </signal>
 </signals>
 </board>

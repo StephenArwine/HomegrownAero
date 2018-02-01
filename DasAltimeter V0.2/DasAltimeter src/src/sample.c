@@ -35,35 +35,32 @@ void sampleTick() {
     sample.analogRaw = adc_read(analogAccelPin);
     sample.analogAccel = (sample.analogRaw - 3900) * -0.0154;
 
-
-
     uint8_t dummy_Tx = 0xFF;
     uint8_t dummy_rx;
 
     pinLow(cs_baro);
-    dummy_rx = spiDataTransfer(SPI2, 0x50);
+    spiDataTransfer(SPI2, 0x50);
     pinHigh(cs_baro);
     delay_us(600);
     uint32_t tempRaw = readMS5803AdcResults();
 
     pinLow(cs_baro);
-    dummy_rx = spiDataTransfer(SPI2, 0x40);
+    spiDataTransfer(SPI2, 0x40);
     pinHigh(cs_baro);
-
 
     u8_t byteOne;
     u8_t byteTwo;
 // Accel data
     pinLow(cs_accel);
-    dummy_rx = spiDataTransfer(SPI0, BMI055_X_ACC_LSB | BMI055_READ_REG);
-    byteOne = spiDataTransfer(SPI0,dummy_Tx);
-    byteTwo = spiDataTransfer(SPI0,dummy_Tx);
+    spiDataTransfer(SPI0, BMI055_X_ACC_LSB | BMI055_READ_REG);
+    byteOne = spiDataIn(SPI0);
+    byteTwo = spiDataIn(SPI0);
     int16_t accelXint = twosComp(byteOne,byteTwo);
-    byteOne = spiDataTransfer(SPI0,dummy_Tx);
-    byteTwo = spiDataTransfer(SPI0,dummy_Tx);
+    byteOne = spiDataIn(SPI0);
+    byteTwo = spiDataIn(SPI0);
     int16_t accelYint = twosComp(byteOne,byteTwo);
-    byteOne = spiDataTransfer(SPI0,dummy_Tx);
-    byteTwo = spiDataTransfer(SPI0,dummy_Tx);
+    byteOne = spiDataIn(SPI0);
+    byteTwo = spiDataIn(SPI0);
     int16_t accelZint = twosComp(byteOne,byteTwo);
     pinHigh(cs_accel);
 
@@ -75,18 +72,17 @@ void sampleTick() {
     sample.accelY =  accelYint * BMI055_ACCEL_16G_DIV;
     sample.accelZ = -accelZint * BMI055_ACCEL_16G_DIV;
 
-
     // Gyro data
     pinLow(cs_gyro);
-    dummy_rx = spiDataTransfer(SPI0, BMI055_X_GYRO_LSB | BMI055_READ_REG);
-    byteOne = spiDataTransfer(SPI0,dummy_Tx);
-    byteTwo = spiDataTransfer(SPI0,dummy_Tx);
+    spiDataTransfer(SPI0, BMI055_X_GYRO_LSB | BMI055_READ_REG);
+    byteOne = spiDataIn(SPI0);
+    byteTwo = spiDataIn(SPI0);
     int16_t gyroXint = twosComp(byteOne,byteTwo);
-    byteOne = spiDataTransfer(SPI0,dummy_Tx);
-    byteTwo = spiDataTransfer(SPI0,dummy_Tx);
+    byteOne = spiDataIn(SPI0);
+    byteTwo = spiDataIn(SPI0);
     int16_t gyroYint = twosComp(byteOne,byteTwo);
-    byteOne = spiDataTransfer(SPI0,dummy_Tx);
-    byteTwo = spiDataTransfer(SPI0,dummy_Tx);
+    byteOne = spiDataIn(SPI0);
+    byteTwo = spiDataIn(SPI0);
     int16_t gyroZint = twosComp(byteOne,byteTwo);
     pinHigh(cs_gyro);
 
@@ -103,11 +99,6 @@ void sampleTick() {
     u32_t PressureRaw = readMS5803AdcResults();
     ConvertPressureTemperature(PressureRaw, tempRaw, &sample.temperatureCelcus, &sample.pressureMbar);
     sample.altitudefeet = paToFeetNOAA(sample.pressureMbar);
-
-    if ( (PressureRaw < 10) | (tempRaw < 10)) {
-        beep(400);
-    }
-
 }
 
 int16_t twosComp(u8_t byteOne, u8_t byteTwo) {

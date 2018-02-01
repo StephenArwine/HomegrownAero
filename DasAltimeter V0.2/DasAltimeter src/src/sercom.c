@@ -93,12 +93,14 @@ u8_t spiDataTransfer(SercomId id, u8_t data) {
 }
 
 void spiDataOut(SercomId id, u8_t data) {
-    while(sercom(id)->SPI.INTFLAG.bit.DRE == 0);
     sercom(id)->SPI.DATA.reg = data;
+    while(sercom(id)->SPI.INTFLAG.bit.RXC == 0);
+    u8_t dummy = sercom(id)->SPI.DATA.reg;
 }
 
 u8_t spiDataIn(SercomId id) {
-    while(sercom(id)->SPI.INTFLAG.bit.DRE == 0);
+    sercom(id)->SPI.DATA.reg = 0xFF;
+    while(sercom(id)->SPI.INTFLAG.bit.RXC == 0);
     return sercom(id)->SPI.DATA.reg;
 }
 

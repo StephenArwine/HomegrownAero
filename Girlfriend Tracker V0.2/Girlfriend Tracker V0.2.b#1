@@ -1597,8 +1597,9 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <contactref element="MEM" pad="!CS"/>
 <contactref element="R5" pad="1"/>
 <contactref element="U3" pad="12"/>
-<wire x1="16.208" y1="1.778" x2="15.308" y2="9.696" width="0" layer="19" extent="1-1"/>
-<wire x1="18.034" y1="1.96" x2="16.208" y2="1.778" width="0" layer="19" extent="1-1"/>
+<wire x1="18.034" y1="1.96" x2="16.39" y2="1.96" width="0.254" layer="1"/>
+<wire x1="16.39" y1="1.96" x2="16.208" y2="1.778" width="0.254" layer="1"/>
+<wire x1="16.39" y1="1.96" x2="15.308" y2="9.696" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="RF_N">
 <contactref element="U$1" pad="13"/>
@@ -1923,6 +1924,8 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="18.808" y1="16.696" x2="18.808" y2="17.768" width="0.254" layer="1"/>
 <wire x1="18.106" y1="18.47" x2="18.106" y2="18.796" width="0.254" layer="1"/>
 <wire x1="18.808" y1="17.768" x2="18.106" y2="18.47" width="0.254" layer="1"/>
+<wire x1="10.208" y1="1.778" x2="8.564" y2="1.778" width="0.254" layer="1"/>
+<wire x1="8.564" y1="1.778" x2="8.382" y2="1.96" width="0.254" layer="1"/>
 <wire x1="33.276" y1="11.414" x2="33.276" y2="10.914" width="0" layer="19" extent="1-1"/>
 <wire x1="33.276" y1="9.414" x2="33.276" y2="10.914" width="0" layer="19" extent="1-1"/>
 <wire x1="31.996" y1="8.634" x2="33.276" y2="9.142" width="0" layer="19" extent="1-1"/>
@@ -1943,7 +1946,6 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="18.034" y1="3.12" x2="16.208" y2="4.318" width="0" layer="19" extent="1-1"/>
 <wire x1="10.208" y1="3.048" x2="16.208" y2="4.318" width="0" layer="19" extent="1-1"/>
 <wire x1="10.208" y1="1.778" x2="10.208" y2="3.048" width="0" layer="19" extent="1-1"/>
-<wire x1="8.382" y1="1.96" x2="10.208" y2="1.778" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="SER0_MOSI">
 <contactref element="U3" pad="9"/>

@@ -34,7 +34,6 @@ void flight() {
 
         break;
     case flightIdle:
-
         //TC4->COUNT8.CTRLA.reg = 0;
         //TC5->COUNT8.CTRLA.reg = 0;
 
@@ -78,7 +77,6 @@ void flight() {
         *		while
         *	Accel > 1/4G
         */
-
         if (writeLog) {
             writeLog = false;
             logSensors( );
@@ -103,7 +101,6 @@ void flight() {
 
         break;
     case flightCoast:
-
         /* Coast to drogue
         *		while
         *	   speed > 0
@@ -129,30 +126,21 @@ void flight() {
 
         break;
     case flightTest:
-
-        /*
            //simple continuity test
            if ( (sample.voltage.senseA + sample.voltage.senseB +sample.voltage.senseC +sample.voltage.senseD) > 200) {
                unpluggedJingle();
            }
-        */
-
-
-
+        
         if (writeLog) {
             writeLog = false;
-            logSensors( );
-           
+            logSensors( ); 
         }
-
-
+		
         break;
     }
 
     if (flightState != flightStatrup & flightState != flightIdle & unplugged()) {
         finishFlight();
     }
-
-
 
 }
