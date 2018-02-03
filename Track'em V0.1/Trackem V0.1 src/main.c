@@ -85,30 +85,30 @@ int main(void) {
 
 
 
-    CC1101_reset_chip();
-    delay_ms(100);
+//    CC1101_reset_chip();
+//    delay_ms(100);
 
     //sendreg();
 
 
-    CC1101_cmd_strobe(CC1101_SFSTXON);
+//   CC1101_cmd_strobe(CC1101_SFSTXON);
 
 
-    cc1101_write_reg(CC1101_PATABLE, 0xC0);
+//    cc1101_write_reg(CC1101_PATABLE, 0xC0);
 
 
 
     while (1) {
 
-		delay_ms(2000);
-        //TX packed over VHF
-        volatile bool sent = CC1101_tx_data(packet, 0x1E);
-        u8_t status2 = CC1101_read_status_reg(CC1101_MARCSTATE);
-
-        //send result of TX over USART
-        char * sencC = sent ? "true" : "false";
-        SendUSART(sencC, strlen(sencC));
-
+        delay_ms(2000);
+//         //TX packed over VHF
+//         volatile bool sent = CC1101_tx_data(packet, 0x1E);
+//         u8_t status2 = CC1101_read_status_reg(CC1101_MARCSTATE);
+//
+//         //send result of TX over USART
+//         char * sencC = sent ? "true" : "false";
+//         SendUSART(sencC, strlen(sencC));
+//
 
 
         //parseGPSMessage();
@@ -117,18 +117,18 @@ int main(void) {
 //         if (myMessage.transmitMessage == true) {
 //             myMessage.messageReady = false;
 //             myMessage.transmitMessage = false;
-// 
+//
 //             //Send the parsed GPS message over USART
 //             //sendUSARTMessage(myMessage);
-// 
+//
 //             //TX packed over VHF
 //             volatile bool sent = CC1101_tx_data(packet, 0x1E);
 //             u8_t status2 = CC1101_read_status_reg(CC1101_MARCSTATE);
-// 
+//
 //             //send result of TX over USART
 //             char * sencC = sent ? "true" : "false";
 //             SendUSART(sencC, strlen(sencC));
-// 
+//
 //         }
     }
 

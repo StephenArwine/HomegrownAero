@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="8.5.0">
+<eagle version="8.6.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -1807,85 +1807,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </deviceset>
 </devicesets>
 </library>
-<library name="SaL-lib">
-<packages>
-<package name="AT25SF081">
-<smd name="!CS" x="-3" y="2.54" dx="1.27" dy="0.635" layer="1"/>
-<smd name="SO" x="-3" y="1.27" dx="1.27" dy="0.635" layer="1"/>
-<smd name="!WP" x="-3" y="0" dx="1.27" dy="0.635" layer="1"/>
-<smd name="GND" x="-3" y="-1.27" dx="1.27" dy="0.635" layer="1"/>
-<smd name="VCC" x="3" y="2.54" dx="1.27" dy="0.635" layer="1"/>
-<smd name="!HOLD" x="3" y="1.27" dx="1.27" dy="0.635" layer="1"/>
-<smd name="SCK" x="3" y="0" dx="1.27" dy="0.635" layer="1"/>
-<smd name="SI" x="3" y="-1.27" dx="1.27" dy="0.635" layer="1"/>
-<text x="-3.31" y="3.565" size="1.27" layer="21">&gt;NAME</text>
-<wire x1="-1.905" y1="1.905" x2="-1.905" y2="-1.27" width="0.127" layer="21"/>
-<wire x1="-1.905" y1="-1.27" x2="1.905" y2="-1.27" width="0.127" layer="21"/>
-<wire x1="1.905" y1="-1.27" x2="1.905" y2="2.54" width="0.127" layer="21"/>
-<wire x1="-1.905" y1="1.905" x2="-1.27" y2="2.54" width="0.127" layer="21"/>
-<wire x1="-1.27" y1="2.54" x2="1.905" y2="2.54" width="0.127" layer="21"/>
-</package>
-</packages>
-<symbols>
-<symbol name="AT25SF081">
-<wire x1="0" y1="0" x2="0" y2="-12.7" width="0.254" layer="94"/>
-<wire x1="0" y1="-12.7" x2="12.7" y2="-12.7" width="0.254" layer="94"/>
-<wire x1="12.7" y1="-12.7" x2="12.7" y2="0" width="0.254" layer="94"/>
-<wire x1="12.7" y1="0" x2="0" y2="0" width="0.254" layer="94"/>
-<pin name="!CS" x="15.24" y="-2.54" visible="off" length="short" rot="R180"/>
-<pin name="SO" x="15.24" y="-10.16" visible="off" length="short" rot="R180"/>
-<pin name="!WP" x="-2.54" y="-7.62" visible="off" length="short"/>
-<pin name="GND" x="-2.54" y="-10.16" visible="off" length="short"/>
-<pin name="SI" x="15.24" y="-7.62" visible="off" length="short" rot="R180"/>
-<pin name="SCK" x="15.24" y="-5.08" visible="off" length="short" rot="R180"/>
-<pin name="!HOLD" x="-2.54" y="-5.08" visible="off" length="short"/>
-<pin name="VCC" x="-2.54" y="-2.54" visible="off" length="short"/>
-<text x="0.508" y="-14.478" size="1.27" layer="94">AT25SF081</text>
-<text x="6.604" y="0.762" size="1.27" layer="94">&gt;NAME</text>
-<text x="9.652" y="-3.048" size="1.27" layer="94">!CS</text>
-<text x="9.652" y="-10.668" size="1.27" layer="94">SO</text>
-<text x="0.508" y="-8.382" size="1.27" layer="94">!WP</text>
-<text x="0.254" y="-10.668" size="1.27" layer="94">GND</text>
-<text x="0.254" y="-3.048" size="1.27" layer="94">VCC</text>
-<text x="0.254" y="-5.588" size="1.27" layer="94">!HOLD</text>
-<text x="8.636" y="-5.588" size="1.27" layer="94">SCK</text>
-<text x="10.414" y="-8.128" size="1.27" layer="94">SI</text>
-<text x="-1.27" y="-2.286" size="1.27" layer="94">8</text>
-<text x="-1.016" y="-4.826" size="1.27" layer="94">7</text>
-<text x="12.954" y="-4.826" size="1.27" layer="94">6</text>
-<text x="12.954" y="-7.366" size="1.27" layer="94">5</text>
-<text x="-1.27" y="-9.906" size="1.27" layer="94">4</text>
-<text x="-1.27" y="-7.366" size="1.27" layer="94">3</text>
-<text x="12.954" y="-9.906" size="1.27" layer="94">2</text>
-<text x="12.954" y="-2.286" size="1.27" layer="94">1</text>
-</symbol>
-</symbols>
-<devicesets>
-<deviceset name="AT25SF081">
-<description>AT25SF081 - 8M memory smd</description>
-<gates>
-<gate name="G$1" symbol="AT25SF081" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="AT25SF081">
-<connects>
-<connect gate="G$1" pin="!CS" pad="!CS"/>
-<connect gate="G$1" pin="!HOLD" pad="!HOLD"/>
-<connect gate="G$1" pin="!WP" pad="!WP"/>
-<connect gate="G$1" pin="GND" pad="GND"/>
-<connect gate="G$1" pin="SCK" pad="SCK"/>
-<connect gate="G$1" pin="SI" pad="SI"/>
-<connect gate="G$1" pin="SO" pad="SO"/>
-<connect gate="G$1" pin="VCC" pad="VCC"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
-</devicesets>
-</library>
 <library name="SparkFun-IC-Power">
 <description>&lt;h3&gt;SparkFun Power Driver and Management ICs&lt;/h3&gt;
 In this library you'll find anything that has to do with power delivery, or making power supplies.
@@ -3652,14 +3573,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <package name="PB-5R0H104-R">
 <pad name="+5V" x="0" y="0" drill="0.55" shape="square"/>
 <pad name="GND" x="0" y="7.32" drill="0.55"/>
-<wire x1="0" y1="7.3" x2="1.619" y2="7.3" width="0.127" layer="21"/>
-<wire x1="0" y1="0" x2="1.619" y2="0" width="0.127" layer="21"/>
-<wire x1="1.619" y1="0" x2="1.619" y2="7.3" width="0.127" layer="21"/>
-<wire x1="1.619" y1="7.3" x2="1.619" y2="9.3" width="0.127" layer="21"/>
-<wire x1="1.619" y1="0" x2="1.619" y2="-2" width="0.127" layer="21"/>
-<wire x1="1.619" y1="-2" x2="14.111" y2="-2" width="0.127" layer="21"/>
-<wire x1="14.111" y1="-2" x2="14.111" y2="9.3" width="0.127" layer="21"/>
-<wire x1="14.111" y1="9.3" x2="1.619" y2="9.3" width="0.127" layer="21"/>
+<wire x1="-0.635" y1="1.27" x2="0" y2="1.27" width="0.127" layer="21"/>
+<wire x1="0.635" y1="1.27" x2="0" y2="1.27" width="0.127" layer="21"/>
+<wire x1="0" y1="1.905" x2="0" y2="1.27" width="0.127" layer="21"/>
+<wire x1="0" y1="1.27" x2="0" y2="0.635" width="0.127" layer="21"/>
 </package>
 <package name="SI7232DN">
 <description>Vishay Siliconix SI7232DN-T1-GE3</description>
@@ -3673,12 +3590,24 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <smd name="6" x="1.9177" y="-0.3302" dx="0.762" dy="0.4064" layer="1"/>
 <smd name="5" x="1.9177" y="-0.9906" dx="0.762" dy="0.4064" layer="1"/>
 <smd name="10" x="0.8636" y="-0.6223" dx="1.7272" dy="0.9906" layer="1"/>
-<wire x1="-1.8923" y1="1.2446" x2="-1.8923" y2="-1.4224" width="0.127" layer="21"/>
-<wire x1="-1.8923" y1="-1.4224" x2="2.6797" y2="-1.4224" width="0.127" layer="21"/>
-<wire x1="2.6797" y1="-1.4224" x2="2.6797" y2="1.4986" width="0.127" layer="21"/>
-<wire x1="2.6797" y1="1.4986" x2="-1.6383" y2="1.4986" width="0.127" layer="21"/>
-<wire x1="-1.6383" y1="1.4986" x2="-1.8923" y2="1.2446" width="0.127" layer="21"/>
+<wire x1="-1.1303" y1="-1.4224" x2="1.9177" y2="-1.4224" width="0.127" layer="21"/>
+<wire x1="1.9177" y1="1.4986" x2="-1.1303" y2="1.4986" width="0.127" layer="21"/>
 <text x="-1.5113" y="1.6891" size="0.6096" layer="21">&gt;NAME</text>
+</package>
+<package name="AT25SF081">
+<smd name="!CS" x="-3" y="2.54" dx="1.27" dy="0.635" layer="1"/>
+<smd name="SO" x="-3" y="1.27" dx="1.27" dy="0.635" layer="1"/>
+<smd name="!WP" x="-3" y="0" dx="1.27" dy="0.635" layer="1"/>
+<smd name="GND" x="-3" y="-1.27" dx="1.27" dy="0.635" layer="1"/>
+<smd name="VCC" x="3" y="2.54" dx="1.27" dy="0.635" layer="1"/>
+<smd name="!HOLD" x="3" y="1.27" dx="1.27" dy="0.635" layer="1"/>
+<smd name="SCK" x="3" y="0" dx="1.27" dy="0.635" layer="1"/>
+<smd name="SI" x="3" y="-1.27" dx="1.27" dy="0.635" layer="1"/>
+<text x="-3.31" y="3.565" size="1.27" layer="21">&gt;NAME</text>
+<wire x1="-1.905" y1="-1.778" x2="1.905" y2="-1.778" width="0.127" layer="21"/>
+<wire x1="-2.032" y1="3.048" x2="1.905" y2="3.048" width="0.127" layer="21"/>
+<circle x="-1.905" y="2.54" radius="0.254" width="0.127" layer="21"/>
+<circle x="-1.905" y="2.54" radius="0.127" width="0.254" layer="21"/>
 </package>
 </packages>
 <symbols>
@@ -3740,6 +3669,38 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <text x="5.08" y="-3.302" size="1.778" layer="94">D</text>
 <text x="5.08" y="20.32" size="1.27" layer="94">&gt;NAME</text>
 </symbol>
+<symbol name="AT25SF081">
+<wire x1="0" y1="0" x2="0" y2="-12.7" width="0.254" layer="94"/>
+<wire x1="0" y1="-12.7" x2="12.7" y2="-12.7" width="0.254" layer="94"/>
+<wire x1="12.7" y1="-12.7" x2="12.7" y2="0" width="0.254" layer="94"/>
+<wire x1="12.7" y1="0" x2="0" y2="0" width="0.254" layer="94"/>
+<pin name="!CS" x="15.24" y="-2.54" visible="off" length="short" rot="R180"/>
+<pin name="SO" x="15.24" y="-10.16" visible="off" length="short" rot="R180"/>
+<pin name="!WP" x="-2.54" y="-7.62" visible="off" length="short"/>
+<pin name="GND" x="-2.54" y="-10.16" visible="off" length="short"/>
+<pin name="SI" x="15.24" y="-7.62" visible="off" length="short" rot="R180"/>
+<pin name="SCK" x="15.24" y="-5.08" visible="off" length="short" rot="R180"/>
+<pin name="!HOLD" x="-2.54" y="-5.08" visible="off" length="short"/>
+<pin name="VCC" x="-2.54" y="-2.54" visible="off" length="short"/>
+<text x="0.508" y="-14.478" size="1.27" layer="94">AT25SF081</text>
+<text x="6.604" y="0.762" size="1.27" layer="94">&gt;NAME</text>
+<text x="9.652" y="-3.048" size="1.27" layer="94">!CS</text>
+<text x="9.652" y="-10.668" size="1.27" layer="94">SO</text>
+<text x="0.508" y="-8.382" size="1.27" layer="94">!WP</text>
+<text x="0.254" y="-10.668" size="1.27" layer="94">GND</text>
+<text x="0.254" y="-3.048" size="1.27" layer="94">VCC</text>
+<text x="0.254" y="-5.588" size="1.27" layer="94">!HOLD</text>
+<text x="8.636" y="-5.588" size="1.27" layer="94">SCK</text>
+<text x="10.414" y="-8.128" size="1.27" layer="94">SI</text>
+<text x="-1.27" y="-2.286" size="1.27" layer="94">8</text>
+<text x="-1.016" y="-4.826" size="1.27" layer="94">7</text>
+<text x="12.954" y="-4.826" size="1.27" layer="94">6</text>
+<text x="12.954" y="-7.366" size="1.27" layer="94">5</text>
+<text x="-1.27" y="-9.906" size="1.27" layer="94">4</text>
+<text x="-1.27" y="-7.366" size="1.27" layer="94">3</text>
+<text x="12.954" y="-9.906" size="1.27" layer="94">2</text>
+<text x="12.954" y="-2.286" size="1.27" layer="94">1</text>
+</symbol>
 </symbols>
 <devicesets>
 <deviceset name="PB-5R0H104-R">
@@ -3774,6 +3735,29 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <connect gate="G$1" pin="PIN6" pad="6"/>
 <connect gate="G$1" pin="PIN7" pad="7"/>
 <connect gate="G$1" pin="PIN8" pad="8 9"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="AT25SF081">
+<description>AT25SF081 - 8M memory smd</description>
+<gates>
+<gate name="G$1" symbol="AT25SF081" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="AT25SF081">
+<connects>
+<connect gate="G$1" pin="!CS" pad="!CS"/>
+<connect gate="G$1" pin="!HOLD" pad="!HOLD"/>
+<connect gate="G$1" pin="!WP" pad="!WP"/>
+<connect gate="G$1" pin="GND" pad="GND"/>
+<connect gate="G$1" pin="SCK" pad="SCK"/>
+<connect gate="G$1" pin="SI" pad="SI"/>
+<connect gate="G$1" pin="SO" pad="SO"/>
+<connect gate="G$1" pin="VCC" pad="VCC"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -4032,7 +4016,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <part name="R2" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="63"/>
 <part name="R3" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="27k"/>
 <part name="U3" library="SparkFun-Sensors" deviceset="MS5803-14BA" device=""/>
-<part name="MEM" library="SaL-lib" deviceset="AT25SF081" device=""/>
 <part name="SUPPLY9" library="SparkFun-Aesthetics" deviceset="3.3V" device=""/>
 <part name="SUPPLY10" library="SparkFun-Aesthetics" deviceset="3.3V" device=""/>
 <part name="GND12" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
@@ -4091,6 +4074,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <part name="C6" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="0.01uF"/>
 <part name="GND3" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="C12" library="SparkFun-Capacitors" deviceset="10UF-POLAR" device="-0603-6.3V-20%(TANT)" value="10uF"/>
+<part name="U$2" library="SaL-lib1" deviceset="AT25SF081" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -4157,7 +4141,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </instance>
 <instance part="R3" gate="G$1" x="73.66" y="162.56" rot="R90"/>
 <instance part="U3" gate="G$1" x="99.06" y="12.7"/>
-<instance part="MEM" gate="G$1" x="93.98" y="50.8"/>
 <instance part="SUPPLY9" gate="G$1" x="88.9" y="53.34"/>
 <instance part="SUPPLY10" gate="G$1" x="111.76" y="60.96"/>
 <instance part="GND12" gate="1" x="81.28" y="35.56"/>
@@ -4285,6 +4268,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <instance part="C6" gate="G$1" x="119.38" y="81.28"/>
 <instance part="GND3" gate="1" x="119.38" y="71.12"/>
 <instance part="C12" gate="G$1" x="134.62" y="142.24"/>
+<instance part="U$2" gate="G$1" x="93.98" y="50.8"/>
 </instances>
 <busses>
 </busses>
@@ -4386,12 +4370,13 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <pinref part="R3" gate="G$1" pin="1"/>
 </segment>
 <segment>
-<pinref part="MEM" gate="G$1" pin="GND"/>
 <wire x1="91.44" y1="40.64" x2="81.28" y2="40.64" width="0.1524" layer="91"/>
 <pinref part="GND12" gate="1" pin="GND"/>
 <wire x1="81.28" y1="40.64" x2="81.28" y2="38.1" width="0.1524" layer="91"/>
 <pinref part="C8" gate="G$1" pin="2"/>
 <junction x="81.28" y="40.64"/>
+<pinref part="U$2" gate="G$1" pin="GND"/>
+<junction x="91.44" y="40.64"/>
 </segment>
 <segment>
 <pinref part="U3" gate="G$1" pin="PS"/>
@@ -4807,20 +4792,23 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <pinref part="SUPPLY8" gate="G$1" pin="3.3V"/>
 </segment>
 <segment>
-<pinref part="MEM" gate="G$1" pin="!WP"/>
 <wire x1="91.44" y1="43.18" x2="88.9" y2="43.18" width="0.1524" layer="91" style="longdash"/>
 <wire x1="88.9" y1="43.18" x2="88.9" y2="45.72" width="0.1524" layer="91" style="longdash"/>
 <wire x1="88.9" y1="45.72" x2="88.9" y2="48.26" width="0.1524" layer="91" style="longdash"/>
 <wire x1="88.9" y1="48.26" x2="81.28" y2="48.26" width="0.1524" layer="91"/>
-<pinref part="MEM" gate="G$1" pin="!HOLD"/>
 <wire x1="91.44" y1="45.72" x2="88.9" y2="45.72" width="0.1524" layer="91" style="longdash"/>
 <junction x="88.9" y="45.72"/>
-<pinref part="MEM" gate="G$1" pin="VCC"/>
 <wire x1="91.44" y1="48.26" x2="88.9" y2="48.26" width="0.1524" layer="91" style="longdash"/>
 <junction x="88.9" y="48.26"/>
 <wire x1="88.9" y1="48.26" x2="88.9" y2="53.34" width="0.1524" layer="91" style="longdash"/>
 <pinref part="SUPPLY9" gate="G$1" pin="3.3V"/>
 <pinref part="C8" gate="G$1" pin="1"/>
+<pinref part="U$2" gate="G$1" pin="!WP"/>
+<junction x="91.44" y="43.18"/>
+<pinref part="U$2" gate="G$1" pin="!HOLD"/>
+<junction x="91.44" y="45.72"/>
+<pinref part="U$2" gate="G$1" pin="VCC"/>
+<junction x="91.44" y="48.26"/>
 </segment>
 <segment>
 <pinref part="SUPPLY10" gate="G$1" pin="3.3V"/>
@@ -4942,12 +4930,13 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </net>
 <net name="CS_MEM" class="0">
 <segment>
-<pinref part="MEM" gate="G$1" pin="!CS"/>
 <wire x1="109.22" y1="48.26" x2="111.76" y2="48.26" width="0.1524" layer="91"/>
 <wire x1="111.76" y1="48.26" x2="114.3" y2="48.26" width="0.1524" layer="91"/>
 <junction x="111.76" y="48.26"/>
 <label x="114.3" y="48.26" size="1.27" layer="95" xref="yes"/>
 <pinref part="R5" gate="G$1" pin="1"/>
+<pinref part="U$2" gate="G$1" pin="!CS"/>
+<junction x="109.22" y="48.26"/>
 </segment>
 <segment>
 <pinref part="U1" gate="G$1" pin="PA18(SER1:2+)"/>
@@ -5096,9 +5085,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </net>
 <net name="SPI1_SCK" class="0">
 <segment>
-<pinref part="MEM" gate="G$1" pin="SCK"/>
 <wire x1="109.22" y1="45.72" x2="111.76" y2="45.72" width="0.1524" layer="91"/>
 <label x="111.76" y="45.72" size="1.27" layer="97" xref="yes"/>
+<pinref part="U$2" gate="G$1" pin="SCK"/>
+<junction x="109.22" y="45.72"/>
 </segment>
 <segment>
 <pinref part="U1" gate="G$1" pin="PA17(I2C/SER1:1+)"/>
@@ -5108,9 +5098,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </net>
 <net name="SPI1_MOSI" class="0">
 <segment>
-<pinref part="MEM" gate="G$1" pin="SI"/>
 <wire x1="109.22" y1="43.18" x2="111.76" y2="43.18" width="0.1524" layer="91"/>
 <label x="111.76" y="43.18" size="1.27" layer="95" xref="yes"/>
+<pinref part="U$2" gate="G$1" pin="SI"/>
+<junction x="109.22" y="43.18"/>
 </segment>
 <segment>
 <pinref part="U1" gate="G$1" pin="PA16(I2C/SER1:0+)"/>
@@ -5120,9 +5111,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </net>
 <net name="SPI1_MISO" class="0">
 <segment>
-<pinref part="MEM" gate="G$1" pin="SO"/>
 <wire x1="109.22" y1="40.64" x2="111.76" y2="40.64" width="0.1524" layer="91"/>
 <label x="111.76" y="40.64" size="1.27" layer="95" xref="yes"/>
+<pinref part="U$2" gate="G$1" pin="SO"/>
+<junction x="109.22" y="40.64"/>
 </segment>
 <segment>
 <pinref part="U1" gate="G$1" pin="PA19(SER1:3+)"/>

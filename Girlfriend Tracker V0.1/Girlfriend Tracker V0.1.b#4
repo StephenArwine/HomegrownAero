@@ -1489,7 +1489,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="16.51" y1="13.716" x2="15.675996875" y2="13.716" width="0.254" layer="1"/>
 <wire x1="15.675996875" y1="13.716" x2="15.621003125" y2="13.66100625" width="0.254" layer="1"/>
 <wire x1="17.157003125" y1="12.179996875" x2="16.51" y2="12.827" width="0.254" layer="1"/>
-<via x="6.985" y="11.176" extent="1-16" drill="0.35"/>
+<via x="7.493" y="11.176" extent="1-16" drill="0.35"/>
 <via x="5.588" y="10.16" extent="1-16" drill="0.35"/>
 <via x="11.43" y="8.763" extent="1-16" drill="0.35"/>
 <via x="10.795" y="8.763" extent="1-16" drill="0.35"/>
@@ -1581,6 +1581,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="26.67" y1="16.455" x2="27.106" y2="16.891" width="0.254" layer="1"/>
 <wire x1="27.106" y1="16.891" x2="27.305" y2="16.891" width="0.254" layer="1"/>
 <contactref element="C34" pad="C"/>
+<via x="7.493" y="9.144" extent="1-16" drill="0.35"/>
 </signal>
 <signal name="CS_MEM">
 <contactref element="MEM" pad="!CS"/>
@@ -2224,9 +2225,6 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="28.448" y1="11.557" x2="28.071" y2="11.18" width="0.254" layer="1"/>
 <wire x1="28.071" y1="11.18" x2="26.4749875" y2="11.18" width="0.254" layer="1"/>
 <wire x1="26.4749875" y1="11.18" x2="26.475" y2="11.18" width="0" layer="19" extent="1-1"/>
-</signal>
-<signal name="N$2">
-<via x="6.985" y="9.144" extent="1-16" drill="0.35"/>
 </signal>
 </signals>
 <errors>

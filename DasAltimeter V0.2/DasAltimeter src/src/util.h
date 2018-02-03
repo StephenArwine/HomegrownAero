@@ -68,6 +68,7 @@ void TC5Init();
 
 //ground.c
 void updateGround();
+void isItPointingUp();
 
 //sercom.c
 void sercomClockEnable(SercomId id, uint32_t clock_channel, u8_t divider);

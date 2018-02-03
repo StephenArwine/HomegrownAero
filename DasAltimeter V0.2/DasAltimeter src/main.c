@@ -130,8 +130,10 @@ int main(void) {
 
     POST();
 
-    beep(400);
+    isItPointingUp();
 
+    beep(400);
+	
     startupTick = millis();
 
     while (1) {

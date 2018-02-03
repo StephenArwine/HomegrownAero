@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="8.5.0">
+<eagle version="8.6.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -2229,15 +2229,15 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 </signals>
 <errors>
 <approved hash="4,1,d8a173f3e3bd3120"/>
-<approved hash="4,1,762fad156d0bb631"/>
 <approved hash="4,1,bd93a2df99ce8192"/>
 <approved hash="4,1,0cbcc5457a137dae"/>
 <approved hash="4,16,d8a173f3e3bd3120"/>
 <approved hash="4,16,0cbcc5457a137dae"/>
-<approved hash="4,1,c0423789f797005c"/>
-<approved hash="4,1,2bf6da3c1a22ebe8"/>
-<approved hash="4,16,762fad156d0bb631"/>
 <approved hash="4,16,2bf6da3c1a22ebe8"/>
+<approved hash="4,1,2bf6da3c1a22ebe8"/>
+<approved hash="4,1,c0423789f797005c"/>
+<approved hash="4,1,762fad156d0bb631"/>
+<approved hash="4,16,762fad156d0bb631"/>
 </errors>
 </board>
 </drawing>

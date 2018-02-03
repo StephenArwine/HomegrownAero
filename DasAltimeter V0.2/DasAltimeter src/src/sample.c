@@ -70,7 +70,7 @@ void sampleTick() {
 
     sample.accelX =  accelXint * BMI055_ACCEL_16G_DIV;
     sample.accelY =  accelYint * BMI055_ACCEL_16G_DIV;
-    sample.accelZ = -accelZint * BMI055_ACCEL_16G_DIV;
+    sample.accelZ = accelZint * BMI055_ACCEL_16G_DIV;
 
     // Gyro data
     pinLow(cs_gyro);

@@ -10,11 +10,9 @@ void flight() {
     switch(flightState) {
     case flightStatrup:
 
-
         updateGround( );
 
         //logSensors( );
-
 
         if ((millis() - startupTick) > 10000) {
             findNewFlightStart( );
@@ -80,18 +78,13 @@ void flight() {
         if (writeLog) {
             writeLog = false;
             logSensors( );
-
         }
-
 
         if (velocity < 0) {
             flightState = flightDrogue;
             logEvent('A');
             beep(100);
-
         }
-
-
 
         break;
     case flightFast:
@@ -126,20 +119,20 @@ void flight() {
 
         break;
     case flightTest:
-           //simple continuity test
-           if ( (sample.voltage.senseA + sample.voltage.senseB +sample.voltage.senseC +sample.voltage.senseD) > 200) {
-               unpluggedJingle();
-           }
-        
+        //simple continuity test
+        if ( (sample.voltage.senseA + sample.voltage.senseB +sample.voltage.senseC +sample.voltage.senseD) > 200) {
+            unpluggedJingle();
+        }
+
         if (writeLog) {
             writeLog = false;
-            logSensors( ); 
+            logSensors( );
         }
-		
+
         break;
     }
 
-    if (flightState != flightStatrup & flightState != flightIdle & unplugged()) {
+    if ((flightState != flightStatrup) & (flightState != flightIdle & unplugged())) {
         finishFlight();
     }
 

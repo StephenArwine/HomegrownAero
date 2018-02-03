@@ -54,7 +54,6 @@ void computeKalmanGains() {
     k = 0;
 
     /* Initialize */
-
     dt = 0.005;
 
     /*
@@ -67,15 +66,12 @@ void computeKalmanGains() {
     phit[2][1]    = dt;
     phit[2][0]    = dt*dt/2.0;
 
-
-
     for( i = 0; i <= 2; i++)
         for( j = 0; j <=1; j++) {
             lastkgain[i][j] = .001;
             kgain[i][j] = 1.0;
         }
     k = 0;
-
 
     /* Compute the Kalman gain matrix. */
     while(1) {
@@ -107,17 +103,11 @@ void computeKalmanGains() {
         */
         det = (pestp[0][0]+altitude_variance)*(pestp[2][2] + acceleration_variance) - pestp[2][0] * pestp[0][2];
 
-
         kgain[0][0] = (pestp[0][0] * (pestp[2][2] + acceleration_variance) - pestp[0][2] * pestp[2][0])/det;
-
         kgain[0][1] = (pestp[0][0] * (-pestp[0][2]) + pestp[0][2] * (pestp[0][0] + altitude_variance))/det;
-
         kgain[1][0] = (pestp[1][0] * (pestp[2][2] + acceleration_variance) - pestp[1][2] * pestp[2][0])/det;
-
         kgain[1][1] = (pestp[1][0] * (-pestp[0][2]) + pestp[1][2] * (pestp[0][0] + altitude_variance))/det;
-
         kgain[2][0] = (pestp[2][0] * (pestp[2][2] + acceleration_variance) - pestp[2][2] * pestp[2][0])/det;
-
         kgain[2][1] = (pestp[2][0] * (-pestp[0][2]) + pestp[2][2] * (pestp[0][0] + altitude_variance))/det;
 
         pest[0][0] = pestp[0][0] * (1.0 - kgain[0][0]) - kgain[0][1]*pestp[2][0];
@@ -152,10 +142,14 @@ void computeKalmanGains() {
 
 void computeKalmanStates() {
 
-    double alt_inovation, accel_inovation;
+    double alt_inovation, accel_inovation, acceleration;
 
+    if (altimeter.pointingUp) {
+        acceleration = (-sample.accelZ - offsets.gravityOffset) * 32.17417;
+    } else {
+        acceleration = (sample.accelZ - offsets.gravityOffset) * 32.17417;
+    }
 
-    double acceleration = (sample.accelZ - offsets.gravityOffset) * 32.17417;
     double pressure = sample.altitudefeet;
 
     if (altitude == 0) {

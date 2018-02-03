@@ -3230,46 +3230,62 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <text x="0" y="-3.302" size="0.6096" layer="27" font="vector" ratio="20" align="top-center">&gt;VALUE</text>
 <circle x="-3.556" y="3.429" radius="0.254" width="0" layer="21"/>
 </package>
-<package name="LCC-8">
-<description>&lt;h3&gt;8-Pin LCC (5 x 5 x 2 mm)&lt;/h3&gt;
-&lt;p&gt;&lt;a href="https://www.sparkfun.com/datasheets/Sensors/Accelerometer/ADXL193.pdf"&gt;Datasheet&lt;/a&gt;&lt;/p&gt;
+<package name="LFCSP-16-3X3">
+<description>&lt;h3&gt;16-Pin Lead Frame Chip Scale (LFCSP) w/ Center Pad (3 x 3 mm)&lt;/h3&gt;
+&lt;p&gt;&lt;a href="http://www.analog.com/media/en/technical-documentation/data-sheets/ADXL337.pdf"&gt;Datasheet&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Specifications:
 &lt;ul&gt;
-&lt;li&gt;Pin Count: 8&lt;/li&gt;
-&lt;li&gt;Area: 5.0 x 5.0 x 2.0 mm&lt;/li&gt;
-&lt;li&gt;Pitch: 1.27 mm&lt;/li&gt;
+&lt;li&gt;Pin Count: 16 (+ center pad)&lt;/li&gt;
+&lt;li&gt;Area: 3.0 x 3.0 x 1.45 mm&lt;/li&gt;
+&lt;li&gt;Pitch: 0.5 mm&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Devices Using:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;ADXL193&lt;/li&gt;
+&lt;li&gt;ADXL337&lt;/li&gt;
+&lt;li&gt;ADXL377&lt;/li&gt;
 &lt;/ul&gt;</description>
-<wire x1="-2.5" y1="2.5" x2="-2.5" y2="1.9" width="0.2032" layer="21"/>
-<wire x1="-2.5" y1="0.73" x2="-2.5" y2="0.53" width="0.2032" layer="21"/>
-<wire x1="-2.5" y1="-0.52" x2="-2.5" y2="-0.73" width="0.2032" layer="21"/>
-<wire x1="-2.5" y1="-1.9" x2="-2.5" y2="-2.5" width="0.2032" layer="21"/>
-<wire x1="-2.5" y1="-2.5" x2="-0.7" y2="-2.5" width="0.2032" layer="21"/>
-<wire x1="0.7" y1="-2.5" x2="2.5" y2="-2.5" width="0.2032" layer="21"/>
-<wire x1="2.5" y1="-2.5" x2="2.5" y2="-1.9" width="0.2032" layer="21"/>
-<wire x1="2.5" y1="-0.73" x2="2.5" y2="-0.53" width="0.2032" layer="21"/>
-<wire x1="2.5" y1="0.54" x2="2.5" y2="0.73" width="0.2032" layer="21"/>
-<wire x1="2.5" y1="1.9" x2="2.5" y2="2.5" width="0.2032" layer="21"/>
-<wire x1="2.5" y1="2.5" x2="0.7" y2="2.5" width="0.2032" layer="21"/>
-<wire x1="-0.7" y1="2.5" x2="-2.5" y2="2.5" width="0.2032" layer="21"/>
-<wire x1="-0.381" y1="-0.254" x2="-0.381" y2="0.508" width="0.127" layer="51"/>
-<wire x1="-0.381" y1="0.508" x2="-0.635" y2="0.254" width="0.127" layer="51"/>
-<wire x1="-0.381" y1="0.508" x2="-0.127" y2="0.254" width="0.127" layer="51"/>
-<circle x="0" y="3.048" radius="0.254" width="0" layer="21"/>
-<smd name="P$1" x="-1.96" y="1.26" dx="0.64" dy="1.5" layer="1" rot="R90"/>
-<smd name="P$2" x="-1.96" y="0" dx="0.64" dy="1.5" layer="1" rot="R90"/>
-<smd name="P$3" x="-1.96" y="-1.26" dx="0.64" dy="1.5" layer="1" rot="R90"/>
-<smd name="P$4" x="0" y="-1.96" dx="0.64" dy="1.5" layer="1" rot="R180"/>
-<smd name="P$5" x="1.96" y="-1.26" dx="0.64" dy="1.5" layer="1" rot="R90"/>
-<smd name="P$6" x="1.96" y="0" dx="0.64" dy="1.5" layer="1" rot="R90"/>
-<smd name="P$7" x="1.96" y="1.26" dx="0.64" dy="1.5" layer="1" rot="R90"/>
-<smd name="P$8" x="0.01" y="1.9" dx="0.64" dy="1.27" layer="1"/>
-<text x="0" y="-0.254" size="0.6096" layer="51" ratio="20">X</text>
-<text x="-2.921" y="0" size="0.6096" layer="25" font="vector" ratio="20" rot="R90" align="bottom-center">&gt;NAME</text>
-<text x="2.921" y="0" size="0.6096" layer="27" font="vector" ratio="20" rot="R90" align="top-center">&gt;VALUE</text>
+<wire x1="-1.1" y1="-1.6" x2="-1.6" y2="-1.6" width="0.15" layer="21"/>
+<wire x1="-1.6" y1="-1.6" x2="-1.6" y2="-1.1" width="0.15" layer="21"/>
+<smd name="1" x="-1.3" y="0.75" dx="0.4" dy="0.25" layer="1"/>
+<smd name="2" x="-1.3" y="0.25" dx="0.4" dy="0.25" layer="1"/>
+<smd name="3" x="-1.3" y="-0.25" dx="0.4" dy="0.25" layer="1"/>
+<smd name="4" x="-1.3" y="-0.75" dx="0.4" dy="0.25" layer="1"/>
+<smd name="5" x="-0.75" y="-1.3" dx="0.4" dy="0.25" layer="1" rot="R90"/>
+<smd name="6" x="-0.25" y="-1.3" dx="0.4" dy="0.25" layer="1" rot="R90"/>
+<smd name="7" x="0.25" y="-1.3" dx="0.4" dy="0.25" layer="1" rot="R90"/>
+<smd name="8" x="0.75" y="-1.3" dx="0.4" dy="0.25" layer="1" rot="R90"/>
+<smd name="9" x="1.3" y="-0.75" dx="0.4" dy="0.25" layer="1" rot="R180"/>
+<smd name="10" x="1.3" y="-0.25" dx="0.4" dy="0.25" layer="1" rot="R180"/>
+<smd name="11" x="1.3" y="0.25" dx="0.4" dy="0.25" layer="1" rot="R180"/>
+<smd name="12" x="1.3" y="0.75" dx="0.4" dy="0.25" layer="1" rot="R180"/>
+<smd name="13" x="0.75" y="1.3" dx="0.4" dy="0.25" layer="1" rot="R270"/>
+<smd name="14" x="0.25" y="1.3" dx="0.4" dy="0.25" layer="1" rot="R270"/>
+<smd name="15" x="-0.25" y="1.3" dx="0.4" dy="0.25" layer="1" rot="R270"/>
+<smd name="16" x="-0.75" y="1.3" dx="0.4" dy="0.25" layer="1" rot="R270"/>
+<smd name="EXP" x="0" y="0" dx="1.6" dy="1.6" layer="1" stop="no" cream="no"/>
+<rectangle x1="-0.9" y1="-0.9" x2="0.9" y2="0.9" layer="29"/>
+<rectangle x1="-0.3556" y1="-0.3556" x2="0.3556" y2="0.3556" layer="31"/>
+<rectangle x1="-1.6" y1="1.2" x2="-1.2" y2="1.6" layer="21"/>
+<wire x1="1.6" y1="-1.1" x2="1.6" y2="-1.6" width="0.15" layer="21"/>
+<wire x1="1.6" y1="-1.6" x2="1.1" y2="-1.6" width="0.15" layer="21"/>
+<wire x1="1.1" y1="1.6" x2="1.6" y2="1.6" width="0.15" layer="21"/>
+<wire x1="1.6" y1="1.6" x2="1.6" y2="1.1" width="0.15" layer="21"/>
+<wire x1="-1.6" y1="1.1" x2="-1.6" y2="1.6" width="0.15" layer="21"/>
+<wire x1="-1.6" y1="1.6" x2="-1.1" y2="1.6" width="0.15" layer="21"/>
+<wire x1="0" y1="-1.27" x2="0" y2="-2.54" width="0.127" layer="51"/>
+<wire x1="0" y1="-2.54" x2="0.381" y2="-2.159" width="0.127" layer="51"/>
+<wire x1="0" y1="-2.54" x2="-0.381" y2="-2.159" width="0.127" layer="51"/>
+<wire x1="1.27" y1="0" x2="2.54" y2="0" width="0.127" layer="51"/>
+<wire x1="2.54" y1="0" x2="2.159" y2="0.381" width="0.127" layer="51"/>
+<wire x1="2.54" y1="0" x2="2.159" y2="-0.381" width="0.127" layer="51"/>
+<circle x="0" y="0" radius="0.3592" width="0.127" layer="51"/>
+<circle x="0" y="0" radius="0.127" width="0.127" layer="51"/>
+<text x="-0.127" y="-1.143" size="0.508" layer="51">X</text>
+<text x="-0.762" y="0.127" size="0.508" layer="51">Z</text>
+<text x="1.27" y="0.127" size="0.508" layer="51">Y</text>
+<text x="0" y="1.778" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center">&gt;NAME</text>
+<text x="0" y="-1.778" size="0.6096" layer="27" font="vector" ratio="20" align="top-center">&gt;VALUE</text>
+<circle x="-1.9" y="1.9" radius="0.254" width="0" layer="21"/>
 </package>
 </packages>
 <symbols>
@@ -3290,20 +3306,24 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <text x="-10.16" y="7.874" size="1.778" layer="95" font="vector">&gt;Name</text>
 <text x="-10.16" y="-7.874" size="1.778" layer="96" font="vector" align="top-left">&gt;Value</text>
 </symbol>
-<symbol name="ADXL193">
-<description>&lt;h3&gt;Analog Devices ADXL193 - 250g Accelerometer w/ Analog Output&lt;/h3&gt;
-&lt;p&gt;The ADXL193 is a small (5 mm x 5 mm x 2 mm ceramic LCC package), low power (1.5 mA current at 5V), single axis high-g iMEMS® accelerometer designed to sense shock and vibration at g-ranges of ±120g or ±250g. Three models are available and include AD22282-A-R2 (±120g) and AD22283-B-R2 (±250g). These products are used in a variety of crash/impact detection applications which include automotive airbag crash detection systems as well as medical, industrial, and sports equipment.&lt;/p&gt;</description>
-<wire x1="-7.62" y1="-5.08" x2="-7.62" y2="5.08" width="0.254" layer="94"/>
-<wire x1="-7.62" y1="5.08" x2="7.62" y2="5.08" width="0.254" layer="94"/>
-<wire x1="7.62" y1="5.08" x2="7.62" y2="-5.08" width="0.254" layer="94"/>
-<wire x1="7.62" y1="-5.08" x2="-7.62" y2="-5.08" width="0.254" layer="94"/>
-<pin name="VDD" x="-10.16" y="2.54" visible="pin" length="short"/>
-<pin name="VDD2" x="-10.16" y="0" visible="pin" length="short"/>
-<pin name="ST" x="-10.16" y="-2.54" visible="pin" length="short"/>
-<pin name="OUT" x="10.16" y="2.54" visible="pin" length="short" rot="R180"/>
-<pin name="GND" x="10.16" y="-2.54" visible="pin" length="short" rot="R180"/>
-<text x="-7.62" y="5.334" size="1.778" layer="95" font="vector">&gt;Name</text>
-<text x="-7.62" y="-5.334" size="1.778" layer="96" font="vector" align="top-left">&gt;Value</text>
+<symbol name="ADXL377">
+<description>&lt;h3&gt;Analog Devices ADXL377 Low Power 3-Axis ±200 g Accelerometer with Analog Output&lt;/h3&gt;
+&lt;p&gt;The ADXL377 is a small, thin, low power, complete 3-axis accelerometer with signal conditioned voltage outputs. The ADXL377 measures acceleration resulting from motion, shock, or vibration with a typical full-scale range of ±200g.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://cdn.sparkfun.com/datasheets/Sensors/Accelerometers/ADXL377.pdf"&gt;Datasheet&lt;/a&gt;&lt;/p&gt;</description>
+<wire x1="-10.16" y1="7.62" x2="10.16" y2="7.62" width="0.254" layer="94"/>
+<wire x1="10.16" y1="7.62" x2="10.16" y2="-7.62" width="0.254" layer="94"/>
+<wire x1="10.16" y1="-7.62" x2="-10.16" y2="-7.62" width="0.254" layer="94"/>
+<wire x1="-10.16" y1="-7.62" x2="-10.16" y2="7.62" width="0.254" layer="94"/>
+<pin name="ST" x="12.7" y="-5.08" length="short" rot="R180"/>
+<pin name="GND@1" x="-12.7" y="-2.54" length="short"/>
+<pin name="ZOUT" x="12.7" y="0" length="short" rot="R180"/>
+<pin name="YOUT" x="12.7" y="2.54" length="short" rot="R180"/>
+<pin name="XOUT" x="12.7" y="5.08" length="short" rot="R180"/>
+<pin name="VS@1" x="-12.7" y="5.08" length="short"/>
+<pin name="GND@2" x="-12.7" y="-5.08" length="short"/>
+<pin name="VS@2" x="-12.7" y="2.54" length="short"/>
+<text x="-10.16" y="7.874" size="1.778" layer="95" font="vector">&gt;Name</text>
+<text x="-10.16" y="-7.874" size="1.778" layer="96" font="vector" align="top-left">&gt;Value</text>
 </symbol>
 </symbols>
 <devicesets>
@@ -3337,30 +3357,32 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </device>
 </devices>
 </deviceset>
-<deviceset name="ADXL193" prefix="U">
-<description>&lt;h3&gt;Analog Devices ADXL193 - 250g Accelerometer w/ Analog Output&lt;/h3&gt;
-&lt;p&gt;The ADXL193 is a small (5 mm x 5 mm x 2 mm ceramic LCC package), low power (1.5 mA current at 5V), single axis high-g iMEMS® accelerometer designed to sense shock and vibration at g-ranges of ±120g or ±250g. Three models are available and include AD22282-A-R2 (±120g) and AD22283-B-R2 (±250g). These products are used in a variety of crash/impact detection applications which include automotive airbag crash detection systems as well as medical, industrial, and sports equipment.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.sparkfun.com/datasheets/Sensors/Accelerometer/ADXL193.pdf"&gt;Datasheet&lt;/a&gt;&lt;/p&gt;
+<deviceset name="ADXL377" prefix="U">
+<description>&lt;h3&gt;Analog Devices ADXL377 Low Power 3-Axis ±200 g Accelerometer with Analog Output&lt;/h3&gt;
+&lt;p&gt;The ADXL377 is a small, thin, low power, complete 3-axis accelerometer with signal conditioned voltage outputs. The ADXL377 measures acceleration resulting from motion, shock, or vibration with a typical full-scale range of ±200g.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://cdn.sparkfun.com/datasheets/Sensors/Accelerometers/ADXL377.pdf"&gt;Datasheet&lt;/a&gt;&lt;/p&gt;
 &lt;h4&gt;SparkFun Products&lt;/h4&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://www.sparkfun.com/products/9332"&gt;
-SparkFun Single Axis Accelerometer Breakout - ADXL193 (+/-250g)&lt;/a&gt; (SEN-09332)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.sparkfun.com/products/12803"&gt;SparkFun Triple Axis Accelerometer Breakout - ADXL377&lt;/a&gt; (SEN-12803)&lt;/li&gt;
 &lt;/ul&gt;</description>
 <gates>
-<gate name="G$1" symbol="ADXL193" x="0" y="0"/>
+<gate name="G$1" symbol="ADXL377" x="0" y="0"/>
 </gates>
 <devices>
-<device name="" package="LCC-8">
+<device name="" package="LFCSP-16-3X3">
 <connects>
-<connect gate="G$1" pin="GND" pad="P$3"/>
-<connect gate="G$1" pin="OUT" pad="P$6"/>
-<connect gate="G$1" pin="ST" pad="P$4"/>
-<connect gate="G$1" pin="VDD" pad="P$7"/>
-<connect gate="G$1" pin="VDD2" pad="P$8"/>
+<connect gate="G$1" pin="GND@1" pad="6"/>
+<connect gate="G$1" pin="GND@2" pad="7"/>
+<connect gate="G$1" pin="ST" pad="2"/>
+<connect gate="G$1" pin="VS@1" pad="14"/>
+<connect gate="G$1" pin="VS@2" pad="15"/>
+<connect gate="G$1" pin="XOUT" pad="5"/>
+<connect gate="G$1" pin="YOUT" pad="4"/>
+<connect gate="G$1" pin="ZOUT" pad="16"/>
 </connects>
 <technologies>
 <technology name="">
-<attribute name="PROD_ID" value="IC-09219"/>
+<attribute name="PROD_ID" value="IC-12027"/>
 </technology>
 </technologies>
 </device>
@@ -3827,10 +3849,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <part name="R4" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="10k"/>
 <part name="GND7" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="R5" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="10k"/>
-<part name="U4" library="SparkFun-Sensors" deviceset="ADXL193" device=""/>
 <part name="GND8" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="SUPPLY14" library="SparkFun-Aesthetics" deviceset="3.3V" device=""/>
-<part name="GND9" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="R6" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="100k"/>
 <part name="R7" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="100"/>
 <part name="R8" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="3.3k"/>
@@ -3874,6 +3894,9 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <part name="U$3" library="SaL-lib1" deviceset="SI7232DN" device=""/>
 <part name="U$4" library="SaL-lib1" deviceset="SI7232DN" device=""/>
 <part name="GND31" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
+<part name="U5" library="SparkFun-Sensors" deviceset="ADXL377" device=""/>
+<part name="C6" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="0.01uF"/>
+<part name="GND3" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -3956,10 +3979,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="NAME" x="110.2614" y="49.53" size="1.27" layer="95" rot="R90"/>
 <attribute name="VALUE" x="115.062" y="54.61" size="1.27" layer="96" rot="R90"/>
 </instance>
-<instance part="U4" gate="G$1" x="99.06" y="83.82"/>
-<instance part="GND8" gate="1" x="81.28" y="76.2"/>
+<instance part="GND8" gate="1" x="81.28" y="71.12"/>
 <instance part="SUPPLY14" gate="G$1" x="81.28" y="91.44"/>
-<instance part="GND9" gate="1" x="111.76" y="76.2"/>
 <instance part="R6" gate="G$1" x="73.66" y="172.72" smashed="yes" rot="R90">
 <attribute name="NAME" x="72.1614" y="168.91" size="1.27" layer="95" rot="R90"/>
 <attribute name="VALUE" x="76.962" y="173.99" size="1.27" layer="96" rot="R90"/>
@@ -4066,6 +4087,9 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <instance part="U$3" gate="G$1" x="22.86" y="73.66"/>
 <instance part="U$4" gate="G$1" x="22.86" y="27.94"/>
 <instance part="GND31" gate="1" x="157.48" y="88.9"/>
+<instance part="U5" gate="G$1" x="101.6" y="81.28"/>
+<instance part="C6" gate="G$1" x="119.38" y="81.28"/>
+<instance part="GND3" gate="1" x="119.38" y="71.12"/>
 </instances>
 <busses>
 </busses>
@@ -4184,12 +4208,14 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <segment>
 <pinref part="C9" gate="G$1" pin="2"/>
 <pinref part="GND8" gate="1" pin="GND"/>
-</segment>
-<segment>
-<pinref part="U4" gate="G$1" pin="GND"/>
-<pinref part="GND9" gate="1" pin="GND"/>
-<wire x1="109.22" y1="81.28" x2="111.76" y2="81.28" width="0.1524" layer="91"/>
-<wire x1="111.76" y1="81.28" x2="111.76" y2="78.74" width="0.1524" layer="91"/>
+<wire x1="81.28" y1="73.66" x2="81.28" y2="76.2" width="0.1524" layer="91"/>
+<pinref part="U5" gate="G$1" pin="GND@1"/>
+<wire x1="81.28" y1="76.2" x2="81.28" y2="78.74" width="0.1524" layer="91"/>
+<wire x1="88.9" y1="78.74" x2="81.28" y2="78.74" width="0.1524" layer="91"/>
+<junction x="81.28" y="78.74"/>
+<pinref part="U5" gate="G$1" pin="GND@2"/>
+<wire x1="88.9" y1="76.2" x2="81.28" y2="76.2" width="0.1524" layer="91"/>
+<junction x="81.28" y="76.2"/>
 </segment>
 <segment>
 <pinref part="C11" gate="G$1" pin="2"/>
@@ -4256,6 +4282,11 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="162.56" y1="104.14" x2="157.48" y2="104.14" width="0.1524" layer="91"/>
 <wire x1="157.48" y1="104.14" x2="157.48" y2="99.06" width="0.1524" layer="91"/>
 <junction x="157.48" y="99.06"/>
+</segment>
+<segment>
+<pinref part="C6" gate="G$1" pin="2"/>
+<pinref part="GND3" gate="1" pin="GND"/>
+<wire x1="119.38" y1="73.66" x2="119.38" y2="78.74" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$1" class="0">
@@ -4609,17 +4640,17 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="83.82" y1="17.78" x2="83.82" y2="20.32" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="U4" gate="G$1" pin="VDD"/>
 <wire x1="88.9" y1="86.36" x2="86.36" y2="86.36" width="0.1524" layer="91"/>
 <pinref part="C9" gate="G$1" pin="1"/>
 <wire x1="86.36" y1="86.36" x2="81.28" y2="86.36" width="0.1524" layer="91"/>
-<pinref part="U4" gate="G$1" pin="VDD2"/>
 <wire x1="88.9" y1="83.82" x2="86.36" y2="83.82" width="0.1524" layer="91"/>
 <wire x1="86.36" y1="83.82" x2="86.36" y2="86.36" width="0.1524" layer="91"/>
 <junction x="86.36" y="86.36"/>
 <pinref part="SUPPLY14" gate="G$1" pin="3.3V"/>
 <wire x1="81.28" y1="86.36" x2="81.28" y2="91.44" width="0.1524" layer="91"/>
 <junction x="81.28" y="86.36"/>
+<pinref part="U5" gate="G$1" pin="VS@1"/>
+<pinref part="U5" gate="G$1" pin="VS@2"/>
 </segment>
 <segment>
 <pinref part="IC1" gate="G$1" pin="VDD"/>
@@ -4778,14 +4809,15 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </net>
 <net name="ACCELX" class="0">
 <segment>
-<pinref part="U4" gate="G$1" pin="OUT"/>
-<wire x1="109.22" y1="86.36" x2="114.3" y2="86.36" width="0.1524" layer="91"/>
-<label x="114.3" y="86.36" size="1.27" layer="95" xref="yes"/>
-</segment>
-<segment>
 <pinref part="U1" gate="G$1" pin="PA07(AIN7/SER0:3/TC1:1)"/>
 <wire x1="162.56" y1="119.38" x2="160.02" y2="119.38" width="0.1524" layer="91"/>
 <label x="160.02" y="119.38" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<label x="119.38" y="86.36" size="1.27" layer="95" xref="yes"/>
+<pinref part="C6" gate="G$1" pin="1"/>
+<pinref part="U5" gate="G$1" pin="XOUT"/>
+<wire x1="119.38" y1="86.36" x2="114.3" y2="86.36" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="SPI0_MISO" class="0">
@@ -4959,6 +4991,12 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <pinref part="JP1" gate="G$1" pin="SWO/TDO"/>
 <wire x1="208.28" y1="50.8" x2="210.82" y2="50.8" width="0.1524" layer="91"/>
 <label x="210.82" y="50.8" size="1.27" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="N$2" class="0">
+<segment>
+<pinref part="U5" gate="G$1" pin="YOUT"/>
+<wire x1="111.76" y1="83.82" x2="114.3" y2="83.82" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>

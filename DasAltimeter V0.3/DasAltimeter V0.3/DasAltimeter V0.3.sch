@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="8.5.0">
+<eagle version="8.6.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -3584,12 +3584,12 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <smd name="2" x="-1.1303" y="0.3302" dx="0.9906" dy="0.4064" layer="1"/>
 <smd name="3" x="-1.1303" y="-0.3302" dx="0.9906" dy="0.4064" layer="1"/>
 <smd name="4" x="-1.1303" y="-0.9906" dx="0.9906" dy="0.4064" layer="1"/>
-<smd name="9" x="0.8636" y="0.6223" dx="1.7272" dy="0.9906" layer="1"/>
+<smd name="9" x="0.8636" y="0.6223" dx="1.7272" dy="0.9906" layer="1" cream="no"/>
 <smd name="8" x="1.9177" y="0.9906" dx="0.762" dy="0.4064" layer="1"/>
 <smd name="7" x="1.9177" y="0.3302" dx="0.762" dy="0.4064" layer="1"/>
 <smd name="6" x="1.9177" y="-0.3302" dx="0.762" dy="0.4064" layer="1"/>
 <smd name="5" x="1.9177" y="-0.9906" dx="0.762" dy="0.4064" layer="1"/>
-<smd name="10" x="0.8636" y="-0.6223" dx="1.7272" dy="0.9906" layer="1"/>
+<smd name="10" x="0.8636" y="-0.6223" dx="1.7272" dy="0.9906" layer="1" cream="no"/>
 <wire x1="-1.1303" y1="-1.4224" x2="1.9177" y2="-1.4224" width="0.127" layer="21"/>
 <wire x1="1.9177" y1="1.4986" x2="-1.1303" y2="1.4986" width="0.127" layer="21"/>
 <text x="-1.5113" y="1.6891" size="0.6096" layer="21">&gt;NAME</text>
