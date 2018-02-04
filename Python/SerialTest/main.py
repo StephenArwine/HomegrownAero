@@ -66,9 +66,9 @@ def DownloadFlightData():
 
     allFlightsNotFound = 1
     while allFlightsNotFound:
-        flightNumb = ser.read(1)
+        flightNumb = ser.read(2)
 
-        if flightNumb == b'\x0F':
+        if flightNumb == b'\x1F':
             break
         else:
             print('    ', flightNumb.decode('utf-8'))
