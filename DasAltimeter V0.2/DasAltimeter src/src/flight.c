@@ -6,13 +6,10 @@ flightState_t flightState;
 
 void flight() {
 
-
     switch(flightState) {
     case flightStatrup:
 
         updateGround( );
-
-        //logSensors( );
 
         if ((millis() - startupTick) > 10000) {
             findNewFlightStart( );
@@ -49,24 +46,23 @@ void flight() {
     case flightPad:
         /* from pad to boost
         *  initial trigger attempt will be
-        *  Accel > 2g & vel > 5m/s
+        *  Accel > 2g & vel > 15ft/s
         *		 or
-        *  baro alt > 40ft
+        *  baro alt > 100ft
         */
 
         updateGround();
 
         if (writeLog) {
-            writeLog = false;
             //logSensors( );
             pinToggle(LedPin);
         }
 
-        if (( velocity > 0.05) && (altitudeAGL() > 5)) {
+
+        if ((( velocity > 15) && (accel > 2)) | (altitudeAGL() > 100)) {
             flightState = flightBoost;
             logEvent('L');
         }
-
 
         break;
     case flightBoost:
@@ -76,12 +72,12 @@ void flight() {
         *	Accel > 1/4G
         */
         if (writeLog) {
-            writeLog = false;
             logSensors( );
         }
 
         if (velocity < 0) {
             flightState = flightDrogue;
+            igniteDrogue();
             logEvent('A');
             beep(100);
         }
@@ -105,12 +101,27 @@ void flight() {
         break;
     case flightDrogue:
 
+        if (writeLog) {
+            logSensors( );
+        }
 
+
+        if (altitude < deploymentSettings.MAIN_DEPLOY) {
+            flightState = flightMain;
+            igniteMain();
+            logEvent('M');
+        }
 
         break;
     case flightMain:
 
+        if (writeLog) {
+            logSensors( );
+        }
 
+        if (velocity < 5) {
+            flightState = flightLanded;
+        }
 
         break;
     case flightLanded:
@@ -125,14 +136,13 @@ void flight() {
         }
 
         if (writeLog) {
-            writeLog = false;
             logSensors( );
         }
 
         break;
     }
 
-    if ((flightState != flightStatrup) & (flightState != flightIdle & unplugged())) {
+    if ((flightState != flightStatrup) & ((flightState != flightIdle) & unplugged())) {
         finishFlight();
     }
 

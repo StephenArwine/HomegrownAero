@@ -1,19 +1,14 @@
 #include <MS5803.h>
 #include <boardDefines.h>
 #include <math.h>
-//#include <tgmath.h>
-
 
 u32_t readMS5803AdcResults() {
 
-    u8_t dummy_tx = 0xFF;
-
-
     pinLow(cs_baro);
-    spiDataTransfer(SPI2, cmdAdcRead_);
-    u8_t _byte1 = spiDataTransfer(SPI2,dummy_tx);
-    u8_t _byte2 = spiDataTransfer(SPI2,dummy_tx);
-    u8_t _byte3 = spiDataTransfer(SPI2,dummy_tx);
+    spiDataOut(BARO_SPI, cmdAdcRead_);
+    u8_t _byte1 = spiDataIn(SPI2);
+    u8_t _byte2 = spiDataIn(SPI2);
+    u8_t _byte3 = spiDataIn(SPI2);
     pinHigh(cs_baro);
 
     u32_t _receive = (_byte1 << 16) | (_byte2 << 8) | (_byte3);
@@ -52,16 +47,14 @@ double paToFeetNOAA(int32_t pressureMbar) {
 
 void readMS5803Coefficients() {
 
-    u8_t dummy_tx = 0xFF;
-
     for (u8_t coeff_num = 1; coeff_num < 7 ; ++coeff_num ) {
         delay_us(600);
         u8_t _cmd = MS5803_CMD_PROM_READ + ((coeff_num)*2);
         delay_us(600);
         pinLow(cs_baro);
-        spiDataTransfer(SPI2, _cmd);
-        u8_t _byte1 = spiDataTransfer(SPI2,dummy_tx);
-        u8_t _byte2 = spiDataTransfer(SPI2,dummy_tx);
+        spiDataOut(SPI2, _cmd);
+        u8_t _byte1 = spiDataIn(SPI2);
+        u8_t _byte2 = spiDataIn(SPI2);
         pinHigh(cs_baro);
         coefficients_[coeff_num] = (_byte1 << 8) | _byte2;
     }
@@ -72,7 +65,7 @@ void initMS5803Barometer() {
 
 
     pinLow(cs_baro);
-    spiDataTransfer(SPI2, MS5803_CMD_RES);
+    spiDataOut(BARO_SPI, MS5803_CMD_RES);
 
     pinHigh(cs_baro);
     delay_ms(200);

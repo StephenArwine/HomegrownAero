@@ -11,10 +11,26 @@ void IMUinit();
 
 typedef struct deploymentCharges {
 
-    bool Afired;
-    bool Bfired;
-    bool Cfired;
-    bool Dfired;
+    bool igniterAHot;
+    bool igniterAMain;
+    bool igniterADrogue;
+    u32_t igniterATick;
+
+    bool igniterBHot;
+    bool igniterBMain;
+    bool igniterBDrogue;
+    u32_t igniterBTick;
+
+    bool igniterCHot;
+    bool igniterCMain;
+    bool igniterCDrogue;
+    u32_t igniterCTick;
+
+    bool igniterDHot;
+    bool igniterDMain;
+    bool igniterDDrogue;
+    u32_t igniterDTick;
+
 
 } deploymentCharges;
 

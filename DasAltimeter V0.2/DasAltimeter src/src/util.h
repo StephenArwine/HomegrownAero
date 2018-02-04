@@ -53,6 +53,15 @@ inline static Sercom* sercom(SercomId id) {
     return (Sercom*) (0x42000800U + id * 1024);
 }
 
+//igniter.c
+void igniterTick();
+void igniteDrogue();
+void igniteMain();
+void lightIgniterA();
+void lightIgniterB();
+void lightIgniterC();
+void lightIgniterD();
+
 
 
 //clocks.c

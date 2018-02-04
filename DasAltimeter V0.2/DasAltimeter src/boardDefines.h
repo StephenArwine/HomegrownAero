@@ -5,6 +5,11 @@
 #define SPI2 2
 #define  USART3 3
 
+#define MEM_SPI SPI1
+#define BARO_SPI SPI2
+#define GYRO_SPI SPI0
+#define ACCEL_SPI SPI0
+
 
 //dasAltimeter
 

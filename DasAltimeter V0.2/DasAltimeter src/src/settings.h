@@ -71,6 +71,7 @@ typedef struct {
     deploymentChannel_t channelBSettings;
     deploymentChannel_t channelCSettings;
     deploymentChannel_t channelDSettings;
+	u16_t MAIN_DEPLOY;
 
 
 } deploymentSettings_t;

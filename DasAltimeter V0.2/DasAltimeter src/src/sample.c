@@ -35,32 +35,30 @@ void sampleTick() {
     sample.analogRaw = adc_read(analogAccelPin);
     sample.analogAccel = (sample.analogRaw - 3900) * -0.0154;
 
-    uint8_t dummy_Tx = 0xFF;
-    uint8_t dummy_rx;
 
     pinLow(cs_baro);
-    spiDataTransfer(SPI2, 0x50);
+    spiDataOut(BARO_SPI, 0x50);
     pinHigh(cs_baro);
     delay_us(600);
     uint32_t tempRaw = readMS5803AdcResults();
 
     pinLow(cs_baro);
-    spiDataTransfer(SPI2, 0x40);
+    spiDataOut(BARO_SPI, 0x40);
     pinHigh(cs_baro);
 
     u8_t byteOne;
     u8_t byteTwo;
 // Accel data
     pinLow(cs_accel);
-    spiDataTransfer(SPI0, BMI055_X_ACC_LSB | BMI055_READ_REG);
-    byteOne = spiDataIn(SPI0);
-    byteTwo = spiDataIn(SPI0);
+    spiDataOut(ACCEL_SPI, BMI055_X_ACC_LSB | BMI055_READ_REG);
+    byteOne = spiDataIn(ACCEL_SPI);
+    byteTwo = spiDataIn(ACCEL_SPI);
     int16_t accelXint = twosComp(byteOne,byteTwo);
-    byteOne = spiDataIn(SPI0);
-    byteTwo = spiDataIn(SPI0);
+    byteOne = spiDataIn(ACCEL_SPI);
+    byteTwo = spiDataIn(ACCEL_SPI);
     int16_t accelYint = twosComp(byteOne,byteTwo);
-    byteOne = spiDataIn(SPI0);
-    byteTwo = spiDataIn(SPI0);
+    byteOne = spiDataIn(ACCEL_SPI);
+    byteTwo = spiDataIn(ACCEL_SPI);
     int16_t accelZint = twosComp(byteOne,byteTwo);
     pinHigh(cs_accel);
 
@@ -74,15 +72,15 @@ void sampleTick() {
 
     // Gyro data
     pinLow(cs_gyro);
-    spiDataTransfer(SPI0, BMI055_X_GYRO_LSB | BMI055_READ_REG);
-    byteOne = spiDataIn(SPI0);
-    byteTwo = spiDataIn(SPI0);
+    spiDataOut(GYRO_SPI, BMI055_X_GYRO_LSB | BMI055_READ_REG);
+    byteOne = spiDataIn(GYRO_SPI);
+    byteTwo = spiDataIn(GYRO_SPI);
     int16_t gyroXint = twosComp(byteOne,byteTwo);
-    byteOne = spiDataIn(SPI0);
-    byteTwo = spiDataIn(SPI0);
+    byteOne = spiDataIn(GYRO_SPI);
+    byteTwo = spiDataIn(GYRO_SPI);
     int16_t gyroYint = twosComp(byteOne,byteTwo);
-    byteOne = spiDataIn(SPI0);
-    byteTwo = spiDataIn(SPI0);
+    byteOne = spiDataIn(GYRO_SPI);
+    byteTwo = spiDataIn(GYRO_SPI);
     int16_t gyroZint = twosComp(byteOne,byteTwo);
     pinHigh(cs_gyro);
 

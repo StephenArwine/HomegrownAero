@@ -51,6 +51,7 @@ C_SRCS +=  \
 ../src/clocks.c \
 ../src/flight.c \
 ../src/ground.c \
+../src/igniter.c \
 ../src/kalman.c \
 ../src/log.c \
 ../src/sample.c \
@@ -79,6 +80,7 @@ buzzer.o \
 clocks.o \
 flight.o \
 ground.o \
+igniter.o \
 kalman.o \
 log.o \
 sample.o \
@@ -100,6 +102,7 @@ buzzer.o \
 clocks.o \
 flight.o \
 ground.o \
+igniter.o \
 kalman.o \
 log.o \
 sample.o \
@@ -121,6 +124,7 @@ buzzer.d \
 clocks.d \
 flight.d \
 ground.d \
+igniter.d \
 kalman.d \
 log.d \
 sample.d \
@@ -142,6 +146,7 @@ buzzer.d \
 clocks.d \
 flight.d \
 ground.d \
+igniter.d \
 kalman.d \
 log.d \
 sample.d \
@@ -165,6 +170,8 @@ LINKER_SCRIPT_DEP+=  \
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 

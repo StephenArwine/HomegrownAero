@@ -4,12 +4,9 @@
 
 void IMUinit() {
 
-    uint8_t dummy_Tx = 0xFF;
-    uint8_t dummy_rx;
-
     pinLow(cs_accel);
-    spiDataTransfer(SPI0, BMI_ACCEL_PMU_RANGE);
-    spiDataTransfer(SPI0, BMI_ACCEL_16G_RANGE);
+    spiDataOut(SPI0, BMI_ACCEL_PMU_RANGE);
+    spiDataOut(SPI0, BMI_ACCEL_16G_RANGE);
     pinHigh(cs_accel);
 
 }
@@ -69,7 +66,6 @@ void finishFlight() {
 }
 
 void POST() {
-    uint8_t dummy_rx;
     uint8_t dummy_Tx = 0xFF;
 
     bool postFailed = false;
@@ -84,20 +80,20 @@ void POST() {
 
     //Memory Post
     pinLow(cs_mem);
-    dummy_rx = spiDataTransfer(SPI1,0x9f); // read id and mfg code
-    u8_t mfgID = spiDataTransfer(SPI1,dummy_Tx);
-    u8_t deviceID1 = spiDataTransfer(SPI1,dummy_Tx);
-    u8_t deviceID2 = spiDataTransfer(SPI1,dummy_Tx);
+    spiDataOut(SPI1,0x9f); // read id and mfg code
+    u8_t mfgID = spiDataIn(SPI1);
+    u8_t deviceID1 = spiDataIn(SPI1);
+    u8_t deviceID2 = spiDataIn(SPI1);
     pinHigh(cs_mem);
 
-    if ( mfgID != 0x1f & deviceID1 != 0x86 & deviceID2 != 0x01) {
+    if ( (mfgID != 0x1f) & (deviceID1 != 0x86) & (deviceID2 != 0x01)) {
         postFailed = true;
         failType = 2;
     }
 
     //Accelerometer Post
     pinLow(cs_accel);
-    dummy_rx = spiDataTransfer(SPI0, BMI055_BGW_CHIPID | BMI055_READ_REG);
+    spiDataOut(SPI0, BMI055_BGW_CHIPID | BMI055_READ_REG);
     u8_t accelID = spiDataTransfer(SPI0,dummy_Tx);
     pinHigh(cs_accel);
 
@@ -108,7 +104,7 @@ void POST() {
 
     //Gyro Post
     pinLow(cs_gyro);
-    dummy_rx = spiDataTransfer(SPI0, BMI055_BGW_CHIPID | BMI055_READ_REG);
+    spiDataOut(SPI0, BMI055_BGW_CHIPID | BMI055_READ_REG);
     u8_t gyroID = spiDataTransfer(SPI0,dummy_Tx);
     pinHigh(cs_gyro);
 

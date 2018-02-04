@@ -102,6 +102,8 @@ void logEvent(u8_t eventType) {
 
 void logSensors() {
 
+    writeLog = false;
+
     u8_t bytesToSend = 24;
     u8_t dataToSend[24];
 

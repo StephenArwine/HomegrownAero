@@ -54,10 +54,21 @@ void init() {
     pinOut(fireDPin);
     pinLow(fireDPin);
 
-    charges.Afired = false;
-    charges.Bfired = false;
-    charges.Cfired = false;
-    charges.Dfired = false;
+    charges.igniterAHot = false;
+    charges.igniterAMain = false;
+    charges.igniterADrogue = false;
+
+    charges.igniterBHot = false;
+    charges.igniterBMain = false;
+    charges.igniterBDrogue = false;
+
+    charges.igniterCHot = false;
+    charges.igniterCMain = false;
+    charges.igniterCDrogue = false;
+
+    charges.igniterDHot = false;
+    charges.igniterDMain = false;
+    charges.igniterDDrogue = false;
 
     pinOut(spi0MOSI);
     pinOut(spi0SCK);
@@ -133,13 +144,16 @@ int main(void) {
     isItPointingUp();
 
     beep(400);
-	
+
     startupTick = millis();
+
+    pinLow(fireAPin);
 
     while (1) {
         if (takeSample()) {
             sampleTick();
             flight();
+            igniterTick();
             computeKalmanStates();
 
         }
