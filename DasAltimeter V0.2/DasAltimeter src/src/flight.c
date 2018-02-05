@@ -15,6 +15,7 @@ void flight() {
             findNewFlightStart( );
             logFlight( );
             startupJingle();
+            startupTick = millis();
             flightState = flightTest;
             //flightState = flightPad;
             break;

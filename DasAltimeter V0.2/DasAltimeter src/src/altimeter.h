@@ -83,7 +83,7 @@ typedef struct Altimeter {
 
     u8_t flightNumb;
 
-    u32_t flightTime;
+    //u32_t flightTime;
 
     bool pointingUp;
 

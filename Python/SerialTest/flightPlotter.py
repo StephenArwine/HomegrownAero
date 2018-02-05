@@ -21,8 +21,6 @@ def PlotFlight(pointList, flight, eventList):
 
     for pointToPlot in pointList:
 
-        pointToPlot.sampleTick = pointToPlot.sampleTick - flight.bufferTick
-
         if x == 0:
 
             print('Sample 0 tick:', pointToPlot.sampleTick, 'Height Feet:', 'Velocity:', pointToPlot.velocity, 'AccelZ:', pointToPlot.accelZ)
