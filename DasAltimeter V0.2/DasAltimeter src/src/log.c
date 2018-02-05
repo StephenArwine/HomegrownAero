@@ -219,7 +219,6 @@ bool isFlightLogged(u8_t flightNumbToCheck) {
 }
 
 
-
 void writeFlightEndAddress() {
 
     u32_t endingAddress = currentAddress;
@@ -243,7 +242,6 @@ void findNewFlightStart() {
 
             if (flightNumbToCheck > 0) {
 
-
                 u32_t startAddress = FindFlightEndingAddress(flightNumbToCheck - 1);
                 delay_ms(5);
 
@@ -259,7 +257,7 @@ void findNewFlightStart() {
                 u8_t address[3] = {0x00,0x10,0x00};
                 AT25SFWriteBytes(FLIGHTZEROSTART, 3, address);
                 currentAddress = 0x001000;
-                beep(1500);
+                beep(1000);
             }
             flightNumb = flightNumbToCheck;
 

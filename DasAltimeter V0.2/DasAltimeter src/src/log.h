@@ -36,7 +36,7 @@ void logFlight();
 
 void writeFlightEndAddress();
 u32_t getFlightStartAddress(u8_t flightToFind);
-bool isFlightLogged( u8_t flightNumbToCheck);
+bool isFlightLogged(u8_t flightNumbToCheck);
 u32_t findNextBlankPage(u8_t lastFlightStart);
 u32_t FindFlightEndingAddress(u8_t findThisFlightsEnd);
 void findNewFlightStart();

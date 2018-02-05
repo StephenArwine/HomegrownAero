@@ -53,8 +53,8 @@ CHAN_SETTINGS_Type channel_B_settings;
 CHAN_SETTINGS_Type channel_C_settings;
 CHAN_SETTINGS_Type channel_D_settings;
 
-void getChannelSettings();
-void putChannelSettings();
+#define MAIN_t 0
+#define DROGUE_t 1
 
 typedef struct {
 
@@ -71,13 +71,19 @@ typedef struct {
     deploymentChannel_t channelBSettings;
     deploymentChannel_t channelCSettings;
     deploymentChannel_t channelDSettings;
-	u16_t MAIN_DEPLOY;
+    u16_t MAIN_DEPLOY;
 
 
 } deploymentSettings_t;
 
 extern deploymentSettings_t deploymentSettings;
 deploymentSettings_t deploymentSettings;
+
+void applyDefaultSettings();
+
+void putSettings();
+
+void findMainAltitude();
 
 void getSettings();
 

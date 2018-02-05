@@ -35,32 +35,32 @@ void igniterTick() {
 
 void igniteMain() {
 
-    if ((charges.igniterAMain = true)) {
+    if (deploymentSettings.channelASettings.ENABLED & (deploymentSettings.channelASettings.TYPE == MAIN_t)) {
         lightIgniterA();
     }
-    if ((charges.igniterBMain = true)) {
+    if(deploymentSettings.channelBSettings.ENABLED & (deploymentSettings.channelBSettings.TYPE == MAIN_t)) {
         lightIgniterB();
     }
-    if ((charges.igniterCMain = true)) {
+    if (deploymentSettings.channelCSettings.ENABLED & (deploymentSettings.channelCSettings.TYPE == MAIN_t)) {
         lightIgniterC();
     }
-    if ((charges.igniterDMain = true)) {
+    if (deploymentSettings.channelDSettings.ENABLED & (deploymentSettings.channelDSettings.TYPE == MAIN_t)) {
         lightIgniterD();
     }
 }
 
 void igniteDrogue() {
 
-    if ((charges.igniterADrogue = true)) {
+    if (deploymentSettings.channelASettings.ENABLED & (deploymentSettings.channelASettings.TYPE == DROGUE_t)) {
         lightIgniterA();
     }
-    if ((charges.igniterBDrogue = true)) {
+    if (deploymentSettings.channelBSettings.ENABLED & (deploymentSettings.channelBSettings.TYPE == DROGUE_t)) {
         lightIgniterB();
     }
-    if ((charges.igniterCDrogue = true)) {
+    if (deploymentSettings.channelCSettings.ENABLED & (deploymentSettings.channelCSettings.TYPE == DROGUE_t)) {
         lightIgniterC();
     }
-    if ((charges.igniterDDrogue = true)) {
+    if (deploymentSettings.channelDSettings.ENABLED & (deploymentSettings.channelDSettings.TYPE == DROGUE_t)) {
         lightIgniterD();
     }
 }

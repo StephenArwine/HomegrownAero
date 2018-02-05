@@ -21,20 +21,18 @@ void attemptConnection() {
                 if (isFlightLogged(flightLog)) {
 
                     usartDataOut(USART3, flightLog);
-                    usartDataOut(USART3, flightLog >> 8);
-
                 }
             }
             //done sending flight numbers
-            usartDataOut(USART3, 0x1F);
+            usartDataOut(USART3, 0xFF);
 
             //wait for user to pick which flight to read
             while(sercom(USART3)->SPI.INTFLAG.bit.RXC == 0);
-            u8_t flightToRead = usartDataIn(USART3) - 0x30;
+            volatile u8_t flightToRead = usartDataIn(USART3);
 
 
             u32_t flightStartAddress = getFlightStartAddress(flightToRead);
-            u32_t flightEndAddress = FindFlightEndingAddress(flightToRead) - 0x100;
+            u32_t flightEndAddress = FindFlightEndingAddress(flightToRead);
 
             //inform of page numbers
             u16_t pagesToSend = (flightEndAddress  - flightStartAddress) >> 8;

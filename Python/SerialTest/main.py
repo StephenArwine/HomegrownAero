@@ -66,17 +66,17 @@ def DownloadFlightData():
 
     allFlightsNotFound = 1
     while allFlightsNotFound:
-        flightNumb = ser.read(2)
+        flightNumb = ser.read(1)
 
-        if flightNumb == b'\x1F':
+        if flightNumb == b'\xFF':
             break
         else:
-            print('    ', flightNumb.decode('utf-8'))
+            print('    ', int.from_bytes(flightNumb, byteorder= 'big'))
 
     print('')
     flightToRead = input(' ')
     print('')
-    ser.write(flightToRead.encode('utf-8'))
+    ser.write(int(flightToRead).to_bytes(1, byteorder='big'))
 
     StartTime = time.clock()
 

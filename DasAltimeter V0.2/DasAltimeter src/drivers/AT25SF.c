@@ -140,14 +140,12 @@ void AT25SEreadSample(u32_t startingAddress, u8_t len, u8_t *data) {
 
 void AT25SEreadPage(u32_t startingAddress, u8_t *data) {
 
-
     pinLow(cs_mem);
     spiDataOut(MEM_SPI,OPCODE_FASTREAD_ARRAY);
     spiDataOut(MEM_SPI,((startingAddress & 0xFF0000) >> 16));
     spiDataOut(MEM_SPI,((startingAddress & 0x00FF00) >>  8));
     spiDataOut(MEM_SPI,((startingAddress & 0x0000FF) >>  0));
     spiDataOut(MEM_SPI, 0xFF);
-
 
     for (u16_t pos = 0; pos < 256; ++pos) {
         data[pos] = spiDataIn(MEM_SPI);

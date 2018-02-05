@@ -55,20 +55,9 @@ void init() {
     pinLow(fireDPin);
 
     charges.igniterAHot = false;
-    charges.igniterAMain = false;
-    charges.igniterADrogue = false;
-
     charges.igniterBHot = false;
-    charges.igniterBMain = false;
-    charges.igniterBDrogue = false;
-
     charges.igniterCHot = false;
-    charges.igniterCMain = false;
-    charges.igniterCDrogue = false;
-
     charges.igniterDHot = false;
-    charges.igniterDMain = false;
-    charges.igniterDDrogue = false;
 
     pinOut(spi0MOSI);
     pinOut(spi0SCK);
@@ -143,11 +132,11 @@ int main(void) {
 
     isItPointingUp();
 
+    getSettings();
+
     beep(400);
 
     startupTick = millis();
-
-    pinLow(fireAPin);
 
     while (1) {
         if (takeSample()) {
