@@ -2,6 +2,24 @@
 #include <boardDefines.h>
 
 
+void findMainAltitude() {
+
+    if (deploymentSettings.channelASettings.ENABLED & deploymentSettings.channelASettings.TYPE == MAIN_t) {
+        deploymentSettings.MAIN_DEPLOY = deploymentSettings.channelASettings.MAIN_DEPLOY;
+    }
+    if ((deploymentSettings.channelBSettings.ENABLED & deploymentSettings.channelBSettings.TYPE == MAIN_t)) {
+        deploymentSettings.MAIN_DEPLOY = deploymentSettings.channelBSettings.MAIN_DEPLOY;
+    }
+    if ((deploymentSettings.channelCSettings.ENABLED & deploymentSettings.channelCSettings.TYPE == MAIN_t)) {
+        deploymentSettings.MAIN_DEPLOY = deploymentSettings.channelCSettings.MAIN_DEPLOY;
+    }
+    if ((deploymentSettings.channelDSettings.ENABLED & deploymentSettings.channelDSettings.TYPE == MAIN_t)) {
+        deploymentSettings.MAIN_DEPLOY = deploymentSettings.channelDSettings.MAIN_DEPLOY;
+    }
+
+
+}
+
 void applyDefaultSettings() {
 
     deploymentSettings.channelASettings.ENABLED = true;
@@ -31,26 +49,26 @@ void putSettings() {
 
     settings[0] = deploymentSettings.channelASettings.ENABLED;
     settings[1] = deploymentSettings.channelASettings.TYPE;
-    settings[2] = deploymentSettings.channelASettings.MAIN_DEPLOY << 0;
-    settings[3] = deploymentSettings.channelASettings.MAIN_DEPLOY << 8;
+    settings[2] = deploymentSettings.channelASettings.MAIN_DEPLOY >> 8;
+    settings[3] = deploymentSettings.channelASettings.MAIN_DEPLOY >> 0;
     settings[4] = deploymentSettings.channelASettings.APPOGE_DELAY;
 
     settings[5] = deploymentSettings.channelBSettings.ENABLED;
     settings[6] = deploymentSettings.channelBSettings.TYPE;
-    settings[7] = deploymentSettings.channelBSettings.MAIN_DEPLOY << 0;
-    settings[8] = deploymentSettings.channelBSettings.MAIN_DEPLOY << 8;
+    settings[7] = deploymentSettings.channelBSettings.MAIN_DEPLOY >> 8;
+    settings[8] = deploymentSettings.channelBSettings.MAIN_DEPLOY >> 0;
     settings[9] = deploymentSettings.channelBSettings.APPOGE_DELAY;
 
     settings[10] = deploymentSettings.channelCSettings.ENABLED;
     settings[11] = deploymentSettings.channelCSettings.TYPE;
-    settings[12] = deploymentSettings.channelCSettings.MAIN_DEPLOY << 0;
-    settings[13] = deploymentSettings.channelCSettings.MAIN_DEPLOY << 8;
+    settings[12] = deploymentSettings.channelCSettings.MAIN_DEPLOY >> 8;
+    settings[13] = deploymentSettings.channelCSettings.MAIN_DEPLOY >> 0;
     settings[14] = deploymentSettings.channelCSettings.APPOGE_DELAY;
 
     settings[15] = deploymentSettings.channelDSettings.ENABLED;
     settings[16] = deploymentSettings.channelDSettings.TYPE;
-    settings[17] = deploymentSettings.channelDSettings.MAIN_DEPLOY << 0;
-    settings[18] = deploymentSettings.channelDSettings.MAIN_DEPLOY << 8;
+    settings[17] = deploymentSettings.channelDSettings.MAIN_DEPLOY >> 8;
+    settings[18] = deploymentSettings.channelDSettings.MAIN_DEPLOY >> 0;
     settings[19] = deploymentSettings.channelDSettings.APPOGE_DELAY;
 
     settings[20] = 0x00;
@@ -58,23 +76,7 @@ void putSettings() {
     AT25SEWritePage(0x00,settings);
 }
 
-void findMainAltitude() {
 
-    if (deploymentSettings.channelASettings.ENABLED & deploymentSettings.channelASettings.TYPE == MAIN_t) {
-        deploymentSettings.MAIN_DEPLOY = deploymentSettings.channelASettings.MAIN_DEPLOY;
-    }
-    if ((deploymentSettings.channelBSettings.ENABLED & deploymentSettings.channelBSettings.TYPE == MAIN_t)) {
-        deploymentSettings.MAIN_DEPLOY = deploymentSettings.channelBSettings.MAIN_DEPLOY;
-    }
-    if ((deploymentSettings.channelCSettings.ENABLED & deploymentSettings.channelCSettings.TYPE == MAIN_t)) {
-        deploymentSettings.MAIN_DEPLOY = deploymentSettings.channelCSettings.MAIN_DEPLOY;
-    }
-    if ((deploymentSettings.channelDSettings.ENABLED & deploymentSettings.channelDSettings.TYPE == MAIN_t)) {
-        deploymentSettings.MAIN_DEPLOY = deploymentSettings.channelDSettings.MAIN_DEPLOY;
-    }
-
-
-}
 
 
 void getSettings() {
@@ -85,22 +87,22 @@ void getSettings() {
 
     deploymentSettings.channelASettings.ENABLED = settings[0];
     deploymentSettings.channelASettings.TYPE = settings[1];
-    deploymentSettings.channelASettings.MAIN_DEPLOY = settings[2] | settings[3] << 8;
+    deploymentSettings.channelASettings.MAIN_DEPLOY = settings[2] << 8 | (settings[3]);
     deploymentSettings.channelASettings.APPOGE_DELAY = settings[4];
 
     deploymentSettings.channelBSettings.ENABLED = settings[5];
     deploymentSettings.channelBSettings.TYPE = settings[6];
-    deploymentSettings.channelBSettings.MAIN_DEPLOY = settings[7] | settings[8] << 8;
+    deploymentSettings.channelBSettings.MAIN_DEPLOY = settings[7] << 8 | (settings[8]);
     deploymentSettings.channelBSettings.APPOGE_DELAY = settings[9];
 
     deploymentSettings.channelCSettings.ENABLED = settings[10];
     deploymentSettings.channelCSettings.TYPE = settings[11];
-    deploymentSettings.channelCSettings.MAIN_DEPLOY = settings[12] | settings[13] << 8;
+    deploymentSettings.channelCSettings.MAIN_DEPLOY = settings[12] << 8 | (settings[13]);
     deploymentSettings.channelCSettings.APPOGE_DELAY = settings[14];
 
     deploymentSettings.channelDSettings.ENABLED = settings[15];
     deploymentSettings.channelDSettings.TYPE = settings[16];
-    deploymentSettings.channelDSettings.MAIN_DEPLOY = settings[17] | settings[18] << 8;
+    deploymentSettings.channelDSettings.MAIN_DEPLOY = settings[17] << 8 | (settings[18]);
     deploymentSettings.channelDSettings.APPOGE_DELAY = settings[19];
 
 

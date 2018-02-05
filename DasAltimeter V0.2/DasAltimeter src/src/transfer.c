@@ -50,9 +50,14 @@ void attemptConnection() {
         }
         //user wants to erase chip
         if (option == 0x45) { // 'E'
+
+            //getSettings();
+			
             AT25SFChipErase();
 
             AT25SFHoldTillReady();
+
+            //getSettings();
 
             usartDataOut(USART3, 'E');
             beep(400);
