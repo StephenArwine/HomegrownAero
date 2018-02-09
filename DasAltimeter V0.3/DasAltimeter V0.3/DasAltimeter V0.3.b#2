@@ -534,6 +534,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="-1.1303" y1="-1.4224" x2="1.9177" y2="-1.4224" width="0.127" layer="21"/>
 <wire x1="1.9177" y1="1.4986" x2="-1.1303" y2="1.4986" width="0.127" layer="21"/>
 <text x="-1.5113" y="1.6891" size="0.6096" layer="21">&gt;NAME</text>
+<rectangle x1="0" y1="-1.27" x2="1.27" y2="1.27" layer="39"/>
 </package>
 <package name="AT25SF081">
 <smd name="!CS" x="-3" y="2.54" dx="1.27" dy="0.635" layer="1"/>

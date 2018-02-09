@@ -35,6 +35,7 @@ typedef uint8_t SercomId;
 #include <altimeter.h>
 #include <log.h>
 #include <flight.h>
+#include <settings.h>
 
 
 
@@ -52,6 +53,15 @@ inline static Sercom* sercom(SercomId id) {
     return (Sercom*) (0x42000800U + id * 1024);
 }
 
+//igniter.c
+void igniterTick();
+void igniteDrogue();
+void igniteMain();
+void lightIgniterA();
+void lightIgniterB();
+void lightIgniterC();
+void lightIgniterD();
+
 
 
 //clocks.c
@@ -67,6 +77,7 @@ void TC5Init();
 
 //ground.c
 void updateGround();
+void isItPointingUp();
 
 //sercom.c
 void sercomClockEnable(SercomId id, uint32_t clock_channel, u8_t divider);

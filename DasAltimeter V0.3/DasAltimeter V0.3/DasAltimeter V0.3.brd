@@ -1931,15 +1931,15 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <contactref element="IC1" pad="14"/>
 <contactref element="R23" pad="2"/>
 <contactref element="U1" pad="19"/>
-<wire x1="27.36" y1="-0.889" x2="27.757" y2="-0.873" width="0.254" layer="1"/>
-<wire x1="27.757" y1="-0.873" x2="26.543" y2="-0.746" width="0.254" layer="1"/>
-<wire x1="26.543" y1="-0.746" x2="25.6465" y2="-0.873" width="0.254" layer="1"/>
+<wire x1="27.36" y1="-0.889" x2="27.376" y2="-0.873" width="0.254" layer="1"/>
+<wire x1="27.376" y1="-0.873" x2="26.543" y2="-0.873" width="0.254" layer="1"/>
+<wire x1="26.543" y1="-0.873" x2="25.6465" y2="-0.873" width="0.254" layer="1"/>
 <wire x1="22.739978125" y1="4.791571875" x2="23.46755" y2="4.064" width="0.254" layer="1"/>
 <wire x1="23.46755" y1="4.064" x2="23.876" y2="4.064" width="0.254" layer="1"/>
 <via x="23.876" y="4.064" extent="1-16" drill="0.35"/>
 <wire x1="23.876" y1="4.064" x2="26.543" y2="1.397" width="0.254" layer="16"/>
-<via x="26.543" y="-0.746" extent="1-16" drill="0.35"/>
-<wire x1="26.543" y1="1.397" x2="26.543" y2="-0.746" width="0.254" layer="16"/>
+<via x="26.543" y="-0.873" extent="1-16" drill="0.35"/>
+<wire x1="26.543" y1="1.397" x2="26.543" y2="-0.873" width="0.254" layer="16"/>
 </signal>
 <signal name="SPI0_MOSI">
 <contactref element="IC1" pad="9"/>

@@ -11,10 +11,18 @@ void IMUinit();
 
 typedef struct deploymentCharges {
 
-    bool Afired;
-    bool Bfired;
-    bool Cfired;
-    bool Dfired;
+    bool igniterAHot;
+    u32_t igniterATick;
+
+    bool igniterBHot;
+    u32_t igniterBTick;
+
+    bool igniterCHot;
+    u32_t igniterCTick;
+
+    bool igniterDHot;
+    u32_t igniterDTick;
+
 
 } deploymentCharges;
 
@@ -75,7 +83,9 @@ typedef struct Altimeter {
 
     u8_t flightNumb;
 
-    u32_t flightTime;
+    //u32_t flightTime;
+
+    bool pointingUp;
 
 
 } Altimeter;
@@ -92,6 +102,8 @@ int32_t altitudeAGL();
 bool unplugged();
 
 void finishFlight();
+
+void POST();
 
 #endif
 

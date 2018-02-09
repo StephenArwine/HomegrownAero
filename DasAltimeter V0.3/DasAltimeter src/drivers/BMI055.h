@@ -2,7 +2,7 @@
 
 
 
-
+#define BMI055_BGW_CHIPID 0x00
 #define BMI055_X_ACC_LSB 0X02
 #define BMI055_X_ACC_MSB 0X03
 #define BMI055_Y_ACC_LSB 0X04

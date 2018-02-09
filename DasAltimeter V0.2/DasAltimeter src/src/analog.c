@@ -24,7 +24,7 @@ void adcInit() {
             (*(uint64_t *)ADC_FUSES_LINEARITY_0_ADDR >> ADC_FUSES_LINEARITY_0_Pos)
         );
 
-    ADC->REFCTRL.reg = ADC_REFCTRL_REFSEL_INTVCC1;
+    ADC->REFCTRL.reg = ADC_REFCTRL_REFSEL_INTVCC0;
 
     ADC->CTRLA.reg = ADC_CTRLA_ENABLE; // enable
     while(ADC->STATUS.reg & ADC_STATUS_SYNCBUSY);

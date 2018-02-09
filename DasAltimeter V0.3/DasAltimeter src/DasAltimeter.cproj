@@ -231,6 +231,10 @@
       <SubType>compile</SubType>
       <Link>ground.c</Link>
     </Compile>
+    <Compile Include="src\igniter.c">
+      <SubType>compile</SubType>
+      <Link>igniter.c</Link>
+    </Compile>
     <Compile Include="src\kalman.c">
       <SubType>compile</SubType>
       <Link>kalman.c</Link>

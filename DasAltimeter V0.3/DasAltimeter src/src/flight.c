@@ -6,20 +6,16 @@ flightState_t flightState;
 
 void flight() {
 
-
     switch(flightState) {
     case flightStatrup:
 
-
         updateGround( );
-
-        //logSensors( );
-
 
         if ((millis() - startupTick) > 10000) {
             findNewFlightStart( );
             logFlight( );
             startupJingle();
+            startupTick = millis();
             flightState = flightTest;
             //flightState = flightPad;
             break;
@@ -34,7 +30,6 @@ void flight() {
 
         break;
     case flightIdle:
-
         //TC4->COUNT8.CTRLA.reg = 0;
         //TC5->COUNT8.CTRLA.reg = 0;
 
@@ -52,24 +47,23 @@ void flight() {
     case flightPad:
         /* from pad to boost
         *  initial trigger attempt will be
-        *  Accel > 2g & vel > 5m/s
+        *  Accel > 2g & vel > 15ft/s
         *		 or
-        *  baro alt > 40ft
+        *  baro alt > 100ft
         */
 
         updateGround();
 
         if (writeLog) {
-            writeLog = false;
             //logSensors( );
             pinToggle(LedPin);
         }
 
-        if (( velocity > 0.05) && (altitudeAGL() > 5)) {
+
+        if ((( velocity > 15) && (accel > 2)) | (altitudeAGL() > 100)) {
             flightState = flightBoost;
             logEvent('L');
         }
-
 
         break;
     case flightBoost:
@@ -78,27 +72,16 @@ void flight() {
         *		while
         *	Accel > 1/4G
         */
-
         if (writeLog) {
-            writeLog = false;
             logSensors( );
-            if (pageReady) {
-                pageReady = false;
-                pinToggle(LedPin);
-                u8_t bytesWritten = AT25SEWritePage(currentAddress,pageToWrite);
-                currentAddress = (currentAddress + 0x100);
-            }
         }
-
 
         if (velocity < 0) {
             flightState = flightDrogue;
+            igniteDrogue();
             logEvent('A');
             beep(100);
-
         }
-
-
 
         break;
     case flightFast:
@@ -108,7 +91,6 @@ void flight() {
 
         break;
     case flightCoast:
-
         /* Coast to drogue
         *		while
         *	   speed > 0
@@ -120,21 +102,27 @@ void flight() {
         break;
     case flightDrogue:
 
-
-        if (pageReady) {
-            pageReady = false;
-            pinToggle(LedPin);
-            //AT25SFHoldTillReady();
-            u8_t bytesWritten = AT25SEWritePage(currentAddress,pageToWrite);
-            currentAddress = (currentAddress + 0x100);
+        if (writeLog) {
+            logSensors( );
         }
 
 
+        if (altitude < deploymentSettings.MAIN_DEPLOY) {
+            flightState = flightMain;
+            igniteMain();
+            logEvent('M');
+        }
 
         break;
     case flightMain:
 
+        if (writeLog) {
+            logSensors( );
+        }
 
+        if (velocity < 5) {
+            flightState = flightLanded;
+        }
 
         break;
     case flightLanded:
@@ -143,35 +131,20 @@ void flight() {
 
         break;
     case flightTest:
-
-        /*
-           //simple continuity test
-           if ( (sample.voltage.senseA + sample.voltage.senseB +sample.voltage.senseC +sample.voltage.senseD) > 200) {
-               unpluggedJingle();
-           }
-        */
-
-
-
-        if (writeLog) {
-            writeLog = false;
-            logSensors( );
-            if (pageReady) {
-                pageReady = false;
-
-                pinToggle(LedPin);
-                u8_t bytesWritten = AT25SEWritePage(currentAddress,pageToWrite);
-                currentAddress = (currentAddress + 0x100);
-            }
+        //simple continuity test
+        if ( (sample.voltage.senseA + sample.voltage.senseB +sample.voltage.senseC +sample.voltage.senseD) > 200) {
+            unpluggedJingle();
         }
 
+        if (writeLog) {
+            logSensors( );
+        }
 
         break;
     }
 
-    if (flightState != flightStatrup & flightState != flightIdle & unplugged()) {
+    if ((flightState != flightStatrup) & ((flightState != flightIdle) & unplugged())) {
         finishFlight();
     }
-
 
 }

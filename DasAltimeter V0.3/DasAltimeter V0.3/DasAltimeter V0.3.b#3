@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="8.5.0">
+<eagle version="8.6.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -1356,7 +1356,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <vertex x="-2.794" y="-4.064"/>
 <vertex x="-2.794" y="18.796"/>
 <vertex x="36.068" y="18.796"/>
-<vertex x="34.798" y="-4.064"/>
+<vertex x="36.068" y="-4.064"/>
 </polygon>
 <polygon width="0.254" layer="16">
 <vertex x="-2.794" y="-4.064"/>

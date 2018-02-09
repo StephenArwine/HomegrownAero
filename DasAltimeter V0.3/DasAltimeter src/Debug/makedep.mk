@@ -28,6 +28,8 @@ src\flight.c
 
 src\ground.c
 
+src\igniter.c
+
 src\kalman.c
 
 src\log.c

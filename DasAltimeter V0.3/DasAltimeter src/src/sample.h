@@ -59,4 +59,6 @@ typedef struct sample_t {
 
 }sample_t;
 
-volatile extern sample_t sample;
+extern sample_t sample;
+
+int16_t twosComp(u8_t byteOne, u8_t byteTwo);

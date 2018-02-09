@@ -16,23 +16,23 @@ void attemptConnection() {
         if (option == 0x4C) {
 
             //send list of available flight logs
-            for (u8_t flightLog = 0; flightLog < 11; ++flightLog) {
+            for (u8_t flightLog = 0; flightLog < 20; ++flightLog) {
 
                 if (isFlightLogged(flightLog)) {
 
-                    usartDataOut(USART3, flightLog + 0x30);
+                    usartDataOut(USART3, flightLog);
                 }
             }
             //done sending flight numbers
-            usartDataOut(USART3, 0x0F);
+            usartDataOut(USART3, 0xFF);
 
             //wait for user to pick which flight to read
             while(sercom(USART3)->SPI.INTFLAG.bit.RXC == 0);
-            u8_t flightToRead = usartDataIn(USART3) - 0x30;
+            volatile u8_t flightToRead = usartDataIn(USART3);
 
 
             u32_t flightStartAddress = getFlightStartAddress(flightToRead);
-            u32_t flightEndAddress = FindFlightEndingAddress(flightToRead) - 0x100;
+            u32_t flightEndAddress = FindFlightEndingAddress(flightToRead);
 
             //inform of page numbers
             u16_t pagesToSend = (flightEndAddress  - flightStartAddress) >> 8;
@@ -50,9 +50,14 @@ void attemptConnection() {
         }
         //user wants to erase chip
         if (option == 0x45) { // 'E'
+
+            //getSettings();
+			
             AT25SFChipErase();
 
             AT25SFHoldTillReady();
+
+            //getSettings();
 
             usartDataOut(USART3, 'E');
             beep(400);

@@ -5,6 +5,11 @@
 #define SPI2 2
 #define  USART3 3
 
+#define MEM_SPI SPI1
+#define BARO_SPI SPI2
+#define GYRO_SPI SPI0
+#define ACCEL_SPI SPI0
+
 
 //dasAltimeter
 
@@ -47,7 +52,7 @@ const static Pin fireCPin = {.group = 0, .pin = 25};
 const static Pin senseDPin = {.group = 0, .pin = 2, .chan = 0, .mux = MUX_PA02B_ADC_AIN0};
 const static Pin fireDPin = {.group = 0, .pin = 24};
 
-const static Pin analogAccelPin = {.group = 0, .pin = 7, .chan = 7};
+const static Pin analogAccelPin = {.group = 0, .pin = 7, .chan = 7, .mux = MUX_PA07B_ADC_AIN7};
 
 
 #define FLIGHTZEROSTART 0x100

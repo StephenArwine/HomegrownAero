@@ -545,11 +545,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <smd name="SCK" x="3" y="0" dx="1.27" dy="0.635" layer="1"/>
 <smd name="SI" x="3" y="-1.27" dx="1.27" dy="0.635" layer="1"/>
 <text x="-3.31" y="3.565" size="1.27" layer="21">&gt;NAME</text>
-<wire x1="-1.905" y1="1.905" x2="-1.905" y2="-1.27" width="0.127" layer="21"/>
-<wire x1="-1.905" y1="-1.27" x2="1.905" y2="-1.27" width="0.127" layer="21"/>
-<wire x1="1.905" y1="-1.27" x2="1.905" y2="2.54" width="0.127" layer="21"/>
-<wire x1="-1.905" y1="1.905" x2="-1.27" y2="2.54" width="0.127" layer="21"/>
-<wire x1="-1.27" y1="2.54" x2="1.905" y2="2.54" width="0.127" layer="21"/>
+<wire x1="-1.905" y1="-1.778" x2="1.905" y2="-1.778" width="0.127" layer="21"/>
+<wire x1="-2.032" y1="3.048" x2="1.905" y2="3.048" width="0.127" layer="21"/>
+<circle x="-1.905" y="2.54" radius="0.254" width="0.127" layer="21"/>
+<circle x="-1.905" y="2.54" radius="0.127" width="0.254" layer="21"/>
 </package>
 </packages>
 </library>
@@ -1280,7 +1279,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <attribute name="PROD_ID" value="CAP-13210" x="17.907" y="4.318" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="17.907" y="3.556" size="0.6096" layer="27" font="vector" ratio="20" align="top-center"/>
 </element>
-<element name="U$2" library="SaL-lib1" package="AT25SF081" value="AT25SF081" x="30.607" y="17.399" rot="R270"/>
+<element name="U$2" library="SaL-lib1" package="AT25SF081" value="AT25SF081" x="30.607" y="17.399" smashed="yes" rot="R270"/>
 </elements>
 <signals>
 <signal name="GND">

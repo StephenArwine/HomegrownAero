@@ -128,7 +128,7 @@ int main(void) {
 
     sampleTick();
 
-    POST();
+   // POST();
 
     isItPointingUp();
 

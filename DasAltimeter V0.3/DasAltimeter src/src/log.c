@@ -102,6 +102,8 @@ void logEvent(u8_t eventType) {
 
 void logSensors() {
 
+    writeLog = false;
+
     u8_t bytesToSend = 24;
     u8_t dataToSend[24];
 
@@ -126,18 +128,17 @@ void logSensors() {
     dataToSend[12] = fractAccelPart >> 8;
 
 
-    volatile float fractionalVelocity = velocity - (int16_t)(velocity);
-    volatile int16_t fractVelocityPart = fractionalVelocity * 1000;
-	volatile int16_t wholePart = (int16_t)(velocity);
+    float fractionalVelocity = velocity - (int16_t)(velocity);
+    int16_t fractVelocityPart = fractionalVelocity * 1000;
 
     dataToSend[13] = (int16_t)(velocity) >> 0;
     dataToSend[14] = (int16_t)(velocity) >> 8;
     dataToSend[15] = fractVelocityPart >> 0;
     dataToSend[16] = fractVelocityPart >> 8;
 
-    if ( (fractVelocityPart < 0 & (int16_t)(velocity) > 0) | (fractVelocityPart > 0 & (int16_t)(velocity) < 0) ) {
-        beep(200);
-    }
+//     if ( ((fractVelocityPart < 0) & ((int16_t)(velocity) > 0)) | ((fractVelocityPart > 0) & ((int16_t)(velocity) < 0)) ) {
+//         beep(200);
+//     }
 
     dataToSend[17] = (u32_t)sample.altitudefeet >> 0;
     dataToSend[18] = (u32_t)sample.altitudefeet >> 8;
@@ -145,11 +146,11 @@ void logSensors() {
     dataToSend[20] = (u32_t)sample.altitudefeet >> 24;
 
     float fractionalAccelraw = sample.accelZ - (int16_t)(sample.accelZ);
-    u8_t fractAccelRawPart = fractionalAccelraw * 256;
+    u8_t fractAccelRawPart = fractionalAccelraw;
 
     dataToSend[21] = (int16_t)(sample.accelZ) >> 0;
     dataToSend[22] = (int16_t)(sample.accelZ) >> 8;
-    dataToSend[23] = fractAccelRawPart >> 0;
+    dataToSend[23] = fractAccelRawPart;
 
     //dataToSend[9] = my_altimeter->myIMU.accelXRaw >> 0;
     //dataToSend[10] = my_altimeter->myIMU.accelXRaw >> 8;
@@ -166,34 +167,16 @@ void logSensors() {
     //dataToSend[21] = my_altimeter->myAnalogAccelerometer.analogRaw >> 0;
     //dataToSend[22] = my_altimeter->myAnalogAccelerometer.analogRaw >> 8;
 
-    /*
-     dataToSend[1] = 0xff;
-     dataToSend[2] = 0xff;
-     dataToSend[3] = 0xff;
-     dataToSend[4] = 0xff;
-     dataToSend[5] = 0xff;
-     dataToSend[6] = 0xff;
-     dataToSend[7] = 0xff;
-     dataToSend[8] = 0xff;
-     dataToSend[9] = 0xff;
-     dataToSend[10] = 0xff;
-     dataToSend[11] = 0xff;
-     dataToSend[12] = 0xff;
-     dataToSend[13] = 0xff;
-     dataToSend[14] = 0xff;
-     dataToSend[15] = 0xff;
-     dataToSend[16] = 0xff;
-     dataToSend[17] = 0xff;
-     dataToSend[18] = 0xff;
-     dataToSend[19] = 0xff;
-     dataToSend[20] = 0xff;
-     dataToSend[21] = 0xfc;
-     dataToSend[22] = 0xfd;
-     dataToSend[23] = 0xfe;
 
-     */
 
     makePage(bytesToSend, dataToSend);
+
+    if (pageReady) {
+        pageReady = false;
+        pinToggle(LedPin);
+        u8_t bytesWritten = AT25SEWritePage(currentAddress,pageToWrite);
+        currentAddress = (currentAddress + 0x100);
+    }
 }
 
 
@@ -236,7 +219,6 @@ bool isFlightLogged(u8_t flightNumbToCheck) {
 }
 
 
-
 void writeFlightEndAddress() {
 
     u32_t endingAddress = currentAddress;
@@ -260,7 +242,6 @@ void findNewFlightStart() {
 
             if (flightNumbToCheck > 0) {
 
-
                 u32_t startAddress = FindFlightEndingAddress(flightNumbToCheck - 1);
                 delay_ms(5);
 
@@ -276,7 +257,7 @@ void findNewFlightStart() {
                 u8_t address[3] = {0x00,0x10,0x00};
                 AT25SFWriteBytes(FLIGHTZEROSTART, 3, address);
                 currentAddress = 0x001000;
-                beep(1500);
+                beep(1000);
             }
             flightNumb = flightNumbToCheck;
 
