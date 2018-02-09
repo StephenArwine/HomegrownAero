@@ -1,0 +1,51 @@
+
+import sys
+from PyQt5 import QtWidgets
+
+class Window(QtWidgets.QWidget):
+
+    def __init__(self):
+        super().__init__()
+
+        self.init_ui()
+
+    def init_ui(self):
+        self.connect_button = QtWidgets.QPushButton('Connect')
+        self.load_button = QtWidgets.QPushButton('Load flight')
+        self.save_button = QtWidgets.QPushButton('Save flight')
+        self.erase_button = QtWidgets.QPushButton('Erase chip')
+        self.download_button = QtWidgets.QPushButton('Download flight')
+
+        self.erase_button.setDisabled(True)
+        self.download_button.setDisabled(True)
+
+
+        self.l = QtWidgets.QLabel('I have not been clicked yet')
+
+        options_box = QtWidgets.QVBoxLayout()
+        options_box.addStretch()
+        options_box.addWidget(self.connect_button)
+        options_box.addWidget(self.load_button)
+        options_box.addWidget(self.save_button)
+        options_box.addSpacing(20)
+        options_box.addWidget(self.download_button)
+
+        options_box.addWidget(self.erase_button)
+
+        h_box = QtWidgets.QHBoxLayout()
+        h_box.addLayout(options_box)
+        h_box.addStretch()
+        self.setLayout(h_box)
+        self.setWindowTitle('PyQt5 Lesson 5')
+
+        ##self.b.clicked.connect(self.btn_click)
+
+        self.show()
+
+    def btn_click(self):
+        self.l.setText('I have been clicked')
+
+
+app = QtWidgets.QApplication(sys.argv)
+a_window = Window()
+sys.exit(app.exec_())
