@@ -24,19 +24,28 @@ void sampleTick() {
     sample.sampleTick = millis() - startupTick;
     sample.tickDelta = sample.sampleTick - lastTick;
 
-    //altimeter.flightTime = sample.sampleTick - offsets.StartupTick;
+    // altimeter.flightTime = sample.sampleTick - offsets.StartupTick;
+
+
 
     sample.voltage.batV = adc_read(senseBatPin);
-    sample.voltage.batFloat = sample.voltage.batV * 0.0019;
+
+    sample.voltage.batFloat = sample.voltage.batV * 0.00259;
 
     sample.voltage.senseA = adc_read(senseAPin);
     sample.voltage.senseB = adc_read(senseBPin);
     sample.voltage.senseC = adc_read(senseCPin);
     sample.voltage.senseD = adc_read(senseDPin);
 
-    sample.analogRaw = adc_read(analogAccelPin);
-    sample.analogAccel = (sample.analogRaw - 3900) * -0.0154;
 
+    ADC->CTRLB.reg |= ADC_CTRLB_RESSEL_16BIT;
+    ADC->AVGCTRL.reg = ADC_AVGCTRL_SAMPLENUM_16;
+
+    sample.analogRaw = adc_read(analogAccelPin);
+    sample.analogAccel = (sample.analogRaw - 48695) * 0.00487;
+
+    ADC->AVGCTRL.reg = ADC_AVGCTRL_SAMPLENUM_1;
+    ADC->CTRLB.reg |= ADC_CTRLB_RESSEL_12BIT;
 
     pinLow(cs_baro);
     spiDataOut(BARO_SPI, 0x50);

@@ -33,9 +33,9 @@ void init() {
 
     pinOut(LedPin);
     pinAnalog(senseBatPin);
-	
-	pinIn(analogAccelPin);
-	pinMux(analogAccelPin);
+
+    pinIn(analogAccelPin);
+    pinMux(analogAccelPin);
 
     pinIn(senseAPin);
     pinMux(senseAPin);
@@ -133,12 +133,12 @@ int main(void) {
 
     POST();
 
-   // isItPointingUp();
+    // isItPointingUp();
 
     getSettings();
 
     beep(400);
-
+	
     startupTick = millis();
 
     while (1) {
