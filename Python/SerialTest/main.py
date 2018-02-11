@@ -1,4 +1,6 @@
+import os
 import serial
+import serial.tools.list_ports
 import twosComp
 import sensorPoint
 import time
@@ -60,6 +62,11 @@ def saveFlightData(data):
             writer.writerow(page)
 
     print('done')
+
+def setPort():
+    ports = list(serial.tools.list_ports.comports())
+    for p in ports:
+        print(p)
 
 
 def DownloadFlightData():
@@ -128,6 +135,8 @@ def EraseChip():
 
 def LoadSavedData():
 
+
+    print('\n')
     print(' Which file would you like to Load?')
     data = []
 
@@ -141,30 +150,41 @@ def LoadSavedData():
 
     toLoad = input('Load : ')
 
-    with open(('logs/' + toLoad), newline='') as myFile:
+    try:
+        with open(('logs/' + toLoad), newline='') as myFile:
 
-        dataIn = csv.reader(myFile)
+            dataIn = csv.reader(myFile)
 
-        for row in dataIn:
-            pointLocation = 0
-            for point in row:
-                row[pointLocation] = int(point)
-                pointLocation += 1
+            for row in dataIn:
+                pointLocation = 0
+                for point in row:
+                    row[pointLocation] = int(point)
+                    pointLocation += 1
 
-            data.append(row)
+                data.append(row)
 
-    StartTime = time.clock()
+        StartTime = time.clock()
 
-    pointList, flight, eventList = processDataLog(data, data.__len__(), StartTime)
-    PlotFlight(pointList, flight, eventList)
+        pointList, flight, eventList = processDataLog(data, data.__len__(), StartTime)
+        PlotFlight(pointList, flight, eventList)
 
+    except IOError:
+        os.system('cls' if os.name == 'nt' else 'clear')
+        print('\n')
+        print('File not found, check file name')
+        LoadSavedData()
+    except:
+        print('generic error')
 
 
 def resetAltimeter():
     print(' Attempting reset')
-    ser.open()
-    ser.write(b'R')
-    ser.close()
+    try:
+        ser.open()
+        ser.write(b'R')
+        ser.close()
+    except serial.SerialException as e:
+        print('Serial port could not be opened, check connection')
 
 
 def connectToAltimeter():
@@ -205,16 +225,23 @@ while running:
     print('     L    Load saved Flight Data.')
     print('     R    Reset Altimeter.')
     print('     C    Connect to Altimeter.')
+    print('     S    Change Serial Port.')
     print(' ')
 
     option = input('Input : ').upper()
     print(' ')
 
     if option == 'L':
+        os.system('cls' if os.name == 'nt' else 'clear')
         LoadSavedData()
 
     if option == 'R':
         resetAltimeter()
 
     if option == 'C':
+        os.system('cls' if os.name == 'nt' else 'clear')
         connectToAltimeter()
+
+    if option == 'S':
+        os.system('cls' if os.name == 'nt' else 'clear')
+        setPort()

@@ -28,17 +28,13 @@ def PlotFlight(pointList, flight, eventList):
 
         elif x > 0:
 
-            dt = pointToPlot.sampleTick - previousPoint.sampleTick
-            #print('Sample', x, 'tick:', pointToPlot.sampleTick, 'Sample DT:', pointToPlot.Dt, 'Height Feet:',
-            #      pointToPlot.heightFeet, 'Velocity:', pointToPlot.velocity, 'AccelX:', pointToPlot.accelX,
-            #      'AccelZ:', pointToPlot.accelZ, 'AccelY:', pointToPlot.accelY, 'Analog Accel', pointToPlot.analogAccel)
+            print('Sample', x, 'tick:', pointToPlot.sampleTick, 'Height Feet:',
+                  pointToPlot.heightFeet, 'Velocity:', pointToPlot.velocity, 'AccelX:', pointToPlot.accelX,
+                  'AccelZ:', pointToPlot.accelZ, 'AccelY:', pointToPlot.accelY, 'Analog Accel', pointToPlot.analogAccel)
         tick.append(pointToPlot.sampleTick / 1000)
         accelplot.append(pointToPlot.accelZ)
         heightplot.append(pointToPlot.heightFeet)
         velocityplot.append(pointToPlot.velocity)
-
-        previousPoint = pointToPlot
-        x += 1
 
         #stdaccel.append(pointToPlot.accelZraw / 32.17417)
         #stdheight.append(pointToPlot.rawFeet)

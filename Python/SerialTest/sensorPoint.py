@@ -195,9 +195,9 @@ def processDataLog(data, pages, StartTime):
             if isinstance(point, SensorPointType):
                 pointList.append(point)
 
-                print('tick:', point.sampleTick, 'Sample DT:', point.Dt, 'Height Feet:',
-                    point.heightFeet, 'Velocity:', point.velocity, 'AccelX:', point.accelX,
-                    'AccelZ:', point.accelZ, 'AccelY:', point.accelY, 'Analog Accel', point.analogAccel, ' ', CurrentPage,' ',LocationInPage)
+                #print('tick:', point.sampleTick, 'Sample DT:', point.Dt, 'Height Feet:',
+                #    point.heightFeet, 'Velocity:', point.velocity, 'AccelX:', point.accelX,
+                #    'AccelZ:', point.accelZ, 'AccelY:', point.accelY, 'Analog Accel', point.analogAccel, ' ', CurrentPage,' ',LocationInPage)
 
             continue
 
