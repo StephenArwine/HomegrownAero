@@ -145,9 +145,9 @@ void computeKalmanStates() {
     double alt_inovation, accel_inovation, acceleration;
 
     if (altimeter.pointingUp) {
-        acceleration = (-sample.accelZ - offsets.gravityOffset) * 32.17417;
-    } else {
         acceleration = (sample.accelZ - offsets.gravityOffset) * 32.17417;
+    } else {
+        acceleration = (-sample.accelZ - offsets.gravityOffset) * 32.17417;
     }
 
     double pressure = sample.altitudefeet;

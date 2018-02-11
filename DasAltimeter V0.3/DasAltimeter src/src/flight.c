@@ -136,12 +136,18 @@ void flight() {
             unpluggedJingle();
         }
 
+        if (altitudeAGL() > 15 | altitudeAGL() < -15) {
+            beep(100);
+        }
+
         if (writeLog) {
             logSensors( );
         }
 
         break;
     }
+
+
 
     if ((flightState != flightStatrup) & ((flightState != flightIdle) & unplugged())) {
         finishFlight();

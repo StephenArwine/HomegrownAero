@@ -2,7 +2,7 @@ import twosComp
 from twosComp import twos_complement
 import time
 
-sensorPointLength = 24
+sensorPointLength = 29
 eventSampleLength = 12
 flightPointLength = 16
 
@@ -32,6 +32,7 @@ class SensorPointType:
         self.gyroY = 0
         self.gyroZ = 0
         self.analogRaw = 0
+        self.analogAccel = 0
         self.rawFeet = 0
 
 class EventPointType:
@@ -78,7 +79,7 @@ def build_flight_point(data, CurrentPage, pages, LocationInPage):
 def build_sensor_point(data, currentPage, pages, locationInPage, lastTick):
     point = SensorPointType()
 
-    if (locationInPage + sensorPointLength + 1) >= 255:
+    if (locationInPage + sensorPointLength) >= 256:
 
         if (currentPage + 1) >= pages:
             ProcessLog = False
@@ -93,7 +94,6 @@ def build_sensor_point(data, currentPage, pages, locationInPage, lastTick):
         sensor_sample = data[currentPage][locationInPage:locationInPage + sensorPointLength]
         locationInPage += sensorPointLength
 
-
     point.sampleTick = int.from_bytes(sensor_sample[1:4], byteorder='little')
     point.Dt = point.sampleTick - lastTick
     point.heightFeet = int.from_bytes(sensor_sample[5:8], byteorder='little', signed=True)
@@ -101,25 +101,24 @@ def build_sensor_point(data, currentPage, pages, locationInPage, lastTick):
     point.accelZ = twosComp.twos_complement(sensor_sample[9], sensor_sample[10])
     point.accelZFract = twosComp.twos_complement(sensor_sample[11], sensor_sample[12])
     point.accelZFract = point.accelZFract / 1000
-    point.accelZ = point.accelZ + point.accelZFract
+    point.accelZ = (point.accelZ + point.accelZFract + 32.17417) / 32.17417
 
     point.velocity = twosComp.twos_complement(sensor_sample[13], sensor_sample[14])
-    fullvel = point.velocity
+
     point.velocityfract = twosComp.twos_complement(sensor_sample[15], sensor_sample[16])
-    point15 = hex(sensor_sample[15])
-    point16 = hex(sensor_sample[16])
     point.velocityfract = point.velocityfract / 1000
     point.velocity = point.velocity + point.velocityfract
 
-    point.rawFeet = int.from_bytes(sensor_sample[17:20], byteorder='little')
+    point.accelX = (twos_complement(sensor_sample[17],sensor_sample[18]) >> 4) * 0.0078125
+    point.accelY = (twos_complement(sensor_sample[19], sensor_sample[20]) >> 4) * 0.0078125
 
-    point.accelZraw = twos_complement(sensor_sample[21], sensor_sample[22])
-    if (sensor_sample[23] >> 7) == 1:
-        point.accelZrawFract = sensor_sample[23] | ~((1<<8) - 1)
-    else:
-        point.accelZrawFract = sensor_sample[23]
-    point.accelZrawFract = point.accelZrawFract
-    point.accelZraw = point.accelZraw + point.accelZrawFract
+    point.gyroX = (twos_complement(sensor_sample[21], sensor_sample[22]) >> 4) * 0.0078125
+    point.gyroY = (twos_complement(sensor_sample[23], sensor_sample[24]) >> 4) * 0.0078125
+    point.gyroZ = (twos_complement(sensor_sample[25], sensor_sample[26]) >> 4) * 0.0078125
+
+    point.analogRaw = sensor_sample[27] + (sensor_sample[28] << 8)
+
+    point.analogAccel = (point.analogRaw - 48695) * 0.00487
 
     return point, currentPage, locationInPage
 
@@ -165,6 +164,8 @@ def processDataLog(data, pages, StartTime):
 
     samplenum = 0
 
+    print('Pages: ', pages)
+
     while ProcessLog:
 
         if CurrentPage >= pages:
@@ -175,13 +176,13 @@ def processDataLog(data, pages, StartTime):
 
         # Flight point decode
         if chr(data[CurrentPage][LocationInPage]) == 'F':
-            # print('F found, location', LocationInPage)
+            #print('F found, location', LocationInPage)
             flightPoint, CurrentPage, LocationInPage = build_flight_point(data, CurrentPage, pages, LocationInPage)
             continue
 
         # Sensor point decoding
         if chr(data[CurrentPage][LocationInPage]) == 'S':
-            # print('S found, page', CurrentPage, ' ,Location', LocationInPage)
+            #print('S found, page', CurrentPage, ' ,Location', LocationInPage)
             samplenum += 1
 
             if pointList.__len__() > 0:
@@ -191,7 +192,12 @@ def processDataLog(data, pages, StartTime):
 
             point, CurrentPage, LocationInPage = build_sensor_point(data, CurrentPage, pages, LocationInPage,
                                                                     lastTick)
-            if isinstance(point, SensorPointType): pointList.append(point)
+            if isinstance(point, SensorPointType):
+                pointList.append(point)
+
+                print('tick:', point.sampleTick, 'Sample DT:', point.Dt, 'Height Feet:',
+                    point.heightFeet, 'Velocity:', point.velocity, 'AccelX:', point.accelX,
+                    'AccelZ:', point.accelZ, 'AccelY:', point.accelY, 'Analog Accel', point.analogAccel, ' ', CurrentPage,' ',LocationInPage)
 
             continue
 
@@ -200,7 +206,7 @@ def processDataLog(data, pages, StartTime):
             if (CurrentPage + 1) >= pages:
                 ProcessLog = False
                 return 0, CurrentPage + 1, 0
-                print('event')
+                #print('event')
 
             CurrentPage, LocationInPage, event = build_event_point(data, CurrentPage, pages, LocationInPage)
 

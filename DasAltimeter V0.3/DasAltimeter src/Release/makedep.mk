@@ -28,6 +28,8 @@ src\flight.c
 
 src\ground.c
 
+src\igniter.c
+
 src\kalman.c
 
 src\log.c
@@ -35,6 +37,8 @@ src\log.c
 src\sample.c
 
 src\sercom.c
+
+src\settings.c
 
 src\transfer.c
 

@@ -104,8 +104,8 @@ void logSensors() {
 
     writeLog = false;
 
-    u8_t bytesToSend = 24;
-    u8_t dataToSend[24];
+    u8_t bytesToSend = 29;
+    u8_t dataToSend[29];
 
     dataToSend[0] = SENSOR_LOG;
 
@@ -127,7 +127,6 @@ void logSensors() {
     dataToSend[11] = fractAccelPart >> 0;
     dataToSend[12] = fractAccelPart >> 8;
 
-
     float fractionalVelocity = velocity - (int16_t)(velocity);
     int16_t fractVelocityPart = fractionalVelocity * 1000;
 
@@ -136,33 +135,36 @@ void logSensors() {
     dataToSend[15] = fractVelocityPart >> 0;
     dataToSend[16] = fractVelocityPart >> 8;
 
-//     if ( ((fractVelocityPart < 0) & ((int16_t)(velocity) > 0)) | ((fractVelocityPart > 0) & ((int16_t)(velocity) < 0)) ) {
-//         beep(200);
-//     }
+    dataToSend[17] = sample.accelXint >> 0;
+    dataToSend[18] = sample.accelXint >> 8;
 
-    dataToSend[17] = (u32_t)sample.altitudefeet >> 0;
-    dataToSend[18] = (u32_t)sample.altitudefeet >> 8;
-    dataToSend[19] = (u32_t)sample.altitudefeet >> 16;
-    dataToSend[20] = (u32_t)sample.altitudefeet >> 24;
+    dataToSend[19] = sample.accelYint >> 0;
+    dataToSend[20] = sample.accelYint >> 8;
 
-    float fractionalAccelraw = sample.accelZ - (int16_t)(sample.accelZ);
-    u8_t fractAccelRawPart = fractionalAccelraw;
+    dataToSend[21] = sample.gyroXint >> 0;
+    dataToSend[22] = sample.gyroXint >> 8;
 
-    dataToSend[21] = (int16_t)(sample.accelZ) >> 0;
-    dataToSend[22] = (int16_t)(sample.accelZ) >> 8;
-    dataToSend[23] = fractAccelRawPart;
+    dataToSend[23] = sample.gyroYint >> 0;
+    dataToSend[24] = sample.gyroYint >> 8;
 
-    //dataToSend[9] = my_altimeter->myIMU.accelXRaw >> 0;
-    //dataToSend[10] = my_altimeter->myIMU.accelXRaw >> 8;
-    //dataToSend[11] = my_altimeter->myIMU.accelYRaw >> 0;
-    //dataToSend[12] = my_altimeter->myIMU.accelYRaw >> 8;
-    //dataToSend[21] = sample.accelZ >> 0;
-    //dataToSend[22] = sample.accelZ >> 8;
-    //dataToSend[17] = my_altimeter->myIMU.gyroYRaw >> 0;
-    //dataToSend[18] = my_altimeter->myIMU.gyroYRaw >> 8;
-    //dataToSend[19] = my_altimeter->myIMU.gyroZRaw >> 0;
-    //dataToSend[20] = my_altimeter->myIMU.gyroZRaw >> 8;
+    dataToSend[25] = sample.gyroZint >> 0;
+    dataToSend[26] = sample.gyroZint >> 8;
 
+    dataToSend[27] = sample.analogRaw >> 0;
+    dataToSend[28] = sample.analogRaw >> 8;
+
+
+//     dataToSend[17] = (u32_t)sample.altitudefeet >> 0;
+//     dataToSend[18] = (u32_t)sample.altitudefeet >> 8;
+//     dataToSend[19] = (u32_t)sample.altitudefeet >> 16;
+//     dataToSend[20] = (u32_t)sample.altitudefeet >> 24;
+
+//     float fractionalAccelraw = sample.accelZ - (int16_t)(sample.accelZ);
+//     u8_t fractAccelRawPart = fractionalAccelraw;
+//
+//     dataToSend[21] = (int16_t)(sample.accelZ) >> 0;
+//     dataToSend[22] = (int16_t)(sample.accelZ) >> 8;
+//     dataToSend[23] = fractAccelRawPart;
 
     //dataToSend[21] = my_altimeter->myAnalogAccelerometer.analogRaw >> 0;
     //dataToSend[22] = my_altimeter->myAnalogAccelerometer.analogRaw >> 8;

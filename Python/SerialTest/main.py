@@ -3,11 +3,19 @@ import twosComp
 import sensorPoint
 import time
 import matplotlib.pyplot as plt
+import sys
+from PyQt5 import QtWidgets
+from PyQt5.QtWidgets import QPushButton
 from kalmanFliter import filter_data_with_kalman
 from flightPlotter import PlotFlight
 import numpy
 from sensorPoint import processDataLog
 import csv
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+from matplotlib.figure import Figure
+import random
+
+
 from os import walk
 
 
@@ -41,14 +49,9 @@ sensor_sample_part = 0
 
 
 def saveFlightData(data):
-    f = []
-    for (dirpath, dirnames, filenames) in walk('logs/'):
-        f.extend(filenames)
-        break
 
-    print(filenames)
 
-    myFlile = open(str('logs/flightLog_' + time.strftime('%b%d%Y_%H%M', time.localtime()) + '.csv'), 'w', newline='')
+    myFlile = open(str('logs/log_' + time.strftime('%b%d%Y_%H%M', time.localtime()) + '.csv'), 'w', newline='')
 
     with myFlile:
         writer = csv.writer(myFlile)
@@ -95,6 +98,7 @@ def DownloadFlightData():
         PageOfData = []
         PageOfData = ser.read(256)
         data.append(PageOfData)
+        #print(PageOfData)
 
     ser.close()
 
@@ -124,10 +128,20 @@ def EraseChip():
 
 def LoadSavedData():
 
-    print(' loading data')
+    print(' Which file would you like to Load?')
     data = []
 
-    with open('logs/flightLog.csv', newline='') as myFile:
+    f = []
+    for (dirpath, dirnames, filenames) in walk('logs/'):
+        f.extend(filenames)
+        break
+
+    for names in filenames:
+        print(names)
+
+    toLoad = input('Load : ')
+
+    with open(('logs/' + toLoad), newline='') as myFile:
 
         dataIn = csv.reader(myFile)
 
@@ -166,7 +180,7 @@ def connectToAltimeter():
         print('')
         print(' Altimeter connected, what would you like to do?')
         print('     P    Print/stream sensor data')
-        print('     L    Download & Plo flight log')
+        print('     L    Download & Plot flight log')
         print('     S    Change Altimeter settings')
         print('     E    Chip Erase')
         print('')
@@ -180,7 +194,6 @@ def connectToAltimeter():
 
         if option == 'L':
             DownloadFlightData()
-
 
 running = 1
 while running:

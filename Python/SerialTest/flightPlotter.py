@@ -1,3 +1,4 @@
+
 import matplotlib.pyplot as plt
 from sensorPoint import SensorPointType
 from sensorPoint import EventPointType
@@ -28,25 +29,25 @@ def PlotFlight(pointList, flight, eventList):
         elif x > 0:
 
             dt = pointToPlot.sampleTick - previousPoint.sampleTick
-            print('Sample', x, 'tick:', pointToPlot.sampleTick, 'Sample DT:', pointToPlot.Dt, 'Height Feet:',
-                  pointToPlot.heightFeet,'Raw feet:', pointToPlot.rawFeet, 'Velocity:', pointToPlot.velocity, 'AccelZ:', pointToPlot.accelZ, 'accelZRaw', pointToPlot.accelZraw)
-
+            #print('Sample', x, 'tick:', pointToPlot.sampleTick, 'Sample DT:', pointToPlot.Dt, 'Height Feet:',
+            #      pointToPlot.heightFeet, 'Velocity:', pointToPlot.velocity, 'AccelX:', pointToPlot.accelX,
+            #      'AccelZ:', pointToPlot.accelZ, 'AccelY:', pointToPlot.accelY, 'Analog Accel', pointToPlot.analogAccel)
         tick.append(pointToPlot.sampleTick / 1000)
-        accelplot.append(pointToPlot.accelZ / 32.17417)
+        accelplot.append(pointToPlot.accelZ)
         heightplot.append(pointToPlot.heightFeet)
         velocityplot.append(pointToPlot.velocity)
 
         previousPoint = pointToPlot
         x += 1
 
-        stdaccel.append(pointToPlot.accelZraw / 32.17417)
-        stdheight.append(pointToPlot.rawFeet)
+        #stdaccel.append(pointToPlot.accelZraw / 32.17417)
+        #stdheight.append(pointToPlot.rawFeet)
 
     for event in eventList:
         print(event.eventType, event.sampleTick - flight.bufferTick)
 
-    print('accel StdDev ', numpy.std(stdaccel))
-    print('height StdDev ', numpy.std(stdheight))
+    #print('accel StdDev ', numpy.std(stdaccel))
+    #print('height StdDev ', numpy.std(stdheight))
 
     fig, ax1 = plt.subplots()
     ax2 = ax1.twinx()

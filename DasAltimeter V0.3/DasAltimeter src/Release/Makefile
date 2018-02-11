@@ -51,10 +51,12 @@ C_SRCS +=  \
 ../src/clocks.c \
 ../src/flight.c \
 ../src/ground.c \
+../src/igniter.c \
 ../src/kalman.c \
 ../src/log.c \
 ../src/sample.c \
 ../src/sercom.c \
+../src/settings.c \
 ../src/transfer.c
 
 
@@ -78,10 +80,12 @@ buzzer.o \
 clocks.o \
 flight.o \
 ground.o \
+igniter.o \
 kalman.o \
 log.o \
 sample.o \
 sercom.o \
+settings.o \
 transfer.o
 
 OBJS_AS_ARGS +=  \
@@ -98,10 +102,12 @@ buzzer.o \
 clocks.o \
 flight.o \
 ground.o \
+igniter.o \
 kalman.o \
 log.o \
 sample.o \
 sercom.o \
+settings.o \
 transfer.o
 
 C_DEPS +=  \
@@ -118,10 +124,12 @@ buzzer.d \
 clocks.d \
 flight.d \
 ground.d \
+igniter.d \
 kalman.d \
 log.d \
 sample.d \
 sercom.d \
+settings.d \
 transfer.d
 
 C_DEPS_AS_ARGS +=  \
@@ -138,10 +146,12 @@ buzzer.d \
 clocks.d \
 flight.d \
 ground.d \
+igniter.d \
 kalman.d \
 log.d \
 sample.d \
 sercom.d \
+settings.d \
 transfer.d
 
 OUTPUT_FILE_PATH +=DasAltimeter.elf
@@ -160,6 +170,10 @@ LINKER_SCRIPT_DEP+=  \
 
 
 # AVR32/GNU C Compiler
+
+
+
+
 
 
 

@@ -104,6 +104,7 @@ void unpluggedJingle();
 
 
 //transfer.c
+void sendFlightLogs();
 void attemptConnection();
 
 

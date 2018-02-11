@@ -37,16 +37,20 @@ typedef struct sample_t {
 
     float analogAccel;
 
+    int16_t accelXint;
     float accelX;
-
+    int16_t accelYint;
     float accelY;
-
+    int16_t accelZint;
     float accelZ;
 
+    int16_t gyroXint;
     float gyroX;
 
+    int16_t gyroYint;
     float gyroY;
 
+    int16_t gyroZint;
     float gyroZ;
 
     int32_t pressureMbar;
@@ -54,10 +58,10 @@ typedef struct sample_t {
     uint32_t temperatureCelcus;
 
     double altitudefeet;
-	
-	
 
-}sample_t;
+
+
+} sample_t;
 
 extern sample_t sample;
 

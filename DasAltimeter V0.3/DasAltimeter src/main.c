@@ -133,7 +133,7 @@ int main(void) {
 
     POST();
 
-    // isItPointingUp();
+    isItPointingUp();
 
     getSettings();
 

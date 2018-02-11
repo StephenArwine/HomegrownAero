@@ -64,44 +64,44 @@ void sampleTick() {
     spiDataOut(ACCEL_SPI, BMI055_X_ACC_LSB | BMI055_READ_REG);
     byteOne = spiDataIn(ACCEL_SPI);
     byteTwo = spiDataIn(ACCEL_SPI);
-    int16_t accelXint = twosComp(byteOne,byteTwo);
+    sample.accelXint = twosComp(byteOne,byteTwo);
     byteOne = spiDataIn(ACCEL_SPI);
     byteTwo = spiDataIn(ACCEL_SPI);
-    int16_t accelYint = twosComp(byteOne,byteTwo);
+    sample.accelYint = twosComp(byteOne,byteTwo);
     byteOne = spiDataIn(ACCEL_SPI);
     byteTwo = spiDataIn(ACCEL_SPI);
-    int16_t accelZint = twosComp(byteOne,byteTwo);
+    sample.accelZint = twosComp(byteOne,byteTwo);
     pinHigh(cs_accel);
 
-    accelXint =  accelXint >> 4;
-    accelYint =  accelYint >> 4;
-    accelZint =  accelZint >> 4;
+    sample.accelXint =  sample.accelXint >> 4;
+    sample.accelYint =  sample.accelYint >> 4;
+    sample.accelZint =  sample.accelZint >> 4;
 
-    sample.accelX =  accelXint * BMI055_ACCEL_16G_DIV;
-    sample.accelY =  accelYint * BMI055_ACCEL_16G_DIV;
-    sample.accelZ = accelZint * BMI055_ACCEL_16G_DIV;
+    sample.accelX = sample.accelXint * BMI055_ACCEL_16G_DIV;
+    sample.accelY = sample.accelYint * BMI055_ACCEL_16G_DIV;
+    sample.accelZ = -sample.accelZint * BMI055_ACCEL_16G_DIV;
 
     // Gyro data
     pinLow(cs_gyro);
     spiDataOut(GYRO_SPI, BMI055_X_GYRO_LSB | BMI055_READ_REG);
     byteOne = spiDataIn(GYRO_SPI);
     byteTwo = spiDataIn(GYRO_SPI);
-    int16_t gyroXint = twosComp(byteOne,byteTwo);
+    sample.gyroXint = twosComp(byteOne,byteTwo);
     byteOne = spiDataIn(GYRO_SPI);
     byteTwo = spiDataIn(GYRO_SPI);
-    int16_t gyroYint = twosComp(byteOne,byteTwo);
+    sample.gyroYint = twosComp(byteOne,byteTwo);
     byteOne = spiDataIn(GYRO_SPI);
     byteTwo = spiDataIn(GYRO_SPI);
-    int16_t gyroZint = twosComp(byteOne,byteTwo);
+    sample.gyroZint = twosComp(byteOne,byteTwo);
     pinHigh(cs_gyro);
 
-    gyroXint = gyroXint >> 4;
-    gyroYint = gyroYint >> 4;
-    gyroZint = gyroZint >> 4;
+    sample.gyroXint = sample.gyroXint >> 4;
+    sample.gyroYint = sample.gyroYint >> 4;
+    sample.gyroZint = sample.gyroZint >> 4;
 
-    sample.gyroX =  gyroXint * BMI055_GYRO_2000DS_DIV;
-    sample.gyroY =  gyroYint * BMI055_GYRO_2000DS_DIV;
-    sample.gyroZ =  gyroZint * BMI055_GYRO_2000DS_DIV;
+    sample.gyroX =  sample.gyroXint * BMI055_GYRO_2000DS_DIV;
+    sample.gyroY =  sample.gyroYint * BMI055_GYRO_2000DS_DIV;
+    sample.gyroZ =  sample.gyroZint * BMI055_GYRO_2000DS_DIV;
 
 
     delay_us(400);
