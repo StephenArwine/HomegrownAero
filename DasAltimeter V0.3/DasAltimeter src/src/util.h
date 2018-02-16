@@ -99,6 +99,8 @@ u16_t adc_read(Pin p);
 
 //buzzer.c
 void beep(u16_t toggles);
+void beepDigit(u8_t digit);
+void beepNumber(u32_t number);
 void startupJingle();
 void unpluggedJingle();
 
