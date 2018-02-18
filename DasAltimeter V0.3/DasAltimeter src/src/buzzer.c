@@ -19,7 +19,7 @@ void beepDigit(u8_t digit) {
         beep(1000);
     } else {
         while (digit > 0) {
-            beep(500);
+            beep(400);
             delay_ms(500);
             --digit;
         }
@@ -27,9 +27,72 @@ void beepDigit(u8_t digit) {
 }
 
 void beepNumber(u32_t number) {
-	u8_t length = floor(log10(abs(number))) + 1;
 
-
+    if (number >=100000) {
+        beepDigit(number/100000);
+        number = number%100000;
+        delay_ms(1000);
+        beepDigit(number/10000);
+        number = number%10000;
+        delay_ms(1000);
+        beepDigit(number/1000);
+        number = number%1000;
+        delay_ms(1000);
+        beepDigit(number/100);
+        number = number%100;
+        delay_ms(1000);
+        beepDigit(number/10);
+        number = number%10;
+        delay_ms(1000);
+        beepDigit(number);
+        return;
+    }
+    if (number >=10000) {
+        beepDigit(number/10000);
+        number = number%10000;
+        delay_ms(1000);
+        beepDigit(number/1000);
+        number = number%1000;
+        delay_ms(1000);
+        beepDigit(number/100);
+        number = number%100;
+        delay_ms(1000);
+        beepDigit(number/10);
+        number = number%10;
+        delay_ms(1000);
+        beepDigit(number);
+        return;
+    }
+    if (number >=1000) {
+        beepDigit(number/1000);
+        number = number%1000;
+        delay_ms(1000);
+        beepDigit(number/100);
+        number = number%100;
+        delay_ms(1000);
+        beepDigit(number/10);
+        number = number%10;
+        delay_ms(1000);
+        beepDigit(number);
+        return;
+    }
+    if (number >=100) {
+        beepDigit(number/100);
+        number = number%100;
+        delay_ms(1000);
+        beepDigit(number/10);
+        number = number%10;
+        delay_ms(1000);
+        beepDigit(number);
+        return;
+    }
+    if (number >=10) {
+        beepDigit(number/10);
+        number = number%10;
+        delay_ms(1000);
+        beepDigit(number);
+    }
+    beepDigit(number);
 
 }
 

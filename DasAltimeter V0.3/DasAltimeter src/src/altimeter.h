@@ -50,6 +50,8 @@ typedef struct offsets_t {
     u32_t StartupTick;
 
     u32_t tickDelta;
+	
+	u32_t groundBeep;
 
 
 } offsets_t;

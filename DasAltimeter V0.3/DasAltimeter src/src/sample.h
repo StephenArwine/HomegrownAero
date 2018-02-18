@@ -57,7 +57,7 @@ typedef struct sample_t {
 
     uint32_t temperatureCelcus;
 
-    double altitudefeet;
+    double pressureAltitude;
 
 
 

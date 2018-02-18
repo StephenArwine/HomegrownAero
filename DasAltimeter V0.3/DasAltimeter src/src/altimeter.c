@@ -63,6 +63,7 @@ void finishFlight() {
     AT25SFHoldTillReady();
     writeFlightEndAddress( );
     unpluggedJingle();
+
 }
 
 void POST() {

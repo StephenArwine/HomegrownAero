@@ -131,14 +131,17 @@ int main(void) {
 
     sampleTick();
 
-    POST();
+    //POST();
 
     isItPointingUp();
 
     getSettings();
 
+    //beepNumber(12345);
+
+
     beep(400);
-	
+
     startupTick = millis();
 
     while (1) {
@@ -149,5 +152,7 @@ int main(void) {
             computeKalmanStates();
 
         }
+
     }
+
 }

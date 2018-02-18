@@ -257,7 +257,5 @@ void TC5Init() {
 
 void TC5_Handler( void ) {
     TC5->COUNT8.INTFLAG.reg = 0xFF;
-    
-
     writeLog = true;
 }

@@ -150,7 +150,7 @@ void computeKalmanStates() {
         acceleration = (-sample.accelZ - offsets.gravityOffset) * 32.17417;
     }
 
-    double pressure = sample.altitudefeet;
+    double pressure = sample.pressureAltitude;
 
     if (altitude == 0) {
         altitude = pressure;

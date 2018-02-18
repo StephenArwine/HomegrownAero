@@ -107,7 +107,7 @@ void sampleTick() {
     delay_us(400);
     u32_t PressureRaw = readMS5803AdcResults();
     ConvertPressureTemperature(PressureRaw, tempRaw, &sample.temperatureCelcus, &sample.pressureMbar);
-    sample.altitudefeet = paToFeetNOAA(sample.pressureMbar);
+    sample.pressureAltitude = paToFeetNOAA(sample.pressureMbar);
 }
 
 int16_t twosComp(u8_t byteOne, u8_t byteTwo) {

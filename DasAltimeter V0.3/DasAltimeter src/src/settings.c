@@ -6,15 +6,19 @@ void findMainAltitude() {
 
     if (deploymentSettings.channelASettings.ENABLED & deploymentSettings.channelASettings.TYPE == MAIN_t) {
         deploymentSettings.MAIN_DEPLOY = deploymentSettings.channelASettings.MAIN_DEPLOY;
+        return;
     }
     if ((deploymentSettings.channelBSettings.ENABLED & deploymentSettings.channelBSettings.TYPE == MAIN_t)) {
         deploymentSettings.MAIN_DEPLOY = deploymentSettings.channelBSettings.MAIN_DEPLOY;
+        return;
     }
     if ((deploymentSettings.channelCSettings.ENABLED & deploymentSettings.channelCSettings.TYPE == MAIN_t)) {
         deploymentSettings.MAIN_DEPLOY = deploymentSettings.channelCSettings.MAIN_DEPLOY;
+        return;
     }
     if ((deploymentSettings.channelDSettings.ENABLED & deploymentSettings.channelDSettings.TYPE == MAIN_t)) {
         deploymentSettings.MAIN_DEPLOY = deploymentSettings.channelDSettings.MAIN_DEPLOY;
+        return;
     }
 
 
