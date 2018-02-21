@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="8.5.0">
+<eagle version="8.6.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -223,11 +223,11 @@
 <smd name="P$6" x="-0.25" y="-1.4351" dx="0.6604" dy="0.254" layer="1" rot="R90"/>
 <smd name="P$5" x="-0.75" y="-1.4351" dx="0.6604" dy="0.254" layer="1" rot="R90"/>
 <smd name="P$8" x="0.75" y="-1.4351" dx="0.6604" dy="0.254" layer="1" rot="R90"/>
-<pad name="P$17" x="0" y="0" drill="0.35" diameter="0.4064"/>
-<pad name="P$17_4" x="0.4572" y="-0.4572" drill="0.35" diameter="0.4064"/>
-<pad name="P$17_1" x="0.4572" y="0.4572" drill="0.35" diameter="0.4064"/>
-<pad name="P$17_2" x="-0.4572" y="0.4572" drill="0.35" diameter="0.4064"/>
-<pad name="P$17_3" x="-0.4572" y="-0.4572" drill="0.35" diameter="0.4064"/>
+<pad name="P$17" x="0" y="0" drill="0.3" diameter="0.4064"/>
+<pad name="P$17_4" x="0.4572" y="-0.4572" drill="0.3" diameter="0.4064"/>
+<pad name="P$17_1" x="0.4572" y="0.4572" drill="0.3" diameter="0.4064"/>
+<pad name="P$17_2" x="-0.4572" y="0.4572" drill="0.3" diameter="0.4064"/>
+<pad name="P$17_3" x="-0.4572" y="-0.4572" drill="0.3" diameter="0.4064"/>
 <polygon width="0" layer="29">
 <vertex x="-0.7366" y="-0.7366"/>
 <vertex x="-0.7366" y="0.4826"/>
@@ -5737,7 +5737,7 @@ Source: &lt;a href="http://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_
 <instance part="SUPPLY9" gate="G$1" x="-2.54" y="147.32"/>
 <instance part="SUPPLY10" gate="G$1" x="127" y="93.98"/>
 <instance part="SUPPLY11" gate="G$1" x="134.62" y="93.98"/>
-<instance part="SUPPLY12" gate="G$1" x="147.32" y="93.98"/>
+<instance part="SUPPLY12" gate="G$1" x="147.32" y="96.52"/>
 <instance part="SUPPLY13" gate="G$1" x="220.98" y="91.44"/>
 <instance part="SUPPLY17" gate="G$1" x="93.98" y="101.6"/>
 <instance part="H3" gate="G$1" x="213.614" y="2.54"/>
@@ -6268,6 +6268,11 @@ Source: &lt;a href="http://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_
 <wire x1="246.38" y1="22.86" x2="246.38" y2="25.4" width="0.1524" layer="91"/>
 <label x="246.38" y="25.4" size="1.27" layer="95" rot="R90" xref="yes"/>
 </segment>
+<segment>
+<pinref part="U3" gate="G$1" pin="PB09(AIN3/SER4:1/TC4:1)"/>
+<wire x1="149.86" y1="25.4" x2="147.32" y2="25.4" width="0.1524" layer="91"/>
+<label x="147.32" y="25.4" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
 </net>
 <net name="SWCLK" class="0">
 <segment>
@@ -6375,6 +6380,7 @@ Source: &lt;a href="http://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_
 <segment>
 <pinref part="R4" gate="G$1" pin="2"/>
 <pinref part="SUPPLY12" gate="G$1" pin="3.3V"/>
+<wire x1="147.32" y1="96.52" x2="147.32" y2="93.98" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="U3" gate="G$1" pin="VDDIO@36"/>
@@ -6506,20 +6512,6 @@ Source: &lt;a href="http://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_
 <pinref part="MEM" gate="G$1" pin="SO"/>
 <wire x1="30.48" y1="93.98" x2="33.02" y2="93.98" width="0.1524" layer="91"/>
 <label x="33.02" y="93.98" size="1.27" layer="95" xref="yes"/>
-</segment>
-</net>
-<net name="SER5_TX" class="0">
-<segment>
-<pinref part="IC1" gate="G$1" pin="RXD"/>
-<wire x1="38.1" y1="139.7" x2="43.18" y2="139.7" width="0.1524" layer="91"/>
-<label x="43.18" y="139.7" size="1.27" layer="95" xref="yes"/>
-</segment>
-</net>
-<net name="SER5_RX" class="0">
-<segment>
-<pinref part="IC1" gate="G$1" pin="TXD"/>
-<wire x1="38.1" y1="137.16" x2="43.18" y2="137.16" width="0.1524" layer="91"/>
-<label x="43.18" y="137.16" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="TX_MOSI" class="0">
@@ -6674,6 +6666,30 @@ Source: &lt;a href="http://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_
 <pinref part="U3" gate="G$1" pin="PA24(SER3:2+)"/>
 <wire x1="218.44" y1="35.56" x2="220.98" y2="35.56" width="0.1524" layer="91"/>
 <label x="220.98" y="35.56" size="1.27" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="GPS_TX" class="0">
+<segment>
+<pinref part="U3" gate="G$1" pin="PA00(XIN32/SER1:0/TC2:0)"/>
+<wire x1="149.86" y1="55.88" x2="147.32" y2="55.88" width="0.1524" layer="91"/>
+<label x="147.32" y="55.88" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="IC1" gate="G$1" pin="RXD"/>
+<wire x1="38.1" y1="139.7" x2="43.18" y2="139.7" width="0.1524" layer="91"/>
+<label x="43.18" y="139.7" size="1.27" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="GPS_RX" class="0">
+<segment>
+<pinref part="U3" gate="G$1" pin="PA01(XOUT32/SER1:1/TC2:1)"/>
+<wire x1="149.86" y1="50.8" x2="147.32" y2="50.8" width="0.1524" layer="91"/>
+<label x="147.32" y="50.8" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="IC1" gate="G$1" pin="TXD"/>
+<wire x1="38.1" y1="137.16" x2="43.18" y2="137.16" width="0.1524" layer="91"/>
+<label x="43.18" y="137.16" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 </nets>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="8.5.0">
+<eagle version="8.6.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -4346,13 +4346,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <packages>
 </packages>
 <symbols>
-<symbol name="VDD" urn="urn:adsk.eagle:symbol:39424/1" library_version="1">
-<description>&lt;h3&gt;VDD Voltage Supply&lt;/h3&gt;</description>
-<wire x1="0.762" y1="1.27" x2="0" y2="2.54" width="0.254" layer="94"/>
-<wire x1="0" y1="2.54" x2="-0.762" y2="1.27" width="0.254" layer="94"/>
-<pin name="VDD" x="0" y="0" visible="off" length="short" direction="sup" rot="R90"/>
-<text x="0" y="2.794" size="1.778" layer="96" align="bottom-center">&gt;VALUE</text>
-</symbol>
 <symbol name="V_BATT" urn="urn:adsk.eagle:symbol:39428/1" library_version="1">
 <description>&lt;h3&gt;Battery Voltage Supply&lt;/h3&gt;</description>
 <wire x1="0.762" y1="1.27" x2="0" y2="2.54" width="0.254" layer="94"/>
@@ -4369,20 +4362,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="VDD" urn="urn:adsk.eagle:component:39445/1" prefix="SUPPLY" library_version="1">
-<description>&lt;h3&gt;VDD Voltage Supply&lt;/h3&gt;
-&lt;p&gt;Positive voltage supply (traditionally for a CMOS device, D=drain).&lt;/p&gt;</description>
-<gates>
-<gate name="VDD" symbol="VDD" x="0" y="0"/>
-</gates>
-<devices>
-<device name="">
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
 <deviceset name="V_BATT" urn="urn:adsk.eagle:component:39448/1" prefix="SUPPLY" library_version="1">
 <description>&lt;h3&gt;Battery Voltage Supply&lt;/h3&gt;
 &lt;p&gt;Generic symbol for the battery input to a system.&lt;/p&gt;</description>
@@ -5621,7 +5600,6 @@ Source: &lt;a href="http://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_
 <part name="GND37" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="JP2" library="SparkFun-Connectors" deviceset="USB-MICROB" device="&quot;"/>
 <part name="GND38" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
-<part name="SUPPLY4" library="SparkFun-PowerSymbols" library_urn="urn:adsk.eagle:library:530" deviceset="VDD" device=""/>
 <part name="GND39" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND40" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="C36" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="47pF"/>
@@ -5635,6 +5613,7 @@ Source: &lt;a href="http://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_
 <part name="JP1" library="SparkFun-Connectors" deviceset="CORTEX_DEBUG" device="_PTH"/>
 <part name="SUPPLY20" library="SparkFun-Aesthetics" deviceset="3.3V" device=""/>
 <part name="GND1" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
+<part name="SUPPLY2" library="SparkFun-PowerSymbols" library_urn="urn:adsk.eagle:library:530" deviceset="3.3V" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -5758,7 +5737,7 @@ Source: &lt;a href="http://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_
 <instance part="SUPPLY9" gate="G$1" x="-2.54" y="147.32"/>
 <instance part="SUPPLY10" gate="G$1" x="127" y="93.98"/>
 <instance part="SUPPLY11" gate="G$1" x="134.62" y="93.98"/>
-<instance part="SUPPLY12" gate="G$1" x="147.32" y="93.98"/>
+<instance part="SUPPLY12" gate="G$1" x="147.32" y="96.52"/>
 <instance part="SUPPLY13" gate="G$1" x="220.98" y="91.44"/>
 <instance part="SUPPLY17" gate="G$1" x="93.98" y="101.6"/>
 <instance part="H3" gate="G$1" x="213.614" y="2.54"/>
@@ -5771,7 +5750,6 @@ Source: &lt;a href="http://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_
 <instance part="GND37" gate="1" x="-12.7" y="238.76"/>
 <instance part="JP2" gate="G$1" x="-35.56" y="264.16" rot="R180"/>
 <instance part="GND38" gate="1" x="-25.4" y="238.76"/>
-<instance part="SUPPLY4" gate="VDD" x="-43.18" y="228.6"/>
 <instance part="GND39" gate="1" x="-38.1" y="203.2"/>
 <instance part="GND40" gate="1" x="5.08" y="203.2"/>
 <instance part="C36" gate="G$1" x="-12.7" y="254"/>
@@ -5794,6 +5772,7 @@ Source: &lt;a href="http://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_
 <instance part="JP1" gate="G$1" x="22.86" y="63.5"/>
 <instance part="SUPPLY20" gate="G$1" x="2.54" y="73.66"/>
 <instance part="GND1" gate="1" x="2.54" y="55.88"/>
+<instance part="SUPPLY2" gate="G$1" x="-43.18" y="228.6"/>
 </instances>
 <busses>
 </busses>
@@ -6337,22 +6316,6 @@ Source: &lt;a href="http://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_
 <pinref part="SUPPLY16" gate="G$1" pin="V_BATT"/>
 </segment>
 </net>
-<net name="VDD" class="0">
-<segment>
-<pinref part="IC2" gate="G$1" pin="3V3OUT"/>
-<wire x1="-30.48" y1="220.98" x2="-43.18" y2="220.98" width="0.1524" layer="91"/>
-<wire x1="-43.18" y1="220.98" x2="-43.18" y2="228.6" width="0.1524" layer="91"/>
-<pinref part="IC2" gate="G$1" pin="VCCIO"/>
-<wire x1="-30.48" y1="218.44" x2="-43.18" y2="218.44" width="0.1524" layer="91"/>
-<wire x1="-43.18" y1="218.44" x2="-43.18" y2="220.98" width="0.1524" layer="91"/>
-<junction x="-43.18" y="220.98"/>
-<pinref part="IC2" gate="G$1" pin="RESET#"/>
-<wire x1="-30.48" y1="210.82" x2="-43.18" y2="210.82" width="0.1524" layer="91"/>
-<wire x1="-43.18" y1="210.82" x2="-43.18" y2="218.44" width="0.1524" layer="91"/>
-<junction x="-43.18" y="218.44"/>
-<pinref part="SUPPLY4" gate="VDD" pin="VDD"/>
-</segment>
-</net>
 <net name="N$16" class="0">
 <segment>
 <pinref part="U$3" gate="G$1" pin="P$2"/>
@@ -6412,6 +6375,7 @@ Source: &lt;a href="http://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_
 <segment>
 <pinref part="R4" gate="G$1" pin="2"/>
 <pinref part="SUPPLY12" gate="G$1" pin="3.3V"/>
+<wire x1="147.32" y1="96.52" x2="147.32" y2="93.98" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="U3" gate="G$1" pin="VDDIO@36"/>
@@ -6494,6 +6458,20 @@ Source: &lt;a href="http://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_
 <wire x1="2.54" y1="68.58" x2="2.54" y2="73.66" width="0.1524" layer="91" style="longdash"/>
 <pinref part="SUPPLY20" gate="G$1" pin="3.3V"/>
 </segment>
+<segment>
+<pinref part="IC2" gate="G$1" pin="3V3OUT"/>
+<wire x1="-30.48" y1="220.98" x2="-43.18" y2="220.98" width="0.1524" layer="91"/>
+<wire x1="-43.18" y1="220.98" x2="-43.18" y2="228.6" width="0.1524" layer="91"/>
+<pinref part="IC2" gate="G$1" pin="VCCIO"/>
+<wire x1="-30.48" y1="218.44" x2="-43.18" y2="218.44" width="0.1524" layer="91"/>
+<wire x1="-43.18" y1="218.44" x2="-43.18" y2="220.98" width="0.1524" layer="91"/>
+<junction x="-43.18" y="220.98"/>
+<pinref part="IC2" gate="G$1" pin="RESET#"/>
+<wire x1="-30.48" y1="210.82" x2="-43.18" y2="210.82" width="0.1524" layer="91"/>
+<wire x1="-43.18" y1="210.82" x2="-43.18" y2="218.44" width="0.1524" layer="91"/>
+<junction x="-43.18" y="218.44"/>
+<pinref part="SUPPLY2" gate="G$1" pin="3.3V"/>
+</segment>
 </net>
 <net name="SER0_MOSI" class="0">
 <segment>
@@ -6529,30 +6507,6 @@ Source: &lt;a href="http://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_
 <pinref part="MEM" gate="G$1" pin="SO"/>
 <wire x1="30.48" y1="93.98" x2="33.02" y2="93.98" width="0.1524" layer="91"/>
 <label x="33.02" y="93.98" size="1.27" layer="95" xref="yes"/>
-</segment>
-</net>
-<net name="SER5_TX" class="0">
-<segment>
-<pinref part="IC1" gate="G$1" pin="RXD"/>
-<wire x1="38.1" y1="139.7" x2="43.18" y2="139.7" width="0.1524" layer="91"/>
-<label x="43.18" y="139.7" size="1.27" layer="95" xref="yes"/>
-</segment>
-<segment>
-<pinref part="U3" gate="G$1" pin="PB02(AIN10/SER5:0)"/>
-<wire x1="149.86" y1="33.02" x2="147.32" y2="33.02" width="0.1524" layer="91"/>
-<label x="147.32" y="33.02" size="1.27" layer="95" rot="R180" xref="yes"/>
-</segment>
-</net>
-<net name="SER5_RX" class="0">
-<segment>
-<pinref part="IC1" gate="G$1" pin="TXD"/>
-<wire x1="38.1" y1="137.16" x2="43.18" y2="137.16" width="0.1524" layer="91"/>
-<label x="43.18" y="137.16" size="1.27" layer="95" xref="yes"/>
-</segment>
-<segment>
-<pinref part="U3" gate="G$1" pin="PB03(AIN11/SER5:1)"/>
-<wire x1="149.86" y1="30.48" x2="147.32" y2="30.48" width="0.1524" layer="91"/>
-<label x="147.32" y="30.48" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="TX_MOSI" class="0">
@@ -6707,6 +6661,30 @@ Source: &lt;a href="http://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_
 <pinref part="U3" gate="G$1" pin="PA24(SER3:2+)"/>
 <wire x1="218.44" y1="35.56" x2="220.98" y2="35.56" width="0.1524" layer="91"/>
 <label x="220.98" y="35.56" size="1.27" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="GPS_TX" class="0">
+<segment>
+<pinref part="U3" gate="G$1" pin="PA00(XIN32/SER1:0/TC2:0)"/>
+<wire x1="149.86" y1="55.88" x2="147.32" y2="55.88" width="0.1524" layer="91"/>
+<label x="147.32" y="55.88" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="IC1" gate="G$1" pin="RXD"/>
+<wire x1="38.1" y1="139.7" x2="43.18" y2="139.7" width="0.1524" layer="91"/>
+<label x="43.18" y="139.7" size="1.27" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="GPS_RX" class="0">
+<segment>
+<pinref part="U3" gate="G$1" pin="PA01(XOUT32/SER1:1/TC2:1)"/>
+<wire x1="149.86" y1="50.8" x2="147.32" y2="50.8" width="0.1524" layer="91"/>
+<label x="147.32" y="50.8" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="IC1" gate="G$1" pin="TXD"/>
+<wire x1="38.1" y1="137.16" x2="43.18" y2="137.16" width="0.1524" layer="91"/>
+<label x="43.18" y="137.16" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 </nets>
