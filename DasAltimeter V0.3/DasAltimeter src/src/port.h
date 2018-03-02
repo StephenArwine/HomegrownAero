@@ -88,6 +88,12 @@ inline static void pinOut(Pin p) {
     PORT->Group[p.group].DIRSET.reg = (1<<p.pin);
 }
 
+
+inline static void pinOutStrong(Pin p) {
+	pinGpio(p);
+    PORT->Group[p.group].PINCFG[p.pin].bit.DRVSTR = 1;
+}
+
 inline static void pinHigh(Pin p) {
     PORT->Group[p.group].OUTSET.reg = (1<<p.pin);
 }

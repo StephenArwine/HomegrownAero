@@ -72,11 +72,12 @@ typedef enum flightState_t {
     flightDrogue = 6,
     flightMain = 7,
     flightLanded = 8,
-    flightTest = 10
+    flightTest = -1
 
 } flightState_t;
 
 extern flightState_t flightState;
+flightState_t flightState;
 
 
 typedef struct Altimeter {

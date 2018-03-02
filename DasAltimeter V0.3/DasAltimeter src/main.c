@@ -96,7 +96,7 @@ void init() {
     pinHigh(cs_baro);
 
     pinOut(buzzerPin);
-    pinCfg(buzzerPin);
+	pinOutStrong(buzzerPin);
 
     pinOut(TxPo);
     pinMux(TxPo);

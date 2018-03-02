@@ -1,8 +1,6 @@
 #include <util.h>
 #include <boardDefines.h>
 
-flightState_t flightState;
-
 
 void flight() {
 
