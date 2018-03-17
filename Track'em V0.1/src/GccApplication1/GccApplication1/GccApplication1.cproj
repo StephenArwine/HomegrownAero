@@ -13,7 +13,7 @@
     <OutputFileExtension>.elf</OutputFileExtension>
     <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
     <AssemblyName>GccApplication1</AssemblyName>
-    <Name>Track'em V0.1</Name>
+    <Name>GccApplication1</Name>
     <RootNamespace>GccApplication1</RootNamespace>
     <ToolchainFlavour>Native</ToolchainFlavour>
     <KeepTimersRunning>true</KeepTimersRunning>
@@ -28,15 +28,15 @@
     <eraseonlaunchrule>0</eraseonlaunchrule>
     <AsfFrameworkConfig>
       <framework-data xmlns="">
-        <options />
-        <configurations />
-        <files />
-        <documentation help="" />
-        <offline-documentation help="" />
-        <dependencies>
-          <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.32.0" />
-        </dependencies>
-      </framework-data>
+  <options />
+  <configurations />
+  <files />
+  <documentation help="" />
+  <offline-documentation help="" />
+  <dependencies>
+    <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.32.0" />
+  </dependencies>
+</framework-data>
     </AsfFrameworkConfig>
     <avrtool>com.atmel.avrdbg.tool.atmelice</avrtool>
     <avrtoolserialnumber>J41800028966</avrtoolserialnumber>
@@ -70,8 +70,6 @@
   </armgcc.compiler.symbols.DefSymbols>
   <armgcc.compiler.directories.IncludePaths>
     <ListValues>
-      <Value>../src</Value>
-      <Value>..</Value>
       <Value>%24(PackRepoDir)\atmel\SAMD21_DFP\1.1.271\samd21a\include</Value>
       <Value>%24(PackRepoDir)\arm\cmsis\4.2.0\CMSIS\Include\</Value>
     </ListValues>
@@ -90,7 +88,6 @@
     </ListValues>
   </armgcc.linker.libraries.LibrarySearchPaths>
   <armgcc.linker.optimization.GarbageCollectUnusedSections>True</armgcc.linker.optimization.GarbageCollectUnusedSections>
-  <armgcc.linker.memorysettings.ExternalRAM />
   <armgcc.linker.miscellaneous.LinkerFlags>-Tsamd21g18a_flash.ld</armgcc.linker.miscellaneous.LinkerFlags>
   <armgcc.assembler.general.IncludePaths>
     <ListValues>
@@ -122,18 +119,16 @@
   </armgcc.compiler.symbols.DefSymbols>
   <armgcc.compiler.directories.IncludePaths>
     <ListValues>
-      <Value>../src</Value>
-      <Value>..</Value>
       <Value>%24(PackRepoDir)\atmel\SAMD21_DFP\1.1.271\samd21a\include</Value>
       <Value>%24(PackRepoDir)\arm\cmsis\4.2.0\CMSIS\Include\</Value>
+      <Value>..</Value>
     </ListValues>
   </armgcc.compiler.directories.IncludePaths>
   <armgcc.compiler.optimization.level>Optimize (-O1)</armgcc.compiler.optimization.level>
   <armgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>True</armgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>
-  <armgcc.compiler.optimization.DebugLevel>Default (-g2)</armgcc.compiler.optimization.DebugLevel>
+  <armgcc.compiler.optimization.DebugLevel>Maximum (-g3)</armgcc.compiler.optimization.DebugLevel>
   <armgcc.compiler.warnings.AllWarnings>True</armgcc.compiler.warnings.AllWarnings>
   <armgcc.linker.general.UseNewlibNano>True</armgcc.linker.general.UseNewlibNano>
-  <armgcc.linker.general.AdditionalSpecs>Use syscall stubs (--specs=nosys.specs)</armgcc.linker.general.AdditionalSpecs>
   <armgcc.linker.libraries.Libraries>
     <ListValues>
       <Value>libm</Value>
@@ -165,9 +160,8 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="boardDefines.h">
+    <Compile Include="bitBang.c">
       <SubType>compile</SubType>
-      <Link>boardDefines.h</Link>
     </Compile>
     <Compile Include="Device_Startup\startup_samd21.c">
       <SubType>compile</SubType>
@@ -178,45 +172,11 @@
     <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\bitBang.c">
+    <Compile Include="port.h">
       <SubType>compile</SubType>
-      <Link>bitBang.c</Link>
     </Compile>
-    <Compile Include="src\cc1101.c">
+    <Compile Include="util.h">
       <SubType>compile</SubType>
-      <Link>cc1101.c</Link>
-    </Compile>
-    <Compile Include="src\cc1101.h">
-      <SubType>compile</SubType>
-      <Link>cc1101.h</Link>
-    </Compile>
-    <Compile Include="src\clocks.c">
-      <SubType>compile</SubType>
-      <Link>clocks.c</Link>
-    </Compile>
-    <Compile Include="src\GPS.c">
-      <SubType>compile</SubType>
-      <Link>GPS.c</Link>
-    </Compile>
-    <Compile Include="src\GPS.h">
-      <SubType>compile</SubType>
-      <Link>GPS.h</Link>
-    </Compile>
-    <Compile Include="src\port.h">
-      <SubType>compile</SubType>
-      <Link>port.h</Link>
-    </Compile>
-    <Compile Include="src\sercom.c">
-      <SubType>compile</SubType>
-      <Link>sercom.c</Link>
-    </Compile>
-    <Compile Include="src\spi.c">
-      <SubType>compile</SubType>
-      <Link>spi.c</Link>
-    </Compile>
-    <Compile Include="src\util.h">
-      <SubType>compile</SubType>
-      <Link>util.h</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>

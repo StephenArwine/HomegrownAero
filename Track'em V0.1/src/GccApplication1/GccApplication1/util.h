@@ -27,8 +27,6 @@ typedef uint8_t SercomId;
 // my includes
 
 #include <port.h>
-#include <GPS.h>
-#include <cc1101.h>
 
 //#include <AT25SF.h>
 //#include <MS5803.h>

@@ -27,43 +27,43 @@ void init() {
     NVIC_EnableIRQ(DMAC_IRQn);
     NVIC_SetPriority(DMAC_IRQn, 0x00);
 
-    pinOut(GPSTxPo);
-    pinIn(GPSRxPo);
-    pinMux(GPSTxPo);
-    pinMux(GPSRxPo);
-
-    pinOut(ComTxPo);
-    pinIn(ComRxPo);
-    pinMux(ComTxPo);
-    pinMux(ComRxPo);
+//     pinOut(GPSTxPo);
+//     pinIn(GPSRxPo);
+//     pinMux(GPSTxPo);
+//     pinMux(GPSRxPo);
+// 
+//     pinOut(ComTxPo);
+//     pinIn(ComRxPo);
+//     pinMux(ComTxPo);
+//     pinMux(ComRxPo);
 
     pinOut(spiMOSI);
     pinOut(spiSCK);
     pinIn(spiMISO);
 
-    pinOut(cs_mem);
-    pinHigh(cs_mem);
+    //pinOut(cs_mem);
+   // pinHigh(cs_mem);
     pinOut(cs_tx);
     pinHigh(cs_tx);
 
-    sercomClockEnable(USART0, 4, 8);
-    sercomUartInit(USART0,1,0,63860);
+//     sercomClockEnable(USART0, 4, 8);
+//     sercomUartInit(USART0,1,0,63860);
+// 
+//     sercomClockEnable(USART1, 4, 8);
+//     sercomUartInit(USART1,3,1,45403);
 
-    sercomClockEnable(USART1, 4, 8);
-    sercomUartInit(USART1,3,1,45403);
-
-    TC1Init();
-
-}
-
-
-void SendUSART(char message[], int length) {
-
-    for (u8_t i = 0; i < length; i++) {
-        usartDataOut(USART1,message[i]);
-    }
+    //TC1Init();
 
 }
+
+
+// void SendUSART(char message[], int length) {
+// 
+//     for (u8_t i = 0; i < length; i++) {
+//         usartDataOut(USART1,message[i]);
+//     }
+// 
+// }
 
 u8_t packet[30] = {0x13, 0x0d, 0x89, 0x0a, 0x1c, 0xdb, 0xae, 0x32, 0x20, 0x9a, 0x50, 0xee, 0x40, 0x78, 0x36, 0xfd, 0x12, 0x49, 0x32, 0xf6, 0x9e, 0x7d, 0x49, 0xdc, 0xad, 0x4f, 0x14, 0xf2 };
 
@@ -83,9 +83,7 @@ int main(void) {
 //     u8_t ID3 = byteIn(spiSCK, spiMISO);
 //     pinHigh(cs_mem);
 
-
-
-//    CC1101_reset_chip();
+    CC1101_reset_chip();
 //    delay_ms(100);
 
     //sendreg();
