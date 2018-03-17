@@ -79,7 +79,12 @@ void sampleTick() {
 
     sample.accelX = sample.accelXint * BMI055_ACCEL_16G_DIV;
     sample.accelY = sample.accelYint * BMI055_ACCEL_16G_DIV;
-    sample.accelZ = -sample.accelZint * BMI055_ACCEL_16G_DIV;
+	
+    if (altimeter.pointingUp) {
+        sample.accelZ = -sample.accelZint * BMI055_ACCEL_16G_DIV;
+    } else {
+        sample.accelZ = sample.accelZint * BMI055_ACCEL_16G_DIV;
+    }
 
     // Gyro data
     pinLow(cs_gyro);

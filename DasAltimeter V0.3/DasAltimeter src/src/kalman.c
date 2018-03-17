@@ -140,17 +140,40 @@ void computeKalmanGains() {
     }
 }
 
+void KalmanBaroUpdate(double alt_inovation) {
+
+    /* Propagate state */
+    estp[0] = phi[0][0] * altitude + phi[0][1] * velocity;
+    estp[1] = phi[1][0] * altitude + phi[1][1] * velocity;
+    estp[2] = phi[2][0] * altitude + phi[2][1] * velocity;
+
+    /* Update state */
+    altitude = estp[0] + kgain[0][0] * alt_inovation;
+    velocity = estp[1] + kgain[1][0] * alt_inovation;
+    accel =    estp[2] + kgain[2][0] * alt_inovation;
+
+}
+
+void KalmanBothUpdate( double alt_inovation, double accel_inovation) {
+
+    /* Propagate state */
+    estp[0] = phi[0][0] * altitude + phi[0][1] * velocity + phi[0][2] * accel;
+    estp[1] = phi[1][0] * altitude + phi[1][1] * velocity + phi[1][2] * accel;
+    estp[2] = phi[2][0] * altitude + phi[2][1] * velocity + phi[2][2] * accel;
+
+    /* Update state */
+    altitude = estp[0] + kgain[0][0] * alt_inovation + kgain[0][1] * accel_inovation;
+    velocity = estp[1] + kgain[1][0] * alt_inovation + kgain[1][1] * accel_inovation;
+    accel =    estp[2] + kgain[2][0] * alt_inovation + kgain[2][1] * accel_inovation;
+}
+
 void computeKalmanStates() {
 
-    double alt_inovation, accel_inovation, acceleration;
+    double alt_inovation, accel_inovation, acceleration, pressure;
 
-    if (altimeter.pointingUp) {
-        acceleration = (sample.accelZ - offsets.gravityOffset) * 32.17417;
-    } else {
-        acceleration = (-sample.accelZ - offsets.gravityOffset) * 32.17417;
-    }
+    acceleration = (sample.accelZ - offsets.gravityOffset) * 32.17417;
 
-    double pressure = sample.pressureAltitude;
+    pressure = sample.pressureAltitude;
 
     if (altitude == 0) {
         altitude = pressure;
@@ -161,16 +184,9 @@ void computeKalmanStates() {
     accel_inovation = acceleration - estp[2];
 
 
-    /* Propagate state */
-    estp[0] = phi[0][0] * altitude + phi[0][1] *velocity + phi[0][2] * accel;
-    estp[1] = phi[1][0] * altitude + phi[1][1] * velocity + phi[1][2] * accel;
-    estp[2] = phi[2][0] * altitude + phi[2][1] * velocity + phi[2][2] * accel;
-
-    /*
-    Update state
-    */
-    altitude = estp[0] + kgain[0][0] * alt_inovation + kgain[0][1] * accel_inovation;
-    velocity = estp[1] + kgain[1][0] * alt_inovation + kgain[1][1] * accel_inovation;
-    accel =    estp[2] + kgain[2][0] * alt_inovation + kgain[2][1] * accel_inovation;
-
+    if (flightState < flightDrogue) {
+        KalmanBothUpdate(alt_inovation,accel_inovation);
+    } else {
+        KalmanBaroUpdate(alt_inovation);
+    }
 }
