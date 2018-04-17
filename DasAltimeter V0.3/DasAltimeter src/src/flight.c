@@ -1,7 +1,6 @@
 #include <util.h>
 #include <boardDefines.h>
 
-
 void flight() {
 
     switch(flightState) {
@@ -10,12 +9,17 @@ void flight() {
         updateGround( );
 
         if ((millis() - startupTick) > 10000) {
-            findNewFlightStart( );
-            logFlight( );
+            findNewFlightStart();
             startupJingle();
             startupTick = millis();
             flightState = flightTest;
             //flightState = flightPad;
+            if (flightState == flightTest) {
+                writeFlightStartAddress();
+                logFlight( );
+                logEvent('L');
+            }
+
             break;
         }
 
@@ -55,14 +59,19 @@ void flight() {
         updateGround();
 
         if (writeLog) {
-            //logSensors( );
+            logSensors( );
             pinToggle(LedPin);
         }
 
 
-        if ((( velocity > 15) && (accel > 2)) | (altitudeAGL() > 100)) {
+        //if ((( velocity > 15) && (accel > 2)) | (altitudeAGL() > 100)) {
+        if ((accel > 2)) {
             flightState = flightBoost;
+            writeFlightStartAddress();
+            logFlight( );
+            writeGroundLog();
             logEvent('L');
+            beep(100);
         }
 
         break;
@@ -76,12 +85,12 @@ void flight() {
             logSensors( );
         }
 
-        if (velocity < 0) {
-            flightState = flightDrogue;
-            igniteDrogue();
-            logEvent('A');
-            beep(100);
-        }
+//         if (velocity < 0) {
+//             flightState = flightDrogue;
+//             igniteDrogue();
+//             logEvent('A');
+//             beep(100);
+//         }
 
         break;
     case flightFast:
@@ -137,7 +146,6 @@ void flight() {
     case flightTest:
         //simple continuity test
         if ( (sample.voltage.senseA + sample.voltage.senseB +sample.voltage.senseC +sample.voltage.senseD) > 200) {
-            unpluggedJingle();
             //igniteDrogue();
 
         }
@@ -155,7 +163,7 @@ void flight() {
 
 
 
-    if ((flightState != flightStatrup) & ((flightState != flightIdle) & unplugged())) {
+    if ((flightState != flightStatrup) & (flightState != flightIdle) & (flightState != flightPad) & unplugged()) {
         finishFlight();
     }
 

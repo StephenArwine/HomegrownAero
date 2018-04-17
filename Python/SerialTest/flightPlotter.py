@@ -39,8 +39,7 @@ def PlotFlight(pointList, flight, eventList):
         #stdaccel.append(pointToPlot.accelZraw / 32.17417)
         #stdheight.append(pointToPlot.rawFeet)
 
-    for event in eventList:
-        print(event.eventType, event.sampleTick - flight.bufferTick)
+
 
     #print('accel StdDev ', numpy.std(stdaccel))
     #print('height StdDev ', numpy.std(stdheight))
@@ -61,6 +60,11 @@ def PlotFlight(pointList, flight, eventList):
 
     p2, = ax2.plot(tick, accelplot, color='r')
     p3, = ax3.plot(tick, velocityplot, color='g')
+
+    for event in eventList:
+        print('event type:', chr(event.eventType), 'event tick:', event.sampleTick, 'event altitude;', event.altitude)
+        ax1.axvline(x = (event.sampleTick/1000))
+
 
     ax3.axhline(y = 0, color='g', linestyle='--', linewidth =0.5)
     ax2.axhline(y = 0, color='r', linestyle='--', linewidth =0.5)

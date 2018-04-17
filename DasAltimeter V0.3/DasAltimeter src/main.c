@@ -22,7 +22,7 @@ void init() {
     /* Turn on the digital interface clock */
     PM->APBAMASK.reg |= PM_APBAMASK_GCLK;
 
-    SystemInit();
+    //SystemInit();
     GclkInit();
     RtcInit();
     delayInit();
@@ -140,7 +140,7 @@ int main(void) {
     //beepNumber(12345);
 
 
-    beep(400);
+    beep(800);
 
     startupTick = millis();
 

@@ -127,30 +127,25 @@ def build_event_point(data,currentPage, pages, locationInPage):
 
     event = EventPointType()
 
-    if (locationInPage + eventSampleLength + 1) > 255:
+    if (locationInPage + eventSampleLength) >= 256:
 
-        eventSamplePart = data[currentPage][locationInPage:255]
-        eventSample = eventSamplePart + data[currentPage + 1][0:(eventSampleLength - (256 - locationInPage))]
         if (currentPage + 1) >= pages:
             ProcessLog = False
             return 0, currentPage + 1, 0
 
-        event.eventType = eventSample[1]
-        event.sampleTick = int.from_bytes(eventSample[2:5], byteorder='little')
-
-
+        sensor_sample_part = data[currentPage][locationInPage:256]
+        eventSample = sensor_sample_part + data[currentPage + 1][0:(eventSampleLength - (256 - locationInPage))]
         currentPage += 1
-        locationInPage -= (0xff - eventSampleLength)
+        locationInPage -= (0xff - eventSampleLength + 1 )
 
     else:
         eventSample = data[currentPage][locationInPage:locationInPage + eventSampleLength]
-
-        event.eventType = eventSample[1]
-        event.sampleTick = int.from_bytes(eventSample[2:5], byteorder='little')
-
-
-
         locationInPage += eventSampleLength
+
+
+    event.eventType = eventSample[1]
+    event.sampleTick = int.from_bytes(eventSample[2:5], byteorder='little')
+    event.altitude = int.from_bytes(eventSample[6:9], byteorder='little', signed=True)
 
     return currentPage, locationInPage, event
 
