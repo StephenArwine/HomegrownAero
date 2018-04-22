@@ -67,7 +67,7 @@ void lightIgniterD();
 
 
 //clocks.c
-void GclkInit();
+void GclkInit(uint8_t clk_system);
 void gclkEnable(u32_t id, u32_t src, u32_t div);
 void RtcInit();
 void delayInit(void);
@@ -83,6 +83,7 @@ void isItPointingUp();
 
 //sercom.c
 void sercomClockEnable(SercomId id, uint32_t clock_channel, u8_t divider);
+void sercomClockDisable(SercomId id, uint32_t clock_channel);
 void sercomReset(SercomId id);
 void sercomSpiSlaveInit(SercomId id, u32_t dipo, u32_t dopo, bool cpol, bool cpha);
 void sercomSpiMasterInit(SercomId id, u32_t dipo, u32_t dopo, bool cpol, bool cpha, u8_t baud);
@@ -141,3 +142,6 @@ static inline void delay_cycles(
 static inline void SPI_sync(SercomId id) {
     while  (sercom(id)->SPI.SYNCBUSY.bit.CTRLB);
 };
+
+volatile uint32_t g_msTicks;
+

@@ -1,8 +1,0 @@
-
-
-//flight.c
-
-
-void flight();
-
-

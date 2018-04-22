@@ -25,9 +25,9 @@ class SensorPointType:
         self.accelX = 0
         self.accelY = 0
         self.accelZ = 0
-        self.accelZFract = 0
-        self.accelZraw = 0
-        self.accelZrawFract = 0
+        self.accelXFract = 0
+        self.accelXraw = 0
+        self.accelXrawFract = 0
         self.gyroX = 0
         self.gyroY = 0
         self.gyroZ = 0
@@ -98,10 +98,10 @@ def build_sensor_point(data, currentPage, pages, locationInPage, lastTick):
     point.Dt = point.sampleTick - lastTick
     point.heightFeet = int.from_bytes(sensor_sample[5:8], byteorder='little', signed=True)
 
-    point.accelZ = twosComp.twos_complement(sensor_sample[9], sensor_sample[10])
-    point.accelZFract = twosComp.twos_complement(sensor_sample[11], sensor_sample[12])
-    point.accelZFract = point.accelZFract / 1000
-    point.accelZ = (point.accelZ + point.accelZFract + 32.17417) / 32.17417
+    point.accelX = twosComp.twos_complement(sensor_sample[9], sensor_sample[10])
+    point.accelXFract = twosComp.twos_complement(sensor_sample[11], sensor_sample[12])
+    point.accelXFract = point.accelXFract / 1000
+    point.accelX = (point.accelX + point.accelXFract + 32.17417) / 32.17417
 
     point.velocity = twosComp.twos_complement(sensor_sample[13], sensor_sample[14])
 
@@ -109,8 +109,8 @@ def build_sensor_point(data, currentPage, pages, locationInPage, lastTick):
     point.velocityfract = point.velocityfract / 1000
     point.velocity = point.velocity + point.velocityfract
 
-    point.accelX = (twos_complement(sensor_sample[17],sensor_sample[18]) >> 4) * 0.0078125
-    point.accelY = (twos_complement(sensor_sample[19], sensor_sample[20]) >> 4) * 0.0078125
+    point.accelY = (twos_complement(sensor_sample[17],sensor_sample[18]) >> 4) * 0.0078125
+    point.accelZ = (twos_complement(sensor_sample[19], sensor_sample[20]) >> 4) * 0.0078125
 
     point.gyroX = (twos_complement(sensor_sample[21], sensor_sample[22]) >> 4) * 0.0078125
     point.gyroY = (twos_complement(sensor_sample[23], sensor_sample[24]) >> 4) * 0.0078125

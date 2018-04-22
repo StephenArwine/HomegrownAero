@@ -22,14 +22,11 @@ void init() {
     /* Turn on the digital interface clock */
     PM->APBAMASK.reg |= PM_APBAMASK_GCLK;
 
-    //SystemInit();
-    GclkInit();
+    SystemInit();
+    GclkInit(0);
     RtcInit();
     delayInit();
     adcInit();
-
-    NVIC_EnableIRQ(DMAC_IRQn);
-    NVIC_SetPriority(DMAC_IRQn, 0x00);
 
     pinOut(LedPin);
     pinAnalog(senseBatPin);
@@ -96,12 +93,14 @@ void init() {
     pinHigh(cs_baro);
 
     pinOut(buzzerPin);
-	pinOutStrong(buzzerPin);
+    pinOutStrong(buzzerPin);
 
     pinOut(TxPo);
     pinMux(TxPo);
     pinIn(RxPo);
     pinMux(RxPo);
+	
+	delay_ms(200);
 
     sercomClockEnable(SPI2, 3, 4);
     sercomSpiMasterInit(SPI2, 1, 3, 0, 0, 0x00);
@@ -131,7 +130,7 @@ int main(void) {
 
     sampleTick();
 
-    //POST();
+    POST();
 
     isItPointingUp();
 
@@ -154,5 +153,10 @@ int main(void) {
         }
 
     }
+
+}
+
+void HardFault_Handler(void) {
+    NVIC_SystemReset();
 
 }

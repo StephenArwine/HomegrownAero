@@ -1,4 +1,3 @@
-
 import matplotlib.pyplot as plt
 from sensorPoint import SensorPointType
 from sensorPoint import EventPointType
@@ -24,7 +23,8 @@ def PlotFlight(pointList, flight, eventList):
 
         if x == 0:
 
-            print('Sample 0 tick:', pointToPlot.sampleTick, 'Height Feet:', 'Velocity:', pointToPlot.velocity, 'AccelZ:', pointToPlot.accelZ)
+            print('Sample 0 tick:', pointToPlot.sampleTick, 'Height Feet:', 'Velocity:', pointToPlot.velocity,
+                  'AccelZ:', pointToPlot.accelZ)
 
         elif x > 0:
 
@@ -32,17 +32,16 @@ def PlotFlight(pointList, flight, eventList):
                   pointToPlot.heightFeet, 'Velocity:', pointToPlot.velocity, 'AccelX:', pointToPlot.accelX,
                   'AccelZ:', pointToPlot.accelZ, 'AccelY:', pointToPlot.accelY, 'Analog Accel', pointToPlot.analogAccel)
         tick.append(pointToPlot.sampleTick / 1000)
-        accelplot.append(pointToPlot.accelZ)
+        accelplot.append(pointToPlot.accelX)
         heightplot.append(pointToPlot.heightFeet)
         velocityplot.append(pointToPlot.velocity)
+        x = x + 1
 
-        #stdaccel.append(pointToPlot.accelZraw / 32.17417)
-        #stdheight.append(pointToPlot.rawFeet)
+        # stdaccel.append(pointToPlot.accelZraw / 32.17417)
+        # stdheight.append(pointToPlot.rawFeet)
 
-
-
-    #print('accel StdDev ', numpy.std(stdaccel))
-    #print('height StdDev ', numpy.std(stdheight))
+    # print('accel StdDev ', numpy.std(stdaccel))
+    # print('height StdDev ', numpy.std(stdheight))
 
     fig, ax1 = plt.subplots()
     ax2 = ax1.twinx()
@@ -63,12 +62,10 @@ def PlotFlight(pointList, flight, eventList):
 
     for event in eventList:
         print('event type:', chr(event.eventType), 'event tick:', event.sampleTick, 'event altitude;', event.altitude)
-        ax1.axvline(x = (event.sampleTick/1000))
+        ax1.axvline(x=(event.sampleTick / 1000))
 
-
-    ax3.axhline(y = 0, color='g', linestyle='--', linewidth =0.5)
-    ax2.axhline(y = 0, color='r', linestyle='--', linewidth =0.5)
-
+    ax3.axhline(y=0, color='g', linestyle='--', linewidth=0.5)
+    ax2.axhline(y=0, color='r', linestyle='--', linewidth=0.5)
 
     # make_patch_spines_invisible(ax1)
     # make_patch_spines_invisible(ax2)
@@ -77,7 +74,6 @@ def PlotFlight(pointList, flight, eventList):
     ax1.yaxis.set_label_position('left')
     ax1.yaxis.set_ticks_position('left')
     ax1.grid(True)
-
 
     # ax2.spines["left"].set_visible(True)
     ax2.yaxis.set_label_position('right')
@@ -93,11 +89,9 @@ def PlotFlight(pointList, flight, eventList):
     ax2.tick_params(axis='y', colors=p2.get_color(), **tkw)
     ax3.tick_params(axis='y', colors=p3.get_color(), **tkw)
 
-
     ax1.set_zorder(1)
     ax2.set_zorder(2)
     ax3.set_zorder(3)
-
 
     fig.tight_layout()
     plt.show()

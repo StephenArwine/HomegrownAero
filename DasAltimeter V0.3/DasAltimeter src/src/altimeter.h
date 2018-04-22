@@ -104,6 +104,7 @@ void sendTheasePagesToComputer(u32_t firstPage, u32_t lastPage);
 int32_t altitudeAGL();
 bool unplugged();
 
+void shutDown();
 void finishFlight();
 
 void POST();

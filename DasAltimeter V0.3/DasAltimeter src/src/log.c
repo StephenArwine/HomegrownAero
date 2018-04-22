@@ -160,11 +160,11 @@ void logSensors() {
     dataToSend[15] = fractVelocityPart >> 0;
     dataToSend[16] = fractVelocityPart >> 8;
 
-    dataToSend[17] = sample.accelXint >> 0;
-    dataToSend[18] = sample.accelXint >> 8;
+    dataToSend[17] = sample.accelYint >> 0;
+    dataToSend[18] = sample.accelYint >> 8;
 
-    dataToSend[19] = sample.accelYint >> 0;
-    dataToSend[20] = sample.accelYint >> 8;
+    dataToSend[19] = sample.accelZint >> 0;
+    dataToSend[20] = sample.accelZint >> 8;
 
     dataToSend[21] = sample.gyroXint >> 0;
     dataToSend[22] = sample.gyroXint >> 8;

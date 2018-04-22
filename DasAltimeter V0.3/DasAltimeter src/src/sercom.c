@@ -17,6 +17,15 @@ void sercomClockEnable(SercomId id, uint32_t clock_channel, u8_t divider) {
                         GCLK_CLKCTRL_ID(SERCOM0_GCLK_ID_CORE + id);
 }
 
+void sercomClockDisable(SercomId id, uint32_t clock_channel) {
+
+    sercomReset(id);
+
+//     GCLK->CLKCTRL.reg = GCLK_CLKCTRL_RESETVALUE |
+//                         GCLK_CLKCTRL_GEN(clock_channel) |
+//                         GCLK_CLKCTRL_ID(SERCOM0_GCLK_ID_CORE + id);
+}
+
 
 void sercomReset(SercomId id) {
     sercom(id)->SPI.CTRLA.reg = SERCOM_SPI_CTRLA_SWRST;

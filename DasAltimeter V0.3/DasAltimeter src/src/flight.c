@@ -28,6 +28,8 @@ void flight() {
         if (unplugged()) {
             flightState = flightIdle;
             unpluggedJingle();
+            delay_ms(1000);
+            shutDown();
         }
 
         break;
@@ -144,15 +146,6 @@ void flight() {
 
         break;
     case flightTest:
-        //simple continuity test
-        if ( (sample.voltage.senseA + sample.voltage.senseB +sample.voltage.senseC +sample.voltage.senseD) > 200) {
-            //igniteDrogue();
-
-        }
-
-//         if (altitudeAGL() > 15 | altitudeAGL() < -15) {
-//             beep(100);
-//         }
 
         if (writeLog) {
             logSensors( );

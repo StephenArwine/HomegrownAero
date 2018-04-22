@@ -171,7 +171,7 @@ void computeKalmanStates() {
 
     double alt_inovation, accel_inovation, acceleration, pressure;
 
-    acceleration = (sample.accelZ - offsets.gravityOffset) * 32.17417;
+    acceleration = (sample.accelX - offsets.gravityOffset) * 32.17417;
 
     pressure = sample.pressureAltitude;
 

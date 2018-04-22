@@ -24,22 +24,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="flightPlotter.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="flightPlotter.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/flightPlotter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="455">
-              <caret line="65" column="47" lean-forward="false" selection-start-line="65" selection-start-column="47" selection-end-line="65" selection-end-column="47" />
+            <state relative-caret-position="374">
+              <caret line="31" column="44" lean-forward="true" selection-start-line="31" selection-start-column="44" selection-end-line="31" selection-end-column="44" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sensorPoint.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="sensorPoint.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sensorPoint.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2465">
-              <caret line="147" column="18" lean-forward="false" selection-start-line="147" selection-start-column="10" selection-end-line="147" selection-end-column="18" />
+            <state relative-caret-position="459">
+              <caret line="111" column="36" lean-forward="false" selection-start-line="111" selection-start-column="36" selection-end-line="111" selection-end-column="36" />
               <folding>
+                <element signature="e#4649#5497#0" expanded="false" />
                 <element signature="e#6271#7154#0" expanded="false" />
               </folding>
             </state>
@@ -77,8 +78,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="2165" />
-    <option name="y" value="-15" />
+    <option name="x" value="-59" />
+    <option name="y" value="-8" />
     <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
@@ -98,6 +99,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -109,8 +112,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -204,7 +205,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22813489" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -283,7 +284,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="136" />
+      <option name="time" value="137" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -644,21 +645,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sensorPoint.py">
+    <entry file="file://$PROJECT_DIR$/flightPlotter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2465">
-          <caret line="147" column="18" lean-forward="false" selection-start-line="147" selection-start-column="10" selection-end-line="147" selection-end-column="18" />
-          <folding>
-            <element signature="e#6271#7154#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="374">
+          <caret line="31" column="44" lean-forward="true" selection-start-line="31" selection-start-column="44" selection-end-line="31" selection-end-column="44" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/flightPlotter.py">
+    <entry file="file://$PROJECT_DIR$/sensorPoint.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="455">
-          <caret line="65" column="47" lean-forward="false" selection-start-line="65" selection-start-column="47" selection-end-line="65" selection-end-column="47" />
-          <folding />
+        <state relative-caret-position="459">
+          <caret line="111" column="36" lean-forward="false" selection-start-line="111" selection-start-column="36" selection-end-line="111" selection-end-column="36" />
+          <folding>
+            <element signature="e#4649#5497#0" expanded="false" />
+            <element signature="e#6271#7154#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

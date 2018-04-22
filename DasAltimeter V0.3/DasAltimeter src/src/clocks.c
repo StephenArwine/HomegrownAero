@@ -5,64 +5,70 @@
 
 
 // Configure DFLL in USB recovery mode
-const uint32_t dfll_ctrl_usb= SYSCTRL_DFLLCTRL_ENABLE
-                              | SYSCTRL_DFLLCTRL_CCDIS
-                              | SYSCTRL_DFLLCTRL_BPLCKC
-                              | SYSCTRL_DFLLCTRL_USBCRM
-                              | SYSCTRL_DFLLCTRL_ONDEMAND;
+const uint32_t dfll_ctrl= SYSCTRL_DFLLCTRL_ENABLE
+                          | SYSCTRL_DFLLCTRL_CCDIS
+                          | SYSCTRL_DFLLCTRL_BPLCKC
+                          | SYSCTRL_DFLLCTRL_ONDEMAND;
 
 
 static uint32_t cycles_per_ms = 48000000UL / 1000;
 static uint32_t cycles_per_us = 48000000UL / 1000000;
 
-void GclkInit() {
-
-
-    SYSCTRL->INTFLAG.reg = SYSCTRL_INTFLAG_BOD33RDY | SYSCTRL_INTFLAG_BOD33DET |
-                           SYSCTRL_INTFLAG_DFLLRDY;
-    NVMCTRL->CTRLB.reg |= NVMCTRL_CTRLB_RWS_HALF;
-
-
-//Configure the FDLL48MHz FLL, we will use this to provide a clock to the CPU
-//Set the course and fine step sizes, these should be less than 50% of the values used for the course and fine values (P150)
-
-
 #define NVM_DFLL_COARSE_POS    58
 #define NVM_DFLL_COARSE_SIZE   6
 #define NVM_DFLL_FINE_POS      64
 #define NVM_DFLL_FINE_SIZE     10
-    uint32_t coarse =( *((uint32_t *)(NVMCTRL_OTP4)
-                         + (NVM_DFLL_COARSE_POS / 32))
-                       >> (NVM_DFLL_COARSE_POS % 32))
-                     & ((1 << NVM_DFLL_COARSE_SIZE) - 1);
+
+uint32_t dfll_nvm_val() {
+    uint32_t coarse = ( *((uint32_t *)(NVMCTRL_OTP4)
+                          + (NVM_DFLL_COARSE_POS / 32))
+                        >> (NVM_DFLL_COARSE_POS % 32))
+                      & ((1 << NVM_DFLL_COARSE_SIZE) - 1);
     if (coarse == 0x3f) {
         coarse = 0x1f;
     }
-    uint32_t fine =( *((uint32_t *)(NVMCTRL_OTP4)
-                       + (NVM_DFLL_FINE_POS / 32))
-                     >> (NVM_DFLL_FINE_POS % 32))
-                   & ((1 << NVM_DFLL_FINE_SIZE) - 1);
+    uint32_t fine = ( *((uint32_t *)(NVMCTRL_OTP4)
+                        + (NVM_DFLL_FINE_POS / 32))
+                      >> (NVM_DFLL_FINE_POS % 32))
+                    & ((1 << NVM_DFLL_FINE_SIZE) - 1);
     if (fine == 0x3ff) {
         fine = 0x1ff;
     }
 
+    return SYSCTRL_DFLLVAL_COARSE(coarse) | SYSCTRL_DFLLVAL_FINE(fine);
+}
+
+void dfll_wait_for_sync() {
+    while (!SYSCTRL->PCLKSR.bit.DFLLRDY);
+}
+
+void gclk_enable(uint32_t id, uint32_t src, uint32_t div) {
+    GCLK->GENDIV.reg = GCLK_GENDIV_ID(id) | GCLK_GENDIV_DIV(div);
+    GCLK->GENCTRL.reg = GCLK_GENCTRL_ID(id) | GCLK_GENCTRL_GENEN | GCLK_GENCTRL_SRC(src);
+}
+
+void GclkInit(u8_t clk_system) {
+
+
+    SYSCTRL->INTFLAG.reg = SYSCTRL_INTFLAG_BOD33RDY | SYSCTRL_INTFLAG_BOD33DET |
+                           SYSCTRL_INTFLAG_DFLLRDY;
+    NVMCTRL->CTRLB.bit.RWS = 2;
+
+    // Initialize GCLK
+    PM->APBAMASK.reg |= PM_APBAMASK_GCLK;
+    GCLK->CTRL.reg = GCLK_CTRL_SWRST;
+    while (GCLK->CTRL.reg & GCLK_CTRL_SWRST);
 
     // Disable ONDEMAND mode while writing configurations (errata 9905)
-    SYSCTRL->DFLLCTRL.reg = dfll_ctrl_usb & ~SYSCTRL_DFLLCTRL_ONDEMAND;
-    while((SYSCTRL->PCLKSR.reg & (SYSCTRL_PCLKSR_DFLLRDY)) == 0);
-    SYSCTRL->DFLLVAL.reg = SYSCTRL_DFLLVAL_COARSE(coarse) | SYSCTRL_DFLLVAL_FINE(fine);
-
-
-    //Wait and see if the DFLL output is good . . .
-    while((SYSCTRL->PCLKSR.reg & (SYSCTRL_PCLKSR_DFLLRDY)) == 0);
-
-
-    SYSCTRL->DFLLCTRL.reg = dfll_ctrl_usb;
+    SYSCTRL->DFLLCTRL.reg = dfll_ctrl & ~SYSCTRL_DFLLCTRL_ONDEMAND;
+    dfll_wait_for_sync();
+    SYSCTRL->DFLLVAL.reg = dfll_nvm_val();
+    dfll_wait_for_sync();
+    SYSCTRL->DFLLCTRL.reg = dfll_ctrl;
 
 
     //For generic clock generator 0, select the DFLL48 Clock as input
-    GCLK->GENDIV.reg  = (GCLK_GENDIV_DIV(1)  | GCLK_GENDIV_ID(0));
-    GCLK->GENCTRL.reg = (GCLK_GENCTRL_ID(0)  | (GCLK_GENCTRL_SRC_DFLL48M) | (GCLK_GENCTRL_GENEN));
+    gclk_enable(clk_system, GCLK_SOURCE_DFLL48M, 1);
 }
 
 void RtcInit() {
@@ -154,6 +160,8 @@ void delayInit(void) {
     cycles_per_ms /= 1000;
     cycles_per_us = cycles_per_ms / 1000;
 
+    NVIC_SetPriority(SysTick_IRQn, 0x0);
+
     SysTick->CTRL = SysTick_CTRL_CLKSOURCE_Msk | SysTick_CTRL_ENABLE_Msk;
 }
 
@@ -167,6 +175,20 @@ void delay_us(uint32_t n) {
         /* Devide up to blocks of 10u */
         delay_cycles(cycles_per_us);
     }
+}
+
+
+void SysTick_Handler(void) {
+    //g_msTicks++;
+}
+
+void delay_millis(unsigned ms) {
+    unsigned start = g_msTicks;
+    while (g_msTicks - start <= ms) {
+        __WFI();
+    }
+
+
 }
 
 

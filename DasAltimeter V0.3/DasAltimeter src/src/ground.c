@@ -5,7 +5,7 @@ void updateGround(Altimeter *my_altimeter) {
 
 
 
-    offsets.gravityOffsetBuffer = offsets.gravityOffsetBuffer * 0.8 + sample.accelZ * 0.2;
+    offsets.gravityOffsetBuffer = offsets.gravityOffsetBuffer * 0.8 + sample.accelX * 0.2;
     offsets.groundOffsetBuffer = offsets.groundOffsetBuffer * 0.5 + altitude * 0.5;
     offsets.groundTemperatureBuffer = offsets.groundTemperatureBuffer * 0.8 + sample.temperatureCelcus * 0.2;
 
@@ -23,12 +23,12 @@ void isItPointingUp() {
 
     double pointingUpBuffer;
 
-    pointingUpBuffer = sample.accelZ;
+    pointingUpBuffer = sample.accelX;
 
     for ( i = 0; i < 10 ; ++i ) {
         delay_ms(10);
         sampleTick();
-        pointingUpBuffer = pointingUpBuffer * 0.8 + sample.accelZ * 0.2;
+        pointingUpBuffer = pointingUpBuffer * 0.8 + sample.accelX * 0.2;
     }
     if ((pointingUpBuffer > 0.9) & (pointingUpBuffer <1.1)) {
         altimeter.pointingUp = true;
