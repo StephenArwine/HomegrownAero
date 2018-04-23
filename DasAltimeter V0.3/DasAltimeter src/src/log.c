@@ -77,10 +77,12 @@ void logFlight() {
     dataToSend[0] = FLIGHT_LOG;
     dataToSend[1] = 0;
 
-    dataToSend[2] = offsets.offsetBufferTime >> 0;
-    dataToSend[3] = offsets.offsetBufferTime >> 8;
-    dataToSend[4] = offsets.offsetBufferTime >> 16;
-    dataToSend[5] = offsets.offsetBufferTime >> 24;
+	offsets.TminusZeroTime = sample.sampleTick;
+
+    dataToSend[2] = offsets.TminusZeroTime >> 0;
+    dataToSend[3] = offsets.TminusZeroTime >> 8;
+    dataToSend[4] = offsets.TminusZeroTime >> 16;
+    dataToSend[5] = offsets.TminusZeroTime >> 24;
 
     dataToSend[6] = offsets.groundOffset >> 0;
     dataToSend[7] = offsets.groundOffset >> 8;
@@ -102,13 +104,15 @@ void logEvent(u8_t eventType) {
 
     u8_t bytesToSend = 12;
     u8_t dataToSend[12];
+	
+	u32_t eventTick = sample.sampleTick - offsets.TminusZeroTime;
 
     dataToSend[0] = EVENT_LOG;
     dataToSend[1] = eventType;
-    dataToSend[2] = sample.sampleTick >> 0;
-    dataToSend[3] = sample.sampleTick >> 8;
-    dataToSend[4] = sample.sampleTick >> 16;
-    dataToSend[5] = sample.sampleTick >> 24;
+    dataToSend[2] = eventTick >> 0;
+    dataToSend[3] = eventTick >> 8;
+    dataToSend[4] = eventTick >> 16;
+    dataToSend[5] = eventTick >> 24;
 
     dataToSend[6] = altitudeAGL() >> 0;
     dataToSend[7] = altitudeAGL() >> 8;

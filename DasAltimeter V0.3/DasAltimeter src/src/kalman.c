@@ -184,9 +184,9 @@ void computeKalmanStates() {
     accel_inovation = acceleration - estp[2];
 
 
-    if (flightState < flightDrogue) {
+ //   if (flightState < flightDrogue) {
         KalmanBothUpdate(alt_inovation,accel_inovation);
-    } else {
-        KalmanBaroUpdate(alt_inovation);
-    }
+   // } else {
+      //  KalmanBaroUpdate(alt_inovation);
+  //  }
 }

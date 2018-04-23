@@ -99,6 +99,7 @@ def build_sensor_point(data, currentPage, pages, locationInPage, lastTick):
     point.heightFeet = int.from_bytes(sensor_sample[5:8], byteorder='little', signed=True)
 
     point.accelX = twosComp.twos_complement(sensor_sample[9], sensor_sample[10])
+    point.accelXraw = twosComp.twos_complement(sensor_sample[9], sensor_sample[10])
     point.accelXFract = twosComp.twos_complement(sensor_sample[11], sensor_sample[12])
     point.accelXFract = point.accelXFract / 1000
     point.accelX = (point.accelX + point.accelXFract + 32.17417) / 32.17417

@@ -11,14 +11,13 @@ void flight() {
         if ((millis() - startupTick) > 10000) {
             findNewFlightStart();
             startupJingle();
-            startupTick = millis();
-            flightState = flightTest;
-            //flightState = flightPad;
-            if (flightState == flightTest) {
-                writeFlightStartAddress();
-                logFlight( );
-                logEvent('L');
-            }
+            //flightState = flightTest;
+            flightState = flightPad;
+//             if (flightState == flightTest) {
+//                 writeFlightStartAddress();
+//                 logFlight( );
+//                 logEvent('L');
+//             }
 
             break;
         }
@@ -66,14 +65,12 @@ void flight() {
         }
 
 
-        //if ((( velocity > 15) && (accel > 2)) | (altitudeAGL() > 100)) {
-        if ((accel > 2)) {
+        if ((( velocity > 15) && (accel > 2)) | (altitudeAGL() > 100)) {
             flightState = flightBoost;
             writeFlightStartAddress();
             logFlight( );
             writeGroundLog();
             logEvent('L');
-            beep(100);
         }
 
         break;
@@ -158,6 +155,10 @@ void flight() {
 
     if ((flightState != flightStatrup) & (flightState != flightIdle) & (flightState != flightPad) & unplugged()) {
         finishFlight();
+    }
+
+    if ((flightState == flightPad) & unplugged()) {
+        finishFromPad();
     }
 
 }

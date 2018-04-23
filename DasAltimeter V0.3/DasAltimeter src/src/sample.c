@@ -21,12 +21,8 @@ void sampleTick() {
 
     // take last samples time to discover Dt before setting new time
     u32_t lastTick = sample.sampleTick;
-    sample.sampleTick = millis() - startupTick;
+    sample.sampleTick = millis();
     sample.tickDelta = sample.sampleTick - lastTick;
-
-    // altimeter.flightTime = sample.sampleTick - offsets.StartupTick;
-
-
 
     sample.voltage.batV = adc_read(senseBatPin);
 

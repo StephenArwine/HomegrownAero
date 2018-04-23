@@ -21,6 +21,8 @@ def PlotFlight(pointList, flight, eventList):
 
     for pointToPlot in pointList:
 
+        pointToPlot.sampleTick = pointToPlot.sampleTick - flight.bufferTick
+
         if x == 0:
 
             print('Sample 0 tick:', pointToPlot.sampleTick, 'Height Feet:', 'Velocity:', pointToPlot.velocity,
@@ -30,7 +32,7 @@ def PlotFlight(pointList, flight, eventList):
 
             print('Sample', x, 'tick:', pointToPlot.sampleTick, 'Height Feet:',
                   pointToPlot.heightFeet, 'Velocity:', pointToPlot.velocity, 'AccelX:', pointToPlot.accelX,
-                  'AccelZ:', pointToPlot.accelZ, 'AccelY:', pointToPlot.accelY, 'Analog Accel', pointToPlot.analogAccel)
+                  'AccelZ:', pointToPlot.accelZ, 'AccelY:', pointToPlot.accelY, 'Analog Accel', pointToPlot.analogAccel, 'X raw', pointToPlot.accelXraw)
         tick.append(pointToPlot.sampleTick / 1000)
         accelplot.append(pointToPlot.accelX)
         heightplot.append(pointToPlot.heightFeet)
@@ -61,7 +63,7 @@ def PlotFlight(pointList, flight, eventList):
     p3, = ax3.plot(tick, velocityplot, color='g')
 
     for event in eventList:
-        print('event type:', chr(event.eventType), 'event tick:', event.sampleTick, 'event altitude;', event.altitude)
+        print('event type:', chr(event.eventType), 'event tick:', event.sampleTick , 'event altitude;', event.altitude)
         ax1.axvline(x=(event.sampleTick / 1000))
 
     ax3.axhline(y=0, color='g', linestyle='--', linewidth=0.5)
@@ -78,11 +80,11 @@ def PlotFlight(pointList, flight, eventList):
     # ax2.spines["left"].set_visible(True)
     ax2.yaxis.set_label_position('right')
     ax2.yaxis.set_ticks_position('right')
-    ax2.set_ylim(-2, 4)
+    #ax2.set_ylim(-2, 4)
 
     ax3.yaxis.set_label_position('right')
     ax3.yaxis.set_ticks_position('right')
-    ax3.set_ylim(-32, 32)
+    #ax3.set_ylim(-32, 32)
 
     tkw = dict(size=4, width=1.5)
     ax1.tick_params(axis='y', colors=p1.get_color(), **tkw)

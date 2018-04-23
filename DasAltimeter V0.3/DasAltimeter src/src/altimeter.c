@@ -81,52 +81,52 @@ void shutDown() {
     NVIC_DisableIRQ(RTC_IRQn);
     RTC->MODE1.CTRL.bit.ENABLE = 0;
     SysTick->CTRL = 0;
-	PM->APBAMASK.reg = 0;
+    PM->APBAMASK.reg = 0;
 
-	//turn off sercom clocks
-	//GCLK->CLKCTRL.reg
+    //turn off sercom clocks
+    //GCLK->CLKCTRL.reg
 
-     GCLK->GENDIV.reg  = (GCLK_GENDIV_DIV(1)  | GCLK_GENDIV_ID(0));
-     GCLK->GENCTRL.reg = (GCLK_GENCTRL_ID(0)  | (GCLK_GENCTRL_SRC_OSC8M) | (GCLK_GENCTRL_GENEN));
+    GCLK->GENDIV.reg  = (GCLK_GENDIV_DIV(1)  | GCLK_GENDIV_ID(0));
+    GCLK->GENCTRL.reg = (GCLK_GENCTRL_ID(0)  | (GCLK_GENCTRL_SRC_OSC8M) | (GCLK_GENCTRL_GENEN));
 
     pinHigh(LedPin);
 
 //     uint32_t *pSrc, *pDest;
-// 
+//
 //     /* Initialize the relocate segment */
 //     pSrc = &_etext;
 //     pDest = &_srelocate;
-// 
+//
 //     if (pSrc != pDest) {
 //         for (; pDest < &_erelocate;) {
 //             *pDest++ = *pSrc++;
 //         }
 //     }
-// 
+//
 //     /* Clear the zero segment */
 //     for (pDest = &_szero; pDest < &_ezero;) {
 //         *pDest++ = 0;
 //     }
-// 
+//
 //     /* Set the vector table base address */
 //     pSrc = (uint32_t *) & _sfixed;
 //     SCB->VTOR = ((uint32_t) pSrc & SCB_VTOR_TBLOFF_Msk);
-// 
+//
 //     /* Change default QOS values to have the best performance*/
 //     SBMATRIX->SFR[SBMATRIX_SLAVE_HMCRAMC0].reg = 2;
 //     DMAC->QOSCTRL.bit.DQOS = 2;
 //     DMAC->QOSCTRL.bit.FQOS = 2;
 //     DMAC->QOSCTRL.bit.WRBQOS = 2;
-// 
+//
 //     /* Overwriting the default value of the NVMCTRL.CTRLB.MANW bit (errata reference 13134) */
 //     NVMCTRL->CTRLB.bit.MANW = 1;
-// 
+//
 //     /* Initialize the C library */
 //     __libc_init_array();
 
-SYSCTRL->BOD33.reg = SYSCTRL_BOD33_PSEL_DIV8 | SYSCTRL_BOD33_ACTION_RESET | SYSCTRL_BOD33_LEVEL(60);
+    SYSCTRL->BOD33.reg = SYSCTRL_BOD33_PSEL_DIV8 | SYSCTRL_BOD33_ACTION_RESET | SYSCTRL_BOD33_LEVEL(60);
 
-SYSCTRL->BOD33.reg |= SYSCTRL_BOD33_ENABLE;
+    SYSCTRL->BOD33.reg |= SYSCTRL_BOD33_ENABLE;
     while(1) {
 
     }
@@ -140,6 +140,11 @@ void finishFlight() {
     unpluggedJingle();
     shutDown();
 
+}
+
+void finishFromPad() {
+    unpluggedJingle();
+    shutDown();
 }
 
 

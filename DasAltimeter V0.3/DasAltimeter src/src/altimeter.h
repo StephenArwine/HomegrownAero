@@ -35,6 +35,8 @@ typedef struct offsets_t {
 
     u32_t offsetBufferTime;
 
+    u32_t TminusZeroTime;
+
     double gravityOffset;
 
     double gravityOffsetBuffer;
@@ -47,11 +49,9 @@ typedef struct offsets_t {
 
     uint32_t groundTemperatureBuffer;
 
-    u32_t StartupTick;
-
     u32_t tickDelta;
-	
-	u32_t groundBeep;
+
+    u32_t groundBeep;
 
 
 } offsets_t;
@@ -106,6 +106,7 @@ bool unplugged();
 
 void shutDown();
 void finishFlight();
+void finishFromPad();
 
 void POST();
 

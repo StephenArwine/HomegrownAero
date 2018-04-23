@@ -4,7 +4,6 @@
 void updateGround(Altimeter *my_altimeter) {
 
 
-
     offsets.gravityOffsetBuffer = offsets.gravityOffsetBuffer * 0.8 + sample.accelX * 0.2;
     offsets.groundOffsetBuffer = offsets.groundOffsetBuffer * 0.5 + altitude * 0.5;
     offsets.groundTemperatureBuffer = offsets.groundTemperatureBuffer * 0.8 + sample.temperatureCelcus * 0.2;
