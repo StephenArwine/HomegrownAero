@@ -11,7 +11,7 @@
 #define EVENT_LOG 'E'
 #define VOLTAGE_TEMP_LOG 'V'
 #define STATE_LOG 'S'
-#define SENSOR_LOG_LENGTH 29
+#define SENSOR_LOG_LENGTH 35
 
 extern uint32_t currentAddress;
 

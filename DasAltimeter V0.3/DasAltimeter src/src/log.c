@@ -77,7 +77,7 @@ void logFlight() {
     dataToSend[0] = FLIGHT_LOG;
     dataToSend[1] = 0;
 
-	offsets.TminusZeroTime = sample.sampleTick;
+    offsets.TminusZeroTime = sample.sampleTick;
 
     dataToSend[2] = offsets.TminusZeroTime >> 0;
     dataToSend[3] = offsets.TminusZeroTime >> 8;
@@ -104,8 +104,8 @@ void logEvent(u8_t eventType) {
 
     u8_t bytesToSend = 12;
     u8_t dataToSend[12];
-	
-	u32_t eventTick = sample.sampleTick - offsets.TminusZeroTime;
+
+    u32_t eventTick = sample.sampleTick - offsets.TminusZeroTime;
 
     dataToSend[0] = EVENT_LOG;
     dataToSend[1] = eventType;
@@ -164,23 +164,31 @@ void logSensors() {
     dataToSend[15] = fractVelocityPart >> 0;
     dataToSend[16] = fractVelocityPart >> 8;
 
-    dataToSend[17] = sample.accelYint >> 0;
-    dataToSend[18] = sample.accelYint >> 8;
+    dataToSend[17] = (uint32_t)(sample.pressureAltitude) >> 0;
+    dataToSend[18] = (uint32_t)(sample.pressureAltitude) >> 8;
+    dataToSend[19] = (uint32_t)(sample.pressureAltitude) >> 16;
+    dataToSend[20] = (uint32_t)(sample.pressureAltitude) >> 24;
 
-    dataToSend[19] = sample.accelZint >> 0;
-    dataToSend[20] = sample.accelZint >> 8;
+    dataToSend[21] = sample.accelXint >> 0;
+    dataToSend[22] = sample.accelXint >> 8;
 
-    dataToSend[21] = sample.gyroXint >> 0;
-    dataToSend[22] = sample.gyroXint >> 8;
+    dataToSend[23] = sample.accelYint >> 0;
+    dataToSend[24] = sample.accelYint >> 8;
 
-    dataToSend[23] = sample.gyroYint >> 0;
-    dataToSend[24] = sample.gyroYint >> 8;
+    dataToSend[25] = sample.accelZint >> 0;
+    dataToSend[26] = sample.accelZint >> 8;
 
-    dataToSend[25] = sample.gyroZint >> 0;
-    dataToSend[26] = sample.gyroZint >> 8;
+    dataToSend[27] = sample.gyroXint >> 0;
+    dataToSend[28] = sample.gyroXint >> 8;
 
-    dataToSend[27] = sample.analogRaw >> 0;
-    dataToSend[28] = sample.analogRaw >> 8;
+    dataToSend[29] = sample.gyroYint >> 0;
+    dataToSend[30] = sample.gyroYint >> 8;
+
+    dataToSend[31] = sample.gyroZint >> 0;
+    dataToSend[32] = sample.gyroZint >> 8;
+
+    dataToSend[33] = sample.analogRaw >> 0;
+    dataToSend[34] = sample.analogRaw >> 8;
 
 
     if (flightState == flightPad) {
@@ -193,7 +201,7 @@ void logSensors() {
         if (pageReady) {
             pageReady = false;
             pinToggle(LedPin);
-            u8_t bytesWritten = AT25SEWritePage(currentAddress,pageToWrite);
+            AT25SEWritePage(currentAddress,pageToWrite);
             currentAddress = (currentAddress + 0x100);
         }
     }
@@ -263,7 +271,7 @@ void writeGroundLog() {
         if (pageReady) {
             pageReady = false;
             pinToggle(LedPin);
-            u8_t bytesWritten = AT25SEWritePage(currentAddress,pageToWrite);
+            AT25SEWritePage(currentAddress,pageToWrite);
             currentAddress = (currentAddress + 0x100);
         }
 

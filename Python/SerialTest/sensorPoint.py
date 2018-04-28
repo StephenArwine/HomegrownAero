@@ -2,7 +2,7 @@ import twosComp
 from twosComp import twos_complement
 import time
 
-sensorPointLength = 29
+sensorPointLength = 35
 eventSampleLength = 12
 flightPointLength = 16
 
@@ -20,14 +20,17 @@ class SensorPointType:
         self.sampleTick = 0
         self.Dt = 0
         self.heightFeet = 0
+        self.altitudeMSL = 0
+        self.kalmanAltitude = 0
         self.velocity = 0
         self.velocityfract = 0
         self.accelX = 0
         self.accelY = 0
         self.accelZ = 0
-        self.accelXFract = 0
-        self.accelXraw = 0
-        self.accelXrawFract = 0
+        self.kalmanAccel = 0
+        self.kalmanAccelFract = 0
+        self.kalmanAccelRaw = 0
+        self.kalmanAccelRawFract = 0
         self.gyroX = 0
         self.gyroY = 0
         self.gyroZ = 0
@@ -96,13 +99,13 @@ def build_sensor_point(data, currentPage, pages, locationInPage, lastTick):
 
     point.sampleTick = int.from_bytes(sensor_sample[1:4], byteorder='little')
     point.Dt = point.sampleTick - lastTick
-    point.heightFeet = int.from_bytes(sensor_sample[5:8], byteorder='little', signed=True)
+    point.kalmanAltitude = int.from_bytes(sensor_sample[5:8], byteorder='little', signed=True)
 
-    point.accelX = twosComp.twos_complement(sensor_sample[9], sensor_sample[10])
-    point.accelXraw = twosComp.twos_complement(sensor_sample[9], sensor_sample[10])
-    point.accelXFract = twosComp.twos_complement(sensor_sample[11], sensor_sample[12])
-    point.accelXFract = point.accelXFract / 1000
-    point.accelX = (point.accelX + point.accelXFract + 32.17417) / 32.17417
+    point.kalmanAccel = twosComp.twos_complement(sensor_sample[9], sensor_sample[10])
+    point.kalmanAccelraw = twosComp.twos_complement(sensor_sample[9], sensor_sample[10])
+    point.kalmanAccelRawFract = twosComp.twos_complement(sensor_sample[11], sensor_sample[12])
+    point.kalmanAccelFract = point.kalmanAccelRawFract / 1000
+    point.kalmanAccel = (point.kalmanAccel + point.kalmanAccelFract + 32.17417) / 32.17417
 
     point.velocity = twosComp.twos_complement(sensor_sample[13], sensor_sample[14])
 
@@ -110,14 +113,17 @@ def build_sensor_point(data, currentPage, pages, locationInPage, lastTick):
     point.velocityfract = point.velocityfract / 1000
     point.velocity = point.velocity + point.velocityfract
 
-    point.accelY = (twos_complement(sensor_sample[17],sensor_sample[18]) >> 4) * 0.0078125
-    point.accelZ = (twos_complement(sensor_sample[19], sensor_sample[20]) >> 4) * 0.0078125
+    point.altitudeMSL = int.from_bytes(sensor_sample[17:20], byteorder='little', signed=True)
 
-    point.gyroX = (twos_complement(sensor_sample[21], sensor_sample[22]) >> 4) * 0.0078125
-    point.gyroY = (twos_complement(sensor_sample[23], sensor_sample[24]) >> 4) * 0.0078125
-    point.gyroZ = (twos_complement(sensor_sample[25], sensor_sample[26]) >> 4) * 0.0078125
+    point.accelX = (twos_complement(sensor_sample[21],sensor_sample[22]) >> 4) * 0.0078125
+    point.accelY = (twos_complement(sensor_sample[23],sensor_sample[24]) >> 4) * 0.0078125
+    point.accelZ = (twos_complement(sensor_sample[25], sensor_sample[26]) >> 4) * 0.0078125
 
-    point.analogRaw = sensor_sample[27] + (sensor_sample[28] << 8)
+    point.gyroX = (twos_complement(sensor_sample[27], sensor_sample[28]) >> 4) * 0.0078125
+    point.gyroY = (twos_complement(sensor_sample[29], sensor_sample[30]) >> 4) * 0.0078125
+    point.gyroZ = (twos_complement(sensor_sample[31], sensor_sample[32]) >> 4) * 0.0078125
+
+    point.analogRaw = sensor_sample[33] + (sensor_sample[34] << 8)
 
     point.analogAccel = (point.analogRaw - 48695) * 0.00487
 
