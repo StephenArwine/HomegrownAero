@@ -40,6 +40,8 @@ void sampleTick() {
     sample.analogRaw = adc_read(analogAccelPin);
     sample.analogAccel = (sample.analogRaw - 48695) * 0.00487;
 
+
+
     ADC->AVGCTRL.reg = ADC_AVGCTRL_SAMPLENUM_1;
     ADC->CTRLB.reg |= ADC_CTRLB_RESSEL_12BIT;
 
@@ -69,18 +71,17 @@ void sampleTick() {
     sample.accelZint = twosComp(byteOne,byteTwo);
     pinHigh(cs_accel);
 
-    sample.accelXint =  sample.accelXint >> 4;
+    if (altimeter.pointingUp) {
+        sample.accelXint =  -sample.accelXint >> 4;
+    } else {
+        sample.accelXint =  sample.accelXint >> 4;
+    }
     sample.accelYint =  sample.accelYint >> 4;
     sample.accelZint =  sample.accelZint >> 4;
 
     sample.accelX = sample.accelXint * BMI055_ACCEL_16G_DIV;
     sample.accelY = sample.accelYint * BMI055_ACCEL_16G_DIV;
-	
-    if (altimeter.pointingUp) {
-        sample.accelZ = -sample.accelZint * BMI055_ACCEL_16G_DIV;
-    } else {
-        sample.accelZ = sample.accelZint * BMI055_ACCEL_16G_DIV;
-    }
+    sample.accelZ = sample.accelZint * BMI055_ACCEL_16G_DIV;
 
     // Gyro data
     pinLow(cs_gyro);

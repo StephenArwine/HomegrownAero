@@ -11,6 +11,7 @@ def PlotFlight(pointList, flight, eventList):
     x = 0
 
     accelplot = []
+    sensorAccel = []
     heightplot = []
     velocityplot = []
     tick = []
@@ -32,12 +33,13 @@ def PlotFlight(pointList, flight, eventList):
 
             print('Sample', x, 'tick:', pointToPlot.sampleTick, 'Height Feet:',
                   pointToPlot.kalmanAltitude, 'Velocity:', pointToPlot.velocity, 'Kalman Accel:', pointToPlot.kalmanAccel,
-                  'AccelX:', pointToPlot.accelX, 'AccelZ:', pointToPlot.accelZ, 'AccelY:', pointToPlot.accelY,
-                  'Analog Accel', pointToPlot.analogAccel, 'X raw', pointToPlot.accelXraw)
+                  'AccelX:', pointToPlot.accelX, 'AccelY:', pointToPlot.accelY, 'AccelZ:', pointToPlot.accelZ,
+                  'Analog Accel', pointToPlot.analogAccel, 'altMSL', pointToPlot.altitudeMSL)
         tick.append(pointToPlot.sampleTick / 1000)
         accelplot.append(pointToPlot.kalmanAccel)
         heightplot.append(pointToPlot.kalmanAltitude)
         velocityplot.append(pointToPlot.velocity)
+        sensorAccel.append(pointToPlot.accelX)
         x = x + 1
 
         # stdaccel.append(pointToPlot.accelZraw / 32.17417)
@@ -61,6 +63,8 @@ def PlotFlight(pointList, flight, eventList):
     ax3.spines["right"].set_position(("axes", 1.1))
 
     p2, = ax2.plot(tick, accelplot, color='r')
+    p22, = ax2.plot(tick,sensorAccel, color='y')
+
     p3, = ax3.plot(tick, velocityplot, color='g')
 
     for event in eventList:

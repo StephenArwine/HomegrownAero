@@ -11,13 +11,14 @@ void flight() {
         if ((millis() - startupTick) > 10000) {
             findNewFlightStart();
             startupJingle();
-            //flightState = flightTest;
-            flightState = flightPad;
-//             if (flightState == flightTest) {
-//                 writeFlightStartAddress();
-//                 logFlight( );
-//                 logEvent('L');
-//             }
+            //flightState = flightPad;
+
+            flightState = flightTest;
+            if (flightState == flightTest) {
+                writeFlightStartAddress();
+                logFlight( );
+                logEvent('L');
+            }
 
             break;
         }

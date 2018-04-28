@@ -22,12 +22,12 @@ void isItPointingUp() {
 
     double pointingUpBuffer;
 
-    pointingUpBuffer = sample.accelX;
+    pointingUpBuffer = 0;
 
-    for ( i = 0; i < 10 ; ++i ) {
+    for ( i = 0; i < 30 ; ++i ) {
         delay_ms(10);
         sampleTick();
-        pointingUpBuffer = pointingUpBuffer * 0.8 + sample.accelX * 0.2;
+        pointingUpBuffer = pointingUpBuffer * 0.8 + (-sample.accelX) * 0.2;
     }
     if ((pointingUpBuffer > 0.9) & (pointingUpBuffer <1.1)) {
         altimeter.pointingUp = true;

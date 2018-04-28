@@ -115,9 +115,9 @@ def build_sensor_point(data, currentPage, pages, locationInPage, lastTick):
 
     point.altitudeMSL = int.from_bytes(sensor_sample[17:20], byteorder='little', signed=True)
 
-    point.accelX = (twos_complement(sensor_sample[21],sensor_sample[22]) >> 4) * 0.0078125
-    point.accelY = (twos_complement(sensor_sample[23],sensor_sample[24]) >> 4) * 0.0078125
-    point.accelZ = (twos_complement(sensor_sample[25], sensor_sample[26]) >> 4) * 0.0078125
+    point.accelX = (twos_complement(sensor_sample[21],sensor_sample[22])) * 0.0078125
+    point.accelY = (twos_complement(sensor_sample[23],sensor_sample[24])) * 0.0078125
+    point.accelZ = (twos_complement(sensor_sample[25], sensor_sample[26])) * 0.0078125
 
     point.gyroX = (twos_complement(sensor_sample[27], sensor_sample[28]) >> 4) * 0.0078125
     point.gyroY = (twos_complement(sensor_sample[29], sensor_sample[30]) >> 4) * 0.0078125

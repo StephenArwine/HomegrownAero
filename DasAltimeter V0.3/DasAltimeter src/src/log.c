@@ -151,13 +151,10 @@ void logSensors() {
     dataToSend[7] = altitudeAGL() >> 16;
     dataToSend[8] = altitudeAGL() >> 24;
 
-
-
     dataToSend[9] = (int16_t)(accel) >> 0;
     dataToSend[10] = (int16_t)(accel) >> 8;
     dataToSend[11] = fractAccelPart >> 0;
     dataToSend[12] = fractAccelPart >> 8;
-
 
     dataToSend[13] = (int16_t)(velocity) >> 0;
     dataToSend[14] = (int16_t)(velocity) >> 8;
