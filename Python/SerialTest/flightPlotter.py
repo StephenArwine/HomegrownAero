@@ -42,11 +42,11 @@ def PlotFlight(pointList, flight, eventList):
         sensorAccel.append(pointToPlot.accelX)
         x = x + 1
 
-        # stdaccel.append(pointToPlot.accelZraw / 32.17417)
-        # stdheight.append(pointToPlot.rawFeet)
+        stdaccel.append(pointToPlot.accelX * 32.17417)
+        stdheight.append(pointToPlot.altitudeMSL)
 
-    # print('accel StdDev ', numpy.std(stdaccel))
-    # print('height StdDev ', numpy.std(stdheight))
+    print('accel StdDev ', numpy.std(stdaccel))
+    print('height StdDev ', numpy.std(stdheight))
 
     fig, ax1 = plt.subplots()
     ax2 = ax1.twinx()
@@ -63,7 +63,7 @@ def PlotFlight(pointList, flight, eventList):
     ax3.spines["right"].set_position(("axes", 1.1))
 
     p2, = ax2.plot(tick, accelplot, color='r')
-    p22, = ax2.plot(tick,sensorAccel, color='y')
+    #p22, = ax2.plot(tick,sensorAccel, color='y')
 
     p3, = ax3.plot(tick, velocityplot, color='g')
 
@@ -85,7 +85,7 @@ def PlotFlight(pointList, flight, eventList):
     # ax2.spines["left"].set_visible(True)
     ax2.yaxis.set_label_position('right')
     ax2.yaxis.set_ticks_position('right')
-    #ax2.set_ylim(-2, 4)
+    ax2.set_ylim(0, 6)
 
     ax3.yaxis.set_label_position('right')
     ax3.yaxis.set_ticks_position('right')

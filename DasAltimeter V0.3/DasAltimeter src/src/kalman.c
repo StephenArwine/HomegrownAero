@@ -20,6 +20,7 @@ double	phi[3][3]     = {
     {0, 0, 1.0}
 };
 
+
 double altitude, velocity, accel;
 
 double  kgain[3][2];
@@ -143,9 +144,9 @@ void computeKalmanGains() {
 void KalmanBaroUpdate(double alt_inovation) {
 
     /* Propagate state */
-    estp[0] = phi[0][0] * altitude + phi[0][1] * velocity;
-    estp[1] = phi[1][0] * altitude + phi[1][1] * velocity;
-    estp[2] = phi[2][0] * altitude + phi[2][1] * velocity;
+    estp[0] = phi[0][0] * altitude + phi[0][1] * velocity + phi[0][2] * accel;
+    estp[1] = phi[1][0] * altitude + phi[1][1] * velocity + phi[1][2] * accel;
+    estp[2] = phi[2][0] * altitude + phi[2][1] * velocity + phi[2][2] * accel;
 
     /* Update state */
     altitude = estp[0] + kgain[0][0] * alt_inovation;
@@ -179,14 +180,14 @@ void computeKalmanStates() {
         altitude = pressure;
     }
 
+
     /* Compute the innovations */
     alt_inovation = pressure - estp[0];
     accel_inovation = acceleration - estp[2];
 
-
- //   if (flightState < flightDrogue) {
-        KalmanBothUpdate(alt_inovation,accel_inovation);
-   // } else {
-      //  KalmanBaroUpdate(alt_inovation);
-  //  }
+    if (flightState < flightCoast) {
+        KalmanBothUpdate(alt_inovation, accel_inovation);
+    } else {
+        KalmanBaroUpdate(alt_inovation);
+    }
 }

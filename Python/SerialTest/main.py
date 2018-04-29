@@ -196,8 +196,6 @@ def connectToAltimeter():
 
     handshake = ser.read(1)
 
-    print(handshake)
-
     if handshake == b'H':
         print('')
         print(' Altimeter connected, what would you like to do?')

@@ -1,6 +1,9 @@
 #include <util.h>
 #include <boardDefines.h>
 
+#define TESTFLIGHT 0
+
+
 void flight() {
 
     switch(flightState) {
@@ -11,31 +14,23 @@ void flight() {
         if ((millis() - startupTick) > 10000) {
             findNewFlightStart();
             startupJingle();
-            //flightState = flightPad;
 
+#if TESTFLIGHT
             flightState = flightTest;
-            if (flightState == flightTest) {
-                writeFlightStartAddress();
-                logFlight( );
-                logEvent('L');
-            }
+            writeFlightStartAddress();
+            logFlight( );
+            logEvent('L');
+#else
+            flightState = flightPad;
+#endif
 
             break;
         }
 
         attemptConnection();
-
-        if (unplugged()) {
-            flightState = flightIdle;
-            unpluggedJingle();
-            delay_ms(1000);
-            shutDown();
-        }
-
         break;
+
     case flightIdle:
-        //TC4->COUNT8.CTRLA.reg = 0;
-        //TC5->COUNT8.CTRLA.reg = 0;
 
         if (millis() - offsets.groundBeep > 2000) {
             offsets.groundBeep = millis();
@@ -61,17 +56,16 @@ void flight() {
         updateGround();
 
         if (writeLog) {
-            logSensors( );
+            logSensorsOnPad( );
             pinToggle(LedPin);
         }
 
 
-        if ((( velocity > 15) && (accel > 2)) | (altitudeAGL() > 100)) {
+        //    if ((( velocity > 15) && (accel > 2)) | (altitudeAGL() > 100)) {
+        if ((( velocity > 5) && (accel > 2)) | (altitudeAGL() > 100)) {
+
             flightState = flightBoost;
-            writeFlightStartAddress();
-            logFlight( );
-            writeGroundLog();
-            logEvent('L');
+            beginFlightLog();
         }
 
         break;
@@ -85,12 +79,11 @@ void flight() {
             logSensors( );
         }
 
-//         if (velocity < 0) {
-//             flightState = flightDrogue;
-//             igniteDrogue();
-//             logEvent('A');
-//             beep(100);
-//         }
+        if (velocity < 0) {
+            flightState = flightDrogue;
+            igniteDrogue();
+            logEvent('A');
+        }
 
         break;
     case flightFast:
@@ -116,11 +109,11 @@ void flight() {
         }
 
 
-        if (sample.pressureAltitude < deploymentSettings.MAIN_DEPLOY) {
-            flightState = flightMain;
-            igniteMain();
-            logEvent('M');
-        }
+//         if (sample.pressureAltitude < deploymentSettings.MAIN_DEPLOY) {
+//             flightState = flightMain;
+//             igniteMain();
+//             logEvent('M');
+//         }
 
         break;
     case flightMain:
@@ -154,11 +147,11 @@ void flight() {
 
 
 
-    if ((flightState != flightStatrup) & (flightState != flightIdle) & (flightState != flightPad) & unplugged()) {
+    if ((flightState > flightPad) & unplugged()) {
         finishFlight();
     }
 
-    if ((flightState == flightPad) & unplugged()) {
+    if ((flightState <= flightPad) & unplugged()) {
         finishFromPad();
     }
 

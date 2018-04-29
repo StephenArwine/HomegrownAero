@@ -187,21 +187,80 @@ void logSensors() {
     dataToSend[33] = sample.analogRaw >> 0;
     dataToSend[34] = sample.analogRaw >> 8;
 
+    makePage(bytesToSend, dataToSend);
 
-    if (flightState == flightPad) {
-        writePadBuffer(bytesToSend, dataToSend);
-
-    } else {
-
-        makePage(bytesToSend, dataToSend);
-
-        if (pageReady) {
-            pageReady = false;
-            pinToggle(LedPin);
-            AT25SEWritePage(currentAddress,pageToWrite);
-            currentAddress = (currentAddress + 0x100);
-        }
+    if (pageReady) {
+        pageReady = false;
+        pinToggle(LedPin);
+        AT25SEWritePage(currentAddress,pageToWrite);
+        currentAddress = (currentAddress + 0x100);
     }
+
+}
+
+void logSensorsOnPad() {
+
+    writeLog = false;
+
+    u8_t bytesToSend = SENSOR_LOG_LENGTH;
+    u8_t dataToSend[SENSOR_LOG_LENGTH];
+
+    float fractionalAccel = accel - (int16_t)(accel);
+    int16_t fractAccelPart = fractionalAccel * 1000;
+
+    float fractionalVelocity = velocity - (int16_t)(velocity);
+    int16_t fractVelocityPart = fractionalVelocity * 1000;
+
+    dataToSend[0] = SENSOR_LOG;
+
+    dataToSend[1] = sample.sampleTick >> 0;
+    dataToSend[2] = sample.sampleTick >> 8;
+    dataToSend[3] = sample.sampleTick >> 16;
+    dataToSend[4] = sample.sampleTick >> 24;
+
+    dataToSend[5] = altitudeAGL() >> 0;
+    dataToSend[6] = altitudeAGL() >> 8;
+    dataToSend[7] = altitudeAGL() >> 16;
+    dataToSend[8] = altitudeAGL() >> 24;
+
+    dataToSend[9] = (int16_t)(accel) >> 0;
+    dataToSend[10] = (int16_t)(accel) >> 8;
+    dataToSend[11] = fractAccelPart >> 0;
+    dataToSend[12] = fractAccelPart >> 8;
+
+    dataToSend[13] = (int16_t)(velocity) >> 0;
+    dataToSend[14] = (int16_t)(velocity) >> 8;
+    dataToSend[15] = fractVelocityPart >> 0;
+    dataToSend[16] = fractVelocityPart >> 8;
+
+    dataToSend[17] = (uint32_t)(sample.pressureAltitude) >> 0;
+    dataToSend[18] = (uint32_t)(sample.pressureAltitude) >> 8;
+    dataToSend[19] = (uint32_t)(sample.pressureAltitude) >> 16;
+    dataToSend[20] = (uint32_t)(sample.pressureAltitude) >> 24;
+
+    dataToSend[21] = sample.accelXint >> 0;
+    dataToSend[22] = sample.accelXint >> 8;
+
+    dataToSend[23] = sample.accelYint >> 0;
+    dataToSend[24] = sample.accelYint >> 8;
+
+    dataToSend[25] = sample.accelZint >> 0;
+    dataToSend[26] = sample.accelZint >> 8;
+
+    dataToSend[27] = sample.gyroXint >> 0;
+    dataToSend[28] = sample.gyroXint >> 8;
+
+    dataToSend[29] = sample.gyroYint >> 0;
+    dataToSend[30] = sample.gyroYint >> 8;
+
+    dataToSend[31] = sample.gyroZint >> 0;
+    dataToSend[32] = sample.gyroZint >> 8;
+
+    dataToSend[33] = sample.analogRaw >> 0;
+    dataToSend[34] = sample.analogRaw >> 8;
+
+    writePadBuffer(bytesToSend, dataToSend);
+
 }
 
 
@@ -248,6 +307,8 @@ void writeFlightStartAddress() {
 }
 
 
+
+
 void writeFlightEndAddress() {
 
     u32_t endingAddress = currentAddress;
@@ -273,6 +334,14 @@ void writeGroundLog() {
         }
 
     }
+
+}
+
+void beginFlightLog() {
+    writeFlightStartAddress();
+    logFlight( );
+    writeGroundLog();
+    logEvent('L');
 
 }
 

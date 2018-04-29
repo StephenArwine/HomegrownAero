@@ -13,7 +13,6 @@
 #include <boardDefines.h>
 #include "math.h"
 
-
 void init() {
 
     /* Set 1 Flash Wait State for 48MHz, cf tables 20.9 and 35.27 in SAMD21 Datasheet */
