@@ -13,6 +13,7 @@ def PlotFlight(pointList, flight, eventList):
     accelplot = []
     sensorAccel = []
     heightplot = []
+    unfilteredheight = []
     velocityplot = []
     tick = []
     stdheight = []
@@ -38,6 +39,7 @@ def PlotFlight(pointList, flight, eventList):
         tick.append(pointToPlot.sampleTick / 1000)
         accelplot.append(pointToPlot.kalmanAccel)
         heightplot.append(pointToPlot.kalmanAltitude)
+        unfilteredheight.append(pointToPlot.altitudeMSL - flight.groundOffset)
         velocityplot.append(pointToPlot.velocity)
         sensorAccel.append(pointToPlot.accelX)
         x = x + 1
@@ -53,6 +55,8 @@ def PlotFlight(pointList, flight, eventList):
     ax3 = ax2.twinx()
 
     p1, = ax1.plot(tick, heightplot, color='b')
+    #p12, = ax1.plot(tick, unfilteredheight, color='y')
+
     ax1.set_xlabel('time (s)')
     ax1.set_ylabel('Height (ft)')
     ax2.set_ylabel('Accel (g)')
@@ -63,7 +67,7 @@ def PlotFlight(pointList, flight, eventList):
     ax3.spines["right"].set_position(("axes", 1.1))
 
     p2, = ax2.plot(tick, accelplot, color='r')
-    #p22, = ax2.plot(tick,sensorAccel, color='y')
+    #p22, = ax2.plot(tick,sensorAccel, color='k')
 
     p3, = ax3.plot(tick, velocityplot, color='g')
 
@@ -85,11 +89,13 @@ def PlotFlight(pointList, flight, eventList):
     # ax2.spines["left"].set_visible(True)
     ax2.yaxis.set_label_position('right')
     ax2.yaxis.set_ticks_position('right')
-    ax2.set_ylim(0, 6)
+    #ax2.set_ylim(0, 6)
 
     ax3.yaxis.set_label_position('right')
     ax3.yaxis.set_ticks_position('right')
     #ax3.set_ylim(-32, 32)
+
+
 
     tkw = dict(size=4, width=1.5)
     ax1.tick_params(axis='y', colors=p1.get_color(), **tkw)

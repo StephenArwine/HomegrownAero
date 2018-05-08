@@ -63,7 +63,7 @@ int32_t altitudeAGL() {
 
 
 bool unplugged() {
-    if (sample.voltage.batFloat < 3.3) {
+    if (sample.voltage.batFloat < 3.4) {
         return true;
     } else {
         return false;

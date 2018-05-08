@@ -98,8 +98,8 @@ void init() {
     pinMux(TxPo);
     pinIn(RxPo);
     pinMux(RxPo);
-	
-	delay_ms(200);
+
+    delay_ms(200);
 
     sercomClockEnable(SPI2, 3, 4);
     sercomSpiMasterInit(SPI2, 1, 3, 0, 0, 0x00);
@@ -126,6 +126,8 @@ int main(void) {
     IMUinit();
 
     computeKalmanGains();
+
+    computeKalmanBaroOnlyGains();
 
     sampleTick();
 

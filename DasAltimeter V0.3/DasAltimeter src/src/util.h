@@ -45,6 +45,7 @@ typedef uint8_t SercomId;
 
 
 void computeKalmanGains();
+void computeKalmanBaroOnlyGains();
 void KalmanBothUpdate( double alt_inovation, double accel_inovation);
 void KalmanBaroUpdate(double alt_inovation);
 void computeKalmanStates();

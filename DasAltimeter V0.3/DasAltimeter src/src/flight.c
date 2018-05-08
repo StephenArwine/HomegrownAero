@@ -1,7 +1,7 @@
 #include <util.h>
 #include <boardDefines.h>
 
-#define TESTFLIGHT 0
+#define TESTFLIGHT 1
 
 
 void flight() {
@@ -37,6 +37,10 @@ void flight() {
             beep(400);
         }
 
+        if (unplugged()) {
+            finishFromPad();
+        }
+
         if (sercom(USART3)->SPI.INTFLAG.bit.RXC == 1) {
             u8_t possibleReset = usartDataIn(USART3);
             if (possibleReset == 0x52) {
@@ -61,8 +65,8 @@ void flight() {
         }
 
 
-        //    if ((( velocity > 15) && (accel > 2)) | (altitudeAGL() > 100)) {
-        if ((( velocity > 5) && (accel > 2)) | (altitudeAGL() > 100)) {
+        if ((( velocity > 15) && (accel > 2)) | (altitudeAGL() > 100)) {
+            //if ((( velocity > 5) && (accel > 2)) | (altitudeAGL() > 100)) {
 
             flightState = flightBoost;
             beginFlightLog();
