@@ -1841,22 +1841,22 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="22.098" y1="18.034" x2="22.28" y2="18.47" width="0.254" layer="1"/>
 <wire x1="20.808" y1="17.76" x2="21.082" y2="18.034" width="0.254" layer="1"/>
 <wire x1="22.28" y1="18.034" x2="22.28" y2="18.47" width="0.254" layer="1"/>
-<wire x1="24.13" y1="18.796" x2="25.146" y2="17.78" width="0.254" layer="1"/>
-<wire x1="25.146" y1="17.78" x2="25.146" y2="16.9954" width="0.254" layer="1"/>
+<wire x1="24.384" y1="18.796" x2="25.146" y2="18.034" width="0.254" layer="1"/>
+<wire x1="25.146" y1="18.034" x2="25.146" y2="16.9954" width="0.254" layer="1"/>
 <via x="25.146" y="16.9954" extent="1-16" drill="0.35"/>
 <wire x1="25.146" y1="16.9954" x2="25.146" y2="14.859" width="0.254" layer="16"/>
 <wire x1="25.146" y1="14.859" x2="26.289" y2="13.716" width="0.254" layer="16"/>
 <wire x1="22.28" y1="18.47" x2="22.606" y2="18.796" width="0.254" layer="1"/>
-<wire x1="22.606" y1="18.796" x2="24.13" y2="18.796" width="0.254" layer="1"/>
+<wire x1="22.606" y1="18.796" x2="24.384" y2="18.796" width="0.254" layer="1"/>
 </signal>
 <signal name="N$29">
 <contactref element="D2" pad="C"/>
 <contactref element="R6" pad="2"/>
-<wire x1="6.604" y1="2.31" x2="6.604" y2="2.54" width="0.254" layer="16"/>
-<wire x1="6.604" y1="2.54" x2="5.842" y2="3.302" width="0.254" layer="16"/>
-<via x="5.842" y="3.302" extent="1-16" drill="0.254"/>
-<wire x1="5.842" y1="3.302" x2="6.024" y2="3.484" width="0.254" layer="1"/>
-<wire x1="6.024" y1="3.484" x2="6.604" y2="3.484" width="0.254" layer="1"/>
+<wire x1="6.604" y1="2.31" x2="5.588" y2="3.048" width="0.254" layer="16"/>
+<wire x1="5.588" y1="3.048" x2="5.588" y2="3.302" width="0.254" layer="16"/>
+<via x="5.588" y="3.302" extent="1-16" drill="0.254"/>
+<wire x1="5.588" y1="3.302" x2="5.77" y2="3.484" width="0.254" layer="1"/>
+<wire x1="5.77" y1="3.484" x2="6.604" y2="3.484" width="0.254" layer="1"/>
 </signal>
 <signal name="LED">
 <contactref element="D2" pad="A"/>
@@ -2041,8 +2041,8 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <vertex x="54.61" y="24.384"/>
 <vertex x="54.61" y="-0.762"/>
 </polygon>
-<wire x1="23.44" y1="18.034" x2="24.13" y2="18.034" width="0.254" layer="1"/>
-<via x="24.13" y="18.034" extent="1-16" drill="0.3"/>
+<wire x1="23.44" y1="18.034" x2="24.384" y2="18.034" width="0.254" layer="1"/>
+<via x="24.384" y="18.034" extent="1-16" drill="0.3"/>
 <wire x1="18.106" y1="18.796" x2="18.106" y2="18.36" width="0.254" layer="1"/>
 <wire x1="17.272" y1="17.526" x2="14.986" y2="17.526" width="0.254" layer="1"/>
 <wire x1="18.106" y1="18.36" x2="17.272" y2="17.526" width="0.254" layer="1"/>
@@ -2242,6 +2242,28 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="12.7" y1="12.192" x2="10.418" y2="12.192" width="0.254" layer="16"/>
 </signal>
 </signals>
+<errors>
+<approved hash="3,1,cff6cdf4cdf4cff6"/>
+<approved hash="4,1,5c922cde17c56097"/>
+<approved hash="4,1,5a8e2a3a16f36765"/>
+<approved hash="4,1,5aea2a26162566ff"/>
+<approved hash="4,1,197e33262cfd3f01"/>
+<approved hash="4,1,476003a53a5676bd"/>
+<approved hash="4,1,33ea2a2616250fff"/>
+<approved hash="5,1,187bd6b5364e9845"/>
+<approved hash="5,1,a467766f9651249c"/>
+<approved hash="4,16,5c922cde17c56097"/>
+<approved hash="4,16,5a8e2a3a16f36765"/>
+<approved hash="4,16,2b0b71482cbdf419"/>
+<approved hash="4,16,3e8533642bdd259c"/>
+<approved hash="4,16,d3d2eef503dae46e"/>
+<approved hash="4,16,9d0a4254cc1220ff"/>
+<approved hash="5,16,4283de1c94fe6715"/>
+<approved hash="4,16,197e33262cfd3f01"/>
+<approved hash="4,16,476003a53a5676bd"/>
+<approved hash="4,16,2eeb776864513e75"/>
+<approved hash="4,16,6bcc9b246e874cea"/>
+</errors>
 </board>
 </drawing>
 <compatibility>

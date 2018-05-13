@@ -1860,6 +1860,8 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 </signal>
 <signal name="LED">
 <contactref element="D2" pad="A"/>
+<contactref element="U3" pad="8"/>
+<wire x1="6.604" y1="5.31" x2="15.308" y2="10.934" width="0" layer="19" extent="1-16"/>
 </signal>
 <signal name="SWCLK">
 <contactref element="U3" pad="45"/>

@@ -1558,7 +1558,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="2.302" y1="9.414" x2="2.286" y2="9.398" width="0.508" layer="16"/>
 <via x="2.286" y="9.398" extent="1-16" drill="0.35"/>
 <via x="13.208" y="4.318" extent="1-16" drill="0.254"/>
-<via x="10.414" y="7.366" extent="1-16" drill="0.254"/>
+<via x="10.414" y="7.112" extent="1-16" drill="0.254"/>
 <via x="16.002" y="6.858" extent="1-16" drill="0.254"/>
 <via x="19.812" y="4.064" extent="1-16" drill="0.254"/>
 <via x="22.098" y="10.16" extent="1-16" drill="0.254"/>
@@ -1617,12 +1617,24 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="20.818" y1="18.792" x2="22.098" y2="18.792" width="0.254" layer="16"/>
 <wire x1="22.098" y1="18.792" x2="22.098" y2="19.05" width="0.254" layer="16"/>
 <via x="22.098" y="19.05" extent="1-16" drill="0.3"/>
+<via x="13.462" y="16.764" extent="1-16" drill="0.3"/>
+<via x="17.145" y="3.683" extent="1-16" drill="0.3"/>
+<wire x1="25.834" y1="5.501" x2="24.805" y2="5.501" width="0.254" layer="1"/>
+<wire x1="24.384" y1="5.08" x2="24.384" y2="4.826" width="0.254" layer="1"/>
+<wire x1="24.805" y1="5.501" x2="24.384" y2="5.08" width="0.254" layer="1"/>
+<wire x1="31.496" y1="10.414" x2="30.996" y2="10.914" width="0.254" layer="1"/>
+<wire x1="30.996" y1="10.914" x2="30.996" y2="12.194" width="0.254" layer="1"/>
+<wire x1="32.496" y1="12.194" x2="32.496" y2="11.414" width="0.254" layer="1"/>
+<wire x1="32.496" y1="11.414" x2="32.246" y2="11.164" width="0.254" layer="1"/>
+<via x="32.639" y="12.954" extent="1-16" drill="0.3"/>
+<via x="39.624" y="3.556" extent="1-16" drill="0.3"/>
+<wire x1="39.34" y1="4.757" x2="39.34" y2="3.84" width="0.254" layer="16"/>
+<wire x1="39.34" y1="3.84" x2="39.624" y2="3.556" width="0.254" layer="16"/>
+<via x="24.003" y="17.018" extent="1-16" drill="0.3"/>
+<wire x1="24.003" y1="17.018" x2="24.003" y2="16.377" width="0.254" layer="16"/>
+<wire x1="24.003" y1="16.377" x2="23.618" y2="15.992" width="0.254" layer="16"/>
+<via x="25.146" y="13.716" extent="1-16" drill="0.3"/>
 <wire x1="42.1132" y1="9.7028" x2="41.656" y2="10.16" width="0" layer="19" extent="1-1"/>
-<wire x1="30.996" y1="12.194" x2="30.746" y2="11.164" width="0" layer="19" extent="1-1"/>
-<wire x1="32.496" y1="12.194" x2="32.246" y2="11.164" width="0" layer="19" extent="1-1"/>
-<wire x1="25.834" y1="5.501" x2="24.384" y2="4.826" width="0" layer="19" extent="1-1"/>
-<wire x1="23.618" y1="15.992" x2="23.808" y2="13.934" width="0" layer="19" extent="1-16"/>
-<wire x1="39.34" y1="4.757" x2="36.957" y2="6.477" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="CS_MEM">
 <contactref element="MEM" pad="!CS"/>

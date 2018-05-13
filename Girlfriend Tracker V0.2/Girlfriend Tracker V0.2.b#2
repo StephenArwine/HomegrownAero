@@ -749,11 +749,11 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <smd name="P$6" x="-0.25" y="-1.4351" dx="0.6604" dy="0.254" layer="1" rot="R90"/>
 <smd name="P$5" x="-0.75" y="-1.4351" dx="0.6604" dy="0.254" layer="1" rot="R90"/>
 <smd name="P$8" x="0.75" y="-1.4351" dx="0.6604" dy="0.254" layer="1" rot="R90"/>
-<pad name="P$17" x="0" y="0" drill="0.35" diameter="0.4064"/>
-<pad name="P$17_4" x="0.4572" y="-0.4572" drill="0.35" diameter="0.4064"/>
-<pad name="P$17_1" x="0.4572" y="0.4572" drill="0.35" diameter="0.4064"/>
-<pad name="P$17_2" x="-0.4572" y="0.4572" drill="0.35" diameter="0.4064"/>
-<pad name="P$17_3" x="-0.4572" y="-0.4572" drill="0.35" diameter="0.4064"/>
+<pad name="P$17" x="0" y="0" drill="0.3" diameter="0.4064"/>
+<pad name="P$17_4" x="0.4572" y="-0.4572" drill="0.3" diameter="0.4064"/>
+<pad name="P$17_1" x="0.4572" y="0.4572" drill="0.3" diameter="0.4064"/>
+<pad name="P$17_2" x="-0.4572" y="0.4572" drill="0.3" diameter="0.4064"/>
+<pad name="P$17_3" x="-0.4572" y="-0.4572" drill="0.3" diameter="0.4064"/>
 <polygon width="0" layer="29">
 <vertex x="-0.7366" y="-0.7366"/>
 <vertex x="-0.7366" y="0.4826"/>
@@ -2249,6 +2249,11 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="12.7" y1="12.192" x2="10.418" y2="12.192" width="0.254" layer="16"/>
 </signal>
 </signals>
+<errors>
+<approved hash="5,1,187bd6b5364e9845"/>
+<approved hash="5,1,a467766f9651249c"/>
+<approved hash="5,16,4283de1c94fe6715"/>
+</errors>
 </board>
 </drawing>
 <compatibility>

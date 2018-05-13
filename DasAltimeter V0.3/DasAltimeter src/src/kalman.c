@@ -306,9 +306,9 @@ void computeKalmanStates() {
     alt_inovation = pressure - estp[0];
     accel_inovation = acceleration - estp[2];
 
-    //if (flightState < flightCoast) {
+    if (flightState > flightCoast) {
+        KalmanBaroUpdate(alt_inovation);
+    } else {
         KalmanBothUpdate(alt_inovation, accel_inovation);
-   // } else {
-    //    KalmanBaroUpdate(alt_inovation);
-  //  }
+    }
 }

@@ -1,7 +1,7 @@
 #include <util.h>
 #include <boardDefines.h>
 
-#define TESTFLIGHT 1
+#define TESTFLIGHT 0
 
 
 void flight() {
@@ -66,8 +66,7 @@ void flight() {
 
 
         if ((( velocity > 15) && (accel > 2)) | (altitudeAGL() > 100)) {
-            //if ((( velocity > 5) && (accel > 2)) | (altitudeAGL() > 100)) {
-
+        //if ((( velocity > 5) && (accel > 2)) | (altitudeAGL() > 10)) {
             flightState = flightBoost;
             beginFlightLog();
         }
@@ -83,10 +82,9 @@ void flight() {
             logSensors( );
         }
 
-        if (velocity < 0) {
-            flightState = flightDrogue;
-            igniteDrogue();
-            logEvent('A');
+        if (accel < 0.25) {
+            flightState = flightCoast;
+            logEvent('B');
         }
 
         break;
@@ -104,6 +102,16 @@ void flight() {
         *	altitude > baro_max_alt
         */
 
+        if (writeLog) {
+            logSensors( );
+        }
+
+
+        if (velocity < 0) {
+            flightState = flightDrogue;
+            igniteDrogue();
+            logEvent('A');
+        }
 
         break;
     case flightDrogue:

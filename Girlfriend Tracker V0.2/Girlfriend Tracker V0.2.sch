@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="8.6.0">
+<eagle version="8.7.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -5511,11 +5511,11 @@ Source: &lt;a href="http://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_
 <part name="IC1" library="ubloxLib" deviceset="SAM-M8Q" device=""/>
 <part name="C5" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="0.1uF"/>
 <part name="C6" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="0.1uF"/>
-<part name="C7" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="0.1uF"/>
-<part name="C9" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="0.1uF"/>
-<part name="C10" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="0.1uF"/>
-<part name="C11" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="0.1uF"/>
-<part name="C12" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="0.1uF"/>
+<part name="C7" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="10nF"/>
+<part name="C9" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="220pF"/>
+<part name="C10" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="10nF"/>
+<part name="C11" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="220pF"/>
+<part name="C12" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="220pF"/>
 <part name="R1" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
 <part name="Y1" library="SparkFun-Clocks" library_urn="urn:adsk.eagle:library:511" deviceset="CRYSTAL" device="SMD-3.2X2.5" package3d_urn="urn:adsk.eagle:package:37521/1" value="26MHz"/>
 <part name="C13" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="0.1uF"/>
@@ -5532,16 +5532,16 @@ Source: &lt;a href="http://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_
 <part name="GND10" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND11" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND19" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
-<part name="L2" library="SparkFun-Coils" library_urn="urn:adsk.eagle:library:512" deviceset="INDUCTOR" device="-0402-3.9NH" package3d_urn="urn:adsk.eagle:package:37575/1" value="6.8NH"/>
-<part name="C3" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="0.1uF"/>
-<part name="C4" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="0.1uF"/>
-<part name="C17" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="0.1uF"/>
-<part name="C19" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="0.1uF"/>
-<part name="C20" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="0.1uF"/>
-<part name="C21" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="0.1uF"/>
+<part name="L2" library="SparkFun-Coils" library_urn="urn:adsk.eagle:library:512" deviceset="INDUCTOR" device="-0402-3.9NH" package3d_urn="urn:adsk.eagle:package:37575/1" value="27NH"/>
+<part name="C3" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="3.9pF"/>
+<part name="C4" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="3.9pF"/>
+<part name="C17" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="220pf"/>
+<part name="C19" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="8.2pF"/>
+<part name="C20" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="5.6pF"/>
+<part name="C21" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="220pf"/>
 <part name="L1" library="SparkFun-Coils" library_urn="urn:adsk.eagle:library:512" deviceset="INDUCTOR" device="-0402-3.9NH" package3d_urn="urn:adsk.eagle:package:37575/1" value="27NH"/>
 <part name="L3" library="SparkFun-Coils" library_urn="urn:adsk.eagle:library:512" deviceset="INDUCTOR" device="-0402-3.9NH" package3d_urn="urn:adsk.eagle:package:37575/1" value="27NH"/>
-<part name="L4" library="SparkFun-Coils" library_urn="urn:adsk.eagle:library:512" deviceset="INDUCTOR" device="-0402-3.9NH" package3d_urn="urn:adsk.eagle:package:37575/1" value="6.8NH"/>
+<part name="L4" library="SparkFun-Coils" library_urn="urn:adsk.eagle:library:512" deviceset="INDUCTOR" device="-0402-3.9NH" package3d_urn="urn:adsk.eagle:package:37575/1" value="22NH"/>
 <part name="GND3" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND13" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND14" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
@@ -5550,7 +5550,7 @@ Source: &lt;a href="http://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_
 <part name="C18" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="0.1uF"/>
 <part name="GND21" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="L5" library="SparkFun-Coils" library_urn="urn:adsk.eagle:library:512" deviceset="INDUCTOR" device="-0402-3.9NH" package3d_urn="urn:adsk.eagle:package:37575/1" value="36nH"/>
-<part name="C22" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="0.1uF"/>
+<part name="C22" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="10nF"/>
 <part name="GND23" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="L6" library="SparkFun-Coils" library_urn="urn:adsk.eagle:library:512" deviceset="INDUCTOR" device="-0402-3.9NH" package3d_urn="urn:adsk.eagle:package:37575/1" value="51nH"/>
 <part name="GND24" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
@@ -5560,7 +5560,7 @@ Source: &lt;a href="http://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_
 <part name="GND25" library="SparkFun-PowerSymbols" deviceset="GND" device=""/>
 <part name="GND26" library="SparkFun-PowerSymbols" deviceset="GND" device=""/>
 <part name="C25" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="0.1uF"/>
-<part name="C26" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="0.1uF"/>
+<part name="C26" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="1uF"/>
 <part name="C27" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="0.1uF"/>
 <part name="U3" library="SparkFun-IC-Microcontroller" deviceset="ATSAMD21G" device="-A"/>
 <part name="L7" library="SparkFun-Coils" deviceset="INDUCTOR" device="-0603-33NH" value="FB 30Ohm"/>
@@ -5707,7 +5707,7 @@ Source: &lt;a href="http://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_
 <instance part="C26" gate="G$1" x="144.78" y="73.66"/>
 <instance part="C27" gate="G$1" x="127" y="55.88" smashed="yes">
 <attribute name="NAME" x="128.524" y="58.801" size="1.778" layer="95" font="vector"/>
-<attribute name="VALUE" x="120.904" y="53.721" size="1.778" layer="96" font="vector"/>
+<attribute name="VALUE" x="128.524" y="53.721" size="1.778" layer="96" font="vector"/>
 </instance>
 <instance part="U3" gate="G$1" x="182.88" y="40.64"/>
 <instance part="L7" gate="G$1" x="127" y="81.28" rot="R180"/>
@@ -5756,11 +5756,11 @@ Source: &lt;a href="http://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_
 <instance part="C37" gate="G$1" x="-17.78" y="254"/>
 <instance part="R8" gate="G$1" x="-5.08" y="264.16" smashed="yes" rot="R180">
 <attribute name="NAME" x="-1.27" y="262.6614" size="1.27" layer="95" rot="R180"/>
-<attribute name="VALUE" x="-6.35" y="267.462" size="1.27" layer="96" rot="R180"/>
+<attribute name="VALUE" x="-3.81" y="259.842" size="1.27" layer="96" rot="R180"/>
 </instance>
 <instance part="R9" gate="G$1" x="-5.08" y="261.62" smashed="yes" rot="R180">
 <attribute name="NAME" x="-1.27" y="260.1214" size="1.27" layer="95" rot="R180"/>
-<attribute name="VALUE" x="-6.35" y="264.922" size="1.27" layer="96" rot="R180"/>
+<attribute name="VALUE" x="-3.81" y="267.462" size="1.27" layer="96" rot="R180"/>
 </instance>
 <instance part="SUPPLY14" gate="G$1" x="101.6" y="228.6"/>
 <instance part="R2" gate="G$1" x="66.04" y="185.42" smashed="yes" rot="R90">

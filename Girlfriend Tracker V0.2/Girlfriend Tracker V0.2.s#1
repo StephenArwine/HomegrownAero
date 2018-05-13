@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="8.6.0">
+<eagle version="8.7.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -223,11 +223,11 @@
 <smd name="P$6" x="-0.25" y="-1.4351" dx="0.6604" dy="0.254" layer="1" rot="R90"/>
 <smd name="P$5" x="-0.75" y="-1.4351" dx="0.6604" dy="0.254" layer="1" rot="R90"/>
 <smd name="P$8" x="0.75" y="-1.4351" dx="0.6604" dy="0.254" layer="1" rot="R90"/>
-<pad name="P$17" x="0" y="0" drill="0.35" diameter="0.4064"/>
-<pad name="P$17_4" x="0.4572" y="-0.4572" drill="0.35" diameter="0.4064"/>
-<pad name="P$17_1" x="0.4572" y="0.4572" drill="0.35" diameter="0.4064"/>
-<pad name="P$17_2" x="-0.4572" y="0.4572" drill="0.35" diameter="0.4064"/>
-<pad name="P$17_3" x="-0.4572" y="-0.4572" drill="0.35" diameter="0.4064"/>
+<pad name="P$17" x="0" y="0" drill="0.3" diameter="0.4064"/>
+<pad name="P$17_4" x="0.4572" y="-0.4572" drill="0.3" diameter="0.4064"/>
+<pad name="P$17_1" x="0.4572" y="0.4572" drill="0.3" diameter="0.4064"/>
+<pad name="P$17_2" x="-0.4572" y="0.4572" drill="0.3" diameter="0.4064"/>
+<pad name="P$17_3" x="-0.4572" y="-0.4572" drill="0.3" diameter="0.4064"/>
 <polygon width="0" layer="29">
 <vertex x="-0.7366" y="-0.7366"/>
 <vertex x="-0.7366" y="0.4826"/>
@@ -5707,7 +5707,7 @@ Source: &lt;a href="http://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_
 <instance part="C26" gate="G$1" x="144.78" y="73.66"/>
 <instance part="C27" gate="G$1" x="127" y="55.88" smashed="yes">
 <attribute name="NAME" x="128.524" y="58.801" size="1.778" layer="95" font="vector"/>
-<attribute name="VALUE" x="120.904" y="53.721" size="1.778" layer="96" font="vector"/>
+<attribute name="VALUE" x="128.524" y="53.721" size="1.778" layer="96" font="vector"/>
 </instance>
 <instance part="U3" gate="G$1" x="182.88" y="40.64"/>
 <instance part="L7" gate="G$1" x="127" y="81.28" rot="R180"/>

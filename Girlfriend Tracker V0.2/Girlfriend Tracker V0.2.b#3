@@ -1054,7 +1054,7 @@ Example: SX-32S</description>
 <class number="1" name="power" width="0.254" drill="0">
 </class>
 </classes>
-<designrules name="oshpark-4layer-tented">
+<designrules name="oshpark-4layer-tented *">
 <description language="en">&lt;b&gt;OSH Park Design Rules&lt;/b&gt;
 &lt;p&gt;
 Please make sure your boards conform to these design rules.
@@ -1115,8 +1115,8 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <param name="psElongationOffset" value="100"/>
 <param name="mvStopFrame" value="1"/>
 <param name="mvCreamFrame" value="0"/>
-<param name="mlMinStopFrame" value="2.5mil"/>
-<param name="mlMaxStopFrame" value="2.5mil"/>
+<param name="mlMinStopFrame" value="0mil"/>
+<param name="mlMaxStopFrame" value="0mil"/>
 <param name="mlMinCreamFrame" value="0mil"/>
 <param name="mlMaxCreamFrame" value="0mil"/>
 <param name="mlViaStopLimit" value="20mil"/>
@@ -2249,28 +2249,6 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="12.7" y1="12.192" x2="10.418" y2="12.192" width="0.254" layer="16"/>
 </signal>
 </signals>
-<errors>
-<approved hash="3,1,cff6cdf4cdf4cff6"/>
-<approved hash="4,1,5c922cde17c56097"/>
-<approved hash="4,1,5a8e2a3a16f36765"/>
-<approved hash="4,1,5aea2a26162566ff"/>
-<approved hash="4,1,197e33262cfd3f01"/>
-<approved hash="4,1,476003a53a5676bd"/>
-<approved hash="4,1,33ea2a2616250fff"/>
-<approved hash="5,1,187bd6b5364e9845"/>
-<approved hash="5,1,a467766f9651249c"/>
-<approved hash="4,16,5c922cde17c56097"/>
-<approved hash="4,16,5a8e2a3a16f36765"/>
-<approved hash="4,16,2b0b71482cbdf419"/>
-<approved hash="4,16,3e8533642bdd259c"/>
-<approved hash="4,16,d3d2eef503dae46e"/>
-<approved hash="4,16,9d0a4254cc1220ff"/>
-<approved hash="5,16,4283de1c94fe6715"/>
-<approved hash="4,16,197e33262cfd3f01"/>
-<approved hash="4,16,476003a53a5676bd"/>
-<approved hash="4,16,2eeb776864513e75"/>
-<approved hash="4,16,6bcc9b246e874cea"/>
-</errors>
 </board>
 </drawing>
 <compatibility>
