@@ -66,7 +66,7 @@ void flight() {
 
 
         if ((( velocity > 15) && (accel > 2)) | (altitudeAGL() > 100)) {
-        //if ((( velocity > 5) && (accel > 2)) | (altitudeAGL() > 10)) {
+
             flightState = flightBoost;
             beginFlightLog();
         }
@@ -121,11 +121,11 @@ void flight() {
         }
 
 
-//         if (sample.pressureAltitude < deploymentSettings.MAIN_DEPLOY) {
-//             flightState = flightMain;
-//             igniteMain();
-//             logEvent('M');
-//         }
+        if (altitudeAGL() < deploymentSettings.MAIN_DEPLOY) {
+            flightState = flightMain;
+            igniteMain();
+            logEvent('M');
+        }
 
         break;
     case flightMain:
@@ -134,7 +134,7 @@ void flight() {
             logSensors( );
         }
 
-        if (velocity < 5) {
+        if ((velocity > -1) && (velocity < 1) ) {
             flightState = flightLanded;
             finishFlight();
         }

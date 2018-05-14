@@ -136,8 +136,8 @@
 /* Carrier Frequency = 432.999817 */
 /* Channel Number = 0 */
 /* Channel Spacing = 199.951172 */
-/* Data Format = Random mode */
-/* Data Rate = 1.19948 */
+/* Data Format = Normal mode */
+/* Data Rate = 0.099957 */
 /* Deviation = 5.157471 */
 /* Device Address = 0 */
 /* Manchester Enable = false */
@@ -151,34 +151,34 @@
 /* Sync Word Qualifier Mode = 30/32 sync word bits detected */
 /* TX Power = 10 */
 /* Whitening = false */
-#define RF_IOCFG2           0x2E
+#define RF_IOCFG2           0x29
 #define RF_IOCFG1           0x2E
 #define RF_IOCFG0           0x06
-#define RF_FIFOTHR          0x07
-#define RF_SYNC1            0xB5
-#define RF_SYNC0            0x47
+#define RF_FIFOTHR          0x47
+#define RF_SYNC1            0xD3
+#define RF_SYNC0            0x91
 #define RF_PKTLEN           0xFF
-#define RF_PKTCTRL1         0x06
-#define RF_PKTCTRL0         0x01
-#define RF_ADDR             0xFF
+#define RF_PKTCTRL1         0x04
+#define RF_PKTCTRL0         0x06
+#define RF_ADDR             0x00
 #define RF_CHANNR           0x00
-#define RF_FSCTRL1          0x08
+#define RF_FSCTRL1          0x06
 #define RF_FSCTRL0          0x00
 #define RF_FREQ2            0x10
 #define RF_FREQ1            0xA7
 #define RF_FREQ0            0x62
-#define RF_MDMCFG4          0xF5
-#define RF_MDMCFG3          0x83
+#define RF_MDMCFG4          0xF2
+#define RF_MDMCFG3          0x02
 #define RF_MDMCFG2          0x13
 #define RF_MDMCFG1          0x22
 #define RF_MDMCFG0          0xF8
-#define RF_DEVIATN          0x24
+#define RF_DEVIATN          0x15
 #define RF_MCSM2            0x07
-#define RF_MCSM1            0x20
+#define RF_MCSM1            0x30
 #define RF_MCSM0            0x18
 #define RF_FOCCFG           0x16
 #define RF_BSCFG            0x6C
-#define RF_AGCCTRL2         0x43
+#define RF_AGCCTRL2         0x03
 #define RF_AGCCTRL1         0x40
 #define RF_AGCCTRL0         0x91
 #define RF_WOREVT1          0x87
@@ -212,6 +212,9 @@
 #define RF_RXBYTES          0x00
 #define RF_RCCTRL1_STATUS   0x00
 #define RF_RCCTRL0_STATUS   0x00
+
+
+
 
 
 

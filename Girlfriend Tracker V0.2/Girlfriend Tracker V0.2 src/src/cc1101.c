@@ -10,8 +10,9 @@
 #define CC1101_set_RX_state()		CC1101_cmd_strobe(CC1101_SRX)
 #define CC1101_set_TX_state()		CC1101_cmd_strobe(CC1101_STX)
 
-#define  wait_GDO0_low()	while(pinRead(Pin_GDO0) == true)
-#define  wait_GDO0_high()	while(pinRead(Pin_GDO0) == false)
+#define getGDO0State()		pinRead(Pin_GDO0)
+#define  wait_GDO0_low()	while(getGDO0State())
+#define  wait_GDO0_high()	while(!getGDO0State())
 
 
 
@@ -104,8 +105,8 @@ u8_t cc1101_read_reg(u8_t regester) {
     u8_t reg = 0;
 
     cc1101_select();
-    while(pinRead(spiMISO) == true);
-    byteOut(spiSCK, spiMOSI, regester);
+    CC1101_wait_miso();
+    byteOut(spiSCK, spiMOSI, regester | READ_SINGLE);
     reg = byteIn(spiSCK, spiMISO);
     cc1101_deselect();
 
@@ -120,7 +121,7 @@ void CC1101_write_burst_reg(u8_t reg, u8_t* buffer, u8_t length) {
     u8_t add = reg | WRITE_BURST;
 
     cc1101_select();
-    while(pinRead(spiMISO) == true);
+    CC1101_wait_miso();
     byteOut(spiSCK, spiMOSI, add);
     for(i = 0; i < length; i++) {
         byteOut(spiSCK, spiMOSI, buffer[i]);
@@ -133,7 +134,7 @@ void cc1101_write_reg(u8_t reg, u8_t value) {
 
     cc1101_select();
     CC1101_wait_miso();
-    byteOut(spiSCK, spiMOSI, reg);
+    byteOut(spiSCK, spiMOSI, reg | WRITE_BURST);
     byteOut(spiSCK, spiMOSI, value);
     cc1101_deselect();
 
@@ -146,14 +147,12 @@ void sendreg() {
 
     volatile u8_t i;
 
+    cc1101_select();
+    CC1101_wait_miso();
+    byteOut(spiSCK, spiMOSI, 0 | READ_BURST);
+
     for (i = 0; i <= cc1101_num_reg ; i++) {
-
-        cc1101_select();
-        while(pinRead(spiMISO) == true);
-        byteOut(spiSCK, spiMOSI, i | 0x80);
         volatile u8_t reg_data = byteIn(spiSCK,spiMISO);
-        cc1101_deselect();
-
         regirsterssss[i] = reg_data;
     }
     cc1101_deselect();
@@ -213,11 +212,15 @@ bool CC1101_tx_data(u8_t *packet, u8_t packenlen) {
         return false;
     }
 
-        delay_ms(1);
+    u32_t timeBefore = millis();
+
+    delay_ms(1);
     wait_GDO0_high();
 
     delay_ms(1);
     wait_GDO0_low();
+
+    volatile u32_t madeIt = millis() - timeBefore;
 
     delay_ms(1);
 
@@ -301,9 +304,6 @@ void write_cc1101_status_regersters() {
     cc1101_write_reg(CC1101_RCCTRL1_STATUS,RF_RCCTRL1_STATUS);
     cc1101_write_reg(CC1101_RCCTRL0_STATUS,RF_RCCTRL0_STATUS);
 
-    cc1101_select();
-    while(pinRead(spiMISO) == true);
-    cc1101_deselect();
 }
 
 void CC1101_reset_chip() {
@@ -322,7 +322,6 @@ void CC1101_reset_chip() {
     while(pinRead(spiMISO) == true);
     cc1101_deselect();
 
-    //configure reg
-    write_cc1101_status_regersters();
+
 
 }

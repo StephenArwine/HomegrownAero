@@ -91,39 +91,6 @@ void shutDown() {
 
     pinHigh(LedPin);
 
-//     uint32_t *pSrc, *pDest;
-//
-//     /* Initialize the relocate segment */
-//     pSrc = &_etext;
-//     pDest = &_srelocate;
-//
-//     if (pSrc != pDest) {
-//         for (; pDest < &_erelocate;) {
-//             *pDest++ = *pSrc++;
-//         }
-//     }
-//
-//     /* Clear the zero segment */
-//     for (pDest = &_szero; pDest < &_ezero;) {
-//         *pDest++ = 0;
-//     }
-//
-//     /* Set the vector table base address */
-//     pSrc = (uint32_t *) & _sfixed;
-//     SCB->VTOR = ((uint32_t) pSrc & SCB_VTOR_TBLOFF_Msk);
-//
-//     /* Change default QOS values to have the best performance*/
-//     SBMATRIX->SFR[SBMATRIX_SLAVE_HMCRAMC0].reg = 2;
-//     DMAC->QOSCTRL.bit.DQOS = 2;
-//     DMAC->QOSCTRL.bit.FQOS = 2;
-//     DMAC->QOSCTRL.bit.WRBQOS = 2;
-//
-//     /* Overwriting the default value of the NVMCTRL.CTRLB.MANW bit (errata reference 13134) */
-//     NVMCTRL->CTRLB.bit.MANW = 1;
-//
-//     /* Initialize the C library */
-//     __libc_init_array();
-
     SYSCTRL->BOD33.reg = SYSCTRL_BOD33_PSEL_DIV8 | SYSCTRL_BOD33_ACTION_RESET | SYSCTRL_BOD33_LEVEL(60);
 
     SYSCTRL->BOD33.reg |= SYSCTRL_BOD33_ENABLE;

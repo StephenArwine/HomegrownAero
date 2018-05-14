@@ -137,9 +137,6 @@ int main(void) {
 
     getSettings();
 
-    //beepNumber(12345);
-
-
     beep(800);
 
     startupTick = millis();

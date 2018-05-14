@@ -92,15 +92,19 @@ int main(void) {
     CC1101_reset_chip();
     delay_ms(1000);
 
+    //configure reg
+    write_cc1101_status_regersters();
+    delay_ms(1000);
+
     //sendreg();
 
 
     CC1101_cmd_strobe(CC1101_SFSTXON);
 
 
-    cc1101_write_reg(CC1101_PATABLE, 0xC0);
+    //cc1101_write_reg(CC1101_PATABLE, 0xC0);
 
-    CC1101_cmd_strobe(CC1101_SIDLE);
+    CC1101_cmd_strobe(CC1101_STX);
 
     //pinHigh(AMP_EN);
 
@@ -117,17 +121,13 @@ int main(void) {
 
         //volatile bool sent = CC1101_tx_data(packet, 0x1E);
 
-        cc1101_write_reg(CC1101_TXFIFO, 31);
-        CC1101_write_burst_reg(CC1101_TXFIFO, packet, 30);
-
-        CC1101_cmd_strobe(CC1101_SIDLE);
-        CC1101_cmd_strobe(CC1101_STX);
-
         volatile u8_t status2 = CC1101_read_status_reg(CC1101_MARCSTATE);
 
         pinLow(AMP_EN);
-        delay_ms(50);
+        //delay_ms(50);
         pinLow(LEDPin);
+
+        volatile u8_t gdo0setting = cc1101_read_reg(CC1101_IOCFG0);
 //
 //         //send result of TX over USART
 //         char * sencC = sent ? "true" : "false";
