@@ -20,8 +20,6 @@ void findMainAltitude() {
         deploymentSettings.MAIN_DEPLOY = deploymentSettings.channelDSettings.MAIN_DEPLOY;
         return;
     }
-
-
 }
 
 void applyDefaultSettings() {
@@ -79,8 +77,6 @@ void putSettings() {
 
     AT25SEWritePage(0x00,settings);
 }
-
-
 
 
 void getSettings() {

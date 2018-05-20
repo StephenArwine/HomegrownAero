@@ -2,6 +2,61 @@
 #include <boardDefines.h>
 
 
+bool checkIfMain(deploymentChannel_t chan) {
+
+    if (chan.ENABLED & (chan.TYPE == MAIN_t)) {
+        return true;
+    } else {
+        return false;
+    }
+
+}
+
+bool checkIfDrogue(deploymentChannel_t chan) {
+
+    if (chan.ENABLED & (chan.TYPE == DROGUE_t)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+void checkContinuity() {
+
+    charges.mainFound = false;
+    charges.drogueFound = false;
+
+    if (checkIfDrogue(deploymentSettings.channelASettings)) {
+        if (sample.voltage.senseA > 500) {
+            charges.drogueFound = true;
+        }
+    }
+    if (checkIfMain(deploymentSettings.channelBSettings)) {
+        if (sample.voltage.senseB > 500) {
+            charges.mainFound = true;
+        }
+    }
+
+
+}
+
+void continuityBeep() {
+
+    checkContinuity();
+
+    if (charges.mainFound == false & charges.drogueFound == false) {
+        beepDigit(0);
+    } else if (charges.mainFound == false & charges.drogueFound == true) {
+        beepDigit(1);
+    } else if (charges.mainFound == true & charges.drogueFound == false) {
+        beepDigit(2);
+    } else if (charges.mainFound == true & charges.drogueFound == true) {
+        beepDigit(3);
+    }
+
+
+}
+
 void igniterTick() {
 
     if (charges.igniterAHot) {

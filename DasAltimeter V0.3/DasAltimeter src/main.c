@@ -137,7 +137,11 @@ int main(void) {
 
     getSettings();
 
-    beep(800);
+    beep(400);
+    delay_ms(1500);
+
+    continuityBeep();
+    delay_ms(1000);
 
     startupTick = millis();
 

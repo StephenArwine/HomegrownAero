@@ -378,12 +378,8 @@ void findNewFlightStart() {
             }
             flightNumb = flightNumbToCheck;
 
-            while (flightNumbToCheck > 0) {
-                beep(500);
-                delay_ms(500);
-                --flightNumbToCheck;
-            }
-            delay_ms(500);
+            beepDigit(flightNumb);
+            delay_ms(1000);
             break;
         }
     }

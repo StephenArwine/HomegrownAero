@@ -65,7 +65,7 @@ void flight() {
         }
 
 
-        if ((( velocity > 15) && (accel > 2)) | (altitudeAGL() > 100)) {
+        if ((( velocity > 10) && (accel > 2)) | (altitudeAGL() > 100)) {
 
             flightState = flightBoost;
             beginFlightLog();

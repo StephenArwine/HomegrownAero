@@ -22,6 +22,9 @@ typedef struct deploymentCharges {
 
     bool igniterDHot;
     u32_t igniterDTick;
+	
+	bool mainFound;
+	bool drogueFound;
 
 
 } deploymentCharges;
@@ -62,6 +65,7 @@ offsets_t offsets;
 
 
 typedef enum flightState_t {
+
 
     flightStatrup = 0,
     flightIdle = 1,

@@ -3,12 +3,19 @@
 #include <math.h>
 
 
-void beep(u16_t toggles) {
+void beep(u16_t duration) {
+
+
+    long count = 0;
+
+    long beepStop = duration*1000 / 122;
 
     pinToggle(LedPin);
-    for (u16_t buzz = 0; buzz < toggles; ++buzz) {
+
+    while(count < beepStop) {
         pinToggle(buzzerPin);
-        delay_us(122);
+        delay_us(120);
+        count++;
     }
     pinLow(buzzerPin);
     pinToggle(LedPin);
@@ -16,11 +23,11 @@ void beep(u16_t toggles) {
 
 void beepDigit(u8_t digit) {
     if (digit == 0) {
-        beep(1000);
+        beep(600);
     } else {
         while (digit > 0) {
-            beep(400);
-            delay_ms(500);
+            beep(200);
+            delay_ms(300);
             --digit;
         }
     }
@@ -97,24 +104,24 @@ void beepNumber(u32_t number) {
 }
 
 void startupJingle() {
-    beep(300);
-    delay_ms(80);
-    beep(300);
+    beep(150);
+    delay_ms(60);
+    beep(150);
     delay_ms(250);
-    beep(300);
-    delay_ms(80);
-    beep(300);
+    beep(150);
+    delay_ms(60);
+    beep(150);
     delay_ms(500);
 }
 
 void unpluggedJingle() {
-    delay_ms(80);
-    beep(300);
-    delay_ms(80);
-    beep(300);
-    delay_ms(80);
-    beep(300);
-    delay_ms(80);
+    delay_ms(60);
+    beep(150);
+    delay_ms(60);
+    beep(150);
+    delay_ms(60);
+    beep(150);
+    delay_ms(60);
     pinLow(buzzerPin);
     pinLow(LedPin);
 

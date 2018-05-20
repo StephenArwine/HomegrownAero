@@ -57,6 +57,11 @@ inline static Sercom* sercom(SercomId id) {
 }
 
 //igniter.c
+bool checkIfMain(deploymentChannel_t chan);
+bool checkIfDrogue(deploymentChannel_t chan);
+void checkContinuity();
+void continuityBeep();
+
 void igniterTick();
 void igniteDrogue();
 void igniteMain();
@@ -102,7 +107,7 @@ u16_t adcSample();
 u16_t adc_read(Pin p);
 
 //buzzer.c
-void beep(u16_t toggles);
+void beep(u16_t duration);
 void beepDigit(u8_t digit);
 void beepNumber(u32_t number);
 void startupJingle();
