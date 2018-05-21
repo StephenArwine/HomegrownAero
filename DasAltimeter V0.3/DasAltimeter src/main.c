@@ -137,7 +137,7 @@ int main(void) {
 
     getSettings();
 
-    beep(400);
+    beep(300);
     delay_ms(1500);
 
     continuityBeep();

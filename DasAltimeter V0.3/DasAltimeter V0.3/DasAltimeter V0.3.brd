@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="8.6.0">
+<eagle version="8.7.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -2071,9 +2071,6 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <contactref element="U5" pad="4"/>
 </signal>
 </signals>
-<errors>
-<approved hash="21,19,b3f3cff1b1f1b30d"/>
-</errors>
 </board>
 </drawing>
 <compatibility>
