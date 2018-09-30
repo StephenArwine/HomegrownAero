@@ -44,13 +44,13 @@ void continuityBeep() {
 
     checkContinuity();
 
-    if (charges.mainFound == false & charges.drogueFound == false) {
+    if ((charges.mainFound == false) & (charges.drogueFound == false)) {
         beepDigit(0);
-    } else if (charges.mainFound == false & charges.drogueFound == true) {
+    } else if ((charges.mainFound == false) & (charges.drogueFound == true)) {
         beepDigit(1);
-    } else if (charges.mainFound == true & charges.drogueFound == false) {
+    } else if ((charges.mainFound == true) & (charges.drogueFound == false)) {
         beepDigit(2);
-    } else if (charges.mainFound == true & charges.drogueFound == true) {
+    } else if ((charges.mainFound == true) & (charges.drogueFound == true)) {
         beepDigit(3);
     }
 

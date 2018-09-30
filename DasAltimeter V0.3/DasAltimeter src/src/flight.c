@@ -2,6 +2,7 @@
 #include <boardDefines.h>
 
 #define TESTFLIGHT 0
+#define GROUNDTEST 1
 
 
 void flight() {
@@ -16,11 +17,20 @@ void flight() {
             startupJingle();
 
 #if TESTFLIGHT
+
             flightState = flightTest;
             writeFlightStartAddress();
             logFlight( );
             logEvent('L');
-#else
+#endif
+			
+#if GROUNDTEST
+
+			testIgniters();
+#endif
+			
+#if (!TESTFLIGHT & !GROUNDTEST)
+
             flightState = flightPad;
 #endif
 

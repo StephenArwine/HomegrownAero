@@ -40,5 +40,7 @@ src\sercom.c
 
 src\settings.c
 
+src\tests.c
+
 src\transfer.c
 

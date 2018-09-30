@@ -57,6 +57,7 @@ C_SRCS +=  \
 ../src/sample.c \
 ../src/sercom.c \
 ../src/settings.c \
+../src/tests.c \
 ../src/transfer.c
 
 
@@ -86,6 +87,7 @@ log.o \
 sample.o \
 sercom.o \
 settings.o \
+tests.o \
 transfer.o
 
 OBJS_AS_ARGS +=  \
@@ -108,6 +110,7 @@ log.o \
 sample.o \
 sercom.o \
 settings.o \
+tests.o \
 transfer.o
 
 C_DEPS +=  \
@@ -130,6 +133,7 @@ log.d \
 sample.d \
 sercom.d \
 settings.d \
+tests.d \
 transfer.d
 
 C_DEPS_AS_ARGS +=  \
@@ -152,6 +156,7 @@ log.d \
 sample.d \
 sercom.d \
 settings.d \
+tests.d \
 transfer.d
 
 OUTPUT_FILE_PATH +=DasAltimeter.elf
@@ -211,30 +216,32 @@ LINKER_SCRIPT_DEP+=  \
 
 
 
+
+
 Device_Startup/%.o: ../Device_Startup/%.c
 	@echo Building file: $<
-	@echo Invoking: ARM/GNU C Compiler : 5.3.1
+	@echo Invoking: ARM/GNU C Compiler : 6.2.1
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -funsigned-char -mthumb -D__SAMD21G18A__ -DNDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD21_DFP\1.1.271\samd21a\include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\cmsis\4.2.0\CMSIS\Include" -I"../src" -I"../drivers" -I".."  -Os -ffunction-sections -mlong-calls -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 ./%.o: ../drivers/%.c
 	@echo Building file: $<
-	@echo Invoking: ARM/GNU C Compiler : 5.3.1
+	@echo Invoking: ARM/GNU C Compiler : 6.2.1
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -funsigned-char -mthumb -D__SAMD21G18A__ -DNDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD21_DFP\1.1.271\samd21a\include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\cmsis\4.2.0\CMSIS\Include" -I"../src" -I"../drivers" -I".."  -Os -ffunction-sections -mlong-calls -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 ./%.o: .././%.c
 	@echo Building file: $<
-	@echo Invoking: ARM/GNU C Compiler : 5.3.1
+	@echo Invoking: ARM/GNU C Compiler : 6.2.1
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -funsigned-char -mthumb -D__SAMD21G18A__ -DNDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD21_DFP\1.1.271\samd21a\include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\cmsis\4.2.0\CMSIS\Include" -I"../src" -I"../drivers" -I".."  -Os -ffunction-sections -mlong-calls -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 ./%.o: ../src/%.c
 	@echo Building file: $<
-	@echo Invoking: ARM/GNU C Compiler : 5.3.1
+	@echo Invoking: ARM/GNU C Compiler : 6.2.1
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -funsigned-char -mthumb -D__SAMD21G18A__ -DNDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD21_DFP\1.1.271\samd21a\include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\cmsis\4.2.0\CMSIS\Include" -I"../src" -I"../drivers" -I".."  -Os -ffunction-sections -mlong-calls -Wall -mcpu=cortex-m0plus -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
@@ -263,7 +270,7 @@ all: $(OUTPUT_FILE_PATH) $(ADDITIONAL_DEPENDENCIES)
 
 $(OUTPUT_FILE_PATH): $(OBJS) $(USER_OBJS) $(OUTPUT_FILE_DEP) $(LIB_DEP) $(LINKER_SCRIPT_DEP)
 	@echo Building target: $@
-	@echo Invoking: ARM/GNU Linker : 5.3.1
+	@echo Invoking: ARM/GNU Linker : 6.2.1
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE) -o$(OUTPUT_FILE_PATH_AS_ARGS) $(OBJS_AS_ARGS) $(USER_OBJS) $(LIBS) -mthumb --specs=nano.specs --specs=nosys.specs -Wl,--start-group -lm  -Wl,--end-group -L"..\\Device_Startup"  -Wl,--gc-sections -fpic -mcpu=cortex-m0plus -Tsamd21g18a_flash.ld  
 	@echo Finished building target: $@
 	"C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-objcopy.exe" -O binary "DasAltimeter.elf" "DasAltimeter.bin"

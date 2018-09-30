@@ -36,6 +36,7 @@ typedef uint8_t SercomId;
 #include <log.h>
 #include <flight.h>
 #include <settings.h>
+#include <tests.h>
 
 
 

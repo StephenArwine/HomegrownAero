@@ -1,6 +1,5 @@
 #include <util.h>
 
-
 bool SampleBool;
 bool takeSample();
 

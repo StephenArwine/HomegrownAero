@@ -281,6 +281,14 @@
       <SubType>compile</SubType>
       <Link>settings.h</Link>
     </Compile>
+    <Compile Include="src\tests.c">
+      <SubType>compile</SubType>
+      <Link>tests.c</Link>
+    </Compile>
+    <Compile Include="src\tests.h">
+      <SubType>compile</SubType>
+      <Link>tests.h</Link>
+    </Compile>
     <Compile Include="src\transfer.c">
       <SubType>compile</SubType>
       <Link>transfer.c</Link>
