@@ -16,6 +16,7 @@ void flight() {
             findNewFlightStart();
             startupJingle();
 
+
 #if TESTFLIGHT
 
             flightState = flightTest;

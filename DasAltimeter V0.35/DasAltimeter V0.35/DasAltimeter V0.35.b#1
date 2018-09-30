@@ -1318,7 +1318,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <element name="U$2" library="SaL-lib1" package="AT25SF081" value="AT25SF081" x="29.083" y="14.605" smashed="yes" rot="R270"/>
 <element name="J1" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" package="1X02_2.54_SCREWTERM" package3d_urn="urn:adsk.eagle:package:38059/1" value="" x="0.6985" y="6.731" rot="MR90"/>
 <element name="C7" library="SparkFun-Capacitors" package="0402" value="100nF" x="26.6065" y="17.018" smashed="yes" rot="R90">
-<attribute name="NAME" x="25.8445" y="17.018" size="0.6096" layer="25" font="vector" ratio="20" rot="R90" align="bottom-center"/>
+<attribute name="NAME" x="27.686" y="15.1765" size="0.6096" layer="25" font="vector" ratio="20" rot="R90" align="bottom-center"/>
 <attribute name="PROD_ID" value="CAP-12416" x="26.6065" y="17.018" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
 </elements>

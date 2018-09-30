@@ -60,28 +60,28 @@ void continuityBeep() {
 void igniterTick() {
 
     if (charges.igniterAHot) {
-        if ((millis() - charges.igniterATick) > 2000) {
+        if ((charges.igniterATick + 3000) < (int)sample.sampleTick ) {
             pinLow(fireAPin);
             charges.igniterAHot = false;
         }
     }
 
     if (charges.igniterBHot) {
-        if ((millis() - charges.igniterBTick) > 2000) {
+        if ((charges.igniterBTick + 3000) < (int)sample.sampleTick ) {
             pinLow(fireBPin);
             charges.igniterBHot = false;
         }
     }
 
     if (charges.igniterCHot) {
-        if ((millis() - charges.igniterCTick) > 2000) {
+        if ((charges.igniterCTick + 3000) < (int)sample.sampleTick ) {
             pinLow(fireCPin);
             charges.igniterCHot = false;
         }
     }
 
     if (charges.igniterDHot) {
-        if ((millis() - charges.igniterDTick) > 2000) {
+        if ((charges.igniterDTick + 3000) <  (int)sample.sampleTick ) {
             pinLow(fireDPin);
             charges.igniterDHot = false;
         }
@@ -123,23 +123,23 @@ void igniteDrogue() {
 void lightIgniterA() {
     pinHigh(fireAPin);
     charges.igniterAHot = true;
-    charges.igniterATick = millis();
+    charges.igniterATick = sample.sampleTick;
 }
 
 void lightIgniterB() {
     pinHigh(fireBPin);
     charges.igniterBHot = true;
-    charges.igniterBTick = millis();
+    charges.igniterBTick = sample.sampleTick;
 }
 
 void lightIgniterC() {
     pinHigh(fireCPin);
     charges.igniterCHot = true;
-    charges.igniterCTick = millis();
+    charges.igniterCTick = sample.sampleTick;
 }
 
 void lightIgniterD() {
     pinHigh(fireDPin);
     charges.igniterDHot = true;
-    charges.igniterDTick = millis();
+    charges.igniterDTick = sample.sampleTick;
 }
