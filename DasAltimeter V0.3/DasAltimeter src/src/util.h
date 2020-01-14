@@ -118,6 +118,8 @@ void unpluggedJingle();
 //transfer.c
 void sendFlightLogs();
 void attemptConnection();
+void liveConnected();
+void startupConnetion();
 
 
 //bigBang.c

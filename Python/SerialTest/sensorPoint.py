@@ -216,7 +216,7 @@ def processDataLog(data, pages, StartTime):
             continue
 
 
-    elapsedTime = (time.clock() - StartTime)
+    elapsedTime = (time.time() - StartTime)
     print('Took:', elapsedTime, 'seconds to read and process', pointList.__len__(), 'data points')
 
     return pointList, flightPoint, eventList

@@ -29,7 +29,7 @@ from sensorPoint import FlightPointType
 
 ser = serial.Serial()
 ser.baudrate = 115200
-ser.port = 'COM3'
+ser.port = 'COM9'
 ser.timeout = 5
 
 
@@ -88,7 +88,7 @@ def DownloadFlightData():
     print('')
     ser.write(int(flightToRead).to_bytes(1, byteorder='big'))
 
-    StartTime = time.clock()
+    StartTime = time.time()
 
     pages_to_read = ser.read(2)
     pages = (pages_to_read[0] << 0) + (pages_to_read[1] << 8)
@@ -186,6 +186,12 @@ def resetAltimeter():
     except serial.SerialException as e:
         print('Serial port could not be opened, check connection')
 
+def steamSensorData()
+    acknowledge = ser.read(1)
+
+    if acknowledge == b'R':
+        
+
 
 def connectToAltimeter():
     input(' Wait for startup beep and press ENTER')
@@ -214,6 +220,10 @@ def connectToAltimeter():
 
         if option == 'L':
             DownloadFlightData()
+
+        if option == 'P':
+            steamSensorData()
+
 
 running = 1
 while running:

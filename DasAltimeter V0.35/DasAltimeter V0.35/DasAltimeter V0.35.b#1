@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="8.7.0">
+<eagle version="9.5.2">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -825,7 +825,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <description>&lt;b&gt;Molex Connectors&lt;/b&gt;&lt;p&gt;
 &lt;author&gt;Created by librarian@cadsoft.de&lt;/author&gt;</description>
 <packages>
-<package name="22-23-2041" library_version="2">
+<package name="22-23-2041" urn="urn:adsk.eagle:footprint:8078261/1" library_version="4">
 <description>&lt;b&gt;KK® 254 Solid Header, Vertical, with Friction Lock, 4 Circuits, Tin (Sn) Plating&lt;/b&gt;&lt;p&gt;&lt;a href =http://www.molex.com/pdm_docs/sd/022232041_sd.pdf&gt;Datasheet &lt;/a&gt;</description>
 <wire x1="-5.08" y1="3.175" x2="5.08" y2="3.175" width="0.254" layer="21"/>
 <wire x1="5.08" y1="3.175" x2="5.08" y2="1.27" width="0.254" layer="21"/>
@@ -842,6 +842,14 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <text x="-5.08" y="-5.08" size="1.016" layer="27" ratio="10">&gt;VALUE</text>
 </package>
 </packages>
+<packages3d>
+<package3d name="22-23-2041" urn="urn:adsk.eagle:package:8078635/1" type="box" library_version="4">
+<description>&lt;b&gt;KK® 254 Solid Header, Vertical, with Friction Lock, 4 Circuits, Tin (Sn) Plating&lt;/b&gt;&lt;p&gt;&lt;a href =http://www.molex.com/pdm_docs/sd/022232041_sd.pdf&gt;Datasheet &lt;/a&gt;</description>
+<packageinstances>
+<packageinstance name="22-23-2041"/>
+</packageinstances>
+</package3d>
+</packages3d>
 </library>
 <library name="SparkFun-Hardware">
 <description>&lt;h3&gt;SparkFun Electronics' preferred foot prints&lt;/h3&gt;
@@ -1014,6 +1022,9 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <param name="checkRestrict" value="1"/>
 <param name="checkStop" value="0"/>
 <param name="checkValues" value="0"/>
+<param name="checkNames" value="1"/>
+<param name="checkWireStubs" value="1"/>
+<param name="checkPolygonWidth" value="0"/>
 <param name="useDiameter" value="13"/>
 <param name="maxErrors" value="50"/>
 </designrules>
@@ -1153,7 +1164,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <element name="D2" library="SparkFun-LED" package="LED-1206" value="GREEN" x="34.544" y="6.731" smashed="yes" rot="MR270">
 <attribute name="PROD_ID" value="DIO-00862" x="34.544" y="6.731" size="1.778" layer="28" rot="MR270" display="off"/>
 </element>
-<element name="FRAME1" library="SparkFun-Aesthetics" package="DUMMY" value="FRAME-LETTERNO_PACKAGE" x="-24.13" y="48.26">
+<element name="FRAME1" library="SparkFun-Aesthetics" package="DUMMY" value="FRAME-LETTERNO_PACKAGE" x="-24.13" y="48.26" smashed="yes">
 <attribute name="DESIGNER" value="Nobody" x="-24.13" y="48.26" size="1.778" layer="27" display="off"/>
 <attribute name="VERSION" value="v01" x="-24.13" y="48.26" size="1.778" layer="27" display="off"/>
 </element>
@@ -1173,8 +1184,10 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <attribute name="NAME" x="17.2085" y="0.254" size="0.6096" layer="25" font="vector" ratio="20" rot="R180" align="bottom-center"/>
 <attribute name="PROD_ID" value="NDUC-07874" x="15.0495" y="-0.127" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
-<element name="R1" library="SparkFun-Resistors" package="0402" value="10k" x="24.384" y="14.478" rot="R180">
+<element name="R1" library="SparkFun-Resistors" package="0402" value="10k" x="24.384" y="14.478" smashed="yes" rot="R180">
+<attribute name="NAME" x="24.384" y="13.716" size="0.6096" layer="25" font="vector" ratio="20" rot="R180" align="bottom-center"/>
 <attribute name="PROD_ID" value=" " x="24.384" y="14.478" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="VALUE" x="24.384" y="15.24" size="0.6096" layer="27" font="vector" ratio="20" rot="R180" align="top-center"/>
 </element>
 <element name="R10" library="SparkFun-Resistors" package="0402" value="27k" x="10.922" y="4.191" smashed="yes" rot="R180">
 <attribute name="NAME" x="11.303" y="5.334" size="0.6096" layer="25" font="vector" ratio="20" rot="R180" align="bottom-center"/>
@@ -1272,7 +1285,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <element name="SG1" library="SparkFun-Electromechanical" package="BUZZER-CCV-KIT" value="BUZZER-SMD_KIT" x="30.226" y="12.7" smashed="yes" rot="MR180">
 <attribute name="PROD_ID" value="COMP-08568" x="30.226" y="12.7" size="1.778" layer="28" rot="MR180" display="off"/>
 </element>
-<element name="U$1" library="SaL-lib1" package="PB-5R0H104-R" value="PB-5R0H104-R" x="12.573" y="11.684" rot="MR180"/>
+<element name="U$1" library="SaL-lib1" package="PB-5R0H104-R" value="PB-5R0H104-R" x="12.573" y="11.684" smashed="yes" rot="MR180"/>
 <element name="U1" library="SparkFun-IC-Microcontroller" package="TQFP-48" value="ATSAMD21G-A" x="19.558" y="7.62" smashed="yes" rot="R45">
 <attribute name="PROD_ID" value="IC-13064" x="19.558" y="7.62" size="1.778" layer="27" rot="R45" display="off"/>
 </element>
@@ -1283,17 +1296,19 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <element name="U3" library="SparkFun-Sensors" package="MS5803" value="MS5803-14BA" x="29.083" y="6.096" smashed="yes" rot="R270">
 <attribute name="PROD_ID" value="IC-12111" x="29.083" y="6.096" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
-<element name="X1" library="con-molex" library_urn="urn:adsk.eagle:library:165" package="22-23-2041" value="22-23-2041" x="8.001" y="0.508" smashed="yes" rot="MR0">
+<element name="X1" library="con-molex" library_urn="urn:adsk.eagle:library:165" package="22-23-2041" package3d_urn="urn:adsk.eagle:package:8078635/1" value="22-23-2041" x="8.001" y="0.508" smashed="yes" rot="MR0">
 <attribute name="MF" value="MOLEX" x="8.001" y="0.508" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="MPN" value="22-23-2041" x="8.001" y="0.508" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="OC_FARNELL" value="1462920" x="8.001" y="0.508" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="OC_NEWARK" value="38C0355" x="8.001" y="0.508" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="POPULARITY" value="21" x="8.001" y="0.508" size="1.778" layer="28" rot="MR0" display="off"/>
 </element>
-<element name="X2" library="con-molex" library_urn="urn:adsk.eagle:library:165" package="22-23-2041" value="22-23-2041" x="8.001" y="15.494" smashed="yes" rot="MR180">
+<element name="X2" library="con-molex" library_urn="urn:adsk.eagle:library:165" package="22-23-2041" package3d_urn="urn:adsk.eagle:package:8078635/1" value="22-23-2041" x="8.001" y="15.494" smashed="yes" rot="MR180">
 <attribute name="MF" value="MOLEX" x="8.001" y="15.494" size="1.778" layer="28" rot="MR180" display="off"/>
 <attribute name="MPN" value="22-23-2041" x="8.001" y="15.494" size="1.778" layer="28" rot="MR180" display="off"/>
 <attribute name="OC_FARNELL" value="1462920" x="8.001" y="15.494" size="1.778" layer="28" rot="MR180" display="off"/>
 <attribute name="OC_NEWARK" value="38C0355" x="8.001" y="15.494" size="1.778" layer="28" rot="MR180" display="off"/>
+<attribute name="POPULARITY" value="21" x="8.001" y="15.494" size="1.778" layer="28" rot="MR180" display="off"/>
 </element>
 <element name="H1" library="SparkFun-Hardware" package="STAND-OFF-TIGHT" value="STAND-OFFTIGHT" x="0" y="16.002" smashed="yes"/>
 <element name="H2" library="SparkFun-Hardware" package="STAND-OFF-TIGHT" value="STAND-OFFTIGHT" x="33.274" y="0" smashed="yes">
@@ -1316,7 +1331,10 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <attribute name="VALUE" x="15.113" y="0.762" size="0.6096" layer="27" font="vector" ratio="20" align="top-center"/>
 </element>
 <element name="U$2" library="SaL-lib1" package="AT25SF081" value="AT25SF081" x="29.083" y="14.605" smashed="yes" rot="R270"/>
-<element name="J1" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" package="1X02_2.54_SCREWTERM" package3d_urn="urn:adsk.eagle:package:38059/1" value="" x="0.6985" y="6.731" rot="MR90"/>
+<element name="J1" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" package="1X02_2.54_SCREWTERM" package3d_urn="urn:adsk.eagle:package:38059/1" value="" x="0.6985" y="6.731" smashed="yes" rot="MR90">
+<attribute name="NAME" x="4.1275" y="5.461" size="0.6096" layer="26" font="vector" ratio="20" rot="MR90"/>
+<attribute name="VALUE" x="-3.3655" y="5.461" size="0.6096" layer="28" font="vector" ratio="20" rot="MR90"/>
+</element>
 <element name="C7" library="SparkFun-Capacitors" package="0402" value="100nF" x="26.6065" y="17.018" smashed="yes" rot="R90">
 <attribute name="NAME" x="27.686" y="15.1765" size="0.6096" layer="25" font="vector" ratio="20" rot="R90" align="bottom-center"/>
 <attribute name="PROD_ID" value="CAP-12416" x="26.6065" y="17.018" size="1.778" layer="27" rot="R90" display="off"/>
@@ -2115,6 +2133,13 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <contactref element="U5" pad="4"/>
 </signal>
 </signals>
+<mfgpreviewcolors>
+<mfgpreviewcolor name="soldermaskcolor" color="0xC8008000"/>
+<mfgpreviewcolor name="silkscreencolor" color="0xFFFEFEFE"/>
+<mfgpreviewcolor name="backgroundcolor" color="0xFF282828"/>
+<mfgpreviewcolor name="coppercolor" color="0xFFFFBF00"/>
+<mfgpreviewcolor name="substratecolor" color="0xFF786E46"/>
+</mfgpreviewcolors>
 </board>
 </drawing>
 <compatibility>

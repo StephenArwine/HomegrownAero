@@ -37,44 +37,67 @@ void sendFlightLogs() {
 
 }
 
+void streamSensorData() {
+    usartDataOut(USART3, 'R');
+    while(1) {
+        sampleTick();
+        usartDataOut(USART3, 'A');
+        usartDataOut(USART3, altitudeAGL() >> 0);
+        usartDataOut(USART3, altitudeAGL() >> 8);
+        usartDataOut(USART3, altitudeAGL() >> 16);
+        usartDataOut(USART3, altitudeAGL() >> 24);
+    }
+}
+
+void startupConnetion() {
+
+    flightState = flightIdle;
+
+    //wait for user to tell us what they want
+    while(sercom(USART3)->SPI.INTFLAG.bit.RXC == 0);
+    u8_t option = usartDataIn(USART3);
+
+    //user wants to read flight logs
+    if (option == 0x4C) {
+
+        sendFlightLogs();
+    }
+    //user wants to erase chip
+    if (option == 0x45) { // 'E'
+
+        //getSettings();
+
+        AT25SFChipErase();
+        AT25SFHoldTillReady();
+        delay_ms(100);
+        AT25SFChipErase();
+
+        AT25SFHoldTillReady();
+
+        //getSettings();
+
+        usartDataOut(USART3, 'E');
+        beep(400);
+
+    }
+
+    if (option == 0x83 ) { // 'S'
+        delay_ms(100);
+        streamSensorData();
+
+    }
+
+}
+
 void attemptConnection() {
 
     if (USARTconnectionAvaliable()) {
 
-        flightState = flightIdle;
-
-        //wait for user to tell us what they want
-        while(sercom(USART3)->SPI.INTFLAG.bit.RXC == 0);
-        u8_t option = usartDataIn(USART3);
-
-        //user wants to read flight logs
-        if (option == 0x4C) {
-
-            sendFlightLogs();
-        }
-        //user wants to erase chip
-        if (option == 0x45) { // 'E'
-
-            //getSettings();
-
-            AT25SFChipErase();
-            AT25SFHoldTillReady();
-            delay_ms(100);
-            AT25SFChipErase();
-
-            AT25SFHoldTillReady();
-
-            //getSettings();
-
-            usartDataOut(USART3, 'E');
-            beep(400);
-
+        if (flightState == flightStatrup) {
+            startupConnetion()
         }
 
-        if (option == 0x83 ) { // 'S'
 
-
-        }
     }
 
 }

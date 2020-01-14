@@ -6,7 +6,7 @@ void testIgniters(){
 	beepNumber(1);
 	pinHigh(fireAPin);
 	delay_ms(1500);
-	pinLow(fireAPin);
+	inLow(fireAPin);
 	
 	delay_ms(250);
 	beepNumber(2);

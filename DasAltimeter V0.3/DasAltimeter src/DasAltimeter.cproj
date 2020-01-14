@@ -34,7 +34,7 @@
         <documentation help="" />
         <offline-documentation help="" />
         <dependencies>
-          <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.28.1" />
+          <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.39.0" />
         </dependencies>
       </framework-data>
     </AsfFrameworkConfig>
@@ -54,6 +54,8 @@
       <ToolName>Atmel-ICE</ToolName>
     </com_atmel_avrdbg_tool_atmelice>
     <avrtoolinterfaceclock>2000000</avrtoolinterfaceclock>
+    <ResetRule>0</ResetRule>
+    <EraseKey />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <ToolchainSettings>
@@ -280,14 +282,6 @@
     <Compile Include="src\settings.h">
       <SubType>compile</SubType>
       <Link>settings.h</Link>
-    </Compile>
-    <Compile Include="src\tests.c">
-      <SubType>compile</SubType>
-      <Link>tests.c</Link>
-    </Compile>
-    <Compile Include="src\tests.h">
-      <SubType>compile</SubType>
-      <Link>tests.h</Link>
     </Compile>
     <Compile Include="src\transfer.c">
       <SubType>compile</SubType>

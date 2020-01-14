@@ -1,24 +1,20 @@
 #include <util.h>
 #include <boardDefines.h>
 
-#define TESTFLIGHT 0
-#define GROUNDTEST 1
+#define TESTFLIGHT 1
+#define GROUNDTEST 0
 
 
 void flight() {
 
     switch(flightState) {
     case flightStatrup:
-
         updateGround( );
-
         if ((millis() - startupTick) > 10000) {
             findNewFlightStart();
             startupJingle();
 
-
 #if TESTFLIGHT
-
             flightState = flightTest;
             writeFlightStartAddress();
             logFlight( );
@@ -27,7 +23,7 @@ void flight() {
 			
 #if GROUNDTEST
 
-			testIgniters();
+			//testIgniters();
 #endif
 			
 #if (!TESTFLIGHT & !GROUNDTEST)
@@ -162,7 +158,7 @@ void flight() {
     case flightTest:
 
         if (writeLog) {
-            logSensors( );
+           logSensors( );
         }
 
         break;
