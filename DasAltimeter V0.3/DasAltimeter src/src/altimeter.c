@@ -24,6 +24,21 @@ void IMUinit() {
 
 }
 
+void lookForUSARTReset(){
+	 if (sercom(USART3)->SPI.INTFLAG.bit.RXC == 1) {
+		 u8_t possibleReset = usartDataIn(USART3);
+		 if (possibleReset == 0x52) {
+			                 NVIC_SystemReset();
+
+		 
+	 }
+	 
+	 
+	
+	
+}
+}
+
 bool USARTconnectionAvaliable() {
 
     if (sercom(USART3)->SPI.INTFLAG.bit.RXC == 1) {

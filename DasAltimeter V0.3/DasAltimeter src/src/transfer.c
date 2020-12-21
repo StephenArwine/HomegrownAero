@@ -40,12 +40,28 @@ void sendFlightLogs() {
 void streamSensorData() {
     usartDataOut(USART3, 'R');
     while(1) {
-        sampleTick();
-        usartDataOut(USART3, 'A');
-        usartDataOut(USART3, altitudeAGL() >> 0);
-        usartDataOut(USART3, altitudeAGL() >> 8);
-        usartDataOut(USART3, altitudeAGL() >> 16);
-        usartDataOut(USART3, altitudeAGL() >> 24);
+        //wait for comp to request datapoint
+        while(sercom(USART3)->SPI.INTFLAG.bit.RXC == 0);
+        volatile u8_t compRequest = usartDataIn(USART3);
+        if (compRequest == 0x44) {
+            sampleTick();
+            usartDataOut(USART3, 'A');
+			u8_t alt0 = (uint32_t)(sample.pressureAltitude) >> 0;
+			u8_t alt1 = (uint32_t)(sample.pressureAltitude) >> 8;
+			u8_t alt2 = (uint32_t)(sample.pressureAltitude) >> 16;
+			u8_t alt3 = (uint32_t)(sample.pressureAltitude) >> 24;
+            usartDataOut(USART3, alt0);
+            usartDataOut(USART3, alt1);
+            usartDataOut(USART3, alt2);
+            usartDataOut(USART3, alt3);
+        }
+		else if (compRequest == 0x46)
+		{
+			finishFromPad();
+		}
+        if (unplugged()) {
+            finishFromPad();
+        }
     }
 }
 
@@ -81,8 +97,8 @@ void startupConnetion() {
 
     }
 
-    if (option == 0x83 ) { // 'S'
-        delay_ms(100);
+    if (option == 0x53 ) { // 'S'
+        delay_ms(1);
         streamSensorData();
 
     }
@@ -94,7 +110,7 @@ void attemptConnection() {
     if (USARTconnectionAvaliable()) {
 
         if (flightState == flightStatrup) {
-            startupConnetion()
+            startupConnetion();
         }
 
 

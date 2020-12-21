@@ -2,43 +2,45 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e84bee1e-a867-4f66-90bc-3b4eebade551" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.3/DasAltimeter V0.3/eagle.epf" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.3/DasAltimeter V0.3/eagle.epf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.3/DasAltimeter src/.vs/DasAltimeter v0.3/v14/.atsuo" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.3/DasAltimeter src/.vs/DasAltimeter v0.3/v14/.atsuo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.3/DasAltimeter src/DasAltimeter.componentinfo.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.3/DasAltimeter src/DasAltimeter.componentinfo.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.3/DasAltimeter src/DasAltimeter.cproj" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.3/DasAltimeter src/DasAltimeter.cproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.3/DasAltimeter src/Debug/DasAltimeter.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.3/DasAltimeter src/Debug/DasAltimeter.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.3/DasAltimeter src/Debug/DasAltimeter.lss" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.3/DasAltimeter src/Debug/DasAltimeter.lss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.3/DasAltimeter src/Debug/DasAltimeter.srec" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.3/DasAltimeter src/Debug/DasAltimeter.srec" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.3/DasAltimeter src/Debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.3/DasAltimeter src/Debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.3/DasAltimeter src/Device_Startup/samd21g18a_flash.ld" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.3/DasAltimeter src/Device_Startup/samd21g18a_flash.ld" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.3/DasAltimeter src/Device_Startup/samd21g18a_sram.ld" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.3/DasAltimeter src/Device_Startup/samd21g18a_sram.ld" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.3/DasAltimeter src/Device_Startup/startup_samd21.c" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.3/DasAltimeter src/Device_Startup/startup_samd21.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.3/DasAltimeter src/Device_Startup/system_samd21.c" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.3/DasAltimeter src/Device_Startup/system_samd21.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.3/DasAltimeter src/Release/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.3/DasAltimeter src/Release/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.3/DasAltimeter src/Release/makedep.mk" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.3/DasAltimeter src/Release/makedep.mk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.3/DasAltimeter src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.3/DasAltimeter src/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.3/DasAltimeter src/src/flight.c" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.3/DasAltimeter src/src/flight.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.3/DasAltimeter src/src/tests.c" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.3/DasAltimeter src/src/tests.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.3/DasAltimeter src/src/altimeter.c" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.3/DasAltimeter src/src/altimeter.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.3/DasAltimeter src/src/transfer.c" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.3/DasAltimeter src/src/transfer.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.3/DasAltimeter src/src/util.h" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.3/DasAltimeter src/src/util.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.35/DasAltimeter V0.35/.vs/DasAltimeter V0.35/v14/.atsuo" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.35/DasAltimeter V0.35/.vs/DasAltimeter V0.35/v14/.atsuo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.35/DasAltimeter V0.35/DasAltimeter V0.35.b#1" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.35/DasAltimeter V0.35/DasAltimeter V0.35.b#1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.35/DasAltimeter V0.35/DasAltimeter V0.35.b#3" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.35/DasAltimeter V0.35/DasAltimeter V0.35.b#3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.35/DasAltimeter V0.35/DasAltimeter V0.35.b#4" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.35/DasAltimeter V0.35/DasAltimeter V0.35.b#4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.35/DasAltimeter V0.35/DasAltimeter V0.35.b#5" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.35/DasAltimeter V0.35/DasAltimeter V0.35.b#5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.35/DasAltimeter V0.35/DasAltimeter V0.35.b#6" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.35/DasAltimeter V0.35/DasAltimeter V0.35.b#6" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.35/DasAltimeter V0.35/DasAltimeter V0.35.b#7" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.35/DasAltimeter V0.35/DasAltimeter V0.35.b#7" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.35/DasAltimeter V0.35/DasAltimeter V0.35.b#8" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.35/DasAltimeter V0.35/DasAltimeter V0.35.b#8" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.35/DasAltimeter V0.35/DasAltimeter V0.35.brd" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.35/DasAltimeter V0.35/DasAltimeter V0.35.brd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.35/DasAltimeter V0.35/DasAltimeter V0.35.s#1" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.35/DasAltimeter V0.35/DasAltimeter V0.35.s#1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.35/DasAltimeter V0.35/DasAltimeter V0.35.s#2" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.35/DasAltimeter V0.35/DasAltimeter V0.35.s#2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.35/DasAltimeter V0.35/DasAltimeter V0.35.s#3" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.35/DasAltimeter V0.35/DasAltimeter V0.35.s#3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.35/DasAltimeter V0.35/DasAltimeter V0.35.s#4" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.35/DasAltimeter V0.35/DasAltimeter V0.35.s#4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.35/DasAltimeter V0.35/DasAltimeter V0.35.s#5" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.35/DasAltimeter V0.35/DasAltimeter V0.35.s#5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.35/DasAltimeter V0.35/DasAltimeter V0.35.sch" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.35/DasAltimeter V0.35/DasAltimeter V0.35.sch" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.35/DasAltimeter V0.35/DasAltimeter V0.35/DasAltimeter V0.35.componentinfo.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.35/DasAltimeter V0.35/DasAltimeter V0.35/DasAltimeter V0.35.componentinfo.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.35/DasAltimeter V0.35/DasAltimeter V0.35/DasAltimeter V0.35.cproj" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.35/DasAltimeter V0.35/DasAltimeter V0.35/DasAltimeter V0.35.cproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.35/DasAltimeter V0.35/eagle.epf" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.35/DasAltimeter V0.35/eagle.epf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/SerialTest.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SerialTest.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.41/DasAltimeter V0.41/DasAltimeter V0.41.b#1" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.41/DasAltimeter V0.41/DasAltimeter V0.41.b#1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.41/DasAltimeter V0.41/DasAltimeter V0.41.b#2" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.41/DasAltimeter V0.41/DasAltimeter V0.41.b#2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.41/DasAltimeter V0.41/DasAltimeter V0.41.b#3" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.41/DasAltimeter V0.41/DasAltimeter V0.41.b#3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.41/DasAltimeter V0.41/DasAltimeter V0.41.b#4" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.41/DasAltimeter V0.41/DasAltimeter V0.41.b#4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.41/DasAltimeter V0.41/DasAltimeter V0.41.b#5" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.41/DasAltimeter V0.41/DasAltimeter V0.41.b#5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.41/DasAltimeter V0.41/DasAltimeter V0.41.b#6" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.41/DasAltimeter V0.41/DasAltimeter V0.41.b#6" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.41/DasAltimeter V0.41/DasAltimeter V0.41.b#7" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.41/DasAltimeter V0.41/DasAltimeter V0.41.b#7" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.41/DasAltimeter V0.41/DasAltimeter V0.41.b#8" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.41/DasAltimeter V0.41/DasAltimeter V0.41.b#8" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.41/DasAltimeter V0.41/DasAltimeter V0.41.b#9" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.41/DasAltimeter V0.41/DasAltimeter V0.41.b#9" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.41/DasAltimeter V0.41/DasAltimeter V0.41.brd" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.41/DasAltimeter V0.41/DasAltimeter V0.41.brd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.41/DasAltimeter V0.41/DasAltimeter V0.41.s#1" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.41/DasAltimeter V0.41/DasAltimeter V0.41.s#1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.41/DasAltimeter V0.41/DasAltimeter V0.41.s#2" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.41/DasAltimeter V0.41/DasAltimeter V0.41.s#2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.41/DasAltimeter V0.41/DasAltimeter V0.41.s#3" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.41/DasAltimeter V0.41/DasAltimeter V0.41.s#3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.41/DasAltimeter V0.41/DasAltimeter V0.41.s#4" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.41/DasAltimeter V0.41/DasAltimeter V0.41.s#4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.41/DasAltimeter V0.41/DasAltimeter V0.41.s#5" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.41/DasAltimeter V0.41/DasAltimeter V0.41.s#5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.41/DasAltimeter V0.41/DasAltimeter V0.41.sch" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.41/DasAltimeter V0.41/DasAltimeter V0.41.sch" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DasAltimeter V0.41/DasAltimeter V0.41/eagle.epf" beforeDir="false" afterPath="$PROJECT_DIR$/../../DasAltimeter V0.41/DasAltimeter V0.41/eagle.epf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/flight_one.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sensorPoint.py" beforeDir="false" afterPath="$PROJECT_DIR$/sensorPoint.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -186,22 +188,46 @@
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="401" y="275" key="FileChooserDialogImpl/0.0.2048.1112/2560.0.2048.1112@0.0.2048.1112" timestamp="1578869787213" />
-    <state width="1204" height="337" key="GridCell.Tab.0.bottom" timestamp="1578879530073">
+    <state width="2027" height="371" key="GridCell.Tab.0.bottom" timestamp="1580061609121">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="1204" height="337" key="GridCell.Tab.0.bottom/0.0.2048.1112/2560.0.2048.1112@0.0.2048.1112" timestamp="1578879530073" />
-    <state width="1204" height="337" key="GridCell.Tab.0.center" timestamp="1578879530073">
+    <state width="2027" height="371" key="GridCell.Tab.0.bottom/0.0.2048.1112/2560.0.2048.1112@0.0.2048.1112" timestamp="1580061609121" />
+    <state width="2027" height="371" key="GridCell.Tab.0.bottom/0.0.2048.1112/2560.0.2048.1112@2560.0.2048.1112" timestamp="1579377522935" />
+    <state width="2027" height="371" key="GridCell.Tab.0.center" timestamp="1580061609121">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="1204" height="337" key="GridCell.Tab.0.center/0.0.2048.1112/2560.0.2048.1112@0.0.2048.1112" timestamp="1578879530073" />
-    <state width="1204" height="337" key="GridCell.Tab.0.left" timestamp="1578879530073">
+    <state width="2027" height="371" key="GridCell.Tab.0.center/0.0.2048.1112/2560.0.2048.1112@0.0.2048.1112" timestamp="1580061609121" />
+    <state width="2027" height="371" key="GridCell.Tab.0.center/0.0.2048.1112/2560.0.2048.1112@2560.0.2048.1112" timestamp="1579377522935" />
+    <state width="2027" height="371" key="GridCell.Tab.0.left" timestamp="1580061609121">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="1204" height="337" key="GridCell.Tab.0.left/0.0.2048.1112/2560.0.2048.1112@0.0.2048.1112" timestamp="1578879530073" />
-    <state width="1204" height="337" key="GridCell.Tab.0.right" timestamp="1578879530073">
+    <state width="2027" height="371" key="GridCell.Tab.0.left/0.0.2048.1112/2560.0.2048.1112@0.0.2048.1112" timestamp="1580061609121" />
+    <state width="2027" height="371" key="GridCell.Tab.0.left/0.0.2048.1112/2560.0.2048.1112@2560.0.2048.1112" timestamp="1579377522935" />
+    <state width="2027" height="371" key="GridCell.Tab.0.right" timestamp="1580061609121">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="1204" height="337" key="GridCell.Tab.0.right/0.0.2048.1112/2560.0.2048.1112@0.0.2048.1112" timestamp="1578879530073" />
+    <state width="2027" height="371" key="GridCell.Tab.0.right/0.0.2048.1112/2560.0.2048.1112@0.0.2048.1112" timestamp="1580061609121" />
+    <state width="2027" height="371" key="GridCell.Tab.0.right/0.0.2048.1112/2560.0.2048.1112@2560.0.2048.1112" timestamp="1579377522935" />
+    <state width="2027" height="371" key="GridCell.Tab.1.bottom" timestamp="1580061609121">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state width="2027" height="371" key="GridCell.Tab.1.bottom/0.0.2048.1112/2560.0.2048.1112@0.0.2048.1112" timestamp="1580061609121" />
+    <state width="2027" height="371" key="GridCell.Tab.1.bottom/0.0.2048.1112/2560.0.2048.1112@2560.0.2048.1112" timestamp="1579377522935" />
+    <state width="2027" height="371" key="GridCell.Tab.1.center" timestamp="1580061609121">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state width="2027" height="371" key="GridCell.Tab.1.center/0.0.2048.1112/2560.0.2048.1112@0.0.2048.1112" timestamp="1580061609121" />
+    <state width="2027" height="371" key="GridCell.Tab.1.center/0.0.2048.1112/2560.0.2048.1112@2560.0.2048.1112" timestamp="1579377522935" />
+    <state width="2027" height="371" key="GridCell.Tab.1.left" timestamp="1580061609121">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state width="2027" height="371" key="GridCell.Tab.1.left/0.0.2048.1112/2560.0.2048.1112@0.0.2048.1112" timestamp="1580061609121" />
+    <state width="2027" height="371" key="GridCell.Tab.1.left/0.0.2048.1112/2560.0.2048.1112@2560.0.2048.1112" timestamp="1579377522935" />
+    <state width="2027" height="371" key="GridCell.Tab.1.right" timestamp="1580061609121">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state width="2027" height="371" key="GridCell.Tab.1.right/0.0.2048.1112/2560.0.2048.1112@0.0.2048.1112" timestamp="1580061609121" />
+    <state width="2027" height="371" key="GridCell.Tab.1.right/0.0.2048.1112/2560.0.2048.1112@2560.0.2048.1112" timestamp="1579377522935" />
     <state x="931" y="178" key="SettingsEditor" timestamp="1578869966101">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
@@ -229,14 +255,5 @@
         </breakpoint>
       </default-breakpoints>
     </breakpoint-manager>
-  </component>
-  <component name="debuggerHistoryManager">
-    <expressions id="evaluateExpression">
-      <expression>
-        <expression-string>time.struct_time.tm_sec</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-    </expressions>
   </component>
 </project>

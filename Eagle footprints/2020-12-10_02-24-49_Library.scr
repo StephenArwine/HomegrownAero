@@ -1,0 +1,178 @@
+# Created by Ultra Librarian Gold 8.3.277 Copyright © 1999-2018
+# Frank Frank, Accelerated Designs
+
+Grid mil;
+Set Wire_Bend 2;
+
+
+Edit 'DQC10_P84X2P4.pac';
+Layer 1;
+Smd '1' 26 12 -0 R0 (-40.5 39.3701);
+Layer 1;
+Smd '2' 26 12 -0 R0 (-40.5 19.685);
+Layer 1;
+Smd '3' 26 12 -0 R0 (-40.5 0);
+Layer 1;
+Smd '4' 26 12 -0 R0 (-40.5 -19.685);
+Layer 1;
+Smd '5' 26 12 -0 R0 (-40.5 -39.3701);
+Layer 1;
+Smd '6' 26 12 -0 R0 (40.5 -39.3701);
+Layer 1;
+Smd '7' 26 12 -0 R0 (40.5 -19.685);
+Layer 1;
+Smd '8' 26 12 -0 R0 (40.5 0);
+Layer 1;
+Smd '9' 26 12 -0 R0 (40.5 19.685);
+Layer 1;
+Smd '10' 26 12 -0 R0 (40.5 39.3701);
+Layer 1;
+Smd '11' 37 99 -0 R0 NOCREAM (0 0);
+Change Drill 10;
+Pad 'V' Round 0 20 R0 (0 -31);
+Change Drill 10;
+Pad 'V_1' Round 0 20 R0 (0 0);
+Change Drill 10;
+Pad 'V_2' Round 0 20 R0 (0 31);
+Layer 31;
+Layer 31;
+Change Spacing 50;
+Change Pour solid;
+Polygon 1  (-15.55 46.55) (-15.55 34.937) (-9.5048 34.937) (-3.937 40.5048) \
+    (-3.937 46.55) (-15.55 46.55);
+Layer 31;
+Change Spacing 50;
+Change Pour solid;
+Polygon 1  (-15.55 27.063) (-15.55 3.937) (-9.5048 3.937) (-3.937 9.5048) \
+    (-3.937 21.4952) (-9.5048 27.063) (-15.55 27.063);
+Layer 31;
+Change Spacing 50;
+Change Pour solid;
+Polygon 1  (-15.55 -3.937) (-15.55 -27.063) (-9.5048 -27.063) (-3.937 -21.4952) \
+    (-3.937 -9.5048) (-9.5048 -3.937) (-15.55 -3.937);
+Layer 31;
+Change Spacing 50;
+Change Pour solid;
+Polygon 1  (-15.55 -34.937) (-15.55 -46.55) (-3.937 -46.55) (-3.937 -40.5048) \
+    (-9.5048 -34.937) (-15.55 -34.937);
+Layer 31;
+Change Spacing 50;
+Change Pour solid;
+Polygon 1  (3.937 46.55) (3.937 40.5048) (9.5048 34.937) (15.55 34.937) \
+    (15.55 46.55) (3.937 46.55);
+Layer 31;
+Change Spacing 50;
+Change Pour solid;
+Polygon 1  (9.5048 27.063) (3.937 21.4952) (3.937 9.5048) (9.5048 3.937) \
+    (15.55 3.937) (15.55 27.063) (9.5048 27.063);
+Layer 31;
+Change Spacing 50;
+Change Pour solid;
+Polygon 1  (9.5048 -3.937) (3.937 -9.5048) (3.937 -21.4952) (9.5048 -27.063) \
+    (15.55 -27.063) (15.55 -3.937) (9.5048 -3.937);
+Layer 31;
+Change Spacing 50;
+Change Pour solid;
+Polygon 1  (9.5048 -34.937) (3.937 -40.5048) (3.937 -46.55) (15.55 -46.55) \
+    (15.55 -34.937) (9.5048 -34.937);
+Layer 29;
+Layer 29;
+Change Spacing 50;
+Change Pour solid;
+Polygon 1  (-21 52) (21 52) (21 38.874) (-21 38.874) (-21 52);
+Layer 29;
+Change Spacing 50;
+Change Pour solid;
+Polygon 1  (-21 23.126) (21 23.126) (21 7.874) (-21 7.874) (-21 23.126);
+Layer 29;
+Change Spacing 50;
+Change Pour solid;
+Polygon 1  (-21 -7.874) (21 -7.874) (21 -23.126) (-21 -23.126) (-21 -7.874);
+Layer 29;
+Change Spacing 50;
+Change Pour solid;
+Polygon 1  (-21 -38.874) (21 -38.874) (21 -52) (-21 -52) (-21 -38.874);
+Layer 29;
+Change Spacing 50;
+Change Pour solid;
+Polygon 1  (-21 52) (-7.874 52) (-7.874 -52) (-21 -52) (-21 52);
+Layer 29;
+Change Spacing 50;
+Change Pour solid;
+Polygon 1  (7.874 52) (21 52) (21 -52) (7.874 -52) (7.874 52);
+Layer 21;
+Wire 6 (-42 -61) (-25 -61);
+Wire 6 (42 61) (25 61);
+Wire 6 (-25 61) (-42 61);
+Wire 6 (25 -61) (42 -61);
+Wire 6 (-67 36) -208 (-67 42);
+Change Size 50;
+Change Ratio 6;
+Text '>Value' SR0 (-68 -25);
+Layer 51;
+Wire 6 (-42 -61) (42 -61);
+Wire 6 (42 -61) (42 61);
+Wire 6 (42 61) (-42 61);
+Wire 6 (-42 61) (-42 -61);
+Wire 0 (-64 39) -180 (-70 39);
+Wire 0 (-70 39) -180 (-64 39);
+Wire 6 (12 61) -180 (-12 61);
+Layer 25;
+Change Size 50;
+Change Ratio 6;
+Text '>Name' SR0 (-129 -25);
+Layer 27;
+
+Edit 'BQ24210_DQC_10.sym';
+Layer 94;
+Pin 'VBUS' I/O None Middle R0 Both 0 (100 0)
+Pin 'ISET' In None Middle R0 Both 0 (100 -100)
+Pin 'VSS' Pwr None Middle R0 Both 0 (100 -200)
+Pin 'VTSB' Out None Middle R0 Both 0 (100 -300)
+Pin 'TS' In None Middle R0 Both 0 (100 -400)
+Pin '!PG' Out None Middle R180 Both 0 (2300 -500)
+Pin '!EN' In None Middle R180 Both 0 (2300 -400)
+Pin '!CHG' Out None Middle R180 Both 0 (2300 -300)
+Pin 'VDPM' In None Middle R180 Both 0 (2300 -200)
+Pin 'BAT' I/O None Middle R180 Both 0 (2300 -100)
+Pin 'EPAD' Pwr None Middle R180 Both 0 (2300 0)
+Wire 6 (300 200) (300 -700);
+Wire 6 (300 -700) (2100 -700);
+Wire 6 (2100 -700) (2100 200);
+Wire 6 (2100 200) (300 200);
+Layer 97;
+Layer 95;
+Change Size 82;
+Change Ratio 6;
+Text '>Name' SR0 (1014 359);
+Layer 96;
+Change Size 82;
+Change Ratio 6;
+Text '>Value' SR0 (989 259);
+
+Edit 'BQ24210DQCR.dev';
+Prefix 'U';
+Description '';
+Value Off;
+Add BQ24210_DQC_10 'A' Next  0 (0 0);
+Package 'DQC10_P84X2P4';
+Technology '';
+Attribute Manufacturer 'Texas Instruments';
+Attribute Datasheet_URL 'http://www.ti.com/lit/gpn/BQ24210';
+Attribute INDUSTRY_STD_PKG_TYPE 'WSON';
+Attribute FAMILY_NAME 'BATTERY CHARGE MANAGEMENT';
+Attribute PIN_COUNT '10';
+Attribute PACKAGE_DESIGNATOR 'DQC';
+Attribute DESCRIPTION '800mA, Single-Input, Single Cell Li-Ion Solar Battery Charger';
+Attribute GENERIC_PART_NUMBER 'BQ24210';
+Connect 'A.VBUS' '1';
+Connect 'A.ISET' '2';
+Connect 'A.VSS' '3';
+Connect 'A.VTSB' '4';
+Connect 'A.TS' '5';
+Connect 'A.!PG' '6';
+Connect 'A.!EN' '7';
+Connect 'A.!CHG' '8';
+Connect 'A.VDPM' '9';
+Connect 'A.BAT' '10';
+Connect 'A.EPAD' '11';

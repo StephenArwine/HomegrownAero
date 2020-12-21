@@ -352,26 +352,6 @@ FRAME-LETTER</description>
 <pad name="P$4" x="-0.75" y="-0.75" drill="0.254" diameter="0.4572" stop="no" thermals="no"/>
 <pad name="P$5" x="0" y="0" drill="0.254" diameter="0.4572" stop="no" thermals="no"/>
 </package>
-<package name="0433BM15A0001">
-<smd name="2" x="0" y="0.9" dx="1" dy="0.35" layer="1" rot="R90"/>
-<smd name="1" x="0.65" y="0.9" dx="1" dy="0.35" layer="1" rot="R90"/>
-<smd name="3" x="-0.65" y="0.9" dx="1" dy="0.35" layer="1" rot="R90"/>
-<smd name="4" x="-0.65" y="-0.9" dx="1" dy="0.35" layer="1" rot="R90"/>
-<smd name="5" x="0" y="-0.9" dx="1" dy="0.35" layer="1" rot="R90"/>
-<smd name="6" x="0.65" y="-0.9" dx="1" dy="0.35" layer="1" rot="R90"/>
-<circle x="0.635" y="0" radius="0.127" width="0.127" layer="25"/>
-</package>
-<package name="AN26018A">
-<wire x1="-0.75" y1="0.5" x2="0.75" y2="0.5" width="0.127" layer="21"/>
-<wire x1="0.75" y1="0.5" x2="0.75" y2="-0.5" width="0.127" layer="21"/>
-<wire x1="0.75" y1="-0.5" x2="-0.75" y2="-0.5" width="0.127" layer="21"/>
-<wire x1="-0.75" y1="-0.5" x2="-0.75" y2="0.5" width="0.127" layer="21"/>
-<smd name="2" x="0" y="-0.7" dx="0.4064" dy="0.2032" layer="1" rot="R90"/>
-<smd name="3" x="0.5" y="-0.7" dx="0.4064" dy="0.2032" layer="1" rot="R90"/>
-<smd name="1" x="-0.5" y="-0.7" dx="0.4064" dy="0.2032" layer="1" rot="R90"/>
-<smd name="5" x="-0.5" y="0.7" dx="0.4064" dy="0.2032" layer="1" rot="R90"/>
-<smd name="4" x="0.5" y="0.7" dx="0.4064" dy="0.2032" layer="1" rot="R90"/>
-</package>
 </packages>
 <symbols>
 <symbol name="SAMD11C">
@@ -424,30 +404,6 @@ FRAME-LETTER</description>
 <pin name="RF_P" x="25.4" y="-2.54" length="middle" rot="R180"/>
 <pin name="RF_N" x="25.4" y="0" length="middle" rot="R180"/>
 <pin name="RBIAS" x="25.4" y="-7.62" length="middle" rot="R180"/>
-</symbol>
-<symbol name="0433BM15A0001">
-<wire x1="-7.62" y1="7.62" x2="10.16" y2="7.62" width="0.254" layer="94"/>
-<wire x1="10.16" y1="7.62" x2="10.16" y2="-7.62" width="0.254" layer="94"/>
-<wire x1="10.16" y1="-7.62" x2="-7.62" y2="-7.62" width="0.254" layer="94"/>
-<wire x1="-7.62" y1="-7.62" x2="-7.62" y2="7.62" width="0.254" layer="94"/>
-<pin name="GND2" x="15.24" y="5.08" length="middle" rot="R180"/>
-<pin name="GND1" x="15.24" y="0" length="middle" rot="R180"/>
-<pin name="BAL1" x="15.24" y="-5.08" length="middle" rot="R180"/>
-<pin name="UNBAL" x="-12.7" y="5.08" length="middle"/>
-<pin name="GND" x="-12.7" y="0" length="middle"/>
-<pin name="BAL" x="-12.7" y="-5.08" length="middle"/>
-<text x="-7.62" y="10.16" size="1.778" layer="94">0433BM</text>
-</symbol>
-<symbol name="AN26018A">
-<wire x1="-7.62" y1="7.62" x2="7.62" y2="7.62" width="0.254" layer="94"/>
-<wire x1="7.62" y1="7.62" x2="7.62" y2="-7.62" width="0.254" layer="94"/>
-<wire x1="7.62" y1="-7.62" x2="-7.62" y2="-7.62" width="0.254" layer="94"/>
-<wire x1="-7.62" y1="-7.62" x2="-7.62" y2="7.62" width="0.254" layer="94"/>
-<pin name="IN" x="-12.7" y="5.08" length="middle"/>
-<pin name="GND" x="-12.7" y="0" length="middle"/>
-<pin name="CNT" x="-12.7" y="-5.08" length="middle"/>
-<pin name="VCC" x="12.7" y="-5.08" length="middle" rot="R180"/>
-<pin name="OUT" x="12.7" y="5.08" length="middle" rot="R180"/>
 </symbol>
 </symbols>
 <devicesets>
@@ -507,45 +463,6 @@ FRAME-LETTER</description>
 <connect gate="G$1" pin="SO/GDO1" pad="2"/>
 <connect gate="G$1" pin="XOSC_Q1" pad="8"/>
 <connect gate="G$1" pin="XOSC_Q2" pad="10"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
-<deviceset name="0433BM15A0001">
-<gates>
-<gate name="G$1" symbol="0433BM15A0001" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="0433BM15A0001">
-<connects>
-<connect gate="G$1" pin="BAL" pad="3"/>
-<connect gate="G$1" pin="BAL1" pad="4"/>
-<connect gate="G$1" pin="GND" pad="2"/>
-<connect gate="G$1" pin="GND1" pad="5"/>
-<connect gate="G$1" pin="GND2" pad="6"/>
-<connect gate="G$1" pin="UNBAL" pad="1"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
-<deviceset name="AN26018A">
-<gates>
-<gate name="G$1" symbol="AN26018A" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="AN26018A">
-<connects>
-<connect gate="G$1" pin="CNT" pad="3"/>
-<connect gate="G$1" pin="GND" pad="2"/>
-<connect gate="G$1" pin="IN" pad="1"/>
-<connect gate="G$1" pin="OUT" pad="5"/>
-<connect gate="G$1" pin="VCC" pad="4"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -3601,7 +3518,6 @@ These vary by manufacturer, but we used the NPIS54LS footprint from here.</descr
 <part name="FRAME1" library="SparkFun-Aesthetics" library_urn="urn:adsk.eagle:library:507" deviceset="FRAME-LETTER" device="NO_PACKAGE" package3d_urn="urn:adsk.eagle:package:37104/1"/>
 <part name="U$2" library="SaL-lib1" deviceset="SAMD11C" device=""/>
 <part name="U$1" library="SaL-lib1" deviceset="CC1101" device=""/>
-<part name="U$3" library="SaL-lib1" deviceset="0433BM15A0001" device=""/>
 <part name="J1" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="CORTEX_DEBUG" device="_PTH" package3d_urn="urn:adsk.eagle:package:38290/1"/>
 <part name="GND22" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="JP5" library="SparkFun-Connectors" deviceset="M02" device="4UCON-15767" value="Lipo"/>
@@ -3619,7 +3535,6 @@ These vary by manufacturer, but we used the NPIS54LS footprint from here.</descr
 <part name="R5" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="10k"/>
 <part name="J$1" library="SparkFun-Connectors" deviceset="SMA_EDGE" device=""/>
 <part name="GND44" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
-<part name="U$4" library="SaL-lib1" deviceset="AN26018A" device=""/>
 <part name="H1" library="SparkFun-Hardware" deviceset="STAND-OFF" device="TIGHT"/>
 <part name="H2" library="SparkFun-Hardware" deviceset="STAND-OFF" device="TIGHT"/>
 <part name="IC1" library="ubloxLib" deviceset="SAM-M8Q" device=""/>
@@ -3646,28 +3561,33 @@ These vary by manufacturer, but we used the NPIS54LS footprint from here.</descr
 <part name="GND7" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND8" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND9" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
-<part name="GND13" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
-<part name="GND14" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND15" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND16" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND17" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
-<part name="GND18" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND10" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND11" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="SUPPLY1" library="SparkFun-PowerSymbols" deviceset="3.3V" device=""/>
-<part name="SUPPLY3" library="SparkFun-PowerSymbols" deviceset="3.3V" device=""/>
 <part name="SUPPLY6" library="SparkFun-Aesthetics" deviceset="3.3V" device=""/>
 <part name="GND19" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="SUPPLY7" library="SparkFun-Aesthetics" deviceset="3.3V" device=""/>
 <part name="GND20" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="SUPPLY8" library="SparkFun-Aesthetics" deviceset="3.3V" device=""/>
 <part name="C16" library="SparkFun-Capacitors" deviceset="10UF-6.3V-20%(0603)(TANT)" device="&quot;" value="10uF"/>
-<part name="C17" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="0.1uF"/>
-<part name="GND3" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="SUPPLY11" library="SparkFun-Aesthetics" deviceset="3.3V" device=""/>
-<part name="C18" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="1000pF"/>
-<part name="C19" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="1000pF"/>
 <part name="L2" library="SparkFun-Coils" library_urn="urn:adsk.eagle:library:512" deviceset="INDUCTOR" device="-0402-3.9NH" package3d_urn="urn:adsk.eagle:package:37575/1" value="6.8NH"/>
+<part name="C3" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="3.9pF"/>
+<part name="C4" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="8.2pF"/>
+<part name="C17" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="220pF"/>
+<part name="C19" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="1000pF"/>
+<part name="C20" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="1000pF"/>
+<part name="C21" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="1000pF"/>
+<part name="L1" library="SparkFun-Coils" library_urn="urn:adsk.eagle:library:512" deviceset="INDUCTOR" device="-0402-3.9NH" package3d_urn="urn:adsk.eagle:package:37575/1" value="27NH"/>
+<part name="L3" library="SparkFun-Coils" library_urn="urn:adsk.eagle:library:512" deviceset="INDUCTOR" device="-0402-3.9NH" package3d_urn="urn:adsk.eagle:package:37575/1" value="27NH"/>
+<part name="L4" library="SparkFun-Coils" library_urn="urn:adsk.eagle:library:512" deviceset="INDUCTOR" device="-0402-3.9NH" package3d_urn="urn:adsk.eagle:package:37575/1" value="6.8NH"/>
+<part name="GND3" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
+<part name="GND13" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
+<part name="GND14" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
+<part name="GND18" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -3678,7 +3598,6 @@ These vary by manufacturer, but we used the NPIS54LS footprint from here.</descr
 <instance part="FRAME1" gate="V" x="147.32" y="0"/>
 <instance part="U$2" gate="G$1" x="124.46" y="91.44"/>
 <instance part="U$1" gate="G$1" x="40.64" y="35.56"/>
-<instance part="U$3" gate="G$1" x="99.06" y="40.64"/>
 <instance part="J1" gate="G$1" x="200.66" y="137.16"/>
 <instance part="GND22" gate="1" x="22.86" y="162.56"/>
 <instance part="JP5" gate="G$1" x="12.7" y="165.1"/>
@@ -3699,9 +3618,8 @@ These vary by manufacturer, but we used the NPIS54LS footprint from here.</descr
 </instance>
 <instance part="J$1" gate="1" x="238.76" y="170.18" rot="R180"/>
 <instance part="GND44" gate="1" x="243.84" y="172.72"/>
-<instance part="U$4" gate="G$1" x="193.04" y="165.1"/>
-<instance part="H1" gate="G$1" x="88.9" y="25.4"/>
-<instance part="H2" gate="G$1" x="91.44" y="25.4"/>
+<instance part="H1" gate="G$1" x="246.38" y="38.1"/>
+<instance part="H2" gate="G$1" x="243.84" y="38.1"/>
 <instance part="IC1" gate="G$1" x="187.96" y="48.26"/>
 <instance part="C5" gate="G$1" x="27.94" y="10.16"/>
 <instance part="C6" gate="G$1" x="17.78" y="66.04"/>
@@ -3735,28 +3653,33 @@ These vary by manufacturer, but we used the NPIS54LS footprint from here.</descr
 <instance part="GND7" gate="1" x="43.18" y="73.66" rot="R180"/>
 <instance part="GND8" gate="1" x="50.8" y="73.66" rot="R180"/>
 <instance part="GND9" gate="1" x="58.42" y="73.66" rot="R180"/>
-<instance part="GND13" gate="1" x="81.28" y="40.64" rot="R270"/>
-<instance part="GND14" gate="1" x="116.84" y="22.86"/>
 <instance part="GND15" gate="1" x="66.04" y="7.62"/>
 <instance part="GND16" gate="1" x="43.18" y="10.16"/>
 <instance part="GND17" gate="1" x="27.94" y="5.08"/>
-<instance part="GND18" gate="1" x="167.64" y="157.48"/>
 <instance part="GND10" gate="1" x="76.2" y="60.96" rot="R180"/>
 <instance part="GND11" gate="1" x="66.04" y="60.96" rot="R180"/>
 <instance part="SUPPLY1" gate="G$1" x="33.02" y="78.74"/>
-<instance part="SUPPLY3" gate="G$1" x="210.82" y="160.02" rot="R270"/>
 <instance part="SUPPLY6" gate="G$1" x="208.28" y="83.82"/>
 <instance part="GND19" gate="1" x="182.88" y="55.88"/>
 <instance part="SUPPLY7" gate="G$1" x="177.8" y="142.24"/>
 <instance part="GND20" gate="1" x="177.8" y="134.62"/>
 <instance part="SUPPLY8" gate="G$1" x="10.16" y="20.32" rot="R180"/>
 <instance part="C16" gate="G$1" x="68.58" y="114.3"/>
-<instance part="C17" gate="G$1" x="208.28" y="154.94"/>
-<instance part="GND3" gate="1" x="208.28" y="149.86"/>
 <instance part="SUPPLY11" gate="G$1" x="177.8" y="71.12"/>
-<instance part="C18" gate="G$1" x="160.02" y="170.18" rot="R90"/>
-<instance part="C19" gate="G$1" x="215.9" y="170.18" rot="R90"/>
-<instance part="L2" gate="G$1" x="172.72" y="170.18" rot="R90"/>
+<instance part="L2" gate="G$1" x="116.84" y="35.56" rot="R90"/>
+<instance part="C3" gate="G$1" x="83.82" y="45.72" rot="R180"/>
+<instance part="C4" gate="G$1" x="86.36" y="33.02" rot="R270"/>
+<instance part="C17" gate="G$1" x="78.74" y="15.24"/>
+<instance part="C19" gate="G$1" x="109.22" y="27.94"/>
+<instance part="C20" gate="G$1" x="124.46" y="27.94"/>
+<instance part="C21" gate="G$1" x="132.08" y="35.56" rot="R90"/>
+<instance part="L1" gate="G$1" x="78.74" y="27.94" rot="R180"/>
+<instance part="L3" gate="G$1" x="91.44" y="38.1" rot="R90"/>
+<instance part="L4" gate="G$1" x="101.6" y="35.56" rot="R90"/>
+<instance part="GND3" gate="1" x="109.22" y="20.32"/>
+<instance part="GND13" gate="1" x="124.46" y="20.32"/>
+<instance part="GND14" gate="1" x="83.82" y="53.34" rot="R180"/>
+<instance part="GND18" gate="1" x="78.74" y="7.62"/>
 </instances>
 <busses>
 </busses>
@@ -3843,21 +3766,6 @@ These vary by manufacturer, but we used the NPIS54LS footprint from here.</descr
 <pinref part="GND9" gate="1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="U$3" gate="G$1" pin="GND"/>
-<pinref part="GND13" gate="1" pin="GND"/>
-<wire x1="83.82" y1="40.64" x2="86.36" y2="40.64" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<pinref part="U$3" gate="G$1" pin="GND1"/>
-<pinref part="GND14" gate="1" pin="GND"/>
-<wire x1="114.3" y1="40.64" x2="116.84" y2="40.64" width="0.1524" layer="91"/>
-<wire x1="116.84" y1="40.64" x2="116.84" y2="25.4" width="0.1524" layer="91"/>
-<pinref part="U$3" gate="G$1" pin="GND2"/>
-<wire x1="114.3" y1="45.72" x2="116.84" y2="45.72" width="0.1524" layer="91"/>
-<wire x1="116.84" y1="45.72" x2="116.84" y2="40.64" width="0.1524" layer="91"/>
-<junction x="116.84" y="40.64"/>
-</segment>
-<segment>
 <pinref part="R1" gate="G$1" pin="1"/>
 <pinref part="GND15" gate="1" pin="GND"/>
 <wire x1="66.04" y1="10.16" x2="66.04" y2="12.7" width="0.1524" layer="91"/>
@@ -3877,12 +3785,6 @@ These vary by manufacturer, but we used the NPIS54LS footprint from here.</descr
 <junction x="43.18" y="12.7"/>
 <pinref part="U$1" gate="G$1" pin="GND3"/>
 <wire x1="43.18" y1="17.78" x2="43.18" y2="12.7" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<pinref part="U$4" gate="G$1" pin="GND"/>
-<pinref part="GND18" gate="1" pin="GND"/>
-<wire x1="167.64" y1="160.02" x2="167.64" y2="165.1" width="0.1524" layer="91"/>
-<wire x1="167.64" y1="165.1" x2="180.34" y2="165.1" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="C14" gate="G$1" pin="2"/>
@@ -3906,8 +3808,14 @@ These vary by manufacturer, but we used the NPIS54LS footprint from here.</descr
 <junction x="177.8" y="137.16"/>
 </segment>
 <segment>
+<pinref part="C3" gate="G$1" pin="2"/>
+<pinref part="GND14" gate="1" pin="GND"/>
+<wire x1="83.82" y1="50.8" x2="83.82" y2="48.26" width="0.1524" layer="91"/>
+</segment>
+<segment>
 <pinref part="C17" gate="G$1" pin="2"/>
-<pinref part="GND3" gate="1" pin="GND"/>
+<pinref part="GND18" gate="1" pin="GND"/>
+<wire x1="78.74" y1="10.16" x2="78.74" y2="12.7" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="3.3V" class="0">
@@ -4008,14 +3916,6 @@ These vary by manufacturer, but we used the NPIS54LS footprint from here.</descr
 <pinref part="SUPPLY1" gate="G$1" pin="3.3V"/>
 </segment>
 <segment>
-<pinref part="U$4" gate="G$1" pin="VCC"/>
-<pinref part="SUPPLY3" gate="G$1" pin="3.3V"/>
-<wire x1="210.82" y1="160.02" x2="208.28" y2="160.02" width="0.1524" layer="91"/>
-<pinref part="C17" gate="G$1" pin="1"/>
-<wire x1="208.28" y1="160.02" x2="205.74" y2="160.02" width="0.1524" layer="91"/>
-<junction x="208.28" y="160.02"/>
-</segment>
-<segment>
 <pinref part="IC1" gate="G$1" pin="VCC"/>
 <pinref part="SUPPLY6" gate="G$1" pin="3.3V"/>
 </segment>
@@ -4053,61 +3953,27 @@ These vary by manufacturer, but we used the NPIS54LS footprint from here.</descr
 <label x="157.48" y="91.44" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="N$13" class="0">
-<segment>
-<wire x1="233.68" y1="170.18" x2="218.44" y2="170.18" width="0.1524" layer="91"/>
-<pinref part="J$1" gate="1" pin="SIGNAL"/>
-<pinref part="C19" gate="G$1" pin="2"/>
-</segment>
-</net>
-<net name="N$1" class="0">
-<segment>
-<pinref part="U$4" gate="G$1" pin="IN"/>
-<wire x1="177.8" y1="170.18" x2="180.34" y2="170.18" width="0.1524" layer="91"/>
-<pinref part="L2" gate="G$1" pin="2"/>
-</segment>
-</net>
-<net name="N$2" class="0">
-<segment>
-<wire x1="162.56" y1="170.18" x2="167.64" y2="170.18" width="0.1524" layer="91"/>
-<pinref part="L2" gate="G$1" pin="1"/>
-<pinref part="C18" gate="G$1" pin="2"/>
-</segment>
-</net>
-<net name="N$3" class="0">
-<segment>
-<pinref part="U$4" gate="G$1" pin="OUT"/>
-<wire x1="210.82" y1="170.18" x2="205.74" y2="170.18" width="0.1524" layer="91"/>
-<pinref part="C19" gate="G$1" pin="1"/>
-</segment>
-</net>
-<net name="UBAL" class="0">
-<segment>
-<wire x1="154.94" y1="170.18" x2="147.32" y2="170.18" width="0.1524" layer="91"/>
-<label x="147.32" y="170.18" size="1.778" layer="95" rot="R180"/>
-<pinref part="C18" gate="G$1" pin="1"/>
-</segment>
-<segment>
-<pinref part="U$3" gate="G$1" pin="UNBAL"/>
-<wire x1="86.36" y1="45.72" x2="83.82" y2="45.72" width="0.1524" layer="91"/>
-<label x="83.82" y="45.72" size="1.27" layer="95" rot="R180" xref="yes"/>
-</segment>
-</net>
 <net name="RF_N" class="0">
 <segment>
 <pinref part="U$1" gate="G$1" pin="RF_N"/>
-<pinref part="U$3" gate="G$1" pin="BAL"/>
-<wire x1="66.04" y1="35.56" x2="86.36" y2="35.56" width="0.1524" layer="91"/>
+<wire x1="66.04" y1="35.56" x2="78.74" y2="35.56" width="0.1524" layer="91"/>
+<wire x1="78.74" y1="35.56" x2="78.74" y2="38.1" width="0.1524" layer="91"/>
+<pinref part="L3" gate="G$1" pin="1"/>
+<wire x1="86.36" y1="38.1" x2="83.82" y2="38.1" width="0.1524" layer="91"/>
+<pinref part="C3" gate="G$1" pin="1"/>
+<wire x1="83.82" y1="38.1" x2="78.74" y2="38.1" width="0.1524" layer="91"/>
+<wire x1="83.82" y1="40.64" x2="83.82" y2="38.1" width="0.1524" layer="91"/>
+<junction x="83.82" y="38.1"/>
 </segment>
 </net>
 <net name="RF_P" class="0">
 <segment>
 <pinref part="U$1" gate="G$1" pin="RF_P"/>
 <wire x1="66.04" y1="33.02" x2="78.74" y2="33.02" width="0.1524" layer="91"/>
-<wire x1="78.74" y1="33.02" x2="78.74" y2="30.48" width="0.1524" layer="91"/>
-<wire x1="78.74" y1="30.48" x2="114.3" y2="30.48" width="0.1524" layer="91"/>
-<wire x1="114.3" y1="30.48" x2="114.3" y2="35.56" width="0.1524" layer="91"/>
-<pinref part="U$3" gate="G$1" pin="BAL1"/>
+<pinref part="L1" gate="G$1" pin="2"/>
+<wire x1="78.74" y1="33.02" x2="83.82" y2="33.02" width="0.1524" layer="91"/>
+<junction x="78.74" y="33.02"/>
+<pinref part="C4" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="SWDIO" class="0">
@@ -4270,11 +4136,6 @@ These vary by manufacturer, but we used the NPIS54LS footprint from here.</descr
 <wire x1="12.7" y1="33.02" x2="10.16" y2="33.02" width="0.1524" layer="91"/>
 <label x="10.16" y="33.02" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
-<segment>
-<pinref part="U$4" gate="G$1" pin="CNT"/>
-<wire x1="180.34" y1="160.02" x2="177.8" y2="160.02" width="0.1524" layer="91"/>
-<label x="177.8" y="160.02" size="1.27" layer="95" rot="R180" xref="yes"/>
-</segment>
 </net>
 <net name="USART_RX" class="0">
 <segment>
@@ -4331,6 +4192,58 @@ These vary by manufacturer, but we used the NPIS54LS footprint from here.</descr
 <wire x1="66.04" y1="48.26" x2="66.04" y2="50.8" width="0.1524" layer="91"/>
 <wire x1="68.58" y1="48.26" x2="66.04" y2="48.26" width="0.1524" layer="91"/>
 <junction x="66.04" y="48.26"/>
+</segment>
+</net>
+<net name="N$1" class="0">
+<segment>
+<pinref part="C17" gate="G$1" pin="1"/>
+<pinref part="L1" gate="G$1" pin="1"/>
+<wire x1="78.74" y1="22.86" x2="78.74" y2="20.32" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$2" class="0">
+<segment>
+<pinref part="L3" gate="G$1" pin="2"/>
+<pinref part="L4" gate="G$1" pin="1"/>
+<wire x1="96.52" y1="38.1" x2="96.52" y2="35.56" width="0.1524" layer="91"/>
+<pinref part="C4" gate="G$1" pin="1"/>
+<wire x1="91.44" y1="33.02" x2="96.52" y2="33.02" width="0.1524" layer="91"/>
+<wire x1="96.52" y1="33.02" x2="96.52" y2="35.56" width="0.1524" layer="91"/>
+<junction x="96.52" y="35.56"/>
+</segment>
+</net>
+<net name="N$3" class="0">
+<segment>
+<pinref part="L4" gate="G$1" pin="2"/>
+<pinref part="L2" gate="G$1" pin="1"/>
+<wire x1="106.68" y1="35.56" x2="109.22" y2="35.56" width="0.1524" layer="91"/>
+<wire x1="109.22" y1="35.56" x2="111.76" y2="35.56" width="0.1524" layer="91"/>
+<wire x1="109.22" y1="35.56" x2="109.22" y2="33.02" width="0.1524" layer="91"/>
+<junction x="109.22" y="35.56"/>
+<pinref part="C19" gate="G$1" pin="1"/>
+</segment>
+</net>
+<net name="N$5" class="0">
+<segment>
+<pinref part="L2" gate="G$1" pin="2"/>
+<pinref part="C21" gate="G$1" pin="1"/>
+<wire x1="121.92" y1="35.56" x2="124.46" y2="35.56" width="0.1524" layer="91"/>
+<pinref part="C20" gate="G$1" pin="1"/>
+<wire x1="124.46" y1="35.56" x2="127" y2="35.56" width="0.1524" layer="91"/>
+<wire x1="124.46" y1="35.56" x2="124.46" y2="33.02" width="0.1524" layer="91"/>
+<junction x="124.46" y="35.56"/>
+</segment>
+</net>
+<net name="ANT" class="0">
+<segment>
+<pinref part="C21" gate="G$1" pin="2"/>
+<wire x1="134.62" y1="35.56" x2="139.7" y2="35.56" width="0.1524" layer="91"/>
+<label x="139.7" y="35.56" size="1.27" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="J$1" gate="1" pin="SIGNAL"/>
+<wire x1="233.68" y1="170.18" x2="226.06" y2="170.18" width="0.1524" layer="91"/>
+<label x="226.06" y="170.18" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 </nets>

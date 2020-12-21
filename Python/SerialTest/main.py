@@ -30,7 +30,7 @@ from sensorPoint import FlightPointType
 ser = serial.Serial()
 ser.baudrate = 115200
 ser.port = 'COM9'
-ser.timeout = 5
+ser.timeout = 9
 
 
 def make_patch_spines_invisible(ax):
@@ -186,48 +186,66 @@ def resetAltimeter():
     except serial.SerialException as e:
         print('Serial port could not be opened, check connection')
 
-def steamSensorData()
+def steamSensorData():
+
+    ser.write(b'S')
+    print('')
+    print(' Steaming data.')
+
     acknowledge = ser.read(1)
 
     if acknowledge == b'R':
+        print('recieved ack')
+        for point in range(500):
+            time.sleep(0.01)
+            alt = []
+            ser.write(b'D')
+            altpoint = ser.read(1)
+
+            alt = ser.read(4)
+
+            altint = int.from_bytes(alt[0:3], byteorder='little', signed=True)
+
+            print('Point ', point)
+            print(altint)
+
         
 
 
 def connectToAltimeter():
     input(' Wait for startup beep and press ENTER')
 
-    ser.open()
 
-    ser.write(b'H')
+    try:
+        ser.open()
 
-    handshake = ser.read(1)
+        ser.write(b'H')
 
-    if handshake == b'H':
-        print('')
-        print(' Altimeter connected, what would you like to do?')
-        print('     P    Print/stream sensor data')
-        print('     L    Download & Plot flight log')
-        print('     S    Change Altimeter settings')
-        print('     E    Chip Erase')
-        print('')
+        handshake = ser.read(1)
+        if handshake == b'H':
+            print('')
+            print(' Altimeter connected, what would you like to do?')
+            print('     S    Print/stream sensor data')
+            print('     L    Download & Plot flight log')
+            print('     X    Change Altimeter settings')
+            print('     E    Chip Erase')
+            print('')
 
-        option = input('Input : ').upper()
+            option = input('Input : ').upper()
+            print('')
+            if option == 'E':
+                EraseChip()
+            if option == 'L':
+                DownloadFlightData()
+            if option == 'S':
+                steamSensorData()
+    except serial.SerialException as e:
+        print(' Serial connection failed, check port number and connection')
+        time.sleep(2)
+        MainMenu()
 
-        print('')
 
-        if option == 'E':
-            EraseChip()
-
-        if option == 'L':
-            DownloadFlightData()
-
-        if option == 'P':
-            steamSensorData()
-
-
-running = 1
-while running:
-
+def MainMenu():
     data.clear()
 
     print(' ')
@@ -255,3 +273,8 @@ while running:
     if option == 'S':
         os.system('cls' if os.name == 'nt' else 'clear')
         setPort()
+
+
+running = 1
+while running:
+    MainMenu()

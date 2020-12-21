@@ -147,6 +147,7 @@ int main(void) {
 
     while (1) {
         if (takeSample()) {
+			lookForUSARTReset();
             sampleTick();
             flight();
             igniterTick();
