@@ -27,7 +27,7 @@ void init() {
     delayInit();
     adcInit();
 
-    pinOut(LedPin);
+    //pinOut(LedPin);
     pinAnalog(senseBatPin);
 
     pinIn(analogAccelPin);
@@ -133,7 +133,7 @@ int main(void) {
 
     POST();
 
-    isItPointingUp();
+    //isItPointingUp();
 
     getSettings();
 
@@ -141,20 +141,22 @@ int main(void) {
     delay_ms(500);
 
     continuityBeep();
-    //delay_ms(1000);
+    delay_ms(1000);
 
     startupTick = millis();
 
     while (1) {
+		
+		
         if (takeSample()) {
 			lookForUSARTReset();
             sampleTick();
             flight();
             igniterTick();
             computeKalmanStates();
-
         }
-
+		
+		
     }
 
 }

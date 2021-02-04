@@ -48,14 +48,15 @@ double paToFeetNOAA(int32_t pressureMbar) {
 void readMS5803Coefficients() {
 
     for (u8_t coeff_num = 1; coeff_num < 7 ; ++coeff_num ) {
-        delay_us(600);
         u8_t _cmd = MS5803_CMD_PROM_READ + ((coeff_num)*2);
-        delay_us(600);
         pinLow(cs_baro);
+		delay_us(600);
         spiDataOut(SPI2, _cmd);
+		delay_us(600);
         u8_t _byte1 = spiDataIn(SPI2);
         u8_t _byte2 = spiDataIn(SPI2);
         pinHigh(cs_baro);
+		delay_us(600);
         coefficients_[coeff_num] = (_byte1 << 8) | _byte2;
     }
 

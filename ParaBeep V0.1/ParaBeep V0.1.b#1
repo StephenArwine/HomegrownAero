@@ -155,7 +155,7 @@
 <wire x1="35.2806" y1="54.7116" x2="32.4866" y2="57.5056" width="0" layer="20" curve="90"/>
 <wire x1="32.4866" y1="57.5056" x2="2.794" y2="57.5056" width="0" layer="20"/>
 <wire x1="2.794" y1="57.5056" x2="0" y2="54.7116" width="0" layer="20" curve="90"/>
-<text x="18.415" y="26.035" size="1.778" layer="33" rot="R90">ParaBeep V0.1!</text>
+<text x="17.145" y="19.685" size="2.54" layer="25" rot="R90">ParaBeep V0.1!</text>
 </plain>
 <libraries>
 <library name="TPS78330DDCR">
@@ -1433,7 +1433,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <attribute name="PROD_ID" value="CAP-00810" x="18.669" y="41.275" size="1.778" layer="28" rot="MR90" display="off"/>
 </element>
 <element name="C12" library="SparkFun-Capacitors" package="0603" value="0.1uF" x="19.05" y="26.67" smashed="yes" rot="MR270">
-<attribute name="NAME" x="18.288" y="26.67" size="0.6096" layer="26" font="vector" ratio="20" rot="MR270" align="bottom-center"/>
+<attribute name="NAME" x="17.653" y="26.67" size="0.6096" layer="26" font="vector" ratio="20" rot="MR270" align="bottom-center"/>
 <attribute name="PROD_ID" value="CAP-00810" x="19.05" y="26.67" size="1.778" layer="28" rot="MR270" display="off"/>
 </element>
 <element name="L2" library="SparkFun-Coils" package="0603" value="" x="20.955" y="26.67" smashed="yes" rot="MR90">

@@ -4639,9 +4639,9 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <label x="236.22" y="109.22" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U6" gate="A" pin="PA22(SER0:0)"/>
-<wire x1="200.66" y1="167.64" x2="203.2" y2="167.64" width="0.1524" layer="91"/>
-<label x="203.2" y="167.64" size="1.778" layer="95"/>
+<pinref part="U6" gate="A" pin="PA24(SER0:2)"/>
+<wire x1="200.66" y1="162.56" x2="203.2" y2="162.56" width="0.1524" layer="91"/>
+<label x="203.2" y="162.56" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="RX" class="0">
@@ -4651,9 +4651,9 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <label x="236.22" y="111.76" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U6" gate="A" pin="PA23(SER0:1)"/>
-<wire x1="200.66" y1="165.1" x2="203.2" y2="165.1" width="0.1524" layer="91"/>
-<label x="203.2" y="165.1" size="1.778" layer="95"/>
+<pinref part="U6" gate="A" pin="PA22(SER0:0)"/>
+<wire x1="200.66" y1="167.64" x2="203.2" y2="167.64" width="0.1524" layer="91"/>
+<label x="203.2" y="167.64" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="N$1" class="0">

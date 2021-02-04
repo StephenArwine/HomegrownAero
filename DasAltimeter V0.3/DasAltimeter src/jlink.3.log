@@ -1,0 +1,7 @@
+T4E68 035:127 SEGGER J-Link V6.48a Log File (0000ms, 0903ms total)
+T4E68 035:127 DLL Compiled: Jul 30 2019 15:16:09 (0000ms, 0903ms total)
+T4E68 035:127 Logging started @ 2021-01-27 03:45 (0000ms, 0903ms total)
+T4E68 035:132 JLINK_ExecCommand("Device = ATSAMD21G18A", ...). Device "ATSAMD21G18" selected.  returns 0x00 (0000ms, 0904ms total)
+T4E68 035:236 JLINK_Close() (0003ms, 0907ms total)
+T4E68 035:236  (0003ms, 0907ms total)
+T4E68 035:236 Closed (0003ms, 0907ms total)

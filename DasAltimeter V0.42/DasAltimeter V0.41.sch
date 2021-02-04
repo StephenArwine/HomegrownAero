@@ -241,6 +241,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <text x="2.54" y="27.94" size="1.9304" layer="94">Attribution Share-Alike 4.0 License</text>
 <text x="2.54" y="24.13" size="1.9304" layer="94"> https://creativecommons.org/licenses/by-sa/4.0/</text>
 <text x="1.27" y="11.43" size="2.54" layer="94">Design by:</text>
+<text x="23.114" y="11.176" size="2.7432" layer="94" font="vector">&gt;DESIGNER</text>
+<text x="88.9" y="6.604" size="2.7432" layer="94" font="vector">&gt;REV</text>
 </symbol>
 <symbol name="DGND">
 <wire x1="-1.905" y1="0" x2="1.905" y2="0" width="0.254" layer="94"/>
@@ -265,7 +267,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <devices>
 <device name="" package="CREATIVE_COMMONS">
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="DESIGNER" value="" constant="no"/>
+<attribute name="REV" value="" constant="no"/>
+</technology>
 </technologies>
 </device>
 <device name="NO_PACKAGE" package="DUMMY">
@@ -421,22 +426,6 @@ Commonly used for small ceramic capacitors. Like our 0.1uF (http://www.sparkfun.
 <rectangle x1="0.9517" y1="-0.8491" x2="1.7018" y2="0.8509" layer="51"/>
 <rectangle x1="-0.1999" y1="-0.4001" x2="0.1999" y2="0.4001" layer="35"/>
 </package>
-<package name="EIA3216">
-<description>Generic EIA 3216 (1206) polarized tantalum capacitor</description>
-<wire x1="-1" y1="-1.2" x2="-2.5" y2="-1.2" width="0.2032" layer="51"/>
-<wire x1="-2.5" y1="-1.2" x2="-2.5" y2="1.2" width="0.2032" layer="51"/>
-<wire x1="-2.5" y1="1.2" x2="-1" y2="1.2" width="0.2032" layer="51"/>
-<wire x1="1" y1="-1.2" x2="2.1" y2="-1.2" width="0.2032" layer="51"/>
-<wire x1="2.1" y1="-1.2" x2="2.5" y2="-0.8" width="0.2032" layer="51"/>
-<wire x1="2.5" y1="-0.8" x2="2.5" y2="0.8" width="0.2032" layer="51"/>
-<wire x1="2.5" y1="0.8" x2="2.1" y2="1.2" width="0.2032" layer="51"/>
-<wire x1="2.1" y1="1.2" x2="1" y2="1.2" width="0.2032" layer="51"/>
-<wire x1="2.413" y1="0.762" x2="2.413" y2="-0.762" width="0.2032" layer="21"/>
-<smd name="-" x="-1.4" y="0" dx="1.6" dy="1.4" layer="1" rot="R90"/>
-<smd name="+" x="1.4" y="0" dx="1.6" dy="1.4" layer="1" rot="R90"/>
-<text x="0" y="1.143" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center">&gt;NAME</text>
-<text x="0" y="-1.143" size="0.6096" layer="27" font="vector" ratio="20" align="top-center">&gt;VALUE</text>
-</package>
 <package name="0603-POLAR">
 <description>&lt;p&gt;&lt;b&gt;Polarized 1608 (0603) package&lt;/b&gt;&lt;/p&gt;
 &lt;p&gt;0.2mm courtyard excess rounded to nearest 0.05mm.&lt;/p&gt;</description>
@@ -460,7 +449,7 @@ Commonly used for small ceramic capacitors. Like our 0.1uF (http://www.sparkfun.
 <text x="0" y="-0.762" size="0.6096" layer="27" font="vector" ratio="20" align="top-center">&gt;VALUE</text>
 <rectangle x1="-0.8382" y1="-0.4699" x2="-0.3381" y2="0.4801" layer="51"/>
 <rectangle x1="0.3302" y1="-0.4699" x2="0.8303" y2="0.4801" layer="51"/>
-<wire x1="1.651" y1="0.508" x2="1.651" y2="-0.508" width="0.127" layer="21"/>
+<wire x1="1.651" y1="0.508" x2="1.651" y2="-0.508" width="0.2032" layer="21"/>
 </package>
 <package name="EIA3528">
 <description>Generic EIA 3528 polarized tantalum capacitor</description>
@@ -520,6 +509,42 @@ http://www.kemet.com/Lists/ProductCatalog/Attachments/254/KEM_T2005_T491.pdf</de
 <text x="0" y="1.27" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center">&gt;Name</text>
 <text x="0" y="-1.27" size="0.6096" layer="27" font="vector" ratio="20" align="top-center">&gt;Value</text>
 <wire x1="3.91" y1="1" x2="3.91" y2="-1" width="0.127" layer="21"/>
+</package>
+<package name="0402-TIGHT">
+<smd name="1" x="-0.5" y="0" dx="0.6" dy="0.6" layer="1"/>
+<smd name="2" x="0.5" y="0" dx="0.6" dy="0.6" layer="1"/>
+<text x="0" y="0.562" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center">&gt;NAME</text>
+<text x="0" y="-0.562" size="0.6096" layer="27" font="vector" ratio="20" align="top-center">&gt;VALUE</text>
+<wire x1="-0.5" y1="-0.25" x2="-0.5" y2="0.25" width="0.002540625" layer="51"/>
+<wire x1="-0.5" y1="0.25" x2="0.5" y2="0.25" width="0.002540625" layer="51"/>
+<wire x1="0.5" y1="0.25" x2="0.5" y2="-0.25" width="0.002540625" layer="51"/>
+<wire x1="0.5" y1="-0.25" x2="-0.5" y2="-0.25" width="0.002540625" layer="51"/>
+<rectangle x1="-0.5" y1="-0.25" x2="-0.3" y2="0.25" layer="51"/>
+<rectangle x1="0.3" y1="-0.25" x2="0.5" y2="0.25" layer="51" rot="R180"/>
+<wire x1="0.9262" y1="0.4262" x2="-0.9262" y2="0.4262" width="0.05" layer="39"/>
+<wire x1="-0.9262" y1="0.4262" x2="-0.9262" y2="-0.4262" width="0.05" layer="39"/>
+<wire x1="-0.9262" y1="-0.4262" x2="0.9262" y2="-0.4262" width="0.05" layer="39"/>
+<wire x1="0.9262" y1="-0.4262" x2="0.9262" y2="0.4262" width="0.05" layer="39"/>
+</package>
+<package name="EIA3216">
+<description>Generic EIA 3216 (1206) polarized tantalum capacitor</description>
+<wire x1="-1" y1="-1.2" x2="-2.5" y2="-1.2" width="0.2032" layer="51"/>
+<wire x1="-2.5" y1="-1.2" x2="-2.5" y2="1.2" width="0.2032" layer="51"/>
+<wire x1="-2.5" y1="1.2" x2="-1" y2="1.2" width="0.2032" layer="51"/>
+<wire x1="1" y1="-1.2" x2="2.1" y2="-1.2" width="0.2032" layer="51"/>
+<wire x1="2.1" y1="-1.2" x2="2.5" y2="-0.8" width="0.2032" layer="51"/>
+<wire x1="2.5" y1="-0.8" x2="2.5" y2="0.8" width="0.2032" layer="51"/>
+<wire x1="2.5" y1="0.8" x2="2.1" y2="1.2" width="0.2032" layer="51"/>
+<wire x1="2.1" y1="1.2" x2="1" y2="1.2" width="0.2032" layer="51"/>
+<wire x1="2.413" y1="0.762" x2="2.413" y2="-0.762" width="0.2032" layer="21"/>
+<smd name="-" x="-1.4" y="0" dx="1.6" dy="1.4" layer="1" rot="R90"/>
+<smd name="+" x="1.4" y="0" dx="1.6" dy="1.4" layer="1" rot="R90"/>
+<text x="0" y="1.143" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center">&gt;NAME</text>
+<text x="0" y="-1.143" size="0.6096" layer="27" font="vector" ratio="20" align="top-center">&gt;VALUE</text>
+<wire x1="-2.286" y1="0.9906" x2="2.286" y2="0.9906" width="0.0508" layer="39"/>
+<wire x1="2.286" y1="0.9906" x2="2.286" y2="-0.9906" width="0.0508" layer="39"/>
+<wire x1="2.286" y1="-0.9906" x2="-2.286" y2="-0.9906" width="0.0508" layer="39"/>
+<wire x1="-2.286" y1="-0.9906" x2="-2.286" y2="0.9906" width="0.0508" layer="39"/>
 </package>
 </packages>
 <symbols>
@@ -590,6 +615,18 @@ http://www.kemet.com/Lists/ProductCatalog/Attachments/254/KEM_T2005_T491.pdf</de
 </technology>
 </technologies>
 </device>
+<device name="-0402_TIGHT-10V-10%-X5R" package="0402-TIGHT">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="PROD_ID" value="CAP-14232"/>
+<attribute name="VALUE" value="2.2uF"/>
+</technology>
+</technologies>
+</device>
 </devices>
 </deviceset>
 <deviceset name="0.1UF" prefix="C">
@@ -656,6 +693,18 @@ http://www.kemet.com/Lists/ProductCatalog/Attachments/254/KEM_T2005_T491.pdf</de
 <technology name="">
 <attribute name="PROD_ID" value="CAP-08390"/>
 <attribute name="VALUE" value="0.1uF"/>
+</technology>
+</technologies>
+</device>
+<device name="-0402T-16V-10%" package="0402-TIGHT">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="PROD_ID" value="CAP-12416" constant="no"/>
+<attribute name="VALUE" value="0.1uF" constant="no"/>
 </technology>
 </technologies>
 </device>
@@ -1154,61 +1203,74 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <rectangle x1="0.2588" y1="-0.3048" x2="0.5588" y2="0.3048" layer="51"/>
 <rectangle x1="-0.1999" y1="-0.3" x2="0.1999" y2="0.3" layer="35"/>
 </package>
-<package name="INDUCTOR_2.2UH">
-<smd name="P$1" x="-1.9" y="0" dx="1.3" dy="0.9" layer="1" rot="R90"/>
-<smd name="P$2" x="1.9" y="0" dx="0.9" dy="1.3" layer="1"/>
-<wire x1="-2.69965" y1="1.9" x2="2.70035" y2="1.9" width="0.127" layer="39"/>
-<wire x1="2.70035" y1="1.9" x2="2.70035" y2="-1.9" width="0.127" layer="39"/>
-<wire x1="2.70035" y1="-1.9" x2="-2.69965" y2="-1.9" width="0.127" layer="39"/>
-<wire x1="-2.69965" y1="-1.9" x2="-2.69965" y2="1.9" width="0.127" layer="39"/>
-<polygon width="0" layer="51">
-<vertex x="0" y="-1.7" curve="-90"/>
-<vertex x="-1.7" y="0" curve="-90"/>
-<vertex x="0" y="1.7" curve="-90"/>
-<vertex x="1.7" y="0" curve="-90"/>
-</polygon>
-<polygon width="0" layer="51">
-<vertex x="-1.85" y="0.55"/>
-<vertex x="1.85" y="0.55"/>
-<vertex x="1.85" y="-0.55"/>
-<vertex x="-1.85" y="-0.55"/>
-</polygon>
-<polygon width="0" layer="51">
-<vertex x="-1.8" y="0.5"/>
-<vertex x="-1.8" y="0.653415625"/>
-<vertex x="-0.703415625" y="1.75"/>
-<vertex x="0.294453125" y="1.75"/>
-<vertex x="0.5" y="1.544453125"/>
-<vertex x="0.5" y="0.5"/>
-</polygon>
-<polygon width="0" layer="51">
-<vertex x="1.8" y="-0.5"/>
-<vertex x="1.8" y="-0.653415625"/>
-<vertex x="0.703415625" y="-1.75"/>
-<vertex x="-0.294453125" y="-1.75"/>
-<vertex x="-0.5" y="-1.544453125"/>
-<vertex x="-0.5" y="-0.5"/>
-</polygon>
-<text x="-2.54" y="1.905" size="0.8128" layer="25">&gt;NAME</text>
-<text x="-2.54" y="-3.175" size="0.8128" layer="27">&gt;VALUE</text>
+<package name="INDUCTOR_3X3">
+<description>&lt;h3&gt;Inductor - 3.0mm x 3.0mm&lt;/h3&gt;
+&lt;p&gt;&lt;a href=file:///C:/Users/guita/Downloads/NRH3012T100MN_SS.pdf&gt;Example Datasheet&lt;/a&gt;&lt;/p&gt;</description>
+<wire x1="-1.5" y1="-1.5" x2="1.5" y2="-1.5" width="0.0254" layer="51"/>
+<wire x1="1.5" y1="-1.5" x2="1.5" y2="1.5" width="0.0254" layer="51"/>
+<wire x1="1.5" y1="1.5" x2="-1.5" y2="1.5" width="0.0254" layer="51"/>
+<wire x1="-1.5" y1="1.5" x2="-1.5" y2="-1.5" width="0.0254" layer="51"/>
+<rectangle x1="-1.5" y1="0.5" x2="1.5" y2="1.4" layer="51"/>
+<rectangle x1="-1.5" y1="-1.4" x2="1.5" y2="-0.5" layer="51" rot="R180"/>
+<smd name="P$1" x="0" y="1.1" dx="2.7" dy="0.8" layer="1"/>
+<smd name="P$2" x="0" y="-1.1" dx="2.7" dy="0.8" layer="1" rot="R180"/>
+<wire x1="-1.6" y1="1.7" x2="-1.6" y2="-1.7" width="0.2032" layer="21"/>
+<wire x1="1.6" y1="1.7" x2="-1.6" y2="1.7" width="0.2032" layer="21"/>
+<wire x1="1.6" y1="-1.7" x2="1.6" y2="1.7" width="0.2032" layer="21"/>
+<wire x1="-1.6" y1="-1.7" x2="1.6" y2="-1.7" width="0.2032" layer="21"/>
+<text x="0" y="1.9" size="0.6096" layer="25" ratio="20" align="bottom-center">&gt;Name</text>
+<text x="0" y="-1.9" size="0.6096" layer="27" ratio="20" align="top-center">&gt;Value</text>
 </package>
-<package name="INDUCTOR_4X4MM">
-<description>&lt;h3&gt;4x4mm Inductor&lt;/h3&gt;
-&lt;p&gt;This footprint may be acceptable for many 4x4mm inductors.  It was produced from the datasheet &lt;a href="http://www.vishay.com/docs/34295/sc15ah01.pdf"&gt;here&lt;/a&gt;, for the Vishay Dale IFSC1515AHER2R2M01.</description>
-<wire x1="1.9939" y1="1.9939" x2="-1.9939" y2="1.9939" width="0.127" layer="51"/>
-<wire x1="-1.9939" y1="1.9939" x2="-1.9939" y2="-1.9939" width="0.127" layer="51"/>
-<wire x1="-1.9939" y1="-1.9939" x2="1.9939" y2="-1.9939" width="0.127" layer="51"/>
-<wire x1="1.9939" y1="-1.9939" x2="1.9939" y2="1.9939" width="0.127" layer="51"/>
-<smd name="P$1" x="0" y="1.4732" dx="4.0894" dy="1.143" layer="1"/>
-<smd name="P$2" x="0" y="-1.4732" dx="4.0894" dy="1.143" layer="1"/>
-<text x="0" y="2.442" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center">&gt;Name</text>
-<text x="0" y="-2.413" size="0.6096" layer="27" font="vector" ratio="20" align="top-center">&gt;Value</text>
-<wire x1="-2.2479" y1="2.2479" x2="2.2479" y2="2.2479" width="0.0508" layer="39"/>
-<wire x1="2.2479" y1="2.2479" x2="2.2479" y2="-2.2479" width="0.0508" layer="39"/>
-<wire x1="2.2479" y1="-2.2479" x2="-2.2479" y2="-2.2479" width="0.0508" layer="39"/>
-<wire x1="-2.2479" y1="-2.2479" x2="-2.2479" y2="2.2479" width="0.0508" layer="39"/>
-<wire x1="-2.0240625" y1="0.6746875" x2="-2.0240625" y2="-0.6746875" width="0.2032" layer="21"/>
-<wire x1="2.0240625" y1="0.6746875" x2="2.0240625" y2="-0.6746875" width="0.2032" layer="21"/>
+<package name="XFL4020">
+<smd name="P$1" x="1" y="1.8" dx="3.4" dy="0.98" layer="1" rot="R90"/>
+<smd name="P$2" x="3.4" y="1.8" dx="3.4" dy="0.98" layer="1" rot="R90"/>
+<wire x1="0" y1="-0.4" x2="0" y2="4" width="0.1524" layer="51"/>
+<wire x1="0" y1="4" x2="4.4" y2="4" width="0.1524" layer="51"/>
+<wire x1="4.4" y1="4" x2="4.4" y2="-0.4" width="0.1524" layer="51"/>
+<wire x1="4.4" y1="-0.4" x2="0" y2="-0.4" width="0.1524" layer="51"/>
+<wire x1="4.736" y1="-0.281" x2="4.736" y2="3.919" width="0.1524" layer="21"/>
+<text x="-1.8" y="4.6" size="1.778" layer="25" font="vector">&gt;NAME</text>
+<text x="-2.2" y="-2.7" size="1.778" layer="27" font="vector">&gt;VALUE</text>
+</package>
+<package name="INDUCTOR_LQH32">
+<smd name="P$1" x="-0.07" y="1.205" dx="2" dy="1.25" layer="1"/>
+<smd name="P$2" x="-0.07" y="-1.295" dx="2" dy="1.25" layer="1"/>
+<text x="0" y="2.166" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center">&gt;NAME</text>
+<text x="0" y="-2.15" size="0.6096" layer="27" font="vector" ratio="20" align="top-center">&gt;VALUE</text>
+<wire x1="-1.27" y1="1.905" x2="-1.27" y2="-1.905" width="0.127" layer="51"/>
+<wire x1="-1.27" y1="-1.905" x2="1.143" y2="-1.905" width="0.127" layer="51"/>
+<wire x1="1.143" y1="-1.905" x2="1.143" y2="1.905" width="0.127" layer="51"/>
+<wire x1="1.143" y1="1.905" x2="-1.27" y2="1.905" width="0.127" layer="51"/>
+</package>
+<package name="0402-TIGHT">
+<smd name="1" x="-0.5" y="0" dx="0.6" dy="0.6" layer="1"/>
+<smd name="2" x="0.5" y="0" dx="0.6" dy="0.6" layer="1"/>
+<text x="0" y="0.562" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center">&gt;NAME</text>
+<text x="0" y="-0.562" size="0.6096" layer="27" font="vector" ratio="20" align="top-center">&gt;VALUE</text>
+<wire x1="-0.5" y1="-0.25" x2="-0.5" y2="0.25" width="0.002540625" layer="51"/>
+<wire x1="-0.5" y1="0.25" x2="0.5" y2="0.25" width="0.002540625" layer="51"/>
+<wire x1="0.5" y1="0.25" x2="0.5" y2="-0.25" width="0.002540625" layer="51"/>
+<wire x1="0.5" y1="-0.25" x2="-0.5" y2="-0.25" width="0.002540625" layer="51"/>
+<rectangle x1="-0.5" y1="-0.25" x2="-0.3" y2="0.25" layer="51"/>
+<rectangle x1="0.3" y1="-0.25" x2="0.5" y2="0.25" layer="51" rot="R180"/>
+<wire x1="0.9262" y1="0.4262" x2="-0.9262" y2="0.4262" width="0.05" layer="39"/>
+<wire x1="-0.9262" y1="0.4262" x2="-0.9262" y2="-0.4262" width="0.05" layer="39"/>
+<wire x1="-0.9262" y1="-0.4262" x2="0.9262" y2="-0.4262" width="0.05" layer="39"/>
+<wire x1="0.9262" y1="-0.4262" x2="0.9262" y2="0.4262" width="0.05" layer="39"/>
+</package>
+<package name="0805-WIDE">
+<smd name="1" x="-0.8" y="0" dx="0.8" dy="1.8" layer="1"/>
+<smd name="2" x="0.8" y="0" dx="0.8" dy="1.8" layer="1"/>
+<text x="0" y="1.089" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center">&gt;NAME</text>
+<text x="0" y="-1.089" size="0.6096" layer="27" font="vector" ratio="20" align="top-center">&gt;VALUE</text>
+<wire x1="-1.3" y1="1" x2="1.3" y2="1" width="0.0508" layer="39"/>
+<wire x1="1.3" y1="1" x2="1.3" y2="-1" width="0.0508" layer="39"/>
+<wire x1="1.3" y1="-1" x2="-1.3" y2="-1" width="0.0508" layer="39"/>
+<wire x1="-1.3" y1="-1" x2="-1.3" y2="1" width="0.0508" layer="39"/>
+<wire x1="-1" y1="-0.8" x2="-1" y2="0.8" width="0.002540625" layer="51"/>
+<wire x1="-1" y1="0.8" x2="1" y2="0.8" width="0.002540625" layer="51"/>
+<wire x1="1" y1="0.8" x2="1" y2="-0.8" width="0.002540625" layer="51"/>
+<wire x1="1" y1="-0.8" x2="-1" y2="-0.8" width="0.002540625" layer="51"/>
 </package>
 </packages>
 <symbols>
@@ -1226,7 +1288,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="INDUCTOR" prefix="L">
+<deviceset name="INDUCTOR" prefix="L" uservalue="yes">
 <description>&lt;h3&gt;Inductors&lt;/h3&gt;
 &lt;p&gt;Resist changes in electrical current. Basically a coil of wire.&lt;/p&gt;
 &lt;p&gt;SparkFun Products:
@@ -1346,28 +1408,129 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </technology>
 </technologies>
 </device>
-<device name="-VLF4012AT-2.2UH" package="INDUCTOR_2.2UH">
+<device name="INDUCTOR_10UH" package="INDUCTOR_3X3">
 <connects>
 <connect gate="G$1" pin="1" pad="P$1"/>
 <connect gate="G$1" pin="2" pad="P$2"/>
 </connects>
 <technologies>
 <technology name="">
-<attribute name="PROD_ID" value="NDUC-09513"/>
-<attribute name="VALUE" value="2.2µH/±20%/1.5A" constant="no"/>
+<attribute name="PROD_ID" value="NDUC-13913" constant="no"/>
+<attribute name="VALUE" value="10uH"/>
 </technology>
 </technologies>
 </device>
-<device name="-IFSC1515AHER2R2M01" package="INDUCTOR_4X4MM">
+<device name="-CDRH-10UH" package="INDUCTOR_4.7UH">
 <connects>
 <connect gate="G$1" pin="1" pad="P$1"/>
 <connect gate="G$1" pin="2" pad="P$2"/>
 </connects>
 <technologies>
 <technology name="">
-<attribute name="PROD_ID" value="NDUC-13770" constant="no"/>
-<attribute name="VALUE" value="2.2UH3A" constant="no"/>
+<attribute name="PROD_ID" value="NDUC-13968" constant="no"/>
+<attribute name="VALUE" value="10uH" constant="no"/>
 </technology>
+</technologies>
+</device>
+<device name="FB-30OHM" package="0603">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="PROD_ID" value="NDUC-07859"/>
+</technology>
+</technologies>
+</device>
+<device name="" package="XFL4020">
+<connects>
+<connect gate="G$1" pin="1" pad="P$1"/>
+<connect gate="G$1" pin="2" pad="P$2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="-0603-15NH" package="0603">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="PROD_ID" value="NDUC-11660"/>
+<attribute name="VALUE" value="15nH"/>
+</technology>
+</technologies>
+</device>
+<device name="-LHQ32-15UH" package="INDUCTOR_LQH32">
+<connects>
+<connect gate="G$1" pin="1" pad="P$1"/>
+<connect gate="G$1" pin="2" pad="P$2"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="PROD_ID" value="NDUC-14107"/>
+<attribute name="VALUE" value="15uH"/>
+</technology>
+</technologies>
+</device>
+<device name="-0402_TIGHT-2.0NH" package="0402-TIGHT">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="PROD_ID" value="NDUC-14238"/>
+<attribute name="VALUE" value="2nH/?%/200mA/300mOhm"/>
+</technology>
+</technologies>
+</device>
+<device name="-0805_WIDE-1.0UH" package="0805-WIDE">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="PROD_ID" value="NDUC-14237"/>
+<attribute name="VALUE" value="1.0uH/?%/1.4A/70mOhm"/>
+</technology>
+</technologies>
+</device>
+<device name="-0402_TIGHT-2.7NH" package="0402-TIGHT">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="PROD_ID" value="NDUC-14236"/>
+<attribute name="VALUE" value="2.7nH/?%/900mA/70mOhm"/>
+</technology>
+</technologies>
+</device>
+<device name="-0805_WIDE-2.2UH" package="0805-WIDE">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="PROD_ID" value="NDUC-14234"/>
+<attribute name="VALUE" value="2.2uH"/>
+</technology>
+</technologies>
+</device>
+<device name="DNP" package="0603">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<technologies>
+<technology name=""/>
 </technologies>
 </device>
 </devices>
@@ -1463,23 +1626,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <rectangle x1="0.2588" y1="-0.3048" x2="0.5588" y2="0.3048" layer="51"/>
 <rectangle x1="-0.1999" y1="-0.3" x2="0.1999" y2="0.3" layer="35"/>
 </package>
-<package name="0603">
-<description>&lt;p&gt;&lt;b&gt;Generic 1608 (0603) package&lt;/b&gt;&lt;/p&gt;
-&lt;p&gt;0.2mm courtyard excess rounded to nearest 0.05mm.&lt;/p&gt;</description>
-<wire x1="-1.6" y1="0.7" x2="1.6" y2="0.7" width="0.0508" layer="39"/>
-<wire x1="1.6" y1="0.7" x2="1.6" y2="-0.7" width="0.0508" layer="39"/>
-<wire x1="1.6" y1="-0.7" x2="-1.6" y2="-0.7" width="0.0508" layer="39"/>
-<wire x1="-1.6" y1="-0.7" x2="-1.6" y2="0.7" width="0.0508" layer="39"/>
-<wire x1="-0.356" y1="0.432" x2="0.356" y2="0.432" width="0.1016" layer="51"/>
-<wire x1="-0.356" y1="-0.419" x2="0.356" y2="-0.419" width="0.1016" layer="51"/>
-<smd name="1" x="-0.85" y="0" dx="1.1" dy="1" layer="1"/>
-<smd name="2" x="0.85" y="0" dx="1.1" dy="1" layer="1"/>
-<text x="0" y="0.762" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center">&gt;NAME</text>
-<text x="0" y="-0.762" size="0.6096" layer="27" font="vector" ratio="20" align="top-center">&gt;VALUE</text>
-<rectangle x1="-0.8382" y1="-0.4699" x2="-0.3381" y2="0.4801" layer="51"/>
-<rectangle x1="0.3302" y1="-0.4699" x2="0.8303" y2="0.4801" layer="51"/>
-<rectangle x1="-0.1999" y1="-0.3" x2="0.1999" y2="0.3" layer="35"/>
-</package>
 <package name="0805">
 <description>&lt;p&gt;&lt;b&gt;Generic 2012 (0805) package&lt;/b&gt;&lt;/p&gt;
 &lt;p&gt;0.2mm courtyard excess rounded to nearest 0.05mm.&lt;/p&gt;</description>
@@ -1508,6 +1654,23 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <rectangle x1="-1.7018" y1="-0.8509" x2="-0.9517" y2="0.8491" layer="51"/>
 <rectangle x1="0.9517" y1="-0.8491" x2="1.7018" y2="0.8509" layer="51"/>
 <rectangle x1="-0.1999" y1="-0.4001" x2="0.1999" y2="0.4001" layer="35"/>
+</package>
+<package name="0603">
+<description>&lt;p&gt;&lt;b&gt;Generic 1608 (0603) package&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;0.2mm courtyard excess rounded to nearest 0.05mm.&lt;/p&gt;</description>
+<wire x1="-1.6" y1="0.7" x2="1.6" y2="0.7" width="0.0508" layer="39"/>
+<wire x1="1.6" y1="0.7" x2="1.6" y2="-0.7" width="0.0508" layer="39"/>
+<wire x1="1.6" y1="-0.7" x2="-1.6" y2="-0.7" width="0.0508" layer="39"/>
+<wire x1="-1.6" y1="-0.7" x2="-1.6" y2="0.7" width="0.0508" layer="39"/>
+<wire x1="-0.356" y1="0.432" x2="0.356" y2="0.432" width="0.1016" layer="51"/>
+<wire x1="-0.356" y1="-0.419" x2="0.356" y2="-0.419" width="0.1016" layer="51"/>
+<rectangle x1="-0.8382" y1="-0.4699" x2="-0.3381" y2="0.4801" layer="51"/>
+<rectangle x1="0.3302" y1="-0.4699" x2="0.8303" y2="0.4801" layer="51"/>
+<rectangle x1="-0.1999" y1="-0.3" x2="0.1999" y2="0.3" layer="35"/>
+<smd name="1" x="-0.85" y="0" dx="1.1" dy="1" layer="1"/>
+<smd name="2" x="0.85" y="0" dx="1.1" dy="1" layer="1"/>
+<text x="0" y="0.762" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center">&gt;NAME</text>
+<text x="0" y="-0.762" size="0.6096" layer="27" font="vector" ratio="20" align="top-center">&gt;VALUE</text>
 </package>
 </packages>
 <symbols>
@@ -1633,6 +1796,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <packages>
 <package name="SOT23-5">
 <description>&lt;b&gt;Small Outline Transistor&lt;/b&gt;</description>
+<circle x="-1.6002" y="-1.016" radius="0.127" width="0" layer="21"/>
 <wire x1="1.27" y1="0.4294" x2="1.27" y2="-0.4294" width="0.2032" layer="21"/>
 <wire x1="1.4" y1="-0.8" x2="-1.4" y2="-0.8" width="0.1524" layer="51"/>
 <wire x1="-1.27" y1="-0.4294" x2="-1.27" y2="0.4294" width="0.2032" layer="21"/>
@@ -1652,7 +1816,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <smd name="5" x="-0.95" y="1.3001" dx="0.55" dy="1.2" layer="1"/>
 <text x="-0.889" y="2.159" size="0.4064" layer="25">&gt;NAME</text>
 <text x="-0.9525" y="-0.1905" size="0.4064" layer="27">&gt;VALUE</text>
-<circle x="-1.6002" y="-1.016" radius="0.127" width="0" layer="21"/>
 </package>
 </packages>
 <symbols>
@@ -1720,7 +1883,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <technologies>
 <technology name="">
 <attribute name="PROD_ID" value="VREG-12594" constant="no"/>
-<attribute name="VALUE" value="ADJ" constant="no"/>
+<attribute name="VALUE" value="MIC5205(ADJ)" constant="no"/>
 </technology>
 </technologies>
 </device>
@@ -2651,26 +2814,6 @@ We've spent an enormous amount of time creating and checking these footprints an
 &lt;br&gt;&lt;br&gt;
 You are welcome to use this library for commercial purposes. For attribution, we ask that when you begin to sell your device using our footprint, you email us with a link to the product being sold. We want bragging rights that we helped (in a very small part) to create your 8th world wonder. We would like the opportunity to feature your device on our homepage.</description>
 <packages>
-<package name="LED-0603">
-<description>&lt;B&gt;LED 0603 SMT&lt;/B&gt;&lt;p&gt;
-0603, surface mount.
-&lt;p&gt;Specifications:
-&lt;ul&gt;&lt;li&gt;Pin count: 2&lt;/li&gt;
-&lt;li&gt;Pin pitch:0.075inch &lt;/li&gt;
-&lt;li&gt;Area: 0.06" x 0.03"&lt;/li&gt;
-&lt;/ul&gt;&lt;/p&gt;
-&lt;p&gt;Example device(s):
-&lt;ul&gt;&lt;li&gt;LED - BLUE&lt;/li&gt;</description>
-<smd name="C" x="0.877" y="0" dx="1" dy="1" layer="1" roundness="30" rot="R270"/>
-<smd name="A" x="-0.877" y="0" dx="1" dy="1" layer="1" roundness="30" rot="R270"/>
-<text x="0" y="0.635" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center">&gt;NAME</text>
-<text x="0" y="-0.635" size="0.6096" layer="27" font="vector" ratio="20" align="top-center">&gt;VALUE</text>
-<wire x1="1.5875" y1="0.47625" x2="1.5875" y2="-0.47625" width="0.127" layer="21"/>
-<wire x1="0.15875" y1="0.47625" x2="0.15875" y2="0" width="0.127" layer="51"/>
-<wire x1="0.15875" y1="0" x2="0.15875" y2="-0.47625" width="0.127" layer="51"/>
-<wire x1="0.15875" y1="0" x2="-0.15875" y2="0.3175" width="0.127" layer="51"/>
-<wire x1="0.15875" y1="0" x2="-0.15875" y2="-0.3175" width="0.127" layer="51"/>
-</package>
 <package name="LED-1206">
 <description>&lt;h3&gt;LED 1206 SMT&lt;/h3&gt;
 
@@ -2691,6 +2834,26 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="0.65375" y1="0.6825" x2="0.65375" y2="-0.6825" width="0.2032" layer="51"/>
 <wire x1="0.635" y1="0" x2="0.15875" y2="0.47625" width="0.2032" layer="51"/>
 <wire x1="0.635" y1="0" x2="0.15875" y2="-0.47625" width="0.2032" layer="51"/>
+</package>
+<package name="LED-0603">
+<description>&lt;B&gt;LED 0603 SMT&lt;/B&gt;&lt;p&gt;
+0603, surface mount.
+&lt;p&gt;Specifications:
+&lt;ul&gt;&lt;li&gt;Pin count: 2&lt;/li&gt;
+&lt;li&gt;Pin pitch:0.075inch &lt;/li&gt;
+&lt;li&gt;Area: 0.06" x 0.03"&lt;/li&gt;
+&lt;/ul&gt;&lt;/p&gt;
+&lt;p&gt;Example device(s):
+&lt;ul&gt;&lt;li&gt;LED - BLUE&lt;/li&gt;</description>
+<smd name="C" x="0.877" y="0" dx="1" dy="1" layer="1" roundness="30" rot="R270"/>
+<smd name="A" x="-0.877" y="0" dx="1" dy="1" layer="1" roundness="30" rot="R270"/>
+<text x="0" y="0.635" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center">&gt;NAME</text>
+<text x="0" y="-0.635" size="0.6096" layer="27" font="vector" ratio="20" align="top-center">&gt;VALUE</text>
+<wire x1="1.5875" y1="0.47625" x2="1.5875" y2="-0.47625" width="0.2032" layer="21"/>
+<wire x1="0.15875" y1="0.47625" x2="0.15875" y2="0" width="0.127" layer="51"/>
+<wire x1="0.15875" y1="0" x2="0.15875" y2="-0.47625" width="0.127" layer="51"/>
+<wire x1="0.15875" y1="0" x2="-0.15875" y2="0.3175" width="0.127" layer="51"/>
+<wire x1="0.15875" y1="0" x2="-0.15875" y2="-0.3175" width="0.127" layer="51"/>
 </package>
 <package name="LED-1206-BOTTOM">
 <description>&lt;h3&gt;LED 1206 SMT&lt;/h3&gt;
@@ -2741,7 +2904,16 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="2.7686" y1="1.016" x2="2.7686" y2="-1.016" width="0.127" layer="21"/>
 <text x="0" y="1.27" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center">&gt;NAME</text>
 <text x="0" y="-1.27" size="0.6096" layer="27" font="vector" ratio="20" align="top-center">&gt;VALUE</text>
-<wire x1="2.7686" y1="1.016" x2="2.7686" y2="-1.016" width="0.127" layer="22"/>
+</package>
+<package name="LED-1206-HIDDENSILK">
+<wire x1="0.6474" y1="0.6825" x2="0.6474" y2="-0.6825" width="0.2032" layer="21"/>
+<smd name="A" x="-1.5" y="0" dx="1.2" dy="1.4" layer="1"/>
+<smd name="C" x="1.5" y="0" dx="1.2" dy="1.4" layer="1"/>
+<text x="0" y="0.9525" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center">&gt;NAME</text>
+<text x="0" y="-0.9525" size="0.6096" layer="27" font="vector" ratio="20" align="top-center">&gt;VALUE</text>
+<wire x1="0.65375" y1="0.6825" x2="0.65375" y2="-0.6825" width="0.2032" layer="51"/>
+<wire x1="0.635" y1="0" x2="0.15875" y2="0.47625" width="0.2032" layer="51"/>
+<wire x1="0.635" y1="0" x2="0.15875" y2="-0.47625" width="0.2032" layer="51"/>
 </package>
 </packages>
 <symbols>
@@ -2838,6 +3010,18 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <technology name="">
 <attribute name="PROD_ID" value="DIO-11076" constant="no"/>
 <attribute name="VALUE" value="Green" constant="no"/>
+</technology>
+</technologies>
+</device>
+<device name="_HIDDENSILK" package="LED-1206-HIDDENSILK">
+<connects>
+<connect gate="G$1" pin="A" pad="A"/>
+<connect gate="G$1" pin="C" pad="C"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="PROD_ID" value="DIO-00862" constant="no"/>
+<attribute name="VALUE" value="GREEN" constant="no"/>
 </technology>
 </technologies>
 </device>
@@ -4866,6 +5050,235 @@ SOT-23-5 package, no indicator LED but with adjustable current, small and very i
 </deviceset>
 </devicesets>
 </library>
+<library name="TC2030-IDC-NL">
+<packages>
+<package name="TAG_TC2030-IDC-NL">
+<rectangle x1="-1.27158125" y1="-0.635790625" x2="1.27" y2="0.635" layer="41"/>
+<rectangle x1="-1.271340625" y1="-0.63566875" x2="1.27" y2="0.635" layer="43"/>
+<circle x="-1.25" y="-1.5" radius="0.15" width="0.3" layer="51"/>
+<hole x="-2.54" y="0" drill="0.991"/>
+<hole x="2.54" y="1.016" drill="0.991"/>
+<hole x="2.54" y="-1.016" drill="0.991"/>
+<smd name="1" x="-1.27" y="-0.635" dx="0.787" dy="0.787" layer="1" roundness="100" cream="no"/>
+<smd name="2" x="-1.27" y="0.635" dx="0.787" dy="0.787" layer="1" roundness="100" cream="no"/>
+<smd name="3" x="0" y="-0.635" dx="0.787" dy="0.787" layer="1" roundness="100" cream="no"/>
+<smd name="4" x="0" y="0.635" dx="0.787" dy="0.787" layer="1" roundness="100" cream="no"/>
+<smd name="5" x="1.27" y="-0.635" dx="0.787" dy="0.787" layer="1" roundness="100" cream="no"/>
+<smd name="6" x="1.27" y="0.635" dx="0.787" dy="0.787" layer="1" roundness="100" cream="no"/>
+</package>
+</packages>
+<symbols>
+<symbol name="TC2030-IDC-NL">
+<wire x1="-5.08" y1="10.16" x2="-5.08" y2="-7.62" width="0.254" layer="94"/>
+<wire x1="-5.08" y1="-7.62" x2="5.08" y2="-7.62" width="0.254" layer="94"/>
+<wire x1="5.08" y1="-7.62" x2="5.08" y2="10.16" width="0.254" layer="94"/>
+<wire x1="5.08" y1="10.16" x2="-5.08" y2="10.16" width="0.254" layer="94"/>
+<text x="-5.08623125" y="12.7156" size="1.271559375" layer="95">&gt;NAME</text>
+<text x="-5.0802" y="-10.1604" size="1.27005" layer="96">&gt;VALUE</text>
+<pin name="1" x="-7.62" y="7.62" length="short" direction="pas"/>
+<pin name="2" x="-7.62" y="5.08" length="short" direction="pas"/>
+<pin name="3" x="-7.62" y="2.54" length="short" direction="pas"/>
+<pin name="4" x="-7.62" y="0" length="short" direction="pas"/>
+<pin name="5" x="-7.62" y="-2.54" length="short" direction="pas"/>
+<pin name="6" x="-7.62" y="-5.08" length="short" direction="pas"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="TC2030-IDC-NL" prefix="J">
+<description>CABLE ADAPTER 6 POS </description>
+<gates>
+<gate name="G$1" symbol="TC2030-IDC-NL" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="TAG_TC2030-IDC-NL">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+<connect gate="G$1" pin="3" pad="3"/>
+<connect gate="G$1" pin="4" pad="4"/>
+<connect gate="G$1" pin="5" pad="5"/>
+<connect gate="G$1" pin="6" pad="6"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="AVAILABILITY" value="Unavailable"/>
+<attribute name="DESCRIPTION" value=" 6-PIN PLUG-OF-NAILS CABLE 6 "/>
+<attribute name="MF" value="Tag-Connect"/>
+<attribute name="MP" value="TC2030-IDC-NL"/>
+<attribute name="PACKAGE" value="Package "/>
+<attribute name="PRICE" value="None"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
+<library name="CMT-8503-87-SMT-TR">
+<packages>
+<package name="XDCR_CMT-8503-87-SMT-TR">
+<text x="-4.445" y="5.715" size="1.27" layer="25">&gt;NAME</text>
+<text x="-4.445" y="-5.715" size="1.27" layer="27" align="top-left">&gt;VALUE</text>
+<text x="-5.715" y="3.175" size="0.8128" layer="51">+</text>
+<text x="-5.715" y="-3.175" size="0.8128" layer="51" align="top-left">-</text>
+<text x="-5.715" y="-3.175" size="0.8128" layer="21" align="top-left">-</text>
+<text x="-5.715" y="3.175" size="0.8128" layer="21">+</text>
+<wire x1="-4.25" y1="4.25" x2="-4.25" y2="-4.25" width="0.127" layer="51"/>
+<wire x1="-4.25" y1="-4.25" x2="4.25" y2="-4.25" width="0.127" layer="51"/>
+<wire x1="4.25" y1="-4.25" x2="4.25" y2="4.25" width="0.127" layer="51"/>
+<wire x1="4.25" y1="4.25" x2="-4.25" y2="4.25" width="0.127" layer="51"/>
+<wire x1="1.9" y1="4.25" x2="-1.9" y2="4.25" width="0.127" layer="21"/>
+<wire x1="-1.9" y1="-4.25" x2="1.9" y2="-4.25" width="0.127" layer="21"/>
+<wire x1="4.25" y1="-1.9" x2="4.25" y2="1.9" width="0.127" layer="21"/>
+<wire x1="-4.25" y1="1.9" x2="-4.25" y2="-1.9" width="0.127" layer="21"/>
+<wire x1="-5" y1="5" x2="-2" y2="5" width="0.05" layer="39"/>
+<wire x1="-2" y1="5" x2="-2" y2="4.5" width="0.05" layer="39"/>
+<wire x1="-2" y1="4.5" x2="2" y2="4.5" width="0.05" layer="39"/>
+<wire x1="2" y1="4.5" x2="2" y2="5" width="0.05" layer="39"/>
+<wire x1="2" y1="5" x2="5" y2="5" width="0.05" layer="39"/>
+<wire x1="2" y1="-4.5" x2="-2" y2="-4.5" width="0.05" layer="39"/>
+<wire x1="2" y1="-5" x2="2" y2="-4.5" width="0.05" layer="39"/>
+<wire x1="-2" y1="-4.5" x2="-2" y2="-5" width="0.05" layer="39"/>
+<wire x1="-2" y1="-5" x2="-5" y2="-5" width="0.05" layer="39"/>
+<wire x1="5" y1="-5" x2="2" y2="-5" width="0.05" layer="39"/>
+<wire x1="4.5" y1="2" x2="4.5" y2="-2" width="0.05" layer="39"/>
+<wire x1="5" y1="2" x2="4.5" y2="2" width="0.05" layer="39"/>
+<wire x1="4.5" y1="-2" x2="5" y2="-2" width="0.05" layer="39"/>
+<wire x1="5" y1="-2" x2="5" y2="-5" width="0.05" layer="39"/>
+<wire x1="5" y1="5" x2="5" y2="2" width="0.05" layer="39"/>
+<wire x1="-4.5" y1="-2" x2="-4.5" y2="2" width="0.05" layer="39"/>
+<wire x1="-4.5" y1="2" x2="-5" y2="2" width="0.05" layer="39"/>
+<wire x1="-5" y1="-2" x2="-4.5" y2="-2" width="0.05" layer="39"/>
+<wire x1="-5" y1="-5" x2="-5" y2="-2" width="0.05" layer="39"/>
+<wire x1="-5" y1="2" x2="-5" y2="5" width="0.05" layer="39"/>
+<smd name="P" x="-3.5" y="3.5" dx="2.5" dy="2.5" layer="1"/>
+<smd name="1" x="3.5" y="3.5" dx="2.5" dy="2.5" layer="1"/>
+<smd name="2" x="3.5" y="-3.5" dx="2.5" dy="2.5" layer="1"/>
+<smd name="N" x="-3.5" y="-3.5" dx="2.5" dy="2.5" layer="1"/>
+</package>
+</packages>
+<symbols>
+<symbol name="CMT-8503-87-SMT-TR">
+<text x="-3.81" y="8.89" size="1.778" layer="95">&gt;NAME</text>
+<text x="-3.81" y="-10.16" size="1.778" layer="96" align="top-left">&gt;VALUE</text>
+<wire x1="-0.635" y1="1.905" x2="-0.635" y2="-1.905" width="0.254" layer="94"/>
+<wire x1="-0.635" y1="-1.905" x2="0" y2="-1.905" width="0.254" layer="94"/>
+<wire x1="1.27" y1="-1.905" x2="1.27" y2="1.905" width="0.254" layer="94"/>
+<wire x1="-0.635" y1="1.905" x2="0" y2="1.905" width="0.254" layer="94"/>
+<wire x1="1.27" y1="-1.905" x2="3.81" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="3.81" y1="-5.08" x2="3.81" y2="5.08" width="0.254" layer="94"/>
+<wire x1="1.27" y1="1.905" x2="3.81" y2="5.08" width="0.254" layer="94"/>
+<wire x1="0" y1="-2.54" x2="0" y2="-1.905" width="0.1524" layer="94"/>
+<wire x1="0" y1="-1.905" x2="1.27" y2="-1.905" width="0.254" layer="94"/>
+<wire x1="0" y1="2.54" x2="0" y2="1.905" width="0.1524" layer="94"/>
+<wire x1="0" y1="1.905" x2="1.27" y2="1.905" width="0.254" layer="94"/>
+<text x="-2.54" y="3.81" size="1.27" layer="94" align="top-left">+</text>
+<text x="-2.54" y="-2.54" size="1.27" layer="94" align="top-left">-</text>
+<pin name="N" x="0" y="-5.08" visible="off" length="short" direction="pas" rot="R90"/>
+<pin name="P" x="0" y="5.08" visible="off" length="short" direction="pas" rot="R270"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="CMT-8503-87-SMT-TR" prefix="LS">
+<description>CMT-8503-87-SMT-TR </description>
+<gates>
+<gate name="G$1" symbol="CMT-8503-87-SMT-TR" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="XDCR_CMT-8503-87-SMT-TR">
+<connects>
+<connect gate="G$1" pin="N" pad="N"/>
+<connect gate="G$1" pin="P" pad="P"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="MANUFACTURER" value="CUI Inc."/>
+<attribute name="MAXIMUM_PACKAGE_HEIGHT" value="3.00mm"/>
+<attribute name="PARTREV" value="1.0"/>
+<attribute name="STANDARD" value="Manufacturer Recommendations"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
+<library name="CMT-4023S-SMT-TR">
+<packages>
+<package name="CUI_CMT-4023S-SMT-TR">
+<text x="4.9136" y="-0.580425" size="1.27093125" layer="21" rot="R90">+</text>
+<text x="-2.652809375" y="2.60275" size="1.27135" layer="25">&gt;NAME</text>
+<text x="-2.72378125" y="-3.76523125" size="1.27176875" layer="27">&gt;VALUE</text>
+<wire x1="-2" y1="-2" x2="-2" y2="2" width="0.127" layer="51"/>
+<wire x1="-2" y1="2" x2="2" y2="2" width="0.127" layer="51"/>
+<wire x1="2" y1="2" x2="2" y2="-2" width="0.127" layer="51"/>
+<wire x1="2" y1="-2" x2="-2" y2="-2" width="0.127" layer="21"/>
+<wire x1="-2" y1="2" x2="2" y2="2" width="0.127" layer="21"/>
+<wire x1="2.25" y1="2.25" x2="-2.25" y2="2.25" width="0.05" layer="39"/>
+<wire x1="2" y1="-2" x2="-2" y2="-2" width="0.127" layer="51"/>
+<wire x1="-2" y1="-1.5" x2="-2" y2="-2" width="0.127" layer="21"/>
+<wire x1="-3.25" y1="1.45" x2="-3.25" y2="-1.45" width="0.05" layer="39"/>
+<wire x1="-3.25" y1="1.45" x2="-2.25" y2="1.45" width="0.05" layer="39"/>
+<wire x1="-2.25" y1="1.45" x2="-2.25" y2="2.25" width="0.05" layer="39"/>
+<wire x1="-3.25" y1="-1.45" x2="-2.25" y2="-1.45" width="0.05" layer="39"/>
+<wire x1="-2.25" y1="-1.45" x2="-2.25" y2="-2.25" width="0.05" layer="39"/>
+<wire x1="-2.25" y1="-2.25" x2="2.25" y2="-2.25" width="0.05" layer="39"/>
+<wire x1="2.25" y1="-2.25" x2="2.25" y2="-1.45" width="0.05" layer="39"/>
+<wire x1="2.25" y1="-1.45" x2="3.25" y2="-1.45" width="0.05" layer="39"/>
+<wire x1="2.25" y1="1.45" x2="2.25" y2="2.25" width="0.05" layer="39"/>
+<wire x1="2.25" y1="1.45" x2="3.25" y2="1.45" width="0.05" layer="39"/>
+<wire x1="3.25" y1="-1.45" x2="3.25" y2="1.45" width="0.05" layer="39"/>
+<wire x1="2" y1="-1.5" x2="2" y2="-2" width="0.127" layer="21"/>
+<wire x1="2" y1="2" x2="2" y2="1.5" width="0.127" layer="21"/>
+<wire x1="-2" y1="2" x2="-2" y2="1.5" width="0.127" layer="21"/>
+<smd name="N" x="-2" y="0" dx="2" dy="2.4" layer="1"/>
+<smd name="P" x="2" y="0" dx="2" dy="2.4" layer="1"/>
+</package>
+</packages>
+<symbols>
+<symbol name="CMT-4023S-SMT-TR">
+<wire x1="-0.635" y1="1.27" x2="0" y2="1.27" width="0.254" layer="94"/>
+<wire x1="0" y1="1.27" x2="0.635" y2="1.27" width="0.254" layer="94"/>
+<wire x1="0.635" y1="1.27" x2="0.635" y2="-1.27" width="0.254" layer="94"/>
+<wire x1="0.635" y1="-1.27" x2="0" y2="-1.27" width="0.254" layer="94"/>
+<wire x1="0" y1="-1.27" x2="-0.635" y2="-1.27" width="0.254" layer="94"/>
+<wire x1="-0.635" y1="-1.27" x2="-0.635" y2="1.27" width="0.254" layer="94"/>
+<wire x1="0.635" y1="1.27" x2="1.905" y2="3.175" width="0.254" layer="94"/>
+<wire x1="1.905" y1="3.175" x2="1.905" y2="-3.175" width="0.254" layer="94"/>
+<wire x1="1.905" y1="-3.175" x2="0.635" y2="-1.27" width="0.254" layer="94"/>
+<wire x1="0" y1="1.27" x2="0" y2="2.54" width="0.254" layer="94"/>
+<wire x1="0" y1="-1.27" x2="0" y2="-2.54" width="0.254" layer="94"/>
+<text x="-1.908809375" y="1.272540625" size="1.78155" layer="94">+</text>
+<text x="-3.81286875" y="8.8967" size="1.779340625" layer="95">&gt;NAME</text>
+<text x="-3.817590625" y="-11.4528" size="1.781540625" layer="96">&gt;VALUE</text>
+<pin name="P" x="0" y="5.08" visible="off" length="short" direction="pas" rot="R270"/>
+<pin name="N" x="0" y="-5.08" visible="off" length="short" direction="pas" rot="R90"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="CMT-4023S-SMT-TR" prefix="LS">
+<description>4 mm, 3 Vo-p, 70 dB, Surface Mount (SMT), Magnetic Audio Transducer Buzzer </description>
+<gates>
+<gate name="G$1" symbol="CMT-4023S-SMT-TR" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="CUI_CMT-4023S-SMT-TR">
+<connects>
+<connect gate="G$1" pin="N" pad="N"/>
+<connect gate="G$1" pin="P" pad="P"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="MANUFACTURER" value="CUI INC"/>
+<attribute name="PARTREV" value="1.0"/>
+<attribute name="STANDARD" value="Manufacturer recommendations"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -4885,7 +5298,7 @@ SOT-23-5 package, no indicator LED but with adjustable current, small and very i
 <part name="C8" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="0.1uF"/>
 <part name="C9" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="0.1uF"/>
 <part name="C10" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="0.1uF"/>
-<part name="L1" library="SparkFun-Coils" deviceset="INDUCTOR" device="-0603-33NH" value="FB 30Ohm"/>
+<part name="L1" library="SparkFun-Coils" deviceset="INDUCTOR" device="-0603-33NH" value="33nH/±5%/500mA"/>
 <part name="C11" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0402-16V-10%" value="0.1uF"/>
 <part name="GND15" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND16" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
@@ -4916,8 +5329,8 @@ SOT-23-5 package, no indicator LED but with adjustable current, small and very i
 <part name="GND47" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="D2" library="SparkFun-LED" deviceset="LED-GREEN" device="1206" value="GREEN"/>
 <part name="GND51" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
-<part name="R2" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="63"/>
-<part name="R3" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="27k"/>
+<part name="R2" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
+<part name="R3" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
 <part name="U3" library="SparkFun-Sensors" deviceset="MS5803-14BA" device=""/>
 <part name="SUPPLY9" library="SparkFun-Aesthetics" deviceset="3.3V" device=""/>
 <part name="SUPPLY10" library="SparkFun-Aesthetics" deviceset="3.3V" device=""/>
@@ -4925,34 +5338,34 @@ SOT-23-5 package, no indicator LED but with adjustable current, small and very i
 <part name="SUPPLY11" library="SparkFun-Aesthetics" deviceset="3.3V" device=""/>
 <part name="SUPPLY13" library="SparkFun-Aesthetics" deviceset="3.3V" device=""/>
 <part name="GND6" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
-<part name="R4" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="10k"/>
+<part name="R4" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
 <part name="GND7" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
-<part name="R5" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="10k"/>
+<part name="R5" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
 <part name="GND8" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="SUPPLY14" library="SparkFun-Aesthetics" deviceset="3.3V" device=""/>
-<part name="R6" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="100k"/>
-<part name="R7" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="100"/>
-<part name="R8" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="3.3k"/>
-<part name="R9" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="100k"/>
-<part name="R10" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="27k"/>
-<part name="R11" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="100"/>
-<part name="R12" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="3.3k"/>
-<part name="R13" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="100k"/>
-<part name="R14" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="27k"/>
-<part name="R15" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="100"/>
-<part name="R16" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="3.3k"/>
-<part name="R17" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="100k"/>
-<part name="R18" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="27k"/>
-<part name="R19" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="100"/>
-<part name="R20" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="3.3k"/>
-<part name="R21" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="100k"/>
-<part name="R22" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="27k"/>
+<part name="R6" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
+<part name="R7" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
+<part name="R8" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
+<part name="R9" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
+<part name="R10" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
+<part name="R11" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
+<part name="R12" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
+<part name="R13" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
+<part name="R14" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
+<part name="R15" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
+<part name="R16" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
+<part name="R17" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
+<part name="R18" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
+<part name="R19" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
+<part name="R20" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
+<part name="R21" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
+<part name="R22" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
 <part name="X1" library="con-molex" library_urn="urn:adsk.eagle:library:165" deviceset="22-23-2041" device="" package3d_urn="urn:adsk.eagle:package:8078635/1"/>
 <part name="X2" library="con-molex" library_urn="urn:adsk.eagle:library:165" deviceset="22-23-2041" device="" package3d_urn="urn:adsk.eagle:package:8078635/1"/>
-<part name="R23" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="10k"/>
+<part name="R23" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
 <part name="U$1" library="SaL-lib1" deviceset="PB-5R0H104-R" device=""/>
 <part name="IC1" library="BMI055" deviceset="BMI055" device=""/>
-<part name="R24" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="10k"/>
+<part name="R24" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
 <part name="SUPPLY15" library="SparkFun-PowerSymbols" deviceset="3.3V" device=""/>
 <part name="GND10" library="SparkFun-PowerSymbols" deviceset="GND" device=""/>
 <part name="SUPPLY16" library="SparkFun-PowerSymbols" deviceset="3.3V" device=""/>
@@ -4980,12 +5393,15 @@ SOT-23-5 package, no indicator LED but with adjustable current, small and very i
 <part name="J2" library="SparkFun-Connectors" deviceset="USB_MICRO-B" device="REDUCED_PASTE"/>
 <part name="GND9" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="SUPPLY5" library="SparkFun-PowerSymbols" deviceset="3.3V" device=""/>
-<part name="R1" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="10k"/>
+<part name="R1" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
 <part name="IC2" library="adafruit" library_urn="urn:adsk.eagle:library:420" deviceset="MCP73811/2" device="" package3d_urn="urn:adsk.eagle:package:6240724/1"/>
 <part name="SUPPLY12" library="SparkFun-PowerSymbols" deviceset="VCC" device=""/>
 <part name="GND5" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
-<part name="R25" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="63"/>
+<part name="R25" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
 <part name="GND29" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
+<part name="J3" library="TC2030-IDC-NL" deviceset="TC2030-IDC-NL" device=""/>
+<part name="LS1" library="CMT-8503-87-SMT-TR" deviceset="CMT-8503-87-SMT-TR" device=""/>
+<part name="LS2" library="CMT-4023S-SMT-TR" deviceset="CMT-4023S-SMT-TR" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -5382,6 +5798,18 @@ SOT-23-5 package, no indicator LED but with adjustable current, small and very i
 </instance>
 <instance part="GND29" gate="1" x="177.8" y="50.8" smashed="yes">
 <attribute name="VALUE" x="175.26" y="48.26" size="1.778" layer="96"/>
+</instance>
+<instance part="J3" gate="G$1" x="111.76" y="167.64" smashed="yes">
+<attribute name="NAME" x="106.67376875" y="180.3556" size="1.271559375" layer="95"/>
+<attribute name="VALUE" x="106.6798" y="157.4796" size="1.27005" layer="96"/>
+</instance>
+<instance part="LS1" gate="G$1" x="139.7" y="76.2" smashed="yes">
+<attribute name="NAME" x="135.89" y="85.09" size="1.778" layer="95"/>
+<attribute name="VALUE" x="135.89" y="66.04" size="1.778" layer="96" align="top-left"/>
+</instance>
+<instance part="LS2" gate="G$1" x="149.86" y="81.28" smashed="yes">
+<attribute name="NAME" x="146.04713125" y="90.1767" size="1.779340625" layer="95"/>
+<attribute name="VALUE" x="146.042409375" y="69.8272" size="1.781540625" layer="96"/>
 </instance>
 </instances>
 <busses>

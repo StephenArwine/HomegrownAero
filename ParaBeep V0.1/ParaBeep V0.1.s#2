@@ -4154,6 +4154,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <part name="GND4" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="SUPPLY10" library="SparkFun-PowerSymbols" deviceset="VCC_1" device=""/>
 <part name="GND12" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
+<part name="GND15" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -4400,6 +4401,9 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <instance part="GND12" gate="1" x="48.26" y="119.38" smashed="yes">
 <attribute name="VALUE" x="50.8" y="119.38" size="1.778" layer="96"/>
 </instance>
+<instance part="GND15" gate="1" x="116.332" y="300.736" smashed="yes">
+<attribute name="VALUE" x="113.792" y="298.196" size="1.778" layer="96"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -4537,6 +4541,25 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="50.8" y1="127" x2="48.26" y2="127" width="0.1524" layer="91"/>
 <pinref part="GND12" gate="1" pin="GND"/>
 <wire x1="48.26" y1="127" x2="48.26" y2="121.92" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="GND15" gate="1" pin="GND"/>
+<wire x1="116.332" y1="303.276" x2="116.332" y2="308.864" width="0.1524" layer="91"/>
+<wire x1="116.332" y1="308.864" x2="116.586" y2="308.864" width="0.1524" layer="91"/>
+<wire x1="116.586" y1="308.864" x2="116.586" y2="311.912" width="0.1524" layer="91"/>
+<pinref part="U1" gate="G$1" pin="EPAD"/>
+<wire x1="116.586" y1="311.912" x2="129.54" y2="311.912" width="0.1524" layer="91"/>
+<wire x1="129.54" y1="311.912" x2="129.54" y2="309.88" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="GND9" gate="1" pin="GND"/>
+<wire x1="132.08" y1="147.32" x2="132.08" y2="152.4" width="0.1524" layer="91"/>
+<pinref part="U6" gate="A" pin="GND"/>
+<wire x1="132.08" y1="152.4" x2="139.7" y2="152.4" width="0.1524" layer="91"/>
+<pinref part="U6" gate="A" pin="GNDANA"/>
+<wire x1="139.7" y1="154.94" x2="132.08" y2="154.94" width="0.1524" layer="91"/>
+<wire x1="132.08" y1="154.94" x2="132.08" y2="152.4" width="0.1524" layer="91"/>
+<junction x="132.08" y="152.4"/>
 </segment>
 </net>
 <net name="SPI_MISO" class="0">
@@ -4755,18 +4778,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="50.8" y1="144.78" x2="43.18" y2="144.78" width="0.1524" layer="91"/>
 <wire x1="43.18" y1="144.78" x2="43.18" y2="149.86" width="0.1524" layer="91"/>
 <junction x="43.18" y="149.86"/>
-</segment>
-</net>
-<net name="N$4" class="0">
-<segment>
-<wire x1="132.08" y1="154.94" x2="132.08" y2="152.4" width="0.1524" layer="91"/>
-<pinref part="GND9" gate="1" pin="GND"/>
-<pinref part="U6" gate="A" pin="GNDANA"/>
-<wire x1="132.08" y1="152.4" x2="132.08" y2="147.32" width="0.1524" layer="91"/>
-<wire x1="139.7" y1="154.94" x2="132.08" y2="154.94" width="0.1524" layer="91"/>
-<pinref part="U6" gate="A" pin="GND"/>
-<wire x1="139.7" y1="152.4" x2="132.08" y2="152.4" width="0.1524" layer="91"/>
-<junction x="132.08" y="152.4"/>
 </segment>
 </net>
 <net name="N$3" class="0">

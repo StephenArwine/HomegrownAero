@@ -26,7 +26,7 @@
 <layer number="30" name="bStop" color="7" fill="6" visible="no" active="yes"/>
 <layer number="31" name="tCream" color="7" fill="4" visible="no" active="yes"/>
 <layer number="32" name="bCream" color="7" fill="5" visible="no" active="yes"/>
-<layer number="33" name="tFinish" color="6" fill="3" visible="no" active="yes"/>
+<layer number="33" name="tFinish" color="6" fill="3" visible="yes" active="yes"/>
 <layer number="34" name="bFinish" color="6" fill="6" visible="no" active="yes"/>
 <layer number="35" name="tGlue" color="7" fill="4" visible="no" active="yes"/>
 <layer number="36" name="bGlue" color="7" fill="5" visible="no" active="yes"/>
@@ -155,6 +155,7 @@
 <wire x1="35.2806" y1="54.7116" x2="32.4866" y2="57.5056" width="0" layer="20" curve="90"/>
 <wire x1="32.4866" y1="57.5056" x2="2.794" y2="57.5056" width="0" layer="20"/>
 <wire x1="2.794" y1="57.5056" x2="0" y2="54.7116" width="0" layer="20" curve="90"/>
+<text x="18.415" y="26.035" size="1.778" layer="33" rot="R90">ParaBeep V0.1!</text>
 </plain>
 <libraries>
 <library name="TPS78330DDCR">
@@ -1302,18 +1303,14 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <attribute name="PROD_ID" value="CAP-00868" x="17.018" y="41.275" size="1.778" layer="28" rot="MR90" display="off"/>
 </element>
 <element name="C5" library="SparkFun-Capacitors" package="0603" value="1.0uF" x="15.875" y="53.594" smashed="yes" rot="MR0">
-<attribute name="NAME" x="15.875" y="55.499" size="0.6096" layer="25" font="vector" ratio="20" rot="R180" align="bottom-center"/>
+<attribute name="NAME" x="15.875" y="55.499" size="0.6096" layer="26" font="vector" ratio="20" rot="MR180" align="bottom-center"/>
 <attribute name="PROD_ID" value="CAP-00868" x="15.875" y="53.594" size="1.778" layer="28" rot="MR0" display="off"/>
 </element>
-<element name="H1" library="SparkFun-Hardware" package="STAND-OFF-TIGHT" value="STAND-OFFTIGHT" x="4.9276" y="52.5526" smashed="yes">
-<attribute name="NAME" x="4.9276" y="54.2036" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center"/>
-</element>
+<element name="H1" library="SparkFun-Hardware" package="STAND-OFF-TIGHT" value="STAND-OFFTIGHT" x="4.9276" y="52.5526" smashed="yes"/>
 <element name="H2" library="SparkFun-Hardware" package="STAND-OFF-TIGHT" value="STAND-OFFTIGHT" x="30.3276" y="4.953" smashed="yes">
-<attribute name="NAME" x="30.3276" y="6.604" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center"/>
 <attribute name="VALUE" x="30.3276" y="3.302" size="0.6096" layer="27" font="vector" ratio="20" align="top-center"/>
 </element>
 <element name="U4" library="SparkFun-GPS" package="SAM-M8Q" value="UBLOX_SAM_M8Q-0-10" x="10.16" y="10.16" smashed="yes" rot="R90">
-<attribute name="NAME" x="1.91" y="2.41" size="0.508" layer="25" rot="R90"/>
 <attribute name="PROD_ID" value="IC-14070" x="10.16" y="10.16" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="18.91" y="2.41" size="0.508" layer="27" rot="R90"/>
 </element>
@@ -1423,7 +1420,6 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <attribute name="NAME" x="25.527" y="37.465" size="0.6096" layer="26" font="vector" ratio="20" rot="MR270" align="bottom-center"/>
 </element>
 <element name="J1" library="SparkFun-Connectors" package="MICRO-SD-SOCKET" value="MICRO-SD_CARD_SOCKETPUSH-PUSH" x="17.145" y="15.367" smashed="yes" rot="MR180">
-<attribute name="NAME" x="8.255" y="9.017" size="0.6096" layer="26" font="vector" ratio="20" rot="MR180"/>
 <attribute name="PROD_ID" value="CONN-07820" x="17.145" y="15.367" size="1.778" layer="28" rot="MR180" display="off"/>
 <attribute name="VALUE" x="8.255" y="10.287" size="0.6096" layer="28" font="vector" ratio="20" rot="MR180"/>
 </element>

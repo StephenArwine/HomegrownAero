@@ -1,0 +1,27 @@
+T308C 045:624 SEGGER J-Link V6.48a Log File (0000ms, 1007ms total)
+T308C 045:624 DLL Compiled: Jul 30 2019 15:16:09 (0000ms, 1007ms total)
+T308C 045:624 Logging started @ 2021-01-27 03:40 (0000ms, 1007ms total)
+T308C 045:624 JLINK_ExecCommand("device = ATSAML10E16A", ...). Device "ATSAML10E16A" selected.  returns 0x00 (0000ms, 1007ms total)
+T308C 045:624 JLINK_GetHWStatus(...)  returns 0x00 (0001ms, 1008ms total)
+T308C 045:625 JLINK_ClrRESET() (0000ms, 1008ms total)
+T308C 045:630 JLINK_SetRESET() (0000ms, 1008ms total)
+T308C 045:636 JLINK_ClrRESET() (0000ms, 1008ms total)
+T308C 045:642 JLINK_ClrTCK()  returns 0x00 (0000ms, 1008ms total)
+T308C 045:649 JLINK_SetRESET() (0000ms, 1008ms total)
+T308C 045:655 JLINK_Clock()  returns 0x00 (0000ms, 1008ms total)
+T308C 045:660 JLINK_TIF_Select(JLINKARM_TIF_SWD)  returns 0x00 (0000ms, 1008ms total)
+T308C 045:660 JLINK_SetSpeed(50) (0000ms, 1008ms total)
+T308C 045:660 JLINK_CORESIGHT_Configure()  returns 0 (0132ms, 1140ms total)
+T308C 045:792 JLINK_ReadMem (0x41002101, 0x0001 Bytes, ...)InitTarget()Device will be unsecured now.
+  ***** Error: InitTarget(): PCode returned with error code 1InitTarget()Debug Access Level is 0 (secured).
+For debugger connection the device needs to be unsecured.
+Note: Unsecuring will trigger a mass erase of the internal flash. (8659ms, 9799ms total)
+T308C 045:792 Executing default behavior previously saved in the registry.Device will be unsecured now.InitTarget: Unsecuring device...Timeout while waiting for unsecure procedure to start.Debug Access Level is 0 (secured).
+For debugger connection the device needs to be unsecured.
+Note: Unsecuring will trigger a mass erase of the internal flash. (11170ms, 12310ms total)
+T308C 045:792 Executing default behavior previously saved in the registry.Device will be unsecured now.InitTarget: Unsecuring device...
+  ***** Error: InitTarget(): PCode returned with error code -1  returns 0x01 (13226ms, 14366ms total)
+T308C 059:020 JLINK_GetHWStatus(...)  returns 0x00 (0000ms, 14366ms total)
+T308C 061:299 JLINK_Close() (0009ms, 14375ms total)
+T308C 061:299  (0009ms, 14375ms total)
+T308C 061:299 Closed (0009ms, 14375ms total)

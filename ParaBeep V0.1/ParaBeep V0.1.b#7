@@ -1568,9 +1568,9 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="25.285" y1="49.06" x2="24.765" y2="49.58" width="0.3048" layer="16"/>
 <wire x1="24.765" y1="49.58" x2="24.765" y2="49.784" width="0.3048" layer="16"/>
 <wire x1="26.035" y1="47.625" x2="25.4" y2="48.26" width="0.254" layer="16"/>
-<wire x1="25.4" y1="48.26" x2="25.4" y2="48.387" width="0.254" layer="16"/>
-<wire x1="25.4" y1="48.387" x2="25.273" y2="48.514" width="0.254" layer="16"/>
-<wire x1="25.273" y1="48.514" x2="25.273" y2="49.048" width="0.254" layer="16"/>
+<wire x1="25.4" y1="48.26" x2="25.4" y2="48.514" width="0.254" layer="16"/>
+<wire x1="25.4" y1="48.514" x2="25.273" y2="48.641" width="0.254" layer="16"/>
+<wire x1="25.273" y1="48.641" x2="25.273" y2="49.048" width="0.254" layer="16"/>
 <wire x1="25.273" y1="49.048" x2="25.285" y2="49.06" width="0.254" layer="16"/>
 <wire x1="26.035" y1="47.625" x2="25.285" y2="46.875" width="0.254" layer="16"/>
 <wire x1="25.285" y1="46.875" x2="24.6" y2="46.875" width="0.254" layer="16"/>
@@ -1580,6 +1580,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <via x="22.606" y="30.48" extent="1-16" drill="0.35"/>
 <contactref element="U6" pad="28"/>
 <contactref element="U6" pad="10"/>
+<wire x1="15.025" y1="53.594" x2="15.748" y2="51.94935" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="SPI_MISO">
 <contactref element="U5" pad="8"/>
@@ -2092,9 +2093,17 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <approved hash="1,20,7203c07fc03f7243"/>
 <approved hash="1,20,7323c15fc047723b"/>
 <approved hash="21,19,d091d76dd56fd16f"/>
-<approved hash="21,19,420142ff4084be83"/>
-<approved hash="21,19,e737e54a1b4be749"/>
 <approved hash="21,19,7bca7b347ec800c8"/>
+<approved hash="19,16,53c41d72c372ea8e"/>
+<approved hash="19,16,d36dee0ae20d8f33"/>
+<approved hash="19,16,af74735215ee8004"/>
+<approved hash="19,16,2d46008d3640edbb"/>
+<approved hash="19,16,6cf70984dc09f440"/>
+<approved hash="19,16,6cf70984dc09f440"/>
+<approved hash="19,16,92436562499ec6cb"/>
+<approved hash="19,16,92436562499ec6cb"/>
+<approved hash="5,16,42456e8b71d2a306"/>
+<approved hash="5,16,32d21668babf670c"/>
 </errors>
 </board>
 </drawing>

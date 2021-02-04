@@ -1325,11 +1325,11 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <attribute name="SOURCELIBRARY" value="Microchip_2019-08-23_25" x="17.145" y="33.655" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="VENDOR" value="Microchip" x="17.145" y="33.655" size="1.778" layer="28" rot="MR0" display="off"/>
 </element>
-<element name="BAT" library="con-jst2" package="SM02B-SSR-H-TB" value="SM02B-SSR-H-TB" x="10.795" y="49.53" smashed="yes" rot="R180">
-<attribute name="NAME" x="9.525" y="52.07" size="1.27" layer="25"/>
+<element name="BAT" library="con-jst2" package="SM02B-SSR-H-TB" value="SM02B-SSR-H-TB" x="10.795" y="50.165" smashed="yes" rot="R180">
+<attribute name="NAME" x="8.89" y="45.72" size="1.27" layer="25"/>
 </element>
 <element name="SOL" library="con-jst2" package="SM02B-SSR-H-TB" value="SM02B-SSR-H-TB" x="20.32" y="50.165" smashed="yes" rot="R180">
-<attribute name="NAME" x="19.05" y="52.705" size="1.27" layer="25"/>
+<attribute name="NAME" x="19.05" y="45.72" size="1.27" layer="25"/>
 </element>
 <element name="U1" library="BQ25504RGTR" package="QFN50P300X300X100-17N" value="BQ25504RGTR" x="26.035" y="47.625" smashed="yes" rot="MR270">
 <attribute name="DESCRIPTION" value=" Ultra Low Power Boost Converter with Battery Management for Energy Harvester | Nano-Power Management 16-VQFN -40 to 85 " x="26.035" y="47.625" size="1.778" layer="28" rot="MR270" display="off"/>
@@ -1396,7 +1396,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <attribute name="VALUE" x="26.162" y="42.545" size="0.6096" layer="28" font="vector" ratio="20" rot="MR270" align="top-center"/>
 </element>
 <element name="L1" library="SparkFun-Coils" package="INDUCTOR_4.7UH" value="4.7µH/±30%/1.2A" x="24.003" y="52.451" smashed="yes" rot="MR270">
-<attribute name="NAME" x="22.352" y="52.451" size="0.6096" layer="26" font="vector" ratio="20" rot="MR270" align="bottom-center"/>
+<attribute name="NAME" x="24.892" y="52.451" size="0.6096" layer="26" font="vector" ratio="20" rot="MR270" align="bottom-center"/>
 <attribute name="PROD_ID" value="NDUC-10146" x="24.003" y="52.451" size="1.778" layer="28" rot="MR270" display="off"/>
 </element>
 <element name="C4" library="SparkFun-Capacitors" package="0603" value="1.0uF" x="15.875" y="47.625" smashed="yes" rot="MR180">
@@ -1517,7 +1517,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <via x="10.287" y="44.069" extent="1-16" drill="0.35"/>
 <via x="3.937" y="43.815" extent="1-16" drill="0.35"/>
 <via x="3.937" y="48.387" extent="1-16" drill="0.35"/>
-<via x="10.287" y="48.895" extent="1-16" drill="0.35"/>
+<via x="10.287" y="49.53" extent="1-16" drill="0.35"/>
 <via x="14.097" y="42.037" extent="1-16" drill="0.35"/>
 <via x="14.224" y="54.737" extent="1-16" drill="0.35"/>
 <via x="14.986" y="54.737" extent="1-16" drill="0.35"/>
@@ -1927,8 +1927,8 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="23.622" y1="45.212" x2="23.495" y2="45.085" width="0.4064" layer="16"/>
 <via x="23.495" y="45.085" extent="1-16" drill="0.35"/>
 <wire x1="23.495" y1="45.085" x2="16.383" y2="45.085" width="0.4064" layer="1"/>
-<wire x1="13.863" y1="47.605" x2="11.295" y2="47.605" width="0.4064" layer="1"/>
-<wire x1="16.383" y1="45.085" x2="13.863" y2="47.605" width="0.4064" layer="1"/>
+<wire x1="13.228" y1="48.24" x2="11.295" y2="48.24" width="0.4064" layer="1"/>
+<wire x1="16.383" y1="45.085" x2="13.228" y2="48.24" width="0.4064" layer="1"/>
 </signal>
 <signal name="VIN">
 <contactref element="U3" pad="1"/>
