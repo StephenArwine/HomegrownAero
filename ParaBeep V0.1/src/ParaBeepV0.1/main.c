@@ -99,25 +99,8 @@ int main(void) {
     init();
     initMS5803Barometer();
 
-
-
-    //powerOffWithInterrupt();
-    //delay_ms(10);
-    volatile uint8_t data[255];
-    if(sercom(2)->USART.INTFLAG.bit.RXC == 1) {
-        for (u8_t i = 0; i < 254; i++) {
-            data[i] = usartDataIn(2);
-        }
-    }
-
     buzzing = false;
     warmUp();
-
-    //pinLow(GPSINT);
-    pinHigh(GPSINT);
-
-
-    long lasttime = millis();
 
     u32_t beep = 900;
     setBuzzerFreq(beep);
@@ -125,8 +108,22 @@ int main(void) {
     TC2->COUNT16.CTRLA.reg = 0;
 
 
-    //streamAlt();
+    //pinLow(GPSINT);
+    pinHigh(GPSINT);
 
+    GPSInit();
+
+
+    //long lasttime = millis();
+
+
+
+
+    //streamAlt();
+    u8_t message[255];
+
+
+	GPSUSARTBYPASS();
 
     while (1) {
 
@@ -140,38 +137,23 @@ int main(void) {
 
         delay_us(1);
 
-        if(sercom(2)->USART.INTFLAG.bit.RXC == 1) {
-            /*u8_t message[255];
-            volatile u8_t messageLength = 0;
-
-            for (u8_t i = 0; i < 255; i++) {
-                while(sercom(2)->SPI.INTFLAG.bit.RXC == 0);
-                u8_t digit = usartDataIn(2);
-                if (digit == 0x0a ) {
-                    message[i] = digit;
-                    messageLength++;
-                    break ;
-                }
-                message[i] = digit;
-                messageLength++;
-            }
-
-            for (u8_t j = 0; j < messageLength; j++) {
-                usartDataOut(0, message[j]);
-            }
-			*/
-
-            
-            if(sercom(2)->USART.INTFLAG.bit.RXC == 1) {
-                u8_t digit = usartDataIn(2);
-                usartDataOut(0, digit);
-            }
-
-             if(sercom(0)->USART.INTFLAG.bit.RXC == 1) {
-                u8_t digit = usartDataIn(0);
-                 usartDataOut(2, digit);
-             }
-            
+        //if(sercom(2)->USART.INTFLAG.bit.RXC == 1) {
+//             u8_t messageLength = 0;
+//             for (u8_t i = 0; i < 255; i++) {
+//                 while(sercom(2)->SPI.INTFLAG.bit.RXC == 0);
+//                 u8_t digit = usartDataIn(2);
+//                 if (digit == 0x0D ) {
+//                     message[i] = digit;
+//                     messageLength++;
+//                     break;
+//                 }
+//                 message[i] = digit;
+//                 messageLength++;
+//             }
+//
+//             for (u8_t j = 0; j < messageLength; j++) {
+//                 usartDataOut(0, message[j]);
+//             }
 
             // if (takeSample) {
 
@@ -180,7 +162,7 @@ int main(void) {
 
 
 
-            parseGPSMessage();
+            //parseGPSMessage();
 
             //if (sample.AVGdXdT > .1 || sample.AVGdXdT < -0.1  ) {
 
@@ -188,8 +170,9 @@ int main(void) {
             //beepms(100);
             //}
 
-        }
+
+        //}
 
     }
-}
 
+}

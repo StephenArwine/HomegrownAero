@@ -22,7 +22,13 @@ typedef struct messageToSend {
 } messageToSend;
 
 
+void GPSInit();
 
+
+
+void BYPASSDATAOUT(SercomId id, u8_t data);
+u8_t BYPASSDATAIN(SercomId id);
+void GPSUSARTBYPASS();
 
 
 extern messageToSend myMessage;
@@ -334,7 +340,7 @@ typedef struct ubxPacket {
     sfe_ublox_packet_validity_e valid;			 //Goes from NOT_DEFINED to VALID or NOT_VALID when checksum is checked
     sfe_ublox_packet_validity_e classAndIDmatch; // Goes from NOT_DEFINED to VALID or NOT_VALID when the Class and ID match the requestedClass and requestedID
 
-}ubxPacket;
+} ubxPacket;
 
 
 void calcChecksum(ubxPacket *msg,  uint8_t *payloadCfg);

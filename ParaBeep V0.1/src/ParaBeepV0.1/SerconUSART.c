@@ -24,8 +24,6 @@ void USART0init() {
 }
 
 void USART2init() {
-
-
     //float BAUD = 65536*(1-(16*(9600/(16000000/1))));
 
     GCLK->PCHCTRL[13].reg = GCLK_PCHCTRL_GEN_GCLK2 |
@@ -46,13 +44,13 @@ void USART2init() {
 
 
 void usartDataOut(SercomId id, u8_t data) {
-    //while(sercom(id)->USART.INTFLAG.bit.DRE == 0);
     sercom(id)->USART.DATA.reg = data;
-    //while(sercom(id)->USART.INTFLAG.bit.TXC == 0);
+		//this needs to be enabled normally!!!!!!!
+	while(sercom(id)->USART.INTFLAG.bit.TXC == 0);
 }
 
 u8_t usartDataIn(SercomId id) {
     return sercom(id)->USART.DATA.reg;
-    //while(sercom(id)->USART.INTFLAG.bit.RXC == 1);
-
+	//this needs to be enabled normally!!!!!!!
+	while(sercom(id)->USART.INTFLAG.bit.RXC == 0);
 }
