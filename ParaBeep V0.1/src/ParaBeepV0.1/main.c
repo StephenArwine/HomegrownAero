@@ -123,7 +123,7 @@ int main(void) {
     u8_t message[255];
 
 
-	GPSUSARTBYPASS();
+    //GPSUSARTBYPASS();
 
     while (1) {
 
@@ -155,14 +155,14 @@ int main(void) {
 //                 usartDataOut(0, message[j]);
 //             }
 
-            // if (takeSample) {
+        if (takeSample) {
 
-            //getAltitude();
-            //takeSample = false;
+            getAltitude();
+            takeSample = false;
 
 
 
-            //parseGPSMessage();
+            parseGPSMessage();
 
             //if (sample.AVGdXdT > .1 || sample.AVGdXdT < -0.1  ) {
 
@@ -171,7 +171,7 @@ int main(void) {
             //}
 
 
-        //}
+        }
 
     }
 
