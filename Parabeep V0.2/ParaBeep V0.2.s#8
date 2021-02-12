@@ -5570,6 +5570,7 @@ This is the "KIT" version, which has limited top masking for improved ease of as
 <part name="C20" library="SparkFun-Capacitors" deviceset="6PF" device="-0402-50V-0.5%" value="6pF"/>
 <part name="C21" library="SparkFun-Capacitors" deviceset="6PF" device="-0402-50V-0.5%" value="6pF"/>
 <part name="GND21" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
+<part name="C22" library="SparkFun-Capacitors" deviceset="CAP" device="-1206" value="33uF"/>
 </parts>
 <sheets>
 <sheet>
@@ -5903,6 +5904,10 @@ This is the "KIT" version, which has limited top masking for improved ease of as
 <instance part="GND21" gate="1" x="117.856" y="160.02" smashed="yes">
 <attribute name="VALUE" x="115.316" y="157.48" size="1.778" layer="96"/>
 </instance>
+<instance part="C22" gate="G$1" x="68.58" y="248.92" smashed="yes">
+<attribute name="NAME" x="70.104" y="251.841" size="1.778" layer="95" font="vector"/>
+<attribute name="VALUE" x="70.104" y="246.761" size="1.778" layer="96" font="vector"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -5949,7 +5954,9 @@ This is the "KIT" version, which has limited top masking for improved ease of as
 <segment>
 <pinref part="C4" gate="G$1" pin="2"/>
 <pinref part="GND11" gate="1" pin="GND"/>
+<pinref part="C22" gate="G$1" pin="2"/>
 <wire x1="58.42" y1="243.84" x2="58.42" y2="246.38" width="0.1524" layer="91"/>
+<wire x1="58.42" y1="246.38" x2="68.58" y2="246.38" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="GND47" gate="1" pin="GND"/>
@@ -6181,6 +6188,9 @@ This is the "KIT" version, which has limited top masking for improved ease of as
 <wire x1="60.96" y1="254" x2="60.96" y2="261.62" width="0.1524" layer="91"/>
 <pinref part="C4" gate="G$1" pin="1"/>
 <junction x="58.42" y="254"/>
+<pinref part="C22" gate="G$1" pin="1"/>
+<wire x1="68.58" y1="254" x2="60.96" y2="254" width="0.1524" layer="91"/>
+<junction x="60.96" y="254"/>
 </segment>
 <segment>
 <pinref part="U5" gate="G$1" pin="VDD"/>
@@ -6334,6 +6344,11 @@ This is the "KIT" version, which has limited top masking for improved ease of as
 <pinref part="R13" gate="G$1" pin="2"/>
 <wire x1="38.1" y1="33.02" x2="27.94" y2="33.02" width="0.1524" layer="91"/>
 <label x="27.94" y="33.02" size="1.778" layer="95" rot="R180"/>
+</segment>
+<segment>
+<pinref part="U6" gate="G$1" pin="PA20"/>
+<wire x1="142.24" y1="111.76" x2="139.7" y2="111.76" width="0.1524" layer="91"/>
+<label x="139.7" y="111.76" size="1.778" layer="95" rot="R180"/>
 </segment>
 </net>
 <net name="GPS_INT" class="0">

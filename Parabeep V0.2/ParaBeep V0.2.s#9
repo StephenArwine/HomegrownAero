@@ -6154,12 +6154,22 @@ This is the "KIT" version, which has limited top masking for improved ease of as
 <wire x1="411.48" y1="50.8" x2="414.02" y2="50.8" width="0.1524" layer="91"/>
 <label x="414.02" y="50.8" size="1.27" layer="95" xref="yes"/>
 </segment>
+<segment>
+<pinref part="U6" gate="G$1" pin="PA22"/>
+<wire x1="142.24" y1="106.68" x2="139.7" y2="106.68" width="0.1524" layer="91"/>
+<label x="139.7" y="106.68" size="1.778" layer="95" rot="R180"/>
+</segment>
 </net>
 <net name="RX" class="0">
 <segment>
 <pinref part="JP3" gate="G$1" pin="SWO/TDO"/>
 <wire x1="411.48" y1="53.34" x2="414.02" y2="53.34" width="0.1524" layer="91"/>
 <label x="414.02" y="53.34" size="1.27" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="U6" gate="G$1" pin="PA23"/>
+<wire x1="142.24" y1="104.14" x2="139.7" y2="104.14" width="0.1524" layer="91"/>
+<label x="139.7" y="104.14" size="1.778" layer="95" rot="R180"/>
 </segment>
 </net>
 <net name="VCC_1" class="0">
@@ -6324,6 +6334,11 @@ This is the "KIT" version, which has limited top masking for improved ease of as
 <pinref part="R13" gate="G$1" pin="2"/>
 <wire x1="38.1" y1="33.02" x2="27.94" y2="33.02" width="0.1524" layer="91"/>
 <label x="27.94" y="33.02" size="1.778" layer="95" rot="R180"/>
+</segment>
+<segment>
+<pinref part="U6" gate="G$1" pin="PA20"/>
+<wire x1="142.24" y1="111.76" x2="139.7" y2="111.76" width="0.1524" layer="91"/>
+<label x="139.7" y="111.76" size="1.778" layer="95" rot="R180"/>
 </segment>
 </net>
 <net name="GPS_INT" class="0">
