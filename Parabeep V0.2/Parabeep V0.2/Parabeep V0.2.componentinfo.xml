@@ -91,7 +91,7 @@
 					<Attribute>template</Attribute>
 					<Category>source</Category>
 					<Condition>C Exe</Condition>
-					<FileContentHash>ICHHpb1zuZtQ0UOjpaCRTA==</FileContentHash>
+					<FileContentHash>iL6w8i4CoqNKLMLOR5ZiXA==</FileContentHash>
 					<FileVersion></FileVersion>
 					<Name>samd51a/templates/main.c</Name>
 					<SelectString>Main file (.c)</SelectString>
@@ -131,24 +131,24 @@
 					<SourcePath></SourcePath>
 				</d4p1:anyType>
 				<d4p1:anyType i:type="FileInfo">
-					<AbsolutePath>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\gcc\gcc\samd51g19a_flash.ld</AbsolutePath>
+					<AbsolutePath>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\gcc\gcc\samd51j19a_flash.ld</AbsolutePath>
 					<Attribute>config</Attribute>
 					<Category>linkerScript</Category>
 					<Condition>GCC Exe</Condition>
-					<FileContentHash>3qiKEKWGiz+CYyIYgdk3ZA==</FileContentHash>
+					<FileContentHash>QVdXLWNUadTvkzgLyDNrIg==</FileContentHash>
 					<FileVersion></FileVersion>
-					<Name>samd51a/gcc/gcc/samd51g19a_flash.ld</Name>
+					<Name>samd51a/gcc/gcc/samd51j19a_flash.ld</Name>
 					<SelectString></SelectString>
 					<SourcePath></SourcePath>
 				</d4p1:anyType>
 				<d4p1:anyType i:type="FileInfo">
-					<AbsolutePath>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\gcc\gcc\samd51g19a_sram.ld</AbsolutePath>
+					<AbsolutePath>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\gcc\gcc\samd51j19a_sram.ld</AbsolutePath>
 					<Attribute>config</Attribute>
 					<Category>other</Category>
 					<Condition>GCC Exe</Condition>
-					<FileContentHash>ZykYRPvx76nsA2Htije8Hg==</FileContentHash>
+					<FileContentHash>7VeeG0Y98TxFWOsexRJysQ==</FileContentHash>
 					<FileVersion></FileVersion>
-					<Name>samd51a/gcc/gcc/samd51g19a_sram.ld</Name>
+					<Name>samd51a/gcc/gcc/samd51j19a_sram.ld</Name>
 					<SelectString></SelectString>
 					<SourcePath></SourcePath>
 				</d4p1:anyType>
@@ -157,7 +157,7 @@
 			<PackPath>C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/SAMD51_DFP/1.2.139/Atmel.SAMD51_DFP.pdsc</PackPath>
 			<PackVersion>1.2.139</PackVersion>
 			<PresentInProject>true</PresentInProject>
-			<ReferenceConditionId>ATSAMD51G19A</ReferenceConditionId>
+			<ReferenceConditionId>ATSAMD51J19A</ReferenceConditionId>
 			<RteComponents xmlns:d4p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
 				<d4p1:string></d4p1:string>
 			</RteComponents>

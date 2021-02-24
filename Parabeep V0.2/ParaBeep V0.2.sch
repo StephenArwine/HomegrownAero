@@ -5763,8 +5763,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <part name="C7" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0603-25V-5%" value="0.1uF"/>
 <part name="R3" library="SparkFun-Resistors" deviceset="RESISTOR" device="0603" value="6.19M"/>
 <part name="R6" library="SparkFun-Resistors" deviceset="RESISTOR" device="0603" value="3.83M"/>
-<part name="R7" library="SparkFun-Resistors" deviceset="RESISTOR" device="0603" value="4.42M"/>
-<part name="R9" library="SparkFun-Resistors" deviceset="RESISTOR" device="0603" value="5.65M"/>
+<part name="R7" library="SparkFun-Resistors" deviceset="RESISTOR" device="0603" value="6.19M"/>
+<part name="R9" library="SparkFun-Resistors" deviceset="RESISTOR" device="0603" value=".549M"/>
 <part name="L1" library="SparkFun-Coils" deviceset="INDUCTOR" device="-CDRH-4.7UH" value="22µH - 744031220"/>
 <part name="GND5" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND8" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
@@ -5785,8 +5785,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <part name="C2" library="SparkFun-Capacitors" deviceset="4.7UF" device="-0603-6.3V-(10%)" value="4.7uF"/>
 <part name="C8" library="SparkFun-Capacitors" deviceset="4.7UF" device="-0603-6.3V-(10%)" value="4.7uF"/>
 <part name="R1" library="SparkFun-Resistors" deviceset="RESISTOR" device="0603" value="5.65M"/>
-<part name="R2" library="SparkFun-Resistors" deviceset="RESISTOR" device="0603" value="5.65M"/>
-<part name="R10" library="SparkFun-Resistors" deviceset="RESISTOR" device="0603" value="4.42M"/>
+<part name="R2" library="SparkFun-Resistors" deviceset="RESISTOR" device="0603" value="4.42M"/>
+<part name="R10" library="SparkFun-Resistors" deviceset="RESISTOR" device="0603" value="3.32M"/>
 <part name="GND1" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND10" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND15" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
@@ -6460,6 +6460,11 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <pinref part="R5" gate="G$1" pin="2"/>
 <wire x1="269.24" y1="20.32" x2="276.86" y2="20.32" width="0.1524" layer="91"/>
 <junction x="269.24" y="20.32"/>
+</segment>
+<segment>
+<pinref part="U6" gate="G$1" pin="!RESET"/>
+<wire x1="195.58" y1="182.88" x2="205.74" y2="182.88" width="0.1524" layer="91"/>
+<label x="198.12" y="182.88" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="TX" class="0">

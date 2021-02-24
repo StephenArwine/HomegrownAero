@@ -120,20 +120,20 @@ void GPSInit() {
         usartDataOut(2, PM2CONFIG[i]);
     }
     delay_ms(200);
-//     for (u8_t i = 0 ; i < 16; i++) {
-//         usartDataOut(2, GLLOFF[i]);
-//     }
-//     delay_ms(200);
-//     for (u8_t i = 0 ; i < 16; i++) {
-//         usartDataOut(2, GSAOFF[i]);
-//     }
-//     delay_ms(200);
-//     for (u8_t i = 0 ; i < 16; i++) {
-//         usartDataOut(2, GSVOFF[i]);
-//     }
-//     for (u8_t i = 0 ; i < 16; i++) {
-//         usartDataOut(2, VTGOFF[i]);
-//     }
+     for (u8_t i = 0 ; i < 16; i++) {
+         usartDataOut(2, GLLOFF[i]);
+     }
+     delay_ms(200);
+     for (u8_t i = 0 ; i < 16; i++) {
+         usartDataOut(2, GSAOFF[i]);
+     }
+     delay_ms(200);
+     for (u8_t i = 0 ; i < 16; i++) {
+         usartDataOut(2, GSVOFF[i]);
+     }
+     for (u8_t i = 0 ; i < 16; i++) {
+         usartDataOut(2, VTGOFF[i]);
+     }
 
 
 

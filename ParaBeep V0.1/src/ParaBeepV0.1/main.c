@@ -111,7 +111,7 @@ int main(void) {
     //pinLow(GPSINT);
     pinHigh(GPSINT);
 
-    GPSInit();
+    //GPSInit();
 
 
     //long lasttime = millis();
@@ -162,7 +162,7 @@ int main(void) {
 
 
 
-            parseGPSMessage();
+            //parseGPSMessage();
 
             //if (sample.AVGdXdT > .1 || sample.AVGdXdT < -0.1  ) {
 
