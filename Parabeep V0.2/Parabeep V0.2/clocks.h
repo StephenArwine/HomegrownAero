@@ -18,5 +18,7 @@ void clock_init(bool has_crystal, uint32_t dfll48m_fine_calibration);
 void init_dynamic_clocks(void);
 
 
-
+void rtcInit();
+void RTC_Handler(void);
+uint32_t millis(void);
 

@@ -5,7 +5,6 @@
 void SPIinit(u8_t id){
 		// prevent this clock write from changing any other clocks
 		GCLK->PCHCTRL[12].reg = GCLK_PCHCTRL_GEN_GCLK2 | GCLK_PCHCTRL_CHEN;
-		//PM->APBCMASK.reg |= 1 << (MCLK_APBCMASK_SERCOM0_Pos + id);
 
 
 

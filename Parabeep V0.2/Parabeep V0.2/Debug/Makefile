@@ -38,11 +38,13 @@ SUBDIRS :=  \
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
+../adxl345.c \
 ../clocks.c \
 ../Device_Startup/startup_samd51.c \
 ../Device_Startup/system_samd51.c \
 ../main.c \
 ../MS5803.c \
+../RTCc.c \
 ../sercomSPIc.c
 
 
@@ -53,35 +55,43 @@ ASM_SRCS +=
 
 
 OBJS +=  \
+adxl345.o \
 clocks.o \
 Device_Startup/startup_samd51.o \
 Device_Startup/system_samd51.o \
 main.o \
 MS5803.o \
+RTCc.o \
 sercomSPIc.o
 
 OBJS_AS_ARGS +=  \
+adxl345.o \
 clocks.o \
 Device_Startup/startup_samd51.o \
 Device_Startup/system_samd51.o \
 main.o \
 MS5803.o \
+RTCc.o \
 sercomSPIc.o
 
 C_DEPS +=  \
+adxl345.d \
 clocks.d \
 Device_Startup/startup_samd51.d \
 Device_Startup/system_samd51.d \
 main.d \
 MS5803.d \
+RTCc.d \
 sercomSPIc.d
 
 C_DEPS_AS_ARGS +=  \
+adxl345.d \
 clocks.d \
 Device_Startup/startup_samd51.d \
 Device_Startup/system_samd51.d \
 main.d \
 MS5803.d \
+RTCc.d \
 sercomSPIc.d
 
 OUTPUT_FILE_PATH +=Parabeep\ V0.2.elf
@@ -100,6 +110,13 @@ LINKER_SCRIPT_DEP+=  \
 
 
 # AVR32/GNU C Compiler
+./adxl345.o: .././adxl345.c
+	@echo Building file: $<
+	@echo Invoking: ARM/GNU C Compiler : 6.3.1
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMD51J19A__ -DDEBUG  -I".." -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include"  -Og -ffunction-sections -ffast-math -mlong-calls -g3 -Wall -mcpu=cortex-m4 -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
 ./clocks.o: .././clocks.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
@@ -129,6 +146,13 @@ Device_Startup/system_samd51.o: ../Device_Startup/system_samd51.c
 	
 
 ./MS5803.o: .././MS5803.c
+	@echo Building file: $<
+	@echo Invoking: ARM/GNU C Compiler : 6.3.1
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMD51J19A__ -DDEBUG  -I".." -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include"  -Og -ffunction-sections -ffast-math -mlong-calls -g3 -Wall -mcpu=cortex-m4 -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+./RTCc.o: .././RTCc.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMD51J19A__ -DDEBUG  -I".." -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include"  -Og -ffunction-sections -ffast-math -mlong-calls -g3 -Wall -mcpu=cortex-m4 -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

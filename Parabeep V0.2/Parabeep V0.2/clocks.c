@@ -98,17 +98,17 @@ volatile u8_t TC0Dur = 100;
 void TC0Init() {
 
 //     init_clock_source_osculp32k();
-// 
-// 
+//
+//
 //     //OSC32KCTRL->RTCCTRL.bit.RTCSEL = OSC32KCTRL_RTCCTRL_RTCSEL_ULP32K_Val;
-// 
-// 
+//
+//
 //     enable_clock_generator(3, GCLK_GENCTRL_SRC_OSCULP32K, 1);
-// 
+//
 //     connect_gclk_to_peripheral(3, 9);
-// 
+//
 //     MCLK->APBAMASK.reg |= MCLK_APBAMASK_TC0;
-// 
+//
 //     TC0->COUNT8.CTRLA.reg = TC_CTRLA_SWRST;
 //     while(TC0->COUNT8.SYNCBUSY.bit.SWRST);
 //     //TC0->COUNT16.CTRLBSET.reg = TC_CTRLBSET_ONESHOT;
@@ -117,7 +117,7 @@ void TC0Init() {
 //                             TC_CTRLA_PRESCALER_DIV2 |
 //                             TC_CTRLA_ENABLE;
 //     TC0->COUNT8.PERBUF.reg = TC0Dur;
-// 
+//
 //     while(TC0->COUNT8.SYNCBUSY.bit.ENABLE);
 //     NVIC_EnableIRQ(TC0_IRQn);
 }
@@ -197,4 +197,42 @@ void delay_us(uint32_t n) {
         /* divide up to blocks of 10u */
         delay_cycles(cycles_per_us);
     }
+}
+
+
+void rtcInit() {
+    RTC->MODE1.CTRLA.reg = RTC_MODE1_CTRLA_SWRST;
+    while (RTC->MODE1.SYNCBUSY.bit.SWRST);
+
+    OSC32KCTRL->RTCCTRL.reg = OSC32KCTRL_RTCCTRL_RTCSEL_ULP32K;
+
+    RTC->MODE1.INTENSET.reg = RTC_MODE1_INTENSET_OVF;
+
+    RTC->MODE1.CTRLA.reg = RTC_MODE1_CTRLA_MODE_COUNT16 |
+                           RTC_MODE1_CTRLA_PRESCALER_DIV32 |
+                           RTC_MODE1_CTRLA_COUNTSYNC;
+    RTC->MODE1.PER.reg = RTC_MODE1_PER_PER(998);
+    RTC->MODE1.CTRLA.reg |= RTC_MODE1_CTRLA_ENABLE;
+    while (RTC->MODE1.SYNCBUSY.bit.ENABLE);
+
+
+    NVIC_EnableIRQ(RTC_IRQn);
+}
+
+volatile uint32_t time_ms = 0;
+
+void RTC_Handler(void) {
+    RTC->MODE1.INTFLAG.reg = RTC_MODE1_INTFLAG_OVF;
+    time_ms += 1000;
+}
+
+uint32_t millis(void) {
+    uint32_t ms;
+    ATOMIC_SECTION_ENTER
+    ms = time_ms + RTC->MODE1.COUNT.reg;
+    if (RTC->MODE1.INTFLAG.bit.OVF) {
+        ms = time_ms + RTC->MODE1.COUNT.reg + 1000;
+    }
+    ATOMIC_SECTION_LEAVE
+    return ms;
 }

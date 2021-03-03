@@ -1,0 +1,238 @@
+<!--This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA) with Design Exception 1.0-->
+<eagle version="7.1.0">
+<drawing>
+<settings>
+<setting alwaysvectorfont="no"/>
+<setting verticaltext="up"/>
+</settings>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<layers>
+<layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
+<layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="yes"/>
+<layer number="17" name="Pads" color="2" fill="1" visible="yes" active="yes"/>
+<layer number="18" name="Vias" color="2" fill="1" visible="yes" active="yes"/>
+<layer number="19" name="Unrouted" color="6" fill="1" visible="yes" active="yes"/>
+<layer number="20" name="Dimension" color="15" fill="1" visible="yes" active="yes"/>
+<layer number="21" name="tPlace" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="22" name="bPlace" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="yes"/>
+<layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="yes"/>
+<layer number="25" name="tNames" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="26" name="bNames" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="27" name="tValues" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="28" name="bValues" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="29" name="tStop" color="7" fill="3" visible="yes" active="yes"/>
+<layer number="30" name="bStop" color="7" fill="6" visible="no" active="yes"/>
+<layer number="31" name="tCream" color="7" fill="4" visible="yes" active="yes"/>
+<layer number="32" name="bCream" color="7" fill="5" visible="no" active="yes"/>
+<layer number="33" name="tFinish" color="6" fill="3" visible="no" active="yes"/>
+<layer number="34" name="bFinish" color="6" fill="6" visible="no" active="yes"/>
+<layer number="35" name="tGlue" color="7" fill="4" visible="no" active="yes"/>
+<layer number="36" name="bGlue" color="7" fill="5" visible="no" active="yes"/>
+<layer number="37" name="tTest" color="7" fill="1" visible="no" active="yes"/>
+<layer number="38" name="bTest" color="7" fill="1" visible="no" active="yes"/>
+<layer number="39" name="tKeepout" color="4" fill="11" visible="yes" active="yes"/>
+<layer number="40" name="bKeepout" color="1" fill="11" visible="yes" active="yes"/>
+<layer number="41" name="tRestrict" color="4" fill="10" visible="yes" active="yes"/>
+<layer number="42" name="bRestrict" color="1" fill="10" visible="yes" active="yes"/>
+<layer number="43" name="vRestrict" color="2" fill="10" visible="yes" active="yes"/>
+<layer number="44" name="Drills" color="7" fill="1" visible="no" active="yes"/>
+<layer number="45" name="Holes" color="7" fill="1" visible="no" active="yes"/>
+<layer number="46" name="Milling" color="3" fill="1" visible="no" active="yes"/>
+<layer number="47" name="Measures" color="7" fill="1" visible="no" active="yes"/>
+<layer number="48" name="Document" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="49" name="Reference" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="51" name="tDocu" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="52" name="bDocu" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="90" name="Modules" color="5" fill="1" visible="yes" active="yes"/>
+<layer number="91" name="Nets" color="2" fill="1" visible="yes" active="yes"/>
+<layer number="92" name="Busses" color="1" fill="1" visible="yes" active="yes"/>
+<layer number="93" name="Pins" color="2" fill="1" visible="yes" active="yes"/>
+<layer number="94" name="Symbols" color="4" fill="1" visible="yes" active="yes"/>
+<layer number="95" name="Names" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="96" name="Values" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="97" name="Info" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="98" name="Guide" color="6" fill="1" visible="yes" active="yes"/>
+</layers>
+<library>
+<packages>
+<package name="XCVR_BMD-350-A-R">
+<wire x1="-3.2" y1="-4.325" x2="3.2" y2="-4.325" width="0.127" layer="51"/>
+<wire x1="3.2" y1="-4.325" x2="3.2" y2="4.325" width="0.127" layer="51"/>
+<wire x1="3.2" y1="4.325" x2="-3.2" y2="4.325" width="0.127" layer="51"/>
+<wire x1="-3.2" y1="4.325" x2="-3.2" y2="-4.325" width="0.127" layer="51"/>
+<rectangle x1="-2.5" y1="1.2" x2="2.5" y2="4.325" layer="42"/>
+<rectangle x1="-2.5" y1="1.2" x2="2.5" y2="4.325" layer="43"/>
+<text x="-3.5" y="4.7" size="0.8128" layer="25">&gt;NAME</text>
+<text x="-3.5" y="-5.5" size="0.8128" layer="27">&gt;VALUE</text>
+<wire x1="-3.45" y1="-4.575" x2="-3.45" y2="4.575" width="0.05" layer="39"/>
+<wire x1="-3.45" y1="4.575" x2="3.45" y2="4.575" width="0.05" layer="39"/>
+<wire x1="3.45" y1="4.575" x2="3.45" y2="-4.575" width="0.05" layer="39"/>
+<wire x1="3.45" y1="-4.575" x2="-3.45" y2="-4.575" width="0.05" layer="39"/>
+<circle x="-3.8" y="3.9" radius="0.1" width="0.2" layer="21"/>
+<circle x="-3.8" y="3.9" radius="0.1" width="0.2" layer="51"/>
+<wire x1="-3.29" y1="-4.38" x2="3.29" y2="-4.38" width="0.127" layer="21"/>
+<wire x1="3.29" y1="-4.38" x2="3.29" y2="4.38" width="0.127" layer="21"/>
+<wire x1="3.29" y1="4.38" x2="-3.29" y2="4.38" width="0.127" layer="21"/>
+<wire x1="-3.29" y1="4.38" x2="-3.29" y2="-4.38" width="0.127" layer="21"/>
+<rectangle x1="-2.5" y1="1.2" x2="2.5" y2="4.325" layer="41"/>
+<smd name="16" x="-1.7" y="-3.905" dx="0.4" dy="0.4" layer="1"/>
+<smd name="1" x="-2.775" y="3.873" dx="0.4" dy="0.4" layer="1"/>
+<smd name="2" x="-2.775" y="2.653" dx="0.4" dy="0.4" layer="1"/>
+<smd name="3" x="-2.775" y="1.425" dx="0.4" dy="0.4" layer="1"/>
+<smd name="4" x="-2.125" y="1" dx="0.4" dy="0.4" layer="1"/>
+<smd name="5" x="-2.775" y="0.575" dx="0.4" dy="0.4" layer="1"/>
+<smd name="6" x="-2.125" y="0.15" dx="0.4" dy="0.4" layer="1"/>
+<smd name="7" x="-2.775" y="-0.275" dx="0.4" dy="0.4" layer="1"/>
+<smd name="8" x="-2.125" y="-0.7" dx="0.4" dy="0.4" layer="1"/>
+<smd name="9" x="-2.775" y="-1.125" dx="0.4" dy="0.4" layer="1"/>
+<smd name="10" x="-2.125" y="-1.55" dx="0.4" dy="0.4" layer="1"/>
+<smd name="11" x="-2.775" y="-1.975" dx="0.4" dy="0.4" layer="1"/>
+<smd name="12" x="-2.125" y="-2.4" dx="0.4" dy="0.4" layer="1"/>
+<smd name="13" x="-2.775" y="-2.825" dx="0.4" dy="0.4" layer="1"/>
+<smd name="14" x="-2.125" y="-3.25" dx="0.4" dy="0.4" layer="1"/>
+<smd name="15" x="-2.775" y="-3.905" dx="0.4" dy="0.4" layer="1"/>
+<smd name="17" x="-1.275" y="-3.25" dx="0.4" dy="0.4" layer="1"/>
+<smd name="18" x="-0.85" y="-3.905" dx="0.4" dy="0.4" layer="1"/>
+<smd name="19" x="-0.425" y="-3.25" dx="0.4" dy="0.4" layer="1"/>
+<smd name="20" x="0" y="-3.905" dx="0.4" dy="0.4" layer="1"/>
+<smd name="21" x="0.425" y="-3.25" dx="0.4" dy="0.4" layer="1"/>
+<smd name="22" x="0.85" y="-3.905" dx="0.4" dy="0.4" layer="1"/>
+<smd name="23" x="1.275" y="-3.25" dx="0.4" dy="0.4" layer="1"/>
+<smd name="24" x="1.7" y="-3.905" dx="0.4" dy="0.4" layer="1"/>
+<smd name="25" x="2.125" y="-3.25" dx="0.4" dy="0.4" layer="1"/>
+<smd name="26" x="2.775" y="-3.905" dx="0.4" dy="0.4" layer="1"/>
+<smd name="27" x="2.775" y="-2.825" dx="0.4" dy="0.4" layer="1"/>
+<smd name="28" x="2.125" y="-2.4" dx="0.4" dy="0.4" layer="1"/>
+<smd name="29" x="2.775" y="-1.975" dx="0.4" dy="0.4" layer="1"/>
+<smd name="31" x="2.775" y="-1.125" dx="0.4" dy="0.4" layer="1"/>
+<smd name="30" x="2.125" y="-1.55" dx="0.4" dy="0.4" layer="1"/>
+<smd name="32" x="2.125" y="-0.7" dx="0.4" dy="0.4" layer="1"/>
+<smd name="33" x="2.775" y="-0.275" dx="0.4" dy="0.4" layer="1"/>
+<smd name="34" x="2.125" y="0.15" dx="0.4" dy="0.4" layer="1"/>
+<smd name="35" x="2.775" y="0.575" dx="0.4" dy="0.4" layer="1"/>
+<smd name="36" x="2.125" y="1" dx="0.4" dy="0.4" layer="1"/>
+<smd name="37" x="2.775" y="1.425" dx="0.4" dy="0.4" layer="1"/>
+<smd name="38" x="2.775" y="2.653" dx="0.4" dy="0.4" layer="1"/>
+<smd name="39" x="2.775" y="3.873" dx="0.4" dy="0.4" layer="1"/>
+<smd name="40" x="-1.275" y="1" dx="0.4" dy="0.4" layer="1"/>
+<smd name="41" x="-1.275" y="-0.7" dx="0.4" dy="0.4" layer="1"/>
+<smd name="42" x="-1.275" y="-2.4" dx="0.4" dy="0.4" layer="1"/>
+<smd name="43" x="0" y="-2.4" dx="0.4" dy="0.4" layer="1"/>
+<smd name="44" x="1.275" y="-2.4" dx="0.4" dy="0.4" layer="1"/>
+<smd name="45" x="1.275" y="-0.7" dx="0.4" dy="0.4" layer="1"/>
+<smd name="46" x="1.275" y="1" dx="0.4" dy="0.4" layer="1"/>
+<smd name="47" x="0" y="1" dx="0.4" dy="0.4" layer="1"/>
+</package>
+</packages>
+<symbols>
+<symbol name="BMD-350-A-R">
+<text x="-20.32" y="-35.56" size="2.54" layer="96">&gt;VALUE</text>
+<text x="-20.32" y="33.02" size="2.54" layer="95">&gt;NAME</text>
+<wire x1="20.32" y1="-33.02" x2="20.32" y2="33.02" width="0.254" layer="94"/>
+<wire x1="20.32" y1="33.02" x2="-20.32" y2="33.02" width="0.254" layer="94"/>
+<wire x1="-20.32" y1="33.02" x2="-20.32" y2="-33.02" width="0.254" layer="94"/>
+<wire x1="-20.32" y1="-33.02" x2="20.32" y2="-33.02" width="0.254" layer="94"/>
+<pin name="GND" x="25.4" y="-30.48" length="middle" direction="pwr" rot="R180"/>
+<pin name="VCC" x="25.4" y="30.48" length="middle" direction="pwr" rot="R180"/>
+<pin name="SWDIO" x="-25.4" y="22.86" length="middle"/>
+<pin name="SWCLK" x="-25.4" y="25.4" length="middle" direction="in" function="clk"/>
+<pin name="P0.00/XL1" x="-25.4" y="17.78" length="middle"/>
+<pin name="P0.01/XL2" x="-25.4" y="15.24" length="middle"/>
+<pin name="P0.02/AIN0" x="-25.4" y="12.7" length="middle"/>
+<pin name="P0.03/AIN1" x="-25.4" y="10.16" length="middle"/>
+<pin name="P0.04/AIN2" x="-25.4" y="7.62" length="middle"/>
+<pin name="P0.05/AIN3" x="-25.4" y="5.08" length="middle"/>
+<pin name="P0.06" x="-25.4" y="2.54" length="middle"/>
+<pin name="P0.27" x="25.4" y="7.62" length="middle" rot="R180"/>
+<pin name="P0.26" x="25.4" y="5.08" length="middle" rot="R180"/>
+<pin name="P0.24" x="25.4" y="0" length="middle" rot="R180"/>
+<pin name="P0.25" x="25.4" y="2.54" length="middle" rot="R180"/>
+<pin name="P0.08" x="-25.4" y="-2.54" length="middle"/>
+<pin name="P0.09/NFC1" x="-25.4" y="-5.08" length="middle"/>
+<pin name="P0.10/NFC2" x="-25.4" y="-7.62" length="middle"/>
+<pin name="P0.11" x="-25.4" y="-10.16" length="middle"/>
+<pin name="P0.07" x="-25.4" y="0" length="middle"/>
+<pin name="P0.12" x="-25.4" y="-12.7" length="middle"/>
+<pin name="P0.13" x="-25.4" y="-15.24" length="middle"/>
+<pin name="P0.14/TRACED[3]" x="-25.4" y="-17.78" length="middle"/>
+<pin name="P0.15/TRACED[2]" x="-25.4" y="-20.32" length="middle"/>
+<pin name="P0.16/TRACED[1]" x="25.4" y="-20.32" length="middle" rot="R180"/>
+<pin name="P0.17" x="25.4" y="-17.78" length="middle" rot="R180"/>
+<pin name="P0.18/TRACED[0]" x="25.4" y="-15.24" length="middle" rot="R180"/>
+<pin name="P0.19" x="25.4" y="-12.7" length="middle" rot="R180"/>
+<pin name="P0.20/TRACECLK" x="25.4" y="-10.16" length="middle" rot="R180"/>
+<pin name="P0.21/!RESET!" x="25.4" y="-7.62" length="middle" rot="R180"/>
+<pin name="P0.22" x="25.4" y="-5.08" length="middle" rot="R180"/>
+<pin name="P0.23" x="25.4" y="-2.54" length="middle" rot="R180"/>
+<pin name="P0.28/AIN4" x="25.4" y="10.16" length="middle" rot="R180"/>
+<pin name="P0.29/AIN5" x="25.4" y="12.7" length="middle" rot="R180"/>
+<pin name="P0.30/AIN6" x="25.4" y="15.24" length="middle" rot="R180"/>
+<pin name="P0.31/AIN7" x="25.4" y="17.78" length="middle" rot="R180"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="BMD-350-A-R" prefix="U">
+<description>Mod Ble 4.2 Nordic Nrf52832 Soc </description>
+<gates>
+<gate name="G$1" symbol="BMD-350-A-R" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="XCVR_BMD-350-A-R">
+<connects>
+<connect gate="G$1" pin="GND" pad="1 2 3 15 26 37 38 39 40 43 46 47"/>
+<connect gate="G$1" pin="P0.00/XL1" pad="24"/>
+<connect gate="G$1" pin="P0.01/XL2" pad="23"/>
+<connect gate="G$1" pin="P0.02/AIN0" pad="28"/>
+<connect gate="G$1" pin="P0.03/AIN1" pad="44"/>
+<connect gate="G$1" pin="P0.04/AIN2" pad="27"/>
+<connect gate="G$1" pin="P0.05/AIN3" pad="21"/>
+<connect gate="G$1" pin="P0.06" pad="19"/>
+<connect gate="G$1" pin="P0.07" pad="22"/>
+<connect gate="G$1" pin="P0.08" pad="20"/>
+<connect gate="G$1" pin="P0.09/NFC1" pad="16"/>
+<connect gate="G$1" pin="P0.10/NFC2" pad="17"/>
+<connect gate="G$1" pin="P0.11" pad="18"/>
+<connect gate="G$1" pin="P0.12" pad="13"/>
+<connect gate="G$1" pin="P0.13" pad="12"/>
+<connect gate="G$1" pin="P0.14/TRACED[3]" pad="14"/>
+<connect gate="G$1" pin="P0.15/TRACED[2]" pad="11"/>
+<connect gate="G$1" pin="P0.16/TRACED[1]" pad="9"/>
+<connect gate="G$1" pin="P0.17" pad="10"/>
+<connect gate="G$1" pin="P0.18/TRACED[0]" pad="8"/>
+<connect gate="G$1" pin="P0.19" pad="42"/>
+<connect gate="G$1" pin="P0.20/TRACECLK" pad="6"/>
+<connect gate="G$1" pin="P0.21/!RESET!" pad="7"/>
+<connect gate="G$1" pin="P0.22" pad="41"/>
+<connect gate="G$1" pin="P0.23" pad="35"/>
+<connect gate="G$1" pin="P0.24" pad="36"/>
+<connect gate="G$1" pin="P0.25" pad="33"/>
+<connect gate="G$1" pin="P0.26" pad="34"/>
+<connect gate="G$1" pin="P0.27" pad="32"/>
+<connect gate="G$1" pin="P0.28/AIN4" pad="45"/>
+<connect gate="G$1" pin="P0.29/AIN5" pad="31"/>
+<connect gate="G$1" pin="P0.30/AIN6" pad="29"/>
+<connect gate="G$1" pin="P0.31/AIN7" pad="30"/>
+<connect gate="G$1" pin="SWCLK" pad="4"/>
+<connect gate="G$1" pin="SWDIO" pad="5"/>
+<connect gate="G$1" pin="VCC" pad="25"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="MP" value="BMD-350-A-R"/>
+<attribute name="Description" value="
+Bluetooth Bluetooth v5.0 Transceiver Module 2.4GHz Integrated, Trace Surface Mount
+"/>
+<attribute name="MF" value="U-Blox"/>
+<attribute name="Package" value="None"/>
+<attribute name="Digi-Key_Part_Number" value="672-BMD-350-A-RCT-ND"/>
+<attribute name="Purchase-URL" value="https://pricing.snapeda.com/search/part/BMD-350-A-R/?ref=eda"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
+</drawing>
+</eagle>

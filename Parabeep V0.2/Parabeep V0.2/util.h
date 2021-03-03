@@ -18,6 +18,7 @@ typedef uint8_t SercomId;
 bool buzzing;
 
 #define SPI0 0
+#define SPI5 5
 
 typedef struct sample_t {
 
@@ -53,6 +54,7 @@ sample_t sample;
 #include <port.h>
 #include <clocks.h>
 #include <MS5803.h>
+#include <adxl345.h>
 
 
 
@@ -66,6 +68,16 @@ const static Pin spi0SCK = {.group = 0, .pin = 9, .mux = MUX_PA09C_SERCOM0_PAD1}
 const static Pin cs_baro = {.group = 0, .pin = 7};
 const static Pin cs_accel = {.group = 0, .pin = 11};
 
+const static Pin spi5MOSI = {.group = 1, .pin = 2, .mux = MUX_PB02D_SERCOM5_PAD0};
+const static Pin spi5MISO = {.group = 1, .pin =1, .mux = MUX_PB01D_SERCOM5_PAD3};
+const static Pin spi5SCK = {.group = 1, .pin = 3, .mux = MUX_PB03D_SERCOM5_PAD1};
+const static Pin cs_mem = {.group = 1, .pin = 0};
+
+#define ATOMIC_SECTION_ENTER   { register uint32_t __atomic; \
+	__asm volatile ("mrs %0, primask" : "=r" (__atomic) ); \
+	__asm volatile ("cpsid i");
+#define ATOMIC_SECTION_LEAVE   __asm volatile ("msr primask, %0" : : "r" (__atomic) ); }
+
 
 
 
@@ -78,10 +90,24 @@ void TC2Init();
 
 //sercomSPI.c
 void SPI0init(u8_t id);
+void SPI5init(u8_t id);
 u8_t spiDataTransfer(SercomId id, u8_t data);
 void spiDataOut(SercomId id, u8_t data);
 u8_t spiDataIn(SercomId id);
 
 inline static Sercom* sercom(SercomId id) {
-    return (Sercom*) (0x40003000U + id * 400);
+    if ( id == 0) {
+        return (Sercom*) (0x40003000U);
+    } else if ( id == 1) {
+        return (Sercom*) (0x40003400U);
+    } else if ( id == 2) {
+        return (Sercom*) (0x41012000U);
+    } else if ( id == 3) {
+        return (Sercom*) (0x41014000U);
+    } else if ( id == 4) {
+        return (Sercom*) (0x43000000U);
+    } else if ( id == 5) {
+        return (Sercom*) (0x43000400U);
+    }
+
 }
