@@ -75,5 +75,3 @@ typedef enum {
 } ADXL345Range;
 
 
-u8_t adxlReadByte(u8_t address);
-void adxlWriteByte(u8_t address, u8_t data);

@@ -6426,11 +6426,11 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <part name="C4" library="SparkFun-Capacitors" deviceset="1.0UF" device="-0603-16V-10%" value="1.0uF"/>
 <part name="GND11" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="D1" library="SparkFun-DiscreteSemi" deviceset="DIODE" device="-BAS16J" value="250mA/100V"/>
-<part name="R13" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
+<part name="R13" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="180"/>
 <part name="SUPPLY5" library="SparkFun-PowerSymbols" deviceset="VCC_1" device=""/>
 <part name="C12" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0603-25V-(+80/-20%)" value="10uF"/>
 <part name="L2" library="SparkFun-Coils" deviceset="INDUCTOR" device="FB-30OHM"/>
-<part name="R5" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
+<part name="R5" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="100k"/>
 <part name="GND4" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="SUPPLY10" library="SparkFun-PowerSymbols" deviceset="VCC_1" device=""/>
 <part name="GND12" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
@@ -6458,11 +6458,11 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <part name="C22" library="SparkFun-Capacitors" deviceset="CAP" device="-1206" value="33uF"/>
 <part name="IC2" library="adafruit" library_urn="urn:adsk.eagle:library:420" deviceset="MCP73811/2" device="" package3d_urn="urn:adsk.eagle:package:6240724/1"/>
 <part name="GND22" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
-<part name="R25" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
+<part name="R25" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="2k"/>
 <part name="GND29" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="SUPPLY14" library="SparkFun-PowerSymbols" deviceset="VIN" device=""/>
 <part name="D2" library="SparkFun-LED" deviceset="LED-GREEN" device="0603" value="GREEN"/>
-<part name="R12" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
+<part name="R12" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="64"/>
 <part name="GND23" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="U$6" library="SparkFun-PowerSymbols" deviceset="VCC-ISO" device=""/>
 <part name="J1" library="SparkFun-Connectors" deviceset="CONN_02" device="-JST-2MM-SMT"/>
@@ -6477,16 +6477,16 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <part name="GND28" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND30" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND31" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
-<part name="R20" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
-<part name="R21" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
-<part name="R22" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
-<part name="R23" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
-<part name="R24" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
-<part name="R26" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
-<part name="R27" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
-<part name="R28" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
-<part name="R29" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
-<part name="R30" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
+<part name="R20" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="6.12M"/>
+<part name="R21" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="3.83M"/>
+<part name="R22" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="5.62M"/>
+<part name="R23" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="4.42M"/>
+<part name="R24" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="4.42M"/>
+<part name="R26" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="5.62M"/>
+<part name="R27" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="10M"/>
+<part name="R28" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="3.32M"/>
+<part name="R29" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="6.12M"/>
+<part name="R30" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="542K"/>
 <part name="L4" library="SparkFun-Coils" deviceset="INDUCTOR" device="-CDRH-4.7UH" value="22µH - 744031220"/>
 <part name="C24" library="SparkFun-Capacitors" deviceset="4.7UF" device="-0603-6.3V-(10%)" value="4.7uF"/>
 <part name="GND32" library="SparkFun-Aesthetics" deviceset="GND" device=""/>

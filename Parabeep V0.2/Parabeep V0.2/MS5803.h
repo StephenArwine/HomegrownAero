@@ -19,7 +19,7 @@ u16_t coefficients_[8];
 u32_t readMS5803AdcResults();
 
 void ConvertPressureTemperature(u32_t pressureRaw, u32_t tempRaw, u32_t* temperatureCelcus, double* pressureMbar);
-double paToFeetNOAA(double pressureMbar);
+float paToFeetNOAA(double pressureMbar);
 
 
 void readMS5803Coefficients();

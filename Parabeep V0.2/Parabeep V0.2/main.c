@@ -9,145 +9,63 @@
 #include "sam.h"
 #include "util.h"
 
-void init() {
-    delayInit();
-    rtcInit();
-    TC2Init();
-    SPI0init(0);
-    SPI5init(5);
 
-
-    pinOut(BuzzerPin);
-
-    pinOut(PeriphEN);
-    pinHigh(PeriphEN);
-    //pinLow(PeriphEN);
-
-    pinOut(LedPin);
-    pinHigh(LedPin);
-
-    pinOut(spi0MOSI);
-    pinMux(spi0MOSI);
-    pinOut(spi0SCK);
-    pinMux(spi0SCK);
-    pinOut(cs_accel);
-    pinHigh(cs_accel);
-    pinOut(cs_baro);
-    pinHigh(cs_baro);
-    pinIn(spi0MISO);
-    pinMux(spi0MISO);
-
-    pinOut(spi5MOSI);
-    pinMux(spi5MOSI);
-    pinOut(spi5SCK);
-    pinMux(spi5SCK);
-    pinOut(cs_mem);
-    pinHigh(cs_mem);
-    pinIn(spi5MISO);
-    pinMux(spi5MISO);
-
-
-
-    initMS5803Barometer();
-
-}
-
-void getAlt() {
-
-    pinLow(cs_baro);
-    spiDataOut(SPI0, cmdAdcD2_4096_);
-    pinHigh(cs_baro);
-    delay_us(9040);
-    volatile uint32_t tempRaw = readMS5803AdcResults();
-
-    pinLow(cs_baro);
-    spiDataOut(SPI0, cmdAdcD1_4096_);
-    pinHigh(cs_baro);
-
-    delay_us(9040);
-
-    volatile u32_t PressureRaw = readMS5803AdcResults();
-    ConvertPressureTemperature(PressureRaw, tempRaw, &sample.temperatureCelcus, &sample.pressureMbar);
-
-    sample.pressureAltitude = paToFeetNOAA(sample.pressureMbar);
-
-}
 
 
 int main(void) {
 
     init();
+    POST();
 
-    adxlWriteByte(ADXL345_REG_POWER_CTL, 0x00);
-    volatile u8_t pwr = adxlReadByte(ADXL345_REG_POWER_CTL);
-
-    adxlWriteByte(ADXL345_REG_DATA_FORMAT, 0x03);
-    volatile u8_t data = adxlReadByte(ADXL345_REG_DATA_FORMAT);
-
-    adxlWriteByte(ADXL345_REG_FIFO_CTL, 0x00);
-    volatile u8_t fifo = adxlReadByte(ADXL345_REG_FIFO_CTL);
-
-    //adxlWriteByte(ADXL345_REG_BW_RATE, 0x0F);
-    volatile u8_t rate = adxlReadByte(ADXL345_REG_BW_RATE);
-
-    adxlWriteByte(ADXL345_REG_POWER_CTL, 0x08);
-    volatile u8_t pwr2 = adxlReadByte(ADXL345_REG_POWER_CTL);
-
-    volatile u8_t divid = adxlReadByte(ADXL345_REG_DEVID);
-    volatile u8_t pwr4 = adxlReadByte(ADXL345_REG_POWER_CTL);
-    volatile u8_t data2 = adxlReadByte(ADXL345_REG_DATA_FORMAT);
-
-    volatile u8_t fifo1 = adxlReadByte(ADXL345_REG_FIFO_STATUS);
+    pinHigh(RN4870_NRST);
 
 
-    pinLow(cs_mem);
-    spiDataOut(SPI5, 0x9f);
-    volatile u8_t MEMID0 = spiDataIn(SPI5);
-    volatile u8_t MEMID1 = spiDataIn(SPI5);
+    u32_t tick = millis();
+    u32_t lastTime = tick;
+    volatile u8_t message[255];
+    volatile u8_t message2[255];
+    u8_t message2Length = 0;
+    u8_t messageLength = 0;
 
-    pinHigh(cs_mem);
-    delay_ms(10);
-
-    //buzzing = true;
+    u8_t catchReboot = RN4871Status();
+    RN4871SetName();
 
 
-    volatile u32_t lastTime = millis();
+    //u8_t catchcmd = RN4871Status();
+
+
     while (1) {
+        tick = millis();
 
-        if (millis() - lastTime > 500) {
-            lastTime = millis();
-            pinToggle(LedPin);
-            //buzzing = !buzzing;
+        buzzerTick(tick);
 
+//         if(sercom(3)->USART.INTFLAG.bit.RXC == 1) {
+//             u8_t digit = usartDataIn(3);
+//             usartDataOut(RN4871, digit);
+//         }
+// 
+//         if(sercom(RN4871)->USART.INTFLAG.bit.RXC == 1) {
+//             u8_t digit = usartDataIn(RN4871);
+//             usartDataOut(3, digit);
+//         }
+
+
+        if (sample.takeSample) {
+            sample.takeSample = false;
+            getSample();
         }
 
 
-        getAlt();
-        adxlWriteByte(ADXL345_REG_POWER_CTL, 0x08);
 
-        volatile u8_t junk = spiDataIn(SPI0);
-
-        delay_ms(50);
-
-        volatile u8_t divid2 = adxlReadByte(ADXL345_REG_DEVID);
+        if ((tick - lastTime) > 500) {
+            char buffer[50];
+			
+            RN4871SendLK8EX1();
 
 
-        volatile u8_t x0 = adxlReadByte(ADXL345_REG_DATAX0);
-        volatile u8_t x1 = adxlReadByte(ADXL345_REG_DATAX1);
-        volatile u8_t y0 = adxlReadByte(ADXL345_REG_DATAY0);
-        volatile u8_t y1 = adxlReadByte(ADXL345_REG_DATAY1);
-         volatile u8_t z0 = adxlReadByte(ADXL345_REG_DATAZ0);
-         volatile u8_t z1 = adxlReadByte(ADXL345_REG_DATAZ1);
-//         delay_ms(10);
-//         volatile u8_t junk2 = spiDataIn(SPI0);
-//
-        volatile u8_t pwr3 = adxlReadByte(ADXL345_REG_POWER_CTL);
-        volatile u8_t pwr4 = adxlReadByte(ADXL345_REG_POWER_CTL);
+            lastTime = tick;
+            pinToggle(LedPin);
 
-
-
-
-
-
+        }
     }
 }

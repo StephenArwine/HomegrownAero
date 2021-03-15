@@ -4,6 +4,8 @@
 
 adxl345.c
 
+buzzer.c
+
 clocks.c
 
 Device_Startup\startup_samd51.c
@@ -14,7 +16,17 @@ main.c
 
 MS5803.c
 
-RTCc.c
+RN4871.c
+
+sample.c
 
 sercomSPIc.c
+
+sercomUSART.c
+
+syscalls.c
+
+test.c
+
+util.c
 

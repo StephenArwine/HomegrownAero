@@ -1528,13 +1528,13 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="-1.6" y1="-0.7" x2="-1.6" y2="0.7" width="0.0508" layer="39"/>
 <wire x1="-0.356" y1="0.432" x2="0.356" y2="0.432" width="0.1016" layer="51"/>
 <wire x1="-0.356" y1="-0.419" x2="0.356" y2="-0.419" width="0.1016" layer="51"/>
-<rectangle x1="-0.8382" y1="-0.4699" x2="-0.3381" y2="0.4801" layer="51"/>
-<rectangle x1="0.3302" y1="-0.4699" x2="0.8303" y2="0.4801" layer="51"/>
-<rectangle x1="-0.1999" y1="-0.3" x2="0.1999" y2="0.3" layer="35"/>
 <smd name="1" x="-0.85" y="0" dx="1.1" dy="1" layer="1"/>
 <smd name="2" x="0.85" y="0" dx="1.1" dy="1" layer="1"/>
 <text x="0" y="0.762" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center">&gt;NAME</text>
 <text x="0" y="-0.762" size="0.6096" layer="27" font="vector" ratio="20" align="top-center">&gt;VALUE</text>
+<rectangle x1="-0.8382" y1="-0.4699" x2="-0.3381" y2="0.4801" layer="51"/>
+<rectangle x1="0.3302" y1="-0.4699" x2="0.8303" y2="0.4801" layer="51"/>
+<rectangle x1="-0.1999" y1="-0.3" x2="0.1999" y2="0.3" layer="35"/>
 </package>
 </packages>
 <symbols>
@@ -6426,11 +6426,11 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <part name="C4" library="SparkFun-Capacitors" deviceset="1.0UF" device="-0603-16V-10%" value="1.0uF"/>
 <part name="GND11" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="D1" library="SparkFun-DiscreteSemi" deviceset="DIODE" device="-BAS16J" value="250mA/100V"/>
-<part name="R13" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
+<part name="R13" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="180"/>
 <part name="SUPPLY5" library="SparkFun-PowerSymbols" deviceset="VCC_1" device=""/>
 <part name="C12" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0603-25V-(+80/-20%)" value="10uF"/>
 <part name="L2" library="SparkFun-Coils" deviceset="INDUCTOR" device="FB-30OHM"/>
-<part name="R5" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
+<part name="R5" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="100k"/>
 <part name="GND4" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="SUPPLY10" library="SparkFun-PowerSymbols" deviceset="VCC_1" device=""/>
 <part name="GND12" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
@@ -6458,11 +6458,11 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <part name="C22" library="SparkFun-Capacitors" deviceset="CAP" device="-1206" value="33uF"/>
 <part name="IC2" library="adafruit" library_urn="urn:adsk.eagle:library:420" deviceset="MCP73811/2" device="" package3d_urn="urn:adsk.eagle:package:6240724/1"/>
 <part name="GND22" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
-<part name="R25" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
+<part name="R25" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="2k"/>
 <part name="GND29" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="SUPPLY14" library="SparkFun-PowerSymbols" deviceset="VIN" device=""/>
 <part name="D2" library="SparkFun-LED" deviceset="LED-GREEN" device="0603" value="GREEN"/>
-<part name="R12" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value=" "/>
+<part name="R12" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="64"/>
 <part name="GND23" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="U$6" library="SparkFun-PowerSymbols" deviceset="VCC-ISO" device=""/>
 <part name="J1" library="SparkFun-Connectors" deviceset="CONN_02" device="-JST-2MM-SMT"/>
@@ -6482,11 +6482,11 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <part name="R22" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="5.62M"/>
 <part name="R23" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="4.42M"/>
 <part name="R24" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="4.42M"/>
-<part name="R26" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="5.90M"/>
+<part name="R26" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="5.9M"/>
 <part name="R27" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="9.76M"/>
 <part name="R28" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="3.32M"/>
 <part name="R29" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="6.12M"/>
-<part name="R30" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="542k"/>
+<part name="R30" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="542K"/>
 <part name="L4" library="SparkFun-Coils" deviceset="INDUCTOR" device="-CDRH-4.7UH" value="22µH - 744031220"/>
 <part name="C24" library="SparkFun-Capacitors" deviceset="4.7UF" device="-0603-6.3V-(10%)" value="4.7uF"/>
 <part name="GND32" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
@@ -6508,6 +6508,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <part name="C8" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0603-25V-(+80/-20%)" value="10uF"/>
 <part name="GND15" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="SUPPLY9" library="SparkFun-PowerSymbols" deviceset="VIN" device=""/>
+<part name="GND48" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
+<part name="R3" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="27k"/>
+<part name="R6" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="100k"/>
+<part name="SUPPLY13" library="SparkFun-PowerSymbols" deviceset="VIN" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -6888,6 +6892,20 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <instance part="SUPPLY9" gate="G$1" x="383.54" y="261.62" smashed="yes">
 <attribute name="VALUE" x="383.54" y="264.414" size="1.778" layer="96" align="bottom-center"/>
 </instance>
+<instance part="GND48" gate="1" x="119.38" y="10.16" smashed="yes">
+<attribute name="VALUE" x="116.84" y="7.62" size="1.778" layer="96"/>
+</instance>
+<instance part="R3" gate="G$1" x="119.38" y="17.78" smashed="yes" rot="R90">
+<attribute name="NAME" x="117.856" y="17.78" size="1.778" layer="95" font="vector" rot="R90" align="bottom-center"/>
+<attribute name="VALUE" x="120.904" y="17.78" size="1.778" layer="96" font="vector" rot="R90" align="top-center"/>
+</instance>
+<instance part="R6" gate="G$1" x="119.38" y="27.94" smashed="yes" rot="R90">
+<attribute name="NAME" x="117.8814" y="24.13" size="1.27" layer="95" rot="R90"/>
+<attribute name="VALUE" x="122.682" y="29.21" size="1.27" layer="96" rot="R90"/>
+</instance>
+<instance part="SUPPLY13" gate="G$1" x="119.38" y="33.02" smashed="yes">
+<attribute name="VALUE" x="119.38" y="35.814" size="1.778" layer="96" rot="MR0" align="bottom-center"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -7141,6 +7159,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="411.48" y1="144.78" x2="411.48" y2="142.24" width="0.1524" layer="91"/>
 <pinref part="GND15" gate="1" pin="GND"/>
 </segment>
+<segment>
+<pinref part="GND48" gate="1" pin="GND"/>
+<pinref part="R3" gate="G$1" pin="1"/>
+</segment>
 </net>
 <net name="CS_BARO" class="0">
 <segment>
@@ -7360,6 +7382,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <junction x="383.54" y="259.08"/>
 <pinref part="J1" gate="G$1" pin="1"/>
 <wire x1="388.62" y1="259.08" x2="388.62" y2="264.16" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="R6" gate="G$1" pin="2"/>
+<pinref part="SUPPLY13" gate="G$1" pin="VIN"/>
 </segment>
 </net>
 <net name="N$10" class="0">
@@ -7874,6 +7900,15 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="378.46" y1="254" x2="378.46" y2="259.08" width="0.1524" layer="91"/>
 <wire x1="378.46" y1="259.08" x2="370.84" y2="259.08" width="0.1524" layer="91"/>
 <pinref part="C23" gate="G$1" pin="2"/>
+</segment>
+</net>
+<net name="SENSE_BAT" class="0">
+<segment>
+<wire x1="119.38" y1="22.86" x2="121.92" y2="22.86" width="0.1524" layer="91"/>
+<label x="121.92" y="22.86" size="1.27" layer="95" xref="yes"/>
+<pinref part="R3" gate="G$1" pin="2"/>
+<pinref part="R6" gate="G$1" pin="1"/>
+<junction x="119.38" y="22.86"/>
 </segment>
 </net>
 </nets>

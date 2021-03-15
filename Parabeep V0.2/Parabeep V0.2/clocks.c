@@ -6,8 +6,6 @@ static uint32_t cycles_per_ms = 48000000UL / 1000;
 static uint32_t cycles_per_us = 48000000UL / 1000000;
 
 
-
-
 bool gclk_enabled(uint8_t gclk) {
     return GCLK->GENCTRL[gclk].bit.GENEN;
 }
@@ -45,7 +43,7 @@ static void enable_clock_generator_sync(uint8_t gclk, uint32_t source, uint16_t 
         while ((GCLK->SYNCBUSY.vec.GENCTRL & (1 << gclk)) != 0) {}
 }
 
-static void init_clock_source_osculp32k(void) {
+void init_clock_source_osculp32k(void) {
     // Calibration value is loaded at startup
     OSC32KCTRL->OSCULP32K.bit.EN1K = 0;
     OSC32KCTRL->OSCULP32K.bit.EN32K = 1;
@@ -69,71 +67,40 @@ static void init_clock_source_dpll0(void) {
     while (!(OSCCTRL->Dpll[0].DPLLSTATUS.bit.LOCK || OSCCTRL->Dpll[0].DPLLSTATUS.bit.CLKRDY)) {}
 }
 
-void clock_init(bool has_crystal, uint32_t dfll48m_fine_calibration) {
-    // DFLL48M is enabled by default
-    // TODO: handle fine calibration data.
-
-    init_clock_source_osculp32k();
-
-
-    OSC32KCTRL->RTCCTRL.bit.RTCSEL = OSC32KCTRL_RTCCTRL_RTCSEL_ULP32K_Val;
-
-
-    MCLK->CPUDIV.reg = MCLK_CPUDIV_DIV(1);
-
-    enable_clock_generator_sync(0, GCLK_GENCTRL_SRC_DPLL0_Val, 1, false);
-    enable_clock_generator_sync(1, GCLK_GENCTRL_SRC_DFLL_Val, 1, false);
-    enable_clock_generator_sync(4, GCLK_GENCTRL_SRC_DPLL0_Val, 1, false);
-    enable_clock_generator_sync(5, GCLK_GENCTRL_SRC_DFLL_Val, 24, false);
-    enable_clock_generator_sync(6, GCLK_GENCTRL_SRC_DFLL_Val, 4, false);
-
-    init_clock_source_dpll0();
-
-    // Do this after all static clock init so that they aren't used dynamically.
-    //init_dynamic_clocks();
-}
-
-volatile u8_t TC0Dur = 100;
+volatile u8_t TC0Dur = 50;
 
 void TC0Init() {
 
-//     init_clock_source_osculp32k();
-//
-//
-//     //OSC32KCTRL->RTCCTRL.bit.RTCSEL = OSC32KCTRL_RTCCTRL_RTCSEL_ULP32K_Val;
-//
-//
-//     enable_clock_generator(3, GCLK_GENCTRL_SRC_OSCULP32K, 1);
-//
-//     connect_gclk_to_peripheral(3, 9);
-//
-//     MCLK->APBAMASK.reg |= MCLK_APBAMASK_TC0;
-//
-//     TC0->COUNT8.CTRLA.reg = TC_CTRLA_SWRST;
-//     while(TC0->COUNT8.SYNCBUSY.bit.SWRST);
-//     //TC0->COUNT16.CTRLBSET.reg = TC_CTRLBSET_ONESHOT;
-//     TC0->COUNT8.INTENSET.reg = TC_INTENSET_OVF;
-//     TC0->COUNT8.CTRLA.reg = TC_CTRLA_MODE_COUNT8 |
-//                             TC_CTRLA_PRESCALER_DIV2 |
-//                             TC_CTRLA_ENABLE;
-//     TC0->COUNT8.PERBUF.reg = TC0Dur;
-//
-//     while(TC0->COUNT8.SYNCBUSY.bit.ENABLE);
-//     NVIC_EnableIRQ(TC0_IRQn);
+    enable_clock_generator(4, GCLK_GENCTRL_SRC_OSCULP32K, 32);
+
+    connect_gclk_to_peripheral(4, 9);
+
+    MCLK->APBAMASK.reg |= MCLK_APBAMASK_TC0;
+
+    TC0->COUNT8.CTRLA.reg = TC_CTRLA_SWRST;
+    while(TC0->COUNT8.SYNCBUSY.bit.SWRST);
+
+    TC0->COUNT8.CTRLA.reg = TC_CTRLA_MODE_COUNT8 |
+                            TC_CTRLA_PRESCALER_DIV1 |
+                            TC_CTRLA_ENABLE;
+    TC0->COUNT8.PERBUF.reg = TC0Dur;
+
+    while(TC0->COUNT8.SYNCBUSY.bit.ENABLE);
+    NVIC_EnableIRQ(TC0_IRQn);
+}
+
+void TC0_enable_interupt() {
+    TC0->COUNT8.INTENSET.reg = TC_INTENSET_OVF;
+}
+
+void TC0_disable_interupt() {
+    TC0->COUNT8.INTENCLR.reg = TC_INTENCLR_OVF;
 }
 
 
+volatile u8_t TC2Dur = 50;
 
-
-volatile u8_t TC2Dur = 30;
-
-void TC2Init() {
-
-    init_clock_source_osculp32k();
-
-
-    //OSC32KCTRL->RTCCTRL.bit.RTCSEL = OSC32KCTRL_RTCCTRL_RTCSEL_ULP32K_Val;
-
+void TC2Init() { //buzzer
 
     enable_clock_generator(3, GCLK_GENCTRL_SRC_DFLL, 32);
 
@@ -144,7 +111,6 @@ void TC2Init() {
     TC2->COUNT8.CTRLA.reg = TC_CTRLA_SWRST;
     while(TC2->COUNT8.SYNCBUSY.bit.SWRST);
     //TC0->COUNT16.CTRLBSET.reg = TC_CTRLBSET_ONESHOT;
-    TC2->COUNT8.INTENSET.reg = TC_INTENSET_OVF;
     TC2->COUNT8.CTRLA.reg = TC_CTRLA_MODE_COUNT8 |
                             TC_CTRLA_PRESCALER_DIV4 |
                             TC_CTRLA_ENABLE;
@@ -154,14 +120,26 @@ void TC2Init() {
     NVIC_EnableIRQ(TC2_IRQn);
 }
 
-void TC2_Handler(void) {
-    TC2->COUNT8.INTFLAG.reg = TC_INTFLAG_OVF;
-    if (buzzing) {
-        pinToggle(BuzzerPin);
-    }
+void TC2_enable_interupt() { //buzzer
+    TC2->COUNT8.INTENSET.reg = TC_INTENSET_OVF;
+}
+
+void TC2_disable_interupt() { //buzzer
+    TC2->COUNT8.INTENCLR.reg = TC_INTENCLR_OVF;
+    pinLow(BuzzerPin);
 }
 
 
+void TC0_Handler(void) {
+    TC0->COUNT8.INTFLAG.reg = TC_INTFLAG_OVF;
+    sample.takeSample = true;
+}
+
+
+void TC2_Handler(void) {
+    TC2->COUNT8.INTFLAG.reg = TC_INTFLAG_OVF;
+    pinToggle(BuzzerPin);
+}
 
 
 
@@ -198,7 +176,6 @@ void delay_us(uint32_t n) {
         delay_cycles(cycles_per_us);
     }
 }
-
 
 void rtcInit() {
     RTC->MODE1.CTRLA.reg = RTC_MODE1_CTRLA_SWRST;

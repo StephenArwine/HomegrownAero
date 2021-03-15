@@ -32,12 +32,12 @@ void ConvertPressureTemperature(u32_t pressureRaw, u32_t tempRaw, u32_t* tempera
 	*pressureMbar = *pressureMbar/100;
 }
 
-double paToFeetNOAA(double pressureMbar) {
+float paToFeetNOAA(double pressureMbar) {
 
-	double lower =(((double)(pressureMbar))/1013.25);
-	double exponent = 0.190284;
+	float lower =(((float)(pressureMbar))/1013.25);
+	float exponent = 0.190284;
 
-	double altFeet = (1-pow(lower,exponent))*145366.45;
+	float altFeet = (1-pow(lower,exponent))*145366.45;
 	return altFeet;
 
 }
