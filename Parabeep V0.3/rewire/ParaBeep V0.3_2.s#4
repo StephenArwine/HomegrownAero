@@ -6390,133 +6390,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </deviceset>
 </devicesets>
 </library>
-<library name="SparkFun-Jumpers">
-<description>&lt;h3&gt;SparkFun Jumpers&lt;/h3&gt;
-In this library you'll find jumpers, or other semipermanent means of changing current paths. The least permanent form is the solder jumper. These can be changed by adding, removing, or moving solder. In cases that are less likely to be changed we have jumpers that are connected with traces. These can be cut with a razor, or reconnected with solder. Reference designator JP.
-&lt;br&gt;
-&lt;br&gt;
-We've spent an enormous amount of time creating and checking these footprints and parts, but it is &lt;b&gt; the end user's responsibility&lt;/b&gt; to ensure correctness and suitablity for a given componet or application. 
-&lt;br&gt;
-&lt;br&gt;If you enjoy using this library, please buy one of our products at &lt;a href=" www.sparkfun.com"&gt;SparkFun.com&lt;/a&gt;.
-&lt;br&gt;
-&lt;br&gt;
-&lt;b&gt;Licensing:&lt;/b&gt; Creative Commons ShareAlike 4.0 International - https://creativecommons.org/licenses/by-sa/4.0/ 
-&lt;br&gt;
-&lt;br&gt;
-You are welcome to use this library for commercial purposes. For attribution, we ask that when you begin to sell your device using our footprint, you email us with a link to the product being sold. We want bragging rights that we helped (in a very small part) to create your 8th world wonder. We would like the opportunity to feature your device on our homepage.</description>
-<packages>
-<package name="SMT-JUMPER_3_1-NC_TRACE_SILK" urn="urn:adsk.eagle:footprint:39266/1">
-<wire x1="1.27" y1="-1.016" x2="-1.27" y2="-1.016" width="0.1524" layer="21"/>
-<wire x1="1.27" y1="1.016" x2="1.7272" y2="0.5588" width="0.1524" layer="21" curve="-90"/>
-<wire x1="-1.7272" y1="0.5588" x2="-1.27" y2="1.016" width="0.1524" layer="21" curve="-90"/>
-<wire x1="-1.7272" y1="-0.5588" x2="-1.27" y2="-1.016" width="0.1524" layer="21" curve="90"/>
-<wire x1="1.27" y1="-1.016" x2="1.7272" y2="-0.5588" width="0.1524" layer="21" curve="90"/>
-<wire x1="1.7272" y1="-0.5588" x2="1.7272" y2="0.5588" width="0.1524" layer="21"/>
-<wire x1="-1.7272" y1="-0.5588" x2="-1.7272" y2="0.5588" width="0.1524" layer="21"/>
-<wire x1="-1.27" y1="1.016" x2="1.27" y2="1.016" width="0.1524" layer="21"/>
-<wire x1="0" y1="0" x2="1.016" y2="0" width="0.254" layer="1"/>
-<smd name="1" x="-1.016" y="0" dx="0.635" dy="1.27" layer="1" cream="no"/>
-<smd name="2" x="0" y="0" dx="0.635" dy="1.27" layer="1" cream="no"/>
-<smd name="3" x="1.016" y="0" dx="0.635" dy="1.27" layer="1" cream="no"/>
-<text x="0" y="1.143" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center">&gt;NAME</text>
-<text x="0" y="-1.143" size="0.6096" layer="27" font="vector" ratio="20" align="top-center">&gt;VALUE</text>
-<polygon width="0.127" layer="29">
-<vertex x="0.3175" y="0.127"/>
-<vertex x="0.6985" y="0.127"/>
-<vertex x="0.6985" y="-0.127"/>
-<vertex x="0.3175" y="-0.127"/>
-</polygon>
-</package>
-<package name="SMT-JUMPER_3_1-NC_TRACE_NO-SILK" urn="urn:adsk.eagle:footprint:39267/1">
-<smd name="1" x="-1.016" y="0" dx="0.635" dy="1.27" layer="1" cream="no"/>
-<smd name="2" x="0" y="0" dx="0.635" dy="1.27" layer="1" cream="no"/>
-<smd name="3" x="1.016" y="0" dx="0.635" dy="1.27" layer="1" cream="no"/>
-<text x="0" y="1.143" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center">&gt;NAME</text>
-<text x="0" y="-1.143" size="0.6096" layer="27" font="vector" ratio="20" align="top-center">&gt;VALUE</text>
-<wire x1="0" y1="0" x2="1.016" y2="0" width="0.254" layer="1"/>
-<polygon width="0.127" layer="29">
-<vertex x="0.3175" y="0.127"/>
-<vertex x="0.6985" y="0.127"/>
-<vertex x="0.6985" y="-0.127"/>
-<vertex x="0.3175" y="-0.127"/>
-</polygon>
-</package>
-</packages>
-<packages3d>
-<package3d name="SMT-JUMPER_3_1-NC_TRACE_SILK" urn="urn:adsk.eagle:package:39288/1" type="box">
-<packageinstances>
-<packageinstance name="SMT-JUMPER_3_1-NC_TRACE_SILK"/>
-</packageinstances>
-</package3d>
-<package3d name="SMT-JUMPER_3_1-NC_TRACE_NO-SILK" urn="urn:adsk.eagle:package:39287/1" type="box">
-<packageinstances>
-<packageinstance name="SMT-JUMPER_3_1-NC_TRACE_NO-SILK"/>
-</packageinstances>
-</package3d>
-</packages3d>
-<symbols>
-<symbol name="SMT-JUMPER_3_1-NC_TRACE">
-<wire x1="-0.635" y1="-1.397" x2="0.635" y2="-1.397" width="1.27" layer="94" curve="180" cap="flat"/>
-<wire x1="-0.635" y1="1.397" x2="0.635" y2="1.397" width="1.27" layer="94" curve="-180" cap="flat"/>
-<wire x1="1.27" y1="-0.635" x2="-1.27" y2="-0.635" width="0.1524" layer="94"/>
-<wire x1="-1.27" y1="-0.635" x2="-1.27" y2="0" width="0.1524" layer="94"/>
-<wire x1="-1.27" y1="0" x2="-1.27" y2="0.635" width="0.1524" layer="94"/>
-<wire x1="-1.27" y1="0.635" x2="1.27" y2="0.635" width="0.1524" layer="94"/>
-<wire x1="1.27" y1="0.635" x2="1.27" y2="-0.635" width="0.1524" layer="94"/>
-<wire x1="-2.54" y1="0" x2="-1.27" y2="0" width="0.1524" layer="94"/>
-<wire x1="0" y1="0" x2="0" y2="-2.54" width="0.254" layer="94"/>
-<text x="2.54" y="0.381" size="1.778" layer="95" font="vector">&gt;NAME</text>
-<text x="2.54" y="-0.381" size="1.778" layer="96" font="vector" align="top-left">&gt;VALUE</text>
-<rectangle x1="-1.27" y1="-0.635" x2="1.27" y2="0.635" layer="94"/>
-<pin name="3" x="0" y="-5.08" visible="off" length="short" direction="pas" rot="R90"/>
-<pin name="1" x="0" y="5.08" visible="off" length="short" direction="pas" rot="R270"/>
-<pin name="2" x="-5.08" y="0" visible="off" length="short" direction="pas"/>
-</symbol>
-</symbols>
-<devicesets>
-<deviceset name="JUMPER-SMT_3_1-NC_TRACE" prefix="JP">
-<description>&lt;h3&gt;Normally closed trace jumper (1 of 2 connections)&lt;/h3&gt;
-&lt;p&gt;This jumper has a trace between two pads so it's normally closed (NC). The other connection is normally open (NO). Use a razor knife to open the connection. For best results follow the IPC guidelines for cutting traces:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Cutout at least 0.063 mm (0.005 in).&lt;/li&gt;
-&lt;li&gt;Remove all loose material to clean up the cut area.&lt;/li&gt;
-&lt;li&gt;Seal the cut with an approved epoxy.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Reapply solder to reclose the connection, or to close the NO connection.&lt;/p&gt;</description>
-<gates>
-<gate name="G$1" symbol="SMT-JUMPER_3_1-NC_TRACE" x="0" y="0"/>
-</gates>
-<devices>
-<device name="_SILK" package="SMT-JUMPER_3_1-NC_TRACE_SILK">
-<connects>
-<connect gate="G$1" pin="1" pad="1"/>
-<connect gate="G$1" pin="2" pad="2"/>
-<connect gate="G$1" pin="3" pad="3"/>
-</connects>
-<package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:39288/1"/>
-</package3dinstances>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="_NO-SILK" package="SMT-JUMPER_3_1-NC_TRACE_NO-SILK">
-<connects>
-<connect gate="G$1" pin="1" pad="1"/>
-<connect gate="G$1" pin="2" pad="2"/>
-<connect gate="G$1" pin="3" pad="3"/>
-</connects>
-<package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:39287/1"/>
-</package3dinstances>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
-</devicesets>
-</library>
 </libraries>
 <attributes>
 </attributes>
@@ -6638,7 +6511,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <part name="GND48" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="R3" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="27k"/>
 <part name="R6" library="SparkFun-Resistors" deviceset="RESISTOR" device="0402" value="100k"/>
-<part name="JP1" library="SparkFun-Jumpers" deviceset="JUMPER-SMT_3_1-NC_TRACE" device="_SILK" package3d_urn="urn:adsk.eagle:package:39288/1"/>
+<part name="SUPPLY13" library="SparkFun-PowerSymbols" deviceset="VIN" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -6956,9 +6829,9 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="NAME" x="354.584" y="226.441" size="1.778" layer="95" font="vector"/>
 <attribute name="VALUE" x="354.584" y="221.361" size="1.778" layer="96" font="vector"/>
 </instance>
-<instance part="C23" gate="G$1" x="370.84" y="264.16" smashed="yes">
-<attribute name="NAME" x="372.364" y="267.081" size="1.778" layer="95" font="vector"/>
-<attribute name="VALUE" x="372.364" y="262.001" size="1.778" layer="96" font="vector"/>
+<instance part="C23" gate="G$1" x="370.84" y="261.62" smashed="yes">
+<attribute name="NAME" x="372.364" y="264.541" size="1.778" layer="95" font="vector"/>
+<attribute name="VALUE" x="372.364" y="259.461" size="1.778" layer="96" font="vector"/>
 </instance>
 <instance part="U2" gate="A" x="25.4" y="218.44" smashed="yes">
 <attribute name="NAME" x="20.6756" y="219.9386" size="2.0828" layer="95" ratio="6" rot="SR0"/>
@@ -7016,8 +6889,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <instance part="GND15" gate="1" x="411.48" y="139.7" smashed="yes">
 <attribute name="VALUE" x="408.94" y="137.16" size="1.778" layer="96"/>
 </instance>
-<instance part="SUPPLY9" gate="G$1" x="381" y="266.954" smashed="yes">
-<attribute name="VALUE" x="381" y="269.748" size="1.778" layer="96" align="bottom-center"/>
+<instance part="SUPPLY9" gate="G$1" x="383.54" y="261.62" smashed="yes">
+<attribute name="VALUE" x="383.54" y="264.414" size="1.778" layer="96" align="bottom-center"/>
 </instance>
 <instance part="GND48" gate="1" x="119.38" y="10.16" smashed="yes">
 <attribute name="VALUE" x="116.84" y="7.62" size="1.778" layer="96"/>
@@ -7030,7 +6903,9 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="NAME" x="117.8814" y="24.13" size="1.27" layer="95" rot="R90"/>
 <attribute name="VALUE" x="122.682" y="29.21" size="1.27" layer="96" rot="R90"/>
 </instance>
-<instance part="JP1" gate="G$1" x="381" y="259.08" smashed="yes" rot="R270"/>
+<instance part="SUPPLY13" gate="G$1" x="119.38" y="33.02" smashed="yes">
+<attribute name="VALUE" x="119.38" y="35.814" size="1.778" layer="96" rot="MR0" align="bottom-center"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -7188,7 +7063,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <pinref part="R28" gate="G$1" pin="1"/>
 </segment>
 <segment>
-<wire x1="370.84" y1="269.24" x2="370.84" y2="271.78" width="0.1524" layer="91"/>
+<wire x1="370.84" y1="266.7" x2="370.84" y2="271.78" width="0.1524" layer="91"/>
 <wire x1="370.84" y1="271.78" x2="388.62" y2="271.78" width="0.1524" layer="91"/>
 <wire x1="388.62" y1="271.78" x2="403.86" y2="271.78" width="0.1524" layer="91"/>
 <wire x1="403.86" y1="271.78" x2="403.86" y2="269.24" width="0.1524" layer="91"/>
@@ -7499,9 +7374,18 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="25.4" y1="215.9" x2="25.4" y2="218.44" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="JP1" gate="G$1" pin="2"/>
+<wire x1="388.62" y1="259.08" x2="383.54" y2="259.08" width="0.1524" layer="91"/>
+<pinref part="U9" gate="G$1" pin="VBAT"/>
+<wire x1="383.54" y1="259.08" x2="383.54" y2="254" width="0.1524" layer="91"/>
 <pinref part="SUPPLY9" gate="G$1" pin="VIN"/>
-<wire x1="381" y1="264.16" x2="381" y2="266.954" width="0.1524" layer="91"/>
+<wire x1="383.54" y1="259.08" x2="383.54" y2="261.62" width="0.1524" layer="91"/>
+<junction x="383.54" y="259.08"/>
+<pinref part="J1" gate="G$1" pin="1"/>
+<wire x1="388.62" y1="259.08" x2="388.62" y2="264.16" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="R6" gate="G$1" pin="2"/>
+<pinref part="SUPPLY13" gate="G$1" pin="VIN"/>
 </segment>
 </net>
 <net name="N$10" class="0">
@@ -8014,12 +7898,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <segment>
 <pinref part="U9" gate="G$1" pin="VSTOR"/>
 <wire x1="378.46" y1="254" x2="378.46" y2="259.08" width="0.1524" layer="91"/>
+<wire x1="378.46" y1="259.08" x2="370.84" y2="259.08" width="0.1524" layer="91"/>
 <pinref part="C23" gate="G$1" pin="2"/>
-<wire x1="370.84" y1="261.62" x2="370.84" y2="259.08" width="0.1524" layer="91"/>
-<wire x1="370.84" y1="259.08" x2="375.92" y2="259.08" width="0.1524" layer="91"/>
-<pinref part="JP1" gate="G$1" pin="3"/>
-<wire x1="375.92" y1="259.08" x2="378.46" y2="259.08" width="0.1524" layer="91"/>
-<junction x="375.92" y="259.08"/>
 </segment>
 </net>
 <net name="SENSE_BAT" class="0">
@@ -8037,60 +7917,18 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <label x="139.7" y="152.4" size="1.778" layer="95" rot="R180"/>
 </segment>
 </net>
-<net name="V_BAT" class="0">
-<segment>
-<wire x1="388.62" y1="259.08" x2="386.08" y2="259.08" width="0.1524" layer="91"/>
-<pinref part="U9" gate="G$1" pin="VBAT"/>
-<wire x1="386.08" y1="259.08" x2="383.54" y2="259.08" width="0.1524" layer="91"/>
-<wire x1="383.54" y1="259.08" x2="383.54" y2="254" width="0.1524" layer="91"/>
-<pinref part="J1" gate="G$1" pin="1"/>
-<wire x1="388.62" y1="259.08" x2="388.62" y2="264.16" width="0.1524" layer="91"/>
-<pinref part="JP1" gate="G$1" pin="1"/>
-<junction x="386.08" y="259.08"/>
-<label x="388.62" y="259.08" size="1.778" layer="95"/>
-</segment>
-<segment>
-<pinref part="R6" gate="G$1" pin="2"/>
-<wire x1="119.38" y1="33.02" x2="119.38" y2="35.56" width="0.1524" layer="91"/>
-<label x="119.38" y="35.56" size="1.778" layer="95" rot="R90"/>
-</segment>
-</net>
 </nets>
 </sheet>
 </sheets>
 <errors>
 <approved hash="104,1,27.94,246.38,U3,GND_2,GND,,,"/>
-<approved hash="104,1,149.86,215.9,U7,VCC,N$14,,,"/>
-<approved hash="104,1,287.02,182.88,IC2,VSS,GND,,,"/>
-<approved hash="104,1,259.08,187.96,IC2,VDD,VBUS,,,"/>
-<approved hash="104,1,388.62,254,U9,VSS,GND,,,"/>
-<approved hash="104,1,403.86,243.84,U9,AVSS,GND,,,"/>
-<approved hash="104,1,368.3,254,U9,EPAD,GND,,,"/>
-<approved hash="104,1,27.94,210.82,U2,GND_2,GND,,,"/>
-<approved hash="104,1,388.62,144.78,U8,VBAT,VCC_1,,,"/>
-<approved hash="208,1,66.04,190.5,VCC-ISO,sup,,,,"/>
-<approved hash="208,1,236.22,38.1,VCC-ISO,sup,,,,"/>
-<approved hash="208,1,340.36,60.96,VCC-ISO,sup,,,,"/>
-<approved hash="208,1,55.88,218.44,VCC-ISO,out,,,,"/>
-<approved hash="208,1,60.96,223.52,VCC-ISO,sup,,,,"/>
 <approved hash="208,1,55.88,254,VCC_1,out,,,,"/>
 <approved hash="208,1,60.96,261.62,VCC_1,sup,,,,"/>
-<approved hash="208,1,119.38,264.16,VCC_1,sup,,,,"/>
 <approved hash="208,1,248.92,259.08,VCC_1,sup,,,,"/>
-<approved hash="208,1,182.88,226.06,VCC_1,sup,,,,"/>
 <approved hash="208,1,63.5,66.04,VCC_1,sup,,,,"/>
-<approved hash="208,1,152.4,228.6,VCC_1,sup,,,,"/>
-<approved hash="208,1,114.3,226.06,VCC_1,sup,,,,"/>
-<approved hash="208,1,391.16,149.86,VCC_1,sup,,,,"/>
-<approved hash="108,1,60.96,25.4,GND,,,,,"/>
-<approved hash="108,1,58.42,210.82,GND,,,,,"/>
 <approved hash="108,1,58.42,246.38,GND,,,,,"/>
-<approved hash="110,1,388.62,215.9,N$1,N$2,,,,"/>
-<approved hash="111,1,388.62,215.9,N$1,,,,,"/>
-<approved hash="113,1,71.12,184.049,L2,,,,,"/>
+<approved hash="108,1,60.96,25.4,GND,,,,,"/>
 <approved hash="113,1,63.8757,129.614,J2,,,,,"/>
-<approved hash="113,1,391.837,266.863,J1,,,,,"/>
-<approved hash="113,1,329.523,248.757,J3,,,,,"/>
 </errors>
 </schematic>
 </drawing>

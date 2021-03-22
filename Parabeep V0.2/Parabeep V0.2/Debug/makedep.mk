@@ -4,6 +4,8 @@
 
 adxl345.c
 
+analong.c
+
 buzzer.c
 
 clocks.c
@@ -29,4 +31,6 @@ syscalls.c
 test.c
 
 util.c
+
+vario.c
 

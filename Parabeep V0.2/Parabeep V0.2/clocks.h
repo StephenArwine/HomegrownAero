@@ -2,6 +2,12 @@
 
 #include "util.h"
 
+void delayInit(void);
+void delay_ms(uint32_t delay);
+void delay_us(uint32_t delay);
+void TC0Init();
+void TC1Init();
+void TC2Init();
 
 
 bool gclk_enabled(uint8_t gclk);
@@ -33,6 +39,7 @@ void TC0_disable_interupt();
 void TC1_disable_interupt();
 void TC2_disable_interupt();
 
+void TC2_setDur(u8_t dur);
 
 
 uint32_t millis(void);

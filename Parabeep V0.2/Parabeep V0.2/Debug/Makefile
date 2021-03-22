@@ -39,6 +39,7 @@ SUBDIRS :=  \
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
 ../adxl345.c \
+../analong.c \
 ../buzzer.c \
 ../clocks.c \
 ../Device_Startup/startup_samd51.c \
@@ -51,7 +52,8 @@ C_SRCS +=  \
 ../sercomUSART.c \
 ../syscalls.c \
 ../test.c \
-../util.c
+../util.c \
+../vario.c
 
 
 PREPROCESSING_SRCS += 
@@ -62,6 +64,7 @@ ASM_SRCS +=
 
 OBJS +=  \
 adxl345.o \
+analong.o \
 buzzer.o \
 clocks.o \
 Device_Startup/startup_samd51.o \
@@ -74,10 +77,12 @@ sercomSPIc.o \
 sercomUSART.o \
 syscalls.o \
 test.o \
-util.o
+util.o \
+vario.o
 
 OBJS_AS_ARGS +=  \
 adxl345.o \
+analong.o \
 buzzer.o \
 clocks.o \
 Device_Startup/startup_samd51.o \
@@ -90,10 +95,12 @@ sercomSPIc.o \
 sercomUSART.o \
 syscalls.o \
 test.o \
-util.o
+util.o \
+vario.o
 
 C_DEPS +=  \
 adxl345.d \
+analong.d \
 buzzer.d \
 clocks.d \
 Device_Startup/startup_samd51.d \
@@ -106,10 +113,12 @@ sercomSPIc.d \
 sercomUSART.d \
 syscalls.d \
 test.d \
-util.d
+util.d \
+vario.d
 
 C_DEPS_AS_ARGS +=  \
 adxl345.d \
+analong.d \
 buzzer.d \
 clocks.d \
 Device_Startup/startup_samd51.d \
@@ -122,7 +131,8 @@ sercomSPIc.d \
 sercomUSART.d \
 syscalls.d \
 test.d \
-util.d
+util.d \
+vario.d
 
 OUTPUT_FILE_PATH +=Parabeep\ V0.2.elf
 
@@ -141,6 +151,13 @@ LINKER_SCRIPT_DEP+=  \
 
 # AVR32/GNU C Compiler
 ./adxl345.o: .././adxl345.c
+	@echo Building file: $<
+	@echo Invoking: ARM/GNU C Compiler : 6.3.1
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMD51J19A__ -DDEBUG  -I".." -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"C:\Users\Desktop\Documents\GitHub\HomegrownAero\Parabeep V0.2\Parabeep V0.2" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include"  -Og -ffunction-sections -ffast-math -mlong-calls -g3 -Wall -mcpu=cortex-m4 -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+./analong.o: .././analong.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMD51J19A__ -DDEBUG  -I".." -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"C:\Users\Desktop\Documents\GitHub\HomegrownAero\Parabeep V0.2\Parabeep V0.2" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include"  -Og -ffunction-sections -ffast-math -mlong-calls -g3 -Wall -mcpu=cortex-m4 -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
@@ -232,6 +249,13 @@ Device_Startup/system_samd51.o: ../Device_Startup/system_samd51.c
 	
 
 ./util.o: .././util.c
+	@echo Building file: $<
+	@echo Invoking: ARM/GNU C Compiler : 6.3.1
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMD51J19A__ -DDEBUG  -I".." -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"C:\Users\Desktop\Documents\GitHub\HomegrownAero\Parabeep V0.2\Parabeep V0.2" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include"  -Og -ffunction-sections -ffast-math -mlong-calls -g3 -Wall -mcpu=cortex-m4 -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+./vario.o: .././vario.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAMD51J19A__ -DDEBUG  -I".." -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD51_DFP\1.2.139\samd51a\include" -I"C:\Users\Desktop\Documents\GitHub\HomegrownAero\Parabeep V0.2\Parabeep V0.2" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include"  -Og -ffunction-sections -ffast-math -mlong-calls -g3 -Wall -mcpu=cortex-m4 -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

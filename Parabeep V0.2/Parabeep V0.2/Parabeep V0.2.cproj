@@ -183,6 +183,9 @@
     <Compile Include="adxl345.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="analong.c">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="buzzer.c">
       <SubType>compile</SubType>
     </Compile>
@@ -232,6 +235,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="util.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="vario.c">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>

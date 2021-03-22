@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 
 #include <samd51j19a.h>
@@ -39,22 +40,29 @@ typedef struct sample_t {
 
     bool takeSample;
 
+    bool sendBluetoothPacket;
+
     uint32_t sampleCount;
 
     double pressureMbar;
 
     uint32_t temperatureCelcus;
 
-    float pressureAltitude;
+    double altitudeMeters;
 	
+	float altitudeVar;
+	
+	float altitudeStdDev;
 
-    double lastSampleAltitude;
+    float sampleMeters;
+
+    float lastSampleMeters;
 
     uint32_t lastSampleTime;
 
     uint32_t sampleTime;
 
-    uint32_t dT;
+    float dT;
 
     double dX;
 
@@ -74,7 +82,6 @@ typedef struct sample_t {
 
     u8_t ADXLZ1;
 
-
     int16_t Xaccel;
 
     int16_t Yaccel;
@@ -86,6 +93,11 @@ typedef struct sample_t {
     float Yfloat;
 
     float Zfloat;
+
+    u16_t battRaw;
+
+    float battVoltage;
+
 
 } sample_t;
 
@@ -124,6 +136,7 @@ const static Pin BuzzerPin = {.group = 1, .pin = 22};
 const static Pin LedPin = {.group = 1, .pin = 16};
 const static Pin PeriphEN = {.group = 1, .pin = 12};
 const static Pin RstLck = {.group = 1, .pin = 23};
+const static Pin senseBat = {.group = 0, .pin = 6, .mux = MUX_PA06B_ADC0_AIN6};
 
 
 
@@ -168,6 +181,8 @@ static inline void disablePerif() {
 //util.c
 void init();
 void POST();
+void warmSensors(uint32_t cycles);
+void EnterSleepModeOFF();
 
 //buzzer.c
 void buzzerTick(u32_t time);
@@ -178,14 +193,14 @@ void cookAccelData();
 void getAccelData();
 void getSample();
 
+//analog.c
+void adcInit();
+u16_t adcSample();
+u16_t adc_read(Pin p);
+
 
 //clocks.c
-void delayInit(void);
-void delay_ms(uint32_t delay);
-void delay_us(uint32_t delay);
-void TC0Init();
-void TC2Init();
-void TC1Init();
+//in clocks.h
 
 
 //ADXL345.c
@@ -205,11 +220,17 @@ void USART2init();
 void USART3init();
 void usartDataOut(SercomId id, u8_t data);
 u8_t usartDataIn(SercomId id);
+//void USARD2ChangeDataOrder();
 
 //RN4871.c
 u8_t RN4870CMDMODE();
 u8_t RN4871Status();
 void RN4871SetName();
+void RN4871SendLK8EX1();
+
+//vario.c
+void vario();
+void sendDebugData();
 
 
 inline static Sercom* sercom(SercomId id) {
@@ -225,6 +246,7 @@ inline static Sercom* sercom(SercomId id) {
         return (Sercom*) (0x43000000U);
     } else if ( id == 5) {
         return (Sercom*) (0x43000400U);
+    } else {
+        return 0;
     }
-
 }

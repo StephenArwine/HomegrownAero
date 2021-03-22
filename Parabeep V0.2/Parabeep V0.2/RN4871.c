@@ -1,5 +1,7 @@
 #include <util.h>
 
+asm(".global _printf_float");
+
 u8_t RN4870CMDMODE() {
 
     usartDataOut(RN4871, '$');
@@ -29,7 +31,7 @@ void RN4871SetName() {
     u8_t cmd = RN4870CMDMODE();
     delay_ms(150);
     char newName[11];
-    sprintf(newName,"S-,ParaBeep");
+    sprintf(newName,"S-,ParaBeep_");
     for (u8_t i = 0; i < 11 ; i++) {
         usartDataOut(RN4871,newName[i]);
     }
@@ -69,33 +71,27 @@ void RN4871SendLK8EX1() {
     Percentage should be 0 to 100, with no decimals, added by 1000!
     */
 
-    int temp = (int)sample.temperatureCelcus;
-    int alt = (int)sample.pressureAltitude;
+    char s[100];
 
+    sprintf(s, "LK8EX1,%d,99999,9999,%d,%4.2f,", (int)(sample.pressureMbar * 100), (int)sample.temperatureCelcus, sample.battVoltage);
 
-
-    char s[100] = "LK8EX1,";
-
-    sprintf(s, "%s999999,%d,9999,%d,999,", s, alt, temp);
-
-    // Checksum berechnen und als int ausgeben
-    // wird als HEX benötigt im NMEA Datensatz
-    // zwischen $ und * rechnen
-    int i, XOR, c;
+	//nmea checksum start
+    u8_t c, XOR;
     XOR = 0;
-
-    for (i = 0; i < strlen(s); i++) {
-        c = (unsigned char)s[i];
-        if (c == '*') break;
-        if (c!='$') XOR ^= c;
+    u8_t len = strlen(s);
+    for (u8_t i = 0; i < len; i++) {
+        c = s[i];
+        XOR ^= c;
     }
     // Checksum berechnen
 
-    sprintf(s,"%s$s*%d", s, XOR);
+    sprintf(s,"%s*%x", s, XOR);
 
-    u8_t len = strlen(s);
-    for (u8_t i = 0 ; i < len; i++) {
+    usartDataOut(RN4871,0x24);
+    u8_t len2 = strlen(s);
+    for (u8_t i = 0 ; i < len2; i++) {
         usartDataOut(RN4871,s[i]);
     }
     usartDataOut(RN4871,0x0d);
+    usartDataOut(RN4871,0x0a);
 }

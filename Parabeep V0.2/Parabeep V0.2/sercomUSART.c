@@ -22,7 +22,6 @@ void USART2init() {
                                  SERCOM_USART_CTRLA_TXPO(0) |
                                  SERCOM_USART_CTRLA_DORD;
 
-    //SERCOM_USART_CTRLA_DORD;
     sercom(2)->USART.CTRLB.reg = SERCOM_USART_CTRLB_RXEN |
                                  SERCOM_USART_CTRLB_TXEN;
 }

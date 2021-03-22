@@ -7,20 +7,28 @@ void init() {
     rtcInit();
     TC2Init();
     TC0Init();
+    TC1Init();
 
     SPI0init(0);
     SPI5init(5);
 
     USART3init();
     USART2init();
+    adcInit();
 
 
 
     pinOut(BuzzerPin);
     pinOut(RstLck);
+    pinLow(RstLck);
+    //pinHigh(RstLck);
+
 
     pinOut(PeriphEN);
-    enablePerif();
+
+    pinIn(senseBat);
+    pinMux(senseBat);
+
 
     pinOut(LedPin);
 
@@ -61,6 +69,11 @@ void init() {
     pinLow(RN4870_NRST);
 
 
+    enablePerif();
+    //disablePerif();
+
+    delay_ms(100);
+    sample.battVoltage = 3.7;
 
     initMS5803Barometer();
 
@@ -94,9 +107,14 @@ void POST() {
     }
 
     if (!postFailed) {
+        //beee
+
+        TC2_setDur(50);
         TC2_enable_interupt();
-        delay_ms(1000);
+        delay_ms(100);
         TC2_disable_interupt();
+
+
     } else {
         TC2_enable_interupt();
         delay_ms(1000);
@@ -111,7 +129,65 @@ void POST() {
     //start sampling
     TC0_enable_interupt(); //sample
 
+
     //TC2_enable_interupt();//buzzer
 
+}
+
+void warmSensors(uint32_t cycles) {
+
+    getSample();
+    vario();
+
+    sample.altitudeMeters = sample.sampleMeters;
+    sample.lastSampleMeters = sample.sampleMeters;
+    sample.altitudeStdDev = 0;
+    sample.altitudeVar = 0;
+    sample.battVoltage = 3.8;
+	sample.AVGdXdT = 0;
+
+
+    for (uint32_t i = 0 ; i < cycles ;) {
+
+        if (sample.takeSample) {
+            sample.takeSample = false;
+            getSample();
+            vario();
+            i++;
+        }
+    }
+
+    sample.sampleCount = 0;
+
+}
+
+void EnterSleepModeOFF() {
+
+    //beee
+    TC2_setDur(90);
+    TC2_enable_interupt();
+    delay_ms(200);
+    TC2_disable_interupt();
+    delay_ms(50);
+
+    //duu
+    TC2_setDur(130);
+    TC2_enable_interupt();
+    delay_ms(300);
+    TC2_disable_interupt();
+    delay_ms(50);
+
+    //boop;
+    TC2_setDur(230);
+    TC2_enable_interupt();
+    delay_ms(350);
+    TC2_disable_interupt();
+
+
+    disablePerif();
+    delay_ms(100);
+    PM->SLEEPCFG.reg = PM_SLEEPCFG_SLEEPMODE_OFF;
+    while(PM->SLEEPCFG.reg != PM_SLEEPCFG_SLEEPMODE_OFF);
+    __WFI();
 }
 

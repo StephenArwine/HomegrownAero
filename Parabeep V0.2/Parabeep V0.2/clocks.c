@@ -98,6 +98,37 @@ void TC0_disable_interupt() {
 }
 
 
+volatile u8_t TC1Dur = 100;
+
+void TC1Init() {
+
+    //already enabled by tc0
+    //enable_clock_generator(4, GCLK_GENCTRL_SRC_OSCULP32K, 32);
+    //connect_gclk_to_peripheral(4, 9);
+
+    MCLK->APBAMASK.reg |= MCLK_APBAMASK_TC1;
+
+    TC1->COUNT8.CTRLA.reg = TC_CTRLA_SWRST;
+    while(TC1->COUNT8.SYNCBUSY.bit.SWRST);
+
+    TC1->COUNT8.CTRLA.reg = TC_CTRLA_MODE_COUNT8 |
+                            TC_CTRLA_PRESCALER_DIV1 |
+                            TC_CTRLA_ENABLE;
+    TC1->COUNT8.PERBUF.reg = TC1Dur;
+
+    while(TC1->COUNT8.SYNCBUSY.bit.ENABLE);
+    NVIC_EnableIRQ(TC1_IRQn);
+}
+
+void TC1_enable_interupt() {
+    TC1->COUNT8.INTENSET.reg = TC_INTENSET_OVF;
+}
+
+void TC1_disable_interupt() {
+    TC1->COUNT8.INTENCLR.reg = TC_INTENCLR_OVF;
+}
+
+
 volatile u8_t TC2Dur = 50;
 
 void TC2Init() { //buzzer
@@ -120,6 +151,12 @@ void TC2Init() { //buzzer
     NVIC_EnableIRQ(TC2_IRQn);
 }
 
+void TC2_setDur(u8_t dur) {
+    TC2->COUNT8.PERBUF.reg = dur;
+
+
+}
+
 void TC2_enable_interupt() { //buzzer
     TC2->COUNT8.INTENSET.reg = TC_INTENSET_OVF;
 }
@@ -133,6 +170,11 @@ void TC2_disable_interupt() { //buzzer
 void TC0_Handler(void) {
     TC0->COUNT8.INTFLAG.reg = TC_INTFLAG_OVF;
     sample.takeSample = true;
+}
+
+void TC1_Handler(void) {
+    TC1->COUNT8.INTFLAG.reg = TC_INTFLAG_OVF;
+    sample.sendBluetoothPacket = true;
 }
 
 

@@ -90,7 +90,7 @@ inline static void pinOut(Pin p) {
 
 
 inline static void pinOutStrong(Pin p) {
-	pinGpio(p);
+    pinGpio(p);
     PORT->Group[p.group].PINCFG[p.pin].bit.DRVSTR = 1;
 }
 
@@ -108,16 +108,16 @@ inline static void pinToggle(Pin p) {
     PORT->Group[p.group].OUTTGL.reg = (1<<p.pin);
 }
 
-inline static void pullPinDown(Pin p){
-	pinIn(p);
-	PORT->Group[p.group].PINCFG[p.pin].bit.PULLEN = 1;
-	pinLow(p);
+inline static void pullPinDown(Pin p) {
+    pinIn(p);
+    PORT->Group[p.group].PINCFG[p.pin].bit.PULLEN = 1;
+    pinLow(p);
 }
 
-inline static void pullPinUp(Pin p){
-	pinIn(p);
-	PORT->Group[p.group].PINCFG[p.pin].bit.PULLEN = 1;
-	pinHigh(p);
+inline static void pullPinUp(Pin p) {
+    pinIn(p);
+    PORT->Group[p.group].PINCFG[p.pin].bit.PULLEN = 1;
+    pinHigh(p);
 }
 
 #endif

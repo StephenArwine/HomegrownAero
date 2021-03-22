@@ -54,15 +54,11 @@ void getSample() {
 
     getBaroData();
     getAccelData();
-
     ConvertPressureTemperature(sample.pressureRaw, sample.tempRaw, &sample.temperatureCelcus, &sample.pressureMbar);
-    sample.pressureAltitude = paToFeetNOAA(sample.pressureMbar);
-	
-    ADXLgetAccelData();
 
-    sample.lastSampleTime = sample.sampleTime;
-    sample.sampleTime = millis();
-    sample.dT = sample.sampleTime - sample.lastSampleTime;
+    sample.battRaw = adc_read(senseBat);
+    sample.battVoltage = (sample.battRaw * 0.00278)*0.1 + sample.battVoltage*0.9;
+
     sample.sampleCount = sample.sampleCount + 1;
 }
 
