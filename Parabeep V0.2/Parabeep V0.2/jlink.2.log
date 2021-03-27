@@ -1,7 +1,0 @@
-T1284 2013:716 SEGGER J-Link V5.12f Log File (0000ms, 38598ms total)
-T1284 2013:716 DLL Compiled: May 17 2016 16:03:35 (0000ms, 38598ms total)
-T1284 2013:716 Logging started @ 2021-03-01 19:03 (0000ms, 38598ms total)
-T1284 2013:723 JLINK_ExecCommand("Device = ATSAMD51J19A", ...)Device "ARM7" selected.  returns 0x00 (0000ms, 38598ms total)
-T1284 2019:218 JLINK_Close() (0000ms, 38598ms total)
-T1284 2019:218  (0000ms, 38598ms total)
-T1284 2019:218 Closed (0000ms, 38598ms total)

@@ -1,7 +1,0 @@
-T308C 045:483 SEGGER J-Link V6.48a Log File (0000ms, 0945ms total)
-T308C 045:483 DLL Compiled: Jul 30 2019 15:16:09 (0000ms, 0945ms total)
-T308C 045:483 Logging started @ 2021-01-27 03:40 (0000ms, 0945ms total)
-T308C 045:489 JLINK_ExecCommand("Device = ATSAML10E16A", ...). Device "ATSAML10E16A" selected.  returns 0x00 (0000ms, 0945ms total)
-T308C 045:560 JLINK_Close() (0006ms, 0951ms total)
-T308C 045:560  (0006ms, 0951ms total)
-T308C 045:560 Closed (0006ms, 0951ms total)
